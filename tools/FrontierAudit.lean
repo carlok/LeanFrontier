@@ -44,6 +44,15 @@ private partial def alphaNormalize : Expr → Expr
 private def normalizedType (info : ConstantInfo) : Expr :=
   alphaNormalize (Compiler.LCNF.normLevelParams info.type).1
 
+private partial def exprNodeCount : Expr → Nat
+  | .forallE _ type body _ => 1 + exprNodeCount type + exprNodeCount body
+  | .lam _ type body _ => 1 + exprNodeCount type + exprNodeCount body
+  | .letE _ type value body _ => 1 + exprNodeCount type + exprNodeCount value + exprNodeCount body
+  | .app function argument => 1 + exprNodeCount function + exprNodeCount argument
+  | .mdata _ expression => 1 + exprNodeCount expression
+  | .proj _ _ value => 1 + exprNodeCount value
+  | _ => 1
+
 private def hexDigit (value : Nat) : Char :=
   Char.ofNat <| if value < 10 then '0'.toNat + value else 'a'.toNat + value - 10
 
@@ -52,35 +61,38 @@ private def hexEncode (text : String) : String :=
     let value := byte.toNat
     [hexDigit (value / 16), hexDigit (value % 16)]
 
-private def canonicalType (info : ConstantInfo) : String :=
+private def canonicalType (type : Expr) : String :=
   -- `reprStr` can contain physical line breaks which Lean's JSON encoder does
   -- not consistently escape for every Mathlib term. Hex-encoded UTF-8 is
   -- injective and limits the surrounding audit stream to ASCII.
-  hexEncode <| reprStr (normalizedType info)
+  hexEncode <| reprStr type
 
-private def rawCanonicalType (info : ConstantInfo) : String :=
-  reprStr (normalizedType info)
+private def rawCanonicalType (type : Expr) : String :=
+  reprStr type
 
 /-! The hash is only an index prefilter. Python compares `type_canonical` with SHA-256. -/
-private def typeHint (info : ConstantInfo) : String :=
-  toString (hash (normalizedType info))
+private def typeHint (type : Expr) : String :=
+  toString (hash type)
 
 private def declarationJson (includeAxioms : Bool) (env : Environment) (name : Name) (info : ConstantInfo) : IO Json := do
   let axioms ← if includeAxioms then runInEnv env <| collectAxioms name else pure #[]
-  let canonical := canonicalType info
+  let type := normalizedType info
+  let canonical := canonicalType type
   return Json.mkObj [
     ("name", toJson name.toString),
     ("kind", toJson (declarationKind info)),
     ("axioms", Json.arr (axioms.map fun axiomName => toJson axiomName.toString)),
-    ("type_hint", toJson (typeHint info)),
-    ("type_canonical", toJson canonical)
+    ("type_hint", toJson (typeHint type)),
+    ("type_canonical", toJson canonical),
+    ("normalized_term_bytes", toJson (canonical.length / 2))
   ]
 
 private def fingerprintJson (info : ConstantInfo) : Json :=
+  let type := normalizedType info
   Json.mkObj [
     ("kind", toJson (declarationKind info)),
-    ("type_hint", toJson (typeHint info)),
-    ("type_canonical", toJson (canonicalType info))
+    ("type_hint", toJson (typeHint type)),
+    ("type_canonical", toJson (canonicalType type))
   ]
 
 private def parseArgs (args : List String) : Bool × List String × Array Import :=
@@ -102,16 +114,20 @@ def main (args : List String) : IO UInt32 := do
     -- directly here: retaining and sorting every Mathlib theorem can exceed a
     -- standard GitHub runner's memory before any fingerprint is emitted.
     env.constants.forM fun _ info => do
-      let requested := filters.isEmpty || filters.contains (typeHint info)
-      if isTheorem info && requested then
-        let canonical := rawCanonicalType info
+      let type := normalizedType info
+      let requested := filters.isEmpty || filters.contains (typeHint type)
+      -- Candidates are capped at 64 KiB of normalized term representation.
+      -- A term with more than 64 Ki expression nodes cannot match one, so omit
+      -- it before expensive pretty serialization.
+      if isTheorem info && requested && exprNodeCount type ≤ 65536 then
+        let canonical := rawCanonicalType type
         -- A length-prefixed raw UTF-8 payload is safe even when the term's
         -- representation contains line breaks or unusual Unicode.
-        IO.println s!"{declarationKind info}\t{typeHint info}\t{canonical.toUTF8.size}"
+        IO.println s!"{declarationKind info}\t{typeHint type}\t{canonical.toUTF8.size}"
         IO.print canonical
     return 0
   let selected := env.constants.fold (init := #[]) fun result name info =>
-    let requested := filters.isEmpty || filters.contains (typeHint info)
+    let requested := filters.isEmpty || filters.contains (typeHint (normalizedType info))
     if (all && isTheorem info && requested) || (!all && hasPrefix `LeanFrontier name) then
       result.push (name, info)
     else

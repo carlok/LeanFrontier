@@ -53,6 +53,12 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("contents: write", SYNC_WORKFLOW)
         self.assertIn("tools/generate_umbrella.py", SYNC_WORKFLOW)
 
+    def test_receiver_uses_a_pinned_mathlib_fingerprint_index(self) -> None:
+        validator = (ROOT / "tools" / "frontier_validate.py").read_text()
+        self.assertIn("mathlib-fingerprints-v4.33.0-rc1.json", validator)
+        self.assertIn("Mathlib fingerprint index does not match the pinned revision", validator)
+        self.assertNotIn('"--all", match_arg, "Mathlib"', validator)
+
 
 if __name__ == "__main__":
     unittest.main()
