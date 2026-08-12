@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "inversive-geometry-reflection",
+  "producer": {
+    "type": "llm",
+    "model": "claude-opus-5",
+    "agent": "claude-code"
+  },
+  "origin_mode": "mathlib_extension",
+  "statement_origin": "mixed",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.InversiveGeometry.reflect_eq_self_iff",
+    "LeanFrontier.InversiveGeometry.reflect_reflect"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "Reflection across a generalized circle (circline), the zero locus of the Hermitian form A|z|^2 + Bz + conj(B)conj(z) + C with A, C real and B complex. Mathlib has no circline object: the identifiers circline, Cline and GeneralizedCircle return no hits in the declaration index, and the circle-versus-line dichotomy is currently written out by hand in at least two places, Analysis/Complex/UpperHalfPlane/FixedPoints.lean and Geometry/Euclidean/Inversion/ImageHyperplane.lean. Mathematics is classical inversive geometry and is not claimed as new; reflect is derived by solving H z = 0 for z in terms of conj z, which is why the fixed-point characterization holds by construction. Statement origin is mixed: the mathematical content is textbook and the target was chosen by a human, while the Lean statements were drafted by the model. Proofs are machine-written. Ported from the standalone repository carlok/inversive-geometry-lean, which pins Mathlib v4.33.0; the module is unchanged apart from the namespace, and is submitted here against v4.33.0-rc1. Two declarations from that repository are deliberately not included. A Verify module consisting of #print axioms commands is omitted because CONTRACT.md section 2 forbids that content and the receiver performs its own axiom audit. A theorem fixedSet_eq_zeroLocus, which restates reflect_eq_self_iff with set-builder notation and whose proof is the former applied unchanged, is omitted as a same-result restatement."
+}
