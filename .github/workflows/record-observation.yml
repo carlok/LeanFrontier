@@ -13,9 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Record immutable submission claims present at this revision
-        run: >-
+        run: |
           python3 -c "import json,pathlib; print(json.dumps({'revision': '${{ github.sha }}', 'claims': sorted(p.name for p in pathlib.Path('Submissions').glob('*.json'))}, indent=2))"
-        | tee receiver-observation.json
+          | tee receiver-observation.json
       - uses: actions/upload-artifact@v4
         with:
           name: receiver-observation-${{ github.sha }}

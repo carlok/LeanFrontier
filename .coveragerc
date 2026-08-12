@@ -1,8 +1,6 @@
 [run]
 branch = True
-source = tools
-omit =
-    tools/validate-submission
+source = tools/frontier_validate.py
 
 [report]
 show_missing = True
