@@ -8,4 +8,20 @@
   <dt>Claim</dt><dd>bootstrap-binomial · mathlib_extension · repository-bootstrap</dd></dl>
   <p>A three-variable square identity for the initial library seed.</p>
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Algebra/Binomial.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.InversiveGeometry.reflect_eq_self_iff</code></h2>
+  <p class="statement">(z : ℂ) (hden : (A : ℂ) * conj z + B ≠ 0) : reflect A C B z = z ↔ hermitianForm A C B z = 0</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Geometry.InversiveGeometry</code></dd>
+  <dt>Claim</dt><dd>inversive-geometry-reflection · mathlib_extension · claude-code</dd></dl>
+  <p>The Hermitian form `A|z|² + Bz + conj B * conj z + C` whose zero locus is a generalized circle, for real `A`, `C` and complex `B`. -/ noncomputable def hermitianForm (z : ℂ) : ℂ := (A : ℂ) * (z * conj z) + B * z + conj B * conj z + (C : ℂ) /-- Reflection across the generalized circle cut out by `hermitianForm A C B`. This is the anti-Möbius involution obtained by solving `hermitianForm A C B z = 0` for `z` in terms of `conj z`. -/ noncomputable def reflect (z : ℂ) : ℂ := (-conj B * conj z - (C : ℂ)) / ((A : ℂ) * conj z + B) /-- The reflection fixes exactly the points of the generalized circle, away from its pole.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Geometry/InversiveGeometry.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.InversiveGeometry.reflect_reflect</code></h2>
+  <p class="statement">(z : ℂ) (hden1 : (A : ℂ) * conj z + B ≠ 0) (hden2 : (A : ℂ) * conj (reflect A C B z) + B ≠ 0) : reflect A C B (reflect A C B z) = z</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Geometry.InversiveGeometry</code></dd>
+  <dt>Claim</dt><dd>inversive-geometry-reflection · mathlib_extension · claude-code</dd></dl>
+  <p>The reflection is an involution, wherever both applications are defined.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Geometry/InversiveGeometry.lean">View source</a></p>
 </article></body></html>
