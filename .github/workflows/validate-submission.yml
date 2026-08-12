@@ -42,12 +42,16 @@ jobs:
       # The candidate lakefile has already been proven identical to trusted
       # infrastructure. Network is available only for dependency acquisition.
       - name: Fetch pinned dependencies and compiled Mathlib cache
-        run: >-
-          docker run --rm
-          -v "$GITHUB_WORKSPACE/elan:/elan"
-          -v "$GITHUB_WORKSPACE/candidate:/candidate"
-          -w /candidate
-          leanfrontier-validator:ci sh -c 'lake update && lake exe cache get'
+        run: |
+          for attempt in 1 2 3; do
+            docker run --rm \
+              -v "$GITHUB_WORKSPACE/elan:/elan" \
+              -v "$GITHUB_WORKSPACE/candidate:/candidate" \
+              -w /candidate \
+              leanfrontier-validator:ci sh -c 'lake update && lake exe cache get' && exit 0
+            if [ "$attempt" -eq 3 ]; then exit 1; fi
+            sleep 5
+          done
 
       - name: Restricted formal validation
         run: >-
