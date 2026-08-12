@@ -44,12 +44,19 @@ private partial def alphaNormalize : Expr → Expr
 private def normalizedType (info : ConstantInfo) : Expr :=
   alphaNormalize (Compiler.LCNF.normLevelParams info.type).1
 
+private def hexDigit (value : Nat) : Char :=
+  Char.ofNat <| if value < 10 then '0'.toNat + value else 'a'.toNat + value - 10
+
+private def hexEncode (text : String) : String :=
+  String.ofList <| text.toUTF8.toList.flatMap fun byte =>
+    let value := byte.toNat
+    [hexDigit (value / 16), hexDigit (value % 16)]
+
 private def canonicalType (info : ConstantInfo) : String :=
-  -- Use a compact JSON string as the canonical representation. `reprStr` may
-  -- contain physical line breaks; JSON escaping makes the surrounding audit
-  -- stream unambiguously NDJSON while remaining injective.
-  let raw := reprStr (normalizedType info)
-  (toJson raw).compress
+  -- `reprStr` can contain physical line breaks which Lean's JSON encoder does
+  -- not consistently escape for every Mathlib term. Hex-encoded UTF-8 is
+  -- injective and limits the surrounding audit stream to ASCII.
+  hexEncode <| reprStr (normalizedType info)
 
 /-! The hash is only an index prefilter. Python compares `type_canonical` with SHA-256. -/
 private def typeHint (info : ConstantInfo) : String :=
