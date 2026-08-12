@@ -42,6 +42,8 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn('ELAN_HOME=/elan', DOCKERFILE)
         self.assertIn('-v "$GITHUB_WORKSPACE/elan:/elan"', WORKFLOW)
         self.assertIn('-v "$GITHUB_WORKSPACE/elan:/elan:ro"', WORKFLOW)
+        self.assertIn("sh -c 'lake update && lake exe cache get'", WORKFLOW)
+        self.assertNotIn("sh -lc 'lake update", WORKFLOW)
         self.assertNotIn("leanprover/lean4", DOCKERFILE)
 
     def test_all_subject_modules_build_and_the_umbrella_is_trusted_post_merge_output(self) -> None:
