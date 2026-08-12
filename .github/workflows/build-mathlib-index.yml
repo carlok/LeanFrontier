@@ -28,8 +28,8 @@ jobs:
           docker run --rm
           --network none --read-only --cap-drop ALL
           --security-opt no-new-privileges
-          --memory 4g --cpus 2 --pids-limit 512
-          --tmpfs /tmp:size=4g
+          --memory 6g --cpus 2 --pids-limit 512
+          --tmpfs /tmp:size=6g
           -v "$GITHUB_WORKSPACE/elan:/elan:ro"
           -v "$GITHUB_WORKSPACE:/workspace"
           -w /workspace
