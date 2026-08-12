@@ -1,0 +1,29 @@
+name: test
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install test dependencies
+        run: python3 -m pip install --disable-pip-version-check -r requirements-dev.txt
+      - name: Run validator tests with coverage
+        run: >-
+          python3 -m coverage run -m unittest discover -s tests -v
+          && python3 -m coverage report
+          && python3 -m coverage xml -o coverage.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: python-coverage
+          path: coverage.xml
+          if-no-files-found: warn

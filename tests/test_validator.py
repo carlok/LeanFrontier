@@ -1,0 +1,130 @@
+from __future__ import annotations
+
+import json
+import io
+import hashlib
+import tempfile
+import unittest
+from contextlib import redirect_stdout
+from pathlib import Path
+
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+import frontier_validate  # noqa: E402
+
+
+def metadata(identifier: str = "valid-bundle") -> str:
+    return json.dumps(
+        {
+            "protocol_version": "0.1",
+            "submission_id": identifier,
+            "producer": {"type": "llm", "model": "test-model", "agent": "test-agent"},
+            "origin_mode": "target_driven",
+            "statement_origin": "machine",
+            "proof_origin": "machine",
+            "entrypoints": ["LeanFrontier.Algebra.new_result"],
+            "base_mathlib_revision": "v4.33.0-rc1",
+            "source_context": None,
+        }
+    )
+
+
+class ValidatorPreflightTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.temp = tempfile.TemporaryDirectory()
+        self.base = Path(self.temp.name) / "base"
+        self.candidate = Path(self.temp.name) / "candidate"
+        for root in (self.base, self.candidate):
+            (root / "LeanFrontier" / "Algebra").mkdir(parents=True)
+            (root / "Submissions").mkdir()
+            (root / "LeanFrontier" / "Algebra" / "Existing.lean").write_text("namespace LeanFrontier.Algebra\nend LeanFrontier.Algebra\n")
+        (self.candidate / "LeanFrontier" / "Algebra" / "New.lean").write_text(
+            "namespace LeanFrontier.Algebra\n"
+            "theorem new_result (n : Nat) : n ^ 2 + 2 * n + 1 = (n + 1) ^ 2 := by omega\n"
+            "end LeanFrontier.Algebra\n"
+        )
+        (self.candidate / "Submissions" / "valid-bundle.json").write_text(metadata())
+
+    def tearDown(self) -> None:
+        self.temp.cleanup()
+
+    def validate(self) -> tuple[int, dict[str, object]]:
+        output = io.StringIO()
+        with redirect_stdout(output):
+            status = frontier_validate.main(["--base-dir", str(self.base), "--candidate-dir", str(self.candidate), "--preflight-only"])
+        return status, json.loads(output.getvalue())
+
+    def assert_rejected(self, expected_code: str) -> None:
+        status, report = self.validate()
+        self.assertEqual(status, 1)
+        codes = {item["code"] for item in report["diagnostics"]}  # type: ignore[index]
+        self.assertIn(expected_code, codes)
+
+    def test_valid_theorem(self) -> None:
+        status, report = self.validate()
+        self.assertEqual(status, 0)
+        self.assertTrue(report["accepted"])
+
+    def test_sorry_is_rejected(self) -> None:
+        path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
+        path.write_text("theorem new_result : True := by sorry\n")
+        self.assert_rejected("SORRY_DETECTED")
+
+    def test_custom_axiom_is_rejected(self) -> None:
+        path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
+        path.write_text("axiom bad : False\ntheorem new_result : True := True.intro\n")
+        self.assert_rejected("UNAUTHORIZED_AXIOM")
+
+    def test_unauthorized_path_is_rejected(self) -> None:
+        (self.candidate / "README.md").write_text("payload")
+        self.assert_rejected("PATH_POLICY_VIOLATION")
+
+    def test_malformed_metadata_is_rejected(self) -> None:
+        (self.candidate / "Submissions" / "valid-bundle.json").write_text("{")
+        self.assert_rejected("SCHEMA_INVALID")
+
+    def test_exact_duplicate_is_rejected(self) -> None:
+        path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
+        path.write_text(
+            "theorem new_result (n : Nat) : n = n := rfl\n"
+            "theorem another_result (n : Nat) : n = n := rfl\n"
+        )
+        self.assert_rejected("DUPLICATE_STATEMENT")
+
+    def test_propositional_noise_is_rejected(self) -> None:
+        path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
+        path.write_text("theorem new_result (P : Prop) : P → P := id\n")
+        self.assert_rejected("TRIVIAL_BASELINE_RESULT")
+
+    def test_permuted_family_is_rejected(self) -> None:
+        path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
+        path.write_text(
+            "theorem new_result (n : Nat) : n + 1 = 1 + n := by omega\n"
+            "theorem swapped_result (n : Nat) : n + 2 = 2 + n := by omega\n"
+            "theorem enumerated_result (n : Nat) : n + 3 = 3 + n := by omega\n"
+        )
+        self.assert_rejected("DEGENERATE_THEOREM_FAMILY")
+
+    def test_oversized_submission_is_rejected(self) -> None:
+        path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
+        path.write_text("-- " + "x" * 52000)
+        self.assert_rejected("RESOURCE_LIMIT_EXCEEDED")
+
+    def test_public_audit_observation_uses_digest_not_raw_expression(self) -> None:
+        canonical = "normalized elaborated expression"
+        observation = frontier_validate.public_finding(
+            {
+                "name": "LeanFrontier.Algebra.new_result",
+                "kind": "theorem",
+                "axioms": ["propext"],
+                "type_canonical": canonical,
+            }
+        )
+        self.assertNotIn("type_canonical", observation)
+        self.assertEqual(observation["statement_sha256"], hashlib.sha256(canonical.encode()).hexdigest())
+
+
+if __name__ == "__main__":
+    unittest.main()

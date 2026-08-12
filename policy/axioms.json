@@ -1,0 +1,10 @@
+{
+  "policy_version": "0.1",
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "always_reject": ["sorryAx"],
+  "rationale": "Only Lean's conventional foundational axioms are permitted."
+}

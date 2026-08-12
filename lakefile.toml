@@ -1,0 +1,18 @@
+name = "LeanFrontier"
+version = "0.1.0"
+defaultTargets = ["LeanFrontier", "frontier-audit"]
+
+[leanOptions]
+autoImplicit = false
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.33.0-rc1"
+
+[[lean_lib]]
+name = "LeanFrontier"
+
+[[lean_exe]]
+name = "frontier-audit"
+root = "tools.FrontierAudit"

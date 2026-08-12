@@ -1,0 +1,15 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "bootstrap-binomial",
+  "producer": {
+    "type": "other",
+    "model": null,
+    "agent": "repository-bootstrap"
+  },
+  "origin_mode": "mathlib_extension",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": ["LeanFrontier.Algebra.add_add_sq"],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "Initial LeanFrontier package bootstrap."
+}

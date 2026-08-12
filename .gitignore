@@ -1,0 +1,8 @@
+.lake/
+.frontier/
+__pycache__/
+*.py[cod]
+.DS_Store
+reports/
+.coverage
+coverage.xml

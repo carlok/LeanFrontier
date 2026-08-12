@@ -1,0 +1,9 @@
+FROM leanprover/lean4:v4.33.0-rc1
+
+# The receiver needs only Python's standard library. Validator code always comes
+# from the separate trusted checkout, never from the pull-request candidate.
+USER root
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends python3 \
+    && rm -rf /var/lib/apt/lists/*
+ENV PYTHONDONTWRITEBYTECODE=1

@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+"""LeanFrontier's trusted, dependency-free submission validator entry point."""
+
+from frontier_validate import main
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

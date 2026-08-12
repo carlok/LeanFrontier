@@ -1,0 +1,16 @@
+{
+  "policy_version": "0.1",
+  "max_changed_files": 25,
+  "max_total_changed_bytes": 256000,
+  "max_lean_source_bytes": 204800,
+  "max_added_lines": 10000,
+  "max_declarations": 50,
+  "max_public_entrypoints": 20,
+  "max_individual_file_bytes": 51200,
+  "max_identifier_length": 256,
+  "max_normalized_term_bytes": 65536,
+  "build_timeout_seconds": 300,
+  "validation_timeout_seconds": 480,
+  "max_memory_bytes": 2147483648,
+  "max_disk_bytes": 2147483648
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://leanfrontier.org/schema/submission-0.1.json",
+  "title": "LeanFrontier submission claim",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_version",
+    "submission_id",
+    "producer",
+    "origin_mode",
+    "statement_origin",
+    "proof_origin",
+    "entrypoints",
+    "base_mathlib_revision",
+    "source_context"
+  ],
+  "properties": {
+    "protocol_version": {"const": "0.1"},
+    "submission_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{2,63}$"
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "model", "agent"],
+      "properties": {
+        "type": {"enum": ["llm", "autonomous_agent", "hybrid", "other"]},
+        "model": {"type": ["string", "null"], "maxLength": 256},
+        "agent": {"type": ["string", "null"], "maxLength": 256}
+      }
+    },
+    "origin_mode": {
+      "enum": ["mathlib_extension", "target_driven", "autonomous_discovery"]
+    },
+    "statement_origin": {"enum": ["machine", "human", "mixed", "unknown"]},
+    "proof_origin": {"enum": ["machine", "human", "mixed", "unknown"]},
+    "entrypoints": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 20,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^LeanFrontier(\\.[A-Za-z_][A-Za-z0-9_']*)+$",
+        "maxLength": 256
+      }
+    },
+    "base_mathlib_revision": {"const": "v4.33.0-rc1"},
+    "source_context": {
+      "type": ["string", "null"],
+      "maxLength": 4096
+    }
+  }
+}
