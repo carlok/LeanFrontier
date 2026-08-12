@@ -45,6 +45,7 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn('-v "$GITHUB_WORKSPACE/elan:/elan"', WORKFLOW)
         self.assertIn('-v "$GITHUB_WORKSPACE/elan:/elan:ro"', WORKFLOW)
         self.assertIn("sh -c 'lake update && lake exe cache get'", WORKFLOW)
+        self.assertIn("for attempt in 1 2 3", WORKFLOW)
         self.assertNotIn("sh -lc 'lake update", WORKFLOW)
         self.assertNotIn("leanprover/lean4", DOCKERFILE)
 
