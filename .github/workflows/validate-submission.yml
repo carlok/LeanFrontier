@@ -63,20 +63,22 @@ jobs:
           done
 
       - name: Restricted formal validation
-        run: >-
-          docker run --rm --network none --read-only --cap-drop ALL
-          --security-opt no-new-privileges
-          --memory 2g --cpus 2 --pids-limit 512
-          --tmpfs /tmp:size=2g
-          -v "$GITHUB_WORKSPACE/elan:/elan:ro"
-          -v "$GITHUB_WORKSPACE/trusted:/trusted:ro"
-          -v "$GITHUB_WORKSPACE/candidate:/candidate"
-          -w /candidate
-          -e PYTHONPATH=/trusted/tools
-          leanfrontier-validator:ci
-          python3 /trusted/tools/validate-submission
-          --base-dir /trusted --candidate-dir /candidate
-          --json-out /candidate/.frontier/report.json
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/report-output"
+          docker run --rm --network none --read-only --cap-drop ALL \
+            --security-opt no-new-privileges \
+            --memory 2g --cpus 2 --pids-limit 512 \
+            --tmpfs /tmp:size=2g \
+            -v "$GITHUB_WORKSPACE/elan:/elan:ro" \
+            -v "$GITHUB_WORKSPACE/trusted:/trusted:ro" \
+            -v "$GITHUB_WORKSPACE/candidate:/candidate:ro" \
+            -v "$GITHUB_WORKSPACE/report-output:/report-output" \
+            -w /candidate \
+            -e PYTHONPATH=/trusted/tools \
+            leanfrontier-validator:ci \
+            python3 /trusted/tools/validate-submission \
+            --base-dir /trusted --candidate-dir /candidate \
+            --json-out /report-output/report.json
 
       - name: Upload receiver report
         if: always()
@@ -85,5 +87,5 @@ jobs:
           name: leanfrontier-validation-report
           path: |
             preflight-report.json
-            candidate/.frontier/report.json
+            report-output/report.json
           if-no-files-found: warn
