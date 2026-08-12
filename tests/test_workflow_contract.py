@@ -64,6 +64,7 @@ class WorkflowContractTests(unittest.TestCase):
     def test_receiver_smoke_tests_downstream_imports(self) -> None:
         validator = (ROOT / "tools" / "frontier_validate.py").read_text()
         self.assertIn("def downstream_smoke", validator)
+        self.assertIn('SCRATCH = Path("/tmp/leanfrontier")', validator)
         self.assertIn('report.observations["downstream_import_smoke"] = "pass"', validator)
 
     def test_catalogue_is_trusted_post_merge_output(self) -> None:
