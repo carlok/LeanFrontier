@@ -32,7 +32,9 @@ class WorkflowContractTests(unittest.TestCase):
             "--memory 2g",
             "lake exe cache get",
             "preflight-report.json",
-            "candidate/.frontier/report.json",
+            "report-output/report.json",
+            '-v "$GITHUB_WORKSPACE/candidate:/candidate:ro"',
+            '-v "$GITHUB_WORKSPACE/report-output:/report-output"',
         ):
             self.assertIn(required, WORKFLOW)
 
