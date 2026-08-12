@@ -21,6 +21,7 @@ from typing import Any, Iterable
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SCRATCH = Path("/tmp/leanfrontier")
 DEFAULT_LIMITS = ROOT / "policy" / "limits.json"
 DEFAULT_AXIOMS = ROOT / "policy" / "axioms.json"
 DEFAULT_TRIVIALITY = ROOT / "policy" / "triviality.json"
@@ -352,7 +353,7 @@ def baseline_probes(candidate: Path, modules: list[str], entrypoints: list[str],
     A reference to a newly introduced definition makes the probe inconclusive,
     never a rejection.
     """
-    probe_file = candidate / ".frontier" / "baseline_probe.lean"
+    probe_file = SCRATCH / "baseline_probe.lean"
     probe_file.parent.mkdir(parents=True, exist_ok=True)
     outcomes: dict[str, str] = {}
     for entrypoint, body in entrypoint_bodies(candidate, modules, entrypoints).items():
@@ -372,7 +373,7 @@ def baseline_probes(candidate: Path, modules: list[str], entrypoints: list[str],
 
 def downstream_smoke(candidate: Path, modules: list[str], entrypoints: list[str], report: Report) -> None:
     """Check that a clean consumer module can import and name the public API."""
-    client = candidate / ".frontier" / "downstream" / "Client.lean"
+    client = SCRATCH / "downstream" / "Client.lean"
     client.parent.mkdir(parents=True, exist_ok=True)
     imports = "\n".join(f"import {module}" for module in sorted(set(modules)))
     checks = "\n".join(f"#check {entrypoint}" for entrypoint in entrypoints)
