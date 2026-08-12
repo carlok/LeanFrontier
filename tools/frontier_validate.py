@@ -370,6 +370,24 @@ def baseline_probes(candidate: Path, modules: list[str], entrypoints: list[str],
     report.observations["baseline_triviality_probes"] = outcomes
 
 
+def downstream_smoke(candidate: Path, modules: list[str], entrypoints: list[str], report: Report) -> None:
+    """Check that a clean consumer module can import and name the public API."""
+    client = candidate / ".frontier" / "downstream" / "Client.lean"
+    client.parent.mkdir(parents=True, exist_ok=True)
+    imports = "\n".join(f"import {module}" for module in sorted(set(modules)))
+    checks = "\n".join(f"#check {entrypoint}" for entrypoint in entrypoints)
+    client.write_text(f"{imports}\n\n{checks}\n", encoding="utf-8")
+    try:
+        result = run(["lake", "env", "lean", str(client)], candidate, 30)
+    except (OSError, subprocess.TimeoutExpired) as error:
+        report.reject("BUILD_FAILED", f"downstream import smoke test did not complete: {error}")
+        return
+    if result.returncode:
+        report.reject("BUILD_FAILED", result.stderr.strip()[-2000:] or "downstream import smoke test failed")
+        return
+    report.observations["downstream_import_smoke"] = "pass"
+
+
 def lean_audit(candidate: Path, modules: list[str], metadata: dict[str, Any], limits: dict[str, Any], axioms: dict[str, Any], report: Report) -> None:
     try:
         build = run(["lake", "build"], candidate, limits["build_timeout_seconds"])
@@ -413,6 +431,8 @@ def lean_audit(candidate: Path, modules: list[str], metadata: dict[str, Any], li
             report.reject("DUPLICATE_STATEMENT", f"{entrypoint} has an exact elaborated statement already in Mathlib")
     if report.accepted:
         baseline_probes(candidate, modules, entrypoints, load_json(DEFAULT_TRIVIALITY), report)
+    if report.accepted:
+        downstream_smoke(candidate, modules, entrypoints, report)
     report.observations["build"] = "pass"
     report.observations["entrypoints"] = {name: public_finding(findings.get(name)) for name in entrypoints}
 
@@ -463,7 +483,7 @@ def main(argv: list[str] | None = None) -> int:
             if metadata is None:
                 report.reject("SCHEMA_INVALID", "no valid metadata record was available for audit")
             else:
-                lean_audit(candidate, modules_for(tree_files(candidate)), metadata, limits, axioms, report)
+                lean_audit(candidate, modules_for(changed), metadata, limits, axioms, report)
     finally:
         if temporary:
             temporary.cleanup()

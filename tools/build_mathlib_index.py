@@ -5,17 +5,21 @@ from __future__ import annotations
 
 import hashlib
 import json
+import argparse
 import subprocess
 from collections import defaultdict
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DESTINATION = ROOT / "policy" / "mathlib-fingerprints-v4.33.0-rc1.json"
+DEFAULT_DESTINATION = ROOT / "policy" / "mathlib-fingerprints-v4.33.0-rc1.json"
 MATHLIB_REVISION = "v4.33.0-rc1"
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, default=DEFAULT_DESTINATION)
+    args = parser.parse_args(argv)
     process = subprocess.Popen(
         ["lake", "exe", "frontier-audit", "--", "--all", "--fingerprints", "Mathlib"],
         cwd=ROOT,
@@ -43,7 +47,7 @@ def main() -> int:
         "mathlib_revision": MATHLIB_REVISION,
         "fingerprints_by_type_hint": {hint: sorted(values) for hint, values in sorted(fingerprints.items())},
     }
-    DESTINATION.write_text(json.dumps(payload, separators=(",", ":"), sort_keys=True) + "\n", encoding="utf-8")
+    args.output.write_text(json.dumps(payload, separators=(",", ":"), sort_keys=True) + "\n", encoding="utf-8")
     return 0
 
 

@@ -24,17 +24,21 @@ jobs:
           -w /workspace
           leanfrontier-index:ci sh -c 'lake update && lake exe cache get'
       - name: Generate the trusted Mathlib theorem fingerprint index
-        run: >-
-          docker run --rm
-          --network none --read-only --cap-drop ALL
-          --security-opt no-new-privileges
-          --memory 6g --cpus 2 --pids-limit 512
-          --tmpfs /tmp:size=6g
-          -v "$GITHUB_WORKSPACE/elan:/elan:ro"
-          -v "$GITHUB_WORKSPACE:/workspace"
-          -w /workspace
-          leanfrontier-index:ci
-          python3 tools/build_mathlib_index.py
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/index-output"
+          chmod 777 "$GITHUB_WORKSPACE/index-output"
+          docker run --rm \
+            --network none --read-only --cap-drop ALL \
+            --security-opt no-new-privileges \
+            --memory 6g --cpus 2 --pids-limit 512 \
+            --tmpfs /tmp:size=6g \
+            -v "$GITHUB_WORKSPACE/elan:/elan:ro" \
+            -v "$GITHUB_WORKSPACE:/workspace:ro" \
+            -v "$GITHUB_WORKSPACE/index-output:/output" \
+            -w /workspace \
+            leanfrontier-index:ci \
+            python3 tools/build_mathlib_index.py --output /output/mathlib-fingerprints-v4.33.0-rc1.json
+          install -m 0644 "$GITHUB_WORKSPACE/index-output/mathlib-fingerprints-v4.33.0-rc1.json" policy/mathlib-fingerprints-v4.33.0-rc1.json
       - uses: actions/upload-artifact@v4
         with:
           name: mathlib-fingerprints-v4.33.0-rc1
