@@ -33,7 +33,8 @@ def main() -> int:
         fingerprints[hint].add(hashlib.sha256(canonical.encode("utf-8")).hexdigest())
     stderr = process.stderr.read() if process.stderr is not None else ""
     if process.wait() != 0:
-        raise RuntimeError(stderr.strip() or f"frontier-audit exited with status {process.returncode}")
+        detail = stderr.strip()
+        raise RuntimeError(f"frontier-audit exited with status {process.returncode}" + (f": {detail}" if detail else ""))
     payload = {
         "format_version": 1,
         "mathlib_revision": MATHLIB_REVISION,

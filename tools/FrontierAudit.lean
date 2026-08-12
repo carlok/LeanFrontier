@@ -94,6 +94,15 @@ def main (args : List String) : IO UInt32 := do
   let (all, filters, imports) := parseArgs args
   let fingerprints := args.contains "--fingerprints"
   let env ← importModules imports {}
+  if all && fingerprints then
+    -- The index builder sorts its final JSON itself. Stream the source map
+    -- directly here: retaining and sorting every Mathlib theorem can exceed a
+    -- standard GitHub runner's memory before any fingerprint is emitted.
+    env.constants.forM fun _ info => do
+      let requested := filters.isEmpty || filters.contains (typeHint info)
+      if isTheorem info && requested then
+        IO.println s!"{declarationKind info}\t{typeHint info}\t{canonicalType info}"
+    return 0
   let selected := env.constants.fold (init := #[]) fun result name info =>
     let requested := filters.isEmpty || filters.contains (typeHint info)
     if (all && isTheorem info && requested) || (!all && hasPrefix `LeanFrontier name) then
@@ -101,12 +110,7 @@ def main (args : List String) : IO UInt32 := do
     else
       result
   for (name, info) in selected.qsort fun left right => left.1.quickLt right.1 do
-    if all && fingerprints then
-      -- Fixed ASCII fields avoid JSON string-escaping edge cases in the full
-      -- Mathlib environment. `type_canonical` is hex and `type_hint` is an
-      -- integer string, so tabs and line breaks cannot occur.
-      IO.println s!"{declarationKind info}\t{typeHint info}\t{canonicalType info}"
-    else if all then
+    if all then
       IO.println (fingerprintJson info).compress
     else
       IO.println (← declarationJson true env name info).compress
