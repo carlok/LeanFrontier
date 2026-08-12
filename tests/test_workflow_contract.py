@@ -34,7 +34,9 @@ class WorkflowContractTests(unittest.TestCase):
             "preflight-report.json",
             "report-output/report.json",
             '-v "$GITHUB_WORKSPACE/candidate:/candidate:ro"',
+            '-v "$GITHUB_WORKSPACE/candidate/.lake:/candidate/.lake"',
             '-v "$GITHUB_WORKSPACE/report-output:/report-output"',
+            'chmod 0777 "$GITHUB_WORKSPACE/report-output"',
         ):
             self.assertIn(required, WORKFLOW)
 
