@@ -78,6 +78,11 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("tools/generate_catalogue.py", CATALOGUE_WORKFLOW)
         self.assertIn("contents: write", CATALOGUE_WORKFLOW)
 
+    def test_trusted_generators_are_serialized(self) -> None:
+        for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW):
+            self.assertIn("group: trusted-generated-main", workflow)
+            self.assertIn("cancel-in-progress: false", workflow)
+
 
 if __name__ == "__main__":
     unittest.main()

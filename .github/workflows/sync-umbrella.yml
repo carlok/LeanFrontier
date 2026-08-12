@@ -10,6 +10,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: trusted-generated-main
+  cancel-in-progress: false
+
 jobs:
   sync:
     runs-on: ubuntu-latest
