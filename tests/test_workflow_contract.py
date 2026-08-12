@@ -6,6 +6,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = (ROOT / ".github" / "workflows" / "validate-submission.yml").read_text()
+SYNC_WORKFLOW = (ROOT / ".github" / "workflows" / "sync-umbrella.yml").read_text()
+DOCKERFILE = (ROOT / "tools" / "Dockerfile.validator").read_text()
+LAKEFILE = (ROOT / "lakefile.toml").read_text()
 
 
 class WorkflowContractTests(unittest.TestCase):
@@ -31,6 +34,21 @@ class WorkflowContractTests(unittest.TestCase):
             "candidate/.frontier/report.json",
         ):
             self.assertIn(required, WORKFLOW)
+
+    def test_receiver_image_installs_the_pinned_toolchain_via_its_shared_elan_volume(self) -> None:
+        self.assertIn("FROM debian:bookworm-slim", DOCKERFILE)
+        self.assertIn("elan-init.sh", DOCKERFILE)
+        self.assertIn("--default-toolchain none", DOCKERFILE)
+        self.assertIn('ELAN_HOME=/elan', DOCKERFILE)
+        self.assertIn('-v "$GITHUB_WORKSPACE/elan:/elan"', WORKFLOW)
+        self.assertIn('-v "$GITHUB_WORKSPACE/elan:/elan:ro"', WORKFLOW)
+        self.assertNotIn("leanprover/lean4", DOCKERFILE)
+
+    def test_all_subject_modules_build_and_the_umbrella_is_trusted_post_merge_output(self) -> None:
+        self.assertIn('globs = ["LeanFrontier.+"]', LAKEFILE)
+        self.assertIn("LeanFrontier/**/*.lean", SYNC_WORKFLOW)
+        self.assertIn("contents: write", SYNC_WORKFLOW)
+        self.assertIn("tools/generate_umbrella.py", SYNC_WORKFLOW)
 
 
 if __name__ == "__main__":
