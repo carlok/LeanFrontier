@@ -44,6 +44,7 @@ jobs:
       - name: Fetch pinned dependencies and compiled Mathlib cache
         run: >-
           docker run --rm
+          -v "$GITHUB_WORKSPACE/elan:/elan"
           -v "$GITHUB_WORKSPACE/candidate:/candidate"
           -w /candidate
           leanfrontier-validator:ci sh -lc 'lake update && lake exe cache get'
@@ -54,6 +55,7 @@ jobs:
           --security-opt no-new-privileges
           --memory 2g --cpus 2 --pids-limit 512
           --tmpfs /tmp:size=2g
+          -v "$GITHUB_WORKSPACE/elan:/elan:ro"
           -v "$GITHUB_WORKSPACE/trusted:/trusted:ro"
           -v "$GITHUB_WORKSPACE/candidate:/candidate"
           -w /candidate

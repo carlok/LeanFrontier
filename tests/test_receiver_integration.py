@@ -71,6 +71,18 @@ class ReceiverIntegrationTests(unittest.TestCase):
         self.assertEqual(observed["entrypoints"]["LeanFrontier.Algebra.add_add_sq"]["axioms"], ["propext"])
         self.assertEqual(observed["mathlib_exact_matches"], 0)
 
+    def test_unimported_subject_module_is_built_by_the_library_glob(self) -> None:
+        source = self.candidate / "LeanFrontier" / "Geometry" / "BuildProbe.lean"
+        source.write_text(
+            "import Mathlib.Tactic\n\n"
+            "namespace LeanFrontier.Geometry\n"
+            "theorem build_probe : (1 : Nat) + 1 = 2 := by norm_num\n"
+            "end LeanFrontier.Geometry\n"
+        )
+        result = subprocess.run(["lake", "build"], cwd=self.candidate, text=True, capture_output=True, timeout=300, check=False)
+        self.assertEqual(result.returncode, 0, result.stderr + result.stdout)
+        self.assertTrue((self.candidate / ".lake" / "build" / "lib" / "lean" / "LeanFrontier" / "Geometry" / "BuildProbe.olean").exists())
+
     def test_baseline_probe_rejects_existing_easy_result(self) -> None:
         source = self.candidate / "LeanFrontier" / "Algebra" / "Binomial.lean"
         source.write_text(
