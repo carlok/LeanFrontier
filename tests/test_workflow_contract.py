@@ -39,6 +39,7 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("FROM debian:bookworm-slim", DOCKERFILE)
         self.assertIn("elan-init.sh", DOCKERFILE)
         self.assertIn("--default-toolchain none", DOCKERFILE)
+        self.assertIn("/usr/local/bin/lake", DOCKERFILE)
         self.assertIn('ELAN_HOME=/elan', DOCKERFILE)
         self.assertIn('-v "$GITHUB_WORKSPACE/elan:/elan"', WORKFLOW)
         self.assertIn('-v "$GITHUB_WORKSPACE/elan:/elan:ro"', WORKFLOW)
