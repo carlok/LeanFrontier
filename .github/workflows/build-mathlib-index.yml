@@ -33,7 +33,7 @@ jobs:
             --memory 6g --cpus 2 --pids-limit 512 \
             --tmpfs /tmp:size=6g \
             -v "$GITHUB_WORKSPACE/elan:/elan:ro" \
-            -v "$GITHUB_WORKSPACE:/workspace:ro" \
+            -v "$GITHUB_WORKSPACE:/workspace" \
             -v "$GITHUB_WORKSPACE/index-output:/output" \
             -w /workspace \
             leanfrontier-index:ci \

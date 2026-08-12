@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = (ROOT / ".github" / "workflows" / "validate-submission.yml").read_text()
 SYNC_WORKFLOW = (ROOT / ".github" / "workflows" / "sync-umbrella.yml").read_text()
+CATALOGUE_WORKFLOW = (ROOT / ".github" / "workflows" / "sync-catalogue.yml").read_text()
 DOCKERFILE = (ROOT / "tools" / "Dockerfile.validator").read_text()
 LAKEFILE = (ROOT / "lakefile.toml").read_text()
 
@@ -63,6 +64,12 @@ class WorkflowContractTests(unittest.TestCase):
         validator = (ROOT / "tools" / "frontier_validate.py").read_text()
         self.assertIn("def downstream_smoke", validator)
         self.assertIn('report.observations["downstream_import_smoke"] = "pass"', validator)
+
+    def test_catalogue_is_trusted_post_merge_output(self) -> None:
+        self.assertIn("LeanFrontier/**/*.lean", CATALOGUE_WORKFLOW)
+        self.assertIn("Submissions/**/*.json", CATALOGUE_WORKFLOW)
+        self.assertIn("tools/generate_catalogue.py", CATALOGUE_WORKFLOW)
+        self.assertIn("contents: write", CATALOGUE_WORKFLOW)
 
 
 if __name__ == "__main__":
