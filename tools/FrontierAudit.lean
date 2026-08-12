@@ -85,13 +85,14 @@ private def parseArgs (args : List String) : Bool × List String × Array Import
   let fingerprints := match args.find? (·.startsWith "--match=") with
     | some value => (value.drop "--match=".length).toString.splitOn ","
     | none => []
-  let modules := args.filter fun arg => arg != "--all" && arg != "--" && !arg.startsWith "--match="
+  let modules := args.filter fun arg => arg != "--all" && arg != "--fingerprints" && arg != "--" && !arg.startsWith "--match="
   let modules := if modules.isEmpty then ["LeanFrontier"] else modules
   (all, fingerprints, modules.toArray.map fun module => { module := module.toName })
 
 def main (args : List String) : IO UInt32 := do
   initSearchPath (← findSysroot)
   let (all, filters, imports) := parseArgs args
+  let fingerprints := args.contains "--fingerprints"
   let env ← importModules imports {}
   let selected := env.constants.fold (init := #[]) fun result name info =>
     let requested := filters.isEmpty || filters.contains (typeHint info)
@@ -100,7 +101,12 @@ def main (args : List String) : IO UInt32 := do
     else
       result
   for (name, info) in selected.qsort fun left right => left.1.quickLt right.1 do
-    if all then
+    if all && fingerprints then
+      -- Fixed ASCII fields avoid JSON string-escaping edge cases in the full
+      -- Mathlib environment. `type_canonical` is hex and `type_hint` is an
+      -- integer string, so tabs and line breaks cannot occur.
+      IO.println s!"{declarationKind info}\t{typeHint info}\t{canonicalType info}"
+    else if all then
       IO.println (fingerprintJson info).compress
     else
       IO.println (← declarationJson true env name info).compress

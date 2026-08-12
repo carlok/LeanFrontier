@@ -17,7 +17,7 @@ MATHLIB_REVISION = "v4.33.0-rc1"
 
 def main() -> int:
     process = subprocess.Popen(
-        ["lake", "exe", "frontier-audit", "--", "--all", "Mathlib"],
+        ["lake", "exe", "frontier-audit", "--", "--all", "--fingerprints", "Mathlib"],
         cwd=ROOT,
         text=True,
         stdout=subprocess.PIPE,
@@ -26,10 +26,9 @@ def main() -> int:
     assert process.stdout is not None
     fingerprints: dict[str, set[str]] = defaultdict(set)
     for line in process.stdout:
-        item = json.loads(line)
-        hint = item.get("type_hint")
-        canonical = item.get("type_canonical")
-        if item.get("kind") != "theorem" or not isinstance(hint, str) or not isinstance(canonical, str):
+        kind, separator, payload = line.rstrip("\n").partition("\t")
+        hint, separator2, canonical = payload.partition("\t")
+        if kind != "theorem" or not separator or not separator2 or not hint or not canonical:
             raise RuntimeError("frontier-audit emitted an invalid Mathlib theorem row")
         fingerprints[hint].add(hashlib.sha256(canonical.encode("utf-8")).hexdigest())
     stderr = process.stderr.read() if process.stderr is not None else ""
