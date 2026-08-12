@@ -65,6 +65,7 @@ jobs:
       - name: Restricted formal validation
         run: |
           mkdir -p "$GITHUB_WORKSPACE/report-output"
+          chmod 0777 "$GITHUB_WORKSPACE/report-output"
           docker run --rm --network none --read-only --cap-drop ALL \
             --security-opt no-new-privileges \
             --memory 2g --cpus 2 --pids-limit 512 \
@@ -72,6 +73,7 @@ jobs:
             -v "$GITHUB_WORKSPACE/elan:/elan:ro" \
             -v "$GITHUB_WORKSPACE/trusted:/trusted:ro" \
             -v "$GITHUB_WORKSPACE/candidate:/candidate:ro" \
+            -v "$GITHUB_WORKSPACE/candidate/.lake:/candidate/.lake" \
             -v "$GITHUB_WORKSPACE/report-output:/report-output" \
             -w /candidate \
             -e PYTHONPATH=/trusted/tools \
