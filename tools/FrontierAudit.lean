@@ -73,6 +73,13 @@ private def declarationJson (includeAxioms : Bool) (env : Environment) (name : N
     ("type_canonical", toJson canonical)
   ]
 
+private def fingerprintJson (info : ConstantInfo) : Json :=
+  Json.mkObj [
+    ("kind", toJson (declarationKind info)),
+    ("type_hint", toJson (typeHint info)),
+    ("type_canonical", toJson (canonicalType info))
+  ]
+
 private def parseArgs (args : List String) : Bool × List String × Array Import :=
   let all := args.contains "--all"
   let fingerprints := match args.find? (·.startsWith "--match=") with
@@ -93,5 +100,8 @@ def main (args : List String) : IO UInt32 := do
     else
       result
   for (name, info) in selected.qsort fun left right => left.1.quickLt right.1 do
-    IO.println (← declarationJson (!all) env name info).compress
+    if all then
+      IO.println (fingerprintJson info).compress
+    else
+      IO.println (← declarationJson true env name info).compress
   return 0
