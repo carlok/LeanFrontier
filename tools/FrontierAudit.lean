@@ -45,7 +45,11 @@ private def normalizedType (info : ConstantInfo) : Expr :=
   alphaNormalize (Compiler.LCNF.normLevelParams info.type).1
 
 private def canonicalType (info : ConstantInfo) : String :=
-  reprStr (normalizedType info)
+  -- `reprStr` may contain physical line breaks. Escape them before putting the
+  -- value in an NDJSON row; the transformation is injective and is used for
+  -- both the trusted Mathlib index and candidate fingerprints.
+  let raw := reprStr (normalizedType info)
+  raw.replace "\\" "\\\\" |>.replace "\r" "\\r" |>.replace "\n" "\\n"
 
 /-! The hash is only an index prefilter. Python compares `type_canonical` with SHA-256. -/
 private def typeHint (info : ConstantInfo) : String :=
