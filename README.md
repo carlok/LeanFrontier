@@ -20,6 +20,38 @@ mechanically before a submission reaches the shared corpus.
 The project's motivation and broader research context are in the unchanged
 [manifesto](MANIFEST.md).
 
+## Use in another Lean project
+
+LeanFrontier is an ordinary Lake dependency. Add it to your project's
+`lakefile.toml`, replacing the URL and revision with the repository you use and
+an immutable release tag or commit:
+
+```toml
+[[require]]
+name = "LeanFrontier"
+git = "git@github.com:carlok/LeanFrontier.git"
+rev = "<release-tag-or-full-commit>"
+```
+
+For a private repository, use an SSH key (or another Git credential mechanism)
+that has read access. Then fetch dependencies and import either the umbrella
+library or a focused subject module:
+
+```bash
+lake update
+lake build
+```
+
+```lean
+import LeanFrontier
+-- or:
+import LeanFrontier.Algebra.Binomial
+```
+
+Pinning an immutable revision keeps builds reproducible. LeanFrontier aims to
+offer the same ordinary Lake dependency experience as Mathlib; unlike Mathlib,
+it does not yet provide Mathlib's release or cache distribution infrastructure.
+
 ## Contributing
 
 An ordinary theorem submission is one pull request with Lean sources under
