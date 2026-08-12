@@ -39,6 +39,7 @@ class WorkflowContractTests(unittest.TestCase):
     def test_receiver_image_installs_the_pinned_toolchain_via_its_shared_elan_volume(self) -> None:
         self.assertIn("FROM debian:bookworm-slim", DOCKERFILE)
         self.assertIn("elan-init.sh", DOCKERFILE)
+        self.assertIn("--retry 5 --retry-all-errors", DOCKERFILE)
         self.assertIn("--default-toolchain none", DOCKERFILE)
         self.assertIn("/usr/local/bin/lake", DOCKERFILE)
         self.assertIn('ELAN_HOME=/elan', DOCKERFILE)

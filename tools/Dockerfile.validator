@@ -11,7 +11,7 @@ RUN apt-get update \
 # mutable ELAN_HOME separately, so that a read-only formal-validation container
 # can reuse the exact toolchain acquired in the preceding networked container.
 ENV ELAN_HOME=/opt/elan
-RUN curl --fail --show-error --silent --location https://elan.lean-lang.org/elan-init.sh \
+RUN curl --fail --show-error --silent --location --retry 5 --retry-all-errors --retry-delay 2 https://elan.lean-lang.org/elan-init.sh \
     | sh -s -- -y --default-toolchain none
 RUN install -m 0755 /opt/elan/bin/elan /usr/local/bin/elan \
     && ln -s elan /usr/local/bin/lake \
