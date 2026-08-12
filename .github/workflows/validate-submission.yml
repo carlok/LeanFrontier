@@ -47,7 +47,7 @@ jobs:
           -v "$GITHUB_WORKSPACE/elan:/elan"
           -v "$GITHUB_WORKSPACE/candidate:/candidate"
           -w /candidate
-          leanfrontier-validator:ci sh -lc 'lake update && lake exe cache get'
+          leanfrontier-validator:ci sh -c 'lake update && lake exe cache get'
 
       - name: Restricted formal validation
         run: >-
