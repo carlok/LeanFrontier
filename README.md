@@ -20,6 +20,10 @@ mechanically before a submission reaches the shared corpus.
 The project's motivation and broader research context are in the unchanged
 [manifesto](MANIFEST.md).
 
+The generated [theorem catalogue](docs/catalogue/index.html) is a convenient
+map of merged public declarations; Lean source and receiver reports remain the
+canonical evidence.
+
 ## Use in another Lean project
 
 LeanFrontier is an ordinary Lake dependency. Add it to your project's

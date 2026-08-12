@@ -49,6 +49,11 @@ prohibited trust escape. Its transitive axiom closure MUST be a subset of the
 allowlist in `policy/axioms.json`. The receiver, not the submitter, determines
 that closure.
 
+The receiver also compiles a fresh consumer module which imports the submitted
+subject modules and names every declared entrypoint. This confirms that the
+public surface is usable through ordinary module imports; it does not judge an
+entrypoint's mathematical usefulness.
+
 Helper declarations that are only proof scaffolding SHOULD be `private` or
 `local`. They may support an accepted result, but do not create an unlimited
 public theorem surface.

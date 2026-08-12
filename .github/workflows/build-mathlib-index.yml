@@ -1,0 +1,46 @@
+name: build-mathlib-index
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Build the trusted validator image
+        run: docker build -f tools/Dockerfile.validator -t leanfrontier-index:ci .
+      - name: Acquire the pinned toolchain and Mathlib cache
+        run: >-
+          docker run --rm
+          -v "$GITHUB_WORKSPACE/elan:/elan"
+          -v "$GITHUB_WORKSPACE:/workspace"
+          -w /workspace
+          leanfrontier-index:ci sh -c 'lake update && lake exe cache get'
+      - name: Generate the trusted Mathlib theorem fingerprint index
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/index-output"
+          chmod 777 "$GITHUB_WORKSPACE/index-output"
+          docker run --rm \
+            --network none --read-only --cap-drop ALL \
+            --security-opt no-new-privileges \
+            --memory 6g --cpus 2 --pids-limit 512 \
+            --tmpfs /tmp:size=6g \
+            -v "$GITHUB_WORKSPACE/elan:/elan:ro" \
+            -v "$GITHUB_WORKSPACE:/workspace" \
+            -v "$GITHUB_WORKSPACE/index-output:/output" \
+            -w /workspace \
+            leanfrontier-index:ci \
+            python3 tools/build_mathlib_index.py --output /output/mathlib-fingerprints-v4.33.0-rc1.json
+          install -m 0644 "$GITHUB_WORKSPACE/index-output/mathlib-fingerprints-v4.33.0-rc1.json" policy/mathlib-fingerprints-v4.33.0-rc1.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mathlib-fingerprints-v4.33.0-rc1
+          path: policy/mathlib-fingerprints-v4.33.0-rc1.json
+          if-no-files-found: error

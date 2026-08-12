@@ -7,6 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = (ROOT / ".github" / "workflows" / "validate-submission.yml").read_text()
 SYNC_WORKFLOW = (ROOT / ".github" / "workflows" / "sync-umbrella.yml").read_text()
+CATALOGUE_WORKFLOW = (ROOT / ".github" / "workflows" / "sync-catalogue.yml").read_text()
 DOCKERFILE = (ROOT / "tools" / "Dockerfile.validator").read_text()
 LAKEFILE = (ROOT / "lakefile.toml").read_text()
 
@@ -52,6 +53,23 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("LeanFrontier/**/*.lean", SYNC_WORKFLOW)
         self.assertIn("contents: write", SYNC_WORKFLOW)
         self.assertIn("tools/generate_umbrella.py", SYNC_WORKFLOW)
+
+    def test_receiver_uses_a_pinned_mathlib_fingerprint_index(self) -> None:
+        validator = (ROOT / "tools" / "frontier_validate.py").read_text()
+        self.assertIn("mathlib-fingerprints-v4.33.0-rc1.json", validator)
+        self.assertIn("Mathlib fingerprint index does not match the pinned revision", validator)
+        self.assertNotIn('"--all", match_arg, "Mathlib"', validator)
+
+    def test_receiver_smoke_tests_downstream_imports(self) -> None:
+        validator = (ROOT / "tools" / "frontier_validate.py").read_text()
+        self.assertIn("def downstream_smoke", validator)
+        self.assertIn('report.observations["downstream_import_smoke"] = "pass"', validator)
+
+    def test_catalogue_is_trusted_post_merge_output(self) -> None:
+        self.assertIn("LeanFrontier/**/*.lean", CATALOGUE_WORKFLOW)
+        self.assertIn("Submissions/**/*.json", CATALOGUE_WORKFLOW)
+        self.assertIn("tools/generate_catalogue.py", CATALOGUE_WORKFLOW)
+        self.assertIn("contents: write", CATALOGUE_WORKFLOW)
 
 
 if __name__ == "__main__":

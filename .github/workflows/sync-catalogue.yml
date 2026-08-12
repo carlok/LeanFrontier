@@ -1,0 +1,29 @@
+name: sync-catalogue
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - LeanFrontier/**/*.lean
+      - Submissions/**/*.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+      - run: python3 tools/generate_catalogue.py
+      - name: Commit the trusted generated catalogue when needed
+        run: |
+          git diff --quiet -- docs/catalogue/index.html && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/catalogue/index.html
+          git commit -m "chore: sync theorem catalogue"
+          git push
