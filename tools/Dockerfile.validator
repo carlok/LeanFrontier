@@ -7,11 +7,19 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends ca-certificates curl git python3 \
     && rm -rf /var/lib/apt/lists/*
 
+# Install stable launcher binaries in the image. The workflow later mounts the
+# mutable ELAN_HOME separately, so that a read-only formal-validation container
+# can reuse the exact toolchain acquired in the preceding networked container.
+ENV ELAN_HOME=/opt/elan
+RUN curl --fail --show-error --silent --location https://elan.lean-lang.org/elan-init.sh \
+    | sh -s -- -y --default-toolchain none
+RUN install -m 0755 /opt/elan/bin/elan /usr/local/bin/elan \
+    && ln -s elan /usr/local/bin/lake \
+    && ln -s elan /usr/local/bin/lean \
+    && ln -s elan /usr/local/bin/leanc
+
 # The workflow mounts this directory read-write only while acquiring the pinned
 # toolchain, then read-only while building and auditing an untrusted candidate.
 ENV ELAN_HOME=/elan
-ENV PATH="/elan/bin:${PATH}"
-RUN curl --fail --show-error --silent --location https://elan.lean-lang.org/elan-init.sh \
-    | sh -s -- -y --default-toolchain none
 
 ENV PYTHONDONTWRITEBYTECODE=1
