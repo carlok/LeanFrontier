@@ -19,19 +19,22 @@ def main() -> int:
     process = subprocess.Popen(
         ["lake", "exe", "frontier-audit", "--", "--all", "--fingerprints", "Mathlib"],
         cwd=ROOT,
-        text=True,
+        text=False,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
     assert process.stdout is not None
     fingerprints: dict[str, set[str]] = defaultdict(set)
-    for line in process.stdout:
-        kind, separator, payload = line.rstrip("\n").partition("\t")
-        hint, separator2, canonical = payload.partition("\t")
-        if kind != "theorem" or not separator or not separator2 or not hint or not canonical:
+    while header := process.stdout.readline():
+        kind, separator, payload = header.rstrip(b"\n").decode("ascii").partition("\t")
+        hint, separator2, size_text = payload.partition("\t")
+        if kind != "theorem" or not separator or not separator2 or not hint or not size_text:
             raise RuntimeError("frontier-audit emitted an invalid Mathlib theorem row")
-        fingerprints[hint].add(hashlib.sha256(canonical.encode("utf-8")).hexdigest())
-    stderr = process.stderr.read() if process.stderr is not None else ""
+        canonical = process.stdout.read(int(size_text))
+        if len(canonical) != int(size_text):
+            raise RuntimeError("frontier-audit ended inside a Mathlib theorem row")
+        fingerprints[hint].add(hashlib.sha256(canonical.hex().encode("ascii")).hexdigest())
+    stderr = process.stderr.read().decode("utf-8", errors="replace") if process.stderr is not None else ""
     if process.wait() != 0:
         detail = stderr.strip()
         raise RuntimeError(f"frontier-audit exited with status {process.returncode}" + (f": {detail}" if detail else ""))

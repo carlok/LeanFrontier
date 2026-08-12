@@ -58,6 +58,9 @@ private def canonicalType (info : ConstantInfo) : String :=
   -- injective and limits the surrounding audit stream to ASCII.
   hexEncode <| reprStr (normalizedType info)
 
+private def rawCanonicalType (info : ConstantInfo) : String :=
+  reprStr (normalizedType info)
+
 /-! The hash is only an index prefilter. Python compares `type_canonical` with SHA-256. -/
 private def typeHint (info : ConstantInfo) : String :=
   toString (hash (normalizedType info))
@@ -101,7 +104,11 @@ def main (args : List String) : IO UInt32 := do
     env.constants.forM fun _ info => do
       let requested := filters.isEmpty || filters.contains (typeHint info)
       if isTheorem info && requested then
-        IO.println s!"{declarationKind info}\t{typeHint info}\t{canonicalType info}"
+        let canonical := rawCanonicalType info
+        -- A length-prefixed raw UTF-8 payload is safe even when the term's
+        -- representation contains line breaks or unusual Unicode.
+        IO.println s!"{declarationKind info}\t{typeHint info}\t{canonical.toUTF8.size}"
+        IO.print canonical
     return 0
   let selected := env.constants.fold (init := #[]) fun result name info =>
     let requested := filters.isEmpty || filters.contains (typeHint info)
