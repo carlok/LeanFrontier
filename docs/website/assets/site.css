@@ -111,6 +111,11 @@ code { font-size: 0.92em; }
 .use-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(2rem, 8vw, 7rem); align-items: center; margin: 2.8rem 0 1.5rem; }
 .use-grid > p { max-width: 360px; margin-bottom: 0; color: var(--muted); font-size: 1.08rem; }
 pre { overflow-x: auto; margin: 0; padding: 1.5rem; color: #dce9e2; background: var(--ink); font-size: 0.88rem; line-height: 1.8; }
+.lean-keyword { color: #91d3bd; }
+.lean-module { color: #a9c7ff; }
+.lean-namespace { color: #f0c16a; }
+.lean-command { color: #e9a4b6; }
+.lean-declaration { color: #f4f0dc; }
 
 .participate { margin-bottom: clamp(4rem, 8vw, 7rem); padding: clamp(3rem, 7vw, 6rem); color: var(--white); background: var(--accent-dark); border: 0; }
 .participate .eyebrow { color: #bad9cb; }
