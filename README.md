@@ -20,6 +20,10 @@ mechanically before a submission reaches the shared corpus.
 The project's motivation and broader research context are in the unchanged
 [manifesto](MANIFEST.md).
 
+## License
+
+LeanFrontier is released under the [Apache-2.0 license](LICENSE).
+
 The generated [theorem catalogue](docs/catalogue/index.html) is a convenient
 map of merged public declarations; Lean source and receiver reports remain the
 canonical evidence.
