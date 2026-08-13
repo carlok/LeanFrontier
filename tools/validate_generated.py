@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 
@@ -54,9 +55,9 @@ def main() -> int:
     if not paths or any(not allowed(path) for path in paths):
         raise SystemExit(f"unexpected generated-output paths: {sorted(paths)}")
     if "LeanFrontier.lean" in paths:
-        subprocess.run(["python3", str(ROOT / "generate_umbrella.py"), "--root", str(args.candidate), "--check"], check=True)
+        subprocess.run(["python3", str(ROOT / "tools" / "generate_umbrella.py"), "--root", str(args.candidate), "--check"], check=True)
     if "docs/catalogue/index.html" in paths:
-        subprocess.run(["python3", str(ROOT / "generate_catalogue.py"), "--root", str(args.candidate), "--check"], check=True)
+        subprocess.run(["python3", str(ROOT / "tools" / "generate_catalogue.py"), "--root", str(args.candidate), "--check"], check=True)
     for relative in paths:
         if relative.startswith("receiver-observations/"):
             validate_observation(args.candidate / relative, args.candidate)
