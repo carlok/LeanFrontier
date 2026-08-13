@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 01: the first accepted submission.">
+    <title>Field Note 01 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">12 August 2026 · Field Note 01</p>
+          <h1>A First Accepted Submission.</h1>
+          <p class="hero-copy">The first LeanFrontier module accepted through the public receiver is a small library of reflection facts for generalized circles in the complex plane.</p>
+        </header>
+
+        <section>
+          <h2>The contribution</h2>
+          <p><a href="https://github.com/carlok/LeanFrontier/pull/1">PR #1</a> adds <code>LeanFrontier.Geometry.InversiveGeometry</code>. Its two public theorems characterize the fixed points of reflection across a generalized circle and show that reflection is an involution away from its poles.</p>
+          <pre><code>import LeanFrontier.Geometry.InversiveGeometry
+
+#check LeanFrontier.InversiveGeometry.reflect_eq_self_iff
+#check LeanFrontier.InversiveGeometry.reflect_reflect</code></pre>
+          <p>The submission describes its mathematical source honestly: the underlying geometry is classical textbook material, not a claim of new mathematics. The contribution is an importable Lean formalization and a first real exercise of the receiver.</p>
+        </section>
+
+        <section>
+          <h2>What the receiver observed</h2>
+          <p>The accepted run built the candidate in the restricted environment, found no exact match in the pinned Mathlib fingerprint index, and completed a fresh downstream-import smoke test. Both declared entrypoints have the permitted foundational axiom closure: <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code>. The baseline triviality probes were inconclusive, which is recorded rather than treated as evidence either way.</p>
+          <p>The complete, versioned <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/inversive-geometry-reflection/934a5220c5648b5135fceb1887d539b1b413f446.json">receiver observation</a> is kept alongside the corpus. The <a href="../../catalogue/">theorem catalogue</a> links each public entrypoint to it.</p>
+        </section>
+
+        <section>
+          <h2>A bootstrap lesson</h2>
+          <p>The first submission exposed several receiver issues that ordinary unit tests did not: transient dependency downloads, report paths under a capability-restricted container, and a race between trusted generated-file workflows. Those were repaired without changing the submitted source or its immutable claim. The successful acceptance is therefore evidence about both the module and the boundary that admitted it.</p>
+        </section>
+
+        <section>
+          <h2>What comes next</h2>
+          <p>LeanFrontier remains deliberately small. The immediate work is to make this first version easy to pin and import, preserve its receiver evidence, and invite further carefully specified submissions. Read the <a href="https://github.com/carlok/LeanFrontier/blob/main/CONTRACT.md">contract</a> before proposing one.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>

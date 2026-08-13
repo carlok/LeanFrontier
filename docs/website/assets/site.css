@@ -120,6 +120,17 @@ pre { overflow-x: auto; margin: 0; padding: 1.5rem; color: #dce9e2; background: 
 .participate .button-primary:hover { background: #d8eee4; }
 .participate .button-secondary { border-color: #d2e4db; }
 .participate .button-secondary:hover { color: var(--accent-dark); background: #d2e4db; }
+.notes-preview { max-width: 760px; }
+.notes-preview > p:not(.eyebrow) { max-width: 620px; color: var(--muted); font-size: 1.08rem; }
+.note-hero { max-width: 800px; padding-bottom: clamp(3rem, 7vw, 5rem); }
+.note-list article { max-width: 760px; }
+.note-list article p:not(.eyebrow) { max-width: 620px; color: var(--muted); font-size: 1.08rem; }
+.note { max-width: 760px; padding: clamp(4rem, 9vw, 8rem) 0; }
+.note-header { margin-bottom: clamp(3rem, 7vw, 5rem); }
+.note section { margin: 0 0 3.5rem; }
+.note section h2 { font-size: clamp(2.1rem, 4vw, 3.5rem); }
+.note section p { max-width: 680px; font-size: 1.08rem; }
+.note pre { margin: 1.7rem 0; }
 
 footer { display: flex; justify-content: space-between; gap: 1.5rem; padding: 1.6rem 0 2.8rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.84rem; }
 footer p { margin: 0; }

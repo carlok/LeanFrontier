@@ -6,6 +6,7 @@ on:
     paths:
       - LeanFrontier/**/*.lean
       - Submissions/**/*.json
+      - receiver-observations/**/*.json
   workflow_dispatch:
 
 permissions:

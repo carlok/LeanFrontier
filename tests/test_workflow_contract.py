@@ -8,6 +8,8 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = (ROOT / ".github" / "workflows" / "validate-submission.yml").read_text()
 SYNC_WORKFLOW = (ROOT / ".github" / "workflows" / "sync-umbrella.yml").read_text()
 CATALOGUE_WORKFLOW = (ROOT / ".github" / "workflows" / "sync-catalogue.yml").read_text()
+OBSERVATION_WORKFLOW = (ROOT / ".github" / "workflows" / "record-observation.yml").read_text()
+PAGES_WORKFLOW = (ROOT / ".github" / "workflows" / "deploy-pages.yml").read_text()
 DOCKERFILE = (ROOT / "tools" / "Dockerfile.validator").read_text()
 LAKEFILE = (ROOT / "lakefile.toml").read_text()
 
@@ -77,6 +79,31 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("Submissions/**/*.json", CATALOGUE_WORKFLOW)
         self.assertIn("tools/generate_catalogue.py", CATALOGUE_WORKFLOW)
         self.assertIn("contents: write", CATALOGUE_WORKFLOW)
+        self.assertIn("receiver-observations/**/*.json", CATALOGUE_WORKFLOW)
+
+    def test_accepted_receiver_reports_are_persisted_only_after_merge(self) -> None:
+        for required in (
+            "pull_request:",
+            "types: [closed]",
+            "github.event.pull_request.merged == true",
+            "actions: read",
+            "tools/persist_observation.py",
+            "receiver-artifact/report-output/report.json",
+            "receiver-observations",
+            "github.event.pull_request.merge_commit_sha",
+        ):
+            self.assertIn(required, OBSERVATION_WORKFLOW)
+
+    def test_pages_deployment_includes_catalogue_and_field_notes(self) -> None:
+        for required in (
+            "docs/website/**",
+            "docs/catalogue/**",
+            "mkdir -p _site/catalogue",
+            "cp -R docs/website/. _site/",
+            "cp -R docs/catalogue/. _site/catalogue/",
+            "path: _site",
+        ):
+            self.assertIn(required, PAGES_WORKFLOW)
 
     def test_trusted_generators_are_serialized(self) -> None:
         for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW):

@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - docs/website/**
+      - docs/catalogue/**
       - .github/workflows/deploy-pages.yml
   workflow_dispatch:
 
@@ -28,8 +29,13 @@ jobs:
         with:
           persist-credentials: false
       - uses: actions/configure-pages@v5
+      - name: Assemble the static site
+        run: |
+          mkdir -p _site/catalogue
+          cp -R docs/website/. _site/
+          cp -R docs/catalogue/. _site/catalogue/
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/website
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4

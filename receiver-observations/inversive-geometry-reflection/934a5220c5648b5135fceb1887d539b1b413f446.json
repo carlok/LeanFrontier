@@ -1,0 +1,46 @@
+{
+  "observation_version": "0.1",
+  "submission_id": "inversive-geometry-reflection",
+  "accepted_revision": "934a5220c5648b5135fceb1887d539b1b413f446",
+  "validated_candidate_revision": "e0277e6fcbdcdbcd69e44d17dfa89c23c044f139",
+  "trusted_receiver_revision": "4e27bb6fcebd8f2f2ad8266d9b015b8fc2d7c227",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/31638990490",
+  "observed_at": "2026-08-12T20:45:33Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 35.082,
+    "observed": {
+      "added_lines": 98,
+      "baseline_triviality_probes": {
+        "LeanFrontier.InversiveGeometry.reflect_eq_self_iff": "inconclusive",
+        "LeanFrontier.InversiveGeometry.reflect_reflect": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 6053,
+      "changed_files": [
+        "LeanFrontier/Geometry/InversiveGeometry.lean",
+        "Submissions/inversive-geometry-reflection.json"
+      ],
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.InversiveGeometry.reflect_eq_self_iff": {
+          "axioms": ["propext", "Classical.choice", "Quot.sound"],
+          "kind": "theorem",
+          "name": "LeanFrontier.InversiveGeometry.reflect_eq_self_iff",
+          "statement_sha256": "749a005d18fd0cfc826ee214f1f4946998f77421e544457676d12c724faa7509"
+        },
+        "LeanFrontier.InversiveGeometry.reflect_reflect": {
+          "axioms": ["propext", "Classical.choice", "Quot.sound"],
+          "kind": "theorem",
+          "name": "LeanFrontier.InversiveGeometry.reflect_reflect",
+          "statement_sha256": "b38c06b1173934da0ab71d7b8cbb2cc5f1f984c96d70237d31cf622da7370e36"
+        }
+      },
+      "lean_source_bytes": 4105,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 5
+    },
+    "protocol_version": "0.1"
+  }
+}

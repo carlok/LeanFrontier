@@ -12,10 +12,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DESTINATION = Path("docs/catalogue/index.html")
-THEOREM = re.compile(
-    r"(?P<doc>/--(?P<docbody>.*?)-/\s*)?theorem\s+(?P<name>[A-Za-z_][A-Za-z0-9_']*)\b(?P<statement>.*?)(?=\s*:=)",
-    re.DOTALL,
-)
+THEOREM = re.compile(r"theorem\s+(?P<name>[A-Za-z_][A-Za-z0-9_']*)\b(?P<statement>.*?)(?=\s*:=)", re.DOTALL)
+TRAILING_DOC = re.compile(r"/--(?P<docbody>(?:(?!-/).)*)-/\s*$", re.DOTALL)
 NAMESPACE = re.compile(r"^namespace\s+([A-Za-z_][A-Za-z0-9_.']*)\s*$", re.MULTILINE)
 
 
@@ -34,6 +32,29 @@ def claims(root: Path) -> dict[str, dict[str, object]]:
     return result
 
 
+def observations(root: Path) -> dict[str, dict[str, object]]:
+    result: dict[str, dict[str, object]] = {}
+    for path in sorted((root / "receiver-observations").glob("*/*.json")):
+        record = json.loads(path.read_text(encoding="utf-8"))
+        report = record.get("report", {}) if isinstance(record, dict) else {}
+        observed = report.get("observed", {}) if isinstance(report, dict) else {}
+        if report.get("accepted") is not True or not isinstance(observed, dict):
+            continue
+        entrypoints = observed.get("entrypoints", {})
+        if not isinstance(entrypoints, dict):
+            continue
+        for entrypoint, details in entrypoints.items():
+            if isinstance(entrypoint, str) and isinstance(details, dict):
+                result[entrypoint] = {
+                    "revision": record.get("accepted_revision", "unknown"),
+                    "axioms": details.get("axioms", []),
+                    "fingerprint": details.get("statement_sha256", "unknown"),
+                    "smoke": observed.get("downstream_import_smoke", "unknown"),
+                    "report": path.relative_to(root).as_posix(),
+                }
+    return result
+
+
 def entries(root: Path) -> list[dict[str, str]]:
     result: list[dict[str, str]] = []
     for path in sorted((root / "LeanFrontier").rglob("*.lean")):
@@ -41,12 +62,13 @@ def entries(root: Path) -> list[dict[str, str]]:
         namespaces = NAMESPACE.findall(source)
         namespace = namespaces[0] if namespaces else "LeanFrontier"
         for match in THEOREM.finditer(source):
+            doc_match = TRAILING_DOC.search(source[:match.start()])
             name = f"{namespace}.{match.group('name')}"
             result.append({
                 "name": name,
                 "module": module_for(path, root),
                 "statement": " ".join(match.group("statement").split()),
-                "doc": " ".join((match.group("docbody") or "").split()),
+                "doc": " ".join((doc_match.group("docbody") if doc_match else "").split()),
                 "source": path.relative_to(root).as_posix(),
             })
     return result
@@ -54,18 +76,33 @@ def entries(root: Path) -> list[dict[str, str]]:
 
 def render(root: Path) -> str:
     by_name = claims(root)
+    observed_by_name = observations(root)
     cards: list[str] = []
     for item in entries(root):
         claim = by_name.get(item["name"], {})
         producer = claim.get("producer", {}) if isinstance(claim.get("producer", {}), dict) else {}
         producer_label = str(producer.get("agent", "unrecorded"))
+        observation = observed_by_name.get(item["name"])
+        audit = ""
+        report_link = ""
+        if observation:
+            audit = (
+                f'\n  <dt>Receiver</dt><dd>accepted at <code>{html.escape(str(observation["revision"]))}</code> '
+                f'· downstream import {html.escape(str(observation["smoke"]))}</dd>'
+                f'\n  <dt>Axioms</dt><dd><code>{html.escape(", ".join(map(str, observation["axioms"])))}</code></dd>'
+                f'\n  <dt>Fingerprint</dt><dd><code>{html.escape(str(observation["fingerprint"]))}</code></dd>'
+            )
+            report_link = (
+                f' · <a href="https://github.com/carlok/LeanFrontier/blob/main/'
+                f'{html.escape(str(observation["report"]))}">receiver report</a>'
+            )
         cards.append(f"""<article>
   <h2><code>{html.escape(item['name'])}</code></h2>
   <p class=\"statement\">{html.escape(item['statement'])}</p>
   <dl><dt>Import</dt><dd><code>import {html.escape(item['module'])}</code></dd>
-  <dt>Claim</dt><dd>{html.escape(str(claim.get('id', 'unrecorded')))} · {html.escape(str(claim.get('origin', 'unknown')))} · {html.escape(producer_label)}</dd></dl>
+  <dt>Claim</dt><dd>{html.escape(str(claim.get('id', 'unrecorded')))} · {html.escape(str(claim.get('origin', 'unknown')))} · {html.escape(producer_label)}</dd>{audit}</dl>
   <p>{html.escape(item['doc'])}</p>
-  <p><a href=\"https://github.com/carlok/LeanFrontier/blob/main/{html.escape(item['source'])}\">View source</a></p>
+  <p><a href=\"https://github.com/carlok/LeanFrontier/blob/main/{html.escape(item['source'])}\">View source</a>{report_link}</p>
 </article>""")
     body = "\n".join(cards) or "<p>No public theorems have been catalogued yet.</p>"
     return f"""<!doctype html>

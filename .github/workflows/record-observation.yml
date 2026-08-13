@@ -1,21 +1,64 @@
 name: record-observation
 
 on:
-  push:
-    branches: [main]
+  pull_request:
+    types: [closed]
 
 permissions:
-  contents: read
+  actions: read
+  contents: write
 
 jobs:
-  inventory:
+  persist:
+    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Record immutable submission claims present at this revision
-        run: >-
-          python3 -c "import json,pathlib; print(json.dumps({'revision': '${{ github.sha }}', 'claims': sorted(p.name for p in pathlib.Path('Submissions').glob('*.json'))}, indent=2))" | tee receiver-observation.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/checkout@v5
         with:
-          name: receiver-observation-${{ github.sha }}
-          path: receiver-observation.json
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
+          persist-credentials: true
+      - id: submission
+        name: Find the merged submission record
+        run: |
+          mapfile -t records < <(git diff --name-only "${{ github.event.pull_request.merge_commit_sha }}^1" "${{ github.event.pull_request.merge_commit_sha }}" -- 'Submissions/*.json')
+          if [ "${#records[@]}" -eq 0 ]; then
+            echo "should_record=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          test "${#records[@]}" -eq 1
+          echo "should_record=true" >> "$GITHUB_OUTPUT"
+          echo "path=${records[0]}" >> "$GITHUB_OUTPUT"
+      - name: Retrieve the successful trusted receiver artifact
+        if: steps.submission.outputs.should_record == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          run_id="$(gh run list --repo "$GITHUB_REPOSITORY" \
+            --workflow validate-submission.yml \
+            --commit "${{ github.event.pull_request.head.sha }}" \
+            --json databaseId,conclusion,url \
+            --jq '[.[] | select(.conclusion == "success")][0].databaseId')"
+          test -n "$run_id"
+          gh run download "$run_id" --repo "$GITHUB_REPOSITORY" \
+            --name leanfrontier-validation-report --dir receiver-artifact
+          gh run view "$run_id" --repo "$GITHUB_REPOSITORY" --json url --jq .url > validation-run.txt
+      - name: Persist the trusted receiver observation
+        if: steps.submission.outputs.should_record == 'true'
+        run: >-
+          python3 tools/persist_observation.py
+          --report receiver-artifact/report-output/report.json
+          --submission "${{ steps.submission.outputs.path }}"
+          --accepted-revision ${{ github.event.pull_request.merge_commit_sha }}
+          --candidate-revision ${{ github.event.pull_request.head.sha }}
+          --trusted-receiver-revision ${{ github.event.pull_request.base.sha }}
+          --validation-run "$(cat validation-run.txt)"
+          --observed-at "${{ github.event.pull_request.merged_at }}"
+      - name: Commit the trusted observation when needed
+        if: steps.submission.outputs.should_record == 'true'
+        run: |
+          git diff --quiet -- receiver-observations && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add receiver-observations
+          git commit -m "chore: record receiver observation"
+          git push
