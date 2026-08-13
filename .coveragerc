@@ -1,6 +1,9 @@
 [run]
 branch = True
-include = tools/frontier_validate.py
+include =
+    tools/frontier_validate.py
+    tools/score_award.py
+    tools/build_award_input.py
 
 [report]
 show_missing = True

@@ -44,6 +44,19 @@ private partial def alphaNormalize : Expr → Expr
 private def normalizedType (info : ConstantInfo) : Expr :=
   alphaNormalize (Compiler.LCNF.normLevelParams info.type).1
 
+/-- Constant references in an elaborated declaration type.  This deliberately
+ignores proof values: the receiver uses these edges only to measure the public
+interface graph. -/
+private partial def typeDependencies : Expr → List Name
+  | .const name _ => [name]
+  | .forallE _ type body _ => typeDependencies type ++ typeDependencies body
+  | .lam _ type body _ => typeDependencies type ++ typeDependencies body
+  | .letE _ type value body _ => typeDependencies type ++ typeDependencies value ++ typeDependencies body
+  | .app function argument => typeDependencies function ++ typeDependencies argument
+  | .mdata _ expression => typeDependencies expression
+  | .proj typeName _ value => typeName :: typeDependencies value
+  | _ => []
+
 private partial def exprNodeCount : Expr → Nat
   | .forallE _ type body _ => 1 + exprNodeCount type + exprNodeCount body
   | .lam _ type body _ => 1 + exprNodeCount type + exprNodeCount body
@@ -84,6 +97,7 @@ private def declarationJson (includeAxioms : Bool) (env : Environment) (name : N
     ("axioms", Json.arr (axioms.map fun axiomName => toJson axiomName.toString)),
     ("type_hint", toJson (typeHint type)),
     ("type_canonical", toJson canonical),
+    ("type_dependencies", Json.arr <| ((typeDependencies type).eraseDups.map fun dependency => toJson dependency.toString).toArray),
     ("normalized_term_bytes", toJson (canonical.length / 2))
   ]
 

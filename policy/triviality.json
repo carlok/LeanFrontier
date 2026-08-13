@@ -1,7 +1,7 @@
 {
   "policy_version": "0.1",
   "baseline_probes": ["rfl", "simp", "norm_num", "tauto", "omega", "decide"],
-  "probe_timeout_seconds": 3,
+  "probe_timeout_seconds": 10,
   "canonical_connectives": ["And", "Or", "True", "False", "Eq"],
   "family_threshold": 3,
   "literal_skeleton": true,

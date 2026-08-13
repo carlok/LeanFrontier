@@ -88,10 +88,10 @@ class ReceiverIntegrationTests(unittest.TestCase):
         source.write_text(
             "import Mathlib.Algebra.Group.Nat.Defs\n\n"
             "namespace LeanFrontier.Algebra\n"
-            "theorem add_zero_copy (n : Nat) : n + 0 = n := by rfl\n"
+            "theorem add_zero_and_one (n : Nat) : n + 0 = n ∧ (1 : Nat) = 1 := by simp\n"
             "end LeanFrontier.Algebra\n"
         )
-        self.claim("LeanFrontier.Algebra.add_zero_copy")
+        self.claim("LeanFrontier.Algebra.add_zero_and_one")
         payload = self.validate()
         self.assertFalse(payload["accepted"])
         self.assertIn("TRIVIAL_BASELINE_RESULT", {item["code"] for item in payload["diagnostics"]})

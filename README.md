@@ -81,6 +81,9 @@ The command performs cheap path, schema, content, size, duplicate, and
 triviality checks before building Lean and auditing declared entrypoints. It
 prints a human report, writes JSON when requested, and exits nonzero on a
 rejection. GitHub Actions runs the same validator with trusted receiver code.
+The separate, not-yet-open award mechanism is documented in
+[award scoring v0.1](docs/award-scoring.md); it consumes only accepted receiver
+observations and never affects admission.
 
 ## Development
 

@@ -125,6 +125,24 @@ class ValidatorPreflightTests(unittest.TestCase):
         self.assertNotIn("type_canonical", observation)
         self.assertEqual(observation["statement_sha256"], hashlib.sha256(canonical.encode()).hexdigest())
 
+    def test_public_audit_observation_preserves_only_type_dependencies(self) -> None:
+        observation = frontier_validate.public_finding(
+            {
+                "name": "LeanFrontier.Algebra.new_result",
+                "kind": "theorem",
+                "axioms": [],
+                "type_canonical": "canonical",
+                "type_dependencies": ["Nat.add", "LeanFrontier.Algebra.shared", 3],
+            }
+        )
+        self.assertEqual(observation["type_dependencies"], ["LeanFrontier.Algebra.shared", "Nat.add"])
+
+    def test_award_source_facts_mark_direct_aliases(self) -> None:
+        path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
+        path.write_text("namespace LeanFrontier.Algebra\ndef alias := Existing\nend LeanFrontier.Algebra\n")
+        facts = frontier_validate.declared_public_facts(self.candidate, ["LeanFrontier/Algebra/New.lean"])
+        self.assertTrue(facts["LeanFrontier.Algebra.alias"]["alias"])
+
 
 if __name__ == "__main__":
     unittest.main()
