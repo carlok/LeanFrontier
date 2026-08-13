@@ -107,6 +107,15 @@ class WorkflowContractTests(unittest.TestCase):
         ):
             self.assertIn(required, PAGES_WORKFLOW)
 
+    def test_deployed_site_uses_project_root_navigation(self) -> None:
+        homepage = (ROOT / "docs" / "website" / "index.html").read_text()
+        notes = (ROOT / "docs" / "website" / "notes" / "field-note-01.html").read_text()
+        catalogue_generator = (ROOT / "tools" / "generate_catalogue.py").read_text()
+        self.assertIn('href="catalogue/"', homepage)
+        self.assertNotIn('href="../catalogue/"', homepage)
+        self.assertIn('href="../catalogue/"', notes)
+        self.assertIn('<a href=\\"../\\">LeanFrontier</a>', catalogue_generator)
+
     def test_trusted_generators_are_serialized(self) -> None:
         for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW):
             self.assertIn("group: trusted-generated-main", workflow)
