@@ -105,13 +105,13 @@
         </div>
         <div class="use-grid">
           <p>LeanFrontier is intended to work like any ordinary Lean package: pin a revision, run Lake, and import exactly the library surface you need.</p>
-          <pre aria-label="LeanFrontier and Mathlib import example"><code>import Mathlib.Data.Complex.Basic
-import LeanFrontier.Geometry.InversiveGeometry
+          <pre aria-label="LeanFrontier and Mathlib import example"><code><span class="lean-keyword">import</span> <span class="lean-module">Mathlib.Data.Complex.Basic</span>
+<span class="lean-keyword">import</span> <span class="lean-module">LeanFrontier.Geometry.InversiveGeometry</span>
 
-open ComplexConjugate
-open LeanFrontier.InversiveGeometry
+<span class="lean-keyword">open</span> <span class="lean-namespace">ComplexConjugate</span>
+<span class="lean-keyword">open</span> <span class="lean-namespace">LeanFrontier.InversiveGeometry</span>
 
-#check reflect_eq_self_iff</code></pre>
+<span class="lean-command">#check</span> <span class="lean-declaration">reflect_eq_self_iff</span></code></pre>
         </div>
         <a class="text-link" href="https://github.com/carlok/LeanFrontier/blob/main/README.md">Read installation and downstream-use instructions <span aria-hidden="true">→</span></a>
       </section>
