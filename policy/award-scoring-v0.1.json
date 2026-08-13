@@ -1,0 +1,12 @@
+{
+  "format_version": "0.1",
+  "depth_weight": 50,
+  "depth_edge_cap": 10,
+  "reuse_weight": 30,
+  "reuse_interface_cap": 10,
+  "efficiency_weight": 20,
+  "efficiency_nodes_per_kib_cap": 2.5,
+  "efficiency_minimum_kib": 4,
+  "eligible_kinds": ["theorem", "definition", "opaque", "inductive"],
+  "excluded_flags": ["generated", "alias", "restatement"]
+}

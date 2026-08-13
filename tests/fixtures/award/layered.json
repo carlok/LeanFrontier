@@ -1,0 +1,29 @@
+{
+  "declarations": [
+    {
+      "kind": "definition",
+      "name": "LeanFrontier.AwardFixture.shared",
+      "statement_sha256": "shared",
+      "type_dependencies": []
+    },
+    {
+      "kind": "theorem",
+      "name": "LeanFrontier.AwardFixture.first",
+      "statement_sha256": "first",
+      "type_dependencies": ["LeanFrontier.AwardFixture.shared"]
+    },
+    {
+      "kind": "theorem",
+      "name": "LeanFrontier.AwardFixture.second",
+      "statement_sha256": "second",
+      "type_dependencies": ["LeanFrontier.AwardFixture.shared"]
+    }
+  ],
+  "entrypoints": [
+    "LeanFrontier.AwardFixture.first",
+    "LeanFrontier.AwardFixture.second"
+  ],
+  "format_version": "0.1",
+  "lean_source_bytes": 4096,
+  "submission_id": "award-fixture"
+}

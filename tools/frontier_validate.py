@@ -37,6 +37,10 @@ DECL_RE = re.compile(
     r"\b(?:theorem|lemma)\s+([A-Za-z_][A-Za-z0-9_']*)\b(?P<body>.*?)(?=\s*:=)", re.DOTALL
 )
 DECLARATION_RE = re.compile(r"\b(?:theorem|lemma|def|abbrev|opaque|structure|class|inductive|instance)\b")
+NAMESPACE_RE = re.compile(r"^\s*namespace\s+([A-Za-z_][A-Za-z0-9_.']*)\s*$")
+END_RE = re.compile(r"^\s*end(?:\s+[A-Za-z_][A-Za-z0-9_.']*)?\s*$")
+PUBLIC_DECLARATION_RE = re.compile(r"^\s*(?:theorem|lemma|def|abbrev|opaque|structure|class|inductive)\s+([A-Za-z_][A-Za-z0-9_']*)\b")
+DIRECT_ALIAS_RE = re.compile(r"^\s*(?:def|abbrev)\s+[A-Za-z_][A-Za-z0-9_']*\s*:=\s*[A-Za-z_][A-Za-z0-9_.']*\s*$")
 
 
 @dataclass
@@ -273,6 +277,37 @@ def modules_for(paths: Iterable[str]) -> list[str]:
     return modules or ["LeanFrontier"]
 
 
+def declared_public_facts(candidate: Path, paths: Iterable[str]) -> dict[str, dict[str, bool]]:
+    """Best-effort source ownership map for audit facts, limited to changed files.
+
+    The receiver has already rejected generated syntax and submission changes are
+    bounded.  Keeping this small parser here means an imported older module can
+    never be counted as part of a new submission's award interface.
+    """
+    facts: dict[str, dict[str, bool]] = {}
+    for relative in paths:
+        if not relative.startswith("LeanFrontier/") or not relative.endswith(".lean"):
+            continue
+        namespace: list[str] = []
+        for line in (candidate / relative).read_text(encoding="utf-8").splitlines():
+            if match := NAMESPACE_RE.match(line):
+                namespace.append(match.group(1))
+                continue
+            if END_RE.match(line):
+                if namespace:
+                    namespace.pop()
+                continue
+            if match := PUBLIC_DECLARATION_RE.match(line):
+                prefix = ".".join(namespace)
+                name = f"{prefix}.{match.group(1)}" if prefix else match.group(1)
+                facts[name] = {
+                    "generated": name.rsplit(".", 1)[-1].startswith("_"),
+                    "alias": bool(DIRECT_ALIAS_RE.match(line)),
+                    "restatement": False,
+                }
+    return facts
+
+
 def run(command: list[str], cwd: Path, timeout: int) -> subprocess.CompletedProcess[str]:
     return subprocess.run(command, cwd=cwd, text=True, capture_output=True, timeout=timeout, check=False)
 
@@ -299,11 +334,13 @@ def canonical_digest(item: dict[str, Any]) -> str | None:
 def public_finding(item: dict[str, Any] | None) -> dict[str, Any] | None:
     if item is None:
         return None
+    dependencies = item.get("type_dependencies", [])
     return {
         "name": item.get("name"),
         "kind": item.get("kind"),
         "axioms": item.get("axioms", []),
         "statement_sha256": canonical_digest(item),
+        "type_dependencies": sorted(item for item in dependencies if isinstance(item, str)),
     }
 
 
@@ -389,7 +426,7 @@ def downstream_smoke(candidate: Path, modules: list[str], entrypoints: list[str]
     report.observations["downstream_import_smoke"] = "pass"
 
 
-def lean_audit(candidate: Path, modules: list[str], metadata: dict[str, Any], limits: dict[str, Any], axioms: dict[str, Any], report: Report) -> None:
+def lean_audit(candidate: Path, modules: list[str], declared_facts: dict[str, dict[str, bool]], metadata: dict[str, Any], limits: dict[str, Any], axioms: dict[str, Any], report: Report) -> None:
     try:
         build = run(["lake", "build"], candidate, limits["build_timeout_seconds"])
     except (OSError, subprocess.TimeoutExpired) as error:
@@ -436,6 +473,13 @@ def lean_audit(candidate: Path, modules: list[str], metadata: dict[str, Any], li
         downstream_smoke(candidate, modules, entrypoints, report)
     report.observations["build"] = "pass"
     report.observations["entrypoints"] = {name: public_finding(findings.get(name)) for name in entrypoints}
+    audited_declarations: dict[str, dict[str, Any] | None] = {}
+    for name, facts in sorted(declared_facts.items()):
+        finding = public_finding(findings.get(name))
+        if finding is not None:
+            finding.update(facts)
+        audited_declarations[name] = finding
+    report.observations["audited_declarations"] = audited_declarations
 
 
 def export_git_ref(ref: str, destination: Path) -> None:
@@ -484,7 +528,7 @@ def main(argv: list[str] | None = None) -> int:
             if metadata is None:
                 report.reject("SCHEMA_INVALID", "no valid metadata record was available for audit")
             else:
-                lean_audit(candidate, modules_for(changed), metadata, limits, axioms, report)
+                lean_audit(candidate, modules_for(changed), declared_public_facts(candidate, changed), metadata, limits, axioms, report)
     finally:
         if temporary:
             temporary.cleanup()
