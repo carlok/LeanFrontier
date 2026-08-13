@@ -33,7 +33,9 @@ def render(root: Path) -> str:
     source_root = root / "LeanFrontier"
     modules = sorted(module_name(path, source_root) for path in source_root.rglob("*.lean"))
     imports = "".join(f"\nimport {module}" for module in modules)
-    return f"{HEADER}{imports}\n"
+    # Lean accepts imports only at the beginning of a module. Keep the generated
+    # explanatory command after them so the umbrella is itself importable.
+    return f"{imports}\n{HEADER}"
 
 
 def main() -> int:

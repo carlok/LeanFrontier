@@ -57,10 +57,12 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertNotIn("leanprover/lean4", DOCKERFILE)
 
     def test_all_subject_modules_build_and_the_umbrella_is_trusted_post_merge_output(self) -> None:
-        self.assertIn('globs = ["LeanFrontier.+"]', LAKEFILE)
+        self.assertIn('globs = ["LeanFrontier", "LeanFrontier.+"]', LAKEFILE)
         self.assertIn("LeanFrontier/**/*.lean", SYNC_WORKFLOW)
         self.assertIn("contents: write", SYNC_WORKFLOW)
         self.assertIn("tools/generate_umbrella.py", SYNC_WORKFLOW)
+        umbrella = (ROOT / "LeanFrontier.lean").read_text()
+        self.assertLess(umbrella.index("import LeanFrontier"), umbrella.index("/-!"))
 
     def test_receiver_uses_a_pinned_mathlib_fingerprint_index(self) -> None:
         validator = (ROOT / "tools" / "frontier_validate.py").read_text()

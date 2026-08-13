@@ -1,5 +1,5 @@
 name = "LeanFrontier"
-version = "0.1.0"
+version = "0.1.1"
 defaultTargets = ["LeanFrontier", "frontier-audit"]
 
 [leanOptions]
@@ -12,7 +12,7 @@ rev = "v4.33.0-rc1"
 
 [[lean_lib]]
 name = "LeanFrontier"
-globs = ["LeanFrontier.+"]
+globs = ["LeanFrontier", "LeanFrontier.+"]
 
 [[lean_exe]]
 name = "frontier-audit"
