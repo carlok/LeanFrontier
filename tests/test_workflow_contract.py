@@ -116,6 +116,9 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn('generate_catalogue.py', validator)
         self.assertNotIn('lake build', validator)
 
+    def test_ordinary_receiver_never_runs_for_manual_generated_validation(self) -> None:
+        self.assertIn("github.event_name == 'pull_request' &&", WORKFLOW)
+
     def test_pages_deployment_includes_catalogue_and_field_notes(self) -> None:
         for required in (
             "docs/website/**",
