@@ -24,9 +24,9 @@ permissions:
 jobs:
   validate:
     if: >-
-      (github.event_name == 'workflow_dispatch' && inputs.generated != true) ||
-      (!startsWith(github.event.pull_request.head.ref, 'automation/generated/') &&
-       !startsWith(github.event.pull_request.head.ref, 'maintenance/'))
+      github.event_name == 'pull_request' &&
+      !startsWith(github.event.pull_request.head.ref, 'automation/generated/') &&
+      !startsWith(github.event.pull_request.head.ref, 'maintenance/')
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
