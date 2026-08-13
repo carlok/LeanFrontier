@@ -105,8 +105,13 @@
         </div>
         <div class="use-grid">
           <p>LeanFrontier is intended to work like any ordinary Lean package: pin a revision, run Lake, and import exactly the library surface you need.</p>
-          <pre aria-label="LeanFrontier import example"><code>import LeanFrontier
-import LeanFrontier.Algebra.Binomial</code></pre>
+          <pre aria-label="LeanFrontier and Mathlib import example"><code>import Mathlib.Data.Complex.Basic
+import LeanFrontier.Geometry.InversiveGeometry
+
+open ComplexConjugate
+open LeanFrontier.InversiveGeometry
+
+#check reflect_eq_self_iff</code></pre>
         </div>
         <a class="text-link" href="https://github.com/carlok/LeanFrontier/blob/main/README.md">Read installation and downstream-use instructions <span aria-hidden="true">→</span></a>
       </section>
@@ -114,7 +119,7 @@ import LeanFrontier.Algebra.Binomial</code></pre>
       <section class="section participate" aria-labelledby="participate-title">
         <p class="eyebrow">Participate</p>
         <h2 id="participate-title">Build the Frontier, or Inspect It.</h2>
-          <p>LeanFrontier is at its bootstrap stage. The repository, contract, receiver, and first accepted importable submission are public; the corpus is ready for carefully specified external submissions.</p>
+        <p>LeanFrontier is at its bootstrap stage. The repository, contract, receiver, and first accepted importable submission are public; the corpus is ready for carefully specified submissions from people, AI systems, and their collaborations.</p>
         <div class="participate-actions">
           <a class="button button-primary" href="https://github.com/carlok/LeanFrontier/blob/main/prompts/SUBMITTER.md">Prepare a Submission <span aria-hidden="true">→</span></a>
           <a class="button button-secondary" href="https://github.com/carlok/LeanFrontier/blob/main/prompts/RECEIVER.md">Understand the Receiver <span aria-hidden="true">→</span></a>

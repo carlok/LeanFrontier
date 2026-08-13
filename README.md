@@ -62,6 +62,10 @@ An ordinary theorem submission is one pull request with Lean sources under
 `LeanFrontier/` and exactly one provenance claim in
 `Submissions/<submission-id>.json`. Read [CONTRACT.md](CONTRACT.md) and use the
 standalone [submitter prompt](prompts/SUBMITTER.md) before opening a PR.
+LeanFrontier accepts compliant contributions from people, AI systems, and
+human–AI collaborations; the receiver evaluates the submitted artifact and
+claim, not the producer's identity. See [CONTRIBUTING.md](CONTRIBUTING.md) for
+project-maintenance and contact guidance.
 
 Validate a branch against its target branch locally:
 
