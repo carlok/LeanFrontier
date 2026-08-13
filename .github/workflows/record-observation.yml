@@ -7,6 +7,7 @@ on:
 permissions:
   actions: read
   contents: write
+  pull-requests: write
 
 jobs:
   persist:
@@ -53,12 +54,24 @@ jobs:
           --trusted-receiver-revision ${{ github.event.pull_request.base.sha }}
           --validation-run "$(cat validation-run.txt)"
           --observed-at "${{ github.event.pull_request.merged_at }}"
-      - name: Commit the trusted observation when needed
+      - name: Regenerate the catalogue from the trusted observation
         if: steps.submission.outputs.should_record == 'true'
+        run: python3 tools/generate_catalogue.py
+      - name: Open a protected generated-output pull request
+        if: steps.submission.outputs.should_record == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          git diff --quiet -- receiver-observations && exit 0
+          git diff --quiet -- receiver-observations docs/catalogue/index.html && exit 0
+          branch="automation/generated/observation-${{ github.run_id }}"
+          git switch -c "$branch"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add receiver-observations
+          git add receiver-observations docs/catalogue/index.html
           git commit -m "chore: record receiver observation"
-          git push
+          git push origin "HEAD:$branch"
+          pr="$(gh pr create --base main --head "$branch" --title "chore: record receiver observation" --body "Trusted receiver observation from run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.")"
+          gh workflow run test.yml --repo "$GITHUB_REPOSITORY" --ref "$branch"
+          gh workflow run validate-submission.yml --repo "$GITHUB_REPOSITORY" --ref "$branch" \
+            -f trusted_ref="${{ github.event.pull_request.merge_commit_sha }}" -f candidate_ref="$branch" -f generated=true
+          gh pr merge "$pr" --auto --merge

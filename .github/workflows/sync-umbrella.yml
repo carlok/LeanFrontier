@@ -9,6 +9,8 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
+  actions: write
 
 concurrency:
   group: trusted-generated-main
@@ -22,11 +24,20 @@ jobs:
         with:
           persist-credentials: true
       - run: python3 tools/generate_umbrella.py
-      - name: Commit the trusted generated umbrella when needed
+      - name: Open a protected generated-output pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git diff --quiet -- LeanFrontier.lean && exit 0
+          branch="automation/generated/umbrella-${{ github.run_id }}"
+          git switch -c "$branch"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add LeanFrontier.lean
           git commit -m "chore: sync LeanFrontier umbrella"
-          git push
+          git push origin "HEAD:$branch"
+          pr="$(gh pr create --base main --head "$branch" --title "chore: sync LeanFrontier umbrella" --body "Trusted generated output from run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.")"
+          gh workflow run test.yml --repo "$GITHUB_REPOSITORY" --ref "$branch"
+          gh workflow run validate-submission.yml --repo "$GITHUB_REPOSITORY" --ref "$branch" \
+            -f trusted_ref="${{ github.sha }}" -f candidate_ref="$branch" -f generated=true
+          gh pr merge "$pr" --auto --merge

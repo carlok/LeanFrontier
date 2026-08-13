@@ -12,12 +12,21 @@ on:
         description: Untrusted candidate commit or ref to validate
         required: true
         type: string
+      generated:
+        description: Validate a trusted generated-output maintenance PR
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
 
 jobs:
   validate:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && inputs.generated != true) ||
+      (!startsWith(github.event.pull_request.head.ref, 'automation/generated/') &&
+       !startsWith(github.event.pull_request.head.ref, 'maintenance/'))
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -91,3 +100,47 @@ jobs:
             preflight-report.json
             report-output/report.json
           if-no-files-found: warn
+
+  validate-generated:
+    if: >-
+      (github.event_name == 'pull_request' &&
+       startsWith(github.event.pull_request.head.ref, 'automation/generated/') &&
+       github.event.pull_request.user.login == 'github-actions[bot]') ||
+      (github.event_name == 'workflow_dispatch' && inputs.generated == true)
+    name: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.trusted_ref || github.event.pull_request.base.sha }}
+          path: trusted
+          persist-credentials: false
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.candidate_ref || github.event.pull_request.head.sha }}
+          path: candidate
+          persist-credentials: false
+      - run: >-
+          python3 trusted/tools/validate_generated.py
+          --base trusted --candidate candidate
+
+  validate-maintenance:
+    if: >-
+      github.event_name == 'pull_request' &&
+      startsWith(github.event.pull_request.head.ref, 'maintenance/') &&
+      github.event.pull_request.author_association == 'OWNER'
+    name: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: trusted
+          persist-credentials: false
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+          persist-credentials: false
+      - name: Confirm this is an owner maintenance pull request
+        run: git -C candidate diff --check

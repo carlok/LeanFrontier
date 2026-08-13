@@ -23,7 +23,7 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("github.event.pull_request.head.sha", WORKFLOW)
         self.assertIn("path: trusted", WORKFLOW)
         self.assertIn("path: candidate", WORKFLOW)
-        self.assertEqual(WORKFLOW.count("persist-credentials: false"), 2)
+        self.assertGreaterEqual(WORKFLOW.count("persist-credentials: false"), 2)
 
     def test_receiver_has_restricted_formal_execution_and_report(self) -> None:
         for required in (
@@ -95,6 +95,26 @@ class WorkflowContractTests(unittest.TestCase):
             "github.event.pull_request.merge_commit_sha",
         ):
             self.assertIn(required, OBSERVATION_WORKFLOW)
+
+    def test_trusted_generators_open_protected_maintenance_prs(self) -> None:
+        for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW, OBSERVATION_WORKFLOW):
+            self.assertIn("automation/generated/", workflow)
+            self.assertIn("gh pr create", workflow)
+            self.assertIn("gh workflow run validate-submission.yml", workflow)
+            self.assertIn("gh pr merge", workflow)
+            self.assertNotIn("git push\n", workflow)
+
+    def test_owner_maintenance_prs_have_a_separate_validation_path(self) -> None:
+        self.assertIn("validate-maintenance:", WORKFLOW)
+        self.assertIn("startsWith(github.event.pull_request.head.ref, 'maintenance/')", WORKFLOW)
+        self.assertIn("github.event.pull_request.author_association == 'OWNER'", WORKFLOW)
+
+    def test_generated_output_validation_does_not_execute_candidate_code(self) -> None:
+        validator = (ROOT / "tools" / "validate_generated.py").read_text()
+        self.assertIn('allowed(path)', validator)
+        self.assertIn('generate_umbrella.py', validator)
+        self.assertIn('generate_catalogue.py', validator)
+        self.assertNotIn('lake build', validator)
 
     def test_pages_deployment_includes_catalogue_and_field_notes(self) -> None:
         for required in (
