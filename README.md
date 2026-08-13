@@ -20,6 +20,18 @@ mechanically before a submission reaches the shared corpus.
 The project's motivation and broader research context are in the unchanged
 [manifesto](MANIFEST.md).
 
+## Give an agent a submission task
+
+Hand an agent this single URL; it points it to the canonical contract, submitter
+guide, catalogue, and local validation command:
+
+```text
+https://raw.githubusercontent.com/carlok/LeanFrontier/main/prompts/TRY-LEANFRONTIER.md
+```
+
+The agent launcher does not weaken the protocol: ordinary submissions still
+need one accepted local receiver report before their pull request is opened.
+
 ## License
 
 LeanFrontier is released under the [Apache-2.0 license](LICENSE).
