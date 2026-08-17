@@ -1,0 +1,22 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "mediant-stern-brocot-determinant",
+  "producer": {
+    "type": "llm",
+    "model": "claude-opus-5",
+    "agent": "claude-code"
+  },
+  "origin_mode": "mathlib_extension",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Mediant.crossDet_left_mediant",
+    "LeanFrontier.Mediant.crossDet_mediant_right",
+    "LeanFrontier.Mediant.isCoprime_mediant",
+    "LeanFrontier.Mediant.div_lt_div_iff_crossDet_pos",
+    "LeanFrontier.Mediant.div_lt_mediant",
+    "LeanFrontier.Mediant.mediant_lt_div"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "The mediant (a+c)/(b+d) of two fractions a/b and c/d, together with the cross determinant b*c-a*d that governs the Stern-Brocot construction. Mathlib absence evidence, by case-insensitive search over every .lean file of the pinned checkout: 'mediant', 'brocot' and 'farey' have zero hits in any file; 'stern' hits only bibliography and author names (Christian Sternagel in Order/Zorn.lean and Order/Preorder/Chain.lean, Manfred Stern in Order/ModularLattice.lean, poeschel2017siegelsternberg in Analysis/Analytic/Inverse.lean); 'unimodular' hits only Matrix.IsTotallyUnimodular in LinearAlgebra/Matrix/Determinant/TotallyUnimodular.lean, an unrelated matrix-entry condition; the literal term '(a + c) / (b + d)' and the identifier 'add_div_add' have zero hits. So neither the mediant, nor the two-by-two numerator/denominator determinant of a pair of fractions, nor Farey or Stern-Brocot neighbourliness exists in Mathlib at this revision.\n\nWhat is new is only the formalization: two definitions (crossDet over a commutative ring, mediant over a division ring) and the facts that make one Stern-Brocot step work. The mathematics is textbook (Hardy and Wright chapter 3; Graham, Knuth and Patashnik section 4.5) and is not claimed as new or research-level.\n\nClosest existing Mathlib material and how these statements differ: div_lt_div_iff_crossDet_pos is Mathlib's ordered-field comparison div_lt_div_iff₀, at Algebra/Order/GroupWithZero/Basic.lean line 1463, repackaged through crossDet and sub_pos. It is kept because it is the bridge used by both betweenness proofs and because the crossDet formulation is what the determinant lemmas consume. The remaining five statements have no Mathlib counterpart. isCoprime_mediant, that the mediant of a unimodular pair is already in lowest terms, follows from the Bezout witnesses (b, -a).\n\nScope decisions. Fractions are carried as separate numerator and denominator arguments rather than as Rat, because the mediant depends on the chosen representatives; a formulation on reduced rationals would be a strictly weaker statement. The determinant facts are stated over an arbitrary commutative ring so that they specialize to the integer case the Stern-Brocot tree needs, while only the betweenness facts assume an order and division. No Stern-Brocot tree object, Farey sequence, or continued-fraction bridge is defined; those would be separate submissions built on these lemmas. A draft of this module also carried crossDet_mediant_eq_one, the conjunction of the two determinant identities specialized to the value 1. It was removed before submission: its proof is each general identity followed by one transitivity step, so it stated no new content, and the receiver's own triviality policy treats conjunction as a canonical connective.\n\nProvenance. The producing system is one Claude Opus 5 agent run under Claude Code, which delegated this module to a subagent instance of the same model; the subject was chosen by the model from a shortlist the model itself had drawn up, and the human operator gave no mathematical direction beyond asking that the repository's agent launcher prompt be followed. Statement origin is therefore machine, not mixed. All proofs are machine-written and use only ring, linarith, linear_combination, and rewriting by Mathlib lemmas. Written directly against this repository at Mathlib v4.33.0-rc1, not ported from any other repository."
+}
