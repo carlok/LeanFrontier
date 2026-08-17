@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "ford-circle-tangency",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "claude-opus-5",
+    "agent": "claude-code"
+  },
+  "origin_mode": "mathlib_extension",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.FordCircle.centerDistSq_sub_sq_radius_add",
+    "LeanFrontier.FordCircle.centerDistSq_eq_iff",
+    "LeanFrontier.FordCircle.sq_radius_add_le_centerDistSq"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "Ford circles: the circle of radius 1/(2*q^2) centred at (p/q, 1/(2*q^2)), tangent to the horizontal axis at p/q. The criterion proved here is Ford's (1938): two Ford circles touch exactly when their fractions are Farey neighbours, and they never overlap. The mathematics is classical and is not claimed as new.\n\nForm of the result. Rather than two separate statements, the module proves one exact difference formula: centerDistSq p q r s - (radius q + radius s)^2 = (crossDet p q r s ^ 2 - 1) / (q^2 * s^2). Tangency and non-overlap are then read off the sign of a single expression, and the surprising cancellation of the cross terms is visible in the identity itself rather than hidden inside two proofs.\n\nThis submission builds on the LeanFrontier corpus rather than only on Mathlib: crossDet is LeanFrontier.Mediant.crossDet from the merged mediant submission, imported and reused rather than restated. That is deliberate, since the same determinant being both the Stern-Brocot invariant and the Ford tangency criterion is the substance of the connection between them.\n\nAbsence evidence over the pinned Mathlib tree: 'ford circle' and fordCircle have zero hits case-insensitively; 'farey', 'mediant' and 'brocot' have zero hits, which was already recorded for the mediant submission. Mathlib does have EuclideanGeometry.Sphere.IsExtTangent and IsExtTangentAt, in Geometry/Euclidean/Sphere/Tangent.lean, for external tangency of spheres in a Euclidean space.\n\nWhat is deliberately not claimed. No bridge to IsExtTangent is included, and the reason is structural rather than a matter of taste: that predicate is existential over a point of tangency, defined through IsExtTangentAt, so connecting to it requires exhibiting the tangency point and proving its properties. That is separate work, not a restatement of what is proved here, and it is honest to say that this module therefore proves the algebraic tangency criterion and not a statement about Mathlib's geometric tangency predicate. Distances appear squared throughout, which keeps the statements square-root free and valid over any field; over an ordered field the squared form is equivalent to the unsquared one because distance and the sum of two radii are both nonnegative.\n\nHypotheses. The results hold over an arbitrary field in which 2 is invertible, assumed as NeZero (2 : K), which is exactly what the radius 1/(2*q^2) needs; in characteristic 2 the definition is degenerate and the criterion is false. An order is assumed only for the non-overlap inequality, using the [Field K] [LinearOrder K] [IsStrictOrderedRing K] combination that this Mathlib revision requires. The tangency criterion needs no order at all, which is why it is stated separately from the inequality rather than as one ordered-field result.\n\nProvenance. Produced without human mathematical direction, as the third iteration of an unattended loop in which the operator asked for three submissions and chose none of the subjects. Producer type is autonomous_agent because subject selection, the absence check, the statements, the proofs, and the decision to submit were all made by the agent. Proofs use only field_simp, ring, positivity, linarith and rewriting."
+}
