@@ -10,6 +10,7 @@ SYNC_WORKFLOW = (ROOT / ".github" / "workflows" / "sync-umbrella.yml").read_text
 CATALOGUE_WORKFLOW = (ROOT / ".github" / "workflows" / "sync-catalogue.yml").read_text()
 OBSERVATION_WORKFLOW = (ROOT / ".github" / "workflows" / "record-observation.yml").read_text()
 PAGES_WORKFLOW = (ROOT / ".github" / "workflows" / "deploy-pages.yml").read_text()
+UPGRADE_WORKFLOW = (ROOT / ".github" / "workflows" / "mathlib-upgrade.yml").read_text()
 DOCKERFILE = (ROOT / "tools" / "Dockerfile.validator").read_text()
 LAKEFILE = (ROOT / "lakefile.toml").read_text()
 
@@ -64,9 +65,10 @@ class WorkflowContractTests(unittest.TestCase):
         umbrella = (ROOT / "LeanFrontier.lean").read_text()
         self.assertLess(umbrella.index("import LeanFrontier"), umbrella.index("/-!"))
 
-    def test_receiver_uses_a_pinned_mathlib_fingerprint_index(self) -> None:
+    def test_receiver_uses_the_active_mathlib_fingerprint_index(self) -> None:
         validator = (ROOT / "tools" / "frontier_validate.py").read_text()
-        self.assertIn("mathlib-fingerprints-v4.33.0-rc1.json", validator)
+        self.assertIn("load_release_policy", validator)
+        self.assertIn("fingerprint_index", validator)
         self.assertIn("Mathlib fingerprint index does not match the pinned revision", validator)
         self.assertNotIn('"--all", match_arg, "Mathlib"', validator)
 
@@ -96,6 +98,14 @@ class WorkflowContractTests(unittest.TestCase):
         ):
             self.assertIn(required, OBSERVATION_WORKFLOW)
 
+    def test_observation_checkout_keeps_the_merge_parent_and_fails_loudly(self) -> None:
+        """A shallow checkout cannot resolve `<merge>^1`, and process substitution hides it."""
+        self.assertIn("fetch-depth: 2", OBSERVATION_WORKFLOW)
+        self.assertIn(
+            'git rev-parse --verify --quiet "${{ github.event.pull_request.merge_commit_sha }}^1"',
+            OBSERVATION_WORKFLOW,
+        )
+
     def test_trusted_generators_open_protected_maintenance_prs(self) -> None:
         for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW, OBSERVATION_WORKFLOW):
             self.assertIn("automation/generated/", workflow)
@@ -108,6 +118,21 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("validate-maintenance:", WORKFLOW)
         self.assertIn("startsWith(github.event.pull_request.head.ref, 'maintenance/')", WORKFLOW)
         self.assertIn("github.event.pull_request.author_association == 'OWNER'", WORKFLOW)
+        self.assertIn("github.event.pull_request.user.login == 'github-actions[bot]'", WORKFLOW)
+
+    def test_a_branch_name_alone_never_skips_the_ordinary_receiver(self) -> None:
+        """Head refs are submitter-controlled: each exemption must also pin the author."""
+        for required in (
+            "!(startsWith(github.event.pull_request.head.ref, 'automation/generated/') &&",
+            "!(startsWith(github.event.pull_request.head.ref, 'maintenance/') &&",
+        ):
+            self.assertIn(required, WORKFLOW)
+        self.assertNotIn(
+            "!startsWith(github.event.pull_request.head.ref, 'maintenance/')", WORKFLOW
+        )
+        self.assertNotIn(
+            "!startsWith(github.event.pull_request.head.ref, 'automation/generated/')", WORKFLOW
+        )
 
     def test_generated_output_validation_does_not_execute_candidate_code(self) -> None:
         validator = (ROOT / "tools" / "validate_generated.py").read_text()
@@ -143,6 +168,33 @@ class WorkflowContractTests(unittest.TestCase):
         for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW):
             self.assertIn("group: trusted-generated-main", workflow)
             self.assertIn("cancel-in-progress: false", workflow)
+
+    def test_mathlib_upgrader_uses_only_trusted_tagged_release_inputs(self) -> None:
+        for required in (
+            "schedule:",
+            "workflow_dispatch:",
+            "leanprover-community/mathlib4",
+            "prerelease == false",
+            "draft == false",
+            "maintenance/mathlib-upgrade-",
+            "--network none",
+            "--read-only",
+            "tools/update_mathlib_release.py",
+            "tools/audit_mathlib_upgrade.py",
+            "gh pr merge \"$pr\" --auto --merge",
+        ):
+            self.assertIn(required, UPGRADE_WORKFLOW)
+        self.assertNotIn("/pulls", UPGRADE_WORKFLOW)
+
+    def test_mathlib_upgrade_has_a_required_gate_and_a_trusted_path_policy(self) -> None:
+        test_workflow = (ROOT / ".github" / "workflows" / "test.yml").read_text()
+        validator = (ROOT / "tools" / "validate_mathlib_upgrade.py").read_text()
+        self.assertIn("mathlib-upgrade:", test_workflow)
+        self.assertIn("maintenance/mathlib-upgrade-", test_workflow)
+        self.assertIn('ACTOR: ${{ github.actor }}', test_workflow)
+        self.assertIn('"$ACTOR" == "github-actions[bot]"', test_workflow)
+        self.assertIn("validate_mathlib_upgrade.py", WORKFLOW)
+        self.assertIn("Mathlib upgrade changes forbidden paths", validator)
 
 
 if __name__ == "__main__":

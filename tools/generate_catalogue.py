@@ -55,7 +55,14 @@ def observations(root: Path) -> dict[str, dict[str, object]]:
     return result
 
 
-def entries(root: Path) -> list[dict[str, str]]:
+def entries(root: Path, declared_entrypoints: set[str]) -> list[dict[str, str]]:
+    """Return only declarations a submission explicitly exposes as entrypoints.
+
+    Modules naturally contain induction steps and other implementation lemmas.  Those
+    declarations are available to Lean, but they are not automatically part of the
+    public corpus interface.  The immutable submission record is the authority for
+    that boundary.
+    """
     result: list[dict[str, str]] = []
     for path in sorted((root / "LeanFrontier").rglob("*.lean")):
         source = path.read_text(encoding="utf-8")
@@ -64,6 +71,8 @@ def entries(root: Path) -> list[dict[str, str]]:
         for match in THEOREM.finditer(source):
             doc_match = TRAILING_DOC.search(source[:match.start()])
             name = f"{namespace}.{match.group('name')}"
+            if name not in declared_entrypoints:
+                continue
             result.append({
                 "name": name,
                 "module": module_for(path, root),
@@ -78,7 +87,7 @@ def render(root: Path) -> str:
     by_name = claims(root)
     observed_by_name = observations(root)
     cards: list[str] = []
-    for item in entries(root):
+    for item in entries(root, set(by_name)):
         claim = by_name.get(item["name"], {})
         producer = claim.get("producer", {}) if isinstance(claim.get("producer", {}), dict) else {}
         producer_label = str(producer.get("agent", "unrecorded"))

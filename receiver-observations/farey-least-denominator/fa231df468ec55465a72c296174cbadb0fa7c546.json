@@ -1,0 +1,154 @@
+{
+  "accepted_revision": "fa231df468ec55465a72c296174cbadb0fa7c546",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-17T12:00:09Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 79.571,
+    "observed": {
+      "added_lines": 104,
+      "audited_declarations": {
+        "LeanFrontier.Farey.IsStrictlyBetween": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Farey.IsStrictlyBetween",
+          "restatement": false,
+          "statement_sha256": "acbc80f539d6120a3533b38976222cad69f161ebbeb1ad556752d2d12fd31403",
+          "type_dependencies": [
+            "Int"
+          ]
+        },
+        "LeanFrontier.Farey.add_le_of_isStrictlyBetween": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Farey.add_le_of_isStrictlyBetween",
+          "restatement": false,
+          "statement_sha256": "e48639db6bf6fca315c127f9aaede0eef65159c7d1775a03f43d49eab5a56976",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "Int.instCommRing",
+            "Int.instLEInt",
+            "Int.instLTInt",
+            "LE.le",
+            "LT.lt",
+            "LeanFrontier.Farey.IsStrictlyBetween",
+            "LeanFrontier.Mediant.crossDet",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.Farey.eq_add_of_denom_eq_add": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Farey.eq_add_of_denom_eq_add",
+          "restatement": false,
+          "statement_sha256": "11cbb6b6cd361834c84a5c71f4df6b143699a3e20a80bd62c6dcdd4c607b17e7",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "Int.instCommRing",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.Farey.IsStrictlyBetween",
+            "LeanFrontier.Mediant.crossDet",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instOfNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Farey.add_le_of_isStrictlyBetween": "inconclusive",
+        "LeanFrontier.Farey.eq_add_of_denom_eq_add": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 8930,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/Farey.lean",
+        "Submissions/farey-least-denominator.json"
+      ],
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Farey.add_le_of_isStrictlyBetween": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Farey.add_le_of_isStrictlyBetween",
+          "statement_sha256": "e48639db6bf6fca315c127f9aaede0eef65159c7d1775a03f43d49eab5a56976",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "Int.instCommRing",
+            "Int.instLEInt",
+            "Int.instLTInt",
+            "LE.le",
+            "LT.lt",
+            "LeanFrontier.Farey.IsStrictlyBetween",
+            "LeanFrontier.Mediant.crossDet",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.Farey.eq_add_of_denom_eq_add": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Farey.eq_add_of_denom_eq_add",
+          "statement_sha256": "11cbb6b6cd361834c84a5c71f4df6b143699a3e20a80bd62c6dcdd4c607b17e7",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "Int.instCommRing",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.Farey.IsStrictlyBetween",
+            "LeanFrontier.Mediant.crossDet",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instOfNat"
+          ]
+        }
+      },
+      "lean_source_bytes": 4935,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 5
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "farey-least-denominator",
+  "trusted_receiver_revision": "449172ca8aa13d2beffbd0f6196893620e4cafc2",
+  "validated_candidate_revision": "cd1a68e1ad780314a72481a02d2f516a240f012f",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32027349582"
+}

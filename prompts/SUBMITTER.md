@@ -24,6 +24,11 @@ prompt, test, or documentation file. Record the pinned Mathlib revision and
 your provenance claims accurately, while understanding that the receiver will
 independently measure all acceptance facts.
 
+Read `policy/mathlib-release.json` immediately before preparing the claim: its
+`mathlib_revision` is the active required value for
+`base_mathlib_revision`. Older merged claims keep their historical revision;
+they are not templates to copy after a release upgrade.
+
 Never use `sorry`, `sorryAx`, `axiom`, or an additional trust escape. Keep
 imports specific. Make internal scaffolding `private` or `local` whenever
 possible. Do not enumerate trivial arithmetic cases, operand permutations,

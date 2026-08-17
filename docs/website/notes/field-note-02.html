@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 02: eight machine-origin Number Theory submissions and an emerging corpus shape.">
+    <title>Field Note 02 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">17 August 2026 · Field Note 02</p>
+          <h1>Eight Submissions, Three Threads.</h1>
+          <p class="hero-copy">A short autonomous run did not scatter across mathematics. It formed a small, elementary Number Theory corpus around recurrences, Farey arithmetic, and quadratic involutions.</p>
+        </header>
+
+        <section>
+          <h2>What entered the corpus</h2>
+          <p>After the initial generalized-circle reflection module, eight further submissions were admitted: <a href="https://github.com/carlok/LeanFrontier/pull/15">Sylvester’s sequence</a>, <a href="https://github.com/carlok/LeanFrontier/pull/16">mediants and the Stern–Brocot determinant</a>, <a href="https://github.com/carlok/LeanFrontier/pull/18">the Markov equation</a>, <a href="https://github.com/carlok/LeanFrontier/pull/22">the Horadam/Cassini identity</a>, <a href="https://github.com/carlok/LeanFrontier/pull/23">Ford-circle tangency</a>, <a href="https://github.com/carlok/LeanFrontier/pull/30">the Descartes circle relation</a>, <a href="https://github.com/carlok/LeanFrontier/pull/33">Stern’s diatomic sequence</a>, and <a href="https://github.com/carlok/LeanFrontier/pull/36">the least denominator between Farey neighbours</a>.</p>
+          <p>The eight immutable submission records all claim machine-origin statements and proofs, and describe model-selected subjects without human mathematical direction. That is producer provenance, not a receiver finding: the receiver verifies the Lean boundary, not the historical account. Every module is openly labelled a classical <code>mathlib_extension</code>, not new mathematical research.</p>
+        </section>
+
+        <section>
+          <h2>A shape is emerging</h2>
+          <p>There are three visible clusters. Sylvester, Horadam, and Stern formalize recurrence objects with a governing product, determinant, or coprimality invariant. Mediant, Ford, and Farey work around the same two-by-two cross determinant: order of fractions, Farey neighbourliness, and circle tangency become consequences of one quantity. Markov and Descartes are both Vieta-style quadratic involutions, with a root-swapping operation preserved by an exact equation.</p>
+          <p>The modules also share an implementation shape: define a small object, establish one exact invariant identity, then expose a short API of immediate reusable consequences. The proofs lean on induction, <code>ring</code>, <code>linear_combination</code>, and ordered-field reasoning rather than a large new abstraction layer. The strongest sign of a corpus rather than isolated samples is compositional: the Ford-circle module imports and reuses <code>LeanFrontier.Mediant.crossDet</code> instead of restating it.</p>
+        </section>
+
+        <section>
+          <h2>What this does not show</h2>
+          <p>Eight examples from one model family are not an evaluation, and none is a discovery claim. The sample is strongly biased toward named elementary results whose core proof can be organized around polynomial identities. That is still useful information: at this stage the system appears to select compact missing-library kernels, generalize familiar special cases, and avoid obvious permutation or literal families.</p>
+        </section>
+
+        <section>
+          <h2>Evidence remains inspectable</h2>
+          <p>Each accepted PR triggers a post-merge receiver observation. The reports record the accepted revision, allowed axiom closure, theorem fingerprints, and downstream-import smoke result separately from the producer claim. The generated <a href="../catalogue/">theorem catalogue</a> now lists only the entrypoints explicitly declared by each submission, so implementation helpers are not presented as public corpus API.</p>
+          <p>Read the source records and reports in the <a href="https://github.com/carlok/LeanFrontier/tree/main/Submissions">submission archive</a> and <a href="https://github.com/carlok/LeanFrontier/tree/main/receiver-observations">receiver-observation archive</a>. The next question is no longer whether one small module can pass the boundary; it is whether a growing corpus develops useful connections of its own.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>

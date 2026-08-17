@@ -10,15 +10,13 @@ import subprocess
 from collections import defaultdict
 from pathlib import Path
 
-
-ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_DESTINATION = ROOT / "policy" / "mathlib-fingerprints-v4.33.0-rc1.json"
-MATHLIB_REVISION = "v4.33.0-rc1"
+from mathlib_release import ROOT, load_release_policy
 
 
 def main(argv: list[str] | None = None) -> int:
+    release = load_release_policy()
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=DEFAULT_DESTINATION)
+    parser.add_argument("--output", type=Path, default=ROOT / "policy" / release["fingerprint_index"])
     args = parser.parse_args(argv)
     process = subprocess.Popen(
         ["lake", "exe", "frontier-audit", "--", "--all", "--fingerprints", "Mathlib"],
@@ -44,7 +42,7 @@ def main(argv: list[str] | None = None) -> int:
         raise RuntimeError(f"frontier-audit exited with status {process.returncode}" + (f": {detail}" if detail else ""))
     payload = {
         "format_version": 1,
-        "mathlib_revision": MATHLIB_REVISION,
+        "mathlib_revision": release["mathlib_revision"],
         "fingerprints_by_type_hint": {hint: sorted(values) for hint, values in sorted(fingerprints.items())},
     }
     args.output.write_text(json.dumps(payload, separators=(",", ":"), sort_keys=True) + "\n", encoding="utf-8")

@@ -70,6 +70,10 @@ All provenance is claimed metadata. Build state, declarations, axiom closures,
 dependencies, fingerprints, duplicate candidates, and probe results are
 receiver observations.
 
+The required revision is the active one in `policy/mathlib-release.json` when
+the receiver runs. A merged record is not rewritten by later releases: its
+revision remains an immutable claim about the baseline on which it was made.
+
 ## 5. Admission rules
 
 The receiver performs cheap checks before Lean compilation and fails closed on
@@ -95,3 +99,10 @@ Stable rejection categories include `SCHEMA_INVALID`,
 `SORRY_DETECTED`, `UNAUTHORIZED_AXIOM`, `DUPLICATE_STATEMENT`,
 `TRIVIAL_BASELINE_RESULT`, `DEGENERATE_THEOREM_FAMILY`, and
 `SECURITY_POLICY_VIOLATION`.
+
+The trusted maintenance receiver periodically evaluates newer official tagged
+Mathlib releases. It does not inspect Mathlib `main` or open upstream pull
+requests. An upgrade is rejected with `MATHLIB_UPSTREAM_COLLISION` when a
+previously accepted LeanFrontier entrypoint has an exact normalized statement
+in the prospective Mathlib index; no accepted theorem is silently altered or
+removed to make the upgrade pass.
