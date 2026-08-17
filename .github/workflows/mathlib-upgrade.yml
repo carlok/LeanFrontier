@@ -42,7 +42,7 @@ jobs:
           test -n "$target"
           [[ "$target" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$ ]]
           if [ "$target" = "$current" ]; then echo "upgrade=false" >> "$GITHUB_OUTPUT"; exit 0; fi
-          if [ -z "$REQUESTED_TAG" ] && [ "$(printf '%s\n%s\n' "$current" "$target" | sort -V | tail -n 1)" != "$target" ]; then echo "upgrade=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          if [ "$(printf '%s\n%s\n' "$current" "$target" | sort -V | tail -n 1)" != "$target" ]; then echo "upgrade=false" >> "$GITHUB_OUTPUT"; exit 0; fi
           toolchain="$(curl --fail --location --retry 5 --retry-all-errors "https://raw.githubusercontent.com/leanprover-community/mathlib4/$target/lean-toolchain")"
           case "$toolchain" in leanprover/lean4:v*) ;; *) echo "invalid paired Lean toolchain: $toolchain" >&2; exit 1 ;; esac
           echo "upgrade=true" >> "$GITHUB_OUTPUT"
