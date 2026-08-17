@@ -1,0 +1,22 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "sylvester-sequence-coprimality",
+  "producer": {
+    "type": "llm",
+    "model": "claude-opus-5",
+    "agent": "claude-code"
+  },
+  "origin_mode": "mathlib_extension",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Nat.two_le_sylvesterNumber",
+    "LeanFrontier.Nat.sylvesterNumber_succ_eq_sq_sub_add_one",
+    "LeanFrontier.Nat.sylvesterNumber_eq_prod_add_one",
+    "LeanFrontier.Nat.coprime_sylvesterNumber_sylvesterNumber",
+    "LeanFrontier.Nat.strictMono_sylvesterNumber",
+    "LeanFrontier.Nat.sum_range_inv_sylvesterNumber"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "Sylvester's sequence 2, 3, 7, 43, 1807, ... (S 0 = 2, S (n+1) = S n ^ 2 - S n + 1; OEIS A000058). The module proves that each term is one more than the product of all earlier terms, that distinct terms are coprime, that the sequence is strictly increasing, and that the reciprocals telescope to a partial sum of 1 - 1/(S n - 1). Mathematics is classical (Sylvester 1880, and the standard doubly exponential coprime construction) and is not claimed as new; the subject choice, the Lean statements, and the proofs were produced by the model without human mathematical direction. Chosen as a mathlib_extension because Mathlib already carries the exactly parallel Fermat-number development, and this is the missing sibling: Nat.fermatNumber with prod_fermatNumber, fermatNumber_eq_prod_add_two and coprime_fermatNumber_fermatNumber in Mathlib/NumberTheory/Fermat.lean is the same product-to-coprimality argument for the other doubly exponential recurrence, and the proof here follows it, using Nat.coprime_add_iff_right where the Fermat proof needs an extra parity step. Absence evidence, searched over the pinned Mathlib tree including Archive and Counterexamples: case-insensitive 'sylvester' has 97 hits, all unrelated (Sylvester matrices and resultants in RingTheory/Polynomial/Resultant/Basic.lean, Sylvester's law of inertia in LinearAlgebra/QuadraticForm/Real.lean, Sylvester's theorem on the Monge point in Geometry/Euclidean/MongePoint.lean, Sylvester-Hadamard matrices in LinearAlgebra/Matrix/HadamardMatrix.lean); the identifiers egyptian, unitFrac, Znam, curtiss and the phrases 'unit fraction' and 'doubly exponential' return no relevant hits; the literal 1807 occurs only in a pi bound and in pull request numbers; no recurrence of the shape n ^ 2 - n + 1 or n * (n - 1) + 1 occurs anywhere; NumberTheory/ contains no Sylvester file and no reciprocal-telescoping or Egyptian-fraction result. Design choices. The sequence is defined by the subtraction-free recurrence S (n+1) = S n * (S n - 1) + 1 so that no truncated natural subtraction appears in the definition or in the induction; sylvesterNumber_succ_eq_sq_sub_add_one records that this agrees with the classical squaring form, which is why the name is justified. The reciprocal identity is stated over an arbitrary field of characteristic zero rather than over the rationals: only injectivity of the natural cast is used, so the rational, real and complex forms are instances of one theorem instead of three. Two publicly useful basic lemmas, two_le_sylvesterNumber and the recurrence in classical form, are declared as entrypoints because every downstream use needs them; the three purely auxiliary cast lemmas are private, and coprimality reduces its symmetric case with wlog rather than through a separate private lemma. No Pairwise repackaging of coprimality and no restatement of the product identity in the S n - 1 form are included, although Mathlib keeps both forms for Fermat numbers, because each would be the same result stated twice. Deliberately excluded: numeric evaluation lemmas beyond sylvesterNumber_zero, which would be a literal family rather than a general statement. Two earlier drafts of this module were rejected by the local receiver for DUPLICATE_STATEMENT and are recorded here because the cause is a property of the checker rather than of the mathematics: its normalized shape erases numerals and hypothesis binders, so an auxiliary 1 <= S n collides with 2 <= S n, and a private m < n half of coprimality collides with the public m /= n statement. Both were removed rather than renamed, which is why the module has no one_le lemma."
+}
