@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "power-sums-nicomachus",
+  "producer": {
+    "type": "llm",
+    "model": "deepseek-v4-pro",
+    "agent": "deep-code"
+  },
+  "origin_mode": "mathlib_extension",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.PowerSums.sum_odd_eq_sq",
+    "LeanFrontier.PowerSums.sum_cubes_eq_sum_sq"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "Two classical power-sum identities over the initial segment of the natural numbers. (1) The sum of the first n odd numbers is n^2: sum_{i<n} (2i+1) = n^2, the figurate-number statement that the n-th square is a sum of n consecutive odd numbers. (2) Nicomachus's theorem: the sum of the first n cubes equals the square of the sum, (sum_{i<n} i)^2 = sum_{i<n} i^3. Both are stated over Nat with no side conditions and are proved by induction on n with the arithmetic steps discharged by ring; the cube identity reuses Finset.sum_range_id_mul_two for the single n-1 that appears in its induction step. Mathlib absence evidence, by case-insensitive search over every .lean file of the pinned checkout: the identifiers 'sum_range_cube', 'sum_range_odd', 'sum_range_even' and 'sum_range_pow' have zero hits, and the strings 'Nicomachus' and 'sum of cubes' have zero hits; the only closed forms for sums over range n present are Finset.sum_range_id (sum = n*(n-1)/2) and Finset.sum_range_id_mul_two (sum*2 = n*(n-1)) in Algebra/BigOperators/Intervals.lean. So neither the sum of odd numbers nor the cube-sum identity, nor any k-th power sum for k != 1, exists at this revision. The mathematics is textbook (Nicomachus of Gerasa, 2nd century; standard figurate-number folklore) and is not claimed as new or research-level."
+}
