@@ -1,6 +1,9 @@
 
 import LeanFrontier.Algebra.Binomial
 import LeanFrontier.Geometry.InversiveGeometry
+import LeanFrontier.NumberTheory.MarkovEquation
+import LeanFrontier.NumberTheory.Mediant
+import LeanFrontier.NumberTheory.SylvesterSequence
 /-!
 # LeanFrontier
 
