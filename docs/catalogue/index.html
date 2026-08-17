@@ -32,6 +32,46 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Geometry/InversiveGeometry.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/inversive-geometry-reflection/934a5220c5648b5135fceb1887d539b1b413f446.json">receiver report</a></p>
 </article>
 <article>
+  <h2><code>LeanFrontier.DescartesCircle.isQuadruple_reflect</code></h2>
+  <p class="statement">(h : IsQuadruple k₁ k₂ k₃ k₄) : IsQuadruple k₁ k₂ k₃ (reflect k₁ k₂ k₃ k₄)</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.DescartesCircle</code></dd>
+  <dt>Claim</dt><dd>descartes-circle-quadruple · mathlib_extension · claude-code</dd></dl>
+  <p>Reflection preserves Descartes&#x27; relation.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/DescartesCircle.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.DescartesCircle.reflect_reflect</code></h2>
+  <p class="statement">(k₁ k₂ k₃ k₄ : R) : reflect k₁ k₂ k₃ (reflect k₁ k₂ k₃ k₄) = k₄</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.DescartesCircle</code></dd>
+  <dt>Claim</dt><dd>descartes-circle-quadruple · mathlib_extension · claude-code</dd></dl>
+  <p>Reflection is an involution, so the two completions of a mutually tangent triple are symmetric.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/DescartesCircle.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.DescartesCircle.mul_reflect_eq</code></h2>
+  <p class="statement">(h : IsQuadruple k₁ k₂ k₃ k₄) : k₄ * reflect k₁ k₂ k₃ k₄ = 2 * (k₁ ^ 2 + k₂ ^ 2 + k₃ ^ 2) - (k₁ + k₂ + k₃) ^ 2</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.DescartesCircle</code></dd>
+  <dt>Claim</dt><dd>descartes-circle-quadruple · mathlib_extension · claude-code</dd></dl>
+  <p>The product of the two solutions for the fourth curvature, the second of Vieta&#x27;s relations for Descartes&#x27; quadratic.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/DescartesCircle.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.DescartesCircle.isQuadruple_neg_one_two_two_three</code></h2>
+  <p class="statement">: IsQuadruple (-1 : R) 2 2 3</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.DescartesCircle</code></dd>
+  <dt>Claim</dt><dd>descartes-circle-quadruple · mathlib_extension · claude-code</dd></dl>
+  <p>The curvatures `-1, 2, 2, 3` of the standard Apollonian gasket form a quadruple.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/DescartesCircle.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.DescartesCircle.eq_or_eq_reflect</code></h2>
+  <p class="statement">(hx : IsQuadruple k₁ k₂ k₃ x) (hy : IsQuadruple k₁ k₂ k₃ y) : x = y ∨ x = reflect k₁ k₂ k₃ y</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.DescartesCircle</code></dd>
+  <dt>Claim</dt><dd>descartes-circle-quadruple · mathlib_extension · claude-code</dd></dl>
+  <p>A mutually tangent triple has exactly two completions: any two fourth curvatures satisfying Descartes&#x27; relation with the same triple are equal, or are each other&#x27;s reflection. This is what makes `reflect` the only way to continue an Apollonian gasket.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/DescartesCircle.lean">View source</a></p>
+</article>
+<article>
   <h2><code>LeanFrontier.FordCircle.centerDistSq_sub_sq_radius_add</code></h2>
   <p class="statement">(hq : q ≠ 0) (hs : s ≠ 0) : centerDistSq p q r s - (radius q + radius s) ^ 2 = (Mediant.crossDet p q r s ^ 2 - 1) / (q ^ 2 * s ^ 2)</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.FordCircle</code></dd>
