@@ -1,0 +1,20 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "stern-diatomic-coprime",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "claude-opus-5",
+    "agent": "claude-code"
+  },
+  "origin_mode": "mathlib_extension",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.SternDiatomic.coprime_fusc_fusc_succ",
+    "LeanFrontier.SternDiatomic.fusc_pos",
+    "LeanFrontier.SternDiatomic.fusc_two_mul",
+    "LeanFrontier.SternDiatomic.fusc_two_mul_add_one"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "Stern's diatomic sequence, also called fusc: 0, 1, 1, 2, 1, 3, 2, 3, 1, 4, 3, 5, 2, 5, 3, 4, ... (OEIS A002487), determined by fusc 0 = 0, fusc 1 = 1, fusc (2*n) = fusc n and fusc (2*n+1) = fusc n + fusc (n+1). The results are that consecutive values are coprime and that every value after the initial one is positive, which together make fusc n / fusc (n+1) a positive rational in lowest terms; that this enumerates every positive rational exactly once is the arithmetic content of the Stern-Brocot tree. The mathematics is classical (Stern 1858; the name fusc is Dijkstra's) and is not claimed as new.\n\nAbsence evidence over the pinned Mathlib tree: fusc, diatomic and sternBrocot have zero genuine hits case-insensitively. The only matches for the letters fusc are inside the English word obfuscate, in NumberTheory/Height/Basic.lean and Algebra/Order/Antidiag/Prod.lean, and the only matches for stern are author and bibliography names, as already recorded for the mediant submission. There is no binary-recursive arithmetic sequence of this kind anywhere in the tree.\n\nImplementation. The definition recurses on n / 2, so it is well founded rather than structural, and the two defining equations are proved from it rather than holding by reduction; termination is discharged by omega, which handles division by the literal 2. Those two equations are the interface every later result uses, and the raw form produced by the equation compiler, a single parity case split, is not used again. Coprimality is a strong induction with a parity split in which each branch is exactly one application of an existing Mathlib lemma, Nat.coprime_self_add_right in the even case and Nat.coprime_add_self_left in the odd case, because halving turns a neighbouring pair into a pair one of whose members is the sum of both. That is the same mediant mechanism recorded for fractions in this repository's accepted mediant submission and used again in the Ford circle submission, appearing here on numerators and denominators rather than on the fractions.\n\nVerification beyond the receiver. The definition was checked to reproduce A002487 for the first sixteen indices before submission, in a scratch file outside the repository, since the receiver validates only that declarations elaborate and are non-duplicate and cannot detect a sequence that is well formed but wrong.\n\nNot included. That consecutive pairs run through all coprime pairs exactly once, the surjectivity onto the positive rationals, and any Stern-Brocot tree object are absent: each needs an induction over the tree rather than over the index, and belongs with a tree object in a separate submission. No bridge to the mediant module is stated here even though the mechanism is shared, because a bridge would need that tree object to be meaningful.\n\nProvenance. Produced without human mathematical direction, as the second iteration of a second unattended loop in which the operator asked for three further submissions and chose none of the subjects. Producer type is autonomous_agent because subject selection, the absence check, the statements, the proofs, and the decision to submit were all made by the agent. Proofs use only omega, strong induction, a parity split, ring and the two named Mathlib coprimality lemmas."
+}
