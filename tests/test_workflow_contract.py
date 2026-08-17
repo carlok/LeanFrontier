@@ -98,6 +98,14 @@ class WorkflowContractTests(unittest.TestCase):
         ):
             self.assertIn(required, OBSERVATION_WORKFLOW)
 
+    def test_observation_checkout_keeps_the_merge_parent_and_fails_loudly(self) -> None:
+        """A shallow checkout cannot resolve `<merge>^1`, and process substitution hides it."""
+        self.assertIn("fetch-depth: 2", OBSERVATION_WORKFLOW)
+        self.assertIn(
+            'git rev-parse --verify --quiet "${{ github.event.pull_request.merge_commit_sha }}^1"',
+            OBSERVATION_WORKFLOW,
+        )
+
     def test_trusted_generators_open_protected_maintenance_prs(self) -> None:
         for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW, OBSERVATION_WORKFLOW):
             self.assertIn("automation/generated/", workflow)
