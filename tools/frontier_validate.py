@@ -166,6 +166,48 @@ def validate_metadata(record: Any, submission_id: str, limits: dict[str, Any], m
         report.reject("SCHEMA_INVALID", "source_context must be null or a short string", path)
 
 
+def strip_comments(source: str) -> str:
+    """Blank Lean comments, keeping offsets, before the source-policy scans.
+
+    A module docstring that merely mentions `axiom` or `sorry` is prose, not a
+    trust escape, and the kernel audit is what actually decides the axiom
+    closure. Nested `/- -/` is Lean's rule; `--` runs to end of line.
+    """
+    result: list[str] = []
+    depth = 0
+    index = 0
+    while index < len(source):
+        character = source[index]
+        if depth:
+            if source.startswith("/-", index):
+                depth += 1
+                result.append("  ")
+                index += 2
+                continue
+            if source.startswith("-/", index):
+                depth -= 1
+                result.append("  ")
+                index += 2
+                continue
+            result.append("\n" if character == "\n" else " ")
+            index += 1
+            continue
+        if source.startswith("/-", index):
+            depth = 1
+            result.append("  ")
+            index += 2
+            continue
+        if source.startswith("--", index):
+            end = source.find("\n", index)
+            end = len(source) if end < 0 else end
+            result.append(" " * (end - index))
+            index = end
+            continue
+        result.append(character)
+        index += 1
+    return "".join(result)
+
+
 def normalized_statement(text: str) -> str:
     text = re.sub(r"--.*$", "", text, flags=re.MULTILINE)
     text = re.sub(r"\s+", "", text)
@@ -192,7 +234,8 @@ def declared_statements(path: Path) -> list[tuple[str, str]]:
         source = path.read_text(encoding="utf-8")
     except UnicodeDecodeError:
         return []
-    return [(match.group(1), match.group("body")) for match in DECL_RE.finditer(source)]
+    # Prose that happens to contain `theorem` is not a declaration.
+    return [(match.group(1), match.group("body")) for match in DECL_RE.finditer(strip_comments(source))]
 
 
 def static_preflight(base: Path | None, candidate: Path, limits: dict[str, Any], mathlib_release: dict[str, str], report: Report) -> tuple[dict[str, Path | None], dict[str, Any] | None]:
@@ -229,13 +272,14 @@ def static_preflight(base: Path | None, candidate: Path, limits: dict[str, Any],
             except UnicodeDecodeError:
                 report.reject("SECURITY_POLICY_VIOLATION", "Lean source must be UTF-8 text", relative)
                 continue
-            if SORRY_RE.search(source):
+            code = strip_comments(source)
+            if SORRY_RE.search(code):
                 report.reject("SORRY_DETECTED", "sorry or sorryAx is prohibited", relative)
-            if AXIOM_RE.search(source):
+            if AXIOM_RE.search(code):
                 report.reject("UNAUTHORIZED_AXIOM", "axiom declarations are prohibited", relative)
-            if FORBIDDEN_SECURITY.search(source):
+            if FORBIDDEN_SECURITY.search(code):
                 report.reject("SECURITY_POLICY_VIOLATION", "metaprogramming or command execution is prohibited in submissions", relative)
-            declarations += len(DECLARATION_RE.findall(source))
+            declarations += len(DECLARATION_RE.findall(code))
             for _, statement in declared_statements(path):
                 shape = proposition_shape(statement)
                 skeleton_counts[normalized_statement(statement)] = skeleton_counts.get(normalized_statement(statement), 0) + 1
@@ -271,11 +315,20 @@ def static_preflight(base: Path | None, candidate: Path, limits: dict[str, Any],
 
 
 def modules_for(paths: Iterable[str]) -> list[str]:
+    """Candidate modules plus the umbrella, which carries the accepted corpus.
+
+    The umbrella is trusted post-merge output and never lists the module under
+    review, so importing it adds exactly the already-accepted declarations. That
+    is what makes the duplicate comparison in ``lean_audit`` cover the baseline
+    corpus and not only the submission's own file.
+    """
     modules: list[str] = []
     for path in paths:
         if path.startswith("LeanFrontier/") and path.endswith(".lean"):
             modules.append(path[:-5].replace("/", "."))
-    return modules or ["LeanFrontier"]
+    if "LeanFrontier" not in modules:
+        modules.append("LeanFrontier")
+    return modules
 
 
 def declared_public_facts(candidate: Path, paths: Iterable[str]) -> dict[str, dict[str, bool]]:
@@ -446,7 +499,14 @@ def lean_audit(candidate: Path, modules: list[str], declared_facts: dict[str, di
         return
     findings = parse_audit(audit.stdout)
     entrypoints = metadata.get("entrypoints", [])
-    candidate_hints = {item.get("type_hint") for item in findings.values() if isinstance(item.get("type_hint"), str)}
+    # Findings now span the accepted corpus as well, so the Mathlib comparison
+    # is kept to declarations this submission actually introduces.
+    submitted = set(declared_facts) | set(entrypoints)
+    candidate_hints = {
+        item.get("type_hint")
+        for name, item in findings.items()
+        if name in submitted and isinstance(item.get("type_hint"), str)
+    }
     baseline_fingerprints = mathlib_duplicates(candidate_hints, mathlib_release, report)
     for entrypoint in entrypoints:
         finding = findings.get(entrypoint)

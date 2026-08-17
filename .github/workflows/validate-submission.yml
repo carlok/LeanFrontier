@@ -23,10 +23,16 @@ permissions:
 
 jobs:
   validate:
+    # A branch name is submitter-controlled, so it never grants an exemption on
+    # its own: only a trusted author on a trusted prefix reaches another job.
+    # Everything else falls through to the ordinary receiver.
     if: >-
       github.event_name == 'pull_request' &&
-      !startsWith(github.event.pull_request.head.ref, 'automation/generated/') &&
-      !startsWith(github.event.pull_request.head.ref, 'maintenance/')
+      !(startsWith(github.event.pull_request.head.ref, 'automation/generated/') &&
+        github.event.pull_request.user.login == 'github-actions[bot]') &&
+      !(startsWith(github.event.pull_request.head.ref, 'maintenance/') &&
+        (github.event.pull_request.author_association == 'OWNER' ||
+         github.event.pull_request.user.login == 'github-actions[bot]'))
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:

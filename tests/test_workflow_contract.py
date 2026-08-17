@@ -120,6 +120,20 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("github.event.pull_request.author_association == 'OWNER'", WORKFLOW)
         self.assertIn("github.event.pull_request.user.login == 'github-actions[bot]'", WORKFLOW)
 
+    def test_a_branch_name_alone_never_skips_the_ordinary_receiver(self) -> None:
+        """Head refs are submitter-controlled: each exemption must also pin the author."""
+        for required in (
+            "!(startsWith(github.event.pull_request.head.ref, 'automation/generated/') &&",
+            "!(startsWith(github.event.pull_request.head.ref, 'maintenance/') &&",
+        ):
+            self.assertIn(required, WORKFLOW)
+        self.assertNotIn(
+            "!startsWith(github.event.pull_request.head.ref, 'maintenance/')", WORKFLOW
+        )
+        self.assertNotIn(
+            "!startsWith(github.event.pull_request.head.ref, 'automation/generated/')", WORKFLOW
+        )
+
     def test_generated_output_validation_does_not_execute_candidate_code(self) -> None:
         validator = (ROOT / "tools" / "validate_generated.py").read_text()
         self.assertIn('allowed(path)', validator)
