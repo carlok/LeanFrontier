@@ -216,6 +216,38 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/Mediant.lean">View source</a></p>
 </article>
 <article>
+  <h2><code>LeanFrontier.SternDiatomic.fusc_two_mul</code></h2>
+  <p class="statement">(n : ℕ) : fusc (2 * n) = fusc n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SternDiatomic</code></dd>
+  <dt>Claim</dt><dd>stern-diatomic-coprime · mathlib_extension · claude-code</dd></dl>
+  <p>Halving an even index leaves the value unchanged.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SternDiatomic.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.SternDiatomic.fusc_two_mul_add_one</code></h2>
+  <p class="statement">(n : ℕ) : fusc (2 * n + 1) = fusc n + fusc (n + 1)</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SternDiatomic</code></dd>
+  <dt>Claim</dt><dd>stern-diatomic-coprime · mathlib_extension · claude-code</dd></dl>
+  <p>An odd index splits into the two neighbouring values at half the index.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SternDiatomic.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.SternDiatomic.coprime_fusc_fusc_succ</code></h2>
+  <p class="statement">(n : ℕ) : Nat.Coprime (fusc n) (fusc (n + 1))</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SternDiatomic</code></dd>
+  <dt>Claim</dt><dd>stern-diatomic-coprime · mathlib_extension · claude-code</dd></dl>
+  <p>Consecutive values of Stern&#x27;s diatomic sequence are coprime, so the fraction `fusc n / fusc (n + 1)` is always in lowest terms.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SternDiatomic.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.SternDiatomic.fusc_pos</code></h2>
+  <p class="statement">{n : ℕ} (hn : n ≠ 0) : 0 &lt; fusc n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SternDiatomic</code></dd>
+  <dt>Claim</dt><dd>stern-diatomic-coprime · mathlib_extension · claude-code</dd></dl>
+  <p>Every value of Stern&#x27;s diatomic sequence after the initial one is positive.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SternDiatomic.lean">View source</a></p>
+</article>
+<article>
   <h2><code>LeanFrontier.Nat.sylvesterNumber_zero</code></h2>
   <p class="statement">: sylvesterNumber 0 = 2</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
