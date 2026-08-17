@@ -2,6 +2,7 @@
 import LeanFrontier.Algebra.Binomial
 import LeanFrontier.Geometry.InversiveGeometry
 import LeanFrontier.NumberTheory.DescartesCircle
+import LeanFrontier.NumberTheory.Farey
 import LeanFrontier.NumberTheory.FordCircle
 import LeanFrontier.NumberTheory.HoradamSequence
 import LeanFrontier.NumberTheory.MarkovEquation
