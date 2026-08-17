@@ -169,6 +169,8 @@ class WorkflowContractTests(unittest.TestCase):
         validator = (ROOT / "tools" / "validate_mathlib_upgrade.py").read_text()
         self.assertIn("mathlib-upgrade:", test_workflow)
         self.assertIn("maintenance/mathlib-upgrade-", test_workflow)
+        self.assertIn('ACTOR: ${{ github.actor }}', test_workflow)
+        self.assertIn('"$ACTOR" == "github-actions[bot]"', test_workflow)
         self.assertIn("validate_mathlib_upgrade.py", WORKFLOW)
         self.assertIn("Mathlib upgrade changes forbidden paths", validator)
 
