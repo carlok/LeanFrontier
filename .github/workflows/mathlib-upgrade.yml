@@ -1,0 +1,103 @@
+name: mathlib-release-upgrade
+
+on:
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Official Mathlib release tag; permits an explicit prerelease.
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: trusted-mathlib-upgrade
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Select an official tagged release pair
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUESTED_TAG: ${{ inputs.release_tag }}
+        run: |
+          current="$(python3 -c 'import json; print(json.load(open("policy/mathlib-release.json"))["mathlib_revision"])')"
+          if [ -n "$REQUESTED_TAG" ]; then
+            target="$REQUESTED_TAG"
+          else
+            target="$(gh api --paginate 'repos/leanprover-community/mathlib4/releases?per_page=100' --jq '.[] | select(.draft == false and .prerelease == false) | .tag_name' | sort -V | tail -n 1)"
+          fi
+          test -n "$target"
+          [[ "$target" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$ ]]
+          if [ "$target" = "$current" ]; then echo "upgrade=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          if [ -z "$REQUESTED_TAG" ] && [ "$(printf '%s\n%s\n' "$current" "$target" | sort -V | tail -n 1)" != "$target" ]; then echo "upgrade=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          toolchain="$(curl --fail --location --retry 5 --retry-all-errors "https://raw.githubusercontent.com/leanprover-community/mathlib4/$target/lean-toolchain")"
+          case "$toolchain" in leanprover/lean4:v*) ;; *) echo "invalid paired Lean toolchain: $toolchain" >&2; exit 1 ;; esac
+          echo "upgrade=true" >> "$GITHUB_OUTPUT"
+          echo "tag=$target" >> "$GITHUB_OUTPUT"
+          echo "toolchain=$toolchain" >> "$GITHUB_OUTPUT"
+      - name: Apply the selected trusted package pins
+        if: steps.release.outputs.upgrade == 'true'
+        run: >-
+          python3 tools/update_mathlib_release.py
+          --mathlib-revision "${{ steps.release.outputs.tag }}"
+          --lean-toolchain "${{ steps.release.outputs.toolchain }}"
+      - name: Build trusted validator image
+        if: steps.release.outputs.upgrade == 'true'
+        run: docker build -f tools/Dockerfile.validator -t leanfrontier-upgrade:ci .
+      - name: Acquire selected dependencies and cache
+        if: steps.release.outputs.upgrade == 'true'
+        run: >-
+          docker run --rm
+          -v "$GITHUB_WORKSPACE/elan:/elan"
+          -v "$GITHUB_WORKSPACE:/workspace"
+          -w /workspace
+          leanfrontier-upgrade:ci sh -c 'lake update && lake exe cache get'
+      - name: Build the index and collision-free upgrade evidence offline
+        if: steps.release.outputs.upgrade == 'true'
+        run: |
+          index_name="$(python3 -c 'import json; print(json.load(open("policy/mathlib-release.json"))["fingerprint_index"])')"
+          revision="$(python3 -c 'import json; print(json.load(open("policy/mathlib-release.json"))["mathlib_revision"])')"
+          mkdir -p "$GITHUB_WORKSPACE/upgrade-output" "policy/mathlib-upgrades"
+          chmod 777 "$GITHUB_WORKSPACE/upgrade-output"
+          docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges \
+            --memory 6g --cpus 2 --pids-limit 512 --tmpfs /tmp:size=6g \
+            -v "$GITHUB_WORKSPACE/elan:/elan:ro" -v "$GITHUB_WORKSPACE:/workspace" \
+            -v "$GITHUB_WORKSPACE/upgrade-output:/output" -w /workspace leanfrontier-upgrade:ci \
+            python3 tools/build_mathlib_index.py --output /output/index.json
+          install -m 0644 "$GITHUB_WORKSPACE/upgrade-output/index.json" "policy/$index_name"
+          docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges \
+            --memory 6g --cpus 2 --pids-limit 512 --tmpfs /tmp:size=6g \
+            -v "$GITHUB_WORKSPACE/elan:/elan:ro" -v "$GITHUB_WORKSPACE:/workspace" -w /workspace leanfrontier-upgrade:ci \
+            python3 tools/audit_mathlib_upgrade.py --report "policy/mathlib-upgrades/$revision.json"
+      - name: Open and protect the generated upgrade pull request
+        if: steps.release.outputs.upgrade == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.release.outputs.tag }}
+        run: |
+          branch="maintenance/mathlib-upgrade-$TAG"
+          old_index="$(git show HEAD:policy/mathlib-release.json | python3 -c 'import json, sys; print(json.load(sys.stdin)["fingerprint_index"])')"
+          git rm --ignore-unmatch "policy/$old_index"
+          git diff --check
+          git switch -C "$branch"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add lean-toolchain lakefile.toml lake-manifest.json policy
+          git commit -m "chore: upgrade Mathlib to $TAG"
+          git push --force-with-lease origin "HEAD:$branch"
+          pr="$(gh pr list --head "$branch" --base main --json url --jq '.[0].url')"
+          if [ -z "$pr" ]; then pr="$(gh pr create --base main --head "$branch" --title "chore: upgrade Mathlib to $TAG" --body "Trusted weekly Mathlib release upgrade. The required mathlib-upgrade check rebuilds the index and blocks any newly exact duplicate in the accepted corpus.")"; fi
+          gh pr merge "$pr" --auto --merge

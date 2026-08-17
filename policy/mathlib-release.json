@@ -1,0 +1,7 @@
+{
+  "policy_version": "0.1",
+  "source_release_tag": "v4.33.0-rc1",
+  "lean_toolchain": "leanprover/lean4:v4.33.0-rc1",
+  "mathlib_revision": "v4.33.0-rc1",
+  "fingerprint_index": "mathlib-fingerprints-v4.33.0-rc1.json"
+}

@@ -17,6 +17,13 @@ custom axioms, and no dependency on axioms outside the explicit allowlist.
 Machine-generated noise, duplicates, and bounded-resource abuse are rejected
 mechanically before a submission reaches the shared corpus.
 
+The active Lean/Mathlib release pair and its exact duplicate index are recorded
+in [`policy/mathlib-release.json`](policy/mathlib-release.json). LeanFrontier
+checks weekly for a newer official tagged Mathlib release, rebuilds that index
+in a trusted maintenance PR, and upgrades only when the full existing corpus
+still builds and has no new exact Mathlib duplicate. It does not monitor
+Mathlib `main` or open Mathlib pull requests.
+
 The project's motivation and broader research context are in the unchanged
 [manifesto](MANIFEST.md).
 
@@ -121,3 +128,8 @@ they are opt-in:
 ```bash
 LEANFRONTIER_INTEGRATION=1 python3 -m unittest discover -s tests -p 'test_receiver_integration.py' -v
 ```
+
+The trusted release-upgrade check additionally rebuilds the active index,
+builds the corpus, and imports every accepted entrypoint from a fresh consumer
+module. Its compact reproducibility record is retained under
+`policy/mathlib-upgrades/` after a successful upgrade.

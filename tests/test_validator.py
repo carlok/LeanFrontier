@@ -15,6 +15,9 @@ sys.path.insert(0, str(ROOT / "tools"))
 import frontier_validate  # noqa: E402
 
 
+ACTIVE_MATHLIB_REVISION = frontier_validate.load_release_policy()["mathlib_revision"]
+
+
 def metadata(identifier: str = "valid-bundle") -> str:
     return json.dumps(
         {
@@ -25,7 +28,7 @@ def metadata(identifier: str = "valid-bundle") -> str:
             "statement_origin": "machine",
             "proof_origin": "machine",
             "entrypoints": ["LeanFrontier.Algebra.new_result"],
-            "base_mathlib_revision": "v4.33.0-rc1",
+            "base_mathlib_revision": ACTIVE_MATHLIB_REVISION,
             "source_context": None,
         }
     )
@@ -83,6 +86,12 @@ class ValidatorPreflightTests(unittest.TestCase):
 
     def test_malformed_metadata_is_rejected(self) -> None:
         (self.candidate / "Submissions" / "valid-bundle.json").write_text("{")
+        self.assert_rejected("SCHEMA_INVALID")
+
+    def test_inactive_mathlib_revision_is_rejected(self) -> None:
+        record = json.loads(metadata())
+        record["base_mathlib_revision"] = "v0.0.0"
+        (self.candidate / "Submissions" / "valid-bundle.json").write_text(json.dumps(record))
         self.assert_rejected("SCHEMA_INVALID")
 
     def test_exact_duplicate_is_rejected(self) -> None:

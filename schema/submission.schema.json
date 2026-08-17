@@ -47,7 +47,7 @@
         "maxLength": 256
       }
     },
-    "base_mathlib_revision": {"const": "v4.33.0-rc1"},
+    "base_mathlib_revision": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.]+)?$"},
     "source_context": {
       "type": ["string", "null"],
       "maxLength": 4096
