@@ -146,7 +146,6 @@ jobs:
       - name: Confirm this is an owner maintenance pull request
         run: |
           git -C candidate diff --check
-          if [[ "${{ github.event.pull_request.head.ref }}" == maintenance/mathlib-upgrade-* ]]; then
-            test "${{ github.event.pull_request.user.login }}" = "github-actions[bot]"
+          if [[ "${{ github.event.pull_request.head.ref }}" == maintenance/mathlib-upgrade-* && "${{ github.event.pull_request.user.login }}" == "github-actions[bot]" ]]; then
             python3 trusted/tools/validate_mathlib_upgrade.py --base trusted --candidate candidate
           fi
