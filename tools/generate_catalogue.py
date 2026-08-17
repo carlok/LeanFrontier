@@ -9,6 +9,8 @@ import json
 import re
 from pathlib import Path
 
+from frontier_validate import strip_comments
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DESTINATION = Path("docs/catalogue/index.html")
@@ -66,9 +68,15 @@ def entries(root: Path, declared_entrypoints: set[str]) -> list[dict[str, str]]:
     result: list[dict[str, str]] = []
     for path in sorted((root / "LeanFrontier").rglob("*.lean")):
         source = path.read_text(encoding="utf-8")
-        namespaces = NAMESPACE.findall(source)
+        # Declarations are found in comment-free code, documentation is read back
+        # from the original text: `strip_comments` preserves byte offsets, so the
+        # two stay aligned. Prose such as "Nicomachus's theorem is ..." would
+        # otherwise match as a declaration named `is` and, because `finditer`
+        # does not overlap, swallow the next real theorem in the module.
+        code = strip_comments(source)
+        namespaces = NAMESPACE.findall(code)
         namespace = namespaces[0] if namespaces else "LeanFrontier"
-        for match in THEOREM.finditer(source):
+        for match in THEOREM.finditer(code):
             doc_match = TRAILING_DOC.search(source[:match.start()])
             name = f"{namespace}.{match.group('name')}"
             if name not in declared_entrypoints:
