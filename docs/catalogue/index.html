@@ -72,22 +72,6 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/DescartesCircle.lean">View source</a></p>
 </article>
 <article>
-  <h2><code>LeanFrontier.Farey.one_le_sub_of_lt</code></h2>
-  <p class="statement">{x y : ℤ} (h : x &lt; y) : 1 ≤ y - x</p>
-  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.Farey</code></dd>
-  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
-  <p></p>
-  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/Farey.lean">View source</a></p>
-</article>
-<article>
-  <h2><code>LeanFrontier.Farey.denom_decomposition</code></h2>
-  <p class="statement">(hdet : Mediant.crossDet a b c d = 1) : q = b * (c * q - p * d) + d * (p * b - a * q)</p>
-  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.Farey</code></dd>
-  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
-  <p></p>
-  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/Farey.lean">View source</a></p>
-</article>
-<article>
   <h2><code>LeanFrontier.Farey.add_le_of_isStrictlyBetween</code></h2>
   <p class="statement">(hb : 0 &lt; b) (hd : 0 &lt; d) (hdet : Mediant.crossDet a b c d = 1) (h : IsStrictlyBetween a b p q c d) : b + d ≤ q</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.Farey</code></dd>
@@ -133,14 +117,6 @@
   <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.HoradamSequence</code></dd>
   <dt>Claim</dt><dd>horadam-cassini-identity · mathlib_extension · claude-code</dd></dl>
   <p>The defining recurrence of a Horadam sequence.</p>
-  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/HoradamSequence.lean">View source</a></p>
-</article>
-<article>
-  <h2><code>LeanFrontier.Horadam.det_succ</code></h2>
-  <p class="statement">(n : ℕ) : W P Q a b (n + 1) * W P Q a b (n + 3) - W P Q a b (n + 2) ^ 2 = Q * (W P Q a b n * W P Q a b (n + 2) - W P Q a b (n + 1) ^ 2)</p>
-  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.HoradamSequence</code></dd>
-  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
-  <p></p>
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/HoradamSequence.lean">View source</a></p>
 </article>
 <article>
@@ -280,22 +256,6 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SternDiatomic.lean">View source</a></p>
 </article>
 <article>
-  <h2><code>LeanFrontier.Nat.sylvesterNumber_zero</code></h2>
-  <p class="statement">: sylvesterNumber 0 = 2</p>
-  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
-  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
-  <p></p>
-  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
-</article>
-<article>
-  <h2><code>LeanFrontier.Nat.sylvesterNumber_succ</code></h2>
-  <p class="statement">(n : ℕ) : sylvesterNumber (n + 1) = sylvesterNumber n * (sylvesterNumber n - 1) + 1</p>
-  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
-  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
-  <p></p>
-  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
-</article>
-<article>
   <h2><code>LeanFrontier.Nat.two_le_sylvesterNumber</code></h2>
   <p class="statement">(n : ℕ) : 2 ≤ sylvesterNumber n</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
@@ -333,30 +293,6 @@
   <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
   <dt>Claim</dt><dd>sylvester-sequence-coprimality · mathlib_extension · claude-code</dd></dl>
   <p>Sylvester&#x27;s sequence is strictly increasing.</p>
-  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
-</article>
-<article>
-  <h2><code>LeanFrontier.Nat.cast_sylvesterNumber_ne_zero</code></h2>
-  <p class="statement">(n : ℕ) : (sylvesterNumber n : K) ≠ 0</p>
-  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
-  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
-  <p></p>
-  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
-</article>
-<article>
-  <h2><code>LeanFrontier.Nat.cast_sylvesterNumber_sub_one_ne_zero</code></h2>
-  <p class="statement">(n : ℕ) : (sylvesterNumber n : K) - 1 ≠ 0</p>
-  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
-  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
-  <p></p>
-  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
-</article>
-<article>
-  <h2><code>LeanFrontier.Nat.cast_sylvesterNumber_succ</code></h2>
-  <p class="statement">(n : ℕ) : (sylvesterNumber (n + 1) : K) = (sylvesterNumber n : K) * ((sylvesterNumber n : K) - 1) + 1</p>
-  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
-  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
-  <p></p>
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
 </article>
 <article>
