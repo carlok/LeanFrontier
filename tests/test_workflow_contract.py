@@ -10,6 +10,7 @@ SYNC_WORKFLOW = (ROOT / ".github" / "workflows" / "sync-umbrella.yml").read_text
 CATALOGUE_WORKFLOW = (ROOT / ".github" / "workflows" / "sync-catalogue.yml").read_text()
 OBSERVATION_WORKFLOW = (ROOT / ".github" / "workflows" / "record-observation.yml").read_text()
 PAGES_WORKFLOW = (ROOT / ".github" / "workflows" / "deploy-pages.yml").read_text()
+UPGRADE_WORKFLOW = (ROOT / ".github" / "workflows" / "mathlib-upgrade.yml").read_text()
 DOCKERFILE = (ROOT / "tools" / "Dockerfile.validator").read_text()
 LAKEFILE = (ROOT / "lakefile.toml").read_text()
 
@@ -64,9 +65,10 @@ class WorkflowContractTests(unittest.TestCase):
         umbrella = (ROOT / "LeanFrontier.lean").read_text()
         self.assertLess(umbrella.index("import LeanFrontier"), umbrella.index("/-!"))
 
-    def test_receiver_uses_a_pinned_mathlib_fingerprint_index(self) -> None:
+    def test_receiver_uses_the_active_mathlib_fingerprint_index(self) -> None:
         validator = (ROOT / "tools" / "frontier_validate.py").read_text()
-        self.assertIn("mathlib-fingerprints-v4.33.0-rc1.json", validator)
+        self.assertIn("load_release_policy", validator)
+        self.assertIn("fingerprint_index", validator)
         self.assertIn("Mathlib fingerprint index does not match the pinned revision", validator)
         self.assertNotIn('"--all", match_arg, "Mathlib"', validator)
 
@@ -143,6 +145,31 @@ class WorkflowContractTests(unittest.TestCase):
         for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW):
             self.assertIn("group: trusted-generated-main", workflow)
             self.assertIn("cancel-in-progress: false", workflow)
+
+    def test_mathlib_upgrader_uses_only_trusted_tagged_release_inputs(self) -> None:
+        for required in (
+            "schedule:",
+            "workflow_dispatch:",
+            "leanprover-community/mathlib4",
+            "prerelease == false",
+            "draft == false",
+            "maintenance/mathlib-upgrade-",
+            "--network none",
+            "--read-only",
+            "tools/update_mathlib_release.py",
+            "tools/audit_mathlib_upgrade.py",
+            "gh pr merge \"$pr\" --auto --merge",
+        ):
+            self.assertIn(required, UPGRADE_WORKFLOW)
+        self.assertNotIn("/pulls", UPGRADE_WORKFLOW)
+
+    def test_mathlib_upgrade_has_a_required_gate_and_a_trusted_path_policy(self) -> None:
+        test_workflow = (ROOT / ".github" / "workflows" / "test.yml").read_text()
+        validator = (ROOT / "tools" / "validate_mathlib_upgrade.py").read_text()
+        self.assertIn("mathlib-upgrade:", test_workflow)
+        self.assertIn("maintenance/mathlib-upgrade-", test_workflow)
+        self.assertIn("validate_mathlib_upgrade.py", WORKFLOW)
+        self.assertIn("Mathlib upgrade changes forbidden paths", validator)
 
 
 if __name__ == "__main__":

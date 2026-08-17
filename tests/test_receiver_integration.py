@@ -11,6 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RUN_INTEGRATION = os.environ.get("LEANFRONTIER_INTEGRATION") == "1"
+ACTIVE_MATHLIB_REVISION = json.loads((ROOT / "policy" / "mathlib-release.json").read_text())["mathlib_revision"]
 
 
 @unittest.skipUnless(RUN_INTEGRATION, "set LEANFRONTIER_INTEGRATION=1 to run Lean receiver integration tests")
@@ -43,7 +44,7 @@ class ReceiverIntegrationTests(unittest.TestCase):
                     "statement_origin": "machine",
                     "proof_origin": "machine",
                     "entrypoints": [entrypoint],
-                    "base_mathlib_revision": "v4.33.0-rc1",
+                    "base_mathlib_revision": ACTIVE_MATHLIB_REVISION,
                     "source_context": None,
                 }
             )

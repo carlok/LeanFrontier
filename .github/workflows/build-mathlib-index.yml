@@ -37,10 +37,13 @@ jobs:
             -v "$GITHUB_WORKSPACE/index-output:/output" \
             -w /workspace \
             leanfrontier-index:ci \
-            python3 tools/build_mathlib_index.py --output /output/mathlib-fingerprints-v4.33.0-rc1.json
-          install -m 0644 "$GITHUB_WORKSPACE/index-output/mathlib-fingerprints-v4.33.0-rc1.json" policy/mathlib-fingerprints-v4.33.0-rc1.json
+            python3 tools/build_mathlib_index.py --output /output/active-index.json
+          index_name="$(python3 -c 'import json; print(json.load(open("policy/mathlib-release.json"))["fingerprint_index"])')"
+          install -m 0644 "$GITHUB_WORKSPACE/index-output/active-index.json" "policy/$index_name"
+          echo "path=policy/$index_name" >> "$GITHUB_OUTPUT"
+        id: index
       - uses: actions/upload-artifact@v4
         with:
-          name: mathlib-fingerprints-v4.33.0-rc1
-          path: policy/mathlib-fingerprints-v4.33.0-rc1.json
+          name: mathlib-fingerprints-active
+          path: ${{ steps.index.outputs.path }}
           if-no-files-found: error
