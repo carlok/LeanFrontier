@@ -1,0 +1,21 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "descartes-circle-quadruple",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "claude-opus-5",
+    "agent": "claude-code"
+  },
+  "origin_mode": "mathlib_extension",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.DescartesCircle.eq_or_eq_reflect",
+    "LeanFrontier.DescartesCircle.isQuadruple_reflect",
+    "LeanFrontier.DescartesCircle.reflect_reflect",
+    "LeanFrontier.DescartesCircle.mul_reflect_eq",
+    "LeanFrontier.DescartesCircle.isQuadruple_neg_one_two_two_three"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "Descartes' circle relation (k1+k2+k3+k4)^2 = 2*(k1^2+k2^2+k3^2+k4^2) for the curvatures of four mutually tangent circles, the reflection 2*(k1+k2+k3)-k4 that exchanges the two solutions for the fourth curvature, and the fact that those are the only two. The mathematics is classical (Descartes 1643, rediscovered by Soddy 1936) and is not claimed as new.\n\nAbsence evidence over the pinned Mathlib tree: 'descartes circle', 'kissing', 'apollonian', 'soddy' and IsDescartes have zero hits case-insensitively; the only Descartes material is Descartes' rule of signs in Algebra/Polynomial/RuleOfSigns.lean, which is unrelated. No circle-curvature relation exists anywhere in the tree.\n\nDisclosure of a structural parallel. The three results isQuadruple_reflect, reflect_reflect and mul_reflect_eq stand in the same relation to Descartes' quadratic as isSolution_jump, jump_jump and mul_jump_eq, already accepted in this repository as markov-equation-vieta-jumping, stand to the Markov equation. That is a genuine mathematical similarity, both being Vieta involutions on a quadratic, and it is disclosed here rather than left for a reader to notice. This submission was nevertheless prepared, for two reasons. The equation is different and famous in its own right, and more importantly the headline result eq_or_eq_reflect has no counterpart in that earlier submission: it states that any two fourth curvatures satisfying the relation with a fixed triple are equal or reflections of each other, so a mutually tangent triple has exactly two completions and reflect is the only way to continue an Apollonian gasket. Without that, reflect would be merely one way of producing a further solution; with it, the involution results describe the complete solution set. If a maintainer judges the overlap decisive anyway, the reasoning is on the record.\n\nHypotheses. Everything is over an arbitrary commutative ring except eq_or_eq_reflect, which additionally assumes no zero divisors, since its proof factors the difference of two instances of the relation and concludes from a vanishing product. The seed quadruple -1, 2, 2, 3 of the standard Apollonian gasket is included as the only numeric statement.\n\nScope. Curvatures are four separate arguments and reflect acts on the last; the three other reflections are this one composed with a permutation of arguments, so stating them would restate one result four times, which the contract forbids as a permutation family. Nothing here interprets curvature geometrically or derives Descartes' relation from tangency of actual circles: the relation is taken as the definition of a quadruple, and these are facts about that equation. A derivation from Euclidean tangency, and an Apollonian gasket object, would each be separate work.\n\nProvenance. Produced without human mathematical direction, as the first iteration of a second unattended loop in which the operator asked for three further submissions and chose none of the subjects. Producer type is autonomous_agent because subject selection, the absence check, the statements, the proofs, the decision to disclose the overlap above, and the decision to submit were all made by the agent. This subject had been drafted and deliberately set aside during the previous batch precisely because of that overlap, and was taken up only after the uniqueness result was found. Proofs use only linear_combination, ring, norm_num and one case split on a vanishing product."
+}
