@@ -1,7 +1,11 @@
 name: record-observation
 
 on:
-  pull_request:
+  # A closed PR from a fork keeps a read-only GITHUB_TOKEN under pull_request.
+  # This job runs only after merge and checks out the merge commit explicitly,
+  # so pull_request_target grants the trusted post-merge writer without ever
+  # executing unmerged fork code.
+  pull_request_target:
     types: [closed]
 
 permissions:
