@@ -110,6 +110,7 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("validate-maintenance:", WORKFLOW)
         self.assertIn("startsWith(github.event.pull_request.head.ref, 'maintenance/')", WORKFLOW)
         self.assertIn("github.event.pull_request.author_association == 'OWNER'", WORKFLOW)
+        self.assertIn("github.event.pull_request.user.login == 'github-actions[bot]'", WORKFLOW)
 
     def test_generated_output_validation_does_not_execute_candidate_code(self) -> None:
         validator = (ROOT / "tools" / "validate_generated.py").read_text()

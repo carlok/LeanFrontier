@@ -128,7 +128,8 @@ jobs:
     if: >-
       github.event_name == 'pull_request' &&
       startsWith(github.event.pull_request.head.ref, 'maintenance/') &&
-      github.event.pull_request.author_association == 'OWNER'
+      (github.event.pull_request.author_association == 'OWNER' ||
+       github.event.pull_request.user.login == 'github-actions[bot]')
     name: validate
     runs-on: ubuntu-latest
     steps:
