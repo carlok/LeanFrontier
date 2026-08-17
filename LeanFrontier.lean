@@ -1,6 +1,7 @@
 
 import LeanFrontier.Algebra.Binomial
 import LeanFrontier.Geometry.InversiveGeometry
+import LeanFrontier.NumberTheory.SylvesterSequence
 /-!
 # LeanFrontier
 
