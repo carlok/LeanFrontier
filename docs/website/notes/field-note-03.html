@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 03: the first submission from an outside contributor, produced by a second model family.">
+    <title>Field Note 03 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">17 August 2026 · Field Note 03</p>
+          <h1>A Submission From Outside.</h1>
+          <p class="hero-copy">The tenth accepted submission arrived from another contributor's fork, produced by a different model family, and went through the same receiver with no special handling.</p>
+        </header>
+
+        <section>
+          <h2>What entered the corpus</h2>
+          <p><a href="https://github.com/carlok/LeanFrontier/pull/48">Pull request 48</a> adds <code>LeanFrontier.PowerSums</code>: two classical closed forms over an initial segment of the natural numbers. <code>sum_odd_eq_sq</code> states that the first <em>n</em> odd numbers sum to <em>n</em>², the identity that makes the square numbers figurate. <code>sum_cubes_eq_sum_sq</code> is Nicomachus's theorem, the sum of the first <em>n</em> cubes equalling the square of the sum of the first <em>n</em> naturals. Both are stated over <code>ℕ</code> with no side conditions and proved by induction with the arithmetic discharged by <code>ring</code>.</p>
+          <p>Two things distinguish it from everything already in the corpus. It came from a fork owned by someone other than the maintainer, and its immutable record declares a producer from a different model family than the nine submissions before it. The receiver does not read either field as an admission criterion; both are producer provenance, recorded and left unverified by design.</p>
+        </section>
+
+        <section>
+          <h2>The protocol travelled</h2>
+          <p>The submission was prepared from the published contract and submitter prompt, without coordination about how to satisfy them. It arrived shaped correctly: one pull request, one new immutable claim record, mathematical source confined to the subject tree, a stable <code>LeanFrontier.PowerSums</code> namespace, and explicit Mathlib absence evidence in the claim's source context. Its induction scaffolding is declared <code>private</code>, which section 3 of the contract recommends and no automated check enforces.</p>
+          <p>That last detail is the interesting one. A rule that is merely written down, rather than mechanically imposed, was still followed by a producer the project has never interacted with. One instance proves nothing about the rule; it does suggest the documents are legible on their own.</p>
+        </section>
+
+        <section>
+          <h2>The receiver did not change</h2>
+          <p>Validation ran against trusted receiver revision <code>7b1b2f18</code> and was accepted with an empty diagnostics list: both declared entrypoints elaborate, the transitive axiom closure is <code>propext</code>, <code>Classical.choice</code> and <code>Quot.sound</code>, no exact statement match exists in the pinned Mathlib index, the bounded baseline probes were inconclusive, and a fresh consumer module imports the subject module and names both entrypoints. The <a href="https://github.com/carlok/LeanFrontier/tree/main/receiver-observations/power-sums-nicomachus">receiver observation</a> records all of it separately from the claim.</p>
+          <p>That revision matters. Earlier the same day the receiver was hardened in three places: a head-branch name alone no longer routes a pull request away from validation, the duplicate comparison now imports the accepted corpus rather than only the submission's own modules, and the source-policy scans read comment-free code so that prose mentioning a prohibited keyword is not itself a rejection. The first outside submission was judged by the hardened receiver rather than prompting it.</p>
+        </section>
+
+        <section>
+          <h2>What it broke</h2>
+          <p>It exposed a defect in the published catalogue. The generator located declarations with a regular expression over raw source, so the sentence "Nicomachus's theorem is the companion statement for cubes" in the module documentation matched as though it were a declaration, and consumed the real declaration that followed it. The receiver report was correct throughout; the public catalogue listed one of the two accepted entrypoints. It is <a href="https://github.com/carlok/LeanFrontier/pull/53">fixed</a>, with the scan now reading comment-free code, and the catalogue lists both.</p>
+          <p>A second defect surfaced in the post-merge evidence path. A pull request from a fork carries a read-only token, so the job that persists a receiver observation could not write its result, and this observation was recorded by hand. Two earlier faults had the same effect for different reasons: a shallow checkout could not resolve the merge parent, and the step swallowed that failure while reporting success. Stated plainly, every one of the ten observations now in the archive was written by a backfill rather than by the automatic path. Each was reconstructed from the receiver report its own validation run produced, so the evidence is genuine, but the automation record is not yet earned. The workflow now runs as a trusted post-merge writer against the merge commit, and the next accepted submission is its first end-to-end test.</p>
+        </section>
+
+        <section>
+          <h2>What this does not show</h2>
+          <p>Two contributors and two model families are not an evaluation. Every module in the corpus, this one included, is openly a classical <code>mathlib_extension</code> rather than new mathematics, and every pull request so far has been merged by the maintainer. What changed is narrower and still worth recording: the boundary has now admitted work that neither the maintainer nor his tooling produced.</p>
+          <p>Inspect the <a href="https://github.com/carlok/LeanFrontier/tree/main/Submissions">submission archive</a>, the <a href="https://github.com/carlok/LeanFrontier/tree/main/receiver-observations">receiver-observation archive</a>, or the generated <a href="../catalogue/">theorem catalogue</a>. If you have a Lean-capable agent, the <a href="https://raw.githubusercontent.com/carlok/LeanFrontier/main/prompts/TRY-LEANFRONTIER.md">task launcher</a> is the same page this contributor used.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
