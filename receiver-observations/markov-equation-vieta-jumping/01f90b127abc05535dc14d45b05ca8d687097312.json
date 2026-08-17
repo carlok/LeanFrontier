@@ -1,0 +1,262 @@
+{
+  "accepted_revision": "01f90b127abc05535dc14d45b05ca8d687097312",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-17T11:16:12Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 165.678,
+    "observed": {
+      "added_lines": 91,
+      "audited_declarations": {
+        "LeanFrontier.MarkovEquation.IsSolution": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovEquation.IsSolution",
+          "restatement": false,
+          "statement_sha256": "3da5559948ce96ffd246d1e7f1bde08a9d16d6721f85ac68515fe8cbe11152f4",
+          "type_dependencies": [
+            "Int"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.isSolution_jump": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.isSolution_jump",
+          "restatement": false,
+          "statement_sha256": "4e287e7be84dd9cd839a78aa1cb82724cc57676363a29b571ed3a74fcd9b0e49",
+          "type_dependencies": [
+            "Int",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "LeanFrontier.MarkovEquation.jump"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.isSolution_one_one_one": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.isSolution_one_one_one",
+          "restatement": false,
+          "statement_sha256": "e57980699c4cfa37549f600b273029c783ed824ab01e3192e0ad2a5c723e27b1",
+          "type_dependencies": [
+            "Int",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.jump": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovEquation.jump",
+          "restatement": false,
+          "statement_sha256": "56c93bca45522e0e9903b40bd521aa9afbc5b4dc98aa321654646623ece082e4",
+          "type_dependencies": [
+            "Int"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.jump_jump": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.jump_jump",
+          "restatement": false,
+          "statement_sha256": "d7ea0657139973611ce13469b827246bf864eda304827fab1e2755dc4a4bb645",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "LeanFrontier.MarkovEquation.jump"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.jump_pos": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.jump_pos",
+          "restatement": false,
+          "statement_sha256": "47820078e476211b9dfdeb062aa9c8334fc464bab1ee0081b44118ccc99565e5",
+          "type_dependencies": [
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "LeanFrontier.MarkovEquation.jump",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.mul_jump_eq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.mul_jump_eq",
+          "restatement": false,
+          "statement_sha256": "21d6f0eff5603f9434ad2147bec045ced69a02444077d69e705425a9fcf1ea93",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "Int",
+            "Int.instAdd",
+            "Int.instMonoid",
+            "Int.instMul",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "LeanFrontier.MarkovEquation.jump",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovEquation.isSolution_jump": "inconclusive",
+        "LeanFrontier.MarkovEquation.isSolution_one_one_one": "inconclusive",
+        "LeanFrontier.MarkovEquation.jump_jump": "inconclusive",
+        "LeanFrontier.MarkovEquation.jump_pos": "inconclusive",
+        "LeanFrontier.MarkovEquation.mul_jump_eq": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 7261,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovEquation.lean",
+        "Submissions/markov-equation-vieta-jumping.json"
+      ],
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovEquation.isSolution_jump": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.isSolution_jump",
+          "statement_sha256": "4e287e7be84dd9cd839a78aa1cb82724cc57676363a29b571ed3a74fcd9b0e49",
+          "type_dependencies": [
+            "Int",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "LeanFrontier.MarkovEquation.jump"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.isSolution_one_one_one": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.isSolution_one_one_one",
+          "statement_sha256": "e57980699c4cfa37549f600b273029c783ed824ab01e3192e0ad2a5c723e27b1",
+          "type_dependencies": [
+            "Int",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.jump_jump": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.jump_jump",
+          "statement_sha256": "d7ea0657139973611ce13469b827246bf864eda304827fab1e2755dc4a4bb645",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "LeanFrontier.MarkovEquation.jump"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.jump_pos": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.jump_pos",
+          "statement_sha256": "47820078e476211b9dfdeb062aa9c8334fc464bab1ee0081b44118ccc99565e5",
+          "type_dependencies": [
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "LeanFrontier.MarkovEquation.jump",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.mul_jump_eq": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.mul_jump_eq",
+          "statement_sha256": "21d6f0eff5603f9434ad2147bec045ced69a02444077d69e705425a9fcf1ea93",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "Int",
+            "Int.instAdd",
+            "Int.instMonoid",
+            "Int.instMul",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "LeanFrontier.MarkovEquation.jump",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "lean_source_bytes": 3805,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 7
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-equation-vieta-jumping",
+  "trusted_receiver_revision": "c6e5dbc7bff6d829b9be140bc8ec91452908eb23",
+  "validated_candidate_revision": "185b244ece2b62d146ad7882dd554a69cff158db",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32022311302"
+}

@@ -1,0 +1,239 @@
+{
+  "accepted_revision": "6b8535c26f3771bc559843317bf188d432747b4f",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-17T11:22:24Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 104.567,
+    "observed": {
+      "added_lines": 98,
+      "audited_declarations": {
+        "LeanFrontier.Horadam.W": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Horadam.W",
+          "restatement": false,
+          "statement_sha256": "564044fe473e383d9a2f3d5edb2f569137739ac96cfa4cc60547b8eb872b3b7c",
+          "type_dependencies": [
+            "CommRing",
+            "Nat"
+          ]
+        },
+        "LeanFrontier.Horadam.W_add_initial": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Horadam.W_add_initial",
+          "restatement": false,
+          "statement_sha256": "710d1b25fbaf846ba9432930d011336fb2e15dbb194dbef3d58be7f7995381a1",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Horadam.W",
+            "Nat",
+            "instDistribOfSemiring",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.Horadam.W_add_two": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Horadam.W_add_two",
+          "restatement": false,
+          "statement_sha256": "9d305c5886979d6375a0ebcecb872bca153d2b6a4d2ebd99e8cd1a41d061e351",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LeanFrontier.Horadam.W",
+            "Nat",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Horadam.W_mul_W_add_two_sub_sq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Horadam.W_mul_W_add_two_sub_sq",
+          "restatement": false,
+          "statement_sha256": "d025852fe3baaee6d91b386af061b8ff63aa99ec7b324641a322b9e32774980b",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.Horadam.W",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toMonoid",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Horadam.W_add_initial": "inconclusive",
+        "LeanFrontier.Horadam.W_add_two": "inconclusive",
+        "LeanFrontier.Horadam.W_mul_W_add_two_sub_sq": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 8489,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/HoradamSequence.lean",
+        "Submissions/horadam-cassini-identity.json"
+      ],
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Horadam.W_add_initial": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Horadam.W_add_initial",
+          "statement_sha256": "710d1b25fbaf846ba9432930d011336fb2e15dbb194dbef3d58be7f7995381a1",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Horadam.W",
+            "Nat",
+            "instDistribOfSemiring",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.Horadam.W_add_two": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Horadam.W_add_two",
+          "statement_sha256": "9d305c5886979d6375a0ebcecb872bca153d2b6a4d2ebd99e8cd1a41d061e351",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LeanFrontier.Horadam.W",
+            "Nat",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Horadam.W_mul_W_add_two_sub_sq": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Horadam.W_mul_W_add_two_sub_sq",
+          "statement_sha256": "d025852fe3baaee6d91b386af061b8ff63aa99ec7b324641a322b9e32774980b",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.Horadam.W",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toMonoid",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "lean_source_bytes": 4204,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 5
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "horadam-cassini-identity",
+  "trusted_receiver_revision": "01f90b127abc05535dc14d45b05ca8d687097312",
+  "validated_candidate_revision": "19bcb74ce5f8f369e224fafcaa01728bc396ecb6",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32024301731"
+}

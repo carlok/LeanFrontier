@@ -1,0 +1,373 @@
+{
+  "accepted_revision": "a93c2e393ef2fa763197c6ce7a700e723868b71d",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-17T10:30:05Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 197.684,
+    "observed": {
+      "added_lines": 150,
+      "audited_declarations": {
+        "LeanFrontier.Nat.coprime_sylvesterNumber_sylvesterNumber": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.coprime_sylvesterNumber_sylvesterNumber",
+          "restatement": false,
+          "statement_sha256": "204ad1c3614d13c4c9ebaa3fde114b0c7bb5276c157fd7f3db57c9db85e259ed",
+          "type_dependencies": [
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Nat",
+            "Nat.Coprime",
+            "Ne"
+          ]
+        },
+        "LeanFrontier.Nat.strictMono_sylvesterNumber": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.strictMono_sylvesterNumber",
+          "restatement": false,
+          "statement_sha256": "9db6a46f259be074e5039c727b708e129a21c4578b9c18b24795b3964764e536",
+          "type_dependencies": [
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Nat",
+            "Nat.instPreorder",
+            "StrictMono"
+          ]
+        },
+        "LeanFrontier.Nat.sum_range_inv_sylvesterNumber": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sum_range_inv_sylvesterNumber",
+          "restatement": false,
+          "statement_sha256": "7e3e2c3f07fc325b36056364777ce1bf31e62aae77931328950986947aea6469",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CharZero",
+            "DivInvMonoid.toDiv",
+            "DivisionRing.toDivInvMonoid",
+            "DivisionRing.toRing",
+            "DivisionSemiring.toSemiring",
+            "Eq",
+            "Field",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "Finset.range",
+            "Finset.sum",
+            "HDiv.hDiv",
+            "HSub.hSub",
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Nat",
+            "Nat.cast",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "Semifield.toDivisionSemiring",
+            "Semiring.toAddCommMonoid",
+            "SubNegMonoid.toSub",
+            "instHDiv",
+            "instHSub"
+          ]
+        },
+        "LeanFrontier.Nat.sylvesterNumber": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Nat.sylvesterNumber",
+          "restatement": false,
+          "statement_sha256": "79181c7f4b758c1c40ed2cbb52b75a62fbd6c0a82e859369d7ff80d8805a34c4",
+          "type_dependencies": [
+            "Nat"
+          ]
+        },
+        "LeanFrontier.Nat.sylvesterNumber_eq_prod_add_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sylvesterNumber_eq_prod_add_one",
+          "restatement": false,
+          "statement_sha256": "51032bbf0bb61849a926ad476ae3f82efafe4c38efa7aac8f0f0906b8ad5d3b6",
+          "type_dependencies": [
+            "Eq",
+            "Finset.prod",
+            "Finset.range",
+            "HAdd.hAdd",
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Nat",
+            "Nat.instCommMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.sylvesterNumber_succ": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sylvesterNumber_succ",
+          "restatement": false,
+          "statement_sha256": "b2ee12525708782de3fd91467db42a5d2230e0ee99161e6f9f113ba39aee3979",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instMulNat",
+            "instOfNatNat",
+            "instSubNat"
+          ]
+        },
+        "LeanFrontier.Nat.sylvesterNumber_succ_eq_sq_sub_add_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sylvesterNumber_succ_eq_sq_sub_add_one",
+          "restatement": false,
+          "statement_sha256": "cf37838bb578357f9607c7e765fc6cdbf44b92a8d32004b01a9c9bc3db611835",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat",
+            "instSubNat"
+          ]
+        },
+        "LeanFrontier.Nat.two_le_sylvesterNumber": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.two_le_sylvesterNumber",
+          "restatement": false,
+          "statement_sha256": "6948b3ebe1e937cca79ec29770e4953ea8633369b93826428efaf20bdcf7867c",
+          "type_dependencies": [
+            "LE.le",
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Nat",
+            "OfNat.ofNat",
+            "instLENat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Nat.coprime_sylvesterNumber_sylvesterNumber": "inconclusive",
+        "LeanFrontier.Nat.strictMono_sylvesterNumber": "inconclusive",
+        "LeanFrontier.Nat.sum_range_inv_sylvesterNumber": "inconclusive",
+        "LeanFrontier.Nat.sylvesterNumber_eq_prod_add_one": "inconclusive",
+        "LeanFrontier.Nat.sylvesterNumber_succ_eq_sq_sub_add_one": "inconclusive",
+        "LeanFrontier.Nat.two_le_sylvesterNumber": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 10778,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SylvesterSequence.lean",
+        "Submissions/sylvester-sequence-coprimality.json"
+      ],
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Nat.coprime_sylvesterNumber_sylvesterNumber": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.coprime_sylvesterNumber_sylvesterNumber",
+          "statement_sha256": "204ad1c3614d13c4c9ebaa3fde114b0c7bb5276c157fd7f3db57c9db85e259ed",
+          "type_dependencies": [
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Nat",
+            "Nat.Coprime",
+            "Ne"
+          ]
+        },
+        "LeanFrontier.Nat.strictMono_sylvesterNumber": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.strictMono_sylvesterNumber",
+          "statement_sha256": "9db6a46f259be074e5039c727b708e129a21c4578b9c18b24795b3964764e536",
+          "type_dependencies": [
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Nat",
+            "Nat.instPreorder",
+            "StrictMono"
+          ]
+        },
+        "LeanFrontier.Nat.sum_range_inv_sylvesterNumber": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sum_range_inv_sylvesterNumber",
+          "statement_sha256": "7e3e2c3f07fc325b36056364777ce1bf31e62aae77931328950986947aea6469",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CharZero",
+            "DivInvMonoid.toDiv",
+            "DivisionRing.toDivInvMonoid",
+            "DivisionRing.toRing",
+            "DivisionSemiring.toSemiring",
+            "Eq",
+            "Field",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "Finset.range",
+            "Finset.sum",
+            "HDiv.hDiv",
+            "HSub.hSub",
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Nat",
+            "Nat.cast",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "Semifield.toDivisionSemiring",
+            "Semiring.toAddCommMonoid",
+            "SubNegMonoid.toSub",
+            "instHDiv",
+            "instHSub"
+          ]
+        },
+        "LeanFrontier.Nat.sylvesterNumber_eq_prod_add_one": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sylvesterNumber_eq_prod_add_one",
+          "statement_sha256": "51032bbf0bb61849a926ad476ae3f82efafe4c38efa7aac8f0f0906b8ad5d3b6",
+          "type_dependencies": [
+            "Eq",
+            "Finset.prod",
+            "Finset.range",
+            "HAdd.hAdd",
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Nat",
+            "Nat.instCommMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.sylvesterNumber_succ_eq_sq_sub_add_one": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sylvesterNumber_succ_eq_sq_sub_add_one",
+          "statement_sha256": "cf37838bb578357f9607c7e765fc6cdbf44b92a8d32004b01a9c9bc3db611835",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat",
+            "instSubNat"
+          ]
+        },
+        "LeanFrontier.Nat.two_le_sylvesterNumber": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.two_le_sylvesterNumber",
+          "statement_sha256": "6948b3ebe1e937cca79ec29770e4953ea8633369b93826428efaf20bdcf7867c",
+          "type_dependencies": [
+            "LE.le",
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Nat",
+            "OfNat.ofNat",
+            "instLENat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "lean_source_bytes": 6446,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 12
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "sylvester-sequence-coprimality",
+  "trusted_receiver_revision": "bd41c950e2f27373b72bce875888a2594a9f37d8",
+  "validated_candidate_revision": "eb1f83ac48be90efbcfad14262f3ccdce88d8ca6",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32017300261"
+}

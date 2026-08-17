@@ -1,0 +1,334 @@
+{
+  "accepted_revision": "1ca54a089a0fffcb507a2e594b30fbf7adccd367",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-17T11:39:30Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 165.924,
+    "observed": {
+      "added_lines": 104,
+      "audited_declarations": {
+        "LeanFrontier.DescartesCircle.IsQuadruple": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.DescartesCircle.IsQuadruple",
+          "restatement": false,
+          "statement_sha256": "f16a536d4b87d26654a46b3edbcf6ff2bfa1ddfab3906ab4008fb62282bacc79",
+          "type_dependencies": [
+            "CommRing"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.eq_or_eq_reflect": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.eq_or_eq_reflect",
+          "restatement": false,
+          "statement_sha256": "bdf6fed07af317e992bcdf4d445edd5a84c769881597280ec936125f4ea338c6",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "LeanFrontier.DescartesCircle.IsQuadruple",
+            "LeanFrontier.DescartesCircle.reflect",
+            "MulZeroClass.toZero",
+            "NoZeroDivisors",
+            "Or",
+            "instDistribOfSemiring",
+            "instMulZeroClassOfSemiring"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.isQuadruple_neg_one_two_two_three": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.isQuadruple_neg_one_two_two_three",
+          "restatement": false,
+          "statement_sha256": "dd7171546080d17eab50383ece6c0140f87e28427dd6bb20e77ba0791498a50a",
+          "type_dependencies": [
+            "AddCommGroup.toDivisionAddCommMonoid",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CommRing",
+            "CommRing.toRing",
+            "LeanFrontier.DescartesCircle.IsQuadruple",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "Neg.neg",
+            "NegZeroClass.toNeg",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddCommGroup",
+            "Ring.toAddGroupWithOne",
+            "SubNegZeroMonoid.toNegZeroClass",
+            "SubtractionCommMonoid.toSubtractionMonoid",
+            "SubtractionMonoid.toSubNegZeroMonoid",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.isQuadruple_reflect": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.isQuadruple_reflect",
+          "restatement": false,
+          "statement_sha256": "bd56b96239b5eae4e3a4f2f43fa1de8779060157976c095e2375511f26ba3630",
+          "type_dependencies": [
+            "CommRing",
+            "LeanFrontier.DescartesCircle.IsQuadruple",
+            "LeanFrontier.DescartesCircle.reflect"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.mul_reflect_eq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.mul_reflect_eq",
+          "restatement": false,
+          "statement_sha256": "d38269122512c7b9e7fc0df67cb8e2b86c3f93fa2bbb9dca15971ca156e7344c",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.DescartesCircle.IsQuadruple",
+            "LeanFrontier.DescartesCircle.reflect",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toMonoid",
+            "SubNegMonoid.toSub",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.reflect": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.DescartesCircle.reflect",
+          "restatement": false,
+          "statement_sha256": "c8687d746458eda6bd7f5dd9029cad1296bedc8565fbb76ff472476f1acaa443",
+          "type_dependencies": [
+            "CommRing"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.reflect_reflect": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.reflect_reflect",
+          "restatement": false,
+          "statement_sha256": "73aeae93da9e570671892ac868f5b57950f586950ad41f55fb60878ac01cae92",
+          "type_dependencies": [
+            "CommRing",
+            "Eq",
+            "LeanFrontier.DescartesCircle.reflect"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.DescartesCircle.eq_or_eq_reflect": "inconclusive",
+        "LeanFrontier.DescartesCircle.isQuadruple_neg_one_two_two_three": "inconclusive",
+        "LeanFrontier.DescartesCircle.isQuadruple_reflect": "inconclusive",
+        "LeanFrontier.DescartesCircle.mul_reflect_eq": "inconclusive",
+        "LeanFrontier.DescartesCircle.reflect_reflect": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 8762,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/DescartesCircle.lean",
+        "Submissions/descartes-circle-quadruple.json"
+      ],
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.DescartesCircle.eq_or_eq_reflect": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.eq_or_eq_reflect",
+          "statement_sha256": "bdf6fed07af317e992bcdf4d445edd5a84c769881597280ec936125f4ea338c6",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "LeanFrontier.DescartesCircle.IsQuadruple",
+            "LeanFrontier.DescartesCircle.reflect",
+            "MulZeroClass.toZero",
+            "NoZeroDivisors",
+            "Or",
+            "instDistribOfSemiring",
+            "instMulZeroClassOfSemiring"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.isQuadruple_neg_one_two_two_three": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.isQuadruple_neg_one_two_two_three",
+          "statement_sha256": "dd7171546080d17eab50383ece6c0140f87e28427dd6bb20e77ba0791498a50a",
+          "type_dependencies": [
+            "AddCommGroup.toDivisionAddCommMonoid",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CommRing",
+            "CommRing.toRing",
+            "LeanFrontier.DescartesCircle.IsQuadruple",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "Neg.neg",
+            "NegZeroClass.toNeg",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddCommGroup",
+            "Ring.toAddGroupWithOne",
+            "SubNegZeroMonoid.toNegZeroClass",
+            "SubtractionCommMonoid.toSubtractionMonoid",
+            "SubtractionMonoid.toSubNegZeroMonoid",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.isQuadruple_reflect": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.isQuadruple_reflect",
+          "statement_sha256": "bd56b96239b5eae4e3a4f2f43fa1de8779060157976c095e2375511f26ba3630",
+          "type_dependencies": [
+            "CommRing",
+            "LeanFrontier.DescartesCircle.IsQuadruple",
+            "LeanFrontier.DescartesCircle.reflect"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.mul_reflect_eq": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.mul_reflect_eq",
+          "statement_sha256": "d38269122512c7b9e7fc0df67cb8e2b86c3f93fa2bbb9dca15971ca156e7344c",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.DescartesCircle.IsQuadruple",
+            "LeanFrontier.DescartesCircle.reflect",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toMonoid",
+            "SubNegMonoid.toSub",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.reflect_reflect": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.reflect_reflect",
+          "statement_sha256": "73aeae93da9e570671892ac868f5b57950f586950ad41f55fb60878ac01cae92",
+          "type_dependencies": [
+            "CommRing",
+            "Eq",
+            "LeanFrontier.DescartesCircle.reflect"
+          ]
+        }
+      },
+      "lean_source_bytes": 4644,
+      "mathlib_exact_matches": 1,
+      "new_declarations": 7
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "descartes-circle-quadruple",
+  "trusted_receiver_revision": "1367b07eea83a7c5933f26b3f8d58ff75dc81787",
+  "validated_candidate_revision": "071e6c192ff4aa7821f0aea3c8a8ae515f700315",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32025505568"
+}
