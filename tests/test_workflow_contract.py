@@ -87,7 +87,7 @@ class WorkflowContractTests(unittest.TestCase):
 
     def test_accepted_receiver_reports_are_persisted_only_after_merge(self) -> None:
         for required in (
-            "pull_request:",
+            "pull_request_target:",
             "types: [closed]",
             "github.event.pull_request.merged == true",
             "actions: read",
