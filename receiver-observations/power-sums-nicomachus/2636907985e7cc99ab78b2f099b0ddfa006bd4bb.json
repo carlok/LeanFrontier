@@ -1,0 +1,150 @@
+{
+  "accepted_revision": "2636907985e7cc99ab78b2f099b0ddfa006bd4bb",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-17T19:18:38Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 89.823,
+    "observed": {
+      "added_lines": 81,
+      "audited_declarations": {
+        "LeanFrontier.PowerSums.sum_cubes_eq_sum_sq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.PowerSums.sum_cubes_eq_sum_sq",
+          "restatement": false,
+          "statement_sha256": "e90e64d3c4716c9b63f002157e3f77539368a0cce94a4e9bfa0bd7daa79175b1",
+          "type_dependencies": [
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HPow.hPow",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAddCommMonoid",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.PowerSums.sum_odd_eq_sq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.PowerSums.sum_odd_eq_sq",
+          "restatement": false,
+          "statement_sha256": "34476c59800c620441c08612dc96771afcd1fad3e181d430558072b16fa1eddc",
+          "type_dependencies": [
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAddCommMonoid",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.PowerSums.sum_cubes_eq_sum_sq": "inconclusive",
+        "LeanFrontier.PowerSums.sum_odd_eq_sq": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 5055,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/PowerSums.lean",
+        "Submissions/power-sums-nicomachus.json"
+      ],
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.PowerSums.sum_cubes_eq_sum_sq": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.PowerSums.sum_cubes_eq_sum_sq",
+          "statement_sha256": "e90e64d3c4716c9b63f002157e3f77539368a0cce94a4e9bfa0bd7daa79175b1",
+          "type_dependencies": [
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HPow.hPow",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAddCommMonoid",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.PowerSums.sum_odd_eq_sq": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.PowerSums.sum_odd_eq_sq",
+          "statement_sha256": "34476c59800c620441c08612dc96771afcd1fad3e181d430558072b16fa1eddc",
+          "type_dependencies": [
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAddCommMonoid",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "lean_source_bytes": 3285,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 3
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "power-sums-nicomachus",
+  "trusted_receiver_revision": "7b1b2f1860ebef30525856ecc84e0571efbff63b",
+  "validated_candidate_revision": "a56a1d0ff17905b4d15bb1479e312730444f1cd8",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32059199040"
+}
