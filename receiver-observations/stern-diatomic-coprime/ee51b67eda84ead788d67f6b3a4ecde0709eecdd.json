@@ -1,0 +1,225 @@
+{
+  "accepted_revision": "ee51b67eda84ead788d67f6b3a4ecde0709eecdd",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-17T11:52:22Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 157.627,
+    "observed": {
+      "added_lines": 116,
+      "audited_declarations": {
+        "LeanFrontier.SternDiatomic.coprime_fusc_fusc_succ": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.coprime_fusc_fusc_succ",
+          "restatement": false,
+          "statement_sha256": "a959969f48c0e19a8ae259e56cfa7e2d3683f98ce2a17e4ff300870f909b3eff",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "Nat.Coprime",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.fusc": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.SternDiatomic.fusc",
+          "restatement": false,
+          "statement_sha256": "79181c7f4b758c1c40ed2cbb52b75a62fbd6c0a82e859369d7ff80d8805a34c4",
+          "type_dependencies": [
+            "Nat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.fusc_pos": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.fusc_pos",
+          "restatement": false,
+          "statement_sha256": "1a38f1af66849b7b793296a9ff6c9ee8285c771949d9056ba259925898f3004f",
+          "type_dependencies": [
+            "LT.lt",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.fusc_two_mul": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.fusc_two_mul",
+          "restatement": false,
+          "statement_sha256": "c1f244e0834d3809d7e960fd9a730b47c3d459e1062ef2e910d00b4722c99f15",
+          "type_dependencies": [
+            "Eq",
+            "HMul.hMul",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "OfNat.ofNat",
+            "instHMul",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.fusc_two_mul_add_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.fusc_two_mul_add_one",
+          "restatement": false,
+          "statement_sha256": "a44f0f6d20e948e023b4bc8480843bb93612a1f6a8d5882c8e5cb8342cc2db70",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SternDiatomic.coprime_fusc_fusc_succ": "inconclusive",
+        "LeanFrontier.SternDiatomic.fusc_pos": "inconclusive",
+        "LeanFrontier.SternDiatomic.fusc_two_mul": "inconclusive",
+        "LeanFrontier.SternDiatomic.fusc_two_mul_add_one": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 8530,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SternDiatomic.lean",
+        "Submissions/stern-diatomic-coprime.json"
+      ],
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SternDiatomic.coprime_fusc_fusc_succ": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.coprime_fusc_fusc_succ",
+          "statement_sha256": "a959969f48c0e19a8ae259e56cfa7e2d3683f98ce2a17e4ff300870f909b3eff",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "Nat.Coprime",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.fusc_pos": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.fusc_pos",
+          "statement_sha256": "1a38f1af66849b7b793296a9ff6c9ee8285c771949d9056ba259925898f3004f",
+          "type_dependencies": [
+            "LT.lt",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.fusc_two_mul": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.fusc_two_mul",
+          "statement_sha256": "c1f244e0834d3809d7e960fd9a730b47c3d459e1062ef2e910d00b4722c99f15",
+          "type_dependencies": [
+            "Eq",
+            "HMul.hMul",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "OfNat.ofNat",
+            "instHMul",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.fusc_two_mul_add_one": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.fusc_two_mul_add_one",
+          "statement_sha256": "a44f0f6d20e948e023b4bc8480843bb93612a1f6a8d5882c8e5cb8342cc2db70",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "lean_source_bytes": 4669,
+      "mathlib_exact_matches": 1,
+      "new_declarations": 5
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "stern-diatomic-coprime",
+  "trusted_receiver_revision": "8f4072bbc091684ee8c43555f7e159a353495e04",
+  "validated_candidate_revision": "f91ae007099f08c0817673a4e7aabf8439f584d2",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32026617717"
+}

@@ -1,0 +1,429 @@
+{
+  "accepted_revision": "c6e5dbc7bff6d829b9be140bc8ec91452908eb23",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-17T10:36:24Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 193.225,
+    "observed": {
+      "added_lines": 123,
+      "audited_declarations": {
+        "LeanFrontier.Mediant.crossDet": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Mediant.crossDet",
+          "restatement": false,
+          "statement_sha256": "c8687d746458eda6bd7f5dd9029cad1296bedc8565fbb76ff472476f1acaa443",
+          "type_dependencies": [
+            "CommRing"
+          ]
+        },
+        "LeanFrontier.Mediant.crossDet_left_mediant": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Mediant.crossDet_left_mediant",
+          "restatement": false,
+          "statement_sha256": "bae55606efcfc7ae247cc8b3bdefc34239dc5217fe22aeedf35cfc3c11e17f39",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Mediant.crossDet",
+            "instDistribOfSemiring",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.Mediant.crossDet_mediant_right": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Mediant.crossDet_mediant_right",
+          "restatement": false,
+          "statement_sha256": "4bb5c50f0e07bace5f8b2a722208a89ff40b7ea0656a37f4d372fdc6ad8d95c1",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Mediant.crossDet",
+            "instDistribOfSemiring",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.Mediant.div_lt_div_iff_crossDet_pos": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Mediant.div_lt_div_iff_crossDet_pos",
+          "restatement": false,
+          "statement_sha256": "6a14834d17f770e7e0baebac95fb6c8e1c625e987cef9bc9527b5d4ae550b2cd",
+          "type_dependencies": [
+            "DistribLattice.toLattice",
+            "DivInvMonoid.toDiv",
+            "DivisionRing.toDivInvMonoid",
+            "DivisionSemiring.toSemiring",
+            "Field",
+            "Field.toCommRing",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "HDiv.hDiv",
+            "Iff",
+            "IsStrictOrderedRing",
+            "LT.lt",
+            "Lattice.toSemilatticeInf",
+            "LeanFrontier.Mediant.crossDet",
+            "LinearOrder",
+            "MulZeroClass.toZero",
+            "OfNat.ofNat",
+            "PartialOrder.toPreorder",
+            "Preorder.toLT",
+            "Semifield.toDivisionSemiring",
+            "SemilatticeInf.toPartialOrder",
+            "Zero.toOfNat0",
+            "instDistribLatticeOfLinearOrder",
+            "instHDiv",
+            "instMulZeroClassOfSemiring"
+          ]
+        },
+        "LeanFrontier.Mediant.div_lt_mediant": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Mediant.div_lt_mediant",
+          "restatement": false,
+          "statement_sha256": "dfcd538c9ad0865d744d81d02ffd0e07028e02db0ca89401d7aa1cc66c8a0a35",
+          "type_dependencies": [
+            "DistribLattice.toLattice",
+            "DivInvMonoid.toDiv",
+            "DivisionRing.toDivInvMonoid",
+            "DivisionSemiring.toSemiring",
+            "Field",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "HDiv.hDiv",
+            "IsStrictOrderedRing",
+            "LT.lt",
+            "Lattice.toSemilatticeInf",
+            "LeanFrontier.Mediant.mediant",
+            "LinearOrder",
+            "MulZeroClass.toZero",
+            "OfNat.ofNat",
+            "PartialOrder.toPreorder",
+            "Preorder.toLT",
+            "Semifield.toDivisionSemiring",
+            "SemilatticeInf.toPartialOrder",
+            "Zero.toOfNat0",
+            "instDistribLatticeOfLinearOrder",
+            "instHDiv",
+            "instMulZeroClassOfSemiring"
+          ]
+        },
+        "LeanFrontier.Mediant.isCoprime_mediant": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Mediant.isCoprime_mediant",
+          "restatement": false,
+          "statement_sha256": "f92c71194fc090c9265920e1a49d0a344d9532dd936c7f57e4fac550ae14f880",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toOne",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Eq",
+            "HAdd.hAdd",
+            "IsCoprime",
+            "LeanFrontier.Mediant.crossDet",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "instDistribOfSemiring",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.Mediant.mediant": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Mediant.mediant",
+          "restatement": false,
+          "statement_sha256": "f32186f71b19020789900cbed03ff23865cb39f120e701fb3caf89f0b715cc6a",
+          "type_dependencies": [
+            "DivisionRing"
+          ]
+        },
+        "LeanFrontier.Mediant.mediant_lt_div": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Mediant.mediant_lt_div",
+          "restatement": false,
+          "statement_sha256": "2a79fa0e5c8520f3d2fa6b2fc5ee8ac23db94bc9053cb22024645311e40dc13b",
+          "type_dependencies": [
+            "DistribLattice.toLattice",
+            "DivInvMonoid.toDiv",
+            "DivisionRing.toDivInvMonoid",
+            "DivisionSemiring.toSemiring",
+            "Field",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "HDiv.hDiv",
+            "IsStrictOrderedRing",
+            "LT.lt",
+            "Lattice.toSemilatticeInf",
+            "LeanFrontier.Mediant.mediant",
+            "LinearOrder",
+            "MulZeroClass.toZero",
+            "OfNat.ofNat",
+            "PartialOrder.toPreorder",
+            "Preorder.toLT",
+            "Semifield.toDivisionSemiring",
+            "SemilatticeInf.toPartialOrder",
+            "Zero.toOfNat0",
+            "instDistribLatticeOfLinearOrder",
+            "instHDiv",
+            "instMulZeroClassOfSemiring"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Mediant.crossDet_left_mediant": "inconclusive",
+        "LeanFrontier.Mediant.crossDet_mediant_right": "inconclusive",
+        "LeanFrontier.Mediant.div_lt_div_iff_crossDet_pos": "inconclusive",
+        "LeanFrontier.Mediant.div_lt_mediant": "inconclusive",
+        "LeanFrontier.Mediant.isCoprime_mediant": "inconclusive",
+        "LeanFrontier.Mediant.mediant_lt_div": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 9542,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/Mediant.lean",
+        "Submissions/mediant-stern-brocot-determinant.json"
+      ],
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Mediant.crossDet_left_mediant": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Mediant.crossDet_left_mediant",
+          "statement_sha256": "bae55606efcfc7ae247cc8b3bdefc34239dc5217fe22aeedf35cfc3c11e17f39",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Mediant.crossDet",
+            "instDistribOfSemiring",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.Mediant.crossDet_mediant_right": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Mediant.crossDet_mediant_right",
+          "statement_sha256": "4bb5c50f0e07bace5f8b2a722208a89ff40b7ea0656a37f4d372fdc6ad8d95c1",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Mediant.crossDet",
+            "instDistribOfSemiring",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.Mediant.div_lt_div_iff_crossDet_pos": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Mediant.div_lt_div_iff_crossDet_pos",
+          "statement_sha256": "6a14834d17f770e7e0baebac95fb6c8e1c625e987cef9bc9527b5d4ae550b2cd",
+          "type_dependencies": [
+            "DistribLattice.toLattice",
+            "DivInvMonoid.toDiv",
+            "DivisionRing.toDivInvMonoid",
+            "DivisionSemiring.toSemiring",
+            "Field",
+            "Field.toCommRing",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "HDiv.hDiv",
+            "Iff",
+            "IsStrictOrderedRing",
+            "LT.lt",
+            "Lattice.toSemilatticeInf",
+            "LeanFrontier.Mediant.crossDet",
+            "LinearOrder",
+            "MulZeroClass.toZero",
+            "OfNat.ofNat",
+            "PartialOrder.toPreorder",
+            "Preorder.toLT",
+            "Semifield.toDivisionSemiring",
+            "SemilatticeInf.toPartialOrder",
+            "Zero.toOfNat0",
+            "instDistribLatticeOfLinearOrder",
+            "instHDiv",
+            "instMulZeroClassOfSemiring"
+          ]
+        },
+        "LeanFrontier.Mediant.div_lt_mediant": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Mediant.div_lt_mediant",
+          "statement_sha256": "dfcd538c9ad0865d744d81d02ffd0e07028e02db0ca89401d7aa1cc66c8a0a35",
+          "type_dependencies": [
+            "DistribLattice.toLattice",
+            "DivInvMonoid.toDiv",
+            "DivisionRing.toDivInvMonoid",
+            "DivisionSemiring.toSemiring",
+            "Field",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "HDiv.hDiv",
+            "IsStrictOrderedRing",
+            "LT.lt",
+            "Lattice.toSemilatticeInf",
+            "LeanFrontier.Mediant.mediant",
+            "LinearOrder",
+            "MulZeroClass.toZero",
+            "OfNat.ofNat",
+            "PartialOrder.toPreorder",
+            "Preorder.toLT",
+            "Semifield.toDivisionSemiring",
+            "SemilatticeInf.toPartialOrder",
+            "Zero.toOfNat0",
+            "instDistribLatticeOfLinearOrder",
+            "instHDiv",
+            "instMulZeroClassOfSemiring"
+          ]
+        },
+        "LeanFrontier.Mediant.isCoprime_mediant": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Mediant.isCoprime_mediant",
+          "statement_sha256": "f92c71194fc090c9265920e1a49d0a344d9532dd936c7f57e4fac550ae14f880",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toOne",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Eq",
+            "HAdd.hAdd",
+            "IsCoprime",
+            "LeanFrontier.Mediant.crossDet",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "instDistribOfSemiring",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.Mediant.mediant_lt_div": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Mediant.mediant_lt_div",
+          "statement_sha256": "2a79fa0e5c8520f3d2fa6b2fc5ee8ac23db94bc9053cb22024645311e40dc13b",
+          "type_dependencies": [
+            "DistribLattice.toLattice",
+            "DivInvMonoid.toDiv",
+            "DivisionRing.toDivInvMonoid",
+            "DivisionSemiring.toSemiring",
+            "Field",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "HDiv.hDiv",
+            "IsStrictOrderedRing",
+            "LT.lt",
+            "Lattice.toSemilatticeInf",
+            "LeanFrontier.Mediant.mediant",
+            "LinearOrder",
+            "MulZeroClass.toZero",
+            "OfNat.ofNat",
+            "PartialOrder.toPreorder",
+            "Preorder.toLT",
+            "Semifield.toDivisionSemiring",
+            "SemilatticeInf.toPartialOrder",
+            "Zero.toOfNat0",
+            "instDistribLatticeOfLinearOrder",
+            "instHDiv",
+            "instMulZeroClassOfSemiring"
+          ]
+        }
+      },
+      "lean_source_bytes": 5461,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 8
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "mediant-stern-brocot-determinant",
+  "trusted_receiver_revision": "a93c2e393ef2fa763197c6ce7a700e723868b71d",
+  "validated_candidate_revision": "b8cbe4be91762a30c7a9dd6927016c8026616c99",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32020475656"
+}
