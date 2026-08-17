@@ -128,7 +128,8 @@ jobs:
     if: >-
       github.event_name == 'pull_request' &&
       startsWith(github.event.pull_request.head.ref, 'maintenance/') &&
-      github.event.pull_request.author_association == 'OWNER'
+      (github.event.pull_request.author_association == 'OWNER' ||
+       github.event.pull_request.user.login == 'github-actions[bot]')
     name: validate
     runs-on: ubuntu-latest
     steps:
@@ -145,7 +146,6 @@ jobs:
       - name: Confirm this is an owner maintenance pull request
         run: |
           git -C candidate diff --check
-          if [[ "${{ github.event.pull_request.head.ref }}" == maintenance/mathlib-upgrade-* ]]; then
-            test "${{ github.event.pull_request.user.login }}" = "github-actions[bot]"
+          if [[ "${{ github.event.pull_request.head.ref }}" == maintenance/mathlib-upgrade-* && "${{ github.event.pull_request.user.login }}" == "github-actions[bot]" ]]; then
             python3 trusted/tools/validate_mathlib_upgrade.py --base trusted --candidate candidate
           fi
