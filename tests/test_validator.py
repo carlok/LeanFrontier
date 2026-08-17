@@ -146,6 +146,40 @@ class ValidatorPreflightTests(unittest.TestCase):
         )
         self.assertEqual(observation["type_dependencies"], ["LeanFrontier.Algebra.shared", "Nat.add"])
 
+    def test_prose_mentioning_a_trust_escape_is_not_a_rejection(self) -> None:
+        path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
+        path.write_text(
+            "/-- Proved without any extra axiom, and with no `sorry` left behind.\n"
+            "The `elab` machinery is deliberately unused. -/\n"
+            "theorem new_result (n : Nat) : n ^ 2 + 2 * n + 1 = (n + 1) ^ 2 := by omega\n"
+            "-- no unsafe or macro tricks here either\n"
+        )
+        status, report = self.validate()
+        self.assertEqual(status, 0, report["diagnostics"])
+        self.assertTrue(report["accepted"])
+
+    def test_a_trust_escape_after_a_comment_is_still_rejected(self) -> None:
+        path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
+        path.write_text(
+            "/- an ordinary block comment -/\n"
+            "axiom bad : False\n"
+            "theorem new_result : True := True.intro\n"
+        )
+        self.assert_rejected("UNAUTHORIZED_AXIOM")
+
+    def test_nested_block_comments_do_not_leak_code(self) -> None:
+        source = "/- outer /- inner -/ still comment: axiom -/\ntheorem t : Nat := 0\n"
+        self.assertNotIn("axiom", frontier_validate.strip_comments(source))
+        self.assertIn("theorem t", frontier_validate.strip_comments(source))
+
+    def test_audit_modules_include_the_accepted_corpus_umbrella(self) -> None:
+        modules = frontier_validate.modules_for(
+            ["LeanFrontier/Algebra/New.lean", "Submissions/valid-bundle.json"]
+        )
+        self.assertIn("LeanFrontier.Algebra.New", modules)
+        self.assertIn("LeanFrontier", modules)
+        self.assertEqual(len(modules), len(set(modules)))
+
     def test_award_source_facts_mark_direct_aliases(self) -> None:
         path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
         path.write_text("namespace LeanFrontier.Algebra\ndef alias := Existing\nend LeanFrontier.Algebra\n")
