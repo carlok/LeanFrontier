@@ -30,4 +30,140 @@
   <dt>Fingerprint</dt><dd><code>b38c06b1173934da0ab71d7b8cbb2cc5f1f984c96d70237d31cf622da7370e36</code></dd></dl>
   <p>The reflection is an involution, wherever both applications are defined.</p>
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Geometry/InversiveGeometry.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/inversive-geometry-reflection/934a5220c5648b5135fceb1887d539b1b413f446.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Mediant.crossDet_left_mediant</code></h2>
+  <p class="statement">(a b c d : R) : crossDet a b (a + c) (b + d) = crossDet a b c d</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.Mediant</code></dd>
+  <dt>Claim</dt><dd>mediant-stern-brocot-determinant · mathlib_extension · claude-code</dd></dl>
+  <p>Replacing the second pair by the mediant pair leaves the cross determinant unchanged.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/Mediant.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Mediant.crossDet_mediant_right</code></h2>
+  <p class="statement">(a b c d : R) : crossDet (a + c) (b + d) c d = crossDet a b c d</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.Mediant</code></dd>
+  <dt>Claim</dt><dd>mediant-stern-brocot-determinant · mathlib_extension · claude-code</dd></dl>
+  <p>Replacing the first pair by the mediant pair leaves the cross determinant unchanged.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/Mediant.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Mediant.isCoprime_mediant</code></h2>
+  <p class="statement">(a b c d : R) (h : crossDet a b c d = 1) : IsCoprime (a + c) (b + d)</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.Mediant</code></dd>
+  <dt>Claim</dt><dd>mediant-stern-brocot-determinant · mathlib_extension · claude-code</dd></dl>
+  <p>The numerator and denominator of the mediant of a unimodular pair are coprime: the mediant of two Farey neighbours is already in lowest terms.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/Mediant.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Mediant.div_lt_div_iff_crossDet_pos</code></h2>
+  <p class="statement">{a b c d : K} (hb : 0 &lt; b) (hd : 0 &lt; d) : a / b &lt; c / d ↔ 0 &lt; crossDet a b c d</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.Mediant</code></dd>
+  <dt>Claim</dt><dd>mediant-stern-brocot-determinant · mathlib_extension · claude-code</dd></dl>
+  <p>Over a linearly ordered field, two fractions with positive denominators are in increasing order exactly when their cross determinant is positive.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/Mediant.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Mediant.div_lt_mediant</code></h2>
+  <p class="statement">{a b c d : K} (hb : 0 &lt; b) (hd : 0 &lt; d) (h : a / b &lt; c / d) : a / b &lt; mediant a b c d</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.Mediant</code></dd>
+  <dt>Claim</dt><dd>mediant-stern-brocot-determinant · mathlib_extension · claude-code</dd></dl>
+  <p>The mediant is strictly larger than the smaller of the two fractions.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/Mediant.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Mediant.mediant_lt_div</code></h2>
+  <p class="statement">{a b c d : K} (hb : 0 &lt; b) (hd : 0 &lt; d) (h : a / b &lt; c / d) : mediant a b c d &lt; c / d</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.Mediant</code></dd>
+  <dt>Claim</dt><dd>mediant-stern-brocot-determinant · mathlib_extension · claude-code</dd></dl>
+  <p>The mediant is strictly smaller than the larger of the two fractions.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/Mediant.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.sylvesterNumber_zero</code></h2>
+  <p class="statement">: sylvesterNumber 0 = 2</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
+  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
+  <p></p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.sylvesterNumber_succ</code></h2>
+  <p class="statement">(n : ℕ) : sylvesterNumber (n + 1) = sylvesterNumber n * (sylvesterNumber n - 1) + 1</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
+  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
+  <p></p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.two_le_sylvesterNumber</code></h2>
+  <p class="statement">(n : ℕ) : 2 ≤ sylvesterNumber n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
+  <dt>Claim</dt><dd>sylvester-sequence-coprimality · mathlib_extension · claude-code</dd></dl>
+  <p>Every term is at least `2`; in particular no term is `0` or `1`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.sylvesterNumber_succ_eq_sq_sub_add_one</code></h2>
+  <p class="statement">(n : ℕ) : sylvesterNumber (n + 1) = sylvesterNumber n ^ 2 - sylvesterNumber n + 1</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
+  <dt>Claim</dt><dd>sylvester-sequence-coprimality · mathlib_extension · claude-code</dd></dl>
+  <p>The defining recurrence in its classical form.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.sylvesterNumber_eq_prod_add_one</code></h2>
+  <p class="statement">(n : ℕ) : sylvesterNumber n = (∏ i ∈ Finset.range n, sylvesterNumber i) + 1</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
+  <dt>Claim</dt><dd>sylvester-sequence-coprimality · mathlib_extension · claude-code</dd></dl>
+  <p>Each term is one more than the product of all the earlier ones.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.coprime_sylvesterNumber_sylvesterNumber</code></h2>
+  <p class="statement">{m n : ℕ} (h : m ≠ n) : Nat.Coprime (sylvesterNumber m) (sylvesterNumber n)</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
+  <dt>Claim</dt><dd>sylvester-sequence-coprimality · mathlib_extension · claude-code</dd></dl>
+  <p>Distinct terms of Sylvester&#x27;s sequence are coprime.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.strictMono_sylvesterNumber</code></h2>
+  <p class="statement">: StrictMono sylvesterNumber</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
+  <dt>Claim</dt><dd>sylvester-sequence-coprimality · mathlib_extension · claude-code</dd></dl>
+  <p>Sylvester&#x27;s sequence is strictly increasing.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.cast_sylvesterNumber_ne_zero</code></h2>
+  <p class="statement">(n : ℕ) : (sylvesterNumber n : K) ≠ 0</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
+  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
+  <p></p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.cast_sylvesterNumber_sub_one_ne_zero</code></h2>
+  <p class="statement">(n : ℕ) : (sylvesterNumber n : K) - 1 ≠ 0</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
+  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
+  <p></p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.cast_sylvesterNumber_succ</code></h2>
+  <p class="statement">(n : ℕ) : (sylvesterNumber (n + 1) : K) = (sylvesterNumber n : K) * ((sylvesterNumber n : K) - 1) + 1</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
+  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
+  <p></p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.sum_range_inv_sylvesterNumber</code></h2>
+  <p class="statement">(n : ℕ) : ∑ i ∈ Finset.range n, (1 : K) / sylvesterNumber i = 1 - 1 / ((sylvesterNumber n : K) - 1)</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SylvesterSequence</code></dd>
+  <dt>Claim</dt><dd>sylvester-sequence-coprimality · mathlib_extension · claude-code</dd></dl>
+  <p>The reciprocals of Sylvester&#x27;s sequence telescope: the partial sums of `1 / S i` are `1 - 1 / (S n - 1)`, so the greedy unit fraction expansion of `1` never overshoots.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a></p>
 </article></body></html>
