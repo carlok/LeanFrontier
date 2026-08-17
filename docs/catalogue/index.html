@@ -72,6 +72,38 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/DescartesCircle.lean">View source</a></p>
 </article>
 <article>
+  <h2><code>LeanFrontier.Farey.one_le_sub_of_lt</code></h2>
+  <p class="statement">{x y : ℤ} (h : x &lt; y) : 1 ≤ y - x</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.Farey</code></dd>
+  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
+  <p></p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/Farey.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Farey.denom_decomposition</code></h2>
+  <p class="statement">(hdet : Mediant.crossDet a b c d = 1) : q = b * (c * q - p * d) + d * (p * b - a * q)</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.Farey</code></dd>
+  <dt>Claim</dt><dd>unrecorded · unknown · unrecorded</dd></dl>
+  <p></p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/Farey.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Farey.add_le_of_isStrictlyBetween</code></h2>
+  <p class="statement">(hb : 0 &lt; b) (hd : 0 &lt; d) (hdet : Mediant.crossDet a b c d = 1) (h : IsStrictlyBetween a b p q c d) : b + d ≤ q</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.Farey</code></dd>
+  <dt>Claim</dt><dd>farey-least-denominator · mathlib_extension · claude-code</dd></dl>
+  <p>A fraction strictly between two Farey neighbours has denominator at least the sum of their denominators.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/Farey.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Farey.eq_add_of_denom_eq_add</code></h2>
+  <p class="statement">(hb : 0 &lt; b) (hd : 0 &lt; d) (hdet : Mediant.crossDet a b c d = 1) (h : IsStrictlyBetween a b p q c d) (hq : q = b + d) : p = a + c</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.Farey</code></dd>
+  <dt>Claim</dt><dd>farey-least-denominator · mathlib_extension · claude-code</dd></dl>
+  <p>If a fraction strictly between two Farey neighbours attains the least possible denominator, it is the mediant: its numerator is forced to be the sum of the numerators.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/Farey.lean">View source</a></p>
+</article>
+<article>
   <h2><code>LeanFrontier.FordCircle.centerDistSq_sub_sq_radius_add</code></h2>
   <p class="statement">(hq : q ≠ 0) (hs : s ≠ 0) : centerDistSq p q r s - (radius q + radius s) ^ 2 = (Mediant.crossDet p q r s ^ 2 - 1) / (q ^ 2 * s ^ 2)</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.FordCircle</code></dd>
