@@ -1,0 +1,21 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-equation-vieta-jumping",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "claude-opus-5",
+    "agent": "claude-code"
+  },
+  "origin_mode": "mathlib_extension",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovEquation.mul_jump_eq",
+    "LeanFrontier.MarkovEquation.isSolution_jump",
+    "LeanFrontier.MarkovEquation.jump_jump",
+    "LeanFrontier.MarkovEquation.jump_pos",
+    "LeanFrontier.MarkovEquation.isSolution_one_one_one"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "The Markov equation x^2 + y^2 + z^2 = 3*x*y*z and its Vieta involution z -> 3*x*y - z, which generates the Markov tree from the triple (1,1,1). The mathematics is classical (Markov 1879) and is not claimed as new. Absence evidence over the pinned Mathlib tree: every case-insensitive 'markov' hit is probability theory or category theory (MarkovCategory in CategoryTheory/MarkovCategory/Basic.lean, IsMarkovKernel and friends throughout Probability/Kernel/, sub-Gaussian and Markov-inequality material in Probability/); the identifiers MarkovTriple and markovEquation have zero hits; the literal 3 * x * y * z has zero hits; and 'vieta' has exactly one declaration, vieta_formula_quadratic at Algebra/Ring/Basic.lean line 154. So the Markov equation, Markov triples, and Vieta jumping as a construction are all absent.\n\nRelation to that one existing declaration. vieta_formula_quadratic states abstractly that a root x of X^2 - b*X + c has a companion root y with x + y = b and x * y = c. mul_jump_eq is the Markov instance of the product half, specialized to b = 3*x*y and c = x^2 + y^2, and isSolution_jump is the statement that the companion root is again a solution of the original three-variable equation, which the abstract lemma does not provide because it says nothing about the parameter dependence. Neither statement is an instantiation that Mathlib already records, and the elaborated types share no fingerprint with it.\n\nScope decisions. The equation is stated over the integers, the classical setting; no larger coefficient ring is needed and none of these facts becomes more useful over one. Solutions are carried as three separate coordinates and the jump acts on the last coordinate only. The other two jumps are this one composed with a permutation of arguments, so stating them would restate one result three times, which the contract forbids as a permutation family. The tree's descent ordering is deliberately omitted: it requires identifying the largest coordinate and excluding the singular triple (1,1,1), where the jump increases rather than decreases the coordinate, and it belongs with a Markov tree object rather than with the bare involution. isSolution_one_one_one is included because it is the root of that tree, and it is the only numeric statement in the module.\n\nProvenance. Produced without human mathematical direction, as the first iteration of an unattended loop in which the operator asked for three submissions and chose none of the subjects. The producer type is therefore recorded as autonomous_agent rather than llm: subject selection, the Mathlib absence check, the statements, the proofs, and the decision to submit were all made by the agent. The proofs use only linear_combination, ring, nlinarith and norm_num. Written directly against this repository at Mathlib v4.33.0-rc1."
+}
