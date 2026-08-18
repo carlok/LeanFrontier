@@ -28,7 +28,11 @@ DEFAULT_LIMITS = ROOT / "policy" / "limits.json"
 DEFAULT_AXIOMS = ROOT / "policy" / "axioms.json"
 DEFAULT_TRIVIALITY = ROOT / "policy" / "triviality.json"
 SUBMISSION_RE = re.compile(r"^Submissions/([a-z0-9][a-z0-9-]{2,63})\.json$")
-ENTRYPOINT_RE = re.compile(r"^LeanFrontier(?:\.[A-Za-z_][A-Za-z0-9_']*)+$")
+# At least two components after the ownership prefix: one mathematical
+# namespace and the declaration itself. `LeanFrontier.tentMap` would land in the
+# root namespace once the prefix is removed, and leaves the next submission in
+# the same area no name to use.
+ENTRYPOINT_RE = re.compile(r"^LeanFrontier(?:\.[A-Za-z_][A-Za-z0-9_']*){2,}$")
 FORBIDDEN_SECURITY = re.compile(
     r"\b(?:unsafe|run_tac|elab|macro|syntax)\b|#(?:eval|print|reduce|check|guard)", re.MULTILINE
 )
@@ -158,7 +162,11 @@ def validate_metadata(record: Any, submission_id: str, limits: dict[str, Any], m
     if not isinstance(entrypoints, list) or not entrypoints or len(entrypoints) > limits["max_public_entrypoints"]:
         report.reject("SCHEMA_INVALID", "entrypoints must be a nonempty bounded list", path)
     elif len(entrypoints) != len(set(entrypoints)) or any(not isinstance(item, str) or not ENTRYPOINT_RE.fullmatch(item) for item in entrypoints):
-        report.reject("SCHEMA_INVALID", "entrypoints must be unique qualified LeanFrontier names", path)
+        report.reject(
+            "SCHEMA_INVALID",
+            "entrypoints must be unique names of the form LeanFrontier.<Namespace>.<declaration>",
+            path,
+        )
     if record.get("base_mathlib_revision") != mathlib_release["mathlib_revision"]:
         report.reject("SCHEMA_INVALID", "base_mathlib_revision must match the pinned revision", path)
     context = record.get("source_context")

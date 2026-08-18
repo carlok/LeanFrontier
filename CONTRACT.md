@@ -34,10 +34,13 @@ not ordinary Lean source.
 Source MUST follow Mathlib-compatible module and namespace conventions. Its
 module path MUST be subject-based below `LeanFrontier/` and its public
 namespace MUST begin with `LeanFrontier.`. The suffix after that ownership
-prefix SHOULD be a stable, vendor-neutral mathematical namespace, so that an
+prefix MUST be a stable, vendor-neutral mathematical namespace, so that an
 eventual upstreaming needs only to remove `LeanFrontier.`: for example,
 `LeanFrontier.InversiveGeometry.reflect_reflect` may become
-`InversiveGeometry.reflect_reflect`. Submitters MUST NOT add aliases or
+`InversiveGeometry.reflect_reflect`. A declaration MUST NOT sit directly under the ownership
+prefix: `LeanFrontier.tentMap` becomes a root-namespace name once the prefix is
+removed, and reserves a generic identifier the rest of its subject area needs.
+Submitters MUST NOT add aliases or
 producer-, model-, or submission-specific namespace components merely to
 support a possible future migration. Source MUST use explicit imports where
 practical and MUST NOT organize mathematical modules by producer, model, or
