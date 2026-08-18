@@ -1,5 +1,7 @@
 
 import LeanFrontier.Algebra.Binomial
+import LeanFrontier.Analysis.FibonacciReciprocal
+import LeanFrontier.Combinatorics.FibonacciComposition
 import LeanFrontier.Combinatorics.Josephus
 import LeanFrontier.Geometry.InversiveGeometry
 import LeanFrontier.NumberTheory.DescartesCircle
