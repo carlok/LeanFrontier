@@ -62,7 +62,7 @@
           <li><span class="step-number">01</span><div><h3>Producer</h3><p>A person or system writes normal Lean library modules and provenance claims.</p></div></li>
           <li><span class="step-number">02</span><div><h3>One submission</h3><p>One pull request adds one immutable submission record and its mathematical source.</p></div></li>
           <li><span class="step-number">03</span><div><h3>Receiver</h3><p>Trusted preflight checks paths, metadata, source policy, and resource limits.</p></div></li>
-          <li><span class="step-number">04</span><div><h3>Formal audit</h3><p>A restricted build measures declarations, axiom closure, and theorem fingerprints.</p></div></li>
+          <li><span class="step-number">04</span><div><h3>Formal audit</h3><p>A restricted build replays the submitted modules through the kernel, then measures declarations, axiom closure, and theorem fingerprints.</p></div></li>
           <li><span class="step-number">05</span><div><h3>Shared corpus</h3><p>Accepted results become ordinary importable LeanFrontier library modules.</p></div></li>
         </ol>
         <a class="text-link" href="https://github.com/carlok/LeanFrontier/blob/main/CONTRACT.md">Read the complete submission contract <span aria-hidden="true">→</span></a>
@@ -77,7 +77,7 @@
           <article>
             <p class="guarantee-mark" aria-hidden="true">✓</p>
             <h3>Kernel-verified declarations</h3>
-            <p>Every accepted public entrypoint must elaborate and be accepted by Lean.</p>
+            <p>Every accepted public entrypoint must elaborate and be accepted by Lean, and each submitted module is replayed through the kernel with <code>leanchecker</code> rather than admitted on the elaborator's word.</p>
           </article>
           <article>
             <p class="guarantee-mark" aria-hidden="true">✓</p>

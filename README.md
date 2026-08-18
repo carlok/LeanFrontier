@@ -21,7 +21,7 @@ The active Lean/Mathlib release pair and its exact duplicate index are recorded
 in [`policy/mathlib-release.json`](policy/mathlib-release.json). LeanFrontier
 checks weekly for a newer official tagged Mathlib release, rebuilds that index
 in a trusted maintenance PR, and upgrades only when the full existing corpus
-still builds and has no new exact Mathlib duplicate. It does not monitor
+still builds, still passes the kernel, and has no new exact Mathlib duplicate. It does not monitor
 Mathlib `main` or open Mathlib pull requests.
 
 The project's motivation and broader research context are in the unchanged
