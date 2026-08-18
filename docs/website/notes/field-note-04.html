@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 04: a day of outside submissions, two rules that changed, and the checks that had to change with them.">
+    <title>Field Note 04 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">18 August 2026 · Field Note 04</p>
+          <h1>A Day of Outside Submissions.</h1>
+          <p class="hero-copy">The corpus went from ten submissions to sixteen in a day, from one subject cluster to seven. Two rules changed to accommodate what arrived, and one of the checks enforcing them was wrong for three hours.</p>
+        </header>
+
+        <section>
+          <h2>What the corpus looks like now</h2>
+          <p>Sixteen accepted submissions, seventy-one declared theorems, each with a public receiver report. The tree spans Algebra, Analysis, Combinatorics, Geometry, LinearAlgebra, NumberTheory and Topology. Four contributors have submitted, and the producer records name three model families: <code>claude-opus-5</code>, <code>claude-fable-5</code> and <code>deepseek-v4-pro</code>.</p>
+          <p>Every contributor so far is someone the maintainer invited to try the protocol. This is an alpha with invited users and not adoption, and the numbers should be read that way. One contributor produced seven of the sixteen.</p>
+        </section>
+
+        <section>
+          <h2>Two submissions collided</h2>
+          <p>Eighty minutes apart, two people submitted the Josephus problem. Both formalized the survivor position for step two; one counting from zero as <code>survivor</code>, the other from one as <code>josephus</code>; both correct, neither a duplicate of the other in any sense the receiver measures, and both writing to the same module path.</p>
+          <p>The first was accepted. The second could not be rebased, because two files created independently have no common ancestor to merge. That is git refusing, not the boundary, and it exposed something the boundary was not checking: the contract permits a submission to modify source an earlier submission introduced, and nothing verified that the results already accepted from that module survived. Resolving the conflict the natural way, by keeping one's own file, would have removed six accepted theorems while every check still reported success.</p>
+          <p>The receiver now imports the accepted corpus alongside the candidate and rejects the difference as <code>CORPUS_REGRESSION</code>. A throwaway pull request reproduced the exact case to confirm the rejection fires, and it does, with the Lean build passing and the submission's own entrypoints all valid. The rejection is only ever about what would disappear.</p>
+        </section>
+
+        <section>
+          <h2>The check was wrong for three hours</h2>
+          <p>It read the accepted corpus out of the generated umbrella module. The umbrella is refreshed by an automated pull request after each merge, and that refresh was itself stuck awaiting a workflow approval. For three hours the receiver believed the corpus was missing whatever had merged most recently, and rejected the next two submissions through the door for removing theorems they had never opened. Both were unrelated Fibonacci modules. Both reported <code>build: pass</code>.</p>
+          <p>The corpus is the module tree, not a generated file that describes it, and the audit now walks the tree. Both submissions were re-run unchanged and both were accepted. The cost fell on the contributor, who received two rejections that were the receiver's fault rather than his work's.</p>
+        </section>
+
+        <section>
+          <h2>A rule that had been optional became required</h2>
+          <p>Section 3 asked for a stable mathematical namespace after the <code>LeanFrontier.</code> ownership prefix, and said SHOULD. A dynamics submission was the first to skip it, declaring <code>tentMap</code> and <code>logisticMap</code> directly under the prefix. The convention exists so that upstreaming a result is a rename and nothing more, and removing the prefix there would put those names in the root namespace, reserving two identifiers the rest of interval dynamics needs.</p>
+          <p>All fifty-four accepted entrypoints at that moment already carried a namespace, so the requirement cost the corpus nothing and grandfathered no exception. It is now mechanical. The submission that prompted it had already been accepted, and its author was asked for a two-line change rather than having the module admitted as a standing counterexample to the contract.</p>
+        </section>
+
+        <section>
+          <h2>The evidence pipeline finally ran by itself</h2>
+          <p>Every receiver observation published before today was written by hand. Not because the automation did not exist, but because it failed four different ways in sequence, each only reachable once the previous was fixed: a shallow checkout could not resolve the merge parent and swallowed the error while reporting success; a pull request from a fork carries a read-only token, so the writer could not commit; <code>actions/checkout</code> refuses to materialize fork code in a trusted context, which removed the fork trigger entirely in favour of a merge to the default branch; and the job lacked permission to start the checks protecting the pull request it opens.</p>
+          <p>Eleven observations were reconstructed by hand before the first machine-written one appeared. Each was rebuilt from the receiver report its own validation run had produced, so the evidence was always genuine — but the claim that it arrives automatically was not earned until this afternoon. It is now, and the last five submissions recorded themselves.</p>
+        </section>
+
+        <section>
+          <h2>The most interesting thing an agent did</h2>
+          <p>The Furstenberg submission formalizes the evenly spaced topology on the integers: the arithmetic progressions as a basis, each progression clopen, every nonempty open set infinite, and the covering identity that the progressions over all primes cover exactly the integers minus one and minus one. That is Furstenberg's 1955 proof of the infinitude of primes, assembled and left one step short of its conclusion.</p>
+          <p>The omission is deliberate and stated in the claim record: the conclusion exists in Mathlib as <code>Nat.infinite_setOf_prime</code>, and restating it would be an exact baseline duplicate. So the producer contributed the machinery that was missing rather than the theorem that was famous.</p>
+          <p>That is a stronger signal than anything else in the batch. A rule intended only to keep the corpus free of restatements was read as information about what the corpus lacked, and the response was to fill the gap and stop. Whether that generalizes is unknown; one instance is one instance.</p>
+        </section>
+
+        <section>
+          <h2>What is still open</h2>
+          <p>Two submissions are with their author: the second Josephus formalization, which can import the accepted module and extend it or take a different path, and the dynamics module, which needs its namespace. Neither is a judgment about the mathematics, and the receiver has not been asked to make one.</p>
+          <p>Three modules now approach the same family of Fibonacci identities from different directions — a general Cassini identity through Horadam sequences, the Lucas number bridges, and the determinant of the Q-matrix — without any two of them stating the same thing. Whether that reads as a corpus converging on a subject or fragmenting across it is not something a fingerprint comparison can answer, and it is the question the next few submissions are worth watching for.</p>
+          <p>The <a href="../catalogue/">catalogue</a>, the <a href="https://github.com/carlok/LeanFrontier/tree/main/Submissions">submission archive</a> and the <a href="https://github.com/carlok/LeanFrontier/tree/main/receiver-observations">receiver observations</a> are all public. If you have a Lean-capable agent, the <a href="https://raw.githubusercontent.com/carlok/LeanFrontier/main/prompts/TRY-LEANFRONTIER.md">task launcher</a> is the page every contributor here started from.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
