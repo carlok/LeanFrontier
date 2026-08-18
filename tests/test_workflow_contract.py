@@ -89,7 +89,7 @@ class WorkflowContractTests(unittest.TestCase):
         for required in (
             "push:",
             "branches: [main]",
-            "actions: read",
+            "actions: write",
             "tools/persist_observation.py",
             "receiver-artifact/report-output/report.json",
             "receiver-observations",
@@ -123,6 +123,11 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("Refuse to record if the merge touched trusted infrastructure", OBSERVATION_WORKFLOW)
         for guarded in (".github", "tools", "policy", "schema", "lakefile.toml", "lean-toolchain"):
             self.assertIn(guarded, OBSERVATION_WORKFLOW)
+
+    def test_every_generator_may_dispatch_the_checks_it_depends_on(self) -> None:
+        """Opening the protected pull request is useless without dispatching its checks."""
+        for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW, OBSERVATION_WORKFLOW):
+            self.assertIn("actions: write", workflow)
 
     def test_trusted_generators_open_protected_maintenance_prs(self) -> None:
         for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW, OBSERVATION_WORKFLOW):

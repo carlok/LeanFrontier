@@ -10,7 +10,10 @@ on:
     branches: [main]
 
 permissions:
-  actions: read
+  # `read` downloads the receiver artifact; `write` is additionally required to
+  # dispatch the checks that protect the generated pull request this job opens,
+  # matching sync-umbrella and sync-catalogue.
+  actions: write
   contents: write
   pull-requests: write
 
