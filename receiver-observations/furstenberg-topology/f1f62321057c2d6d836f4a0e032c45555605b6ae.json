@@ -1,0 +1,450 @@
+{
+  "accepted_revision": "f1f62321057c2d6d836f4a0e032c45555605b6ae",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-18T17:53:25+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 285.207,
+    "observed": {
+      "added_lines": 203,
+      "audited_declarations": {
+        "LeanFrontier.Int.arithProgression": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Int.arithProgression",
+          "restatement": false,
+          "statement_sha256": "f4e5234a931a7dbda3ac47046df6a7729f8d2326468a39f7caa9c91284ab97e7",
+          "type_dependencies": [
+            "Int",
+            "Set"
+          ]
+        },
+        "LeanFrontier.Int.iUnion_prime_arithProgression": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.iUnion_prime_arithProgression",
+          "restatement": false,
+          "statement_sha256": "47f380ba47d198cb18e10c545f39eff5c6f2b9156ea805ffc0ccbf235b22f552",
+          "type_dependencies": [
+            "Compl.compl",
+            "Eq",
+            "Insert.insert",
+            "Int",
+            "Int.instNegInt",
+            "LeanFrontier.Int.arithProgression",
+            "Membership.mem",
+            "Nat",
+            "Nat.Prime",
+            "Nat.cast",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "Set",
+            "Set.iUnion",
+            "Set.instCompl",
+            "Set.instInsert",
+            "Set.instMembership",
+            "Set.instSingletonSet",
+            "Singleton.singleton",
+            "instNatCastInt",
+            "instOfNat",
+            "setOf"
+          ]
+        },
+        "LeanFrontier.Int.infinite_arithProgression": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.infinite_arithProgression",
+          "restatement": false,
+          "statement_sha256": "300240412febcfb60f08ca96cad0504a80c523c4eeaa5d929b4544ae1254b3a6",
+          "type_dependencies": [
+            "Int",
+            "LeanFrontier.Int.arithProgression",
+            "Ne",
+            "OfNat.ofNat",
+            "Set.Infinite",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.Int.infinite_of_iUnion_eq_compl": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.infinite_of_iUnion_eq_compl",
+          "restatement": false,
+          "statement_sha256": "52d6d8ff6b3f3963b7a91b2d5138ff4fbc011f85205aa4dc379b1947607636ae",
+          "type_dependencies": [
+            "Compl.compl",
+            "Eq",
+            "Insert.insert",
+            "Int",
+            "Int.instNegInt",
+            "LeanFrontier.Int.arithProgression",
+            "Membership.mem",
+            "Nat",
+            "Nat.cast",
+            "Neg.neg",
+            "Not",
+            "OfNat.ofNat",
+            "Set",
+            "Set.Infinite",
+            "Set.iUnion",
+            "Set.instCompl",
+            "Set.instInsert",
+            "Set.instMembership",
+            "Set.instSingletonSet",
+            "Singleton.singleton",
+            "instNatCastInt",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Int.infinite_of_isOpen": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.infinite_of_isOpen",
+          "restatement": false,
+          "statement_sha256": "d10a7b29b25c414cf49efa33d04a676b83ed60274b8626a0dff0d0ed0234b247",
+          "type_dependencies": [
+            "Int",
+            "IsOpen",
+            "LeanFrontier.Int.furstenbergTopology",
+            "Set",
+            "Set.Infinite",
+            "Set.Nonempty"
+          ]
+        },
+        "LeanFrontier.Int.isClosed_arithProgression": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.isClosed_arithProgression",
+          "restatement": false,
+          "statement_sha256": "fa74aaa726bab690656f9228808873c127b6dc34a024ddbe26da4ad629645fe6",
+          "type_dependencies": [
+            "Int",
+            "IsClosed",
+            "LeanFrontier.Int.arithProgression",
+            "LeanFrontier.Int.furstenbergTopology",
+            "Ne",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.Int.isOpen_arithProgression": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.isOpen_arithProgression",
+          "restatement": false,
+          "statement_sha256": "df75e75c08639fa35d3742c0eec46abe896ff20ae635d06c40831dfff88bf0de",
+          "type_dependencies": [
+            "Int",
+            "IsOpen",
+            "LeanFrontier.Int.arithProgression",
+            "LeanFrontier.Int.furstenbergTopology",
+            "Ne",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.Int.isTopologicalBasis_arithProgression": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.isTopologicalBasis_arithProgression",
+          "restatement": false,
+          "statement_sha256": "cd6fe9610173e1fde1db2a1e99140ba3a9d0b2314444484aa66991f033be7d38",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "Exists",
+            "Int",
+            "LeanFrontier.Int.arithProgression",
+            "LeanFrontier.Int.furstenbergTopology",
+            "Ne",
+            "OfNat.ofNat",
+            "Set",
+            "TopologicalSpace.IsTopologicalBasis",
+            "instOfNat",
+            "setOf"
+          ]
+        },
+        "LeanFrontier.Int.mem_arithProgression": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.mem_arithProgression",
+          "restatement": false,
+          "statement_sha256": "141e595d570492db13e99c964194e81a8e3581d1ea55570ef7bea5ff94421f4e",
+          "type_dependencies": [
+            "Dvd.dvd",
+            "HSub.hSub",
+            "Iff",
+            "Int",
+            "Int.instDvd",
+            "Int.instSub",
+            "LeanFrontier.Int.arithProgression",
+            "Membership.mem",
+            "Set",
+            "Set.instMembership",
+            "instHSub"
+          ]
+        },
+        "LeanFrontier.Int.self_mem_arithProgression": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.self_mem_arithProgression",
+          "restatement": false,
+          "statement_sha256": "bcd83ab96cb8a23149f0165b421ce256a76e39dceff0e3644400a46f49c5d0cc",
+          "type_dependencies": [
+            "Int",
+            "LeanFrontier.Int.arithProgression",
+            "Membership.mem",
+            "Set",
+            "Set.instMembership"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Int.iUnion_prime_arithProgression": "inconclusive",
+        "LeanFrontier.Int.infinite_arithProgression": "inconclusive",
+        "LeanFrontier.Int.infinite_of_iUnion_eq_compl": "inconclusive",
+        "LeanFrontier.Int.infinite_of_isOpen": "inconclusive",
+        "LeanFrontier.Int.isClosed_arithProgression": "inconclusive",
+        "LeanFrontier.Int.isOpen_arithProgression": "inconclusive",
+        "LeanFrontier.Int.isTopologicalBasis_arithProgression": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 14388,
+      "changed_files": [
+        "LeanFrontier/Topology/Furstenberg.lean",
+        "Submissions/furstenberg-topology.json"
+      ],
+      "corpus_entrypoints_checked": 65,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Int.iUnion_prime_arithProgression": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.iUnion_prime_arithProgression",
+          "statement_sha256": "47f380ba47d198cb18e10c545f39eff5c6f2b9156ea805ffc0ccbf235b22f552",
+          "type_dependencies": [
+            "Compl.compl",
+            "Eq",
+            "Insert.insert",
+            "Int",
+            "Int.instNegInt",
+            "LeanFrontier.Int.arithProgression",
+            "Membership.mem",
+            "Nat",
+            "Nat.Prime",
+            "Nat.cast",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "Set",
+            "Set.iUnion",
+            "Set.instCompl",
+            "Set.instInsert",
+            "Set.instMembership",
+            "Set.instSingletonSet",
+            "Singleton.singleton",
+            "instNatCastInt",
+            "instOfNat",
+            "setOf"
+          ]
+        },
+        "LeanFrontier.Int.infinite_arithProgression": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.infinite_arithProgression",
+          "statement_sha256": "300240412febcfb60f08ca96cad0504a80c523c4eeaa5d929b4544ae1254b3a6",
+          "type_dependencies": [
+            "Int",
+            "LeanFrontier.Int.arithProgression",
+            "Ne",
+            "OfNat.ofNat",
+            "Set.Infinite",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.Int.infinite_of_iUnion_eq_compl": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.infinite_of_iUnion_eq_compl",
+          "statement_sha256": "52d6d8ff6b3f3963b7a91b2d5138ff4fbc011f85205aa4dc379b1947607636ae",
+          "type_dependencies": [
+            "Compl.compl",
+            "Eq",
+            "Insert.insert",
+            "Int",
+            "Int.instNegInt",
+            "LeanFrontier.Int.arithProgression",
+            "Membership.mem",
+            "Nat",
+            "Nat.cast",
+            "Neg.neg",
+            "Not",
+            "OfNat.ofNat",
+            "Set",
+            "Set.Infinite",
+            "Set.iUnion",
+            "Set.instCompl",
+            "Set.instInsert",
+            "Set.instMembership",
+            "Set.instSingletonSet",
+            "Singleton.singleton",
+            "instNatCastInt",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Int.infinite_of_isOpen": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.infinite_of_isOpen",
+          "statement_sha256": "d10a7b29b25c414cf49efa33d04a676b83ed60274b8626a0dff0d0ed0234b247",
+          "type_dependencies": [
+            "Int",
+            "IsOpen",
+            "LeanFrontier.Int.furstenbergTopology",
+            "Set",
+            "Set.Infinite",
+            "Set.Nonempty"
+          ]
+        },
+        "LeanFrontier.Int.isClosed_arithProgression": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.isClosed_arithProgression",
+          "statement_sha256": "fa74aaa726bab690656f9228808873c127b6dc34a024ddbe26da4ad629645fe6",
+          "type_dependencies": [
+            "Int",
+            "IsClosed",
+            "LeanFrontier.Int.arithProgression",
+            "LeanFrontier.Int.furstenbergTopology",
+            "Ne",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.Int.isOpen_arithProgression": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.isOpen_arithProgression",
+          "statement_sha256": "df75e75c08639fa35d3742c0eec46abe896ff20ae635d06c40831dfff88bf0de",
+          "type_dependencies": [
+            "Int",
+            "IsOpen",
+            "LeanFrontier.Int.arithProgression",
+            "LeanFrontier.Int.furstenbergTopology",
+            "Ne",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.Int.isTopologicalBasis_arithProgression": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.isTopologicalBasis_arithProgression",
+          "statement_sha256": "cd6fe9610173e1fde1db2a1e99140ba3a9d0b2314444484aa66991f033be7d38",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "Exists",
+            "Int",
+            "LeanFrontier.Int.arithProgression",
+            "LeanFrontier.Int.furstenbergTopology",
+            "Ne",
+            "OfNat.ofNat",
+            "Set",
+            "TopologicalSpace.IsTopologicalBasis",
+            "instOfNat",
+            "setOf"
+          ]
+        }
+      },
+      "lean_source_bytes": 9748,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 11
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "furstenberg-topology",
+  "trusted_receiver_revision": "143d40cb51557b18222eba74f6c30b14e0818a6b",
+  "validated_candidate_revision": "a076d3f07191092860ab449cf29b2356b01bbab7",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32156018934"
+}

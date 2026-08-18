@@ -712,4 +712,81 @@
   <dt>Fingerprint</dt><dd><code>7e3e2c3f07fc325b36056364777ce1bf31e62aae77931328950986947aea6469</code></dd></dl>
   <p>The reciprocals of Sylvester&#x27;s sequence telescope: the partial sums of `1 / S i` are `1 - 1 / (S n - 1)`, so the greedy unit fraction expansion of `1` never overshoots.</p>
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/sylvester-sequence-coprimality/a93c2e393ef2fa763197c6ce7a700e723868b71d.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Int.isTopologicalBasis_arithProgression</code></h2>
+  <p class="statement">: @IsTopologicalBasis ℤ furstenbergTopology {S : Set ℤ | ∃ a b, b ≠ 0 ∧ S = arithProgression a b}</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Topology.Furstenberg</code></dd>
+  <dt>Claim</dt><dd>furstenberg-topology · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>f1f62321057c2d6d836f4a0e032c45555605b6ae</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>cd6fe9610173e1fde1db2a1e99140ba3a9d0b2314444484aa66991f033be7d38</code></dd></dl>
+  <p>The arithmetic progressions with nonzero step are a basis of the Furstenberg topology.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Topology/Furstenberg.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/furstenberg-topology/f1f62321057c2d6d836f4a0e032c45555605b6ae.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Int.isOpen_arithProgression</code></h2>
+  <p class="statement">(a b : ℤ) (hb : b ≠ 0) : IsOpen[furstenbergTopology] (arithProgression a b)</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Topology.Furstenberg</code></dd>
+  <dt>Claim</dt><dd>furstenberg-topology · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>f1f62321057c2d6d836f4a0e032c45555605b6ae</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>df75e75c08639fa35d3742c0eec46abe896ff20ae635d06c40831dfff88bf0de</code></dd></dl>
+  <p>Arithmetic progressions with nonzero step are open.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Topology/Furstenberg.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/furstenberg-topology/f1f62321057c2d6d836f4a0e032c45555605b6ae.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Int.isClosed_arithProgression</code></h2>
+  <p class="statement">(a : ℤ) {b : ℤ} (hb : b ≠ 0) : IsClosed[furstenbergTopology] (arithProgression a b)</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Topology.Furstenberg</code></dd>
+  <dt>Claim</dt><dd>furstenberg-topology · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>f1f62321057c2d6d836f4a0e032c45555605b6ae</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>fa74aaa726bab690656f9228808873c127b6dc34a024ddbe26da4ad629645fe6</code></dd></dl>
+  <p>Arithmetic progressions with nonzero step are closed: after reducing to a positive step via `abs_dvd`, the complement is the union of the progressions shifted by the nonzero residues. Together with `isOpen_arithProgression`, the basic sets of the Furstenberg topology are clopen.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Topology/Furstenberg.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/furstenberg-topology/f1f62321057c2d6d836f4a0e032c45555605b6ae.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Int.infinite_arithProgression</code></h2>
+  <p class="statement">(a : ℤ) {b : ℤ} (hb : b ≠ 0) : (arithProgression a b).Infinite</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Topology.Furstenberg</code></dd>
+  <dt>Claim</dt><dd>furstenberg-topology · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>f1f62321057c2d6d836f4a0e032c45555605b6ae</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>300240412febcfb60f08ca96cad0504a80c523c4eeaa5d929b4544ae1254b3a6</code></dd></dl>
+  <p>An arithmetic progression with nonzero step is infinite.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Topology/Furstenberg.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/furstenberg-topology/f1f62321057c2d6d836f4a0e032c45555605b6ae.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Int.infinite_of_isOpen</code></h2>
+  <p class="statement">{U : Set ℤ} (hU : IsOpen[furstenbergTopology] U) (hne : U.Nonempty) : U.Infinite</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Topology.Furstenberg</code></dd>
+  <dt>Claim</dt><dd>furstenberg-topology · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>f1f62321057c2d6d836f4a0e032c45555605b6ae</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>d10a7b29b25c414cf49efa33d04a676b83ed60274b8626a0dff0d0ed0234b247</code></dd></dl>
+  <p>Every nonempty open set of the Furstenberg topology is infinite: it contains a whole arithmetic progression around each of its points.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Topology/Furstenberg.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/furstenberg-topology/f1f62321057c2d6d836f4a0e032c45555605b6ae.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Int.iUnion_prime_arithProgression</code></h2>
+  <p class="statement">: ⋃ p ∈ {p : ℕ | p.Prime}, arithProgression 0 (p : ℤ) = ({1, -1} : Set ℤ)ᶜ</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Topology.Furstenberg</code></dd>
+  <dt>Claim</dt><dd>furstenberg-topology · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>f1f62321057c2d6d836f4a0e032c45555605b6ae</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>47f380ba47d198cb18e10c545f39eff5c6f2b9156ea805ffc0ccbf235b22f552</code></dd></dl>
+  <p>Furstenberg&#x27;s covering identity: the progressions `pℤ` over all primes cover exactly the integers other than `1` and `-1`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Topology/Furstenberg.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/furstenberg-topology/f1f62321057c2d6d836f4a0e032c45555605b6ae.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Int.infinite_of_iUnion_eq_compl</code></h2>
+  <p class="statement">{S : Set ℕ} (h0 : 0 ∉ S) (hcov : ⋃ p ∈ S, arithProgression 0 (p : ℤ) = ({1, -1} : Set ℤ)ᶜ) : S.Infinite</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Topology.Furstenberg</code></dd>
+  <dt>Claim</dt><dd>furstenberg-topology · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>f1f62321057c2d6d836f4a0e032c45555605b6ae</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>52d6d8ff6b3f3963b7a91b2d5138ff4fbc011f85205aa4dc379b1947607636ae</code></dd></dl>
+  <p>The engine of Furstenberg&#x27;s proof: a set of nonzero naturals whose progressions cover all of `ℤ \ {1, -1}` cannot be finite, since a finite union of closed progressions is closed, and `{1, -1}` cannot be open, being finite and nonempty. Applied to the set of primes via `iUnion_prime_arithProgression`, this yields the infinitude of primes, which Mathlib already states as `Nat.infinite_setOf_prime`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Topology/Furstenberg.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/furstenberg-topology/f1f62321057c2d6d836f4a0e032c45555605b6ae.json">receiver report</a></p>
 </article></body></html>
