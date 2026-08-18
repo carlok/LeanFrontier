@@ -10,6 +10,171 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Algebra/Binomial.lean">View source</a></p>
 </article>
 <article>
+  <h2><code>LeanFrontier.Nat.three_pow_le_two_pow_mul_fib</code></h2>
+  <p class="statement">: ∀ n : ℕ, 3 ^ n ≤ 2 ^ n * Nat.fib (n + 3) | 0 =&gt; by decide | n + 1 =&gt; by have ih</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.FibonacciReciprocal</code></dd>
+  <dt>Claim</dt><dd>fibonacci-reciprocal-summable · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>df9328d310d8df9e1c6348d7c21dbbd4de9a59e9</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>b1fa558d0766f970035c48b3c171e8e2182cce0b0e1e6c803639909cb088d4d6</code></dd></dl>
+  <p>Exponential growth of the Fibonacci numbers, in `ℕ`: `3 ^ n ≤ 2 ^ n * fib (n + 3)`, i.e. `fib (n + 3)` dominates `(3 / 2) ^ n`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/FibonacciReciprocal.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-reciprocal-summable/df9328d310d8df9e1c6348d7c21dbbd4de9a59e9.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.inv_fib_add_three_le</code></h2>
+  <p class="statement">(n : ℕ) : ((Nat.fib (n + 3) : ℝ))⁻¹ ≤ (2 / 3) ^ n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.FibonacciReciprocal</code></dd>
+  <dt>Claim</dt><dd>fibonacci-reciprocal-summable · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>df9328d310d8df9e1c6348d7c21dbbd4de9a59e9</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>dd17b6f60d74a30eb73a3f910f22c90c9ac79ffdba32af1f9deeb5c8d4f9521a</code></dd></dl>
+  <p>The reciprocal Fibonacci numbers are dominated by the geometric sequence `(2 / 3) ^ n` after shifting the index by three.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/FibonacciReciprocal.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-reciprocal-summable/df9328d310d8df9e1c6348d7c21dbbd4de9a59e9.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.summable_inv_fib</code></h2>
+  <p class="statement">: Summable fun n : ℕ =&gt; ((Nat.fib n : ℝ))⁻¹</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.FibonacciReciprocal</code></dd>
+  <dt>Claim</dt><dd>fibonacci-reciprocal-summable · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>df9328d310d8df9e1c6348d7c21dbbd4de9a59e9</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>a20dbe7adf8e9a119c458d3f9554e15fe8298def801836d1d5bf2a3136fe1a36</code></dd></dl>
+  <p>The reciprocal Fibonacci series converges. The term at `n = 0` is `(0 : ℝ)⁻¹ = 0`, so summing over all indices is harmless.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/FibonacciReciprocal.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-reciprocal-summable/df9328d310d8df9e1c6348d7c21dbbd4de9a59e9.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.tsum_inv_fib_le</code></h2>
+  <p class="statement">: ∑&#x27; n : ℕ, ((Nat.fib n : ℝ))⁻¹ ≤ 5</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.FibonacciReciprocal</code></dd>
+  <dt>Claim</dt><dd>fibonacci-reciprocal-summable · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>df9328d310d8df9e1c6348d7c21dbbd4de9a59e9</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>72b64989eeca51cf3fb26f2403c65def68771fcfcadda8f024a8231ff088a065</code></dd></dl>
+  <p>A crude explicit bound on the reciprocal Fibonacci constant: the head `1/1 + 1/1` plus the geometric tail bound `∑ (2/3) ^ n = 3`. The true value is `ψ ≈ 3.36`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/FibonacciReciprocal.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-reciprocal-summable/df9328d310d8df9e1c6348d7c21dbbd4de9a59e9.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.mem_oneTwoCompositions</code></h2>
+  <p class="statement">{n : ℕ} {l : List ℕ} : l ∈ oneTwoCompositions n ↔ l.sum = n ∧ ∀ x ∈ l, x = 1 ∨ x = 2</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>a1d2e6cf0573257126542310990cc7482d85ed13bdbc7bf7e7acb8ad89daf313</code></dd></dl>
+  <p>Membership in `oneTwoCompositions n` is exactly the a priori description: the list sums to `n` and every part is `1` or `2`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-composition-count/2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.card_oneTwoCompositions</code></h2>
+  <p class="statement">: ∀ n, (oneTwoCompositions n).card = Nat.fib (n + 1) | 0 =&gt; by simp | 1 =&gt; by simp | n + 2 =&gt; by have ih1</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>035d0182ec4c058222b429ee2cbd933067074263f4383791dbf26cf71c0f9e9a</code></dd></dl>
+  <p>The compositions of `n` into parts `1` and `2` are counted by the Fibonacci numbers: there are `fib (n + 1)` of them.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-composition-count/2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.length_le_of_mem_oneTwoCompositions</code></h2>
+  <p class="statement">{n : ℕ} {l : List ℕ} (h : l ∈ oneTwoCompositions n) : l.length ≤ n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>4ffd93a4ead03a02f0f74291db938abb065e9301124abd78c5cd8b7bf5792054</code></dd></dl>
+  <p>A composition of `n` into parts `1` and `2` has at most `n` parts.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-composition-count/2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.le_two_mul_length_of_mem_oneTwoCompositions</code></h2>
+  <p class="statement">{n : ℕ} {l : List ℕ} (h : l ∈ oneTwoCompositions n) : n ≤ 2 * l.length</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>b17b89b58c4f503e19462d6f8fce12166ae7c10773e255616960223ad8bb945f</code></dd></dl>
+  <p>A composition of `n` into parts `1` and `2` has at least `n / 2` parts, in the subtraction-free form `n ≤ 2 * length`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-composition-count/2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.reverse_mem_oneTwoCompositions</code></h2>
+  <p class="statement">{n : ℕ} {l : List ℕ} (h : l ∈ oneTwoCompositions n) : l.reverse ∈ oneTwoCompositions n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>d7932629d1386f62c36555ff7fbfcbd1983b56e559859e8d857701d59f153660</code></dd></dl>
+  <p>Reading a composition of `n` into parts `1` and `2` right to left gives another one: the set is closed under list reversal.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-composition-count/2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.survivor_lt_self</code></h2>
+  <p class="statement">(n : ℕ) (hn : n ≠ 0) : survivor n &lt; n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
+  <dt>Claim</dt><dd>josephus-survivor-binary-shift · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2640351308f57c0d488f84d4d37cad41c806a6a4</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code></code></dd>
+  <dt>Fingerprint</dt><dd><code>238ae38b1378919d741ce8c78903eec3a859918b8baaa87c444435055370fc24</code></dd></dl>
+  <p>The survivor of a nonempty circle is one of its positions.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/josephus-survivor-binary-shift/2640351308f57c0d488f84d4d37cad41c806a6a4.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.survivor_eq_two_mul_sub_two_pow_log</code></h2>
+  <p class="statement">(n : ℕ) (hn : n ≠ 0) : survivor n = 2 * (n - 2 ^ Nat.log 2 n)</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
+  <dt>Claim</dt><dd>josephus-survivor-binary-shift · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2640351308f57c0d488f84d4d37cad41c806a6a4</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>c920e0d923688b6c55e5088169aad76b0262b78b3d113ebab0ae0270756ff1a8</code></dd></dl>
+  <p>The survivor of a circle of `n` people is `2 * (n - 2 ^ ⌊log₂ n⌋)`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/josephus-survivor-binary-shift/2640351308f57c0d488f84d4d37cad41c806a6a4.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.survivor_two_pow_add</code></h2>
+  <p class="statement">(m k : ℕ) (hk : k &lt; 2 ^ m) : survivor (2 ^ m + k) = 2 * k</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
+  <dt>Claim</dt><dd>josephus-survivor-binary-shift · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2640351308f57c0d488f84d4d37cad41c806a6a4</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>bd21f35278497967b1fb4143c21eeac0bf89253ef567e588cacbc6bec2caf9e2</code></dd></dl>
+  <p>Writing the size of the circle as `2 ^ m + k` with `k &lt; 2 ^ m`, the survivor is `2 * k`: in binary, the leading one of `n` is deleted and a zero is appended.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/josephus-survivor-binary-shift/2640351308f57c0d488f84d4d37cad41c806a6a4.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.survivor_two_mul</code></h2>
+  <p class="statement">(n : ℕ) (hn : n ≠ 0) : survivor (2 * n) = 2 * survivor n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
+  <dt>Claim</dt><dd>josephus-survivor-binary-shift · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2640351308f57c0d488f84d4d37cad41c806a6a4</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>97ca93a26b9251a0e7826b4f3ad5580d0202065b1bf40fedae682b34856ea93a</code></dd></dl>
+  <p>Doubling the circle doubles the survivor.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/josephus-survivor-binary-shift/2640351308f57c0d488f84d4d37cad41c806a6a4.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.survivor_two_mul_add_one</code></h2>
+  <p class="statement">(n : ℕ) (hn : n ≠ 0) : survivor (2 * n + 1) = 2 * survivor n + 2</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
+  <dt>Claim</dt><dd>josephus-survivor-binary-shift · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2640351308f57c0d488f84d4d37cad41c806a6a4</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>41bfc9ba1853413e547637b009f2491eb870529eb1bb6e1bb4d2df1492dc1c75</code></dd></dl>
+  <p>Doubling the circle and adding one person moves the survivor two places on.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/josephus-survivor-binary-shift/2640351308f57c0d488f84d4d37cad41c806a6a4.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.survivor_eq_zero_iff</code></h2>
+  <p class="statement">(n : ℕ) (hn : n ≠ 0) : survivor n = 0 ↔ ∃ m, n = 2 ^ m</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
+  <dt>Claim</dt><dd>josephus-survivor-binary-shift · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2640351308f57c0d488f84d4d37cad41c806a6a4</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>7f4af9e7df50272e1766792ed6dbb0b91455a373602f785ed5070fff0170e6e6</code></dd></dl>
+  <p>The person who starts the count survives exactly when the circle has a power of two members.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/josephus-survivor-binary-shift/2640351308f57c0d488f84d4d37cad41c806a6a4.json">receiver report</a></p>
+</article>
+<article>
   <h2><code>LeanFrontier.InversiveGeometry.reflect_eq_self_iff</code></h2>
   <p class="statement">(z : ℂ) (hden : (A : ℂ) * conj z + B ≠ 0) : reflect A C B z = z ↔ hermitianForm A C B z = 0</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.Geometry.InversiveGeometry</code></dd>
