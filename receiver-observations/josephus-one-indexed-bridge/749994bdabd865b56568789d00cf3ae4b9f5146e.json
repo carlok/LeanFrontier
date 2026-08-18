@@ -1,0 +1,324 @@
+{
+  "accepted_revision": "749994bdabd865b56568789d00cf3ae4b9f5146e",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-18T18:16:40+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 195.878,
+    "observed": {
+      "added_lines": 181,
+      "audited_declarations": {
+        "LeanFrontier.Josephus.josephus": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Josephus.josephus",
+          "restatement": false,
+          "statement_sha256": "79181c7f4b758c1c40ed2cbb52b75a62fbd6c0a82e859369d7ff80d8805a34c4",
+          "type_dependencies": [
+            "Nat"
+          ]
+        },
+        "LeanFrontier.Josephus.josephus_eq_self_iff": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Josephus.josephus_eq_self_iff",
+          "restatement": false,
+          "statement_sha256": "d18a3b866f71a620ceaf5d28538852e6baf9dd8414d2e831ecbfb419e4d40f34",
+          "type_dependencies": [
+            "Eq",
+            "Exists",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Iff",
+            "LeanFrontier.Josephus.josephus",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat",
+            "instSubNat"
+          ]
+        },
+        "LeanFrontier.Josephus.josephus_eq_survivor_add_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Josephus.josephus_eq_survivor_add_one",
+          "restatement": false,
+          "statement_sha256": "743913e60d6416a31fed9e2c06878dc320557c9e267f8d4b47af7b929d7936cb",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Josephus.josephus",
+            "LeanFrontier.Josephus.survivor",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Josephus.josephus_le": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Josephus.josephus_le",
+          "restatement": false,
+          "statement_sha256": "9fc4d177837f8d040bbd6af4a58a8cc1c90abca9960041b04d0018d0bb1e8ffc",
+          "type_dependencies": [
+            "LE.le",
+            "LeanFrontier.Josephus.josephus",
+            "Nat",
+            "instLENat"
+          ]
+        },
+        "LeanFrontier.Josephus.josephus_pos": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Josephus.josephus_pos",
+          "restatement": false,
+          "statement_sha256": "d7d6133cc1bf02d0855ac5d9d8a1ac359958eb74d86c9645fe97dbac49c43d9f",
+          "type_dependencies": [
+            "LT.lt",
+            "LeanFrontier.Josephus.josephus",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Josephus.josephus_two_pow": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Josephus.josephus_two_pow",
+          "restatement": false,
+          "statement_sha256": "55b8ee1544c421f762dde5e25e7abaf4d19d264d8a1547352ebc39fde40b6c08",
+          "type_dependencies": [
+            "Eq",
+            "HPow.hPow",
+            "LeanFrontier.Josephus.josephus",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Josephus.odd_josephus": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Josephus.odd_josephus",
+          "restatement": false,
+          "statement_sha256": "1e52e9b5b685f3ab82ecfcd1496eafdc711926af80f51b093ad717bd91f50376",
+          "type_dependencies": [
+            "LeanFrontier.Josephus.josephus",
+            "Nat",
+            "Nat.instSemiring",
+            "Ne",
+            "Odd",
+            "OfNat.ofNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Josephus.josephus_eq_self_iff": "inconclusive",
+        "LeanFrontier.Josephus.josephus_eq_survivor_add_one": "inconclusive",
+        "LeanFrontier.Josephus.josephus_le": "inconclusive",
+        "LeanFrontier.Josephus.josephus_pos": "inconclusive",
+        "LeanFrontier.Josephus.josephus_two_pow": "inconclusive",
+        "LeanFrontier.Josephus.odd_josephus": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 12800,
+      "changed_files": [
+        "LeanFrontier/Combinatorics/Josephus/OneIndexed.lean",
+        "Submissions/josephus-one-indexed-bridge.json"
+      ],
+      "corpus_entrypoints_checked": 72,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Josephus.josephus_eq_self_iff": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Josephus.josephus_eq_self_iff",
+          "statement_sha256": "d18a3b866f71a620ceaf5d28538852e6baf9dd8414d2e831ecbfb419e4d40f34",
+          "type_dependencies": [
+            "Eq",
+            "Exists",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Iff",
+            "LeanFrontier.Josephus.josephus",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat",
+            "instSubNat"
+          ]
+        },
+        "LeanFrontier.Josephus.josephus_eq_survivor_add_one": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Josephus.josephus_eq_survivor_add_one",
+          "statement_sha256": "743913e60d6416a31fed9e2c06878dc320557c9e267f8d4b47af7b929d7936cb",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Josephus.josephus",
+            "LeanFrontier.Josephus.survivor",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Josephus.josephus_le": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Josephus.josephus_le",
+          "statement_sha256": "9fc4d177837f8d040bbd6af4a58a8cc1c90abca9960041b04d0018d0bb1e8ffc",
+          "type_dependencies": [
+            "LE.le",
+            "LeanFrontier.Josephus.josephus",
+            "Nat",
+            "instLENat"
+          ]
+        },
+        "LeanFrontier.Josephus.josephus_pos": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Josephus.josephus_pos",
+          "statement_sha256": "d7d6133cc1bf02d0855ac5d9d8a1ac359958eb74d86c9645fe97dbac49c43d9f",
+          "type_dependencies": [
+            "LT.lt",
+            "LeanFrontier.Josephus.josephus",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Josephus.josephus_two_pow": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Josephus.josephus_two_pow",
+          "statement_sha256": "55b8ee1544c421f762dde5e25e7abaf4d19d264d8a1547352ebc39fde40b6c08",
+          "type_dependencies": [
+            "Eq",
+            "HPow.hPow",
+            "LeanFrontier.Josephus.josephus",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Josephus.odd_josephus": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Josephus.odd_josephus",
+          "statement_sha256": "1e52e9b5b685f3ab82ecfcd1496eafdc711926af80f51b093ad717bd91f50376",
+          "type_dependencies": [
+            "LeanFrontier.Josephus.josephus",
+            "Nat",
+            "Nat.instSemiring",
+            "Ne",
+            "Odd",
+            "OfNat.ofNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "lean_source_bytes": 8120,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 13
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "josephus-one-indexed-bridge",
+  "trusted_receiver_revision": "a193761658f4a45b91af9595a2534dc787255eaf",
+  "validated_candidate_revision": "73375288a812c970388305eb263464fc1f44f4a0",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32158729399"
+}

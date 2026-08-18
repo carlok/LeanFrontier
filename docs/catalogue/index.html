@@ -109,6 +109,72 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-composition-count/2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8.json">receiver report</a></p>
 </article>
 <article>
+  <h2><code>LeanFrontier.Josephus.josephus_pos</code></h2>
+  <p class="statement">{n : ℕ} (hn : n ≠ 0) : 0 &lt; josephus n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus.OneIndexed</code></dd>
+  <dt>Claim</dt><dd>josephus-one-indexed-bridge · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>749994bdabd865b56568789d00cf3ae4b9f5146e</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>d7d6133cc1bf02d0855ac5d9d8a1ac359958eb74d86c9645fe97dbac49c43d9f</code></dd></dl>
+  <p>The survivor&#x27;s number is positive as soon as anybody is standing in the circle.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus/OneIndexed.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/josephus-one-indexed-bridge/749994bdabd865b56568789d00cf3ae4b9f5146e.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.josephus_two_pow</code></h2>
+  <p class="statement">(m : ℕ) : josephus (2 ^ m) = 1</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus.OneIndexed</code></dd>
+  <dt>Claim</dt><dd>josephus-one-indexed-bridge · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>749994bdabd865b56568789d00cf3ae4b9f5146e</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>55b8ee1544c421f762dde5e25e7abaf4d19d264d8a1547352ebc39fde40b6c08</code></dd></dl>
+  <p>Among `2 ^ m` people, the survivor is person `1`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus/OneIndexed.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/josephus-one-indexed-bridge/749994bdabd865b56568789d00cf3ae4b9f5146e.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.josephus_eq_survivor_add_one</code></h2>
+  <p class="statement">{n : ℕ} (hn : n ≠ 0) : josephus n = survivor n + 1</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus.OneIndexed</code></dd>
+  <dt>Claim</dt><dd>josephus-one-indexed-bridge · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>749994bdabd865b56568789d00cf3ae4b9f5146e</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>743913e60d6416a31fed9e2c06878dc320557c9e267f8d4b47af7b929d7936cb</code></dd></dl>
+  <p>The bridge between the two conventions: the one-indexed survivor is the zero-indexed survivor shifted by one. Both functions are defined by independent recursions - `survivor` steps the circle size by one, `josephus` halves it - so this identity cross-validates the two formalizations.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus/OneIndexed.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/josephus-one-indexed-bridge/749994bdabd865b56568789d00cf3ae4b9f5146e.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.odd_josephus</code></h2>
+  <p class="statement">{n : ℕ} (hn : n ≠ 0) : Odd (josephus n)</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus.OneIndexed</code></dd>
+  <dt>Claim</dt><dd>josephus-one-indexed-bridge · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>749994bdabd865b56568789d00cf3ae4b9f5146e</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>1e52e9b5b685f3ab82ecfcd1496eafdc711926af80f51b093ad717bd91f50376</code></dd></dl>
+  <p>The survivor&#x27;s number is odd: the first pass around the circle eliminates everyone whose number is even.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus/OneIndexed.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/josephus-one-indexed-bridge/749994bdabd865b56568789d00cf3ae4b9f5146e.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.josephus_le</code></h2>
+  <p class="statement">(n : ℕ) : josephus n ≤ n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus.OneIndexed</code></dd>
+  <dt>Claim</dt><dd>josephus-one-indexed-bridge · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>749994bdabd865b56568789d00cf3ae4b9f5146e</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>9fc4d177837f8d040bbd6af4a58a8cc1c90abca9960041b04d0018d0bb1e8ffc</code></dd></dl>
+  <p>The survivor&#x27;s number is at most `n`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus/OneIndexed.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/josephus-one-indexed-bridge/749994bdabd865b56568789d00cf3ae4b9f5146e.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.josephus_eq_self_iff</code></h2>
+  <p class="statement">{n : ℕ} : josephus n = n ↔ ∃ m, n = 2 ^ m - 1</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus.OneIndexed</code></dd>
+  <dt>Claim</dt><dd>josephus-one-indexed-bridge · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>749994bdabd865b56568789d00cf3ae4b9f5146e</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>d18a3b866f71a620ceaf5d28538852e6baf9dd8414d2e831ecbfb419e4d40f34</code></dd></dl>
+  <p>Person `n` survives if and only if `n + 1` is a power of two: the survivor equals `n` exactly when `n = 2 ^ m - 1`, i.e. when the binary expansion of `n` is all ones.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus/OneIndexed.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/josephus-one-indexed-bridge/749994bdabd865b56568789d00cf3ae4b9f5146e.json">receiver report</a></p>
+</article>
+<article>
   <h2><code>LeanFrontier.Josephus.survivor_lt_self</code></h2>
   <p class="statement">(n : ℕ) (hn : n ≠ 0) : survivor n &lt; n</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
