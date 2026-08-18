@@ -10,6 +10,78 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Algebra/Binomial.lean">View source</a></p>
 </article>
 <article>
+  <h2><code>LeanFrontier.Nat.three_pow_le_two_pow_mul_fib</code></h2>
+  <p class="statement">: ∀ n : ℕ, 3 ^ n ≤ 2 ^ n * Nat.fib (n + 3) | 0 =&gt; by decide | n + 1 =&gt; by have ih</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.FibonacciReciprocal</code></dd>
+  <dt>Claim</dt><dd>fibonacci-reciprocal-summable · mathlib_extension · claude-code</dd></dl>
+  <p>Exponential growth of the Fibonacci numbers, in `ℕ`: `3 ^ n ≤ 2 ^ n * fib (n + 3)`, i.e. `fib (n + 3)` dominates `(3 / 2) ^ n`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/FibonacciReciprocal.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.inv_fib_add_three_le</code></h2>
+  <p class="statement">(n : ℕ) : ((Nat.fib (n + 3) : ℝ))⁻¹ ≤ (2 / 3) ^ n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.FibonacciReciprocal</code></dd>
+  <dt>Claim</dt><dd>fibonacci-reciprocal-summable · mathlib_extension · claude-code</dd></dl>
+  <p>The reciprocal Fibonacci numbers are dominated by the geometric sequence `(2 / 3) ^ n` after shifting the index by three.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/FibonacciReciprocal.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.summable_inv_fib</code></h2>
+  <p class="statement">: Summable fun n : ℕ =&gt; ((Nat.fib n : ℝ))⁻¹</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.FibonacciReciprocal</code></dd>
+  <dt>Claim</dt><dd>fibonacci-reciprocal-summable · mathlib_extension · claude-code</dd></dl>
+  <p>The reciprocal Fibonacci series converges. The term at `n = 0` is `(0 : ℝ)⁻¹ = 0`, so summing over all indices is harmless.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/FibonacciReciprocal.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.tsum_inv_fib_le</code></h2>
+  <p class="statement">: ∑&#x27; n : ℕ, ((Nat.fib n : ℝ))⁻¹ ≤ 5</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.FibonacciReciprocal</code></dd>
+  <dt>Claim</dt><dd>fibonacci-reciprocal-summable · mathlib_extension · claude-code</dd></dl>
+  <p>A crude explicit bound on the reciprocal Fibonacci constant: the head `1/1 + 1/1` plus the geometric tail bound `∑ (2/3) ^ n = 3`. The true value is `ψ ≈ 3.36`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/FibonacciReciprocal.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.mem_oneTwoCompositions</code></h2>
+  <p class="statement">{n : ℕ} {l : List ℕ} : l ∈ oneTwoCompositions n ↔ l.sum = n ∧ ∀ x ∈ l, x = 1 ∨ x = 2</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd></dl>
+  <p>Membership in `oneTwoCompositions n` is exactly the a priori description: the list sums to `n` and every part is `1` or `2`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.card_oneTwoCompositions</code></h2>
+  <p class="statement">: ∀ n, (oneTwoCompositions n).card = Nat.fib (n + 1) | 0 =&gt; by simp | 1 =&gt; by simp | n + 2 =&gt; by have ih1</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd></dl>
+  <p>The compositions of `n` into parts `1` and `2` are counted by the Fibonacci numbers: there are `fib (n + 1)` of them.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.length_le_of_mem_oneTwoCompositions</code></h2>
+  <p class="statement">{n : ℕ} {l : List ℕ} (h : l ∈ oneTwoCompositions n) : l.length ≤ n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd></dl>
+  <p>A composition of `n` into parts `1` and `2` has at most `n` parts.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.le_two_mul_length_of_mem_oneTwoCompositions</code></h2>
+  <p class="statement">{n : ℕ} {l : List ℕ} (h : l ∈ oneTwoCompositions n) : n ≤ 2 * l.length</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd></dl>
+  <p>A composition of `n` into parts `1` and `2` has at least `n / 2` parts, in the subtraction-free form `n ≤ 2 * length`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.reverse_mem_oneTwoCompositions</code></h2>
+  <p class="statement">{n : ℕ} {l : List ℕ} (h : l ∈ oneTwoCompositions n) : l.reverse ∈ oneTwoCompositions n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd></dl>
+  <p>Reading a composition of `n` into parts `1` and `2` right to left gives another one: the set is closed under list reversal.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a></p>
+</article>
+<article>
   <h2><code>LeanFrontier.Josephus.survivor_lt_self</code></h2>
   <p class="statement">(n : ℕ) (hn : n ≠ 0) : survivor n &lt; n</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
