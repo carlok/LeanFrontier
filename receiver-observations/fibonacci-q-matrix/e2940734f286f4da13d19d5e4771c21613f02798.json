@@ -1,0 +1,378 @@
+{
+  "accepted_revision": "e2940734f286f4da13d19d5e4771c21613f02798",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-18T17:34:25+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 215.899,
+    "observed": {
+      "added_lines": 105,
+      "audited_declarations": {
+        "LeanFrontier.Matrix.det_fibMatrix_pow": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Matrix.det_fibMatrix_pow",
+          "restatement": false,
+          "statement_sha256": "ce13de3337d623eeaa9f0f24b3fb6b06396e08f9501b8aae9b197ae8313a77b6",
+          "type_dependencies": [
+            "Eq",
+            "Fin",
+            "Fin.fintype",
+            "HPow.hPow",
+            "Int",
+            "Int.instCommRing",
+            "Int.instMonoid",
+            "Int.instNegInt",
+            "Int.instSemiring",
+            "LeanFrontier.Matrix.fibMatrix",
+            "Matrix",
+            "Matrix.det",
+            "Matrix.semiring",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "Semiring.toMonoid",
+            "instDecidableEqFin",
+            "instHPow",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Matrix.fibMatrix": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Matrix.fibMatrix",
+          "restatement": false,
+          "statement_sha256": "035f9deccf9f9a06d73cdda62d5c03591035047f335e1e2d39efca5c398d90ba",
+          "type_dependencies": [
+            "Fin",
+            "Int",
+            "Matrix",
+            "Nat",
+            "OfNat.ofNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Matrix.fibMatrix_pow_succ": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Matrix.fibMatrix_pow_succ",
+          "restatement": false,
+          "statement_sha256": "09210f03f0e118abe5d852e6a6ea437ac0f66f04cf471fd2b461e5dee9ba2ea2",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "Eq",
+            "Equiv",
+            "Equiv.instEquivLike",
+            "EquivLike.toFunLike",
+            "Fin",
+            "Fin.fintype",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "Int",
+            "Int.instSemiring",
+            "LeanFrontier.Matrix.fibMatrix",
+            "Matrix",
+            "Matrix.of",
+            "Matrix.semiring",
+            "Matrix.vecCons",
+            "Matrix.vecEmpty",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.fib",
+            "OfNat.ofNat",
+            "Semiring.toMonoid",
+            "instAddNat",
+            "instDecidableEqFin",
+            "instHAdd",
+            "instHPow",
+            "instNatCastInt",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Matrix.isUnit_fibMatrix": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Matrix.isUnit_fibMatrix",
+          "restatement": false,
+          "statement_sha256": "01fcf7e676d5a6a05f3791b0f3b0a3f72059275b404be0bea6f56f0fffa7a70a",
+          "type_dependencies": [
+            "Fin",
+            "Fin.fintype",
+            "Int",
+            "Int.instSemiring",
+            "IsUnit",
+            "LeanFrontier.Matrix.fibMatrix",
+            "Matrix",
+            "Matrix.semiring",
+            "Nat",
+            "OfNat.ofNat",
+            "Semiring.toMonoid",
+            "instDecidableEqFin",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Matrix.trace_fibMatrix_pow_succ": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Matrix.trace_fibMatrix_pow_succ",
+          "restatement": false,
+          "statement_sha256": "d418b327cd9747f3319f5f7c6cf58f61b8dc92083b1f4792ccf836c39aa321aa",
+          "type_dependencies": [
+            "Eq",
+            "Fin",
+            "Fin.fintype",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "Int",
+            "Int.instAdd",
+            "Int.instAddCommMonoid",
+            "Int.instSemiring",
+            "LeanFrontier.Matrix.fibMatrix",
+            "Matrix",
+            "Matrix.semiring",
+            "Matrix.trace",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.fib",
+            "OfNat.ofNat",
+            "Semiring.toMonoid",
+            "instAddNat",
+            "instDecidableEqFin",
+            "instHAdd",
+            "instHPow",
+            "instNatCastInt",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Matrix.det_fibMatrix": "inconclusive",
+        "LeanFrontier.Matrix.det_fibMatrix_pow": "inconclusive",
+        "LeanFrontier.Matrix.fibMatrix_pow_succ": "inconclusive",
+        "LeanFrontier.Matrix.isUnit_fibMatrix": "inconclusive",
+        "LeanFrontier.Matrix.trace_fibMatrix_pow_succ": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 8676,
+      "changed_files": [
+        "LeanFrontier/LinearAlgebra/FibonacciMatrix.lean",
+        "Submissions/fibonacci-q-matrix.json"
+      ],
+      "corpus_entrypoints_checked": 60,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Matrix.det_fibMatrix": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Matrix.det_fibMatrix",
+          "statement_sha256": "708dd0f746f9a5b64ecd1cb9a0fb633ba182f48d4ab48893997f85499b4198a4",
+          "type_dependencies": [
+            "Eq",
+            "Fin",
+            "Fin.fintype",
+            "Int",
+            "Int.instCommRing",
+            "Int.instNegInt",
+            "LeanFrontier.Matrix.fibMatrix",
+            "Matrix.det",
+            "Nat",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "instDecidableEqFin",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Matrix.det_fibMatrix_pow": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Matrix.det_fibMatrix_pow",
+          "statement_sha256": "ce13de3337d623eeaa9f0f24b3fb6b06396e08f9501b8aae9b197ae8313a77b6",
+          "type_dependencies": [
+            "Eq",
+            "Fin",
+            "Fin.fintype",
+            "HPow.hPow",
+            "Int",
+            "Int.instCommRing",
+            "Int.instMonoid",
+            "Int.instNegInt",
+            "Int.instSemiring",
+            "LeanFrontier.Matrix.fibMatrix",
+            "Matrix",
+            "Matrix.det",
+            "Matrix.semiring",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "Semiring.toMonoid",
+            "instDecidableEqFin",
+            "instHPow",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Matrix.fibMatrix_pow_succ": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Matrix.fibMatrix_pow_succ",
+          "statement_sha256": "09210f03f0e118abe5d852e6a6ea437ac0f66f04cf471fd2b461e5dee9ba2ea2",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "Eq",
+            "Equiv",
+            "Equiv.instEquivLike",
+            "EquivLike.toFunLike",
+            "Fin",
+            "Fin.fintype",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "Int",
+            "Int.instSemiring",
+            "LeanFrontier.Matrix.fibMatrix",
+            "Matrix",
+            "Matrix.of",
+            "Matrix.semiring",
+            "Matrix.vecCons",
+            "Matrix.vecEmpty",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.fib",
+            "OfNat.ofNat",
+            "Semiring.toMonoid",
+            "instAddNat",
+            "instDecidableEqFin",
+            "instHAdd",
+            "instHPow",
+            "instNatCastInt",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Matrix.isUnit_fibMatrix": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Matrix.isUnit_fibMatrix",
+          "statement_sha256": "01fcf7e676d5a6a05f3791b0f3b0a3f72059275b404be0bea6f56f0fffa7a70a",
+          "type_dependencies": [
+            "Fin",
+            "Fin.fintype",
+            "Int",
+            "Int.instSemiring",
+            "IsUnit",
+            "LeanFrontier.Matrix.fibMatrix",
+            "Matrix",
+            "Matrix.semiring",
+            "Nat",
+            "OfNat.ofNat",
+            "Semiring.toMonoid",
+            "instDecidableEqFin",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Matrix.trace_fibMatrix_pow_succ": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Matrix.trace_fibMatrix_pow_succ",
+          "statement_sha256": "d418b327cd9747f3319f5f7c6cf58f61b8dc92083b1f4792ccf836c39aa321aa",
+          "type_dependencies": [
+            "Eq",
+            "Fin",
+            "Fin.fintype",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "Int",
+            "Int.instAdd",
+            "Int.instAddCommMonoid",
+            "Int.instSemiring",
+            "LeanFrontier.Matrix.fibMatrix",
+            "Matrix",
+            "Matrix.semiring",
+            "Matrix.trace",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.fib",
+            "OfNat.ofNat",
+            "Semiring.toMonoid",
+            "instAddNat",
+            "instDecidableEqFin",
+            "instHAdd",
+            "instHPow",
+            "instNatCastInt",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "lean_source_bytes": 4439,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 6
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "fibonacci-q-matrix",
+  "trusted_receiver_revision": "77b9a30910c2b63eed7747df9a42d2a2f60468b5",
+  "validated_candidate_revision": "42ba844561ee52778fd51e15e2484280fe337ae0",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32154575577"
+}

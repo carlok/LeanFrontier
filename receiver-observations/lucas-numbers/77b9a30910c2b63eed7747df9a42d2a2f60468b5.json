@@ -1,0 +1,402 @@
+{
+  "accepted_revision": "77b9a30910c2b63eed7747df9a42d2a2f60468b5",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-18T17:26:36+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 222.204,
+    "observed": {
+      "added_lines": 145,
+      "audited_declarations": {
+        "LeanFrontier.Nat.fib_succ_sq_sub_fib_mul_fib_add_two": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.fib_succ_sq_sub_fib_mul_fib_add_two",
+          "restatement": false,
+          "statement_sha256": "441418abdf4a237289301f90ea6173ad19b83d8d87da40aba33e9992b5dd620e",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Int",
+            "Int.instMonoid",
+            "Int.instMul",
+            "Int.instNegInt",
+            "Int.instSub",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.fib",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instNatCastInt",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.fib_two_mul_eq_fib_mul_lucas": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.fib_two_mul_eq_fib_mul_lucas",
+          "restatement": false,
+          "statement_sha256": "c6bb398f74ad93e80981ffb61aa8e8a31b3c788e0101faa7bff8c4f7c2b6053b",
+          "type_dependencies": [
+            "Eq",
+            "HMul.hMul",
+            "LeanFrontier.Nat.lucas",
+            "Nat",
+            "Nat.fib",
+            "OfNat.ofNat",
+            "instHMul",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.lucas": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Nat.lucas",
+          "restatement": false,
+          "statement_sha256": "79181c7f4b758c1c40ed2cbb52b75a62fbd6c0a82e859369d7ff80d8805a34c4",
+          "type_dependencies": [
+            "Nat"
+          ]
+        },
+        "LeanFrontier.Nat.lucas_add_two": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.lucas_add_two",
+          "restatement": false,
+          "statement_sha256": "17d59eeefd7472d33b6e2ed004c5e15e8610aebcd2f4b6e572a0ad8d410710da",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Nat.lucas",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.lucas_pos": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.lucas_pos",
+          "restatement": false,
+          "statement_sha256": "04edf8a7bbe09fc446fc5cbe608c4ed8a10fa9e8328fcdae5258a81ae19e72f6",
+          "type_dependencies": [
+            "LT.lt",
+            "LeanFrontier.Nat.lucas",
+            "Nat",
+            "OfNat.ofNat",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.lucas_sq_eq_five_mul_fib_sq_add": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.lucas_sq_eq_five_mul_fib_sq_add",
+          "restatement": false,
+          "statement_sha256": "ec5bf34439a556ab9ea9e60b34d0d640005b1145a99828e18823b97779f76f67",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "Int",
+            "Int.instAdd",
+            "Int.instMonoid",
+            "Int.instMul",
+            "Int.instNegInt",
+            "LeanFrontier.Nat.lucas",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.fib",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instNatCastInt",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.lucas_succ_eq_fib_add_fib": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.lucas_succ_eq_fib_add_fib",
+          "restatement": false,
+          "statement_sha256": "142bf65394109070392499d61ad65fe7e96983c1e8d00194758432c4ef2e504c",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Nat.lucas",
+            "Nat",
+            "Nat.fib",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.sum_range_lucas": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sum_range_lucas",
+          "restatement": false,
+          "statement_sha256": "08125a2ee4f940c6bad599f32742bb7d0c01fba6873596a8cd6db4f53f83a06b",
+          "type_dependencies": [
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "HSub.hSub",
+            "LeanFrontier.Nat.lucas",
+            "Nat",
+            "Nat.instAddCommMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHSub",
+            "instOfNatNat",
+            "instSubNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Nat.fib_succ_sq_sub_fib_mul_fib_add_two": "inconclusive",
+        "LeanFrontier.Nat.fib_two_mul_eq_fib_mul_lucas": "inconclusive",
+        "LeanFrontier.Nat.lucas_pos": "inconclusive",
+        "LeanFrontier.Nat.lucas_sq_eq_five_mul_fib_sq_add": "inconclusive",
+        "LeanFrontier.Nat.lucas_succ_eq_fib_add_fib": "inconclusive",
+        "LeanFrontier.Nat.sum_range_lucas": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 10804,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/LucasNumber.lean",
+        "Submissions/lucas-numbers.json"
+      ],
+      "corpus_entrypoints_checked": 54,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Nat.fib_succ_sq_sub_fib_mul_fib_add_two": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.fib_succ_sq_sub_fib_mul_fib_add_two",
+          "statement_sha256": "441418abdf4a237289301f90ea6173ad19b83d8d87da40aba33e9992b5dd620e",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Int",
+            "Int.instMonoid",
+            "Int.instMul",
+            "Int.instNegInt",
+            "Int.instSub",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.fib",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instNatCastInt",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.fib_two_mul_eq_fib_mul_lucas": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.fib_two_mul_eq_fib_mul_lucas",
+          "statement_sha256": "c6bb398f74ad93e80981ffb61aa8e8a31b3c788e0101faa7bff8c4f7c2b6053b",
+          "type_dependencies": [
+            "Eq",
+            "HMul.hMul",
+            "LeanFrontier.Nat.lucas",
+            "Nat",
+            "Nat.fib",
+            "OfNat.ofNat",
+            "instHMul",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.lucas_pos": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.lucas_pos",
+          "statement_sha256": "04edf8a7bbe09fc446fc5cbe608c4ed8a10fa9e8328fcdae5258a81ae19e72f6",
+          "type_dependencies": [
+            "LT.lt",
+            "LeanFrontier.Nat.lucas",
+            "Nat",
+            "OfNat.ofNat",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.lucas_sq_eq_five_mul_fib_sq_add": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.lucas_sq_eq_five_mul_fib_sq_add",
+          "statement_sha256": "ec5bf34439a556ab9ea9e60b34d0d640005b1145a99828e18823b97779f76f67",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "Int",
+            "Int.instAdd",
+            "Int.instMonoid",
+            "Int.instMul",
+            "Int.instNegInt",
+            "LeanFrontier.Nat.lucas",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.fib",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instNatCastInt",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.lucas_succ_eq_fib_add_fib": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.lucas_succ_eq_fib_add_fib",
+          "statement_sha256": "142bf65394109070392499d61ad65fe7e96983c1e8d00194758432c4ef2e504c",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Nat.lucas",
+            "Nat",
+            "Nat.fib",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.sum_range_lucas": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sum_range_lucas",
+          "statement_sha256": "08125a2ee4f940c6bad599f32742bb7d0c01fba6873596a8cd6db4f53f83a06b",
+          "type_dependencies": [
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "HSub.hSub",
+            "LeanFrontier.Nat.lucas",
+            "Nat",
+            "Nat.instAddCommMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHSub",
+            "instOfNatNat",
+            "instSubNat"
+          ]
+        }
+      },
+      "lean_source_bytes": 6058,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 10
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "lucas-numbers",
+  "trusted_receiver_revision": "a462aa04113cb9b7f372f6153cdd525a99fc0b90",
+  "validated_candidate_revision": "e7bde91786f2f7f587bec2a6b2ddcc849f817a4e",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32153616244"
+}
