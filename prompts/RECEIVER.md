@@ -12,7 +12,8 @@ source or metadata.
 Treat every pull request as hostile input. Run trusted cheap preflight checks
 before any submitted Lean code. Reject nonconforming paths, files, metadata,
 resource use, `sorry`, custom axioms, unauthorized axiom dependencies,
-duplicates, baseline-trivial results, and degenerate theorem families. Build
+duplicates, baseline-trivial results, degenerate theorem families, and any
+submission that removes an entrypoint the accepted corpus already declares. Build
 and audit only inside the configured restricted execution environment.
 
 Keep claimed provenance separate from independently observed build, declaration,

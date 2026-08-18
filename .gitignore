@@ -7,3 +7,6 @@ __pycache__/
 reports/
 .coverage
 coverage.xml
+
+.trusted-receiver/
+receiver-artifact/

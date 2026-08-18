@@ -10,7 +10,9 @@ submission ID. Use `Experimental` only when no established mathematical area
 fits.
 
 Use `LeanFrontier.` as the one required ownership prefix, then retain a stable
-mathematical namespace that can be promoted without aliases. For example, a
+mathematical namespace that can be promoted without aliases. That namespace is
+required, not optional: an entrypoint named `LeanFrontier.foo` is rejected,
+because removing the prefix would put `foo` in the root namespace. For example, a
 module at `LeanFrontier/Geometry/InversiveGeometry.lean` may use
 `namespace LeanFrontier.InversiveGeometry`; its entrypoint
 `LeanFrontier.InversiveGeometry.reflect_reflect` can later become
@@ -28,6 +30,10 @@ Read `policy/mathlib-release.json` immediately before preparing the claim: its
 `mathlib_revision` is the active required value for
 `base_mathlib_revision`. Older merged claims keep their historical revision;
 they are not templates to copy after a release upgrade.
+
+If your subject already has a module in the corpus, import it and extend it.
+Do not replace its file with your own version: the receiver imports every
+accepted entrypoint and rejects a submission that makes one disappear.
 
 Never use `sorry`, `sorryAx`, `axiom`, or an additional trust escape. Keep
 imports specific. Make internal scaffolding `private` or `local` whenever
