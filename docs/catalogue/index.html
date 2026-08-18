@@ -10,6 +10,61 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Algebra/Binomial.lean">View source</a></p>
 </article>
 <article>
+  <h2><code>LeanFrontier.Nat.mem_oneTwoCompositions</code></h2>
+  <p class="statement">{n : ℕ} {l : List ℕ} : l ∈ oneTwoCompositions n ↔ l.sum = n ∧ ∀ x ∈ l, x = 1 ∨ x = 2</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>a1d2e6cf0573257126542310990cc7482d85ed13bdbc7bf7e7acb8ad89daf313</code></dd></dl>
+  <p>Membership in `oneTwoCompositions n` is exactly the a priori description: the list sums to `n` and every part is `1` or `2`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-composition-count/2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.card_oneTwoCompositions</code></h2>
+  <p class="statement">: ∀ n, (oneTwoCompositions n).card = Nat.fib (n + 1) | 0 =&gt; by simp | 1 =&gt; by simp | n + 2 =&gt; by have ih1</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>035d0182ec4c058222b429ee2cbd933067074263f4383791dbf26cf71c0f9e9a</code></dd></dl>
+  <p>The compositions of `n` into parts `1` and `2` are counted by the Fibonacci numbers: there are `fib (n + 1)` of them.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-composition-count/2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.length_le_of_mem_oneTwoCompositions</code></h2>
+  <p class="statement">{n : ℕ} {l : List ℕ} (h : l ∈ oneTwoCompositions n) : l.length ≤ n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>4ffd93a4ead03a02f0f74291db938abb065e9301124abd78c5cd8b7bf5792054</code></dd></dl>
+  <p>A composition of `n` into parts `1` and `2` has at most `n` parts.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-composition-count/2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.le_two_mul_length_of_mem_oneTwoCompositions</code></h2>
+  <p class="statement">{n : ℕ} {l : List ℕ} (h : l ∈ oneTwoCompositions n) : n ≤ 2 * l.length</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>b17b89b58c4f503e19462d6f8fce12166ae7c10773e255616960223ad8bb945f</code></dd></dl>
+  <p>A composition of `n` into parts `1` and `2` has at least `n / 2` parts, in the subtraction-free form `n ≤ 2 * length`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-composition-count/2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.reverse_mem_oneTwoCompositions</code></h2>
+  <p class="statement">{n : ℕ} {l : List ℕ} (h : l ∈ oneTwoCompositions n) : l.reverse ∈ oneTwoCompositions n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>
+  <dt>Claim</dt><dd>fibonacci-composition-count · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>d7932629d1386f62c36555ff7fbfcbd1983b56e559859e8d857701d59f153660</code></dd></dl>
+  <p>Reading a composition of `n` into parts `1` and `2` right to left gives another one: the set is closed under list reversal.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/FibonacciComposition.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-composition-count/2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8.json">receiver report</a></p>
+</article>
+<article>
   <h2><code>LeanFrontier.Josephus.survivor_lt_self</code></h2>
   <p class="statement">(n : ℕ) (hn : n ≠ 0) : survivor n &lt; n</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
