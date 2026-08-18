@@ -10,7 +10,7 @@
   "statement_origin": "human",
   "proof_origin": "human",
   "entrypoints": [
-    "LeanFrontier.Probe.sq_nonneg_of_probe"
+    "LeanFrontier.Probe.add_cube_of_probe"
   ],
   "base_mathlib_revision": "v4.33.0-rc1",
   "source_context": "Receiver probe, not a real submission: exercises the ordinary validation path so the leanchecker step added in #99 is observed running inside the sandboxed validator. To be closed unmerged."
