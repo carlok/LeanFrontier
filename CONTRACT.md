@@ -113,7 +113,8 @@ Stable rejection categories include `SCHEMA_INVALID`,
 
 The trusted maintenance receiver periodically evaluates newer official tagged
 Mathlib releases. It does not inspect Mathlib `main` or open upstream pull
-requests. An upgrade is rejected with `MATHLIB_UPSTREAM_COLLISION` when a
-previously accepted LeanFrontier entrypoint has an exact normalized statement
-in the prospective Mathlib index; no accepted theorem is silently altered or
+requests. It rebuilds the corpus, replays every module through the kernel, and imports
+every accepted entrypoint from a fresh consumer module. An upgrade is rejected
+with `MATHLIB_UPSTREAM_COLLISION` when a previously accepted LeanFrontier
+entrypoint has an exact normalized statement in the prospective Mathlib index; no accepted theorem is silently altered or
 removed to make the upgrade pass.

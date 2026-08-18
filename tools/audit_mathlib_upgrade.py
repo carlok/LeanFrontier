@@ -66,6 +66,14 @@ def run(command: list[str], *, cwd: Path, timeout: int) -> subprocess.CompletedP
     return subprocess.run(command, cwd=cwd, text=True, capture_output=True, timeout=timeout, check=False)
 
 
+def corpus_modules(root: Path) -> list[str]:
+    """Every subject module, as Lean module names."""
+    return sorted(
+        path.relative_to(root).with_suffix("").as_posix().replace("/", ".")
+        for path in (root / "LeanFrontier").rglob("*.lean")
+    )
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=ROOT)
@@ -80,6 +88,7 @@ def main(argv: list[str] | None = None) -> int:
         "mathlib_revision": release["mathlib_revision"],
         "accepted": False,
         "code": "BUILD_FAILED",
+        "kernel_recheck": "not reached",
         "collisions": [],
     }
     try:
@@ -87,6 +96,13 @@ def main(argv: list[str] | None = None) -> int:
         build = run(["lake", "build"], cwd=root, timeout=480)
         if build.returncode:
             raise RuntimeError(build.stderr.strip()[-2000:] or "lake build failed")
+        for module in corpus_modules(root):
+            recheck = run(["lake", "env", "leanchecker", module], cwd=root, timeout=300)
+            if recheck.returncode:
+                raise RuntimeError(
+                    (recheck.stderr.strip() or recheck.stdout.strip())[-2000:]
+                    or f"leanchecker rejected {module} after the upgrade"
+                )
         audit = run(["lake", "exe", "frontier-audit", "--", "LeanFrontier"], cwd=root, timeout=240)
         if audit.returncode:
             raise RuntimeError(audit.stderr.strip()[-2000:] or "frontier-audit failed")
@@ -105,6 +121,7 @@ def main(argv: list[str] | None = None) -> int:
             "fingerprint_index_sha256": hashlib.sha256(index_path.read_bytes()).hexdigest(),
             "entrypoint_count": len(entrypoints),
             "downstream_import_smoke": "pass",
+            "kernel_recheck": "pass",
             "collisions": collisions,
             "accepted": not collisions,
             "code": "MATHLIB_UPSTREAM_COLLISION" if collisions else "ACCEPTED",
