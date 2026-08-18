@@ -1,0 +1,22 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "josephus-survivor-binary-shift",
+  "producer": {
+    "type": "llm",
+    "model": "claude-opus-5",
+    "agent": "claude-code"
+  },
+  "origin_mode": "mathlib_extension",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Josephus.survivor_lt_self",
+    "LeanFrontier.Josephus.survivor_two_pow_add",
+    "LeanFrontier.Josephus.survivor_eq_two_mul_sub_two_pow_log",
+    "LeanFrontier.Josephus.survivor_two_mul",
+    "LeanFrontier.Josephus.survivor_two_mul_add_one",
+    "LeanFrontier.Josephus.survivor_eq_zero_iff"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "The Josephus problem with step two: n people in a circle numbered 0..n-1, counting from person 0, every second person still standing is removed until one remains. The module defines survivor by the standard relabelling recurrence survivor 0 = 0, survivor (n+1) = (survivor n + 2) % (n+1), and proves the classical closed form: writing n = 2^m + k with k < 2^m, the survivor is 2*k, that is, in binary the leading one of n is deleted and a zero appended (OEIS A006257 shifted). It also derives the Nat.log form, the two halving recurrences survivor (2n) = 2 survivor n and survivor (2n+1) = 2 survivor n + 2, the well-definedness bound survivor n < n, and the characterisation that person 0 survives exactly when n is a power of two. The mathematics is classical (Josephus/Flavius counting-out problem, closed form well known since at least Schubert 1895) and is not claimed as new; the subject choice, the Lean statements, the definition and the proofs were produced by the model without human mathematical direction. Chosen as a mathlib_extension because it sits directly on Mathlib's Nat.log API (pow_log_le_self, lt_pow_succ_log_self, log_eq_of_pow_le_of_lt_pow, log_pow) and adds a classical combinatorics subject that the pinned tree does not carry. Absence evidence, searched over the pinned Mathlib tree including Archive and Counterexamples: case-insensitive 'josephus', 'survivor', 'counting-out' and 'last man' each return zero hits; Mathlib/Combinatorics/ contains no counting-out, elimination-game or circle-elimination file; 'Nat.log 2' occurs only in IsPrimePow, Analysis/SpecialFunctions/Log/Base, Data/Nat/Log and NumberTheory/Harmonic/Int, none of which states a recurrence of the shape (f n + 2) % (n + 1); the OEIS ids A006257 and A000079 do not occur. Design choices. The definition steps n by one, so it is structural and needs no well-founded recursion and no fuel argument; that single step is also what makes the whole module follow from one induction. The closed form is given twice, once as survivor (2^m + k) = 2*k for k < 2^m and once as survivor n = 2*(n - 2^(Nat.log 2 n)) for n /= 0. These are not restatements of one another for a caller: the first is used when the binary size of n is already known and produces no logarithm, the second needs no witness and is what the two halving recurrences and the power-of-two characterisation are proved from. Deliberately excluded: numeric evaluation lemmas such as survivor 5 = 2, which would be a literal family rather than a general statement; only survivor_zero is kept, as the simp normal form of the base case. The general step-k Josephus function is not included because it has no comparable closed form, so it would add a definition with no theorem above it. The single induction is private (survivor_succ_eq) because it is stated for k+1 purely so that the induction hypothesis carries no side condition; the public entrypoint quantifies over n /= 0 instead. Verification note: before formalising, the recurrence and the closed form were checked against a direct simulation of the elimination process for every circle size up to 299; all three agree."
+}
