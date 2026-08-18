@@ -1,5 +1,6 @@
 
 import LeanFrontier.Algebra.Binomial
+import LeanFrontier.Combinatorics.Josephus
 import LeanFrontier.Geometry.InversiveGeometry
 import LeanFrontier.NumberTheory.DescartesCircle
 import LeanFrontier.NumberTheory.Farey
