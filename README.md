@@ -97,7 +97,9 @@ Validate a branch against its target branch locally:
 ```
 
 The command performs cheap path, schema, content, size, duplicate, and
-triviality checks before building Lean and auditing declared entrypoints. It
+triviality checks before building Lean and auditing declared entrypoints. The
+audit imports the whole accepted corpus, so it also rejects a submission that
+would remove a result an earlier one declared. It
 prints a human report, writes JSON when requested, and exits nonzero on a
 rejection. GitHub Actions runs the same validator with trusted receiver code.
 The separate, not-yet-open award mechanism is documented in
