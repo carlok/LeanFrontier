@@ -24,13 +24,13 @@
         <header class="note-header">
           <p class="eyebrow">18 August 2026 · Field Note 04</p>
           <h1>A Day of Outside Submissions.</h1>
-          <p class="hero-copy">The corpus went from ten submissions to sixteen in a day, from one subject cluster to seven. Two rules changed to accommodate what arrived, and one of the checks enforcing them was wrong for three hours.</p>
+          <p class="hero-copy">The corpus went from ten submissions to eighteen in a day, from one subject cluster to eight. Two rules changed to accommodate what arrived, one of the checks enforcing them was wrong for three hours, and the day ended with two contributors' independent formalizations proved equal to each other.</p>
         </header>
 
         <section>
           <h2>What the corpus looks like now</h2>
-          <p>Sixteen accepted submissions, seventy-one declared theorems, each with a public receiver report. The tree spans Algebra, Analysis, Combinatorics, Geometry, LinearAlgebra, NumberTheory and Topology. Four contributors have submitted, and the producer records name three model families: <code>claude-opus-5</code>, <code>claude-fable-5</code> and <code>deepseek-v4-pro</code>.</p>
-          <p>Every contributor so far is someone the maintainer invited to try the protocol. This is an alpha with invited users and not adoption, and the numbers should be read that way. One contributor produced seven of the sixteen.</p>
+          <p>Eighteen accepted submissions, eighty-four declared theorems, each with a public receiver report. The tree spans Algebra, Analysis, Combinatorics, Dynamics, Geometry, LinearAlgebra, NumberTheory and Topology. Four contributors have submitted, and the producer records name three model families: <code>claude-opus-5</code>, <code>claude-fable-5</code> and <code>deepseek-v4-pro</code>.</p>
+          <p>Every contributor so far is someone the maintainer invited to try the protocol. This is an alpha with invited users and not adoption, and the numbers should be read that way. One contributor produced seven of the eighteen.</p>
         </section>
 
         <section>
@@ -38,6 +38,9 @@
           <p>Eighty minutes apart, two people submitted the Josephus problem. Both formalized the survivor position for step two; one counting from zero as <code>survivor</code>, the other from one as <code>josephus</code>; both correct, neither a duplicate of the other in any sense the receiver measures, and both writing to the same module path.</p>
           <p>The first was accepted. The second could not be rebased, because two files created independently have no common ancestor to merge. That is git refusing, not the boundary, and it exposed something the boundary was not checking: the contract permits a submission to modify source an earlier submission introduced, and nothing verified that the results already accepted from that module survived. Resolving the conflict the natural way, by keeping one's own file, would have removed six accepted theorems while every check still reported success.</p>
           <p>The receiver now imports the accepted corpus alongside the candidate and rejects the difference as <code>CORPUS_REGRESSION</code>. A throwaway pull request reproduced the exact case to confirm the rejection fires, and it does, with the Lean build passing and the submission's own entrypoints all valid. The rejection is only ever about what would disappear.</p>
+          <p>What happened next is the part worth recording. Told that replacing the module would remove six accepted results, and offered either a different module path or importing what was there, the second author took the second route and went further than it required. The accepted module is untouched. The one-indexed development moved into a submodule that imports it. The two conventions are reconciled by a theorem rather than by a comment:</p>
+          <p><code>josephus_eq_survivor_add_one : josephus n = survivor n + 1</code>, for <code>n ≠ 0</code>.</p>
+          <p>The two definitions are genuinely different recursions — a structural shift modulo the circle size, and well-founded halving — written by different producers who had not seen each other's work. The corpus now contains a kernel-checked proof that they agree, and one of the new results derives through that bridge from the earlier submission's <code>survivor_lt_self</code> rather than reproving it. Six declarations that would only have mirrored accepted entrypoints through the bridge were made <code>private</code>: the author reduced his own public surface without being asked.</p>
         </section>
 
         <section>
@@ -59,15 +62,15 @@
         </section>
 
         <section>
-          <h2>The most interesting thing an agent did</h2>
+          <h2>Reading the rules as information</h2>
           <p>The Furstenberg submission formalizes the evenly spaced topology on the integers: the arithmetic progressions as a basis, each progression clopen, every nonempty open set infinite, and the covering identity that the progressions over all primes cover exactly the integers minus one and minus one. That is Furstenberg's 1955 proof of the infinitude of primes, assembled and left one step short of its conclusion.</p>
           <p>The omission is deliberate and stated in the claim record: the conclusion exists in Mathlib as <code>Nat.infinite_setOf_prime</code>, and restating it would be an exact baseline duplicate. So the producer contributed the machinery that was missing rather than the theorem that was famous.</p>
-          <p>That is a stronger signal than anything else in the batch. A rule intended only to keep the corpus free of restatements was read as information about what the corpus lacked, and the response was to fill the gap and stop. Whether that generalizes is unknown; one instance is one instance.</p>
+          <p>A rule intended only to keep the corpus free of restatements was read as information about what the corpus lacked, and the response was to fill the gap and stop. The Josephus bridge is the same behaviour from the other direction: a rejection that said <em>these six results would disappear</em> was answered by importing them and proving a relationship to them. In both cases a constraint meant to prevent something produced something instead. Two instances are two instances, and it is early, but it is the behaviour this project was built to look for.</p>
         </section>
 
         <section>
           <h2>What is still open</h2>
-          <p>Two submissions are with their author: the second Josephus formalization, which can import the accepted module and extend it or take a different path, and the dynamics module, which needs its namespace. Neither is a judgment about the mathematics, and the receiver has not been asked to make one.</p>
+          <p>Both submissions that were open when this note was drafted have since been accepted. The dynamics module came back with its namespace and nothing else changed. The Josephus one came back as the bridge described above. Neither outcome required a judgment about the mathematics, which is the point: the boundary said what was missing, and the authors decided what to do about it.</p>
           <p>Three modules now approach the same family of Fibonacci identities from different directions — a general Cassini identity through Horadam sequences, the Lucas number bridges, and the determinant of the Q-matrix — without any two of them stating the same thing. Whether that reads as a corpus converging on a subject or fragmenting across it is not something a fingerprint comparison can answer, and it is the question the next few submissions are worth watching for.</p>
           <p>The <a href="../catalogue/">catalogue</a>, the <a href="https://github.com/carlok/LeanFrontier/tree/main/Submissions">submission archive</a> and the <a href="https://github.com/carlok/LeanFrontier/tree/main/receiver-observations">receiver observations</a> are all public. If you have a Lean-capable agent, the <a href="https://raw.githubusercontent.com/carlok/LeanFrontier/main/prompts/TRY-LEANFRONTIER.md">task launcher</a> is the page every contributor here started from.</p>
         </section>
