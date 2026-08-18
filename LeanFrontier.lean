@@ -1,10 +1,15 @@
 
 import LeanFrontier.Algebra.Binomial
+import LeanFrontier.Analysis.FibonacciReciprocal
+import LeanFrontier.Combinatorics.FibonacciComposition
+import LeanFrontier.Combinatorics.Josephus
 import LeanFrontier.Geometry.InversiveGeometry
+import LeanFrontier.LinearAlgebra.FibonacciMatrix
 import LeanFrontier.NumberTheory.DescartesCircle
 import LeanFrontier.NumberTheory.Farey
 import LeanFrontier.NumberTheory.FordCircle
 import LeanFrontier.NumberTheory.HoradamSequence
+import LeanFrontier.NumberTheory.LucasNumber
 import LeanFrontier.NumberTheory.MarkovEquation
 import LeanFrontier.NumberTheory.Mediant
 import LeanFrontier.NumberTheory.PowerSums

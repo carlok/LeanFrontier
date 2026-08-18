@@ -1,0 +1,348 @@
+{
+  "accepted_revision": "2a5fd3af9b1cfda404b6aeb7f82ee1a55f425ff8",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-18T16:38:45+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 174.648,
+    "observed": {
+      "added_lines": 196,
+      "audited_declarations": {
+        "LeanFrontier.Nat.card_oneTwoCompositions": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.card_oneTwoCompositions",
+          "restatement": false,
+          "statement_sha256": "035d0182ec4c058222b429ee2cbd933067074263f4383791dbf26cf71c0f9e9a",
+          "type_dependencies": [
+            "Eq",
+            "Finset.card",
+            "HAdd.hAdd",
+            "LeanFrontier.Nat.oneTwoCompositions",
+            "List",
+            "Nat",
+            "Nat.fib",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.le_two_mul_length_of_mem_oneTwoCompositions": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.le_two_mul_length_of_mem_oneTwoCompositions",
+          "restatement": false,
+          "statement_sha256": "b17b89b58c4f503e19462d6f8fce12166ae7c10773e255616960223ad8bb945f",
+          "type_dependencies": [
+            "Finset",
+            "Finset.instSetLike",
+            "HMul.hMul",
+            "LE.le",
+            "LeanFrontier.Nat.oneTwoCompositions",
+            "List",
+            "List.length",
+            "Membership.mem",
+            "Nat",
+            "OfNat.ofNat",
+            "SetLike.instMembership",
+            "instHMul",
+            "instLENat",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.length_le_of_mem_oneTwoCompositions": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.length_le_of_mem_oneTwoCompositions",
+          "restatement": false,
+          "statement_sha256": "4ffd93a4ead03a02f0f74291db938abb065e9301124abd78c5cd8b7bf5792054",
+          "type_dependencies": [
+            "Finset",
+            "Finset.instSetLike",
+            "LE.le",
+            "LeanFrontier.Nat.oneTwoCompositions",
+            "List",
+            "List.length",
+            "Membership.mem",
+            "Nat",
+            "SetLike.instMembership",
+            "instLENat"
+          ]
+        },
+        "LeanFrontier.Nat.mem_oneTwoCompositions": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.mem_oneTwoCompositions",
+          "restatement": false,
+          "statement_sha256": "a1d2e6cf0573257126542310990cc7482d85ed13bdbc7bf7e7acb8ad89daf313",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "Finset",
+            "Finset.instSetLike",
+            "Iff",
+            "LeanFrontier.Nat.oneTwoCompositions",
+            "List",
+            "List.instMembership",
+            "List.sum",
+            "Membership.mem",
+            "MulZeroClass.toZero",
+            "Nat",
+            "Nat.instMulZeroClass",
+            "OfNat.ofNat",
+            "Or",
+            "SetLike.instMembership",
+            "instAddNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.oneTwoCompositions": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Nat.oneTwoCompositions",
+          "restatement": false,
+          "statement_sha256": "62d846578bee557afcaf11d4506f124aec6019efa4807e903f7c0e02b4b20711",
+          "type_dependencies": [
+            "Finset",
+            "List",
+            "Nat"
+          ]
+        },
+        "LeanFrontier.Nat.oneTwoCompositions_add_two": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.oneTwoCompositions_add_two",
+          "restatement": false,
+          "statement_sha256": "f6fd6347f003e98884bc59fc99e6852e70bbe434f1c7519ed51203b26f40d8d3",
+          "type_dependencies": [
+            "Eq",
+            "Finset",
+            "Finset.image",
+            "Finset.instUnion",
+            "HAdd.hAdd",
+            "LeanFrontier.Nat.oneTwoCompositions",
+            "List",
+            "List.cons",
+            "Nat",
+            "OfNat.ofNat",
+            "Union.union",
+            "instAddNat",
+            "instDecidableEqList",
+            "instDecidableEqNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.reverse_mem_oneTwoCompositions": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.reverse_mem_oneTwoCompositions",
+          "restatement": false,
+          "statement_sha256": "d7932629d1386f62c36555ff7fbfcbd1983b56e559859e8d857701d59f153660",
+          "type_dependencies": [
+            "Finset",
+            "Finset.instSetLike",
+            "LeanFrontier.Nat.oneTwoCompositions",
+            "List",
+            "List.reverse",
+            "Membership.mem",
+            "Nat",
+            "SetLike.instMembership"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Nat.card_oneTwoCompositions": "inconclusive",
+        "LeanFrontier.Nat.le_two_mul_length_of_mem_oneTwoCompositions": "inconclusive",
+        "LeanFrontier.Nat.length_le_of_mem_oneTwoCompositions": "inconclusive",
+        "LeanFrontier.Nat.mem_oneTwoCompositions": "inconclusive",
+        "LeanFrontier.Nat.reverse_mem_oneTwoCompositions": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 13021,
+      "changed_files": [
+        "LeanFrontier/Combinatorics/FibonacciComposition.lean",
+        "Submissions/fibonacci-composition-count.json"
+      ],
+      "corpus_entrypoints_checked": 45,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Nat.card_oneTwoCompositions": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.card_oneTwoCompositions",
+          "statement_sha256": "035d0182ec4c058222b429ee2cbd933067074263f4383791dbf26cf71c0f9e9a",
+          "type_dependencies": [
+            "Eq",
+            "Finset.card",
+            "HAdd.hAdd",
+            "LeanFrontier.Nat.oneTwoCompositions",
+            "List",
+            "Nat",
+            "Nat.fib",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.le_two_mul_length_of_mem_oneTwoCompositions": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.le_two_mul_length_of_mem_oneTwoCompositions",
+          "statement_sha256": "b17b89b58c4f503e19462d6f8fce12166ae7c10773e255616960223ad8bb945f",
+          "type_dependencies": [
+            "Finset",
+            "Finset.instSetLike",
+            "HMul.hMul",
+            "LE.le",
+            "LeanFrontier.Nat.oneTwoCompositions",
+            "List",
+            "List.length",
+            "Membership.mem",
+            "Nat",
+            "OfNat.ofNat",
+            "SetLike.instMembership",
+            "instHMul",
+            "instLENat",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.length_le_of_mem_oneTwoCompositions": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.length_le_of_mem_oneTwoCompositions",
+          "statement_sha256": "4ffd93a4ead03a02f0f74291db938abb065e9301124abd78c5cd8b7bf5792054",
+          "type_dependencies": [
+            "Finset",
+            "Finset.instSetLike",
+            "LE.le",
+            "LeanFrontier.Nat.oneTwoCompositions",
+            "List",
+            "List.length",
+            "Membership.mem",
+            "Nat",
+            "SetLike.instMembership",
+            "instLENat"
+          ]
+        },
+        "LeanFrontier.Nat.mem_oneTwoCompositions": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.mem_oneTwoCompositions",
+          "statement_sha256": "a1d2e6cf0573257126542310990cc7482d85ed13bdbc7bf7e7acb8ad89daf313",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "Finset",
+            "Finset.instSetLike",
+            "Iff",
+            "LeanFrontier.Nat.oneTwoCompositions",
+            "List",
+            "List.instMembership",
+            "List.sum",
+            "Membership.mem",
+            "MulZeroClass.toZero",
+            "Nat",
+            "Nat.instMulZeroClass",
+            "OfNat.ofNat",
+            "Or",
+            "SetLike.instMembership",
+            "instAddNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.reverse_mem_oneTwoCompositions": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.reverse_mem_oneTwoCompositions",
+          "statement_sha256": "d7932629d1386f62c36555ff7fbfcbd1983b56e559859e8d857701d59f153660",
+          "type_dependencies": [
+            "Finset",
+            "Finset.instSetLike",
+            "LeanFrontier.Nat.oneTwoCompositions",
+            "List",
+            "List.reverse",
+            "Membership.mem",
+            "Nat",
+            "SetLike.instMembership"
+          ]
+        }
+      },
+      "lean_source_bytes": 8326,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 12
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "fibonacci-composition-count",
+  "trusted_receiver_revision": "8d3a0b40e1044d2be65b7a613007e28d1813fd42",
+  "validated_candidate_revision": "d64d7fa24c53d6cd6707d2f5b4976665a58fd3dc",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32148837672"
+}

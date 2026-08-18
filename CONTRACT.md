@@ -34,10 +34,13 @@ not ordinary Lean source.
 Source MUST follow Mathlib-compatible module and namespace conventions. Its
 module path MUST be subject-based below `LeanFrontier/` and its public
 namespace MUST begin with `LeanFrontier.`. The suffix after that ownership
-prefix SHOULD be a stable, vendor-neutral mathematical namespace, so that an
+prefix MUST be a stable, vendor-neutral mathematical namespace, so that an
 eventual upstreaming needs only to remove `LeanFrontier.`: for example,
 `LeanFrontier.InversiveGeometry.reflect_reflect` may become
-`InversiveGeometry.reflect_reflect`. Submitters MUST NOT add aliases or
+`InversiveGeometry.reflect_reflect`. A declaration MUST NOT sit directly under the ownership
+prefix: `LeanFrontier.tentMap` becomes a root-namespace name once the prefix is
+removed, and reserves a generic identifier the rest of its subject area needs.
+Submitters MUST NOT add aliases or
 producer-, model-, or submission-specific namespace components merely to
 support a possible future migration. Source MUST use explicit imports where
 practical and MUST NOT organize mathematical modules by producer, model, or
@@ -80,6 +83,12 @@ The receiver performs cheap checks before Lean compilation and fails closed on
 missing evidence. It enforces the versioned resource limits in
 `policy/limits.json`.
 
+A submission MAY modify a module an earlier submission introduced, but it MUST
+NOT remove, rename, or overwrite an entrypoint that an accepted submission
+declares. The receiver imports the accepted corpus alongside the candidate and
+rejects the difference as `CORPUS_REGRESSION`. Extending a module is ordinary;
+replacing somebody else's accepted result is not.
+
 Each public theorem is checked for exact normalized duplication against the
 baseline and the same submission, canonical propositional degeneracy, and
 bounded baseline-only triviality probes. The receiver also rejects repeated
@@ -97,8 +106,8 @@ MUST NOT silently repair its source or metadata.
 Stable rejection categories include `SCHEMA_INVALID`,
 `PATH_POLICY_VIOLATION`, `RESOURCE_LIMIT_EXCEEDED`, `BUILD_FAILED`,
 `SORRY_DETECTED`, `UNAUTHORIZED_AXIOM`, `DUPLICATE_STATEMENT`,
-`TRIVIAL_BASELINE_RESULT`, `DEGENERATE_THEOREM_FAMILY`, and
-`SECURITY_POLICY_VIOLATION`.
+`TRIVIAL_BASELINE_RESULT`, `DEGENERATE_THEOREM_FAMILY`, `CORPUS_REGRESSION`,
+and `SECURITY_POLICY_VIOLATION`.
 
 The trusted maintenance receiver periodically evaluates newer official tagged
 Mathlib releases. It does not inspect Mathlib `main` or open upstream pull
