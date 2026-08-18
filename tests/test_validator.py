@@ -190,6 +190,19 @@ class ValidatorPreflightTests(unittest.TestCase):
         modules = frontier_validate.modules_for(self.candidate, [])
         self.assertIn("LeanFrontier.Combinatorics.JustMerged", modules)
 
+    def test_an_entrypoint_directly_under_the_prefix_is_rejected(self) -> None:
+        """`LeanFrontier.foo` becomes a root-namespace name once the prefix is removed."""
+        record = json.loads(metadata())
+        record["entrypoints"] = ["LeanFrontier.new_result"]
+        (self.candidate / "Submissions" / "valid-bundle.json").write_text(json.dumps(record))
+        self.assert_rejected("SCHEMA_INVALID")
+
+    def test_every_accepted_entrypoint_already_carries_a_namespace(self) -> None:
+        """The rule is enforceable because the corpus never needed the exception."""
+        for path in sorted((ROOT / "Submissions").glob("*.json")):
+            for entrypoint in json.loads(path.read_text())["entrypoints"]:
+                self.assertRegex(entrypoint, frontier_validate.ENTRYPOINT_RE, path.name)
+
     def test_accepted_entrypoints_are_read_from_the_base_tree(self) -> None:
         (self.base / "Submissions" / "earlier.json").write_text(
             json.dumps({"submission_id": "earlier", "entrypoints": ["LeanFrontier.Old.kept"]})

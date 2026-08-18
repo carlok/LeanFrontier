@@ -10,7 +10,9 @@ submission ID. Use `Experimental` only when no established mathematical area
 fits.
 
 Use `LeanFrontier.` as the one required ownership prefix, then retain a stable
-mathematical namespace that can be promoted without aliases. For example, a
+mathematical namespace that can be promoted without aliases. That namespace is
+required, not optional: an entrypoint named `LeanFrontier.foo` is rejected,
+because removing the prefix would put `foo` in the root namespace. For example, a
 module at `LeanFrontier/Geometry/InversiveGeometry.lean` may use
 `namespace LeanFrontier.InversiveGeometry`; its entrypoint
 `LeanFrontier.InversiveGeometry.reflect_reflect` can later become
