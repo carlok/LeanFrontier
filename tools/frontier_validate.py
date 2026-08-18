@@ -314,6 +314,31 @@ def static_preflight(base: Path | None, candidate: Path, limits: dict[str, Any],
     return changed, metadata
 
 
+def accepted_entrypoints(base: Path | None) -> set[str]:
+    """Entrypoints every already-merged submission record declares.
+
+    An ordinary submission may modify source below `LeanFrontier/`, including a
+    module that somebody else's accepted submission owns. Nothing else in the
+    receiver notices when that removes a result the corpus already promised.
+    """
+    result: set[str] = set()
+    if base is None:
+        return result
+    for path in sorted((base / "Submissions").glob("*.json")):
+        try:
+            record = load_json(path)
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(record, dict):
+            result.update(item for item in record.get("entrypoints", []) if isinstance(item, str))
+    return result
+
+
+def corpus_regressions(accepted: set[str], findings: dict[str, Any]) -> list[str]:
+    """Accepted entrypoints the candidate no longer exposes."""
+    return sorted(accepted - set(findings))
+
+
 def modules_for(paths: Iterable[str]) -> list[str]:
     """Candidate modules plus the umbrella, which carries the accepted corpus.
 
@@ -480,7 +505,7 @@ def downstream_smoke(candidate: Path, modules: list[str], entrypoints: list[str]
     report.observations["downstream_import_smoke"] = "pass"
 
 
-def lean_audit(candidate: Path, modules: list[str], declared_facts: dict[str, dict[str, bool]], metadata: dict[str, Any], limits: dict[str, Any], axioms: dict[str, Any], mathlib_release: dict[str, str], report: Report) -> None:
+def lean_audit(candidate: Path, modules: list[str], declared_facts: dict[str, dict[str, bool]], metadata: dict[str, Any], limits: dict[str, Any], axioms: dict[str, Any], mathlib_release: dict[str, str], accepted: set[str], report: Report) -> None:
     try:
         build = run(["lake", "build"], candidate, limits["build_timeout_seconds"])
     except (OSError, subprocess.TimeoutExpired) as error:
@@ -498,6 +523,15 @@ def lean_audit(candidate: Path, modules: list[str], declared_facts: dict[str, di
         report.reject("BUILD_FAILED", audit.stderr.strip()[-2000:] or audit.stdout.strip()[-2000:])
         return
     findings = parse_audit(audit.stdout)
+    # The umbrella is imported, so every accepted declaration should be visible
+    # here. Any that is not, this submission removed, renamed, or overwrote.
+    regressions = corpus_regressions(accepted, findings)
+    if regressions:
+        report.reject(
+            "CORPUS_REGRESSION",
+            f"accepted entrypoints are no longer present: {regressions[:5]}",
+        )
+    report.observations["corpus_entrypoints_checked"] = len(accepted)
     entrypoints = metadata.get("entrypoints", [])
     # Findings now span the accepted corpus as well, so the Mathlib comparison
     # is kept to declarations this submission actually introduces.
@@ -594,7 +628,7 @@ def main(argv: list[str] | None = None) -> int:
             if metadata is None:
                 report.reject("SCHEMA_INVALID", "no valid metadata record was available for audit")
             else:
-                lean_audit(candidate, modules_for(changed), declared_public_facts(candidate, changed), metadata, limits, axioms, mathlib_release or {}, report)
+                lean_audit(candidate, modules_for(changed), declared_public_facts(candidate, changed), metadata, limits, axioms, mathlib_release or {}, accepted_entrypoints(base), report)
     finally:
         if temporary:
             temporary.cleanup()

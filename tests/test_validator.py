@@ -180,6 +180,27 @@ class ValidatorPreflightTests(unittest.TestCase):
         self.assertIn("LeanFrontier", modules)
         self.assertEqual(len(modules), len(set(modules)))
 
+    def test_accepted_entrypoints_are_read_from_the_base_tree(self) -> None:
+        (self.base / "Submissions" / "earlier.json").write_text(
+            json.dumps({"submission_id": "earlier", "entrypoints": ["LeanFrontier.Old.kept"]})
+        )
+        (self.base / "Submissions" / "broken.json").write_text("{ not json")
+        accepted = frontier_validate.accepted_entrypoints(self.base)
+        self.assertEqual(accepted, {"LeanFrontier.Old.kept"})
+
+    def test_a_submission_removing_an_accepted_entrypoint_is_a_regression(self) -> None:
+        accepted = {"LeanFrontier.Old.kept", "LeanFrontier.Old.dropped"}
+        findings = {"LeanFrontier.Old.kept": {}, "LeanFrontier.New.added": {}}
+        self.assertEqual(
+            frontier_validate.corpus_regressions(accepted, findings),
+            ["LeanFrontier.Old.dropped"],
+        )
+
+    def test_an_untouched_corpus_reports_no_regression(self) -> None:
+        accepted = {"LeanFrontier.Old.kept"}
+        findings = {"LeanFrontier.Old.kept": {}, "LeanFrontier.New.added": {}}
+        self.assertEqual(frontier_validate.corpus_regressions(accepted, findings), [])
+
     def test_award_source_facts_mark_direct_aliases(self) -> None:
         path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
         path.write_text("namespace LeanFrontier.Algebra\ndef alias := Existing\nend LeanFrontier.Algebra\n")

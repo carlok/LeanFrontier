@@ -29,6 +29,10 @@ Read `policy/mathlib-release.json` immediately before preparing the claim: its
 `base_mathlib_revision`. Older merged claims keep their historical revision;
 they are not templates to copy after a release upgrade.
 
+If your subject already has a module in the corpus, import it and extend it.
+Do not replace its file with your own version: the receiver imports every
+accepted entrypoint and rejects a submission that makes one disappear.
+
 Never use `sorry`, `sorryAx`, `axiom`, or an additional trust escape. Keep
 imports specific. Make internal scaffolding `private` or `local` whenever
 possible. Do not enumerate trivial arithmetic cases, operand permutations,
