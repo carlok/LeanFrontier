@@ -1,0 +1,299 @@
+{
+  "accepted_revision": "df9328d310d8df9e1c6348d7c21dbbd4de9a59e9",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-18T16:47:10+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 162.356,
+    "observed": {
+      "added_lines": 104,
+      "audited_declarations": {
+        "LeanFrontier.Nat.inv_fib_add_three_le": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.inv_fib_add_three_le",
+          "restatement": false,
+          "statement_sha256": "dd17b6f60d74a30eb73a3f910f22c90c9ac79ffdba32af1f9deeb5c8d4f9521a",
+          "type_dependencies": [
+            "DivInvMonoid.toDiv",
+            "HAdd.hAdd",
+            "HDiv.hDiv",
+            "HPow.hPow",
+            "Inv.inv",
+            "LE.le",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.fib",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instDivInvMonoid",
+            "Real.instInv",
+            "Real.instLE",
+            "Real.instMonoid",
+            "Real.instNatCast",
+            "instAddNat",
+            "instHAdd",
+            "instHDiv",
+            "instHPow",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.summable_inv_fib": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.summable_inv_fib",
+          "restatement": false,
+          "statement_sha256": "a20dbe7adf8e9a119c458d3f9554e15fe8298def801836d1d5bf2a3136fe1a36",
+          "type_dependencies": [
+            "Inv.inv",
+            "Nat",
+            "Nat.cast",
+            "Nat.fib",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instAddCommMonoid",
+            "Real.instInv",
+            "Real.instNatCast",
+            "Real.pseudoMetricSpace",
+            "Summable",
+            "SummationFilter.unconditional",
+            "UniformSpace.toTopologicalSpace"
+          ]
+        },
+        "LeanFrontier.Nat.three_pow_le_two_pow_mul_fib": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.three_pow_le_two_pow_mul_fib",
+          "restatement": false,
+          "statement_sha256": "b1fa558d0766f970035c48b3c171e8e2182cce0b0e1e6c803639909cb088d4d6",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "LE.le",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.fib",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instLENat",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.tsum_inv_fib_le": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.tsum_inv_fib_le",
+          "restatement": false,
+          "statement_sha256": "72b64989eeca51cf3fb26f2403c65def68771fcfcadda8f024a8231ff088a065",
+          "type_dependencies": [
+            "Inv.inv",
+            "LE.le",
+            "Nat",
+            "Nat.cast",
+            "Nat.fib",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instAddCommMonoid",
+            "Real.instInv",
+            "Real.instLE",
+            "Real.instNatCast",
+            "Real.pseudoMetricSpace",
+            "SummationFilter.unconditional",
+            "UniformSpace.toTopologicalSpace",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat",
+            "tsum"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Nat.inv_fib_add_three_le": "inconclusive",
+        "LeanFrontier.Nat.summable_inv_fib": "inconclusive",
+        "LeanFrontier.Nat.three_pow_le_two_pow_mul_fib": "inconclusive",
+        "LeanFrontier.Nat.tsum_inv_fib_le": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 10058,
+      "changed_files": [
+        "LeanFrontier/Analysis/FibonacciReciprocal.lean",
+        "Submissions/fibonacci-reciprocal-summable.json"
+      ],
+      "corpus_entrypoints_checked": 50,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Nat.inv_fib_add_three_le": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.inv_fib_add_three_le",
+          "statement_sha256": "dd17b6f60d74a30eb73a3f910f22c90c9ac79ffdba32af1f9deeb5c8d4f9521a",
+          "type_dependencies": [
+            "DivInvMonoid.toDiv",
+            "HAdd.hAdd",
+            "HDiv.hDiv",
+            "HPow.hPow",
+            "Inv.inv",
+            "LE.le",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.fib",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instDivInvMonoid",
+            "Real.instInv",
+            "Real.instLE",
+            "Real.instMonoid",
+            "Real.instNatCast",
+            "instAddNat",
+            "instHAdd",
+            "instHDiv",
+            "instHPow",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.summable_inv_fib": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.summable_inv_fib",
+          "statement_sha256": "a20dbe7adf8e9a119c458d3f9554e15fe8298def801836d1d5bf2a3136fe1a36",
+          "type_dependencies": [
+            "Inv.inv",
+            "Nat",
+            "Nat.cast",
+            "Nat.fib",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instAddCommMonoid",
+            "Real.instInv",
+            "Real.instNatCast",
+            "Real.pseudoMetricSpace",
+            "Summable",
+            "SummationFilter.unconditional",
+            "UniformSpace.toTopologicalSpace"
+          ]
+        },
+        "LeanFrontier.Nat.three_pow_le_two_pow_mul_fib": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.three_pow_le_two_pow_mul_fib",
+          "statement_sha256": "b1fa558d0766f970035c48b3c171e8e2182cce0b0e1e6c803639909cb088d4d6",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "LE.le",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.fib",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instLENat",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.tsum_inv_fib_le": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.tsum_inv_fib_le",
+          "statement_sha256": "72b64989eeca51cf3fb26f2403c65def68771fcfcadda8f024a8231ff088a065",
+          "type_dependencies": [
+            "Inv.inv",
+            "LE.le",
+            "Nat",
+            "Nat.cast",
+            "Nat.fib",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instAddCommMonoid",
+            "Real.instInv",
+            "Real.instLE",
+            "Real.instNatCast",
+            "Real.pseudoMetricSpace",
+            "SummationFilter.unconditional",
+            "UniformSpace.toTopologicalSpace",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat",
+            "tsum"
+          ]
+        }
+      },
+      "lean_source_bytes": 5484,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 4
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "fibonacci-reciprocal-summable",
+  "trusted_receiver_revision": "13a87c488e9505b083faf4bc8d2a1c2975d763f8",
+  "validated_candidate_revision": "b7fa63b0d5d5c3619ac9aaa94e6182c6925b50b5",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32149893852"
+}
