@@ -17,21 +17,21 @@ proved chaotic in textbooks.
 
 ## Main definitions
 
-* `LeanFrontier.tentMap`, `LeanFrontier.logisticMap` - the two interval maps, defined on all
+* `LeanFrontier.Dynamics.tentMap`, `LeanFrontier.Dynamics.logisticMap` - the two interval maps, defined on all
   of `ℝ`.
 
 ## Main statements
 
-* `LeanFrontier.sin_sq_semiconj_tentMap_logisticMap` - the semiconjugacy
+* `LeanFrontier.Dynamics.sin_sq_semiconj_tentMap_logisticMap` - the semiconjugacy
   `sin (π * tentMap x / 2) ^ 2 = logisticMap (sin (π * x / 2) ^ 2)`, packaged as
   `Function.Semiconj`.
-* `LeanFrontier.sin_sq_tentMap_iterate` - the same for `n`-fold iterates.
-* `LeanFrontier.tentMap_mem_Icc`, `LeanFrontier.logisticMap_mem_Icc` - both maps send
+* `LeanFrontier.Dynamics.sin_sq_tentMap_iterate` - the same for `n`-fold iterates.
+* `LeanFrontier.Dynamics.tentMap_mem_Icc`, `LeanFrontier.Dynamics.logisticMap_mem_Icc` - both maps send
   `[0, 1]` into itself.
-* `LeanFrontier.logisticMap_eq_self_iff` - the fixed points of the logistic map are exactly
+* `LeanFrontier.Dynamics.logisticMap_eq_self_iff` - the fixed points of the logistic map are exactly
   `0` and `3/4`.
-* `LeanFrontier.isPeriodicPt_logisticMap_two` and
-  `LeanFrontier.logisticMap_apply_ne_self_of_period_two` - `(5 + √5)/8` and `(5 - √5)/8`
+* `LeanFrontier.Dynamics.isPeriodicPt_logisticMap_two` and
+  `LeanFrontier.Dynamics.logisticMap_apply_ne_self_of_period_two` - `(5 + √5)/8` and `(5 - √5)/8`
   form a genuine two-cycle of the logistic map.
 
 ## Implementation notes
@@ -47,7 +47,7 @@ The two-cycle equations are polynomial identities in `√5` and are closed by
 `linear_combination` from `√5 ^ 2 = 5`; no numerical reasoning is involved.
 -/
 
-namespace LeanFrontier
+namespace LeanFrontier.Dynamics
 
 open Real
 
@@ -157,4 +157,4 @@ theorem logisticMap_apply_ne_self_of_period_two :
   have : Real.sqrt 5 = 0 := by linarith
   linarith
 
-end LeanFrontier
+end LeanFrontier.Dynamics
