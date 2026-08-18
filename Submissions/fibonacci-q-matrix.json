@@ -1,0 +1,21 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "fibonacci-q-matrix",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "claude-fable-5",
+    "agent": "claude-code"
+  },
+  "origin_mode": "mathlib_extension",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Matrix.fibMatrix_pow_succ",
+    "LeanFrontier.Matrix.det_fibMatrix",
+    "LeanFrontier.Matrix.det_fibMatrix_pow",
+    "LeanFrontier.Matrix.trace_fibMatrix_pow_succ",
+    "LeanFrontier.Matrix.isUnit_fibMatrix"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "The Fibonacci Q-matrix !![1, 1; 1, 0] over the integers and its power formula Q^(n+1) = !![F(n+2), F(n+1); F(n+1), F(n)], the linear-algebraic representation of the Fibonacci recurrence. Consequences proved: det Q = -1 and det (Q^n) = (-1)^n, whose scalar expansion is Cassini's identity; the trace of Q^(n+1) is F(n) + F(n+2), the Lucas number L(n+1); and Q is a unit of the matrix ring, i.e. an element of GL2(Z). The matrix lives over Z rather than N so the determinant identities need no truncated subtraction and the unit statement is the interesting one. The mathematics is classical and is not claimed as new.\n\nAbsence evidence over the pinned Mathlib tree at v4.33.0-rc1. Mathlib has no Fibonacci matrix: fib does not occur in Mathlib/LinearAlgebra except as the word fiber, the literal matrix !![1, 1; 1, 0] appears nowhere, and no declaration connects Nat.fib to Matrix, det, or trace. Mathlib does prove Cassini's identity for the bidirectional Int.fib in Data/Int/Fib/Lemmas.lean; for that reason the scalar Cassini consequence of det_fibMatrix_pow is deliberately NOT restated here, and the claim of this submission is the matrix representation itself. In the LeanFrontier corpus the LinearAlgebra subject directory was previously empty; the corpus Horadam module works with a general second-order recurrence over a ring but contains no matrix.\n\nImplementation. The power formula is one induction: the base case is entrywise evaluation of Q itself, and the step is concrete 2x2 multiplication by Matrix.mul_fin_two followed by an entrywise closure (ext, fin_cases, simp, linarith) against the two casts of Nat.fib_add_two, with a show line normalizing the index literals first. The determinant statements are rewrites through Matrix.det_fin_two_of and Matrix.det_pow; the trace statement is a rewrite through Matrix.trace_fin_two_of; the unit statement is Matrix.isUnit_iff_isUnit_det with the unit -1. Imports are seven files: the fib, determinant, inverse, notation and trace files plus the fin_cases and norm_num tactic files.\n\nVerification beyond the receiver. In a scratch file outside the repository the three distinguished entries of Q^(n+1), its determinant, and its trace were checked by decide against fib, (-1)^(n+1), and F(n) + F(n+2) for all n < 10. This guards against a definition that elaborates but encodes the wrong matrix, which the receiver cannot detect. The n = 4 instance Q^5 = !![8, 5; 5, 3] is kept in the module as an example, not a public theorem.\n\nNot included. Cassini's identity in scalar form (already in Mathlib for Int.fib, as noted); the matrix form of the addition formulas via pow_add, whose scalar content Nat.fib_add is also already in Mathlib; the eigenvalue analysis connecting Q to the golden ratio, which belongs beside Mathlib's GoldenRatio file; and the companion-matrix generalization to arbitrary two-term recurrences, which would connect to this repository's Horadam module and deserves its own submission.\n\nProvenance. Produced by the same agent session as the six previous submissions of this series, from the repository's TRY-LEANFRONTIER launcher, after the human operator asked for a seventh submission without choosing a subject: the subject, absence check, statements, proofs, and the decision to submit were made by the agent. This subject was originally considered for the sixth submission and deferred when the absence check showed Mathlib already contains scalar Cassini; it returns here restricted to the genuinely absent matrix content. Proofs use one induction, entrywise 2x2 matrix computation, linarith, norm_num, and the named Mathlib matrix lemmas."
+}
