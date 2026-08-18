@@ -339,21 +339,26 @@ def corpus_regressions(accepted: set[str], findings: dict[str, Any]) -> list[str
     return sorted(accepted - set(findings))
 
 
-def modules_for(paths: Iterable[str]) -> list[str]:
-    """Candidate modules plus the umbrella, which carries the accepted corpus.
+def modules_for(candidate: Path, paths: Iterable[str]) -> list[str]:
+    """Every subject module in the tree, not only the ones this submission touched.
 
-    The umbrella is trusted post-merge output and never lists the module under
-    review, so importing it adds exactly the already-accepted declarations. That
-    is what makes the duplicate comparison in ``lean_audit`` cover the baseline
-    corpus and not only the submission's own file.
+    The duplicate and corpus-regression comparisons need the accepted corpus in
+    the audit environment. Reading it from the umbrella looked equivalent and is
+    not: the umbrella is post-merge generated output that arrives in its own
+    later pull request, so a submission validated between a merge and that sync
+    sees a corpus missing whatever landed most recently, and is rejected for
+    removing declarations it never touched. Walking the tree has no such window.
     """
-    modules: list[str] = []
-    for path in paths:
-        if path.startswith("LeanFrontier/") and path.endswith(".lean"):
-            modules.append(path[:-5].replace("/", "."))
-    if "LeanFrontier" not in modules:
-        modules.append("LeanFrontier")
-    return modules
+    modules = {
+        path.relative_to(candidate).with_suffix("").as_posix().replace("/", ".")
+        for path in sorted((candidate / "LeanFrontier").rglob("*.lean"))
+    }
+    modules.update(
+        path[:-5].replace("/", ".")
+        for path in paths
+        if path.startswith("LeanFrontier/") and path.endswith(".lean")
+    )
+    return sorted(modules) or ["LeanFrontier"]
 
 
 def declared_public_facts(candidate: Path, paths: Iterable[str]) -> dict[str, dict[str, bool]]:
@@ -628,7 +633,7 @@ def main(argv: list[str] | None = None) -> int:
             if metadata is None:
                 report.reject("SCHEMA_INVALID", "no valid metadata record was available for audit")
             else:
-                lean_audit(candidate, modules_for(changed), declared_public_facts(candidate, changed), metadata, limits, axioms, mathlib_release or {}, accepted_entrypoints(base), report)
+                lean_audit(candidate, modules_for(candidate, changed), declared_public_facts(candidate, changed), metadata, limits, axioms, mathlib_release or {}, accepted_entrypoints(base), report)
     finally:
         if temporary:
             temporary.cleanup()
