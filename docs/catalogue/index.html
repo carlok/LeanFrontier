@@ -340,6 +340,72 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/HoradamSequence.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/horadam-cassini-identity/6b8535c26f3771bc559843317bf188d432747b4f.json">receiver report</a></p>
 </article>
 <article>
+  <h2><code>LeanFrontier.Nat.lucas_pos</code></h2>
+  <p class="statement">: ∀ n, 0 &lt; lucas n | 0 =&gt; by simp | 1 =&gt; by simp | n + 2 =&gt; by have h1</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.LucasNumber</code></dd>
+  <dt>Claim</dt><dd>lucas-numbers · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>77b9a30910c2b63eed7747df9a42d2a2f60468b5</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>04edf8a7bbe09fc446fc5cbe608c4ed8a10fa9e8328fcdae5258a81ae19e72f6</code></dd></dl>
+  <p>Lucas numbers are positive.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/LucasNumber.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/lucas-numbers/77b9a30910c2b63eed7747df9a42d2a2f60468b5.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.lucas_succ_eq_fib_add_fib</code></h2>
+  <p class="statement">: ∀ n, lucas (n + 1) = Nat.fib n + Nat.fib (n + 2) | 0 =&gt; by decide | 1 =&gt; by decide | n + 2 =&gt; by have h1</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.LucasNumber</code></dd>
+  <dt>Claim</dt><dd>lucas-numbers · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>77b9a30910c2b63eed7747df9a42d2a2f60468b5</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>142bf65394109070392499d61ad65fe7e96983c1e8d00194758432c4ef2e504c</code></dd></dl>
+  <p>The bridge to the Fibonacci numbers: `L (n + 1) = F n + F (n + 2)`. The index is shifted by one so that the statement needs no natural subtraction.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/LucasNumber.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/lucas-numbers/77b9a30910c2b63eed7747df9a42d2a2f60468b5.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.fib_two_mul_eq_fib_mul_lucas</code></h2>
+  <p class="statement">(n : ℕ) : Nat.fib (2 * n) = Nat.fib n * lucas n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.LucasNumber</code></dd>
+  <dt>Claim</dt><dd>lucas-numbers · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>77b9a30910c2b63eed7747df9a42d2a2f60468b5</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>c6bb398f74ad93e80981ffb61aa8e8a31b3c788e0101faa7bff8c4f7c2b6053b</code></dd></dl>
+  <p>The doubling identity `F (2 * n) = F n * L n`: a Fibonacci number at an even index factors through the Lucas number at half the index.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/LucasNumber.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/lucas-numbers/77b9a30910c2b63eed7747df9a42d2a2f60468b5.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.fib_succ_sq_sub_fib_mul_fib_add_two</code></h2>
+  <p class="statement">(n : ℕ) : (Nat.fib (n + 1) : ℤ) ^ 2 - Nat.fib n * Nat.fib (n + 2) = (-1) ^ n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.LucasNumber</code></dd>
+  <dt>Claim</dt><dd>lucas-numbers · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>77b9a30910c2b63eed7747df9a42d2a2f60468b5</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>441418abdf4a237289301f90ea6173ad19b83d8d87da40aba33e9992b5dd620e</code></dd></dl>
+  <p>The Cassini-type identity in the subtraction-free index form: `(F (n + 1))² - F n * F (n + 2) = (-1) ^ n` over `ℤ`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/LucasNumber.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/lucas-numbers/77b9a30910c2b63eed7747df9a42d2a2f60468b5.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.lucas_sq_eq_five_mul_fib_sq_add</code></h2>
+  <p class="statement">(n : ℕ) : (lucas n : ℤ) ^ 2 = 5 * (Nat.fib n : ℤ) ^ 2 + 4 * (-1) ^ n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.LucasNumber</code></dd>
+  <dt>Claim</dt><dd>lucas-numbers · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>77b9a30910c2b63eed7747df9a42d2a2f60468b5</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>ec5bf34439a556ab9ea9e60b34d0d640005b1145a99828e18823b97779f76f67</code></dd></dl>
+  <p>The Pell-type identity `(L n)² = 5 (F n)² + 4 * (-1) ^ n`: the pair `(L n, F n)` lies on one of the two conics `x² - 5 y² = ± 4`, which is why `(L n + √5 F n) / 2 = φ ^ n`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/LucasNumber.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/lucas-numbers/77b9a30910c2b63eed7747df9a42d2a2f60468b5.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Nat.sum_range_lucas</code></h2>
+  <p class="statement">(n : ℕ) : ∑ i ∈ Finset.range n, lucas i = lucas (n + 1) - 1</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.LucasNumber</code></dd>
+  <dt>Claim</dt><dd>lucas-numbers · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>77b9a30910c2b63eed7747df9a42d2a2f60468b5</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>08125a2ee4f940c6bad599f32742bb7d0c01fba6873596a8cd6db4f53f83a06b</code></dd></dl>
+  <p>The partial sums of the Lucas numbers: `∑ i &lt; n, L i = L (n + 1) - 1`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/LucasNumber.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/lucas-numbers/77b9a30910c2b63eed7747df9a42d2a2f60468b5.json">receiver report</a></p>
+</article>
+<article>
   <h2><code>LeanFrontier.MarkovEquation.mul_jump_eq</code></h2>
   <p class="statement">(h : IsSolution x y z) : z * jump x y z = x ^ 2 + y ^ 2</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.MarkovEquation</code></dd>
