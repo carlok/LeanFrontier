@@ -15,6 +15,7 @@ import LeanFrontier.NumberTheory.Mediant
 import LeanFrontier.NumberTheory.PowerSums
 import LeanFrontier.NumberTheory.SternDiatomic
 import LeanFrontier.NumberTheory.SylvesterSequence
+import LeanFrontier.Topology.Furstenberg
 /-!
 # LeanFrontier
 
