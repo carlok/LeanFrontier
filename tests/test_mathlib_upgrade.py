@@ -89,3 +89,10 @@ class MathlibUpgradePathTests(unittest.TestCase):
             )
             with self.assertRaises(ValueError):
                 validate_mathlib_upgrade.main(["--base", str(base), "--candidate", str(candidate)])
+
+    def test_upgrade_audit_rechecks_the_corpus_against_the_kernel(self) -> None:
+        """A release bump must not land with proofs nobody re-verified."""
+        source = (ROOT / "tools" / "audit_mathlib_upgrade.py").read_text()
+        self.assertIn('"lake", "env", "leanchecker"', source)
+        self.assertIn("def corpus_modules", source)
+        self.assertIn('"kernel_recheck": "pass"', source)
