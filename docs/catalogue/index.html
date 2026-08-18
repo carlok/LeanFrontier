@@ -10,6 +10,54 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Algebra/Binomial.lean">View source</a></p>
 </article>
 <article>
+  <h2><code>LeanFrontier.Josephus.survivor_lt_self</code></h2>
+  <p class="statement">(n : ℕ) (hn : n ≠ 0) : survivor n &lt; n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
+  <dt>Claim</dt><dd>josephus-survivor-binary-shift · mathlib_extension · claude-code</dd></dl>
+  <p>The survivor of a nonempty circle is one of its positions.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.survivor_eq_two_mul_sub_two_pow_log</code></h2>
+  <p class="statement">(n : ℕ) (hn : n ≠ 0) : survivor n = 2 * (n - 2 ^ Nat.log 2 n)</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
+  <dt>Claim</dt><dd>josephus-survivor-binary-shift · mathlib_extension · claude-code</dd></dl>
+  <p>The survivor of a circle of `n` people is `2 * (n - 2 ^ ⌊log₂ n⌋)`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.survivor_two_pow_add</code></h2>
+  <p class="statement">(m k : ℕ) (hk : k &lt; 2 ^ m) : survivor (2 ^ m + k) = 2 * k</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
+  <dt>Claim</dt><dd>josephus-survivor-binary-shift · mathlib_extension · claude-code</dd></dl>
+  <p>Writing the size of the circle as `2 ^ m + k` with `k &lt; 2 ^ m`, the survivor is `2 * k`: in binary, the leading one of `n` is deleted and a zero is appended.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.survivor_two_mul</code></h2>
+  <p class="statement">(n : ℕ) (hn : n ≠ 0) : survivor (2 * n) = 2 * survivor n</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
+  <dt>Claim</dt><dd>josephus-survivor-binary-shift · mathlib_extension · claude-code</dd></dl>
+  <p>Doubling the circle doubles the survivor.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.survivor_two_mul_add_one</code></h2>
+  <p class="statement">(n : ℕ) (hn : n ≠ 0) : survivor (2 * n + 1) = 2 * survivor n + 2</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
+  <dt>Claim</dt><dd>josephus-survivor-binary-shift · mathlib_extension · claude-code</dd></dl>
+  <p>Doubling the circle and adding one person moves the survivor two places on.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus.lean">View source</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Josephus.survivor_eq_zero_iff</code></h2>
+  <p class="statement">(n : ℕ) (hn : n ≠ 0) : survivor n = 0 ↔ ∃ m, n = 2 ^ m</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.Josephus</code></dd>
+  <dt>Claim</dt><dd>josephus-survivor-binary-shift · mathlib_extension · claude-code</dd></dl>
+  <p>The person who starts the count survives exactly when the circle has a power of two members.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Combinatorics/Josephus.lean">View source</a></p>
+</article>
+<article>
   <h2><code>LeanFrontier.InversiveGeometry.reflect_eq_self_iff</code></h2>
   <p class="statement">(z : ℂ) (hden : (A : ℂ) * conj z + B ≠ 0) : reflect A C B z = z ↔ hermitianForm A C B z = 0</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.Geometry.InversiveGeometry</code></dd>
