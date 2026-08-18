@@ -3,6 +3,8 @@ import LeanFrontier.Algebra.Binomial
 import LeanFrontier.Analysis.FibonacciReciprocal
 import LeanFrontier.Combinatorics.FibonacciComposition
 import LeanFrontier.Combinatorics.Josephus
+import LeanFrontier.Combinatorics.Josephus.OneIndexed
+import LeanFrontier.Dynamics.LogisticMap
 import LeanFrontier.Geometry.InversiveGeometry
 import LeanFrontier.LinearAlgebra.FibonacciMatrix
 import LeanFrontier.NumberTheory.DescartesCircle
