@@ -87,24 +87,47 @@ class WorkflowContractTests(unittest.TestCase):
 
     def test_accepted_receiver_reports_are_persisted_only_after_merge(self) -> None:
         for required in (
-            "pull_request_target:",
-            "types: [closed]",
-            "github.event.pull_request.merged == true",
-            "actions: read",
+            "push:",
+            "branches: [main]",
+            "actions: write",
             "tools/persist_observation.py",
             "receiver-artifact/report-output/report.json",
             "receiver-observations",
-            "github.event.pull_request.merge_commit_sha",
         ):
             self.assertIn(required, OBSERVATION_WORKFLOW)
+
+    def test_observations_are_written_without_a_fork_trigger(self) -> None:
+        """`pull_request_target` reads fork code in a trusted context; a merge to main does not."""
+        self.assertNotIn("pull_request_target:", OBSERVATION_WORKFLOW)
+        self.assertNotIn("allow-unsafe-pr-checkout", OBSERVATION_WORKFLOW)
+        self.assertNotIn("github.event.pull_request.", OBSERVATION_WORKFLOW)
+        # Revisions come from the merge commit's own parents.
+        self.assertIn('base="$(git rev-parse "$merge^1")"', OBSERVATION_WORKFLOW)
+        self.assertIn('head="$(git rev-parse --verify --quiet "$merge^2"', OBSERVATION_WORKFLOW)
 
     def test_observation_checkout_keeps_the_merge_parent_and_fails_loudly(self) -> None:
         """A shallow checkout cannot resolve `<merge>^1`, and process substitution hides it."""
         self.assertIn("fetch-depth: 2", OBSERVATION_WORKFLOW)
-        self.assertIn(
-            'git rev-parse --verify --quiet "${{ github.event.pull_request.merge_commit_sha }}^1"',
-            OBSERVATION_WORKFLOW,
-        )
+        self.assertIn('git rev-parse --verify --quiet "$merge^1" > /dev/null', OBSERVATION_WORKFLOW)
+
+    def test_post_merge_writer_runs_trusted_code_on_merged_data(self) -> None:
+        """`pull_request_target` carries a write token: never execute the merged tree."""
+        self.assertIn("ref: ${{ steps.submission.outputs.base }}", OBSERVATION_WORKFLOW)
+        self.assertIn("path: .trusted-receiver", OBSERVATION_WORKFLOW)
+        self.assertIn(".trusted-receiver/tools/persist_observation.py", OBSERVATION_WORKFLOW)
+        self.assertIn(".trusted-receiver/tools/generate_catalogue.py --root .", OBSERVATION_WORKFLOW)
+        self.assertNotIn("python3 tools/persist_observation.py", OBSERVATION_WORKFLOW)
+        self.assertNotIn("run: python3 tools/generate_catalogue.py", OBSERVATION_WORKFLOW)
+
+    def test_post_merge_writer_refuses_a_submission_touching_trusted_paths(self) -> None:
+        self.assertIn("Refuse to record if the merge touched trusted infrastructure", OBSERVATION_WORKFLOW)
+        for guarded in (".github", "tools", "policy", "schema", "lakefile.toml", "lean-toolchain"):
+            self.assertIn(guarded, OBSERVATION_WORKFLOW)
+
+    def test_every_generator_may_dispatch_the_checks_it_depends_on(self) -> None:
+        """Opening the protected pull request is useless without dispatching its checks."""
+        for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW, OBSERVATION_WORKFLOW):
+            self.assertIn("actions: write", workflow)
 
     def test_trusted_generators_open_protected_maintenance_prs(self) -> None:
         for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW, OBSERVATION_WORKFLOW):
