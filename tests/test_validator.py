@@ -203,6 +203,38 @@ class ValidatorPreflightTests(unittest.TestCase):
             for entrypoint in json.loads(path.read_text())["entrypoints"]:
                 self.assertRegex(entrypoint, frontier_validate.ENTRYPOINT_RE, path.name)
 
+    def test_only_the_submissions_own_modules_are_rechecked(self) -> None:
+        """Imported modules were rechecked when they were admitted."""
+        submitted = frontier_validate.submitted_modules(
+            ["LeanFrontier/Algebra/New.lean", "Submissions/valid-bundle.json"]
+        )
+        self.assertEqual(submitted, ["LeanFrontier.Algebra.New"])
+        audited = frontier_validate.modules_for(self.candidate, [])
+        self.assertIn("LeanFrontier.Algebra.Existing", audited)
+        self.assertNotIn("LeanFrontier.Algebra.Existing", submitted)
+
+    def test_a_failing_kernel_recheck_is_a_rejection(self) -> None:
+        calls: list[list[str]] = []
+
+        class Result:
+            returncode = 1
+            stderr = "kernel rejected declaration"
+            stdout = ""
+
+        original = frontier_validate.run
+        frontier_validate.run = lambda cmd, cwd, timeout: (calls.append(cmd), Result())[1]
+        try:
+            report = frontier_validate.Report()
+            frontier_validate.kernel_recheck(
+                self.candidate, ["LeanFrontier.Algebra.New"],
+                {"kernel_recheck_timeout_seconds": 180}, report,
+            )
+        finally:
+            frontier_validate.run = original
+        self.assertEqual(calls[0], ["lake", "env", "leanchecker", "LeanFrontier.Algebra.New"])
+        self.assertFalse(report.accepted)
+        self.assertEqual(report.diagnostics[0].code, "KERNEL_RECHECK_FAILED")
+
     def test_accepted_entrypoints_are_read_from_the_base_tree(self) -> None:
         (self.base / "Submissions" / "earlier.json").write_text(
             json.dumps({"submission_id": "earlier", "entrypoints": ["LeanFrontier.Old.kept"]})

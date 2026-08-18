@@ -347,6 +347,15 @@ def corpus_regressions(accepted: set[str], findings: dict[str, Any]) -> list[str
     return sorted(accepted - set(findings))
 
 
+def submitted_modules(paths: Iterable[str]) -> list[str]:
+    """Only the subject modules this submission adds or changes."""
+    return sorted(
+        path[:-5].replace("/", ".")
+        for path in paths
+        if path.startswith("LeanFrontier/") and path.endswith(".lean")
+    )
+
+
 def modules_for(candidate: Path, paths: Iterable[str]) -> list[str]:
     """Every subject module in the tree, not only the ones this submission touched.
 
@@ -518,7 +527,29 @@ def downstream_smoke(candidate: Path, modules: list[str], entrypoints: list[str]
     report.observations["downstream_import_smoke"] = "pass"
 
 
-def lean_audit(candidate: Path, modules: list[str], declared_facts: dict[str, dict[str, bool]], metadata: dict[str, Any], limits: dict[str, Any], axioms: dict[str, Any], mathlib_release: dict[str, str], accepted: set[str], report: Report) -> None:
+def kernel_recheck(candidate: Path, modules: list[str], limits: dict[str, Any], report: Report) -> None:
+    """Replay the submitted modules through the kernel with `leanchecker`.
+
+    `lake build` and the axiom audit both trust the elaborated environment that
+    the build produced. `leanchecker` re-checks those declarations against the
+    kernel from their compiled form, so a proof accepted through an elaborator
+    bug does not reach the corpus on the elaborator's word alone. Imported
+    modules are trusted here: each was rechecked when it was admitted.
+    """
+    for module in modules:
+        try:
+            result = run(["lake", "env", "leanchecker", module], candidate, limits["kernel_recheck_timeout_seconds"])
+        except (OSError, subprocess.TimeoutExpired) as error:
+            report.reject("KERNEL_RECHECK_FAILED", f"leanchecker did not complete for {module}: {error}")
+            return
+        if result.returncode:
+            detail = (result.stderr.strip() or result.stdout.strip())[-2000:]
+            report.reject("KERNEL_RECHECK_FAILED", detail or f"leanchecker rejected {module}")
+            return
+    report.observations["kernel_recheck"] = "pass"
+
+
+def lean_audit(candidate: Path, modules: list[str], submitted: list[str], declared_facts: dict[str, dict[str, bool]], metadata: dict[str, Any], limits: dict[str, Any], axioms: dict[str, Any], mathlib_release: dict[str, str], accepted: set[str], report: Report) -> None:
     try:
         build = run(["lake", "build"], candidate, limits["build_timeout_seconds"])
     except (OSError, subprocess.TimeoutExpired) as error:
@@ -526,6 +557,9 @@ def lean_audit(candidate: Path, modules: list[str], declared_facts: dict[str, di
         return
     if build.returncode:
         report.reject("BUILD_FAILED", build.stderr.strip()[-2000:] or build.stdout.strip()[-2000:])
+        return
+    kernel_recheck(candidate, submitted, limits, report)
+    if not report.accepted:
         return
     try:
         audit = run(["lake", "exe", "frontier-audit", "--", *modules], candidate, limits["validation_timeout_seconds"] - limits["build_timeout_seconds"])
@@ -641,7 +675,7 @@ def main(argv: list[str] | None = None) -> int:
             if metadata is None:
                 report.reject("SCHEMA_INVALID", "no valid metadata record was available for audit")
             else:
-                lean_audit(candidate, modules_for(candidate, changed), declared_public_facts(candidate, changed), metadata, limits, axioms, mathlib_release or {}, accepted_entrypoints(base), report)
+                lean_audit(candidate, modules_for(candidate, changed), submitted_modules(changed), declared_public_facts(candidate, changed), metadata, limits, axioms, mathlib_release or {}, accepted_entrypoints(base), report)
     finally:
         if temporary:
             temporary.cleanup()

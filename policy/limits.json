@@ -12,5 +12,6 @@
   "build_timeout_seconds": 300,
   "validation_timeout_seconds": 480,
   "max_memory_bytes": 2147483648,
-  "max_disk_bytes": 2147483648
+  "max_disk_bytes": 2147483648,
+  "kernel_recheck_timeout_seconds": 180
 }
