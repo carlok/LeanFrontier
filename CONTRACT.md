@@ -46,7 +46,9 @@ support a possible future migration. Source MUST use explicit imports where
 practical and MUST NOT organize mathematical modules by producer, model, or
 submission identifier.
 
-Every declared public entrypoint MUST elaborate and be accepted by Lean. A
+Every declared public entrypoint MUST elaborate and be accepted by Lean. The
+receiver additionally replays each submitted module through the kernel with
+`leanchecker`, so admission does not rest on the elaborator's word alone. A
 submission MUST NOT contain `sorry`, `sorryAx`, an `axiom` declaration, or a
 prohibited trust escape. Its transitive axiom closure MUST be a subset of the
 allowlist in `policy/axioms.json`. The receiver, not the submitter, determines
@@ -107,7 +109,7 @@ Stable rejection categories include `SCHEMA_INVALID`,
 `PATH_POLICY_VIOLATION`, `RESOURCE_LIMIT_EXCEEDED`, `BUILD_FAILED`,
 `SORRY_DETECTED`, `UNAUTHORIZED_AXIOM`, `DUPLICATE_STATEMENT`,
 `TRIVIAL_BASELINE_RESULT`, `DEGENERATE_THEOREM_FAMILY`, `CORPUS_REGRESSION`,
-and `SECURITY_POLICY_VIOLATION`.
+`KERNEL_RECHECK_FAILED`, and `SECURITY_POLICY_VIOLATION`.
 
 The trusted maintenance receiver periodically evaluates newer official tagged
 Mathlib releases. It does not inspect Mathlib `main` or open upstream pull

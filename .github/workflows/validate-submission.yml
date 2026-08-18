@@ -34,7 +34,9 @@ jobs:
         (github.event.pull_request.author_association == 'OWNER' ||
          github.event.pull_request.user.login == 'github-actions[bot]'))
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    # Raised from 12 when the kernel recheck was added: the Furstenberg
+    # submission's validate job already ran 7m31s before it existed.
+    timeout-minutes: 20
     steps:
       - name: Check out trusted receiver revision
         uses: actions/checkout@v4

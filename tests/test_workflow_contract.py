@@ -72,6 +72,12 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("Mathlib fingerprint index does not match the pinned revision", validator)
         self.assertNotIn('"--all", match_arg, "Mathlib"', validator)
 
+    def test_receiver_replays_submitted_modules_through_the_kernel(self) -> None:
+        validator = (ROOT / "tools" / "frontier_validate.py").read_text()
+        self.assertIn('"lake", "env", "leanchecker"', validator)
+        self.assertIn("KERNEL_RECHECK_FAILED", validator)
+        self.assertIn("kernel_recheck_timeout_seconds", validator)
+
     def test_receiver_smoke_tests_downstream_imports(self) -> None:
         validator = (ROOT / "tools" / "frontier_validate.py").read_text()
         self.assertIn("def downstream_smoke", validator)
