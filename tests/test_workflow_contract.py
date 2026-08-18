@@ -106,6 +106,20 @@ class WorkflowContractTests(unittest.TestCase):
             OBSERVATION_WORKFLOW,
         )
 
+    def test_post_merge_writer_runs_trusted_code_on_merged_data(self) -> None:
+        """`pull_request_target` carries a write token: never execute the merged tree."""
+        self.assertIn("ref: ${{ github.event.pull_request.base.sha }}", OBSERVATION_WORKFLOW)
+        self.assertIn("path: .trusted-receiver", OBSERVATION_WORKFLOW)
+        self.assertIn(".trusted-receiver/tools/persist_observation.py", OBSERVATION_WORKFLOW)
+        self.assertIn(".trusted-receiver/tools/generate_catalogue.py --root .", OBSERVATION_WORKFLOW)
+        self.assertNotIn("python3 tools/persist_observation.py", OBSERVATION_WORKFLOW)
+        self.assertNotIn("run: python3 tools/generate_catalogue.py", OBSERVATION_WORKFLOW)
+
+    def test_post_merge_writer_refuses_a_submission_touching_trusted_paths(self) -> None:
+        self.assertIn("Refuse to record if the merge touched trusted infrastructure", OBSERVATION_WORKFLOW)
+        for guarded in (".github", "tools", "policy", "schema", "lakefile.toml", "lean-toolchain"):
+            self.assertIn(guarded, OBSERVATION_WORKFLOW)
+
     def test_trusted_generators_open_protected_maintenance_prs(self) -> None:
         for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW, OBSERVATION_WORKFLOW):
             self.assertIn("automation/generated/", workflow)
