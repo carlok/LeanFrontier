@@ -8,6 +8,7 @@ import LeanFrontier.NumberTheory.DescartesCircle
 import LeanFrontier.NumberTheory.Farey
 import LeanFrontier.NumberTheory.FordCircle
 import LeanFrontier.NumberTheory.HoradamSequence
+import LeanFrontier.NumberTheory.LucasNumber
 import LeanFrontier.NumberTheory.MarkovEquation
 import LeanFrontier.NumberTheory.Mediant
 import LeanFrontier.NumberTheory.PowerSums
