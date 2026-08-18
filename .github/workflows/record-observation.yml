@@ -1,12 +1,13 @@
 name: record-observation
 
 on:
-  # A closed PR from a fork keeps a read-only GITHUB_TOKEN under pull_request.
-  # This job runs only after merge and checks out the merge commit explicitly,
-  # so pull_request_target grants the trusted post-merge writer without ever
-  # executing unmerged fork code.
-  pull_request_target:
-    types: [closed]
+  # Merges to main only: the branch ruleset requires a pull request, so every
+  # push here is an already-reviewed merge commit belonging to this repository.
+  # There is no fork context and no unmerged code, which is why this does not
+  # use pull_request_target — that trigger now needs an explicit unsafe opt-in
+  # to read a fork's merge commit, and needs it for good reason.
+  push:
+    branches: [main]
 
 permissions:
   actions: read
@@ -15,28 +16,58 @@ permissions:
 
 jobs:
   persist:
-    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
         with:
-          ref: ${{ github.event.pull_request.merge_commit_sha }}
-          # The merge parent must be present: a shallow checkout cannot diff
-          # against `<merge>^1` and would silently record no observation.
+          # Both parents must be present: `^1` is the trusted base this merge
+          # was validated against, `^2` is the candidate head whose receiver
+          # artifact carries the report. A shallow checkout resolves neither
+          # and would silently record nothing.
           fetch-depth: 2
           persist-credentials: true
       - id: submission
         name: Find the merged submission record
         run: |
-          git rev-parse --verify --quiet "${{ github.event.pull_request.merge_commit_sha }}^1" > /dev/null
-          mapfile -t records < <(git diff --name-only "${{ github.event.pull_request.merge_commit_sha }}^1" "${{ github.event.pull_request.merge_commit_sha }}" -- 'Submissions/*.json')
+          merge="${{ github.sha }}"
+          git rev-parse --verify --quiet "$merge^1" > /dev/null
+          mapfile -t records < <(git diff --name-only "$merge^1" "$merge" -- 'Submissions/*.json')
           if [ "${#records[@]}" -eq 0 ]; then
             echo "should_record=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           test "${#records[@]}" -eq 1
-          echo "should_record=true" >> "$GITHUB_OUTPUT"
-          echo "path=${records[0]}" >> "$GITHUB_OUTPUT"
+          base="$(git rev-parse "$merge^1")"
+          head="$(git rev-parse --verify --quiet "$merge^2" || git rev-parse "$merge")"
+          {
+            echo "should_record=true"
+            echo "path=${records[0]}"
+            echo "base=$base"
+            echo "head=$head"
+            echo "merged_at=$(git log -1 --format=%cI "$merge")"
+          } >> "$GITHUB_OUTPUT"
+      - name: Refuse to record if the merge touched trusted infrastructure
+        if: steps.submission.outputs.should_record == 'true'
+        run: |
+          merge="${{ github.sha }}"
+          changed="$(git diff --name-only "$merge^1" "$merge" -- \
+            .github tools policy schema lakefile.toml lake-manifest.json lean-toolchain)"
+          if [ -n "$changed" ]; then
+            echo "::error::a submission merge modified trusted infrastructure:"
+            echo "$changed"
+            exit 1
+          fi
+      - name: Check out the trusted receiver revision
+        if: steps.submission.outputs.should_record == 'true'
+        uses: actions/checkout@v5
+        with:
+          # Scripts run from the base revision, never from the merged tree: the
+          # post-merge writer holds a write token, and its safety must not
+          # depend on the receiver having rejected a change to tools/.
+          ref: ${{ steps.submission.outputs.base }}
+          path: .trusted-receiver
+          fetch-depth: 1
+          persist-credentials: false
       - name: Retrieve the successful trusted receiver artifact
         if: steps.submission.outputs.should_record == 'true'
         env:
@@ -44,7 +75,7 @@ jobs:
         run: |
           run_id="$(gh run list --repo "$GITHUB_REPOSITORY" \
             --workflow validate-submission.yml \
-            --commit "${{ github.event.pull_request.head.sha }}" \
+            --commit "${{ steps.submission.outputs.head }}" \
             --json databaseId,conclusion,url \
             --jq '[.[] | select(.conclusion == "success")][0].databaseId')"
           test -n "$run_id"
@@ -54,17 +85,17 @@ jobs:
       - name: Persist the trusted receiver observation
         if: steps.submission.outputs.should_record == 'true'
         run: >-
-          python3 tools/persist_observation.py
+          python3 .trusted-receiver/tools/persist_observation.py
           --report receiver-artifact/report-output/report.json
           --submission "${{ steps.submission.outputs.path }}"
-          --accepted-revision ${{ github.event.pull_request.merge_commit_sha }}
-          --candidate-revision ${{ github.event.pull_request.head.sha }}
-          --trusted-receiver-revision ${{ github.event.pull_request.base.sha }}
+          --accepted-revision ${{ github.sha }}
+          --candidate-revision ${{ steps.submission.outputs.head }}
+          --trusted-receiver-revision ${{ steps.submission.outputs.base }}
           --validation-run "$(cat validation-run.txt)"
-          --observed-at "${{ github.event.pull_request.merged_at }}"
+          --observed-at "${{ steps.submission.outputs.merged_at }}"
       - name: Regenerate the catalogue from the trusted observation
         if: steps.submission.outputs.should_record == 'true'
-        run: python3 tools/generate_catalogue.py
+        run: python3 .trusted-receiver/tools/generate_catalogue.py --root .
       - name: Open a protected generated-output pull request
         if: steps.submission.outputs.should_record == 'true'
         env:
@@ -81,5 +112,5 @@ jobs:
           pr="$(gh pr create --base main --head "$branch" --title "chore: record receiver observation" --body "Trusted receiver observation from run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.")"
           gh workflow run test.yml --repo "$GITHUB_REPOSITORY" --ref "$branch"
           gh workflow run validate-submission.yml --repo "$GITHUB_REPOSITORY" --ref "$branch" \
-            -f trusted_ref="${{ github.event.pull_request.merge_commit_sha }}" -f candidate_ref="$branch" -f generated=true
+            -f trusted_ref="${{ github.sha }}" -f candidate_ref="$branch" -f generated=true
           gh pr merge "$pr" --auto --merge
