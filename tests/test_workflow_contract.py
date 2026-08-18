@@ -87,28 +87,32 @@ class WorkflowContractTests(unittest.TestCase):
 
     def test_accepted_receiver_reports_are_persisted_only_after_merge(self) -> None:
         for required in (
-            "pull_request_target:",
-            "types: [closed]",
-            "github.event.pull_request.merged == true",
+            "push:",
+            "branches: [main]",
             "actions: read",
             "tools/persist_observation.py",
             "receiver-artifact/report-output/report.json",
             "receiver-observations",
-            "github.event.pull_request.merge_commit_sha",
         ):
             self.assertIn(required, OBSERVATION_WORKFLOW)
+
+    def test_observations_are_written_without_a_fork_trigger(self) -> None:
+        """`pull_request_target` reads fork code in a trusted context; a merge to main does not."""
+        self.assertNotIn("pull_request_target:", OBSERVATION_WORKFLOW)
+        self.assertNotIn("allow-unsafe-pr-checkout", OBSERVATION_WORKFLOW)
+        self.assertNotIn("github.event.pull_request.", OBSERVATION_WORKFLOW)
+        # Revisions come from the merge commit's own parents.
+        self.assertIn('base="$(git rev-parse "$merge^1")"', OBSERVATION_WORKFLOW)
+        self.assertIn('head="$(git rev-parse --verify --quiet "$merge^2"', OBSERVATION_WORKFLOW)
 
     def test_observation_checkout_keeps_the_merge_parent_and_fails_loudly(self) -> None:
         """A shallow checkout cannot resolve `<merge>^1`, and process substitution hides it."""
         self.assertIn("fetch-depth: 2", OBSERVATION_WORKFLOW)
-        self.assertIn(
-            'git rev-parse --verify --quiet "${{ github.event.pull_request.merge_commit_sha }}^1"',
-            OBSERVATION_WORKFLOW,
-        )
+        self.assertIn('git rev-parse --verify --quiet "$merge^1" > /dev/null', OBSERVATION_WORKFLOW)
 
     def test_post_merge_writer_runs_trusted_code_on_merged_data(self) -> None:
         """`pull_request_target` carries a write token: never execute the merged tree."""
-        self.assertIn("ref: ${{ github.event.pull_request.base.sha }}", OBSERVATION_WORKFLOW)
+        self.assertIn("ref: ${{ steps.submission.outputs.base }}", OBSERVATION_WORKFLOW)
         self.assertIn("path: .trusted-receiver", OBSERVATION_WORKFLOW)
         self.assertIn(".trusted-receiver/tools/persist_observation.py", OBSERVATION_WORKFLOW)
         self.assertIn(".trusted-receiver/tools/generate_catalogue.py --root .", OBSERVATION_WORKFLOW)
