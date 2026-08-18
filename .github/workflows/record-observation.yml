@@ -37,6 +37,28 @@ jobs:
           test "${#records[@]}" -eq 1
           echo "should_record=true" >> "$GITHUB_OUTPUT"
           echo "path=${records[0]}" >> "$GITHUB_OUTPUT"
+      - name: Refuse to record if the merge touched trusted infrastructure
+        if: steps.submission.outputs.should_record == 'true'
+        run: |
+          merge="${{ github.event.pull_request.merge_commit_sha }}"
+          changed="$(git diff --name-only "$merge^1" "$merge" -- \
+            .github tools policy schema lakefile.toml lake-manifest.json lean-toolchain)"
+          if [ -n "$changed" ]; then
+            echo "::error::a submission merge modified trusted infrastructure:"
+            echo "$changed"
+            exit 1
+          fi
+      - name: Check out the trusted receiver revision
+        if: steps.submission.outputs.should_record == 'true'
+        uses: actions/checkout@v5
+        with:
+          # Scripts run from the base revision, never from the merged tree: the
+          # post-merge writer holds a write token, and its safety must not
+          # depend on the receiver having rejected a change to tools/.
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: .trusted-receiver
+          fetch-depth: 1
+          persist-credentials: false
       - name: Retrieve the successful trusted receiver artifact
         if: steps.submission.outputs.should_record == 'true'
         env:
@@ -54,7 +76,7 @@ jobs:
       - name: Persist the trusted receiver observation
         if: steps.submission.outputs.should_record == 'true'
         run: >-
-          python3 tools/persist_observation.py
+          python3 .trusted-receiver/tools/persist_observation.py
           --report receiver-artifact/report-output/report.json
           --submission "${{ steps.submission.outputs.path }}"
           --accepted-revision ${{ github.event.pull_request.merge_commit_sha }}
@@ -64,7 +86,7 @@ jobs:
           --observed-at "${{ github.event.pull_request.merged_at }}"
       - name: Regenerate the catalogue from the trusted observation
         if: steps.submission.outputs.should_record == 'true'
-        run: python3 tools/generate_catalogue.py
+        run: python3 .trusted-receiver/tools/generate_catalogue.py --root .
       - name: Open a protected generated-output pull request
         if: steps.submission.outputs.should_record == 'true'
         env:
