@@ -1,0 +1,92 @@
+{
+  "accepted_revision": "67f6771a4abe7dd5610f4d4a32c5abccd652a24a",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-19T18:21:18+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 96.897,
+    "observed": {
+      "added_lines": 29,
+      "audited_declarations": {
+        "LeanFrontier.HermiteLindemann.exp_injOn_isAlgebraic": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.HermiteLindemann.exp_injOn_isAlgebraic",
+          "restatement": false,
+          "statement_sha256": "3420106adbec770426cf0b8492918c4bedcb2e71b56ed9fdde9f4a988a30a46f",
+          "type_dependencies": [
+            "Complex",
+            "Complex.exp",
+            "Complex.instRing",
+            "Complex.instZero",
+            "Int",
+            "Int.instCommRing",
+            "IsAlgebraic",
+            "Ne",
+            "OfNat.ofNat",
+            "Ring.toIntAlgebra",
+            "Set.InjOn",
+            "Transcendental",
+            "Zero.toOfNat0",
+            "setOf"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.HermiteLindemann.exp_injOn_isAlgebraic": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 2686,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/Transcendental/HermiteLindemann.lean",
+        "Submissions/hermite-lindemann-exp-injective-on-algebraics.json"
+      ],
+      "corpus_entrypoints_checked": 98,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.HermiteLindemann.exp_injOn_isAlgebraic": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.HermiteLindemann.exp_injOn_isAlgebraic",
+          "statement_sha256": "3420106adbec770426cf0b8492918c4bedcb2e71b56ed9fdde9f4a988a30a46f",
+          "type_dependencies": [
+            "Complex",
+            "Complex.exp",
+            "Complex.instRing",
+            "Complex.instZero",
+            "Int",
+            "Int.instCommRing",
+            "IsAlgebraic",
+            "Ne",
+            "OfNat.ofNat",
+            "Ring.toIntAlgebra",
+            "Set.InjOn",
+            "Transcendental",
+            "Zero.toOfNat0",
+            "setOf"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 1026,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "hermite-lindemann-exp-injective-on-algebraics",
+  "trusted_receiver_revision": "fb8ede6d541065656a9b01e0fc6afb894f8c906d",
+  "validated_candidate_revision": "3517193043119b0f8f6ee3f42ee9742878eb21e7",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32274449356"
+}

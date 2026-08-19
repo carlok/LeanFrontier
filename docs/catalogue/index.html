@@ -989,6 +989,17 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/SylvesterSequence.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/sylvester-sequence-coprimality/a93c2e393ef2fa763197c6ce7a700e723868b71d.json">receiver report</a></p>
 </article>
 <article>
+  <h2><code>LeanFrontier.HermiteLindemann.exp_injOn_isAlgebraic</code></h2>
+  <p class="statement">(hermiteLindemann : ∀ {z : ℂ}, z ≠ 0 → IsAlgebraic ℤ z → Transcendental ℤ (Complex.exp z)) : Set.InjOn Complex.exp {z : ℂ | IsAlgebraic ℤ z}</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.Transcendental.HermiteLindemann</code></dd>
+  <dt>Claim</dt><dd>hermite-lindemann-exp-injective-on-algebraics · target_driven · codex</dd>
+  <dt>Receiver</dt><dd>accepted at <code>67f6771a4abe7dd5610f4d4a32c5abccd652a24a</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>3420106adbec770426cf0b8492918c4bedcb2e71b56ed9fdde9f4a988a30a46f</code></dd></dl>
+  <p>Hermite--Lindemann implies that complex exponentiation is injective when restricted to algebraic numbers.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/NumberTheory/Transcendental/HermiteLindemann.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/hermite-lindemann-exp-injective-on-algebraics/67f6771a4abe7dd5610f4d4a32c5abccd652a24a.json">receiver report</a></p>
+</article>
+<article>
   <h2><code>LeanFrontier.Int.isTopologicalBasis_arithProgression</code></h2>
   <p class="statement">: @IsTopologicalBasis ℤ furstenbergTopology {S : Set ℤ | ∃ a b, b ≠ 0 ∧ S = arithProgression a b}</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.Topology.Furstenberg</code></dd>
