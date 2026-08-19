@@ -12,6 +12,7 @@ CATALOGUE_WORKFLOW = (ROOT / ".github" / "workflows" / "sync-catalogue.yml").rea
 OBSERVATION_WORKFLOW = (ROOT / ".github" / "workflows" / "record-observation.yml").read_text()
 PAGES_WORKFLOW = (ROOT / ".github" / "workflows" / "deploy-pages.yml").read_text()
 UPGRADE_WORKFLOW = (ROOT / ".github" / "workflows" / "mathlib-upgrade.yml").read_text()
+RECONCILE_WORKFLOW = (ROOT / ".github" / "workflows" / "reconcile-generated.yml").read_text()
 DOCKERFILE = (ROOT / "tools" / "Dockerfile.validator").read_text()
 LAKEFILE = (ROOT / "lakefile.toml").read_text()
 
@@ -107,6 +108,18 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("def downstream_smoke", validator)
         self.assertIn('SCRATCH = Path("/tmp/leanfrontier")', validator)
         self.assertIn('report.observations["downstream_import_smoke"] = "pass"', validator)
+
+    def test_generated_pull_requests_are_brought_forward_after_a_merge(self) -> None:
+        """Auto-merge does not update branches, and the ruleset requires up to date."""
+        self.assertIn("branches: [main]", RECONCILE_WORKFLOW)
+        self.assertIn("gh pr update-branch", RECONCILE_WORKFLOW)
+        self.assertIn('startswith("automation/generated/")', RECONCILE_WORKFLOW)
+        self.assertIn('select(.mergeStateStatus == "BEHIND")', RECONCILE_WORKFLOW)
+        # Only the app's own generated output, never a contributor's branch.
+        self.assertIn('.author.login == "app/${{ steps.app-token.outputs.app-slug }}"', RECONCILE_WORKFLOW)
+        # Mergeability is computed asynchronously; a single read races the push.
+        self.assertIn('select(.mergeStateStatus == "UNKNOWN")', RECONCILE_WORKFLOW)
+        self.assertIn("actions/create-github-app-token", RECONCILE_WORKFLOW)
 
     def test_catalogue_defers_to_the_observation_writer(self) -> None:
         """Racing it can only publish a render without receiver-report links."""
