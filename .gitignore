@@ -10,3 +10,7 @@ coverage.xml
 
 .trusted-receiver/
 receiver-artifact/
+
+# local tooling, not part of a submission
+.codegraph/
+.cursor/

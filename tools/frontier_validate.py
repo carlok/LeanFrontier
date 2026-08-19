@@ -89,13 +89,51 @@ def load_json(path: Path) -> Any:
         return json.load(handle)
 
 
-def tree_files(root: Path) -> dict[str, Path]:
+ALWAYS_IGNORED = frozenset({".git", ".lake", ".frontier", "__pycache__"})
+
+
+def ignored_names(trusted: Path | None) -> frozenset[str]:
+    """Names the repository itself declares uninteresting, plus the always-ignored.
+
+    A submitter following README instructions runs the receiver in a working
+    tree, where `.DS_Store` and the `coverage.xml` the documented test command
+    writes would otherwise be reported as path policy violations — findings CI
+    never produces, since it validates a clean checkout. Reading `.gitignore`
+    keeps one source of truth instead of a second hardcoded list that drifts.
+
+    Read from the trusted tree, never the candidate: a submission that could
+    extend this set could hide files from the receiver. Only plain names are
+    honoured; globs and negations are left to git.
+    """
+    if trusted is None:
+        return ALWAYS_IGNORED
+    try:
+        lines = (trusted / ".gitignore").read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return ALWAYS_IGNORED
+    plain = {
+        entry.rstrip("/")
+        for line in lines
+        if (entry := line.strip()) and not entry.startswith(("#", "!"))
+        and not any(character in entry for character in "*?[]/")
+    }
+    plain |= {
+        entry.rstrip("/")
+        for line in lines
+        if (entry := line.strip()) and entry.endswith("/") and entry.count("/") == 1
+        and not any(character in entry for character in "*?[]!#")
+    }
+    return ALWAYS_IGNORED | frozenset(plain)
+
+
+def tree_files(root: Path, ignored: frozenset[str] = ALWAYS_IGNORED) -> dict[str, Path]:
     result: dict[str, Path] = {}
-    ignored = {".git", ".lake", ".frontier", "__pycache__"}
     for directory, names, files in os.walk(root, followlinks=False):
         names[:] = [name for name in names if name not in ignored]
         directory_path = Path(directory)
         for name in files:
+            if name in ignored:
+                continue
             path = directory_path / name
             relative = path.relative_to(root).as_posix()
             result[relative] = path
@@ -111,8 +149,9 @@ def content_changed(left: Path | None, right: Path | None) -> bool:
 
 
 def changed_paths(base: Path | None, candidate: Path) -> tuple[dict[str, Path | None], dict[str, Path]]:
-    before = tree_files(base) if base else {}
-    after = tree_files(candidate)
+    ignored = ignored_names(base)
+    before = tree_files(base, ignored) if base else {}
+    after = tree_files(candidate, ignored)
     changed = {
         name: after.get(name)
         for name in sorted(set(before) | set(after))
@@ -223,6 +262,15 @@ def strip_comments(source: str) -> str:
 
 
 def normalized_statement(text: str) -> str:
+    """Literal skeleton of a statement, used by the family detector.
+
+    Whitespace is removed before numerals are, so a numeral written against an
+    identifier keeps its identity: `lucas 0 = 2` normalizes to `lucas0=#`, not
+    `lucas#=#`. Base cases of a recursion therefore do not collapse into one
+    family with each other, while `n + 1 = 1 + n` and `n + 2 = 2 + n` still do.
+    That is the behaviour we want and it is easy to break by reordering these
+    two substitutions, so `test_base_cases_are_not_a_family` pins it.
+    """
     text = re.sub(r"--.*$", "", text, flags=re.MULTILINE)
     text = re.sub(r"\s+", "", text)
     text = re.sub(r"\b(?:theorem|lemma)[A-Za-z_][A-Za-z0-9_']*", "", text)

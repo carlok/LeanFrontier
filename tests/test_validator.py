@@ -264,6 +264,29 @@ class ValidatorPreflightTests(unittest.TestCase):
         self.assertFalse(report.accepted)
         self.assertEqual(report.diagnostics[0].code, "KERNEL_RECHECK_FAILED")
 
+    def test_the_ignore_set_follows_the_repository_gitignore(self) -> None:
+        """A submitter running the receiver in a working tree should see what CI sees."""
+        derived = frontier_validate.ignored_names(ROOT)
+        for noise in (".DS_Store", "coverage.xml", ".coverage"):
+            self.assertIn(noise, derived, f"{noise} is in .gitignore but the receiver still walks it")
+        self.assertTrue(frontier_validate.ALWAYS_IGNORED <= derived)
+
+    def test_the_ignore_set_comes_from_the_trusted_tree(self) -> None:
+        """A candidate that could widen it could hide files from the receiver."""
+        (self.candidate / ".gitignore").write_text("LeanFrontier/\nSubmissions/\n")
+        changed, _ = frontier_validate.changed_paths(self.base, self.candidate)
+        self.assertIn("Submissions/valid-bundle.json", changed)
+        self.assertIn("LeanFrontier/Algebra/New.lean", changed)
+
+    def test_base_cases_are_not_a_family(self) -> None:
+        """Whitespace collapses before numerals, so `lucas 0` keeps its literal."""
+        zero = frontier_validate.normalized_statement(" : lucas 0 = 2")
+        one = frontier_validate.normalized_statement(" : lucas 1 = 1")
+        self.assertNotEqual(zero, one)
+        shifted_one = frontier_validate.normalized_statement("(n : Nat) : n + 1 = 1 + n")
+        shifted_two = frontier_validate.normalized_statement("(n : Nat) : n + 2 = 2 + n")
+        self.assertEqual(shifted_one, shifted_two)
+
     def test_accepted_entrypoints_are_read_from_the_base_tree(self) -> None:
         (self.base / "Submissions" / "earlier.json").write_text(
             json.dumps({"submission_id": "earlier", "entrypoints": ["LeanFrontier.Old.kept"]})
