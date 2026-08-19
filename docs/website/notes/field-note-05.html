@@ -24,12 +24,12 @@
         <header class="note-header">
           <p class="eyebrow">19 August 2026 · Field Note 05</p>
           <h1>A Day Spent Attacking the Receiver.</h1>
-          <p class="hero-copy">No submission was accepted today and the corpus did not grow. The work went into asking what a producer optimising for the wrong thing could get past the boundary, and into reading a neighbouring project that was doing one thing better.</p>
+          <p class="hero-copy">The morning went into asking what a producer optimising for the wrong thing could get past the boundary, and into reading a neighbouring project that was doing one thing better. Then three submissions arrived and found, in an afternoon, two failures the attacking had not.</p>
         </header>
 
         <section>
-          <h2>The corpus did not move</h2>
-          <p>Eighteen accepted submissions, eighty-four theorems, nineteen modules, unchanged since yesterday. Everything below is about the receiver rather than the mathematics, which is the less photogenic half of the experiment and the half that decides whether the other half means anything.</p>
+          <h2>The morning did not move the corpus</h2>
+          <p>It opened at eighteen accepted submissions and eighty-four theorems, where it had closed the night before. The next five sections are about the receiver rather than the mathematics, which is the less photogenic half of the experiment and the half that decides whether the other half means anything. The corpus did move later, and the last two sections are about what happened when it did.</p>
         </section>
 
         <section>
@@ -64,9 +64,29 @@
         </section>
 
         <section>
+          <h2>Then the submissions arrived</h2>
+          <p>Three landed in the afternoon. The greatest sequence with bounded increments below a partial ceiling, reached from a doctoral thesis on two wheeled vehicle dynamics, where the forward and backward passes of a lap time simulator compute exactly that object; the module states it in order theoretic terms and nothing physical enters the Lean. Then a small extension of it. Then Stedman's plain changes from 1677, the sequence of rows in which consecutive rows differ by one adjacent swap, whose step invariant is a constructive Hamiltonian path in the Cayley graph of the symmetric group under adjacent transpositions, rediscovered three centuries later as the Steinhaus-Johnson-Trotter enumeration. That one filled the group theory directory, empty since the bootstrap, and reused Mathlib's permutation machinery rather than restating it.</p>
+          <p>The corpus closed at twenty one submissions, ninety seven theorems, nine subject areas.</p>
+        </section>
+
+        <section>
+          <h2>What real submissions found that attacking had not</h2>
+          <p>Merging the first of them opened three generated pull requests at once. The umbrella one merged, which moved the default branch, which left the other two behind with every check green and no way to proceed: the ruleset requires a branch to be up to date and automatic merging does not update branches. Both needed a manual command.</p>
+          <p>Worse, one of the two should never have existed. The catalogue renders three inputs, and a submission merge changes two of them in a single push while the third, the receiver observation, does not exist yet. So the catalogue sync produced a render with no receiver report links at the same moment the observation writer produced the complete one. Had it merged it would have stripped eight links from published output. It was closed instead, and the sync now defers to the observation writer whenever a submission record changed in the push it is reacting to.</p>
+          <p>The stranding was fixed the other way round, by having every merge bring forward whatever it stranded. Both fixes were then confirmed by the two submissions that followed rather than by a probe: two generated pull requests per merge instead of three, and the straggler carried forward without anyone touching it, twice.</p>
+          <p>Neither failure was reachable by attacking the receiver directly. Maintenance pull requests take a different path and produce no generated output at all, so a week of them would not have surfaced either one. That is the argument for the corpus being the thing that tests the machinery, and against believing a boundary is sound because its author cannot break it.</p>
+        </section>
+
+        <section>
+          <h2>A word the contract had never defined</h2>
+          <p>Every submission declares who authored its statements and its proofs. Twenty one records in, twenty read <code>machine</code> and one reads <code>mixed</code>, and the outlier is the first submission ever accepted. Several of the twenty describe, in their own context field, a human who named an area or chose from a shortlist the producer proposed.</p>
+          <p>The contract required the fields and the schema listed their values, and nothing said what they measured. It now does: they ask who wrote the formal text, not who chose the subject, so a human posing a vague direction leaves the answer <code>machine</code> and the human's part belongs in the context field. The older record stands as it is. Records are immutable, and a contract that explains an inconsistency is worth more than a history quietly edited to remove one.</p>
+        </section>
+
+        <section>
           <h2>What this was</h2>
-          <p>Nine merged changes, none of them mathematics. Most came from one question asked repeatedly: what would a producer do if it wanted volume rather than content, and what would the boundary let it away with? The rest came from reading somebody else's project carefully enough to find out they were right about something.</p>
-          <p>Neither is a substitute for submissions, and the corpus is the same size it was this morning. But a boundary that has not been attacked is only a claim, and the failures worth recording are the ones found before a contributor hits them rather than after.</p>
+          <p>Fourteen merged changes. The morning's came from one question asked repeatedly, about what a producer wanting volume rather than content could get away with, and from reading somebody else's project carefully enough to find they were right about something. The afternoon's came from three people using the thing.</p>
+          <p>One of the three submissions was produced by the same assistant that wrote most of the receiver, and says so in its record, because a project whose premise is declared provenance should not have to be asked about that. It is a small result about a definition an hour old. Whether it belongs in a corpus of machine generated mathematics is a fair question, and the disclosure exists to make it answerable rather than to settle it.</p>
         </section>
       </article>
     </main>
