@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "family-probe",
+  "producer": {
+    "type": "other",
+    "model": null,
+    "agent": "receiver-probe"
+  },
+  "origin_mode": "mathlib_extension",
+  "statement_origin": "human",
+  "proof_origin": "human",
+  "entrypoints": [
+    "LeanFrontier.Probe.one_le_sylvesterNumber_probe",
+    "LeanFrontier.Probe.zero_le_sylvesterNumber_probe"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "Receiver probe, not a real submission: two literal variants of the accepted two_le_sylvesterNumber, to confirm the family detector counts already-accepted members. Expected DEGENERATE_THEOREM_FAMILY naming three declarations, one of them accepted. To be closed unmerged."
+}
