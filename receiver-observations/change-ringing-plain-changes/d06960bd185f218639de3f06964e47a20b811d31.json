@@ -1,0 +1,534 @@
+{
+  "accepted_revision": "d06960bd185f218639de3f06964e47a20b811d31",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-19T16:08:31+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 223.654,
+    "observed": {
+      "added_lines": 251,
+      "audited_declarations": {
+        "LeanFrontier.ChangeRinging.AdjSwap": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.ChangeRinging.AdjSwap",
+          "restatement": false,
+          "statement_sha256": "32f35e942cd1be617f551f1e870e288ca00ea4e8ba86fcd4f4979de813e903ab",
+          "type_dependencies": [
+            "List"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.adjSwap_concat": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.adjSwap_concat",
+          "restatement": false,
+          "statement_sha256": "85784da1de1b233385df7d404af03b35859514d7c7d977be57cfae4fb786d190",
+          "type_dependencies": [
+            "HAppend.hAppend",
+            "LeanFrontier.ChangeRinging.AdjSwap",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "List.nil",
+            "instHAppendOfAppend"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.adjSwap_cons": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.adjSwap_cons",
+          "restatement": false,
+          "statement_sha256": "d0f7e8d133aa5326a9521694497393595f1e67d1273966111d21f85733b4806d",
+          "type_dependencies": [
+            "LeanFrontier.ChangeRinging.AdjSwap",
+            "List",
+            "List.cons"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.adjSwap_perm": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.adjSwap_perm",
+          "restatement": false,
+          "statement_sha256": "5aa72621999b86331fd3b9b55097ec93e8d2ee42f5ea9da3fa1984e93087373e",
+          "type_dependencies": [
+            "LeanFrontier.ChangeRinging.AdjSwap",
+            "List",
+            "List.Perm"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.adjSwap_symm": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.adjSwap_symm",
+          "restatement": false,
+          "statement_sha256": "0507e707ea8bfb24bf7409e890750c79d901fb2b220d271a665c1db13edb7d9a",
+          "type_dependencies": [
+            "LeanFrontier.ChangeRinging.AdjSwap",
+            "List"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.getLast": null,
+        "LeanFrontier.ChangeRinging.head": null,
+        "LeanFrontier.ChangeRinging.head_rows": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.head_rows",
+          "restatement": false,
+          "statement_sha256": "22524ccf0a83dd3d23eda2ecb316d8368f9cebc3ef310f206015e86fe3657076",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.head?",
+            "Option",
+            "Option.some"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.hunt": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.ChangeRinging.hunt",
+          "restatement": false,
+          "statement_sha256": "1f2e5d3425199e9870c4747f1fd1f5c44cffce6ec40b0b0a51635038e5f455d0",
+          "type_dependencies": [
+            "Bool",
+            "List"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.hunt_false": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.hunt_false",
+          "restatement": false,
+          "statement_sha256": "ab8125b255db141a68270061960e3d09c05fd89db82d06f1439d65149a3708c6",
+          "type_dependencies": [
+            "Bool.false",
+            "Eq",
+            "LeanFrontier.ChangeRinging.hunt",
+            "List",
+            "List.permutations'Aux",
+            "List.reverse"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.hunt_true": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.hunt_true",
+          "restatement": false,
+          "statement_sha256": "8b33677eba670e1359ad92da3fa1e486d9b65bd0ac7b684f76458e8e1131052e",
+          "type_dependencies": [
+            "Bool.true",
+            "Eq",
+            "LeanFrontier.ChangeRinging.hunt",
+            "List",
+            "List.permutations'Aux"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.isChain_adjSwap_hunt": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.isChain_adjSwap_hunt",
+          "restatement": false,
+          "statement_sha256": "da615e3936b9a802b2d350c6452797e483ccb0910552fbb7240b2bd896b7f121",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.ChangeRinging.AdjSwap",
+            "LeanFrontier.ChangeRinging.hunt",
+            "List",
+            "List.IsChain"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.isChain_adjSwap_permutations'Aux": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.isChain_adjSwap_permutations'Aux",
+          "restatement": false,
+          "statement_sha256": "34172086f23d1cbacd731e25509e6469a72d240c1240cf8cd86f8a504fd8231a",
+          "type_dependencies": [
+            "LeanFrontier.ChangeRinging.AdjSwap",
+            "List",
+            "List.IsChain",
+            "List.permutations'Aux"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.isChain_adjSwap_rows": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.isChain_adjSwap_rows",
+          "restatement": false,
+          "statement_sha256": "00829909654dc2b26db95b15a798cdfc3c3fa543d7e32293be718027989aff0b",
+          "type_dependencies": [
+            "LeanFrontier.ChangeRinging.AdjSwap",
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.IsChain"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.isChain_adjSwap_weave": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.isChain_adjSwap_weave",
+          "restatement": false,
+          "statement_sha256": "5b5980d86dacce658e96644d26948290b6967adf2fef06bc37b6cce66095f5fa",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.ChangeRinging.AdjSwap",
+            "LeanFrontier.ChangeRinging.weave",
+            "List",
+            "List.IsChain"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.length_rows": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.length_rows",
+          "restatement": false,
+          "statement_sha256": "f0c151bdc16fea2c4504d9f88b1bdf9b534aece930dc78e90930779c858ff22d",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.length",
+            "Nat",
+            "Nat.factorial"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.mem_rows": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.mem_rows",
+          "restatement": false,
+          "statement_sha256": "49d0c178677e3b25d3bfb050fe7c7c05ac07d43fbb3e3a759c472478f4951071",
+          "type_dependencies": [
+            "Iff",
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.Perm",
+            "List.instMembership",
+            "Membership.mem"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.nodup_rows": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.nodup_rows",
+          "restatement": false,
+          "statement_sha256": "075f4a7cc21ba7bbf58c1455bb603473649d9596039d77bccb1a8facc06db0bb",
+          "type_dependencies": [
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.Nodup"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.permutations'Aux_ne_nil": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.permutations'Aux_ne_nil",
+          "restatement": false,
+          "statement_sha256": "7c52b3fb34c46d9de0d854c2051e723e4b24e18a5381881458feb8427d501037",
+          "type_dependencies": [
+            "List",
+            "List.nil",
+            "List.permutations'Aux",
+            "Ne"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.rows": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.ChangeRinging.rows",
+          "restatement": false,
+          "statement_sha256": "ca01d2c928ecef31c48da332ca02fd36837ed072a09a4ea27aa7046ad246e280",
+          "type_dependencies": [
+            "List"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.rows_cons": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.rows_cons",
+          "restatement": false,
+          "statement_sha256": "1a4b89d967e4a4a6e2f0d8f26eec7b56cbaa6ab8f8ab8e8865db8871d77365ae",
+          "type_dependencies": [
+            "Bool.true",
+            "Eq",
+            "LeanFrontier.ChangeRinging.rows",
+            "LeanFrontier.ChangeRinging.weave",
+            "List",
+            "List.cons"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.rows_nil": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.rows_nil",
+          "restatement": false,
+          "statement_sha256": "de3898f420f43b82dd631566959424627235a1282a4131b04f52acf9bef2e293",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.cons",
+            "List.nil"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.rows_perm_permutations": null,
+        "LeanFrontier.ChangeRinging.weave": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.ChangeRinging.weave",
+          "restatement": false,
+          "statement_sha256": "7b99d995d8d3b145058367afb69e478d9f0f00ddd0a6fdb7be3f026589f36700",
+          "type_dependencies": [
+            "Bool",
+            "List"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.weave_cons": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.weave_cons",
+          "restatement": false,
+          "statement_sha256": "44a841952ad6de1c98d2218a317c7d4645be239d1bcae4bfc07ba6390a80949b",
+          "type_dependencies": [
+            "Bool",
+            "Bool.not",
+            "Eq",
+            "HAppend.hAppend",
+            "LeanFrontier.ChangeRinging.hunt",
+            "LeanFrontier.ChangeRinging.weave",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "instHAppendOfAppend"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.weave_nil": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.weave_nil",
+          "restatement": false,
+          "statement_sha256": "d442e32c5afc5ab22da1570bc77bcdca4476070fc44a7c25d3216d8d5b3a1b7a",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.ChangeRinging.weave",
+            "List",
+            "List.nil"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.weave_perm_flatMap": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.weave_perm_flatMap",
+          "restatement": false,
+          "statement_sha256": "ecb80fa2f31acfd8af8a3bb4caa9dbe7d7a8ae77b5abeafee70cdb055a9c7fd2",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.ChangeRinging.weave",
+            "List",
+            "List.Perm",
+            "List.flatMap",
+            "List.permutations'Aux"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.ChangeRinging.head_rows": "inconclusive",
+        "LeanFrontier.ChangeRinging.isChain_adjSwap_rows": "inconclusive",
+        "LeanFrontier.ChangeRinging.length_rows": "inconclusive",
+        "LeanFrontier.ChangeRinging.mem_rows": "inconclusive",
+        "LeanFrontier.ChangeRinging.nodup_rows": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 15455,
+      "changed_files": [
+        "LeanFrontier/GroupTheory/ChangeRinging.lean",
+        "Submissions/change-ringing-plain-changes.json"
+      ],
+      "corpus_entrypoints_checked": 93,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.ChangeRinging.head_rows": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.head_rows",
+          "statement_sha256": "22524ccf0a83dd3d23eda2ecb316d8368f9cebc3ef310f206015e86fe3657076",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.head?",
+            "Option",
+            "Option.some"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.isChain_adjSwap_rows": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.isChain_adjSwap_rows",
+          "statement_sha256": "00829909654dc2b26db95b15a798cdfc3c3fa543d7e32293be718027989aff0b",
+          "type_dependencies": [
+            "LeanFrontier.ChangeRinging.AdjSwap",
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.IsChain"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.length_rows": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.length_rows",
+          "statement_sha256": "f0c151bdc16fea2c4504d9f88b1bdf9b534aece930dc78e90930779c858ff22d",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.length",
+            "Nat",
+            "Nat.factorial"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.mem_rows": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.mem_rows",
+          "statement_sha256": "49d0c178677e3b25d3bfb050fe7c7c05ac07d43fbb3e3a759c472478f4951071",
+          "type_dependencies": [
+            "Iff",
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.Perm",
+            "List.instMembership",
+            "Membership.mem"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.nodup_rows": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.nodup_rows",
+          "statement_sha256": "075f4a7cc21ba7bbf58c1455bb603473649d9596039d77bccb1a8facc06db0bb",
+          "type_dependencies": [
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.Nodup"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 10811,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 31
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "change-ringing-plain-changes",
+  "trusted_receiver_revision": "f8224252b050fa200387bf5a72794c79e4a71c7c",
+  "validated_candidate_revision": "d039888d2d080b6c97a8f43764d138bb3d21c99f",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32261357323"
+}
