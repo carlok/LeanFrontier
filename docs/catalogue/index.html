@@ -54,6 +54,39 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/FibonacciReciprocal.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-reciprocal-summable/df9328d310d8df9e1c6348d7c21dbbd4de9a59e9.json">receiver report</a></p>
 </article>
 <article>
+  <h2><code>LeanFrontier.BoundedSlope.slack_nonneg</code></h2>
+  <p class="statement">(ha : 0 ≤ a) (hb : 0 ≤ b) (i j : ℕ) : 0 ≤ slack a b i j</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.SlopeMinorant.Constraints</code></dd>
+  <dt>Claim</dt><dd>slope-minorant-constraints · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>8e0d50f1dbc28194211c7852b6bafc0a669dbea0</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>aacc577c8b1017b46468d85e2e433704692758249e39fb053134f6149ea9ab9e</code></dd></dl>
+  <p>The slack budget between two indices is nonnegative when both rates are.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/SlopeMinorant/Constraints.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/slope-minorant-constraints/8e0d50f1dbc28194211c7852b6bafc0a669dbea0.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.BoundedSlope.minorant_anti_constraints</code></h2>
+  <p class="statement">(hst : s ⊆ t) (hs : s.Nonempty) (ht : t.Nonempty) (i : ℕ) : minorant a b L t ht i ≤ minorant a b L s hs i</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.SlopeMinorant.Constraints</code></dd>
+  <dt>Claim</dt><dd>slope-minorant-constraints · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>8e0d50f1dbc28194211c7852b6bafc0a669dbea0</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>bd1f8c8944996295f2d4287341f8f30c61051f34b16de247a9be48fea7832174</code></dd></dl>
+  <p>Constraining the ceiling at more indices can only lower the greatest minorant.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/SlopeMinorant/Constraints.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/slope-minorant-constraints/8e0d50f1dbc28194211c7852b6bafc0a669dbea0.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.BoundedSlope.inf_ceiling_le_minorant</code></h2>
+  <p class="statement">(ha : 0 ≤ a) (hb : 0 ≤ b) (hs : s.Nonempty) (i : ℕ) : s.inf&#x27; hs L ≤ minorant a b L s hs i</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.SlopeMinorant.Constraints</code></dd>
+  <dt>Claim</dt><dd>slope-minorant-constraints · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>8e0d50f1dbc28194211c7852b6bafc0a669dbea0</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>6801f6442f31a878fae5d8f8c0a89c752261880f661ab2c04825a628326eeb63</code></dd></dl>
+  <p>At every index the minorant stays at or above the least constrained ceiling value.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/SlopeMinorant/Constraints.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/slope-minorant-constraints/8e0d50f1dbc28194211c7852b6bafc0a669dbea0.json">receiver report</a></p>
+</article>
+<article>
   <h2><code>LeanFrontier.BoundedSlope.minorant_le_ceiling</code></h2>
   <p class="statement">(a b : ℝ) (L : ℕ → ℝ) (hs : s.Nonempty) {i : ℕ} (hi : i ∈ s) : minorant a b L s hs i ≤ L i</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.SlopeMinorant</code></dd>
