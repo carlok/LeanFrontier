@@ -66,7 +66,7 @@
         <section>
           <h2>Then the submissions arrived</h2>
           <p>Three landed in the afternoon. The greatest sequence with bounded increments below a partial ceiling, reached from a doctoral thesis on two wheeled vehicle dynamics, where the forward and backward passes of a lap time simulator compute exactly that object; the module states it in order theoretic terms and nothing physical enters the Lean. Then a small extension of it. Then Stedman's plain changes from 1677, the sequence of rows in which consecutive rows differ by one adjacent swap, whose step invariant is a constructive Hamiltonian path in the Cayley graph of the symmetric group under adjacent transpositions, rediscovered three centuries later as the Steinhaus-Johnson-Trotter enumeration. That one filled the group theory directory, empty since the bootstrap, and reused Mathlib's permutation machinery rather than restating it.</p>
-          <p>The corpus closed at twenty one submissions, ninety seven theorems, nine subject areas.</p>
+          <p>Two more followed in the evening, both from a fourth model family, and they are the subject of the two sections after next. The corpus closed at twenty three submissions, ninety nine theorems, ten subject areas.</p>
         </section>
 
         <section>
@@ -84,9 +84,23 @@
         </section>
 
         <section>
+          <h2>A theorem that cannot be used yet</h2>
+          <p>The exponential form of Hermite-Lindemann says that the exponential of a nonzero algebraic number is transcendental. The pinned Mathlib release does not export it; an upstream pull request is in flight and was inspected at a named commit to confirm it does not contain the corollary below. So the submission takes the theorem as an explicit premise and derives, in six lines, that complex exponentiation is injective on the algebraic numbers: if two algebraic numbers have equal exponentials, their difference is algebraic and nonzero, so its exponential is transcendental, and that exponential is one.</p>
+          <p>This is the corpus's first conditional theorem, and it will become directly instantiable the day the premise reaches a release. It also opens a category the boundary does not measure. A conditional statement is only as meaningful as its hypothesis is satisfiable, and nothing here checks that. A theorem assuming zero equals one would build, contain no incomplete proof, depend on no forbidden axiom, duplicate nothing, and resist every bounded probe, while saying nothing at all. This submission is on the right side of that line and the receiver cannot tell why.</p>
+        </section>
+
+        <section>
+          <h2>A theorem stronger than the one upstream</h2>
+          <p>The last submission of the day was the first to use the autonomous discovery mode, which had existed in the contract unused since the beginning. The human asked for the process without naming a subject. The producer generated three candidates from the pinned tree, the product of all elements of a finite commutative group, the vanishing sum of a nontrivial character, and the parity of the non-fixed points of an involution, and chose the second for its generality and short structural proof.</p>
+          <p>Mathlib already has that theorem, for a commutative integral domain. This one drops commutativity from the codomain and asks only that the ring have no zero divisors, so the upstream statement is a special case of what now sits in the corpus. The proof is also shorter than the one upstream, which establishes cyclicity of the image in the unit group first; this one reindexes the sum by left multiplication and factors, and commutativity never appears because it was never needed.</p>
+          <p>That is the most valuable shape a corpus like this can produce, and it exposes the mirror of the previous section's problem. Weakening a hypothesis changes the elaborated statement, so the duplicate check sees something new, correctly. Strengthening one changes it too. A submission that took an existing Mathlib theorem and added an unnecessary assumption would be strictly weaker than what already exists, structurally indistinguishable to the receiver, and pure noise. Generalisation and its opposite look identical from here.</p>
+        </section>
+
+        <section>
           <h2>What this was</h2>
-          <p>Fourteen merged changes. The morning's came from one question asked repeatedly, about what a producer wanting volume rather than content could get away with, and from reading somebody else's project carefully enough to find they were right about something. The afternoon's came from three people using the thing.</p>
-          <p>One of the three submissions was produced by the same assistant that wrote most of the receiver, and says so in its record, because a project whose premise is declared provenance should not have to be asked about that. It is a small result about a definition an hour old. Whether it belongs in a corpus of machine generated mathematics is a fair question, and the disclosure exists to make it answerable rather than to settle it.</p>
+          <p>Twenty merged changes. The morning's came from one question asked repeatedly, about what a producer wanting volume rather than content could get away with, and from reading somebody else's project carefully enough to find they were right about something. Everything after came from people using the thing, and found more.</p>
+          <p>One of the five submissions was produced by the same assistant that wrote most of the receiver, and says so in its record, because a project whose premise is declared provenance should not have to be asked about that. It is a small result about a definition an hour old. Whether it belongs in a corpus of machine generated mathematics is a fair question, and the disclosure exists to make it answerable rather than to settle it.</p>
+          <p>The day ends with two open questions that no check answers: whether a conditional theorem's hypothesis can be satisfied, and whether a statement that differs from a known one is stronger or weaker than it. Both were found by submissions rather than by review, both are about meaning rather than validity, and neither is obviously mechanisable. Recording that a submission is conditional, or that it stands in a strengthening relation to something known, would at least make the categories visible without asking the boundary to judge them. That is the next thing to try.</p>
         </section>
       </article>
     </main>
