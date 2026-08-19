@@ -116,6 +116,35 @@ class ValidatorPreflightTests(unittest.TestCase):
         )
         self.assert_rejected("DEGENERATE_THEOREM_FAMILY")
 
+    def test_family_split_across_submissions_is_rejected(self) -> None:
+        """Two members accepted earlier plus one now still make a family of three."""
+        accepted = (
+            "theorem earlier_one (n : Nat) : n + 1 = 1 + n := by omega\n"
+            "theorem earlier_two (n : Nat) : n + 2 = 2 + n := by omega\n"
+        )
+        for root in (self.base, self.candidate):
+            (root / "LeanFrontier" / "Algebra" / "Existing.lean").write_text(accepted)
+        (self.candidate / "LeanFrontier" / "Algebra" / "New.lean").write_text(
+            "theorem new_result (n : Nat) : n + 3 = 3 + n := by omega\n"
+        )
+        self.assert_rejected("DEGENERATE_THEOREM_FAMILY")
+
+    def test_family_below_the_threshold_across_submissions_is_accepted(self) -> None:
+        accepted = "theorem earlier_one (n : Nat) : n + 1 = 1 + n := by omega\n"
+        for root in (self.base, self.candidate):
+            (root / "LeanFrontier" / "Algebra" / "Existing.lean").write_text(accepted)
+        (self.candidate / "LeanFrontier" / "Algebra" / "New.lean").write_text(
+            "theorem new_result (n : Nat) : n + 2 = 2 + n := by omega\n"
+        )
+        status, report = self.validate()
+        self.assertEqual(status, 0, report["diagnostics"])
+
+    def test_the_family_threshold_comes_from_policy(self) -> None:
+        """The value was hardcoded as 3 while policy advertised a knob."""
+        self.assertEqual(frontier_validate.load_json(frontier_validate.DEFAULT_TRIVIALITY)["family_threshold"], 3)
+        source = (ROOT / "tools" / "frontier_validate.py").read_text()
+        self.assertIn('triviality["family_threshold"]', source)
+
     def test_oversized_submission_is_rejected(self) -> None:
         path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
         path.write_text("-- " + "x" * 52000)
