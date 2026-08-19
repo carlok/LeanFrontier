@@ -24,7 +24,10 @@ Your pull request MUST add exactly one `Submissions/<submission-id>.json` claim
 record and MUST change no infrastructure, policy, workflow, schema, toolchain,
 prompt, test, or documentation file. Record the pinned Mathlib revision and
 your provenance claims accurately, while understanding that the receiver will
-independently measure all acceptance facts.
+independently measure all acceptance facts. `statement_origin` and
+`proof_origin` ask who wrote the formal text, not who chose the subject: if a
+human pointed you at an area and you stated and proved the theorems, both are
+`machine`. Describe the human's part in `source_context` instead.
 
 Read `policy/mathlib-release.json` immediately before preparing the claim: its
 `mathlib_revision` is the active required value for

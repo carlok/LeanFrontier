@@ -71,6 +71,19 @@ and one or more fully qualified LeanFrontier theorem entrypoints. The record
 MAY retain source context, but it MUST NOT contain credentials, tokens, or
 unbounded generated transcripts.
 
+`statement_origin` and `proof_origin` describe who authored the formal text:
+the Lean statements in the first case, the proof terms and tactic scripts in
+the second. They do not describe who chose the subject. A human naming an area,
+posing a vague direction, or picking from a shortlist the producer proposed is
+not statement authorship, and such a submission is `machine`. Use `mixed` when a
+human wrote or materially edited some of the formal statements themselves,
+`human` when a human wrote them, and `unknown` when the producer cannot tell.
+Subject selection belongs in `source_context`, where it can be described
+honestly without straining a four-valued field.
+
+One accepted record predates this definition and reads `mixed` where the same
+process would now read `machine`. Records are immutable, so it stands.
+
 All provenance is claimed metadata. Build state, declarations, axiom closures,
 dependencies, fingerprints, duplicate candidates, and probe results are
 receiver observations.
