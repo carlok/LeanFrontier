@@ -54,6 +54,50 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/FibonacciReciprocal.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/fibonacci-reciprocal-summable/df9328d310d8df9e1c6348d7c21dbbd4de9a59e9.json">receiver report</a></p>
 </article>
 <article>
+  <h2><code>LeanFrontier.BoundedSlope.minorant_le_ceiling</code></h2>
+  <p class="statement">(a b : ℝ) (L : ℕ → ℝ) (hs : s.Nonempty) {i : ℕ} (hi : i ∈ s) : minorant a b L s hs i ≤ L i</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.SlopeMinorant</code></dd>
+  <dt>Claim</dt><dd>bounded-slope-greatest-minorant · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>6dde113ebc31f6ae5f5444bbdb61190659fd7e30</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>a97331fd25e2bd2be513b9fa4754bfdec2c46fd1c72c60f691194cd05b74affa</code></dd></dl>
+  <p></p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/SlopeMinorant.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/bounded-slope-greatest-minorant/6dde113ebc31f6ae5f5444bbdb61190659fd7e30.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.BoundedSlope.minorant_stepBounded</code></h2>
+  <p class="statement">(ha : 0 ≤ a) (hb : 0 ≤ b) (L : ℕ → ℝ) (hs : s.Nonempty) : StepBounded a b (minorant a b L s hs)</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.SlopeMinorant</code></dd>
+  <dt>Claim</dt><dd>bounded-slope-greatest-minorant · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>6dde113ebc31f6ae5f5444bbdb61190659fd7e30</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>85ae034f74f95c0c22b37c896f15544e45542f533ba36f3dc03a6d888ec4f035</code></dd></dl>
+  <p>The minorant is admissible: it satisfies the increment bounds everywhere, including outside the constrained set.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/SlopeMinorant.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/bounded-slope-greatest-minorant/6dde113ebc31f6ae5f5444bbdb61190659fd7e30.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.BoundedSlope.le_minorant</code></h2>
+  <p class="statement">(hs : s.Nonempty) (hv : StepBounded a b v) (hL : ∀ j ∈ s, v j ≤ L j) (i : ℕ) : v i ≤ minorant a b L s hs i</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.SlopeMinorant</code></dd>
+  <dt>Claim</dt><dd>bounded-slope-greatest-minorant · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>6dde113ebc31f6ae5f5444bbdb61190659fd7e30</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>0ad724b6bd89284df7cf3816163c2a2b87a29de3825e74bd9b009fcb5d1760b1</code></dd></dl>
+  <p>The minorant is the greatest admissible sequence: any step bounded competitor that respects the ceiling on `s` lies below it at every index.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/SlopeMinorant.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/bounded-slope-greatest-minorant/6dde113ebc31f6ae5f5444bbdb61190659fd7e30.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.BoundedSlope.minorant_eq_ceiling_of_stepBounded</code></h2>
+  <p class="statement">(hs : s.Nonempty) (hL : StepBounded a b L) {i : ℕ} (hi : i ∈ s) : minorant a b L s hs i = L i</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Analysis.SlopeMinorant</code></dd>
+  <dt>Claim</dt><dd>bounded-slope-greatest-minorant · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>6dde113ebc31f6ae5f5444bbdb61190659fd7e30</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>1d615de98a2af54921c788845af7ab55ce22b451e41435c79233a038885f687f</code></dd></dl>
+  <p>A ceiling that already satisfies the increment bounds is left untouched on `s`.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Analysis/SlopeMinorant.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/bounded-slope-greatest-minorant/6dde113ebc31f6ae5f5444bbdb61190659fd7e30.json">receiver report</a></p>
+</article>
+<article>
   <h2><code>LeanFrontier.Nat.mem_oneTwoCompositions</code></h2>
   <p class="statement">{n : ℕ} {l : List ℕ} : l ∈ oneTwoCompositions n ↔ l.sum = n ∧ ∀ x ∈ l, x = 1 ∨ x = 2</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.Combinatorics.FibonacciComposition</code></dd>

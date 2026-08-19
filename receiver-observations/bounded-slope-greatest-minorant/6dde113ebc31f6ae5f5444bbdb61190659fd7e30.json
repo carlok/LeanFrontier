@@ -1,0 +1,434 @@
+{
+  "accepted_revision": "6dde113ebc31f6ae5f5444bbdb61190659fd7e30",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-19T15:14:03+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 133.161,
+    "observed": {
+      "added_lines": 191,
+      "audited_declarations": {
+        "LeanFrontier.BoundedSlope.StepBounded": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.BoundedSlope.StepBounded",
+          "restatement": false,
+          "statement_sha256": "3798d0158f76aca737f4b4e78bc7424d783d00050956e08f531b3047db4ccf43",
+          "type_dependencies": [
+            "Nat",
+            "Real"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.le_minorant": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.le_minorant",
+          "restatement": false,
+          "statement_sha256": "0ad724b6bd89284df7cf3816163c2a2b87a29de3825e74bd9b009fcb5d1760b1",
+          "type_dependencies": [
+            "Finset",
+            "Finset.Nonempty",
+            "Finset.instSetLike",
+            "LE.le",
+            "LeanFrontier.BoundedSlope.StepBounded",
+            "LeanFrontier.BoundedSlope.minorant",
+            "Membership.mem",
+            "Nat",
+            "Real",
+            "Real.instLE",
+            "SetLike.instMembership"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.minorant_eq_ceiling_of_stepBounded": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.minorant_eq_ceiling_of_stepBounded",
+          "restatement": false,
+          "statement_sha256": "1d615de98a2af54921c788845af7ab55ce22b451e41435c79233a038885f687f",
+          "type_dependencies": [
+            "Eq",
+            "Finset",
+            "Finset.Nonempty",
+            "Finset.instSetLike",
+            "LeanFrontier.BoundedSlope.StepBounded",
+            "LeanFrontier.BoundedSlope.minorant",
+            "Membership.mem",
+            "Nat",
+            "Real",
+            "SetLike.instMembership"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.minorant_idem": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.minorant_idem",
+          "restatement": false,
+          "statement_sha256": "7b1aa7749c093f3fdc9a9cdfec647083472551442204e5c5d83d8c9776da4790",
+          "type_dependencies": [
+            "Eq",
+            "Finset",
+            "Finset.Nonempty",
+            "LE.le",
+            "LeanFrontier.BoundedSlope.minorant",
+            "Nat",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instLE",
+            "Real.instZero",
+            "Zero.toOfNat0"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.minorant_le_ceiling": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.minorant_le_ceiling",
+          "restatement": false,
+          "statement_sha256": "a97331fd25e2bd2be513b9fa4754bfdec2c46fd1c72c60f691194cd05b74affa",
+          "type_dependencies": [
+            "Finset",
+            "Finset.Nonempty",
+            "Finset.instSetLike",
+            "LE.le",
+            "LeanFrontier.BoundedSlope.minorant",
+            "Membership.mem",
+            "Nat",
+            "Real",
+            "Real.instLE",
+            "SetLike.instMembership"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.minorant_mono": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.minorant_mono",
+          "restatement": false,
+          "statement_sha256": "67db8ff4c65bad3450b5a9fbefab672fa2c6392f4083e79cba3cd5ab45dee32e",
+          "type_dependencies": [
+            "Finset",
+            "Finset.Nonempty",
+            "Finset.instSetLike",
+            "LE.le",
+            "LeanFrontier.BoundedSlope.minorant",
+            "Membership.mem",
+            "Nat",
+            "Real",
+            "Real.instLE",
+            "SetLike.instMembership"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.minorant_stepBounded": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.minorant_stepBounded",
+          "restatement": false,
+          "statement_sha256": "85ae034f74f95c0c22b37c896f15544e45542f533ba36f3dc03a6d888ec4f035",
+          "type_dependencies": [
+            "Finset",
+            "Finset.Nonempty",
+            "LE.le",
+            "LeanFrontier.BoundedSlope.StepBounded",
+            "LeanFrontier.BoundedSlope.minorant",
+            "Nat",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instLE",
+            "Real.instZero",
+            "Zero.toOfNat0"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.slack": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.BoundedSlope.slack",
+          "restatement": false,
+          "statement_sha256": "fd8c2c23e12d5538feccd497a381d51e3f9e34d4fa9f773eaf373ddb14b513cb",
+          "type_dependencies": [
+            "Nat",
+            "Real"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.slack_self": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.slack_self",
+          "restatement": false,
+          "statement_sha256": "9a5a7e9f6d06c841ab712f9ea0750fffda596f542dff1dbcc260099da1c08147",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.BoundedSlope.slack",
+            "Nat",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instZero",
+            "Zero.toOfNat0"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.slack_succ_left": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.slack_succ_left",
+          "restatement": false,
+          "statement_sha256": "2a188dbb401671987f591353826a01c587de31c4560f60526c49842873e7c76d",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.BoundedSlope.slack",
+            "Nat",
+            "OfNat.ofNat",
+            "Real",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.slack_succ_right": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.slack_succ_right",
+          "restatement": false,
+          "statement_sha256": "1471e6eeac1bb711f864229f0d2b0a1da615d12f855356cd7939645be065c893",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.BoundedSlope.slack",
+            "Nat",
+            "OfNat.ofNat",
+            "Real",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.slack_trans": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.slack_trans",
+          "restatement": false,
+          "statement_sha256": "82508f53a4f27a10a28e4f853aff97bcb98c0ef111b340ec5e8811bff5300ec1",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "LE.le",
+            "LeanFrontier.BoundedSlope.slack",
+            "Nat",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instAdd",
+            "Real.instLE",
+            "Real.instZero",
+            "Zero.toOfNat0",
+            "instHAdd"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.BoundedSlope.le_minorant": "inconclusive",
+        "LeanFrontier.BoundedSlope.minorant_eq_ceiling_of_stepBounded": "inconclusive",
+        "LeanFrontier.BoundedSlope.minorant_le_ceiling": "inconclusive",
+        "LeanFrontier.BoundedSlope.minorant_stepBounded": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 13837,
+      "changed_files": [
+        "LeanFrontier/Analysis/SlopeMinorant.lean",
+        "Submissions/bounded-slope-greatest-minorant.json"
+      ],
+      "corpus_entrypoints_checked": 85,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.BoundedSlope.StepBounded.le_add_slack": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.StepBounded.le_add_slack",
+          "statement_sha256": "70e59e6c952c343d5375551af997f12e33ca34d000b467a9d35f65e607b4d384",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "LE.le",
+            "LeanFrontier.BoundedSlope.StepBounded",
+            "LeanFrontier.BoundedSlope.slack",
+            "Nat",
+            "Real",
+            "Real.instAdd",
+            "Real.instLE",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.le_minorant": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.le_minorant",
+          "statement_sha256": "0ad724b6bd89284df7cf3816163c2a2b87a29de3825e74bd9b009fcb5d1760b1",
+          "type_dependencies": [
+            "Finset",
+            "Finset.Nonempty",
+            "Finset.instSetLike",
+            "LE.le",
+            "LeanFrontier.BoundedSlope.StepBounded",
+            "LeanFrontier.BoundedSlope.minorant",
+            "Membership.mem",
+            "Nat",
+            "Real",
+            "Real.instLE",
+            "SetLike.instMembership"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.minorant_eq_ceiling_of_stepBounded": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.minorant_eq_ceiling_of_stepBounded",
+          "statement_sha256": "1d615de98a2af54921c788845af7ab55ce22b451e41435c79233a038885f687f",
+          "type_dependencies": [
+            "Eq",
+            "Finset",
+            "Finset.Nonempty",
+            "Finset.instSetLike",
+            "LeanFrontier.BoundedSlope.StepBounded",
+            "LeanFrontier.BoundedSlope.minorant",
+            "Membership.mem",
+            "Nat",
+            "Real",
+            "SetLike.instMembership"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.minorant_le_ceiling": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.minorant_le_ceiling",
+          "statement_sha256": "a97331fd25e2bd2be513b9fa4754bfdec2c46fd1c72c60f691194cd05b74affa",
+          "type_dependencies": [
+            "Finset",
+            "Finset.Nonempty",
+            "Finset.instSetLike",
+            "LE.le",
+            "LeanFrontier.BoundedSlope.minorant",
+            "Membership.mem",
+            "Nat",
+            "Real",
+            "Real.instLE",
+            "SetLike.instMembership"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.minorant_stepBounded": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.minorant_stepBounded",
+          "statement_sha256": "85ae034f74f95c0c22b37c896f15544e45542f533ba36f3dc03a6d888ec4f035",
+          "type_dependencies": [
+            "Finset",
+            "Finset.Nonempty",
+            "LE.le",
+            "LeanFrontier.BoundedSlope.StepBounded",
+            "LeanFrontier.BoundedSlope.minorant",
+            "Nat",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instLE",
+            "Real.instZero",
+            "Zero.toOfNat0"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 9089,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 16
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "bounded-slope-greatest-minorant",
+  "trusted_receiver_revision": "7816c6a3345dfd58c4de5310e4bbf693cbd40d3f",
+  "validated_candidate_revision": "f42a98238def52e9dcbe11bb64a1c3a4e3c2ba5a",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32255758545"
+}
