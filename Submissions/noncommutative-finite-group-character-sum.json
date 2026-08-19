@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "noncommutative-finite-group-character-sum",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5",
+    "agent": "codex"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.FiniteGroupCharacter.sum_monoidHom_eq_zero_of_ne_one"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "The human asked the agent to try LeanFrontier's autonomous-discovery process without choosing a mathematical subject. The agent generated three candidates from the released pinned Mathlib tree: the product of all elements of a finite commutative group, the vanishing sum of a nontrivial finite-group multiplicative character, and parity of the non-fixed points of a finite involution. It selected the character sum for its generality, reusable interface, short structural proof, and subject diversity. Pinned Mathlib contains the nearby theorem sum_hom_units_eq_zero in Mathlib/RingTheory/IntegralDomain.lean, assuming a commutative integral-domain codomain. That theorem proves cyclicity of the finite image in the unit group before evaluating its sum. This submission is deliberately not an exact restatement: it removes codomain commutativity and proves the result for any Ring with NoZeroDivisors. The proof chooses an element on which chi is nontrivial, reindexes the finite sum by left multiplication in the source group, obtains chi(a) * S = S, and cancels the nonzero factor chi(a) - 1. Current Mathlib default-branch code and open pull requests were searched on 19 August 2026; only the commutative theorem was found. The result is standard mathematics and is not claimed as new, but the noncommutative library generalization and proof route were selected and written by the agent. In one warm process, none of the receiver's bounded baseline tactics rfl, simp, norm_num, tauto, omega, or decide proved the statement."
+}
