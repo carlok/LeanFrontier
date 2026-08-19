@@ -417,6 +417,61 @@
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Geometry/InversiveGeometry.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/inversive-geometry-reflection/934a5220c5648b5135fceb1887d539b1b413f446.json">receiver report</a></p>
 </article>
 <article>
+  <h2><code>LeanFrontier.ChangeRinging.length_rows</code></h2>
+  <p class="statement">(l : List α) : (rows l).length = Nat.factorial l.length</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.GroupTheory.ChangeRinging</code></dd>
+  <dt>Claim</dt><dd>change-ringing-plain-changes · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>d06960bd185f218639de3f06964e47a20b811d31</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>f0c151bdc16fea2c4504d9f88b1bdf9b534aece930dc78e90930779c858ff22d</code></dd></dl>
+  <p>The extent property, first part: the plain changes ring `(length l)!` rows.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/GroupTheory/ChangeRinging.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/change-ringing-plain-changes/d06960bd185f218639de3f06964e47a20b811d31.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.ChangeRinging.mem_rows</code></h2>
+  <p class="statement">{s l : List α} : s ∈ rows l ↔ s ~ l</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.GroupTheory.ChangeRinging</code></dd>
+  <dt>Claim</dt><dd>change-ringing-plain-changes · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>d06960bd185f218639de3f06964e47a20b811d31</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>49d0c178677e3b25d3bfb050fe7c7c05ac07d43fbb3e3a759c472478f4951071</code></dd></dl>
+  <p>The extent property, second part: a row is rung exactly when it is an ordering of the bells of the start row.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/GroupTheory/ChangeRinging.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/change-ringing-plain-changes/d06960bd185f218639de3f06964e47a20b811d31.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.ChangeRinging.nodup_rows</code></h2>
+  <p class="statement">{l : List α} (hl : l.Nodup) : (rows l).Nodup</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.GroupTheory.ChangeRinging</code></dd>
+  <dt>Claim</dt><dd>change-ringing-plain-changes · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>d06960bd185f218639de3f06964e47a20b811d31</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>075f4a7cc21ba7bbf58c1455bb603473649d9596039d77bccb1a8facc06db0bb</code></dd></dl>
+  <p>The extent property, third part: when the bells are distinct, no row is rung twice.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/GroupTheory/ChangeRinging.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/change-ringing-plain-changes/d06960bd185f218639de3f06964e47a20b811d31.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.ChangeRinging.isChain_adjSwap_rows</code></h2>
+  <p class="statement">(l : List α) : IsChain AdjSwap (rows l)</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.GroupTheory.ChangeRinging</code></dd>
+  <dt>Claim</dt><dd>change-ringing-plain-changes · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>d06960bd185f218639de3f06964e47a20b811d31</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>00829909654dc2b26db95b15a798cdfc3c3fa543d7e32293be718027989aff0b</code></dd></dl>
+  <p>The extent property, fourth part: consecutive rows differ by a single change of two adjacent bells. This is the statement that the plain changes can actually be rung.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/GroupTheory/ChangeRinging.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/change-ringing-plain-changes/d06960bd185f218639de3f06964e47a20b811d31.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.ChangeRinging.head_rows</code></h2>
+  <p class="statement">(l : List α) : (rows l).head? = some l</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.GroupTheory.ChangeRinging</code></dd>
+  <dt>Claim</dt><dd>change-ringing-plain-changes · mathlib_extension · claude-code</dd>
+  <dt>Receiver</dt><dd>accepted at <code>d06960bd185f218639de3f06964e47a20b811d31</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext</code></dd>
+  <dt>Fingerprint</dt><dd><code>22524ccf0a83dd3d23eda2ecb316d8368f9cebc3ef310f206015e86fe3657076</code></dd></dl>
+  <p>The ringing starts from the given row.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/GroupTheory/ChangeRinging.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/change-ringing-plain-changes/d06960bd185f218639de3f06964e47a20b811d31.json">receiver report</a></p>
+</article>
+<article>
   <h2><code>LeanFrontier.Matrix.fibMatrix_pow_succ</code></h2>
   <p class="statement">(n : ℕ) : fibMatrix ^ (n + 1) = !![(Nat.fib (n + 2) : ℤ), Nat.fib (n + 1); Nat.fib (n + 1), Nat.fib n]</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.LinearAlgebra.FibonacciMatrix</code></dd>
