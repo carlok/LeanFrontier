@@ -1,0 +1,180 @@
+{
+  "accepted_revision": "8e0d50f1dbc28194211c7852b6bafc0a669dbea0",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-19T15:53:59+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 161.428,
+    "observed": {
+      "added_lines": 49,
+      "audited_declarations": {
+        "LeanFrontier.BoundedSlope.inf_ceiling_le_minorant": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.inf_ceiling_le_minorant",
+          "restatement": false,
+          "statement_sha256": "6801f6442f31a878fae5d8f8c0a89c752261880f661ab2c04825a628326eeb63",
+          "type_dependencies": [
+            "Finset",
+            "Finset.Nonempty",
+            "Finset.inf'",
+            "LE.le",
+            "LeanFrontier.BoundedSlope.minorant",
+            "Nat",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instLE",
+            "Real.instSemilatticeInf",
+            "Real.instZero",
+            "Zero.toOfNat0"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.minorant_anti_constraints": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.minorant_anti_constraints",
+          "restatement": false,
+          "statement_sha256": "bd1f8c8944996295f2d4287341f8f30c61051f34b16de247a9be48fea7832174",
+          "type_dependencies": [
+            "Finset",
+            "Finset.Nonempty",
+            "Finset.instPartialOrder",
+            "LE.le",
+            "LeanFrontier.BoundedSlope.minorant",
+            "Nat",
+            "PartialOrder.toPreorder",
+            "Preorder.toLE",
+            "Real",
+            "Real.instLE"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.slack_nonneg": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.slack_nonneg",
+          "restatement": false,
+          "statement_sha256": "aacc577c8b1017b46468d85e2e433704692758249e39fb053134f6149ea9ab9e",
+          "type_dependencies": [
+            "LE.le",
+            "LeanFrontier.BoundedSlope.slack",
+            "Nat",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instLE",
+            "Real.instZero",
+            "Zero.toOfNat0"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.BoundedSlope.inf_ceiling_le_minorant": "inconclusive",
+        "LeanFrontier.BoundedSlope.minorant_anti_constraints": "inconclusive",
+        "LeanFrontier.BoundedSlope.slack_nonneg": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4395,
+      "changed_files": [
+        "LeanFrontier/Analysis/SlopeMinorant/Constraints.lean",
+        "Submissions/slope-minorant-constraints.json"
+      ],
+      "corpus_entrypoints_checked": 90,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.BoundedSlope.inf_ceiling_le_minorant": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.inf_ceiling_le_minorant",
+          "statement_sha256": "6801f6442f31a878fae5d8f8c0a89c752261880f661ab2c04825a628326eeb63",
+          "type_dependencies": [
+            "Finset",
+            "Finset.Nonempty",
+            "Finset.inf'",
+            "LE.le",
+            "LeanFrontier.BoundedSlope.minorant",
+            "Nat",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instLE",
+            "Real.instSemilatticeInf",
+            "Real.instZero",
+            "Zero.toOfNat0"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.minorant_anti_constraints": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.minorant_anti_constraints",
+          "statement_sha256": "bd1f8c8944996295f2d4287341f8f30c61051f34b16de247a9be48fea7832174",
+          "type_dependencies": [
+            "Finset",
+            "Finset.Nonempty",
+            "Finset.instPartialOrder",
+            "LE.le",
+            "LeanFrontier.BoundedSlope.minorant",
+            "Nat",
+            "PartialOrder.toPreorder",
+            "Preorder.toLE",
+            "Real",
+            "Real.instLE"
+          ]
+        },
+        "LeanFrontier.BoundedSlope.slack_nonneg": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.BoundedSlope.slack_nonneg",
+          "statement_sha256": "aacc577c8b1017b46468d85e2e433704692758249e39fb053134f6149ea9ab9e",
+          "type_dependencies": [
+            "LE.le",
+            "LeanFrontier.BoundedSlope.slack",
+            "Nat",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instLE",
+            "Real.instZero",
+            "Zero.toOfNat0"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2248,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 3
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "slope-minorant-constraints",
+  "trusted_receiver_revision": "3508fc2e3d515621bd35a7812df91b6cff80d6e8",
+  "validated_candidate_revision": "cf42719cb72aba71094a918d480c4b72bb383af8",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32260057534"
+}
