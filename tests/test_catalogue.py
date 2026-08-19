@@ -53,6 +53,25 @@ theorem helper : True := trivial
         self.assertNotIn("LeanFrontier.Toy.helper", rendered)
         self.assertIn("The public theorem.", rendered)
 
+    def test_corpus_shape_reports_both_measures(self) -> None:
+        """An import is one line and gameable; a statement mentioning a constant is not."""
+        shape = catalogue.corpus_shape(ROOT)
+        self.assertGreater(len(shape["modules"]), 0)
+        self.assertIn(
+            ("LeanFrontier.NumberTheory.FordCircle", "LeanFrontier.NumberTheory.Mediant"),
+            shape["edges"],
+        )
+        self.assertIn("LeanFrontier.Mediant.crossDet", shape["shared"])
+        self.assertGreaterEqual(len(shape["shared"][ "LeanFrontier.Mediant.crossDet"]), 2)
+
+    def test_the_shape_picture_is_a_function_of_its_input(self) -> None:
+        """The catalogue is committed; a layout that wandered would diff every run."""
+        shape = catalogue.corpus_shape(ROOT)
+        self.assertEqual(catalogue.shape_svg(shape), catalogue.shape_svg(shape))
+        svg = catalogue.shape_svg(shape)
+        self.assertEqual(svg.count("<circle"), len(shape["modules"]))
+        self.assertEqual(svg.count("<path d="), len(shape["edges"]))
+
     def test_prose_containing_theorem_does_not_swallow_the_next_declaration(self) -> None:
         """`finditer` does not overlap: a match inside prose hides the real one."""
         with tempfile.TemporaryDirectory() as temporary:
