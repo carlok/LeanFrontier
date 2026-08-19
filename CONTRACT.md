@@ -95,7 +95,9 @@ Each public theorem is checked for exact normalized duplication against the
 baseline and the same submission, canonical propositional degeneracy, and
 bounded baseline-only triviality probes. The receiver also rejects repeated
 literal, permutation, parenthesization, or finite-instance families that
-should be one general result. It does not make subjective judgments about
+should be one general result. Members already accepted count toward such a
+family: a submission completing one begun by an earlier submission is rejected,
+at the versioned `family_threshold` in `policy/triviality.json`. It does not make subjective judgments about
 importance, exposition, elegance, or human comprehensibility.
 
 ## 6. Receiver behavior
