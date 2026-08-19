@@ -1,0 +1,118 @@
+{
+  "accepted_revision": "9d12a280a0722da3e56aac50f1bf413081a651c6",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-19T19:17:20+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 99.43,
+    "observed": {
+      "added_lines": 33,
+      "audited_declarations": {
+        "LeanFrontier.FiniteGroupCharacter.sum_monoidHom_eq_zero_of_ne_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.FiniteGroupCharacter.sum_monoidHom_eq_zero_of_ne_one",
+          "restatement": false,
+          "statement_sha256": "a07f2b1c2d5e16305608cf860e2714c3ce04920cf59ce92a4bdfc415d49a1add",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "Distrib.toMul",
+            "DivInvMonoid.toMonoid",
+            "Eq",
+            "Finset.sum",
+            "Finset.univ",
+            "Fintype",
+            "Group",
+            "Group.toDivInvMonoid",
+            "Monoid.toMulOneClass",
+            "MonoidHom",
+            "MonoidHom.instFunLike",
+            "MulOneClass.toMulOne",
+            "MulZeroClass.toZero",
+            "MulZeroOneClass.toMulOneClass",
+            "Ne",
+            "NoZeroDivisors",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring",
+            "Ring.toSemiring",
+            "Semiring.toAddCommMonoid",
+            "Zero.toOfNat0",
+            "instDistribOfSemiring",
+            "instMulZeroClassOfSemiring",
+            "instMulZeroOneClassOfSemiring",
+            "instOneMonoidHom"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.FiniteGroupCharacter.sum_monoidHom_eq_zero_of_ne_one": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 3197,
+      "changed_files": [
+        "LeanFrontier/RepresentationTheory/FiniteGroupCharacter.lean",
+        "Submissions/noncommutative-finite-group-character-sum.json"
+      ],
+      "corpus_entrypoints_checked": 99,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.FiniteGroupCharacter.sum_monoidHom_eq_zero_of_ne_one": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.FiniteGroupCharacter.sum_monoidHom_eq_zero_of_ne_one",
+          "statement_sha256": "a07f2b1c2d5e16305608cf860e2714c3ce04920cf59ce92a4bdfc415d49a1add",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "Distrib.toMul",
+            "DivInvMonoid.toMonoid",
+            "Eq",
+            "Finset.sum",
+            "Finset.univ",
+            "Fintype",
+            "Group",
+            "Group.toDivInvMonoid",
+            "Monoid.toMulOneClass",
+            "MonoidHom",
+            "MonoidHom.instFunLike",
+            "MulOneClass.toMulOne",
+            "MulZeroClass.toZero",
+            "MulZeroOneClass.toMulOneClass",
+            "Ne",
+            "NoZeroDivisors",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring",
+            "Ring.toSemiring",
+            "Semiring.toAddCommMonoid",
+            "Zero.toOfNat0",
+            "instDistribOfSemiring",
+            "instMulZeroClassOfSemiring",
+            "instMulZeroOneClassOfSemiring",
+            "instOneMonoidHom"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 1214,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "noncommutative-finite-group-character-sum",
+  "trusted_receiver_revision": "82e1113bd4f952831da729a753c8f5c9603eacae",
+  "validated_candidate_revision": "715680bfb04986ed613e0c686d87b568cfc3c15c",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32279483371"
+}
