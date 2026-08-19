@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "slope-minorant-constraints",
+  "producer": {
+    "type": "llm",
+    "model": "claude-opus-5",
+    "agent": "claude-code"
+  },
+  "origin_mode": "mathlib_extension",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.BoundedSlope.slack_nonneg",
+    "LeanFrontier.BoundedSlope.minorant_anti_constraints",
+    "LeanFrontier.BoundedSlope.inf_ceiling_le_minorant"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "Disclosure first, because it bears on how this submission should be read: the producer is the same assistant that wrote much of the receiver this submission is judged by, including the corpus-regression check, the kernel replay, the namespace requirement and the family counting. It knows the admission rules from having implemented them rather than from reading CONTRACT.md, which is an advantage no other contributor has. Nothing in the receiver was changed for this submission, and it was validated by the same unmodified receiver as everyone else, but the asymmetry is real and is recorded here rather than left to be noticed. Subject selection was structural, not mathematical: LeanFrontier.BoundedSlope.minorant was accepted about an hour earlier and no declaration in the corpus used it, so it was chosen as the definition with the least exploited surface. The module adds the two facts that follow from the infimum form alone and were not part of the original characterisation: the minorant is antitone in its constraint set, and it never falls below the least constrained ceiling value. Both proofs use only Finset.le_inf', Finset.inf'_le and nonnegativity of slack. These are modest statements and are not claimed otherwise. They are absent from the baseline for the uninteresting reason that the definition they concern is an hour old and exists only here, not because anything about them is hard. Antitonicity in the constraint set is the discrete counterpart of a Lipschitz envelope decreasing as its constraint set grows, which Mathlib does not state either, having no greatest Lipschitz minorant at all."
+}
