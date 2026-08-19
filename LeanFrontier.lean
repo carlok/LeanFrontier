@@ -21,6 +21,7 @@ import LeanFrontier.NumberTheory.PowerSums
 import LeanFrontier.NumberTheory.SternDiatomic
 import LeanFrontier.NumberTheory.SylvesterSequence
 import LeanFrontier.NumberTheory.Transcendental.HermiteLindemann
+import LeanFrontier.RepresentationTheory.FiniteGroupCharacter
 import LeanFrontier.Topology.Furstenberg
 /-!
 # LeanFrontier
