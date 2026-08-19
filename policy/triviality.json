@@ -1,10 +1,14 @@
 {
   "policy_version": "0.1",
-  "baseline_probes": ["rfl", "simp", "norm_num", "tauto", "omega", "decide"],
+  "baseline_probes": [
+    "rfl",
+    "simp",
+    "norm_num",
+    "tauto",
+    "omega",
+    "decide"
+  ],
   "probe_timeout_seconds": 10,
-  "canonical_connectives": ["And", "Or", "True", "False", "Eq"],
   "family_threshold": 3,
-  "literal_skeleton": true,
-  "reject_baseline_probe_success": true,
-  "notes": "Probes use only the pre-submission baseline and are bounded deterministically."
+  "notes": "Probes use only the pre-submission baseline and are bounded deterministically. family_threshold counts members already accepted in the corpus, not only those in one submission."
 }
