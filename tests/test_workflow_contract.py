@@ -15,6 +15,11 @@ UPGRADE_WORKFLOW = (ROOT / ".github" / "workflows" / "mathlib-upgrade.yml").read
 DOCKERFILE = (ROOT / "tools" / "Dockerfile.validator").read_text()
 LAKEFILE = (ROOT / "lakefile.toml").read_text()
 
+# The generators authenticate as this app rather than as github-actions[bot];
+# a pull request opened with GITHUB_TOKEN never triggers the checks the
+# ruleset requires of it.
+GENERATOR_BOT = "leanfrontier-receiver[bot]"
+
 
 class WorkflowContractTests(unittest.TestCase):
     """Static checks for properties GitHub Actions cannot exercise locally."""
@@ -154,6 +159,17 @@ class WorkflowContractTests(unittest.TestCase):
         for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW, OBSERVATION_WORKFLOW):
             self.assertIn("actions: write", workflow)
 
+    def test_generators_authenticate_as_the_app(self) -> None:
+        """GITHUB_TOKEN pull requests never trigger the checks the ruleset requires."""
+        for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW, OBSERVATION_WORKFLOW, UPGRADE_WORKFLOW):
+            self.assertIn("actions/create-github-app-token", workflow)
+            self.assertIn("app-id: ${{ secrets.APP_ID }}", workflow)
+            self.assertIn("private-key: ${{ secrets.APP_PRIVATE_KEY }}", workflow)
+            self.assertIn("token: ${{ steps.app-token.outputs.token }}", workflow)
+            self.assertNotIn("GH_TOKEN: ${{ github.token }}", workflow)
+            # The commit identity follows the app rather than a hardcoded bot.
+            self.assertNotIn("github-actions[bot]", workflow)
+
     def test_trusted_generators_open_protected_maintenance_prs(self) -> None:
         for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW, OBSERVATION_WORKFLOW):
             self.assertIn("automation/generated/", workflow)
@@ -166,7 +182,7 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("validate-maintenance:", WORKFLOW)
         self.assertIn("startsWith(github.event.pull_request.head.ref, 'maintenance/')", WORKFLOW)
         self.assertIn("github.event.pull_request.author_association == 'OWNER'", WORKFLOW)
-        self.assertIn("github.event.pull_request.user.login == 'github-actions[bot]'", WORKFLOW)
+        self.assertIn(f"github.event.pull_request.user.login == '{GENERATOR_BOT}'", WORKFLOW)
 
     def test_a_branch_name_alone_never_skips_the_ordinary_receiver(self) -> None:
         """Head refs are submitter-controlled: each exemption must also pin the author."""
@@ -240,7 +256,7 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("mathlib-upgrade:", test_workflow)
         self.assertIn("maintenance/mathlib-upgrade-", test_workflow)
         self.assertIn('ACTOR: ${{ github.actor }}', test_workflow)
-        self.assertIn('"$ACTOR" == "github-actions[bot]"', test_workflow)
+        self.assertIn(f'"$ACTOR" == "{GENERATOR_BOT}"', test_workflow)
         self.assertIn("validate_mathlib_upgrade.py", WORKFLOW)
         self.assertIn("Mathlib upgrade changes forbidden paths", validator)
 

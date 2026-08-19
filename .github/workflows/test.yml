@@ -43,7 +43,7 @@ jobs:
           REF: ${{ github.head_ref || github.ref_name }}
           ACTOR: ${{ github.actor }}
         run: |
-          if [[ "$REF" == maintenance/mathlib-upgrade-* && "$ACTOR" == "github-actions[bot]" ]]; then echo "enabled=true" >> "$GITHUB_OUTPUT"; else echo "enabled=false" >> "$GITHUB_OUTPUT"; fi
+          if [[ "$REF" == maintenance/mathlib-upgrade-* && "$ACTOR" == "leanfrontier-receiver[bot]" ]]; then echo "enabled=true" >> "$GITHUB_OUTPUT"; else echo "enabled=false" >> "$GITHUB_OUTPUT"; fi
       - name: Build the trusted validator image
         if: steps.target.outputs.enabled == 'true'
         run: docker build -f tools/Dockerfile.validator -t leanfrontier-upgrade:ci .
