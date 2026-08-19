@@ -246,8 +246,9 @@ def declared_statements(path: Path) -> list[tuple[str, str]]:
     return [(match.group(1), match.group("body")) for match in DECL_RE.finditer(strip_comments(source))]
 
 
-def static_preflight(base: Path | None, candidate: Path, limits: dict[str, Any], mathlib_release: dict[str, str], report: Report) -> tuple[dict[str, Path | None], dict[str, Any] | None]:
+def static_preflight(base: Path | None, candidate: Path, limits: dict[str, Any], mathlib_release: dict[str, str], triviality: dict[str, Any], report: Report) -> tuple[dict[str, Path | None], dict[str, Any] | None]:
     changed, before = changed_paths(base, candidate)
+    corpus = corpus_skeletons(base)
     report.observations["changed_files"] = sorted(changed)
     if len(changed) > limits["max_changed_files"]:
         report.reject("RESOURCE_LIMIT_EXCEEDED", "too many changed files")
@@ -315,11 +316,36 @@ def static_preflight(base: Path | None, candidate: Path, limits: dict[str, Any],
         report.reject("RESOURCE_LIMIT_EXCEEDED", "submission exceeds aggregate byte or line limits")
     if declarations > limits["max_declarations"]:
         report.reject("RESOURCE_LIMIT_EXCEEDED", "submission exceeds the declaration limit")
+    threshold = triviality["family_threshold"]
     for skeleton, count in skeleton_counts.items():
-        if count >= 3:
-            report.reject("DEGENERATE_THEOREM_FAMILY", f"{count} declarations share one literal-normalized skeleton")
+        accepted = corpus.get(skeleton, 0)
+        if count + accepted >= threshold:
+            already = f", {accepted} of them already accepted" if accepted else ""
+            report.reject(
+                "DEGENERATE_THEOREM_FAMILY",
+                f"{count + accepted} declarations share one literal-normalized skeleton{already}",
+            )
     report.observations.update({"changed_bytes": changed_bytes, "lean_source_bytes": lean_bytes, "added_lines": added_lines, "new_declarations": declarations})
     return changed, metadata
+
+
+def corpus_skeletons(base: Path | None) -> dict[str, int]:
+    """Literal-normalized statement skeletons already in the accepted corpus.
+
+    The family detector counted only within one submission, so a producer could
+    land two members of a permuted family now and the rest later: the counter
+    reset each time and the threshold never fired. Exact-digest duplicate
+    detection does not cover the gap either, since family members differ by
+    construction. Counting candidates against the corpus closes it.
+    """
+    result: dict[str, int] = {}
+    if base is None:
+        return result
+    for path in sorted((base / "LeanFrontier").rglob("*.lean")):
+        for _, statement in declared_statements(path):
+            skeleton = normalized_statement(statement)
+            result[skeleton] = result.get(skeleton, 0) + 1
+    return result
 
 
 def accepted_entrypoints(base: Path | None) -> set[str]:
@@ -653,6 +679,7 @@ def main(argv: list[str] | None = None) -> int:
         report.reject("PATH_POLICY_VIOLATION", "candidate directory does not exist")
     limits = load_json(DEFAULT_LIMITS)
     axioms = load_json(DEFAULT_AXIOMS)
+    triviality = load_json(DEFAULT_TRIVIALITY)
     try:
         mathlib_release = load_release_policy(DEFAULT_MATHLIB_RELEASE)
     except ReleasePolicyError as error:
@@ -670,7 +697,7 @@ def main(argv: list[str] | None = None) -> int:
                 report.reject("PATH_POLICY_VIOLATION", f"cannot export base ref {args.base_ref}: {error}")
         if base is None and not args.bootstrap:
             report.reject("PATH_POLICY_VIOLATION", "provide --base-dir or --base-ref (or use --bootstrap only for the initial seed)")
-        changed, metadata = static_preflight(base, candidate, limits, mathlib_release or {"mathlib_revision": ""}, report)
+        changed, metadata = static_preflight(base, candidate, limits, mathlib_release or {"mathlib_revision": ""}, triviality, report)
         if report.accepted and not args.preflight_only:
             if metadata is None:
                 report.reject("SCHEMA_INVALID", "no valid metadata record was available for audit")
