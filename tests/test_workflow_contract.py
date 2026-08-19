@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import unittest
 from pathlib import Path
 
@@ -71,6 +72,24 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("fingerprint_index", validator)
         self.assertIn("Mathlib fingerprint index does not match the pinned revision", validator)
         self.assertNotIn('"--all", match_arg, "Mathlib"', validator)
+
+    def test_container_limits_match_the_policy_they_claim_to_enforce(self) -> None:
+        """max_memory_bytes and max_disk_bytes bind in the workflow, not the validator."""
+        limits = json.loads((ROOT / "policy" / "limits.json").read_text())
+        gib = limits["max_memory_bytes"] // (1024 ** 3)
+        self.assertIn(f"--memory {gib}g", WORKFLOW)
+        self.assertIn(f"--tmpfs /tmp:size={limits['max_disk_bytes'] // (1024 ** 3)}g", WORKFLOW)
+
+    def test_every_policy_key_binds_somewhere(self) -> None:
+        """A policy file that advertises knobs the code ignores is not a boundary."""
+        validator = (ROOT / "tools" / "frontier_validate.py").read_text()
+        enforced_by_the_workflow = {"max_memory_bytes", "max_disk_bytes"}
+        for name in ("limits", "triviality"):
+            policy = json.loads((ROOT / "policy" / f"{name}.json").read_text())
+            for key in policy:
+                if key in {"policy_version", "notes"} | enforced_by_the_workflow:
+                    continue
+                self.assertIn(f'"{key}"', validator, f"{name}.json advertises {key}, nothing reads it")
 
     def test_receiver_replays_submitted_modules_through_the_kernel(self) -> None:
         validator = (ROOT / "tools" / "frontier_validate.py").read_text()

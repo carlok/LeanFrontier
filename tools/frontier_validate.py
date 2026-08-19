@@ -167,6 +167,12 @@ def validate_metadata(record: Any, submission_id: str, limits: dict[str, Any], m
             "entrypoints must be unique names of the form LeanFrontier.<Namespace>.<declaration>",
             path,
         )
+    elif any(len(item) > limits["max_identifier_length"] for item in entrypoints):
+        report.reject(
+            "SCHEMA_INVALID",
+            f"an entrypoint name exceeds {limits['max_identifier_length']} characters",
+            path,
+        )
     if record.get("base_mathlib_revision") != mathlib_release["mathlib_revision"]:
         report.reject("SCHEMA_INVALID", "base_mathlib_revision must match the pinned revision", path)
     context = record.get("source_context")

@@ -13,5 +13,6 @@
   "validation_timeout_seconds": 480,
   "max_memory_bytes": 2147483648,
   "max_disk_bytes": 2147483648,
-  "kernel_recheck_timeout_seconds": 180
+  "kernel_recheck_timeout_seconds": 180,
+  "notes": "max_memory_bytes and max_disk_bytes are enforced by the validator container in .github/workflows/validate-submission.yml (--memory, --tmpfs), not by the validator process; a test asserts the two agree. Every other key binds in tools/frontier_validate.py."
 }
