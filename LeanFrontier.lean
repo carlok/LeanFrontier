@@ -1,6 +1,7 @@
 
 import LeanFrontier.Algebra.Binomial
 import LeanFrontier.Analysis.FibonacciReciprocal
+import LeanFrontier.Analysis.SlopeMinorant
 import LeanFrontier.Combinatorics.FibonacciComposition
 import LeanFrontier.Combinatorics.Josephus
 import LeanFrontier.Combinatorics.Josephus.OneIndexed
