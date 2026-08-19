@@ -108,6 +108,18 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn('SCRATCH = Path("/tmp/leanfrontier")', validator)
         self.assertIn('report.observations["downstream_import_smoke"] = "pass"', validator)
 
+    def test_catalogue_defers_to_the_observation_writer(self) -> None:
+        """Racing it can only publish a render without receiver-report links."""
+        self.assertIn("Defer to the observation writer when a submission landed", CATALOGUE_WORKFLOW)
+        self.assertIn("-- 'Submissions/*.json'", CATALOGUE_WORKFLOW)
+        self.assertIn("skip=true", CATALOGUE_WORKFLOW)
+        self.assertIn("if: steps.ownership.outputs.skip != 'true'", CATALOGUE_WORKFLOW)
+        # The diff needs the predecessor commit, exactly as the observation
+        # writer needs its merge parent.
+        self.assertIn("fetch-depth: 2", CATALOGUE_WORKFLOW)
+        # The observation writer must still regenerate it, or nothing would.
+        self.assertIn("generate_catalogue.py", OBSERVATION_WORKFLOW)
+
     def test_catalogue_is_trusted_post_merge_output(self) -> None:
         self.assertIn("LeanFrontier/**/*.lean", CATALOGUE_WORKFLOW)
         self.assertIn("Submissions/**/*.json", CATALOGUE_WORKFLOW)
