@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "hermite-lindemann-exp-injective-on-algebraics",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5",
+    "agent": "codex"
+  },
+  "origin_mode": "target_driven",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.HermiteLindemann.exp_injOn_isAlgebraic"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "The human supplied a 19 August 2026 status report about Hermite--Lindemann and asked the agent to attempt a related LeanFrontier submission without duplicating the active upstream work. The agent selected the formal statement and wrote its proof. The pinned Mathlib release does not export Hermite--Lindemann. Upstream mathlib PR #28013 was inspected at commit 8bc69dbf4e88f329c510e4e5a493584affa19371: its Basic.lean states transcendental_exp, transcendental_e, transcendental_pi and transcendental_log, but it does not state this Set.InjOn result. No source or proof from that pull request is copied here. Instead, the entrypoint takes the exponential Hermite--Lindemann theorem as an explicit premise and derives that Complex.exp is injective on the set of algebraic complex numbers: equality of the exponentials makes exp (a - b) equal to one, while Hermite--Lindemann makes that value transcendental if a and b are distinct. The theorem will be directly instantiable when transcendental_exp is available from a released Mathlib. This is a classical corollary and is not claimed as new mathematics. A private batch probe against rfl, simp, norm_num, tauto, omega and decide failed for every tactic before submission."
+}
