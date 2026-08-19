@@ -251,6 +251,20 @@ class ValidatorPreflightTests(unittest.TestCase):
             ["LeanFrontier.Old.dropped"],
         )
 
+    def test_a_regression_message_states_the_total_it_elides(self) -> None:
+        """Naming five of six sends a submitter back to fix the wrong number."""
+        many = [f"LeanFrontier.Old.gone{n}" for n in range(7)]
+        message = frontier_validate.regression_message(many)
+        self.assertTrue(message.startswith("7 accepted entrypoints"), message)
+        self.assertIn("and 2 more", message)
+        self.assertIn("gone0", message)
+        self.assertNotIn("gone6", message)
+
+    def test_a_short_regression_message_elides_nothing(self) -> None:
+        message = frontier_validate.regression_message(["LeanFrontier.Old.gone"])
+        self.assertEqual(message, "1 accepted entrypoints are no longer present: [\'LeanFrontier.Old.gone\']")
+        self.assertNotIn("more", message)
+
     def test_an_untouched_corpus_reports_no_regression(self) -> None:
         accepted = {"LeanFrontier.Old.kept"}
         findings = {"LeanFrontier.Old.kept": {}, "LeanFrontier.New.added": {}}

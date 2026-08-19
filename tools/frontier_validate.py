@@ -347,6 +347,18 @@ def corpus_regressions(accepted: set[str], findings: dict[str, Any]) -> list[str
     return sorted(accepted - set(findings))
 
 
+def regression_message(regressions: list[str], shown: int = 5) -> str:
+    """Name a few, but always state the total.
+
+    A submitter who fixes only the names printed would otherwise resubmit and
+    fail again on the ones elided.
+    """
+    head = regressions[:shown]
+    remainder = len(regressions) - len(head)
+    elided = f", and {remainder} more" if remainder else ""
+    return f"{len(regressions)} accepted entrypoints are no longer present: {head}{elided}"
+
+
 def submitted_modules(paths: Iterable[str]) -> list[str]:
     """Only the subject modules this submission adds or changes."""
     return sorted(
@@ -574,10 +586,7 @@ def lean_audit(candidate: Path, modules: list[str], submitted: list[str], declar
     # here. Any that is not, this submission removed, renamed, or overwrote.
     regressions = corpus_regressions(accepted, findings)
     if regressions:
-        report.reject(
-            "CORPUS_REGRESSION",
-            f"accepted entrypoints are no longer present: {regressions[:5]}",
-        )
+        report.reject("CORPUS_REGRESSION", regression_message(regressions))
     report.observations["corpus_entrypoints_checked"] = len(accepted)
     entrypoints = metadata.get("entrypoints", [])
     # Findings now span the accepted corpus as well, so the Mathlib comparison
