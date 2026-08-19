@@ -102,7 +102,9 @@ the kernel with `leanchecker`, and auditing declared entrypoints. The
 audit imports the whole accepted corpus, so it also rejects a submission that
 would remove a result an earlier one declared. It
 prints a human report, writes JSON when requested, and exits nonzero on a
-rejection. GitHub Actions runs the same validator with trusted receiver code.
+rejection. Files this repository ignores are not examined, so running it in a
+working tree gives the same answer as the clean checkout CI validates. GitHub
+Actions runs the same validator with trusted receiver code.
 The separate, not-yet-open award mechanism is documented in
 [award scoring v0.1](docs/award-scoring.md); it consumes only accepted receiver
 observations and never affects admission.

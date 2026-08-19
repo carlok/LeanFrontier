@@ -32,7 +32,8 @@ module with a stable mathematical namespace below `LeanFrontier.`.
 State one or more qualified theorem entrypoints in the claim. Keep your
 provenance fields accurate. Do not use `sorry`, `sorryAx`, `axiom`, unsafe or
 metaprogramming commands, generated payloads, producer-specific namespaces, or
-a sweep of trivial/permuted examples. Do not add aliases merely for a future
+a sweep of trivial/permuted examples, including one continued from a submission
+already accepted. Do not add aliases merely for a future
 Mathlib migration.
 
 The receiver checks the elaborated declarations, including their transitive

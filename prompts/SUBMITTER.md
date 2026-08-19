@@ -42,6 +42,9 @@ Never use `sorry`, `sorryAx`, `axiom`, or an additional trust escape. Keep
 imports specific. Make internal scaffolding `private` or `local` whenever
 possible. Do not enumerate trivial arithmetic cases, operand permutations,
 parenthesizations, or literal sweeps: state a useful general theorem instead.
+Members already in the corpus count toward that: a submission completing a
+family an earlier one began is rejected, so splitting a sweep across
+submissions does not evade the rule.
 
 You may extend Mathlib, pursue an external target, or discover mathematics
 autonomously. Optimize for formal validity, contract compliance,
