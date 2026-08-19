@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 05: a day spent attacking the receiver rather than adding to the corpus.">
+    <title>Field Note 05 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">19 August 2026 · Field Note 05</p>
+          <h1>A Day Spent Attacking the Receiver.</h1>
+          <p class="hero-copy">No submission was accepted today and the corpus did not grow. The work went into asking what a producer optimising for the wrong thing could get past the boundary, and into reading a neighbouring project that was doing one thing better.</p>
+        </header>
+
+        <section>
+          <h2>The corpus did not move</h2>
+          <p>Eighteen accepted submissions, eighty-four theorems, nineteen modules, unchanged since yesterday. Everything below is about the receiver rather than the mathematics, which is the less photogenic half of the experiment and the half that decides whether the other half means anything.</p>
+        </section>
+
+        <section>
+          <h2>A family could be smuggled in two pieces</h2>
+          <p>The receiver rejects a repeated literal or permutation family: three declarations sharing one normalized skeleton fail as <code>DEGENERATE_THEOREM_FAMILY</code>. It counted only within a single submission. So two members could arrive today, scoring two against a threshold of three and passing, and the rest could arrive tomorrow against a counter that had reset.</p>
+          <p>Exact-duplicate detection did not cover the gap, because members of such a family differ by construction — that is what makes them a family rather than a duplicate. The check now counts candidate skeletons against the whole accepted corpus, and the threshold comes from the versioned policy file rather than a number hardcoded beside it.</p>
+          <p>A throwaway pull request confirmed it fires on the real receiver: two numeral variants of an accepted statement, rejected as <em>three declarations share one literal-normalized skeleton, one of them already accepted</em>. Before the change those two would have scored two, and been admitted.</p>
+        </section>
+
+        <section>
+          <h2>The policy files advertised six switches that did nothing</h2>
+          <p>The boundary is supposed to be readable from <code>policy/</code>. Comparing those files against the validator found six keys nothing read: a family threshold that the code hardcoded beside it, an identifier length limit enforced nowhere, and four describing behaviour that was fixed rather than configurable.</p>
+          <p>Each was wired up or removed. Two survivors, the memory and disk limits, are genuinely enforced — by the container the validator runs inside rather than by the validator itself — and a test now asserts the workflow's flags match the numbers the policy claims, so the two cannot drift apart. A further test walks both files and fails if any key is unread, which is the only way this stays true.</p>
+        </section>
+
+        <section>
+          <h2>Reading a neighbour</h2>
+          <p>LeanFrontier is not the only Lean library downstream of Mathlib built for machine-generated work. <a href="https://github.com/TauCetiProject/TauCeti">Tau Ceti</a> keeps mathematical judgment and moves it, with human-written roadmaps directing what may be added and AI reviewers scoring submissions against rubrics. <a href="https://github.com/merely-true/merely-true">merely-true</a> removes review and anchors trust in contributor identity instead.</p>
+          <p>Reading the second one surfaced a real gap here. It runs <code>leanchecker</code>, which replays compiled declarations against the kernel. LeanFrontier did not: the axiom closure came from <code>collectAxioms</code> over the environment the build produced, so admission rested on the elaborator's word for a project whose entire claim is that the kernel decides. That was closed the same day, extended to the release-upgrade audit, and every module in the corpus was rechecked by hand at the current pin. All nineteen pass. The gap was real and merely-true was right about it.</p>
+        </section>
+
+        <section>
+          <h2>The local command disagreed with the authority it predicts</h2>
+          <p>Submitters are told to run the receiver before opening a pull request. In a working tree it reported path policy violations on <code>.DS_Store</code> and on the coverage file the documented test command writes — findings CI never produces, because it validates a clean checkout. So the rehearsal failed where the performance would have passed, on every macOS machine, at first contact.</p>
+          <p>The ignore set now derives from the repository's own <code>.gitignore</code>, read from the trusted tree rather than the candidate: a submission able to widen that set could hide files from the receiver.</p>
+        </section>
+
+        <section>
+          <h2>The evidence pipeline stopped needing a human</h2>
+          <p>Field Note 04 recorded that the post-merge writer finally ran unattended. It did, but every pull request it opened then waited for a person, because a pull request opened with the default token does not trigger the checks a ruleset requires of it. Yesterday that meant twenty-three generated pull requests, each needing a manual approval, and four consolidations written by hand.</p>
+          <p>The generators now authenticate as an application installation. A deliberate probe made the umbrella stale, the generator noticed, opened a pull request as itself, its checks started without anyone asking, and it merged and restored the file. Nothing in that sequence required a human after the trigger, and the count of runs waiting for approval was zero.</p>
+        </section>
+
+        <section>
+          <h2>What this was</h2>
+          <p>Nine merged changes, none of them mathematics. Most came from one question asked repeatedly: what would a producer do if it wanted volume rather than content, and what would the boundary let it away with? The rest came from reading somebody else's project carefully enough to find out they were right about something.</p>
+          <p>Neither is a substitute for submissions, and the corpus is the same size it was this morning. But a boundary that has not been attacked is only a claim, and the failures worth recording are the ones found before a contributor hits them rather than after.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
