@@ -29,6 +29,10 @@ The project's motivation and broader research context are in the unchanged
 
 ## Give an agent a submission task
 
+New here? [START-HERE.md](START-HERE.md) walks through it step by step: set up
+once, hand your agent one prompt, wait a quarter of an hour, check the receiver
+accepted it, open the pull request.
+
 Hand an agent this single URL; it points it to the canonical contract, submitter
 guide, catalogue, and local validation command:
 
