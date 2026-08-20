@@ -1,0 +1,5 @@
+{
+  "policy_version": "0.1",
+  "unresolved_per_accepted_theorem": 1,
+  "notes": "A conjecture is a `def` whose type is literally Prop; it asserts nothing and needs no sorry. Stating is nearly free while proving is hard, so the cheap act is tied to the expensive one: a producer may hold at most this many unresolved conjectures per accepted theorem they have landed. A producer with no accepted theorem may state none. Resolution is an accepted `theorem name : ConjectureName := ...`, the shape CONTRACT.md requires."
+}

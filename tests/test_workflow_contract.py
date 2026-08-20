@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import unittest
 from pathlib import Path
 
@@ -319,6 +320,14 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("experiments/launcher-ab.csv", OBSERVATION_WORKFLOW)
         # The catalogue writer must not also claim it, or the two race.
         self.assertNotIn("generate_experiment_ledger.py", CATALOGUE_WORKFLOW)
+
+    def test_every_rejection_code_the_receiver_emits_is_in_the_contract(self) -> None:
+        """A stable code nobody documented is not a stable code."""
+        validator = (ROOT / "tools" / "frontier_validate.py").read_text()
+        contract = (ROOT / "CONTRACT.md").read_text()
+        emitted = set(re.findall(r'report\.reject\(\s*"([A-Z_]+)"', validator))
+        for code in sorted(emitted):
+            self.assertIn(code, contract, f"{code} is emitted but absent from CONTRACT.md")
 
     def test_mathlib_upgrade_has_a_required_gate_and_a_trusted_path_policy(self) -> None:
         test_workflow = (ROOT / ".github" / "workflows" / "test.yml").read_text()
