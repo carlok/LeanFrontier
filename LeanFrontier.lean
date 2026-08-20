@@ -19,6 +19,7 @@ import LeanFrontier.NumberTheory.MarkovEquation
 import LeanFrontier.NumberTheory.Mediant
 import LeanFrontier.NumberTheory.PowerSums
 import LeanFrontier.NumberTheory.SternDiatomic
+import LeanFrontier.NumberTheory.SternDiatomic.Enumeration
 import LeanFrontier.NumberTheory.SylvesterSequence
 import LeanFrontier.NumberTheory.ThueMorse
 import LeanFrontier.NumberTheory.Transcendental.HermiteLindemann
