@@ -1,0 +1,366 @@
+{
+  "accepted_revision": "9c79bc66909d6fbee722edc485b08a3952fb6df3",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-20T15:56:55Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 146.606,
+    "observed": {
+      "added_lines": 171,
+      "audited_declarations": {
+        "LeanFrontier.Nat.sum_pow_eq_sum_pow_thueMorse": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sum_pow_eq_sum_pow_thueMorse",
+          "restatement": false,
+          "statement_sha256": "900987a5e9a5bab392aee3da1fe236557b91f27337a858b81f109c991ac1a52e",
+          "type_dependencies": [
+            "Bool",
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "Finset.filter",
+            "Finset.range",
+            "Finset.sum",
+            "HPow.hPow",
+            "LT.lt",
+            "LeanFrontier.Nat.thueMorse",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAddCommMonoid",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instDecidableEqBool",
+            "instHPow",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.sum_range_thueMorseSign_mul_pow": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sum_range_thueMorseSign_mul_pow",
+          "restatement": false,
+          "statement_sha256": "360a65d7379c724bdfb927419fb17a97556b223928899784ef0e34eec94ded9a",
+          "type_dependencies": [
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HMul.hMul",
+            "HPow.hPow",
+            "Int",
+            "Int.instAddCommMonoid",
+            "Int.instMonoid",
+            "Int.instMul",
+            "LT.lt",
+            "LeanFrontier.Nat.thueMorseSign",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instHMul",
+            "instHPow",
+            "instLTNat",
+            "instNatCastInt",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.thueMorse": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Nat.thueMorse",
+          "restatement": false,
+          "statement_sha256": "8d13be18dd7f8be1bcba671bb18b60a912ad449bd8e4b0580ceae52edf5c2def",
+          "type_dependencies": [
+            "Bool",
+            "Nat"
+          ]
+        },
+        "LeanFrontier.Nat.thueMorseSign": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Nat.thueMorseSign",
+          "restatement": false,
+          "statement_sha256": "3451edef6dbd848233e291ff93b47e0d8ee39f22d5b98e741135fdad3351d376",
+          "type_dependencies": [
+            "Int",
+            "Nat"
+          ]
+        },
+        "LeanFrontier.Nat.thueMorseSign_eq_ite": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.thueMorseSign_eq_ite",
+          "restatement": false,
+          "statement_sha256": "2175d0a457d98edd061e8565864ee16280ab74b1c2174d67f54546d113075af6",
+          "type_dependencies": [
+            "Bool",
+            "Bool.true",
+            "Eq",
+            "Int",
+            "Int.instNegInt",
+            "LeanFrontier.Nat.thueMorse",
+            "LeanFrontier.Nat.thueMorseSign",
+            "Nat",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "instDecidableEqBool",
+            "instOfNat",
+            "ite"
+          ]
+        },
+        "LeanFrontier.Nat.thueMorse_two_mul": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.thueMorse_two_mul",
+          "restatement": false,
+          "statement_sha256": "57a890306872a5e28e4e232767fdd68c6286347706c7cc73907906b8392a4911",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "HMul.hMul",
+            "LeanFrontier.Nat.thueMorse",
+            "Nat",
+            "OfNat.ofNat",
+            "instHMul",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.thueMorse_two_mul_add_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.thueMorse_two_mul_add_one",
+          "restatement": false,
+          "statement_sha256": "f15d4d556f71fc232c69fcde74570bad22d0db58386d7cb6630823447d7c5b0e",
+          "type_dependencies": [
+            "Bool",
+            "Bool.not",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "LeanFrontier.Nat.thueMorse",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Nat.sum_pow_eq_sum_pow_thueMorse": "inconclusive",
+        "LeanFrontier.Nat.sum_range_thueMorseSign_mul_pow": "inconclusive",
+        "LeanFrontier.Nat.thueMorseSign_eq_ite": "inconclusive",
+        "LeanFrontier.Nat.thueMorse_two_mul": "inconclusive",
+        "LeanFrontier.Nat.thueMorse_two_mul_add_one": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 11944,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/ThueMorse.lean",
+        "Submissions/thue-morse-prouhet-power-sums.json"
+      ],
+      "corpus_entrypoints_checked": 100,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Nat.sum_pow_eq_sum_pow_thueMorse": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sum_pow_eq_sum_pow_thueMorse",
+          "statement_sha256": "900987a5e9a5bab392aee3da1fe236557b91f27337a858b81f109c991ac1a52e",
+          "type_dependencies": [
+            "Bool",
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "Finset.filter",
+            "Finset.range",
+            "Finset.sum",
+            "HPow.hPow",
+            "LT.lt",
+            "LeanFrontier.Nat.thueMorse",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAddCommMonoid",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instDecidableEqBool",
+            "instHPow",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.sum_range_thueMorseSign_mul_pow": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sum_range_thueMorseSign_mul_pow",
+          "statement_sha256": "360a65d7379c724bdfb927419fb17a97556b223928899784ef0e34eec94ded9a",
+          "type_dependencies": [
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HMul.hMul",
+            "HPow.hPow",
+            "Int",
+            "Int.instAddCommMonoid",
+            "Int.instMonoid",
+            "Int.instMul",
+            "LT.lt",
+            "LeanFrontier.Nat.thueMorseSign",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instHMul",
+            "instHPow",
+            "instLTNat",
+            "instNatCastInt",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.thueMorseSign_eq_ite": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.thueMorseSign_eq_ite",
+          "statement_sha256": "2175d0a457d98edd061e8565864ee16280ab74b1c2174d67f54546d113075af6",
+          "type_dependencies": [
+            "Bool",
+            "Bool.true",
+            "Eq",
+            "Int",
+            "Int.instNegInt",
+            "LeanFrontier.Nat.thueMorse",
+            "LeanFrontier.Nat.thueMorseSign",
+            "Nat",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "instDecidableEqBool",
+            "instOfNat",
+            "ite"
+          ]
+        },
+        "LeanFrontier.Nat.thueMorse_two_mul": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.thueMorse_two_mul",
+          "statement_sha256": "57a890306872a5e28e4e232767fdd68c6286347706c7cc73907906b8392a4911",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "HMul.hMul",
+            "LeanFrontier.Nat.thueMorse",
+            "Nat",
+            "OfNat.ofNat",
+            "instHMul",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.thueMorse_two_mul_add_one": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.thueMorse_two_mul_add_one",
+          "statement_sha256": "f15d4d556f71fc232c69fcde74570bad22d0db58386d7cb6630823447d7c5b0e",
+          "type_dependencies": [
+            "Bool",
+            "Bool.not",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "LeanFrontier.Nat.thueMorse",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 8298,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 13
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "thue-morse-prouhet-power-sums",
+  "trusted_receiver_revision": "76ba5e4812c1560d7a830200bee4b3a9112f5248",
+  "validated_candidate_revision": "0b13f6bfd2c982e124e1ddc3d5d94b5f0a71ec0c",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32388606465"
+}
