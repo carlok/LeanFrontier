@@ -27,6 +27,7 @@ SCRATCH = Path("/tmp/leanfrontier")
 DEFAULT_LIMITS = ROOT / "policy" / "limits.json"
 DEFAULT_AXIOMS = ROOT / "policy" / "axioms.json"
 DEFAULT_TRIVIALITY = ROOT / "policy" / "triviality.json"
+DEFAULT_CONJECTURE = ROOT / "policy" / "conjecture.json"
 SUBMISSION_RE = re.compile(r"^Submissions/([a-z0-9][a-z0-9-]{2,63})\.json$")
 # At least two components after the ownership prefix: one mathematical
 # namespace and the declaration itself. `LeanFrontier.tentMap` would land in the
@@ -40,6 +41,21 @@ SORRY_RE = re.compile(r"\b(?:sorry|sorryAx)\b")
 AXIOM_RE = re.compile(r"\baxiom\b")
 DECL_RE = re.compile(
     r"\b(?:theorem|lemma)\s+([A-Za-z_][A-Za-z0-9_']*)\b(?P<body>.*?)(?=\s*:=)", re.DOTALL
+)
+# A conjecture is `def NAME : Prop := <proposition>`. The right-hand side runs
+# until the next thing that can start a top-level declaration; an extraction
+# that gets this wrong yields an unusable probe, which is reported as
+# inconclusive rather than as a rejection.
+CONJECTURE_RE = re.compile(
+    r"^[ \t]*def[ \t]+([A-Za-z_][A-Za-z0-9_']*)[ \t]*:[ \t]*Prop[ \t]*:=(?P<body>.*?)"
+    r"(?=^[ \t]*(?:@\[|theorem|lemma|def|abbrev|opaque|structure|class|inductive|instance|namespace|end|open|section|variable)\b|\Z)",
+    re.DOTALL | re.M,
+)
+# `theorem c_holds : ConjectureName := ...` is how the contract says a
+# conjecture is resolved, so resolution is detectable from the source text.
+RESOLUTION_RE = re.compile(
+    r"^[ \t]*theorem[ \t]+[A-Za-z_][A-Za-z0-9_']*[ \t]*:[ \t]*([A-Za-z_][A-Za-z0-9_.']*)[ \t]*:=",
+    re.M,
 )
 DECLARATION_RE = re.compile(r"\b(?:theorem|lemma|def|abbrev|opaque|structure|class|inductive|instance)\b")
 NAMESPACE_RE = re.compile(r"^\s*namespace\s+([A-Za-z_][A-Za-z0-9_.']*)\s*$")
@@ -292,12 +308,44 @@ def proposition_shape(statement: str) -> str:
 
 
 def declared_statements(path: Path) -> list[tuple[str, str]]:
+    """Every stated proposition in a module, theorem or conjecture.
+
+    A conjecture's body is rendered as `: <proposition>` so it has the same
+    shape as a theorem's, which lets one probe, one skeleton normalizer and one
+    family counter serve both. A sweep of near-identical conjectures is a
+    degenerate family for the same reason a sweep of theorems is.
+    """
     try:
         source = path.read_text(encoding="utf-8")
     except UnicodeDecodeError:
         return []
     # Prose that happens to contain `theorem` is not a declaration.
-    return [(match.group(1), match.group("body")) for match in DECL_RE.finditer(strip_comments(source))]
+    code = strip_comments(source)
+    found = [(match.group(1), match.group("body")) for match in DECL_RE.finditer(code)]
+    found += [(match.group(1), ": " + match.group("body").strip())
+              for match in CONJECTURE_RE.finditer(code)]
+    return found
+
+
+def declared_conjectures(path: Path) -> set[str]:
+    try:
+        source = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        return set()
+    return {match.group(1) for match in CONJECTURE_RE.finditer(strip_comments(source))}
+
+
+def entrypoint_kinds(candidate: Path, modules: list[str], entrypoints: list[str]) -> dict[str, str]:
+    """Textual kind per entrypoint, for checks that run before the Lean audit."""
+    conjectures: set[str] = set()
+    for module in modules:
+        path = candidate / (module.replace(".", "/") + ".lean")
+        if path.exists():
+            conjectures |= declared_conjectures(path)
+    return {
+        entrypoint: "conjecture" if entrypoint.rsplit(".", 1)[-1] in conjectures else "theorem"
+        for entrypoint in entrypoints
+    }
 
 
 def static_preflight(base: Path | None, candidate: Path, limits: dict[str, Any], mathlib_release: dict[str, str], triviality: dict[str, Any], report: Report) -> tuple[dict[str, Path | None], dict[str, Any] | None]:
@@ -577,26 +625,132 @@ def entrypoint_bodies(candidate: Path, modules: list[str], entrypoints: list[str
     return found
 
 
+def producer_signature(claim: dict[str, Any]) -> str:
+    """Stable identity for quota accounting.
+
+    The agent names the harness that produced the submission, which is the unit
+    a quota should bind; the model is the fallback when no agent is recorded.
+    """
+    producer = claim.get("producer") or {}
+    for key in ("agent", "model"):
+        value = producer.get(key)
+        if isinstance(value, str) and value.strip():
+            return f"{key}:{value.strip()}"
+    return "unrecorded"
+
+
+def corpus_conjecture_state(base: Path | None) -> tuple[dict[str, int], dict[str, int]]:
+    """Per producer: accepted theorems, and conjectures still unresolved.
+
+    Resolution is read from the source rather than from an audit of the base
+    tree: the contract requires a proving submission to add
+    `theorem name : ConjectureName := ...`, so the shape is textual by
+    construction.
+    """
+    theorems: dict[str, int] = {}
+    unresolved: dict[str, int] = {}
+    if base is None:
+        return theorems, unresolved
+
+    resolved: set[str] = set()
+    for path in sorted((base / "LeanFrontier").rglob("*.lean")):
+        try:
+            code = strip_comments(path.read_text(encoding="utf-8"))
+        except UnicodeDecodeError:
+            continue
+        for match in RESOLUTION_RE.finditer(code):
+            resolved.add(match.group(1).rsplit(".", 1)[-1])
+
+    conjecture_names: set[str] = set()
+    for path in sorted((base / "LeanFrontier").rglob("*.lean")):
+        conjecture_names |= declared_conjectures(path)
+
+    for path in sorted((base / "Submissions").glob("*.json")):
+        try:
+            claim = load_json(path)
+        except (OSError, ValueError):
+            continue
+        who = producer_signature(claim)
+        for entrypoint in claim.get("entrypoints", []) or []:
+            if not isinstance(entrypoint, str):
+                continue
+            short = entrypoint.rsplit(".", 1)[-1]
+            if short in conjecture_names:
+                if short not in resolved:
+                    unresolved[who] = unresolved.get(who, 0) + 1
+            else:
+                theorems[who] = theorems.get(who, 0) + 1
+    return theorems, unresolved
+
+
+def conjecture_quota(base: Path | None, candidate: Path, modules: list[str], entrypoints: list[str], claim: dict[str, Any], policy: dict[str, Any], report: Report) -> None:
+    kinds = entrypoint_kinds(candidate, modules, entrypoints)
+    proposed = sum(1 for kind in kinds.values() if kind == "conjecture")
+    if not proposed:
+        return
+    theorems, unresolved = corpus_conjecture_state(base)
+    who = producer_signature(claim)
+    allowance = theorems.get(who, 0) * policy["unresolved_per_accepted_theorem"]
+    held = unresolved.get(who, 0)
+    report.observations["conjecture_quota"] = {
+        "producer": who, "accepted_theorems": theorems.get(who, 0),
+        "unresolved": held, "allowance": allowance, "proposed": proposed,
+    }
+    if held + proposed > allowance:
+        report.reject(
+            "CONJECTURE_QUOTA_EXCEEDED",
+            f"{who} holds {held} unresolved conjectures and proposes {proposed}, "
+            f"against an allowance of {allowance} from {theorems.get(who, 0)} accepted theorems")
+
+
+def probe_goal(candidate: Path, probe_file: Path, goal: str, triviality: dict[str, Any]) -> str | None:
+    """First bounded tactic that closes `goal` from the baseline, if any."""
+    for tactic in triviality["baseline_probes"]:
+        probe_file.write_text(
+            "import Mathlib\nimport LeanFrontier\n\n" f"example {goal} := by\n  {tactic}\n",
+            encoding="utf-8")
+        try:
+            result = run(["lake", "env", "lean", str(probe_file)], candidate, triviality["probe_timeout_seconds"])
+        except (OSError, subprocess.TimeoutExpired):
+            continue
+        if result.returncode == 0:
+            return tactic
+    return None
+
+
 def baseline_probes(candidate: Path, modules: list[str], entrypoints: list[str], triviality: dict[str, Any], report: Report) -> None:
     """Try bounded tactics without importing a changed candidate module.
 
     A reference to a newly introduced definition makes the probe inconclusive,
     never a rejection.
+
+    A theorem is probed in one direction: proving it from the baseline alone
+    means it was already known. A conjecture is probed in both. Proving it
+    means it is not a conjecture but a theorem the producer did not attempt,
+    and refuting it means the corpus would be carrying a target that cannot be
+    hit. Both directions reuse the same bounded tactic list.
     """
     probe_file = SCRATCH / "baseline_probe.lean"
     probe_file.parent.mkdir(parents=True, exist_ok=True)
+    kinds = entrypoint_kinds(candidate, modules, entrypoints)
     outcomes: dict[str, str] = {}
     for entrypoint, body in entrypoint_bodies(candidate, modules, entrypoints).items():
-        for tactic in triviality["baseline_probes"]:
-            probe_file.write_text("import Mathlib\nimport LeanFrontier\n\n" f"example {body} := by\n  {tactic}\n", encoding="utf-8")
-            try:
-                result = run(["lake", "env", "lean", str(probe_file)], candidate, triviality["probe_timeout_seconds"])
-            except (OSError, subprocess.TimeoutExpired):
+        conjecture = kinds.get(entrypoint) == "conjecture"
+        proved = probe_goal(candidate, probe_file, body, triviality)
+        if proved:
+            outcomes[entrypoint] = proved
+            if conjecture:
+                report.reject("CONJECTURE_PROVABLE", f"baseline-only probe '{proved}' proved conjecture {entrypoint}; it is a theorem, not a conjecture")
+            else:
+                report.reject("TRIVIAL_BASELINE_RESULT", f"baseline-only probe '{proved}' proved {entrypoint}")
+            continue
+        if conjecture:
+            # `body` is `: P`, so the negation goal is `: ¬(P)`.
+            refuted = probe_goal(candidate, probe_file, f": ¬({body.lstrip()[1:].strip()})", triviality)
+            if refuted:
+                outcomes[entrypoint] = f"refuted by {refuted}"
+                report.reject("CONJECTURE_REFUTED", f"baseline-only probe '{refuted}' proved the negation of {entrypoint}")
                 continue
-            if result.returncode == 0:
-                outcomes[entrypoint] = tactic
-                report.reject("TRIVIAL_BASELINE_RESULT", f"baseline-only probe '{tactic}' proved {entrypoint}")
-                break
         outcomes.setdefault(entrypoint, "inconclusive")
     report.observations["baseline_triviality_probes"] = outcomes
 
@@ -641,7 +795,7 @@ def kernel_recheck(candidate: Path, modules: list[str], limits: dict[str, Any], 
     report.observations["kernel_recheck"] = "pass"
 
 
-def lean_audit(candidate: Path, modules: list[str], submitted: list[str], declared_facts: dict[str, dict[str, bool]], metadata: dict[str, Any], limits: dict[str, Any], axioms: dict[str, Any], mathlib_release: dict[str, str], accepted: set[str], report: Report) -> None:
+def lean_audit(base: Path | None, candidate: Path, modules: list[str], submitted: list[str], declared_facts: dict[str, dict[str, bool]], metadata: dict[str, Any], limits: dict[str, Any], axioms: dict[str, Any], mathlib_release: dict[str, str], accepted: set[str], report: Report) -> None:
     try:
         build = run(["lake", "build"], candidate, limits["build_timeout_seconds"])
     except (OSError, subprocess.TimeoutExpired) as error:
@@ -683,8 +837,8 @@ def lean_audit(candidate: Path, modules: list[str], submitted: list[str], declar
         if finding is None:
             report.reject("BUILD_FAILED", f"declared entrypoint was not found by the Lean audit: {entrypoint}")
             continue
-        if finding.get("kind") != "theorem":
-            report.reject("SCHEMA_INVALID", f"entrypoint is not a theorem: {entrypoint}")
+        if finding.get("kind") not in {"theorem", "conjecture"}:
+            report.reject("SCHEMA_INVALID", f"entrypoint is neither a theorem nor a conjecture: {entrypoint}")
         term_bytes = finding.get("normalized_term_bytes")
         if not isinstance(term_bytes, int) or term_bytes > limits["max_normalized_term_bytes"]:
             report.reject("RESOURCE_LIMIT_EXCEEDED", f"{entrypoint} exceeds the normalized-term limit")
@@ -761,11 +915,18 @@ def main(argv: list[str] | None = None) -> int:
         if base is None and not args.bootstrap:
             report.reject("PATH_POLICY_VIOLATION", "provide --base-dir or --base-ref (or use --bootstrap only for the initial seed)")
         changed, metadata = static_preflight(base, candidate, limits, mathlib_release or {"mathlib_revision": ""}, triviality, report)
+        if report.accepted and metadata is not None:
+            # Textual, so it runs with the other cheap checks rather than after
+            # a Mathlib build the submission was never going to survive.
+            conjecture_quota(
+                base, candidate, modules_for(candidate, changed),
+                [e for e in metadata.get("entrypoints", []) if isinstance(e, str)],
+                metadata, load_json(DEFAULT_CONJECTURE), report)
         if report.accepted and not args.preflight_only:
             if metadata is None:
                 report.reject("SCHEMA_INVALID", "no valid metadata record was available for audit")
             else:
-                lean_audit(candidate, modules_for(candidate, changed), submitted_modules(changed), declared_public_facts(candidate, changed), metadata, limits, axioms, mathlib_release or {}, accepted_entrypoints(base), report)
+                lean_audit(base, candidate, modules_for(candidate, changed), submitted_modules(changed), declared_public_facts(candidate, changed), metadata, limits, axioms, mathlib_release or {}, accepted_entrypoints(base), report)
     finally:
         if temporary:
             temporary.cleanup()

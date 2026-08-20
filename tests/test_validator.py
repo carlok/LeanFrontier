@@ -34,7 +34,13 @@ def metadata(identifier: str = "valid-bundle") -> str:
     )
 
 
-class ValidatorPreflightTests(unittest.TestCase):
+class PreflightHarness:
+    """Base and candidate trees plus the calls every preflight test makes.
+
+    Kept apart from the test cases so a second suite can reuse the fixture
+    without also re-running the first suite's assertions.
+    """
+
     def setUp(self) -> None:
         self.temp = tempfile.TemporaryDirectory()
         self.base = Path(self.temp.name) / "base"
@@ -65,6 +71,8 @@ class ValidatorPreflightTests(unittest.TestCase):
         codes = {item["code"] for item in report["diagnostics"]}  # type: ignore[index]
         self.assertIn(expected_code, codes)
 
+
+class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
     def test_valid_theorem(self) -> None:
         status, report = self.validate()
         self.assertEqual(status, 0)
@@ -331,3 +339,105 @@ class ValidatorPreflightTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+CONJECTURE_MODULE = (
+    "namespace LeanFrontier.Algebra\n"
+    "/-- Stated, not proved. -/\n"
+    "def collatz_bounded : Prop := ∀ n : Nat, 0 < n → ∃ k, k ≥ n\n"
+    "end LeanFrontier.Algebra\n"
+)
+
+
+def conjecture_metadata(identifier: str = "valid-bundle", entrypoints: list[str] | None = None, agent: str = "test-agent") -> str:
+    record = json.loads(metadata(identifier))
+    record["producer"]["agent"] = agent
+    record["entrypoints"] = entrypoints or ["LeanFrontier.Algebra.collatz_bounded"]
+    return json.dumps(record)
+
+
+class ConjectureParsingTests(unittest.TestCase):
+    """A conjecture is `def NAME : Prop := P`; it asserts nothing and needs no sorry."""
+
+    def setUp(self) -> None:
+        self.temp = tempfile.TemporaryDirectory()
+        self.path = Path(self.temp.name) / "Module.lean"
+
+    def tearDown(self) -> None:
+        self.temp.cleanup()
+
+    def test_a_prop_valued_definition_is_a_conjecture(self) -> None:
+        self.path.write_text(CONJECTURE_MODULE)
+        self.assertEqual(frontier_validate.declared_conjectures(self.path), {"collatz_bounded"})
+
+    def test_an_ordinary_definition_is_not_a_conjecture(self) -> None:
+        self.path.write_text("def double (n : Nat) : Nat := 2 * n\n")
+        self.assertEqual(frontier_validate.declared_conjectures(self.path), set())
+
+    def test_prose_mentioning_prop_is_not_a_conjecture(self) -> None:
+        self.path.write_text("/-- We could def foo : Prop := True here, but do not. -/\ntheorem t : True := trivial\n")
+        self.assertEqual(frontier_validate.declared_conjectures(self.path), set())
+
+    def test_a_conjecture_is_counted_as_a_stated_proposition(self) -> None:
+        """Otherwise a sweep of near-identical conjectures evades family detection."""
+        self.path.write_text(CONJECTURE_MODULE)
+        names = {name for name, _ in frontier_validate.declared_statements(self.path)}
+        self.assertIn("collatz_bounded", names)
+        body = dict(frontier_validate.declared_statements(self.path))["collatz_bounded"]
+        # Shaped like a theorem's body so one probe and one normalizer serve both.
+        self.assertTrue(body.startswith(": "), body)
+
+
+class ConjectureQuotaTests(PreflightHarness, unittest.TestCase):
+    """Stating is nearly free and proving is hard, so the cheap act is tied to
+    the expensive one."""
+
+    def landed(self, root: Path, identifier: str, source: str, entrypoints: list[str], agent: str = "test-agent") -> None:
+        (root / "LeanFrontier" / "Algebra" / f"{identifier}.lean").write_text(source)
+        (root / "Submissions" / f"{identifier}.json").write_text(
+            conjecture_metadata(identifier, entrypoints, agent))
+
+    def propose_conjecture(self) -> None:
+        (self.candidate / "LeanFrontier" / "Algebra" / "New.lean").write_text(CONJECTURE_MODULE)
+        (self.candidate / "Submissions" / "valid-bundle.json").write_text(conjecture_metadata())
+
+    def test_a_producer_with_no_accepted_theorem_may_state_none(self) -> None:
+        self.propose_conjecture()
+        self.assert_rejected("CONJECTURE_QUOTA_EXCEEDED")
+
+    def test_one_accepted_theorem_allows_one_conjecture(self) -> None:
+        source = "namespace LeanFrontier.Algebra\ntheorem landed (n : Nat) : n = n := rfl\nend LeanFrontier.Algebra\n"
+        for root in (self.base, self.candidate):
+            self.landed(root, "earlier", source, ["LeanFrontier.Algebra.landed"])
+        self.propose_conjecture()
+        status, report = self.validate()
+        self.assertEqual(status, 0, report)
+
+    def test_an_unresolved_conjecture_consumes_the_allowance(self) -> None:
+        theorem = "namespace LeanFrontier.Algebra\ntheorem landed (n : Nat) : n = n := rfl\nend LeanFrontier.Algebra\n"
+        held = "namespace LeanFrontier.Algebra\ndef already_open : Prop := ∀ n : Nat, n = n\nend LeanFrontier.Algebra\n"
+        for root in (self.base, self.candidate):
+            self.landed(root, "earlier", theorem, ["LeanFrontier.Algebra.landed"])
+            self.landed(root, "held", held, ["LeanFrontier.Algebra.already_open"])
+        self.propose_conjecture()
+        self.assert_rejected("CONJECTURE_QUOTA_EXCEEDED")
+
+    def test_resolving_a_conjecture_returns_the_allowance(self) -> None:
+        """The contract's resolution shape is `theorem name : ConjectureName := ...`."""
+        theorem = "namespace LeanFrontier.Algebra\ntheorem landed (n : Nat) : n = n := rfl\nend LeanFrontier.Algebra\n"
+        held = "namespace LeanFrontier.Algebra\ndef already_open : Prop := ∀ n : Nat, n = n\nend LeanFrontier.Algebra\n"
+        proof = "namespace LeanFrontier.Algebra\ntheorem already_open_holds : already_open := fun _ => rfl\nend LeanFrontier.Algebra\n"
+        for root in (self.base, self.candidate):
+            self.landed(root, "earlier", theorem, ["LeanFrontier.Algebra.landed"])
+            self.landed(root, "held", held, ["LeanFrontier.Algebra.already_open"])
+            self.landed(root, "resolution", proof, ["LeanFrontier.Algebra.already_open_holds"])
+        self.propose_conjecture()
+        status, report = self.validate()
+        self.assertEqual(status, 0, report)
+
+    def test_the_quota_is_per_producer(self) -> None:
+        theorem = "namespace LeanFrontier.Algebra\ntheorem landed (n : Nat) : n = n := rfl\nend LeanFrontier.Algebra\n"
+        for root in (self.base, self.candidate):
+            self.landed(root, "earlier", theorem, ["LeanFrontier.Algebra.landed"], agent="someone-else")
+        self.propose_conjecture()
+        self.assert_rejected("CONJECTURE_QUOTA_EXCEEDED")

@@ -12,7 +12,20 @@ The Python receiver owns policy; this tool deliberately reports facts only.
 
 open Lean
 
-private def declarationKind : ConstantInfo → String
+/-- A conjecture is a definition whose type is literally `Prop`.
+
+`def c : Prop := P` asserts nothing: the kernel confirms `P` is a well-formed
+proposition and no more. That is distinct from a theorem, whose type *is* a
+proposition, and it needs no `sorry`, so it crosses the trust boundary at no
+cost. Stating is verifiable even when proving is not. -/
+private def isConjecture : ConstantInfo → Bool
+  | .defnInfo value =>
+    match value.type.consumeMData with
+    | .sort .zero => true
+    | _ => false
+  | _ => false
+
+private def rawKind : ConstantInfo → String
   | .axiomInfo _ => "axiom"
   | .thmInfo _ => "theorem"
   | .defnInfo _ => "definition"
@@ -21,6 +34,9 @@ private def declarationKind : ConstantInfo → String
   | .inductInfo _ => "inductive"
   | .ctorInfo _ => "constructor"
   | .recInfo _ => "recursor"
+
+private def declarationKind (info : ConstantInfo) : String :=
+  if isConjecture info then "conjecture" else rawKind info
 
 private def isTheorem : ConstantInfo → Bool
   | .thmInfo _ => true
@@ -43,6 +59,19 @@ private partial def alphaNormalize : Expr → Expr
 
 private def normalizedType (info : ConstantInfo) : Expr :=
   alphaNormalize (Compiler.LCNF.normLevelParams info.type).1
+
+/-- The expression a declaration's fingerprint is taken over.
+
+For a theorem this is its type, the proposition it proves. For a conjecture it
+is its *value*: every conjecture's type is literally `Prop`, so type
+fingerprints would all collide, and the proposition of interest is the
+right-hand side. Taking the value through the same normalization is what lets a
+conjecture restating a Mathlib theorem collide with it as a duplicate. -/
+private def normalizedStatement (info : ConstantInfo) : Expr :=
+  if isConjecture info then
+    alphaNormalize (Compiler.LCNF.normLevelParams (info.value?.getD info.type)).1
+  else
+    normalizedType info
 
 /-- Constant references in an elaborated declaration type.  This deliberately
 ignores proof values: the receiver uses these edges only to measure the public
@@ -89,7 +118,7 @@ private def typeHint (type : Expr) : String :=
 
 private def declarationJson (includeAxioms : Bool) (env : Environment) (name : Name) (info : ConstantInfo) : IO Json := do
   let axioms ← if includeAxioms then runInEnv env <| collectAxioms name else pure #[]
-  let type := normalizedType info
+  let type := normalizedStatement info
   let canonical := canonicalType type
   return Json.mkObj [
     ("name", toJson name.toString),

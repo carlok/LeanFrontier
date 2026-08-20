@@ -275,6 +275,15 @@ class WorkflowContractTests(unittest.TestCase):
             self.assertIn(required, UPGRADE_WORKFLOW)
         self.assertNotIn("/pulls", UPGRADE_WORKFLOW)
 
+    def test_every_rejection_code_the_receiver_emits_is_in_the_contract(self) -> None:
+        """A stable code nobody documented is not a stable code."""
+        import re
+        validator = (ROOT / "tools" / "frontier_validate.py").read_text()
+        contract = (ROOT / "CONTRACT.md").read_text()
+        emitted = set(re.findall(r'report\.reject\(\s*"([A-Z_]+)"', validator))
+        for code in sorted(emitted):
+            self.assertIn(code, contract, f"{code} is emitted but absent from CONTRACT.md")
+
     def test_mathlib_upgrade_has_a_required_gate_and_a_trusted_path_policy(self) -> None:
         test_workflow = (ROOT / ".github" / "workflows" / "test.yml").read_text()
         validator = (ROOT / "tools" / "validate_mathlib_upgrade.py").read_text()

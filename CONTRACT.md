@@ -63,6 +63,36 @@ Helper declarations that are only proof scaffolding SHOULD be `private` or
 `local`. They may support an accepted result, but do not create an unlimited
 public theorem surface.
 
+### 3.1 Conjectures
+
+A submission MAY state a conjecture as a definition whose type is literally
+`Prop`:
+
+```lean
+def collatz_bounded : Prop := ∀ n : ℕ, 0 < n → ∃ k, iterate n k = 1
+```
+
+Such a declaration asserts nothing. The kernel confirms the right-hand side is
+a well-formed proposition and no more, so a conjecture needs no `sorry`, uses
+no axiom beyond those its statement already mentions, and moves the trust
+boundary not at all. Stating is verifiable even when proving is not.
+
+A conjecture is fingerprinted on its **value**, not its type: every conjecture
+has type `Prop`, and the proposition of interest is the right-hand side. It is
+therefore compared against Mathlib and against the accepted corpus on exactly
+the terms a theorem is, and a conjecture restating known mathematics is
+rejected as `DUPLICATE_STATEMENT`.
+
+A conjecture is **resolved** by a later submission that adds
+
+```lean
+theorem collatz_bounded_holds : collatz_bounded := ...
+```
+
+The resolving submission MUST NOT delete or rewrite the original definition.
+`CORPUS_REGRESSION` already enforces this, and keeping it preserves the dated
+chain from statement to proof.
+
 ## 4. Provenance and entrypoints
 
 The submission record MUST identify the producing system, one permitted origin
@@ -114,6 +144,21 @@ at the versioned `family_threshold` in `policy/triviality.json`. It does not
 make subjective judgments about importance, exposition, elegance, or human
 comprehensibility.
 
+A conjecture is probed in both directions rather than one. The receiver
+rejects it as `CONJECTURE_PROVABLE` when a bounded baseline tactic closes it,
+because that is a theorem the producer did not attempt rather than a
+conjecture, and as `CONJECTURE_REFUTED` when a bounded tactic closes its
+negation, because a false statement is not a target anyone can hit.
+
+Stating is nearly free while proving is hard, so the cheap act is bound to the
+expensive one. A producer MAY hold at most
+`unresolved_per_accepted_theorem` unresolved conjectures for each accepted
+theorem they have landed, at the versioned value in `policy/conjecture.json`.
+A producer who has landed no theorem may state no conjecture. Exceeding the
+allowance is `CONJECTURE_QUOTA_EXCEEDED`. Conjectures count toward degenerate
+family detection on the same terms as theorems: a sweep of near-identical
+statements is a sweep whether or not any of them is proved.
+
 ## 6. Receiver behavior
 
 The receiver validates, measures, audits, classifies mechanically, and returns
@@ -125,7 +170,8 @@ Stable rejection categories include `SCHEMA_INVALID`,
 `PATH_POLICY_VIOLATION`, `RESOURCE_LIMIT_EXCEEDED`, `BUILD_FAILED`,
 `SORRY_DETECTED`, `UNAUTHORIZED_AXIOM`, `DUPLICATE_STATEMENT`,
 `TRIVIAL_BASELINE_RESULT`, `DEGENERATE_THEOREM_FAMILY`, `CORPUS_REGRESSION`,
-`KERNEL_RECHECK_FAILED`, and `SECURITY_POLICY_VIOLATION`.
+`KERNEL_RECHECK_FAILED`, `CONJECTURE_PROVABLE`, `CONJECTURE_REFUTED`,
+`CONJECTURE_QUOTA_EXCEEDED`, and `SECURITY_POLICY_VIOLATION`.
 
 The trusted maintenance receiver periodically evaluates newer official tagged
 Mathlib releases. It does not inspect Mathlib `main` or open upstream pull
