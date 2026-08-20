@@ -365,6 +365,25 @@ class WorkflowContractTests(unittest.TestCase):
             permitted = allowed(path) or allowed(f"{path}/any/file.json")
             self.assertTrue(permitted, f"{path} is committed by a writer but rejected by the gate")
 
+    def test_the_newcomer_guide_names_only_real_rejection_codes(self) -> None:
+        """A guide that documents a code the receiver never emits misleads the
+        one reader least able to tell."""
+        guide = (ROOT / "START-HERE.md").read_text()
+        validator = (ROOT / "tools" / "frontier_validate.py").read_text()
+        emitted = set(re.findall(r'report\.reject\(\s*"([A-Z_]+)"', validator))
+        named = set(re.findall(r"`([A-Z][A-Z_]{4,})`", guide))
+        self.assertTrue(named, "the guide names no rejection codes at all")
+        for code in sorted(named):
+            self.assertIn(code, emitted, f"START-HERE.md names {code}; the receiver never emits it")
+
+    def test_the_newcomer_guide_points_at_the_agent_prompt_and_the_gate(self) -> None:
+        guide = (ROOT / "START-HERE.md").read_text()
+        self.assertIn("prompts/TRY-LEANFRONTIER.md", guide)
+        self.assertIn("prompts/TRY-LEANFRONTIER-EXTEND.md", guide)
+        self.assertIn("./tools/validate-submission", guide)
+        self.assertIn("PREREGISTRATION.md", guide)
+        self.assertIn("START-HERE.md", (ROOT / "README.md").read_text())
+
     def test_mathlib_upgrade_has_a_required_gate_and_a_trusted_path_policy(self) -> None:
         test_workflow = (ROOT / ".github" / "workflows" / "test.yml").read_text()
         validator = (ROOT / "tools" / "validate_mathlib_upgrade.py").read_text()
