@@ -51,6 +51,16 @@ class LauncherArms(unittest.TestCase):
         self.assertIn("TRY-LEANFRONTIER.md", prereg)
         self.assertIn("TRY-LEANFRONTIER-EXTEND.md", prereg)
 
+    def test_amendments_are_added_not_substituted(self) -> None:
+        """A pre-registration rewritten in place records nothing. The original
+        design must stay legible next to what replaced it."""
+        prereg = (ROOT / "PREREGISTRATION.md").read_text()
+        self.assertIn("## Amendment", prereg)
+        # The stopping point and the null-result commitment survive every
+        # amendment; they are the parts an amendment could quietly soften.
+        self.assertIn("18 accepted submissions per arm", prereg)
+        self.assertIn("no effect larger than ~4x", prereg)
+
     def test_assignment_ledger_has_the_expected_columns(self) -> None:
         rows = [l for l in (ROOT / "experiments" / "launcher-ab.csv")
                 .read_text().splitlines() if l and not l.startswith("#")]

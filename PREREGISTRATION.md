@@ -99,3 +99,50 @@ is evidence against the manifesto's claim and not merely absence of evidence.
 - Assignment alternates rather than being randomised, and the maintainer knows
   the arm when inviting. Recruitment is not blind.
 - 18 per arm is 36 submissions against a corpus that took 23 to date.
+
+---
+
+## Amendment, 20 August 2026
+
+Recorded before any submission carried an arm: `experiments/launcher-ab.csv`
+held no assignments when this was written. Amending a pre-registration before
+data exists is ordinary; amending it after the first arm-B submission is what
+would void it.
+
+**Producer.** A loop client running headless agents replaces the many-human
+recruitment above. It alternates arms, rotates model families, and holds at
+most one open pull request at a time.
+
+The trade, stated plainly. Heterogeneous humans piloting different agents carry
+noise that a single controlled process does not, so this is a cleaner
+comparison and a faster path to the stopping point. It is also narrower: the
+result describes what those model families do under two prompts, not what
+machine producers do in general. Rotating families recovers part of that, not
+all of it.
+
+**Assignment.** Moves from invitation time to generation time, and is recorded
+in the submission claim's `launcher_arm` field rather than a hand-kept ledger.
+A producer cannot write to a side ledger — section 2 of the contract permits a
+submission to change only Lean source and its own claim — so the assignment now
+travels atomically with the submission it describes.
+
+**Secondary metrics.** Cross-producer reuse is dropped: it is undefined with
+one producer. Depth of at least 3 and in-degree above 1 are retained, and carry
+more weight than before, because they remain the only way to separate "imported
+one thing because instructed to" from "built a stack".
+
+**Conjectures.** Permitted in both arms. Restricting them to arm B would
+confound the treatment with a second change. Edges arising from conjecture
+imports are reported as a separate series, so a positive result can be checked
+for whether it is ordinary accumulation or producers chasing a target that was
+handed to them.
+
+**Unchanged.** The hypothesis, the primary metric, the stopping point of 18
+accepted submissions per arm, the power table, and the commitment to report a
+null as "no effect larger than ~4x" rather than "no accumulation".
+
+**Added limitation.** A single producer means the experiment can no longer
+distinguish a prompt effect from an interaction between the prompt and one
+generator's habits. If arm B succeeds, the honest claim is that this
+instruction changes what these models do, and replication with a different
+producer becomes the obvious follow-up rather than an optional extra.
