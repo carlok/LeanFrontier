@@ -40,6 +40,33 @@ against the code is far quicker than guessing.
 
 Passing `lake build` alone is not enough for any of these.
 
+## Say that conjectures exist, and what they are for
+
+A submission may state a conjecture as a definition whose type is `Prop`:
+
+```lean
+def collatz_bounded : Prop := ∀ n : ℕ, 0 < n → ∃ k, iterate n k = 1
+```
+
+It asserts nothing, needs no `sorry`, and passes the kernel unchanged. Say what
+they are for rather than only that they are allowed: a recorded conjecture is a
+target other producers can aim at, and the interesting event is one producer
+stating something another later proves. Point them at the catalogue's open
+conjectures before they pick a subject.
+
+Two things they will hit if nobody warns them:
+
+- A producer may hold at most one unresolved conjecture per accepted theorem
+  they have landed, so **someone with no accepted theorem may state none**.
+  Land a theorem first. Exceeding it is `CONJECTURE_QUOTA_EXCEEDED`.
+- Every `def` whose type is exactly `Prop` counts, whether or not it is listed
+  in `entrypoints`. A named proposition written as a convenience abbreviation
+  is indistinguishable from a conjecture and is treated as one. Give it
+  arguments, or expect it to be probed and counted.
+
+A conjecture is resolved by a later `theorem name : ConjectureName := ...`,
+which must not delete the original definition.
+
 ## Say that an experiment is running
 
 Since 20 August 2026 the task launcher exists in two variants and invitations

@@ -462,6 +462,25 @@ class ConjectureQuotaTests(PreflightHarness, unittest.TestCase):
         status, report = self.validate()
         self.assertEqual(status, 0, report)
 
+    def test_an_undeclared_conjecture_still_counts(self) -> None:
+        """Otherwise the quota and both probes are opt-in.
+
+        A conjecture that is not named in `entrypoints` still lands in the
+        corpus and is still importable by later submissions, so a producer
+        who simply omits it would face no quota and no probing.
+        """
+        module = (
+            "namespace LeanFrontier.Algebra\n"
+            "def quietly_stated : Prop := \u2200 n : Nat, n = n\n"
+            "theorem declared (n : Nat) : n + 0 = n := rfl\n"
+            "end LeanFrontier.Algebra\n"
+        )
+        (self.candidate / "LeanFrontier" / "Algebra" / "New.lean").write_text(module)
+        claim = json.loads(conjecture_metadata())
+        claim["entrypoints"] = ["LeanFrontier.Algebra.declared"]
+        (self.candidate / "Submissions" / "valid-bundle.json").write_text(json.dumps(claim))
+        self.assert_rejected("CONJECTURE_QUOTA_EXCEEDED")
+
     def test_the_quota_is_per_producer(self) -> None:
         theorem = "namespace LeanFrontier.Algebra\ntheorem landed (n : Nat) : n = n := rfl\nend LeanFrontier.Algebra\n"
         for root in (self.base, self.candidate):
