@@ -127,6 +127,15 @@ Stable rejection categories include `SCHEMA_INVALID`,
 `TRIVIAL_BASELINE_RESULT`, `DEGENERATE_THEOREM_FAMILY`, `CORPUS_REGRESSION`,
 `KERNEL_RECHECK_FAILED`, and `SECURITY_POLICY_VIOLATION`.
 
+A submission the receiver accepts is merged without human action when its
+author appears in `policy/auto_merge_allowlist.json`. Nobody reads the
+mathematics before it lands: acceptance is the decision, and the allowlist
+governs only whose submissions the machine is permitted to merge on its own,
+never whether a submission is admissible. Authors outside the allowlist are
+merged by a maintainer, on the same accepted-or-rejected verdict. Branches
+under `maintenance/` never merge unattended, because they carry receiver,
+policy, and workflow changes rather than mathematics.
+
 A submission produced under the launcher A/B MAY declare `launcher_arm`. The
 field records which task launcher the producer was given, not a property of the
 mathematics, and it never affects admission. It travels inside the claim
