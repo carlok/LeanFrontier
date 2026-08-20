@@ -23,7 +23,11 @@ def files(root: Path) -> dict[str, str]:
 
 
 def allowed(path: str) -> bool:
-    return path in {"LeanFrontier.lean", "docs/catalogue/index.html"} or (
+    return path in {
+        "LeanFrontier.lean",
+        "docs/catalogue/index.html",
+        "experiments/launcher-ab.csv",
+    } or (
         path.startswith("receiver-observations/") and path.endswith(".json")
     )
 
@@ -52,12 +56,19 @@ def main() -> int:
     base_files = files(args.base)
     candidate_files = files(args.candidate)
     paths = {path for path in base_files.keys() | candidate_files.keys() if base_files.get(path) != candidate_files.get(path)}
-    if not paths or any(not allowed(path) for path in paths):
-        raise SystemExit(f"unexpected generated-output paths: {sorted(paths)}")
+    # Name only what is actually disallowed. Listing every changed path when
+    # one is unexpected sends the reader looking at the innocent ones.
+    unexpected = sorted(path for path in paths if not allowed(path))
+    if not paths:
+        raise SystemExit("generated-output pull request changes nothing")
+    if unexpected:
+        raise SystemExit(f"unexpected generated-output paths: {unexpected}")
     if "LeanFrontier.lean" in paths:
         subprocess.run(["python3", str(ROOT / "tools" / "generate_umbrella.py"), "--root", str(args.candidate), "--check"], check=True)
     if "docs/catalogue/index.html" in paths:
         subprocess.run(["python3", str(ROOT / "tools" / "generate_catalogue.py"), "--root", str(args.candidate), "--check"], check=True)
+    if "experiments/launcher-ab.csv" in paths:
+        subprocess.run(["python3", str(ROOT / "tools" / "generate_experiment_ledger.py"), "--root", str(args.candidate), "--check"], check=True)
     for relative in paths:
         if relative.startswith("receiver-observations/"):
             validate_observation(args.candidate / relative, args.candidate)

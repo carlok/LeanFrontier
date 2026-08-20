@@ -342,6 +342,29 @@ class WorkflowContractTests(unittest.TestCase):
             self.assertIn(f'"{key}"', validator,
                           f"schema advertises {key}; the validator's key set does not mention it")
 
+    def test_generated_paths_the_writers_commit_are_all_permitted(self) -> None:
+        """The writer and the gate keep separate lists; they must agree.
+
+        The observation writer began committing experiments/launcher-ab.csv
+        while validate_generated.py's allowlist did not mention it, so the
+        writer's own pull request failed the gate.
+        """
+        import sys
+        sys.path.insert(0, str(ROOT / "tools"))
+        from validate_generated import allowed
+        committed = set()
+        for workflow in (OBSERVATION_WORKFLOW, CATALOGUE_WORKFLOW, SYNC_WORKFLOW):
+            for line in workflow.splitlines():
+                stripped = line.strip()
+                if stripped.startswith("git add "):
+                    committed |= set(stripped[len("git add "):].split())
+        self.assertTrue(committed, "no generated-output commits found in the workflows")
+        for path in sorted(committed):
+            # A writer may stage a directory where the gate names files under
+            # it, so a directory counts as permitted when its contents are.
+            permitted = allowed(path) or allowed(f"{path}/any/file.json")
+            self.assertTrue(permitted, f"{path} is committed by a writer but rejected by the gate")
+
     def test_mathlib_upgrade_has_a_required_gate_and_a_trusted_path_policy(self) -> None:
         test_workflow = (ROOT / ".github" / "workflows" / "test.yml").read_text()
         validator = (ROOT / "tools" / "validate_mathlib_upgrade.py").read_text()
