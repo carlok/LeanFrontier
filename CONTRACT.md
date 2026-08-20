@@ -127,6 +127,15 @@ Stable rejection categories include `SCHEMA_INVALID`,
 `TRIVIAL_BASELINE_RESULT`, `DEGENERATE_THEOREM_FAMILY`, `CORPUS_REGRESSION`,
 `KERNEL_RECHECK_FAILED`, and `SECURITY_POLICY_VIOLATION`.
 
+A submission the receiver accepts is merged without human action when its
+author appears in `policy/auto_merge_allowlist.json`. Nobody reads the
+mathematics before it lands: acceptance is the decision, and the allowlist
+governs only whose submissions the machine is permitted to merge on its own,
+never whether a submission is admissible. Authors outside the allowlist are
+merged by a maintainer, on the same accepted-or-rejected verdict. Branches
+under `maintenance/` never merge unattended, because they carry receiver,
+policy, and workflow changes rather than mathematics.
+
 The trusted maintenance receiver periodically evaluates newer official tagged
 Mathlib releases. It does not inspect Mathlib `main` or open upstream pull
 requests. It rebuilds the corpus, replays every module through the kernel, and imports
