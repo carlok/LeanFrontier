@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 06: a neighbouring project answered half the question, and the human left the merge path.">
+    <title>Field Note 06 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">20 August 2026 · Field Note 06</p>
+          <h1>A Neighbour Answered Half the Question.</h1>
+          <p class="hero-copy">Measuring another machine-generated library showed that machine mathematics does accumulate, which is most of what this project set out to ask. What remains is narrower and better posed. The rest of the day went into taking the human out of the merge path, and into the four defects that came out when something finally ran unattended.</p>
+        </header>
+
+        <section>
+          <h2>The number the corpus published about itself was not comparable to anything</h2>
+          <p>Yesterday's catalogue gained a figure: 0.17 internal import edges per accepted submission, four edges across twenty-four modules. It was recorded as evidence about whether the corpus accumulates. It was not evidence of anything, because nothing had been measured against it.</p>
+          <p>Three Lean 4 libraries now sit downstream of Mathlib and are written by machines. <a href="https://github.com/TauCetiProject/TauCeti">Tau Ceti</a> is directed by human-written roadmaps and reviewed by AI against rubrics. <a href="https://github.com/merely-true/merely-true">merely-true</a> gates on <code>lake build</code> and identity. LeanFrontier gates mechanically and lets the producer choose the subject. Four corpora, ordered by how much judgment sits above the kernel, is a comparison worth making.</p>
+        </section>
+
+        <section>
+          <h2>Three passes gave three answers before the flaw surfaced</h2>
+          <p>Raw density across corpora of different sizes measures the sizes. Under uniform sampling internal edges fall off like <em>E(k/N)²</em>, so per-module density is roughly linear in corpus size, and Mathlib's 3.13 against LeanFrontier's 0.17 says only that one has 8,268 modules and the other 24.</p>
+          <p>Correcting by drawing 24 modules from Mathlib gave 0.21 edges on average, with 81% of draws containing none. Against LeanFrontier's four, <em>p</em> = 0.0002 in LeanFrontier's favour. Imposing LeanFrontier's own area profile — eleven of its modules are number theory — moved it to <em>p</em> = 0.22. Matching subject identity rather than shape moved it again, to <em>p</em> = 0.006.</p>
+          <p>The instability was the signal. Sampling a large library does not produce a small library; it produces a fragment. Mathlib's number theory graph is dense, but drawing eleven of its 240 modules keeps the nodes and discards every edge that ran through the 229 left behind. LeanFrontier's twenty-four are not a fragment of anything. The scaling correction handles the counting consequence and does nothing about the coherence one, so every subsample null was biased toward whichever corpus was measured whole.</p>
+        </section>
+
+        <section>
+          <h2>A library with an open history answers it without simulation</h2>
+          <p>Tau Ceti has 3,440 commits since 2 June 2026, so its state at ten modules, at twenty-four, at ninety-nine is directly observable rather than modelled. Mathlib 4 cannot supply the equivalent: its early history is a port, not growth.</p>
+          <p>Replayed, its internal density rises monotonically — 0.40 edges per module at ten, 0.92 at twenty-four, 1.04 at ninety-nine, 1.22 at 398, 1.55 at 2,314 — and its most-reused module goes from an in-degree of two to twenty-six. Machine-generated mathematics accumulates there, and the rate increases as the library grows.</p>
+          <p>At a matched twenty-four modules, both whole young libraries and no sampling: Tau Ceti twenty-two internal edges, LeanFrontier four. Per module that difference holds at <em>p</em> = 2.7 × 10⁻⁴. Normalising by declaration instead reduces it to 2.20× with a 95% interval of [0.75×, 8.80×] and <em>p</em> = 0.096, which is not established. Which normalisation is right is a judgment that decides the headline, so both belong in any statement of it. The obvious objection, that Tau Ceti splits work into more files, fails in the opposite direction: its modules are the larger ones, 20.2 declarations against 8.1.</p>
+        </section>
+
+        <section>
+          <h2>What that leaves</h2>
+          <p>The manifesto asks whether machine mathematics accumulates into reusable internal theory. Tau Ceti answers yes. It also writes its roadmaps by hand, and a roadmap is a dependency graph specified in advance by a person, so the residual question is whether accumulation survives without one. That is narrower than what was asked yesterday and considerably better posed, and it is the one thing here that Tau Ceti cannot answer, because it has only the one arm.</p>
+          <p>It also exposed something embarrassing. The task launcher told producers to "prefer an uncovered area", pointing them away from the corpus. The sparse graph may be an artifact of the instruction rather than a property of machine mathematics. A second launcher now exists, differing in exactly one paragraph, and a test asserts the two files stay word-identical everywhere else so that nothing drifts in as a second unrecorded treatment.</p>
+          <p>The hypothesis, the metric, the stopping point of eighteen accepted submissions per arm, the power table behind that number, and a commitment to report a null result as "no effect larger than about four times" rather than "no accumulation" are all recorded in the repository, fixed before any submission carried an arm. The scripts and data for the measurement are public.</p>
+        </section>
+
+        <section>
+          <h2>The receiver was the gate; the maintainer was the gate</h2>
+          <p>Every submission still waited for someone to click merge. The branch ruleset already required zero approving reviews and the repository already permitted auto-merge; only the call was missing. It now fires for an allowlisted author after the receiver accepts, and the identity that merges is the app rather than a person.</p>
+          <p>It runs on <code>workflow_run</code> rather than on the pull request, because a fork's pull-request token is read-only and carries no secrets, so it could neither mint the token nor enable the merge. The allowlist is read from the default branch and never from the candidate, the pull request must still sit at the commit that was validated, and branches under <code>maintenance/</code> are excluded: those carry receiver, policy and workflow changes, and infrastructure should not land unattended even when mathematics does.</p>
+        </section>
+
+        <section>
+          <h2>A conjecture needs no <code>sorry</code></h2>
+          <p>A definition whose type is literally <code>Prop</code> asserts nothing. The kernel confirms the right-hand side is a well-formed proposition and no more, so it passes elaboration, the axiom closure, the <code>sorry</code> scan and the kernel replay unchanged. Stating is verifiable even when proving is not, and the trust boundary does not move.</p>
+          <p>The fingerprint has to come from the value rather than the type, since every conjecture's type is the same <code>Prop</code>. Done that way, a conjecture restating <code>Nat.add_comm</code> produces a digest byte-identical to the equivalent theorem's, and that digest is already among the 466,700 entries in the pinned Mathlib index — so a conjecture restating known mathematics is rejected as a duplicate with no new code at all.</p>
+          <p>Conjectures are probed in both directions. Proving one from the baseline means it was a theorem nobody attempted; refuting one means the corpus would carry a target nobody can hit. Stating is nearly free while proving is hard, so the cheap act is bound to the expensive one: a producer may hold one unresolved conjecture per accepted theorem they have landed, and a producer with no accepted theorem may state none.</p>
+        </section>
+
+        <section>
+          <h2>Four defects, three of them the same shape</h2>
+          <p>A client now produces submissions unattended: one in flight at a time, arm and model rotated, every candidate validated locally before a pull request exists. Its first real submission passed locally and failed in CI, and the failure was worth more than the submission.</p>
+          <p>The schema had gained a field while the validator kept its own hardcoded key set, so the receiver rejected a claim the schema permits. A test for the ledger asserted the committed file was current, which is false by construction on any pull request that adds a submission, since the ledger is written after the merge — it would have failed every submission in perpetuity. The trusted writer began committing a path the trusted gate's allowlist did not mention, so the writer opened pull requests the gate refused. Three separate places where one key set was held in two places, each now with a test deriving one from the other.</p>
+          <p>The fourth was the client's own: it validated the candidate and then edited the claim, so what it pushed was never what it validated. That is the only reason a locally accepted submission could fail in CI at all.</p>
+          <p>One more was caught before it ran rather than after. With two arms and two models each advancing by one, the rotation produced arm A always with one model and arm B always with the other. The arm would have been perfectly confounded with the generator and no difference between arms could have been attributed to the instruction. The model now advances once per complete arm cycle.</p>
+        </section>
+
+        <section>
+          <h2>What this was</h2>
+          <p>Eight merged changes, and a measurement that made the project's own question smaller and sharper. The first submission produced without a human in the loop opened at 15:39 and merged itself at 15:56:56, with the observation, the catalogue and the assignment ledger following on their own.</p>
+          <p>The honest summary of the day is that reasoning found one problem and running found four. The launcher wording was caught by reading; the schema split, the impossible test, the gate mismatch and the ordering bug all needed something to actually go through the pipeline. That is an argument for producing rather than for hardening, which is inconvenient, because hardening is the part that feels responsible.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
