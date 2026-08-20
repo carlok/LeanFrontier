@@ -1,3 +1,12 @@
 # Arm assignment for the launcher A/B; see PREREGISTRATION.md.
 # Recorded at invitation, not at merge. "unassigned" = walk-in, excluded.
+#
+# Order was drawn once, before any invitation, from a fact fixed in advance:
+#   seed = int(sha256(b"5f7d730").hexdigest()[:8], 16) = 590768208
+#   random.Random(seed).choice(["A", "B"]) -> "A"
+# where 5f7d730 is the merge commit of the pre-registration itself. The first
+# invitation therefore goes to arm A, and assignment alternates thereafter:
+#   A B A B A B A B ...
+# Submissions accepted before 20 August 2026 predate the experiment and are
+# excluded from both arms.
 submission_id,arm,assigned_utc
