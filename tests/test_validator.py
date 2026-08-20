@@ -341,6 +341,33 @@ if __name__ == "__main__":
     unittest.main()
 
 
+class LauncherArmClaimTests(PreflightHarness, unittest.TestCase):
+    """The field the whole A/B depends on must survive the receiver."""
+
+    def with_arm(self, value: object) -> None:
+        claim = json.loads(metadata())
+        claim["launcher_arm"] = value
+        (self.candidate / "Submissions" / "valid-bundle.json").write_text(json.dumps(claim))
+
+    def test_an_arm_is_accepted(self) -> None:
+        for arm in ("A", "B", None):
+            with self.subTest(arm=arm):
+                self.with_arm(arm)
+                status, report = self.validate()
+                self.assertEqual(status, 0, report)
+
+    def test_an_unrecognised_arm_is_rejected(self) -> None:
+        self.with_arm("C")
+        self.assert_rejected("SCHEMA_INVALID")
+
+    def test_an_invented_field_is_still_rejected(self) -> None:
+        """Permitting one optional key must not open the record to any key."""
+        claim = json.loads(metadata())
+        claim["smuggled"] = "value"
+        (self.candidate / "Submissions" / "valid-bundle.json").write_text(json.dumps(claim))
+        self.assert_rejected("SCHEMA_INVALID")
+
+
 CONJECTURE_MODULE = (
     "namespace LeanFrontier.Algebra\n"
     "/-- Stated, not proved. -/\n"

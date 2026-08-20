@@ -7,6 +7,7 @@ treatment. See PREREGISTRATION.md.
 import json
 import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -82,12 +83,28 @@ class LauncherArms(unittest.TestCase):
 
 
 class ExperimentLedger(unittest.TestCase):
-    def test_the_committed_ledger_is_at_a_fixed_point(self) -> None:
-        generated = subprocess.run(
-            [sys.executable, str(ROOT / "tools" / "generate_experiment_ledger.py"),
-             "--root", str(ROOT), "--check"],
-            capture_output=True, text=True)
-        self.assertEqual(generated.returncode, 0, generated.stdout + generated.stderr)
+    def test_the_generator_is_idempotent(self) -> None:
+        """Not that the committed file is current -- it cannot be.
+
+        The ledger is post-merge generated output, written by the observation
+        writer after a submission lands. On the pull request that adds the
+        submission it is stale by construction, exactly as the catalogue is,
+        so asserting it is current fails every submission. What can be
+        asserted is that generating twice changes nothing.
+        """
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "Submissions").mkdir()
+            (root / "Submissions" / "one.json").write_text(json.dumps({
+                "submission_id": "one", "launcher_arm": "B",
+                "producer": {"model": "some-model"}}))
+            command = [sys.executable, str(ROOT / "tools" / "generate_experiment_ledger.py"),
+                       "--root", str(root)]
+            self.assertEqual(subprocess.run(command, capture_output=True).returncode, 0)
+            first = (root / "experiments" / "launcher-ab.csv").read_text()
+            self.assertEqual(subprocess.run(command, capture_output=True).returncode, 0)
+            self.assertEqual(first, (root / "experiments" / "launcher-ab.csv").read_text())
+            self.assertIn("one,B,some-model", first)
 
 
 if __name__ == "__main__":
