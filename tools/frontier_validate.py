@@ -195,10 +195,17 @@ def validate_metadata(record: Any, submission_id: str, limits: dict[str, Any], m
         "protocol_version", "submission_id", "producer", "origin_mode", "statement_origin",
         "proof_origin", "entrypoints", "base_mathlib_revision", "source_context",
     }
-    unknown = set(record) - required
+    # Optional keys are enumerated here rather than inferred: an unrecognised
+    # key stays a rejection, so a producer cannot smuggle metadata past the
+    # receiver by inventing a field name.
+    optional = {"launcher_arm"}
+    unknown = set(record) - required - optional
     missing = required - set(record)
     if missing or unknown:
         report.reject("SCHEMA_INVALID", f"record keys mismatch; missing={sorted(missing)}, unknown={sorted(unknown)}", path)
+    arm = record.get("launcher_arm")
+    if "launcher_arm" in record and arm not in {"A", "B", None}:
+        report.reject("SCHEMA_INVALID", f"launcher_arm must be \"A\", \"B\" or null, not {arm!r}", path)
     if record.get("protocol_version") != "0.1":
         report.reject("SCHEMA_INVALID", "protocol_version must be '0.1'", path)
     if record.get("submission_id") != submission_id:
