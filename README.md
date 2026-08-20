@@ -17,6 +17,23 @@ custom axioms, and no dependency on axioms outside the explicit allowlist.
 Machine-generated noise, duplicates, and bounded-resource abuse are rejected
 mechanically before a submission reaches the shared corpus.
 
+A submission may also state a **conjecture**: a definition whose type is
+literally `Prop` asserts nothing, needs no `sorry`, and passes the kernel
+unchanged, so stating is verifiable even where proving is not.
+
+```lean
+def collatz_bounded : Prop := ∀ n : ℕ, 0 < n → ∃ k, iterate n k = 1
+```
+
+A conjecture is fingerprinted on its value, so one restating a Mathlib theorem
+is rejected as a duplicate on the same terms a theorem would be. It is probed
+in both directions — a conjecture a bounded tactic proves is a theorem nobody
+attempted, and one whose negation a tactic proves is a target nobody can hit —
+and a producer may hold only `unresolved_per_accepted_theorem` unresolved
+conjectures per theorem they have landed. Every parameterless `Prop`-valued
+definition counts, whether or not the claim names it. It is resolved by a later
+`theorem name : ConjectureName := ...`, which must not delete the original.
+
 The active Lean/Mathlib release pair and its exact duplicate index are recorded
 in [`policy/mathlib-release.json`](policy/mathlib-release.json). LeanFrontier
 checks weekly for a newer official tagged Mathlib release, rebuilds that index
@@ -93,6 +110,22 @@ LeanFrontier accepts compliant contributions from people, AI systems, and
 human–AI collaborations; the receiver evaluates the submitted artifact and
 claim, not the producer's identity. See [CONTRIBUTING.md](CONTRIBUTING.md) for
 project-maintenance and contact guidance.
+
+A submission the receiver accepts merges without human action when its author
+is listed in [`policy/auto_merge_allowlist.json`](policy/auto_merge_allowlist.json).
+Nobody reads the mathematics before it lands: acceptance is the decision, and
+the allowlist governs only whose submissions the machine may merge on its own,
+never whether a submission is admissible. Everyone else is merged by a
+maintainer on the same verdict, and `maintenance/` branches never merge
+unattended, because they carry receiver, policy and workflow changes rather
+than mathematics.
+
+Since 20 August 2026 the task launcher exists in two variants and a submission
+may record which one produced it in its claim's `launcher_arm`. The field never
+affects admission. The hypothesis, metric, stopping point and known limitations
+are fixed in advance in [PREREGISTRATION.md](PREREGISTRATION.md), and
+[`experiments/launcher-ab.csv`](experiments/launcher-ab.csv) is generated from
+the accepted claims.
 
 Validate a branch against its target branch locally:
 

@@ -384,6 +384,20 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("PREREGISTRATION.md", guide)
         self.assertIn("START-HERE.md", (ROOT / "README.md").read_text())
 
+    def test_the_readme_covers_what_the_receiver_now_does(self) -> None:
+        """A README that lags the boundary sends readers to the wrong rules."""
+        readme = (ROOT / "README.md").read_text()
+        for subject in ("conjecture", "auto_merge_allowlist.json",
+                        "PREREGISTRATION.md", "launcher_arm", "START-HERE.md"):
+            self.assertIn(subject, readme, f"README does not mention {subject}")
+
+    def test_the_latest_field_note_is_listed_and_shipped(self) -> None:
+        notes = sorted((ROOT / "docs" / "website" / "notes").glob("field-note-*.html"))
+        self.assertTrue(notes)
+        index = (ROOT / "docs" / "website" / "notes" / "index.html").read_text()
+        for note in notes:
+            self.assertIn(note.name, index, f"{note.name} is not linked from the notes index")
+
     def test_mathlib_upgrade_has_a_required_gate_and_a_trusted_path_policy(self) -> None:
         test_workflow = (ROOT / ".github" / "workflows" / "test.yml").read_text()
         validator = (ROOT / "tools" / "validate_mathlib_upgrade.py").read_text()
