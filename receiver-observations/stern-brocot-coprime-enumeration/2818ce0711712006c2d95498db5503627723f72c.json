@@ -1,0 +1,276 @@
+{
+  "accepted_revision": "2818ce0711712006c2d95498db5503627723f72c",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-20T16:56:50Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 212.413,
+    "observed": {
+      "added_lines": 212,
+      "audited_declarations": {
+        "LeanFrontier.SternDiatomic.eq_of_fusc_pair_eq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.eq_of_fusc_pair_eq",
+          "restatement": false,
+          "statement_sha256": "0c525267c568aa3a74139b9c8c9cfefa1156e0830f3666cfed6238a4c3fc88ce",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "LT.lt",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.existsUnique_fusc_eq_of_coprime": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.existsUnique_fusc_eq_of_coprime",
+          "restatement": false,
+          "statement_sha256": "bf770f49cba437b1d88c15a7e92eba9f0363657f28ebf127a0178a0a2909a392",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "ExistsUnique",
+            "HAdd.hAdd",
+            "LT.lt",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "Nat.Coprime",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.exists_fusc_eq_of_coprime": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.exists_fusc_eq_of_coprime",
+          "restatement": false,
+          "statement_sha256": "dedfdfa4ed032a2df487b80b5d6e90e568060789453c51562fdead15d20b6fca",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "Exists",
+            "HAdd.hAdd",
+            "LT.lt",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "Nat.Coprime",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.fusc_eq_fusc_succ_iff": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.fusc_eq_fusc_succ_iff",
+          "restatement": false,
+          "statement_sha256": "599db82c519ba724c2cf1991f67ee870480d60078ad28140427ddd9149a7229c",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "Iff",
+            "LT.lt",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.fusc_surjective": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.fusc_surjective",
+          "restatement": false,
+          "statement_sha256": "4edf2c74a3409d2e6dc33d7d32150276d639878f181cb4e2b7375d6296806b9d",
+          "type_dependencies": [
+            "Function.Surjective",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SternDiatomic.eq_of_fusc_pair_eq": "inconclusive",
+        "LeanFrontier.SternDiatomic.existsUnique_fusc_eq_of_coprime": "inconclusive",
+        "LeanFrontier.SternDiatomic.exists_fusc_eq_of_coprime": "inconclusive",
+        "LeanFrontier.SternDiatomic.fusc_eq_fusc_succ_iff": "inconclusive",
+        "LeanFrontier.SternDiatomic.fusc_surjective": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 14225,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SternDiatomic/Enumeration.lean",
+        "Submissions/stern-brocot-coprime-enumeration.json"
+      ],
+      "corpus_entrypoints_checked": 105,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SternDiatomic.eq_of_fusc_pair_eq": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.eq_of_fusc_pair_eq",
+          "statement_sha256": "0c525267c568aa3a74139b9c8c9cfefa1156e0830f3666cfed6238a4c3fc88ce",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "LT.lt",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.existsUnique_fusc_eq_of_coprime": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.existsUnique_fusc_eq_of_coprime",
+          "statement_sha256": "bf770f49cba437b1d88c15a7e92eba9f0363657f28ebf127a0178a0a2909a392",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "ExistsUnique",
+            "HAdd.hAdd",
+            "LT.lt",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "Nat.Coprime",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.exists_fusc_eq_of_coprime": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.exists_fusc_eq_of_coprime",
+          "statement_sha256": "dedfdfa4ed032a2df487b80b5d6e90e568060789453c51562fdead15d20b6fca",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "Exists",
+            "HAdd.hAdd",
+            "LT.lt",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "Nat.Coprime",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.fusc_eq_fusc_succ_iff": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.fusc_eq_fusc_succ_iff",
+          "statement_sha256": "599db82c519ba724c2cf1991f67ee870480d60078ad28140427ddd9149a7229c",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "Iff",
+            "LT.lt",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternDiatomic.fusc_surjective": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.fusc_surjective",
+          "statement_sha256": "4edf2c74a3409d2e6dc33d7d32150276d639878f181cb4e2b7375d6296806b9d",
+          "type_dependencies": [
+            "Function.Surjective",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Nat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 9462,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 11
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "stern-brocot-coprime-enumeration",
+  "trusted_receiver_revision": "bcbee7b2a49300851ac6543e1cedc9278b54ade4",
+  "validated_candidate_revision": "6d5ff5cd852eb5ac4cbb84205bfb5680b3f66bec",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32393538791"
+}
