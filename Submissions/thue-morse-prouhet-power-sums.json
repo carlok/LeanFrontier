@@ -1,0 +1,22 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "thue-morse-prouhet-power-sums",
+  "producer": {
+    "type": "llm",
+    "model": "claude-opus-5",
+    "agent": "claude-code"
+  },
+  "origin_mode": "target_driven",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Nat.thueMorse_two_mul",
+    "LeanFrontier.Nat.thueMorse_two_mul_add_one",
+    "LeanFrontier.Nat.thueMorseSign_eq_ite",
+    "LeanFrontier.Nat.sum_range_thueMorseSign_mul_pow",
+    "LeanFrontier.Nat.sum_pow_eq_sum_pow_thueMorse"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "The Thue-Morse sequence 0110100110010110... (OEIS A010060) and Prouhet's theorem (1851): splitting {0, ..., 2^k - 1} by the parity of the binary digit sum gives two blocks whose j-th power sums agree for every j < k, the classical explicit solution of the Prouhet-Tarry-Escott problem. The named external target was Prouhet's theorem; the module also carries the two substitution rules of the sequence and the bridge between its Bool-valued and its +/-1-valued form. The mathematics is classical and is not claimed as new; the subject choice, the Lean statements and the proofs are the model's, with no human mathematical direction beyond being handed the launcher URL. Absence evidence, searched over the pinned Mathlib tree including Archive and Counterexamples: case-insensitive 'thue' has exactly one hit, a prose mention of the Thue-Siegel-Roth theorem in NumberTheory/Transcendental/Liouville/LiouvilleWith.lean; 'prouhet', 'tarry', 'escott', 'thueMorse' and 'Morse sequence' have none (Morse theory and Morse-Sard are unrelated and appear under Analysis/Geometry). There is no popCount, digitSum or binary-digit-sum parity notion: Data/Nat/Digits carries digit sums only through modEq_digits_sum, dvd_iff_dvd_digits_sum and the Kummer/Legendre lemmas sub_one_mul_sum_log_div_pow_eq_sub_sum_digits and sub_one_mul_padicValNat_choose_eq_sub_sum_digits, none of which mentions parity, and no equal-power-sum or multigrade partition result occurs anywhere in the tree. Design choices. The sequence is defined through Nat.digits 2 rather than by well-founded recursion on n / 2, so the two substitution rules follow from Nat.digits_add rather than from a definitional unfolding and no auxiliary recursion needs its own termination proof. Two public forms are kept because they serve different uses: thueMorse : \u2115 \u2192 Bool is the sequence as a word, thueMorseSign : \u2115 \u2192 \u2124 is what an alternating sum needs, and thueMorseSign_eq_ite is the single bridge between them rather than a duplicated pair of APIs. The signed identity sum_range_thueMorseSign_mul_pow carries the induction and is stated separately because it is strictly stronger than the partition form and is the shape a downstream user differentiating or generating-function argument wants. Its proof splits range (2 ^ (k + 1)) into even and odd indices and expands (2 * i + 1) ^ j by the binomial theorem; the leading term cancels against (2 * i) ^ j, so every surviving exponent is below j and hence below k, and one induction on k suffices with no inner induction on j. Scaffolding is private: the two binary digit-sum recurrences, the two sign recurrences, and the even/odd splitting of a sum over range (2 * m). Deliberately excluded: numeric evaluation of any particular term, a Thue-Morse-based construction of a specific Prouhet-Tarry-Escott solution for one small k, and the cube-freeness of the sequence, which is a different theorem needing a genuine word-combinatorics development rather than a corollary of this one.",
+  "launcher_arm": "A"
+}
