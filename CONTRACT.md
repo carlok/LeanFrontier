@@ -151,7 +151,12 @@ conjecture, and as `CONJECTURE_REFUTED` when a bounded tactic closes its
 negation, because a false statement is not a target anyone can hit.
 
 Stating is nearly free while proving is hard, so the cheap act is bound to the
-expensive one. A producer MAY hold at most
+expensive one. Every definition whose type is exactly `Prop` is a conjecture for these
+purposes, whether or not the claim lists it among its entrypoints: an
+undeclared conjecture still lands in the corpus and is still importable, so
+binding these checks to the claim would make them optional.
+
+A producer MAY hold at most
 `unresolved_per_accepted_theorem` unresolved conjectures for each accepted
 theorem they have landed, at the versioned value in `policy/conjecture.json`.
 A producer who has landed no theorem may state no conjecture. Exceeding the

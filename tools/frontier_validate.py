@@ -690,9 +690,28 @@ def corpus_conjecture_state(base: Path | None) -> tuple[dict[str, int], dict[str
     return theorems, unresolved
 
 
+def submitted_conjectures(candidate: Path, modules: list[str]) -> dict[str, str]:
+    """Every conjecture the submission adds, keyed by name, with its body.
+
+    Deliberately not limited to declared entrypoints. A conjecture that is not
+    an entrypoint still lands in the corpus and is still importable, so binding
+    the quota and the probes to the claim would make both opt-in: a producer
+    could add any number of unprobed conjectures simply by not naming them.
+    """
+    found: dict[str, str] = {}
+    for module in modules:
+        path = candidate / (module.replace(".", "/") + ".lean")
+        if not path.exists():
+            continue
+        conjectures = declared_conjectures(path)
+        for name, body in declared_statements(path):
+            if name in conjectures:
+                found[name] = body
+    return found
+
+
 def conjecture_quota(base: Path | None, candidate: Path, modules: list[str], entrypoints: list[str], claim: dict[str, Any], policy: dict[str, Any], report: Report) -> None:
-    kinds = entrypoint_kinds(candidate, modules, entrypoints)
-    proposed = sum(1 for kind in kinds.values() if kind == "conjecture")
+    proposed = len(submitted_conjectures(candidate, modules))
     if not proposed:
         return
     theorems, unresolved = corpus_conjecture_state(base)
@@ -725,7 +744,7 @@ def probe_goal(candidate: Path, probe_file: Path, goal: str, triviality: dict[st
     return None
 
 
-def baseline_probes(candidate: Path, modules: list[str], entrypoints: list[str], triviality: dict[str, Any], report: Report) -> None:
+def baseline_probes(candidate: Path, modules: list[str], submitted: list[str], entrypoints: list[str], triviality: dict[str, Any], report: Report) -> None:
     """Try bounded tactics without importing a changed candidate module.
 
     A reference to a newly introduced definition makes the probe inconclusive,
@@ -740,8 +759,15 @@ def baseline_probes(candidate: Path, modules: list[str], entrypoints: list[str],
     probe_file = SCRATCH / "baseline_probe.lean"
     probe_file.parent.mkdir(parents=True, exist_ok=True)
     kinds = entrypoint_kinds(candidate, modules, entrypoints)
+    goals = dict(entrypoint_bodies(candidate, modules, entrypoints))
+    # Undeclared conjectures are probed on the same terms as declared ones,
+    # but only in the modules this submission touched: the corpus's existing
+    # conjectures were probed when they landed and are not re-probed here.
+    for name, body in submitted_conjectures(candidate, submitted).items():
+        goals.setdefault(name, body)
+        kinds.setdefault(name, "conjecture")
     outcomes: dict[str, str] = {}
-    for entrypoint, body in entrypoint_bodies(candidate, modules, entrypoints).items():
+    for entrypoint, body in goals.items():
         conjecture = kinds.get(entrypoint) == "conjecture"
         proved = probe_goal(candidate, probe_file, body, triviality)
         if proved:
@@ -863,7 +889,7 @@ def lean_audit(base: Path | None, candidate: Path, modules: list[str], submitted
         if baseline_fingerprints is not None and fingerprint in baseline_fingerprints:
             report.reject("DUPLICATE_STATEMENT", f"{entrypoint} has an exact elaborated statement already in Mathlib")
     if report.accepted:
-        baseline_probes(candidate, modules, entrypoints, load_json(DEFAULT_TRIVIALITY), report)
+        baseline_probes(candidate, modules, submitted, entrypoints, load_json(DEFAULT_TRIVIALITY), report)
     if report.accepted:
         downstream_smoke(candidate, modules, entrypoints, report)
     report.observations["build"] = "pass"
@@ -929,7 +955,7 @@ def main(argv: list[str] | None = None) -> int:
             # Textual, so it runs with the other cheap checks rather than after
             # a Mathlib build the submission was never going to survive.
             conjecture_quota(
-                base, candidate, modules_for(candidate, changed),
+                base, candidate, submitted_modules(changed),
                 [e for e in metadata.get("entrypoints", []) if isinstance(e, str)],
                 metadata, load_json(DEFAULT_CONJECTURE), report)
         if report.accepted and not args.preflight_only:
