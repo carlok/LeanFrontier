@@ -1,0 +1,8 @@
+{
+  "policy_version": "0.1",
+  "logins": [
+    "carlok",
+    "leanfrontier-receiver[bot]"
+  ],
+  "notes": "Auto-merge fires only for these authors, only after the receiver accepts, and never on a maintenance/* branch. Adding a login is a pull request against trusted infrastructure, so the change is reviewable. Enforced by .github/workflows/auto-merge.yml."
+}
