@@ -110,18 +110,23 @@ jobs:
       - name: Regenerate the catalogue from the trusted observation
         if: steps.submission.outputs.should_record == 'true'
         run: python3 .trusted-receiver/tools/generate_catalogue.py --root .
+      - name: Regenerate the experiment ledger from the merged claim
+        # The arm lives in the submission claim; this file is the readable view.
+        # It derives from Submissions/, which this writer owns.
+        if: steps.submission.outputs.should_record == 'true'
+        run: python3 .trusted-receiver/tools/generate_experiment_ledger.py --root .
       - name: Open a protected generated-output pull request
         if: steps.submission.outputs.should_record == 'true'
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
-          git diff --quiet -- receiver-observations docs/catalogue/index.html && exit 0
+          git diff --quiet -- receiver-observations docs/catalogue/index.html experiments/launcher-ab.csv && exit 0
           branch="automation/generated/observation-${{ github.run_id }}"
           git switch -c "$branch"
           slug="${{ steps.app-token.outputs.app-slug }}"
           git config user.name "$slug[bot]"
           git config user.email "$(gh api "/users/$slug%5Bbot%5D" --jq .id)+$slug[bot]@users.noreply.github.com"
-          git add receiver-observations docs/catalogue/index.html
+          git add receiver-observations docs/catalogue/index.html experiments/launcher-ab.csv
           git commit -m "chore: record receiver observation"
           git push origin "HEAD:$branch"
           pr="$(gh pr create --base main --head "$branch" --title "chore: record receiver observation" --body "Trusted receiver observation from run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.")"
