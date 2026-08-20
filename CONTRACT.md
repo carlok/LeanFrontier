@@ -173,6 +173,23 @@ Stable rejection categories include `SCHEMA_INVALID`,
 `KERNEL_RECHECK_FAILED`, `CONJECTURE_PROVABLE`, `CONJECTURE_REFUTED`,
 `CONJECTURE_QUOTA_EXCEEDED`, and `SECURITY_POLICY_VIOLATION`.
 
+A submission the receiver accepts is merged without human action when its
+author appears in `policy/auto_merge_allowlist.json`. Nobody reads the
+mathematics before it lands: acceptance is the decision, and the allowlist
+governs only whose submissions the machine is permitted to merge on its own,
+never whether a submission is admissible. Authors outside the allowlist are
+merged by a maintainer, on the same accepted-or-rejected verdict. Branches
+under `maintenance/` never merge unattended, because they carry receiver,
+policy, and workflow changes rather than mathematics.
+
+A submission produced under the launcher A/B MAY declare `launcher_arm`. The
+field records which task launcher the producer was given, not a property of the
+mathematics, and it never affects admission. It travels inside the claim
+because section 2 permits a submission to change only Lean source and its own
+claim file: a producer cannot append to a side ledger in the same pull request,
+and a separate one races it. `experiments/launcher-ab.csv` is generated output
+derived from these fields.
+
 The trusted maintenance receiver periodically evaluates newer official tagged
 Mathlib releases. It does not inspect Mathlib `main` or open upstream pull
 requests. It rebuilds the corpus, replays every module through the kernel, and imports

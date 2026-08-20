@@ -843,9 +843,12 @@ def lean_audit(base: Path | None, candidate: Path, modules: list[str], submitted
         if not isinstance(term_bytes, int) or term_bytes > limits["max_normalized_term_bytes"]:
             report.reject("RESOURCE_LIMIT_EXCEEDED", f"{entrypoint} exceeds the normalized-term limit")
         used_axioms = set(finding.get("axioms", []))
-        prohibited = used_axioms - set(axioms["allowed_axioms"])
-        if "sorryAx" in used_axioms or prohibited:
-            report.reject("UNAUTHORIZED_AXIOM", f"{entrypoint} depends on prohibited axioms: {sorted(prohibited | ({'sorryAx'} if 'sorryAx' in used_axioms else set()))}")
+        # `always_reject` is not merely the complement of `allowed_axioms`: an
+        # axiom named there stays prohibited even if someone later permits it.
+        prohibited = (used_axioms - set(axioms["allowed_axioms"])) | (
+            used_axioms & set(axioms["always_reject"]))
+        if prohibited:
+            report.reject("UNAUTHORIZED_AXIOM", f"{entrypoint} depends on prohibited axioms: {sorted(prohibited)}")
         fingerprint = canonical_digest(finding)
         same_corpus = [name for name, item in findings.items() if name != entrypoint and canonical_digest(item) == fingerprint]
         if same_corpus:
