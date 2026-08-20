@@ -1,0 +1,93 @@
+name: auto-merge
+
+# The receiver is the gate, so a submission it accepts should not also wait for
+# a human. This runs on workflow_run rather than pull_request because a fork's
+# pull_request token is read-only and carries no secrets: it could neither mint
+# the app token nor enable auto-merge. workflow_run executes in the base
+# repository with secrets available, and always from the default branch's
+# definition, so a fork cannot rewrite what runs here.
+
+on:
+  workflow_run:
+    workflows: [validate-submission]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  auto-merge:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the trusted default branch
+        # The allowlist is read from here, never from the candidate: a
+        # submission that could extend it would be approving itself.
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+
+      - name: Mint a merge token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Enable auto-merge for an allowlisted author
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+
+          # Fork pull requests leave workflow_run.pull_requests empty, so the
+          # pull request is resolved from the validated commit instead.
+          pr="$(gh api "repos/$GITHUB_REPOSITORY/commits/$HEAD_SHA/pulls" \
+                --jq '[.[] | select(.state == "open")][0].number // empty')"
+          if [ -z "$pr" ]; then
+            echo "No open pull request for $HEAD_SHA; nothing to merge." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          # Assigned through a variable rather than process substitution: a
+          # failing gh call inside <(...) does not fail the step, which is how
+          # an earlier writer reported success while recording nothing.
+          meta="$(gh api "repos/$GITHUB_REPOSITORY/pulls/$pr" \
+                  --jq '[.user.login, .head.sha, .base.ref, .head.ref] | @tsv')"
+          author="$(printf '%s' "$meta" | cut -f1)"
+          head_now="$(printf '%s' "$meta" | cut -f2)"
+          base="$(printf '%s' "$meta" | cut -f3)"
+          branch="$(printf '%s' "$meta" | cut -f4)"
+
+          # What was validated must still be what would merge.
+          if [ "$head_now" != "$HEAD_SHA" ]; then
+            echo "PR #$pr moved past the validated commit; leaving it alone." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          if [ "$base" != "${{ github.event.repository.default_branch }}" ]; then
+            echo "PR #$pr does not target the default branch." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          # Trusted infrastructure changes stay deliberate. Only ordinary
+          # submissions merge unattended; maintenance branches carry receiver,
+          # policy and workflow edits, which nobody should land without looking.
+          case "$branch" in
+            maintenance/*)
+              echo "PR #$pr is a maintenance branch; auto-merge does not apply." >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+              ;;
+          esac
+
+          if ! jq -e --arg a "$author" '.logins | index($a)' policy/auto_merge_allowlist.json > /dev/null; then
+            echo "Author $author is not on the auto-merge allowlist; PR #$pr awaits a human." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          gh pr merge "$pr" --auto --merge
+          echo "Auto-merge enabled for PR #$pr by $author." >> "$GITHUB_STEP_SUMMARY"

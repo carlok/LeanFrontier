@@ -13,6 +13,7 @@ OBSERVATION_WORKFLOW = (ROOT / ".github" / "workflows" / "record-observation.yml
 PAGES_WORKFLOW = (ROOT / ".github" / "workflows" / "deploy-pages.yml").read_text()
 UPGRADE_WORKFLOW = (ROOT / ".github" / "workflows" / "mathlib-upgrade.yml").read_text()
 RECONCILE_WORKFLOW = (ROOT / ".github" / "workflows" / "reconcile-generated.yml").read_text()
+AUTO_MERGE_WORKFLOW = (ROOT / ".github" / "workflows" / "auto-merge.yml").read_text()
 DOCKERFILE = (ROOT / "tools" / "Dockerfile.validator").read_text()
 LAKEFILE = (ROOT / "lakefile.toml").read_text()
 
@@ -88,14 +89,20 @@ class WorkflowContractTests(unittest.TestCase):
 
     def test_every_policy_key_binds_somewhere(self) -> None:
         """A policy file that advertises knobs the code ignores is not a boundary."""
-        validator = (ROOT / "tools" / "frontier_validate.py").read_text()
+        readers = "".join(
+            path.read_text()
+            for path in sorted((ROOT / "tools").glob("*.py"))
+            + sorted((ROOT / ".github" / "workflows").glob("*.yml")))
+        # Bound by container flags in validate-submission.yml rather than by
+        # name: --memory and --tmpfs carry the values, not the key strings.
         enforced_by_the_workflow = {"max_memory_bytes", "max_disk_bytes"}
-        for name in ("limits", "triviality"):
-            policy = json.loads((ROOT / "policy" / f"{name}.json").read_text())
-            for key in policy:
-                if key in {"policy_version", "notes"} | enforced_by_the_workflow:
+        for path in sorted((ROOT / "policy").glob("*.json")):
+            for key in json.loads(path.read_text()):
+                if key in {"policy_version", "notes", "rationale"} | enforced_by_the_workflow:
                     continue
-                self.assertIn(f'"{key}"', validator, f"{name}.json advertises {key}, nothing reads it")
+                # Bare name, not a JSON literal: a workflow reads these with
+                # jq, where the key appears as `.logins` rather than "logins".
+                self.assertIn(key, readers, f"{path.name} advertises {key}, nothing reads it")
 
     def test_receiver_replays_submitted_modules_through_the_kernel(self) -> None:
         validator = (ROOT / "tools" / "frontier_validate.py").read_text()
@@ -274,6 +281,44 @@ class WorkflowContractTests(unittest.TestCase):
         ):
             self.assertIn(required, UPGRADE_WORKFLOW)
         self.assertNotIn("/pulls", UPGRADE_WORKFLOW)
+
+    def test_auto_merge_cannot_be_reached_by_untrusted_code(self) -> None:
+        """A fork's pull_request token has no secrets, so this must run post hoc."""
+        self.assertIn("workflow_run:", AUTO_MERGE_WORKFLOW)
+        self.assertIn("workflows: [validate-submission]", AUTO_MERGE_WORKFLOW)
+        self.assertNotIn("pull_request:", AUTO_MERGE_WORKFLOW)
+        self.assertNotIn("pull_request_target:", AUTO_MERGE_WORKFLOW)
+        self.assertIn("github.event.workflow_run.conclusion == 'success'", AUTO_MERGE_WORKFLOW)
+        self.assertIn("github.event.workflow_run.event == 'pull_request'", AUTO_MERGE_WORKFLOW)
+
+    def test_auto_merge_reads_the_allowlist_from_the_trusted_branch(self) -> None:
+        self.assertIn("ref: ${{ github.event.repository.default_branch }}", AUTO_MERGE_WORKFLOW)
+        self.assertIn("persist-credentials: false", AUTO_MERGE_WORKFLOW)
+        self.assertIn("policy/auto_merge_allowlist.json", AUTO_MERGE_WORKFLOW)
+        self.assertIn("actions/create-github-app-token", AUTO_MERGE_WORKFLOW)
+        self.assertNotIn("github.event.workflow_run.head_branch", AUTO_MERGE_WORKFLOW)
+
+    def test_auto_merge_refuses_a_pull_request_that_moved_after_validation(self) -> None:
+        self.assertIn('if [ "$head_now" != "$HEAD_SHA" ]', AUTO_MERGE_WORKFLOW)
+        # Process substitution hides a failing gh call; an earlier writer
+        # reported success while recording nothing for exactly that reason.
+        self.assertNotIn("< <(", AUTO_MERGE_WORKFLOW)
+
+    def test_auto_merge_never_lands_trusted_infrastructure_unattended(self) -> None:
+        self.assertIn("maintenance/*)", AUTO_MERGE_WORKFLOW)
+
+    def test_auto_merge_allowlist_holds_plausible_logins(self) -> None:
+        allowlist = json.loads((ROOT / "policy" / "auto_merge_allowlist.json").read_text())
+        self.assertIn(GENERATOR_BOT, allowlist["logins"])
+        for login in allowlist["logins"]:
+            self.assertRegex(login, r"^[A-Za-z\d](?:[A-Za-z\d]|-(?=[A-Za-z\d])){0,38}(?:\[bot\])?$")
+
+    def test_observation_writer_regenerates_the_experiment_ledger(self) -> None:
+        """The ledger derives from Submissions/, which this writer owns."""
+        self.assertIn("generate_experiment_ledger.py", OBSERVATION_WORKFLOW)
+        self.assertIn("experiments/launcher-ab.csv", OBSERVATION_WORKFLOW)
+        # The catalogue writer must not also claim it, or the two race.
+        self.assertNotIn("generate_experiment_ledger.py", CATALOGUE_WORKFLOW)
 
     def test_mathlib_upgrade_has_a_required_gate_and_a_trusted_path_policy(self) -> None:
         test_workflow = (ROOT / ".github" / "workflows" / "test.yml").read_text()
