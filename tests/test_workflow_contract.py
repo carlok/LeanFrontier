@@ -313,6 +313,13 @@ class WorkflowContractTests(unittest.TestCase):
         for login in allowlist["logins"]:
             self.assertRegex(login, r"^[A-Za-z\d](?:[A-Za-z\d]|-(?=[A-Za-z\d])){0,38}(?:\[bot\])?$")
 
+    def test_observation_writer_regenerates_the_experiment_ledger(self) -> None:
+        """The ledger derives from Submissions/, which this writer owns."""
+        self.assertIn("generate_experiment_ledger.py", OBSERVATION_WORKFLOW)
+        self.assertIn("experiments/launcher-ab.csv", OBSERVATION_WORKFLOW)
+        # The catalogue writer must not also claim it, or the two race.
+        self.assertNotIn("generate_experiment_ledger.py", CATALOGUE_WORKFLOW)
+
     def test_mathlib_upgrade_has_a_required_gate_and_a_trusted_path_policy(self) -> None:
         test_workflow = (ROOT / ".github" / "workflows" / "test.yml").read_text()
         validator = (ROOT / "tools" / "validate_mathlib_upgrade.py").read_text()

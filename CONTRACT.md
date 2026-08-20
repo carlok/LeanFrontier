@@ -136,6 +136,14 @@ merged by a maintainer, on the same accepted-or-rejected verdict. Branches
 under `maintenance/` never merge unattended, because they carry receiver,
 policy, and workflow changes rather than mathematics.
 
+A submission produced under the launcher A/B MAY declare `launcher_arm`. The
+field records which task launcher the producer was given, not a property of the
+mathematics, and it never affects admission. It travels inside the claim
+because section 2 permits a submission to change only Lean source and its own
+claim file: a producer cannot append to a side ledger in the same pull request,
+and a separate one races it. `experiments/launcher-ab.csv` is generated output
+derived from these fields.
+
 The trusted maintenance receiver periodically evaluates newer official tagged
 Mathlib releases. It does not inspect Mathlib `main` or open upstream pull
 requests. It rebuilds the corpus, replays every module through the kernel, and imports
