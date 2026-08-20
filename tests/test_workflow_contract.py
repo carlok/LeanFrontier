@@ -329,6 +329,19 @@ class WorkflowContractTests(unittest.TestCase):
         for code in sorted(emitted):
             self.assertIn(code, contract, f"{code} is emitted but absent from CONTRACT.md")
 
+    def test_the_validator_and_the_schema_agree_on_the_claim_keys(self) -> None:
+        """Two sources of truth for one key set is one too many.
+
+        `launcher_arm` was added to the schema while the validator kept a
+        hardcoded set, so the receiver rejected a claim the schema permits --
+        and only in CI, because the client stamped the field after validating.
+        """
+        schema = json.loads((ROOT / "schema" / "submission.schema.json").read_text())
+        validator = (ROOT / "tools" / "frontier_validate.py").read_text()
+        for key in schema["properties"]:
+            self.assertIn(f'"{key}"', validator,
+                          f"schema advertises {key}; the validator's key set does not mention it")
+
     def test_mathlib_upgrade_has_a_required_gate_and_a_trusted_path_policy(self) -> None:
         test_workflow = (ROOT / ".github" / "workflows" / "test.yml").read_text()
         validator = (ROOT / "tools" / "validate_mathlib_upgrade.py").read_text()
