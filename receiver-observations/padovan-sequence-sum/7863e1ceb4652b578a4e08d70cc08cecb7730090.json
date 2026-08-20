@@ -1,0 +1,155 @@
+{
+  "accepted_revision": "7863e1ceb4652b578a4e08d70cc08cecb7730090",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-20T17:13:00Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 105.086,
+    "observed": {
+      "added_lines": 75,
+      "audited_declarations": {
+        "LeanFrontier.Padovan.padovan": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Padovan.padovan",
+          "restatement": false,
+          "statement_sha256": "79181c7f4b758c1c40ed2cbb52b75a62fbd6c0a82e859369d7ff80d8805a34c4",
+          "type_dependencies": [
+            "Nat"
+          ]
+        },
+        "LeanFrontier.Padovan.padovan_add_three": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Padovan.padovan_add_three",
+          "restatement": false,
+          "statement_sha256": "f172418fe481fbbd5134096a52a0636f9f20fdcc7c54ae5fb681f10ae54b2ae2",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Padovan.padovan",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Padovan.padovan_pos": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Padovan.padovan_pos",
+          "restatement": false,
+          "statement_sha256": "1ff3ff0bfba85c688f4576ed13cea8bce9b7bcf18b20a753ec8c1e8b979eba20",
+          "type_dependencies": [
+            "LE.le",
+            "LeanFrontier.Padovan.padovan",
+            "Nat",
+            "OfNat.ofNat",
+            "instLENat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Padovan.padovan_sum_add_two": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Padovan.padovan_sum_add_two",
+          "restatement": false,
+          "statement_sha256": "971c512602dc3d59f7e35ef5e13a112e7c75ce2360d4bf95855fe25badc865b7",
+          "type_dependencies": [
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "LeanFrontier.Padovan.padovan",
+            "Nat",
+            "Nat.instAddCommMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Padovan.padovan_pos": "inconclusive",
+        "LeanFrontier.Padovan.padovan_sum_add_two": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 5107,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/Padovan.lean",
+        "Submissions/padovan-sequence-sum.json"
+      ],
+      "corpus_entrypoints_checked": 110,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Padovan.padovan_pos": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Padovan.padovan_pos",
+          "statement_sha256": "1ff3ff0bfba85c688f4576ed13cea8bce9b7bcf18b20a753ec8c1e8b979eba20",
+          "type_dependencies": [
+            "LE.le",
+            "LeanFrontier.Padovan.padovan",
+            "Nat",
+            "OfNat.ofNat",
+            "instLENat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Padovan.padovan_sum_add_two": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Padovan.padovan_sum_add_two",
+          "statement_sha256": "971c512602dc3d59f7e35ef5e13a112e7c75ce2360d4bf95855fe25badc865b7",
+          "type_dependencies": [
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "LeanFrontier.Padovan.padovan",
+            "Nat",
+            "Nat.instAddCommMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2685,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 4
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "padovan-sequence-sum",
+  "trusted_receiver_revision": "d10272da34612251687dedeb6e910324fd61eacf",
+  "validated_candidate_revision": "d31c1182321267e7093bc19104a99ae4caee816d",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32395916022"
+}
