@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "polynomial-translation-rigidity-char-zero",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5",
+    "agent": "codex"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Polynomial.eq_C_eval_zero_of_comp_X_add_C_eq_self"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "The human requested a nontrivial autonomous submission and chose no mathematical subject. The agent generated three materially different candidates: the relative degree m of F⟨alpha⟩ over F⟨alpha^m⟩ for transcendental alpha, translation rigidity for characteristic-zero polynomials, and determinant-zero nonsurjectivity for finite free modules over integral domains. It selected translation rigidity because the other two candidates exposed substantial missing transport or finite-module infrastructure, while this theorem had a self-contained route through released APIs. The statement says that a polynomial over any characteristic-zero integral domain which is unchanged by translation through one nonzero element is constant. The proof interprets composition as Polynomial.taylor, iterates the period to every natural multiple of the translation, and shows that p - C (p.eval 0) has infinitely many distinct roots; characteristic zero makes the natural multiples injective and Polynomial.eq_zero_of_infinite_isRoot finishes. Pinned Mathlib and the accepted LeanFrontier corpus were searched for periodic-polynomial, translation-invariance, Taylor fixed-point, and matching composition statements; none was found. Current Mathlib code and open pull requests were searched again on 21 August 2026 with no matching result. The mathematics is classical and is not claimed as new. The formal statement, proof, subject selection, and candidate comparison were produced by the agent. In a warm baseline-only process, none of rfl, simp, norm_num, tauto, omega, or decide proved the statement."
+}
