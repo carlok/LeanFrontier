@@ -1,5 +1,6 @@
 
 import LeanFrontier.Algebra.Binomial
+import LeanFrontier.Algebra.Polynomial.TranslationRigidity
 import LeanFrontier.Analysis.FibonacciReciprocal
 import LeanFrontier.Analysis.SlopeMinorant
 import LeanFrontier.Analysis.SlopeMinorant.Constraints
