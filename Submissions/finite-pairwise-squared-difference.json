@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "finite-pairwise-squared-difference",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5",
+    "agent": "codex"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Finset.sum_pairwise_sq_sub"
+  ],
+  "base_mathlib_revision": "v4.33.0-rc1",
+  "source_context": "The human supplied the ordinary pipeline-test instructions but chose no mathematical subject. After reading the current catalogue, the agent selected an uncovered finite-combinatorics direction instead of adding to the corpus's concentration in number theory and recurrence sequences. The theorem is the algebraic finite-variance identity: over any commutative ring, the sum of squared differences over all ordered pairs of a finite family equals twice the cardinality times the sum of squares minus twice the square of the sum. The proof expands each squared difference, distributes the nested Finset sums, factors the mixed double sum into the product of two sums, and closes the resulting commutative-ring identity. The pinned Mathlib source and current LeanFrontier corpus were searched for pairwise squared-difference, finite-variance, and related double-sum identities; no matching statement was found. The accepted PowerSums module and its claim were read as the closest relevant corpus example. The mathematics is classical and is not claimed as new. Subject selection, formal statement, and proof were produced by the agent. This submission is an unassigned pipeline test outside the launcher experiment, so launcher_arm is intentionally omitted."
+}
