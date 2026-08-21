@@ -1,0 +1,118 @@
+{
+  "accepted_revision": "c67573a56e6c4d3406c1fbbf2a95a1a95fe337b1",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-21T11:24:13Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 102.943,
+    "observed": {
+      "added_lines": 53,
+      "audited_declarations": {
+        "LeanFrontier.Polynomial.eq_C_eval_zero_of_comp_X_add_C_eq_self": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Polynomial.eq_C_eval_zero_of_comp_X_add_C_eq_self",
+          "restatement": false,
+          "statement_sha256": "4471db112a180535628781ebb0b5f4883b29fbaca8befa7ba4b3bcf16bdcd0d9",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "CharZero",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "Eq",
+            "HAdd.hAdd",
+            "IsDomain",
+            "MulZeroClass.toZero",
+            "Ne",
+            "OfNat.ofNat",
+            "Polynomial",
+            "Polynomial.C",
+            "Polynomial.X",
+            "Polynomial.comp",
+            "Polynomial.eval",
+            "Polynomial.instAdd",
+            "Polynomial.semiring",
+            "Ring.toAddGroupWithOne",
+            "RingHom",
+            "RingHom.instFunLike",
+            "Semiring.toNonAssocSemiring",
+            "Zero.toOfNat0",
+            "instHAdd",
+            "instMulZeroClassOfSemiring"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Polynomial.eq_C_eval_zero_of_comp_X_add_C_eq_self": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 3856,
+      "changed_files": [
+        "LeanFrontier/Algebra/Polynomial/TranslationRigidity.lean",
+        "Submissions/polynomial-translation-rigidity-char-zero.json"
+      ],
+      "corpus_entrypoints_checked": 112,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Polynomial.eq_C_eval_zero_of_comp_X_add_C_eq_self": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Polynomial.eq_C_eval_zero_of_comp_X_add_C_eq_self",
+          "statement_sha256": "4471db112a180535628781ebb0b5f4883b29fbaca8befa7ba4b3bcf16bdcd0d9",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "CharZero",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "Eq",
+            "HAdd.hAdd",
+            "IsDomain",
+            "MulZeroClass.toZero",
+            "Ne",
+            "OfNat.ofNat",
+            "Polynomial",
+            "Polynomial.C",
+            "Polynomial.X",
+            "Polynomial.comp",
+            "Polynomial.eval",
+            "Polynomial.instAdd",
+            "Polynomial.semiring",
+            "Ring.toAddGroupWithOne",
+            "RingHom",
+            "RingHom.instFunLike",
+            "Semiring.toNonAssocSemiring",
+            "Zero.toOfNat0",
+            "instHAdd",
+            "instMulZeroClassOfSemiring"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 1806,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "polynomial-translation-rigidity-char-zero",
+  "trusted_receiver_revision": "7480efe4f9ee379f7624d0a9dd1dd0532d791b7f",
+  "validated_candidate_revision": "d45632314b131052831d2d4630b14c1da6f093f5",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32476730311"
+}
