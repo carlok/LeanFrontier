@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 07: the maintainer stopped clicking merge, and everything that broke was found by running rather than by thinking.">
+    <title>Field Note 07 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">21 August 2026 · Field Note 07</p>
+          <h1>Nobody Clicked Merge.</h1>
+          <p class="hero-copy">Four submissions entered the corpus without a human approving any of them. The receiver was always advertised as the gate; until yesterday the maintainer was the gate. Closing that gap took one workflow and exposed six defects, and all but one of them were found by running the thing rather than by reasoning about it.</p>
+        </header>
+
+        <section>
+          <h2>The gate was a person</h2>
+          <p>Every submission had waited for someone to click merge. The branch ruleset already required zero approving reviews and the repository already permitted auto-merge, so nothing was missing but the call — and a decision about whose submissions the machine may land on its own.</p>
+          <p>That decision is an allowlist, read from the default branch and never from the candidate, because a submission able to extend it would be approving itself. Branches under <code>maintenance/</code> are excluded: they carry receiver, policy and workflow changes, and infrastructure should not land unattended even when mathematics does. Since then four submissions have merged with <code>leanfrontier-receiver[bot]</code> as the merging identity, and two of those went from opened to merged in four minutes.</p>
+          <p>The mechanism runs on <code>workflow_run</code> rather than on the pull request, because a fork's pull-request token is read-only and carries no secrets — the same wall that broke the observation writer in an earlier note. It also refuses to merge a pull request that has moved past the commit which was validated.</p>
+        </section>
+
+        <section>
+          <h2>A hypothesis the launcher was suppressing</h2>
+          <p>The task launcher told producers to <em>prefer an uncovered area</em>. That points away from the corpus, so the sparse dependency graph this project has been measuring may have been an artefact of its own instruction rather than a property of machine mathematics.</p>
+          <p>There are now two launchers, differing in exactly one paragraph, and a test asserts the two files stay word-identical everywhere else so nothing drifts in as a second unrecorded treatment. The hypothesis, the metric, the stopping point of eighteen accepted submissions per arm, the power table behind that number, and a commitment to report a null as <em>no effect larger than about four times</em> rather than <em>no accumulation</em> were all fixed in advance, while the assignment ledger was still empty.</p>
+          <p>Three submissions carry an arm so far. The two under the original wording opened fresh subjects and imported nothing. The one under the extension wording imported <code>LeanFrontier.NumberTheory.SternDiatomic</code> and proved the enumeration theorem on top of it — the substantive result of that area rather than a restatement. That is one submission per arm and it establishes nothing; the stopping rule is eighteen for exactly this reason. It is the shape the hypothesis predicts, on the first attempt.</p>
+        </section>
+
+        <section>
+          <h2>Stating without proving</h2>
+          <p>A conjecture needs no <code>sorry</code>. A definition whose type is literally <code>Prop</code> asserts nothing — the kernel confirms the right-hand side is a well-formed proposition and no more — so it passes elaboration, the axiom closure, the <code>sorry</code> scan and the kernel replay unchanged. The trust boundary does not move at all.</p>
+          <p>The fingerprint has to come from the value rather than the type, since every conjecture's type is the same <code>Prop</code>. Done that way, a conjecture restating <code>Nat.add_comm</code> produces a digest already present among the 466,700 entries in the pinned index, so restating known mathematics is rejected as a duplicate with no new code. Conjectures are probed in both directions, and stating is bound to proving: a producer may hold one unresolved conjecture per accepted theorem they have landed, so a producer who has landed none may state none.</p>
+          <p>Nobody has stated one yet. The corpus contains zero.</p>
+        </section>
+
+        <section>
+          <h2>What running it found that thinking about it had not</h2>
+          <p>Six defects surfaced in a day, and the ratio is the point: one came from review, five came from something actually going through the pipeline.</p>
+          <p>The schema gained a field while the validator kept its own hardcoded key set, so the receiver rejected a claim the schema permits — and only in continuous integration, because the client stamped the field <em>after</em> validating and pushed something it had never checked. A test asserted the assignment ledger was current, which is false by construction on any pull request that adds a submission, since the ledger is written after the merge; it would have failed every submission in perpetuity. The trusted writer began committing a path the trusted gate's allowlist did not mention, so the writer opened pull requests the gate refused. The conjecture quota and both probes read the claim's entrypoints, so a producer who simply omitted a conjecture from the claim faced no quota and no probing. A producer's branch went stale because an agent run takes long enough that generated pull requests merge underneath it. And an agent in a headless session hit a permission prompt for reading git history and asked for approval nobody was there to give.</p>
+          <p>Three of those are the same shape: one key set held in two places. Each now has a test deriving one from the other, which is the only way that stays true.</p>
+        </section>
+
+        <section>
+          <h2>The number that has not moved</h2>
+          <p>Twenty-nine accepted submissions, twenty-nine modules, five internal import edges. That is 0.17 per module, where it was 0.17 per module yesterday. Only the extension-arm submission added one.</p>
+          <p>Two further submissions arrived today from a different producer and are recorded as unassigned, deliberately: they are outside the experiment, and putting a non-client submission into an arm would contaminate it. One proves that a polynomial over a characteristic-zero integral domain invariant under a nonzero translation must be constant. The other gives the sum of all pairwise squared differences over a finite set in terms of the sum of squares and the square of the sum — the variance identity in unnormalised form, over an arbitrary commutative ring. Neither imports anything from the corpus.</p>
+        </section>
+
+        <section>
+          <h2>What this was</h2>
+          <p>Twelve merged changes, four submissions nobody approved, and a pre-registration that is now binding rather than aspirational.</p>
+          <p>The honest summary is the same one the previous note ended on, confirmed rather than repeated. Reasoning found the launcher wording. Running found the schema split, the impossible test, the gate mismatch, the ordering bug, the opt-in quota and the stale branch. That is an argument for producing rather than for hardening, which remains inconvenient, because hardening is the part that feels responsible.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
