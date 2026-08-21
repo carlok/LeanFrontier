@@ -1,0 +1,130 @@
+{
+  "accepted_revision": "47c45b2e214d2fdfea7dd4d9985eb68955be3549",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-21T11:44:16Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 105.177,
+    "observed": {
+      "added_lines": 52,
+      "audited_declarations": {
+        "LeanFrontier.Finset.sum_pairwise_sq_sub": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Finset.sum_pairwise_sq_sub",
+          "restatement": false,
+          "statement_sha256": "70f317af42b1e7900f79b5ac2fff5be545386ed9e593ce094d15932ab787f6a4",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "Finset",
+            "Finset.card",
+            "Finset.sum",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toMonoid",
+            "SubNegMonoid.toSub",
+            "instDistribOfSemiring",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Finset.sum_pairwise_sq_sub": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 3483,
+      "changed_files": [
+        "LeanFrontier/Combinatorics/FiniteVariance.lean",
+        "Submissions/finite-pairwise-squared-difference.json"
+      ],
+      "corpus_entrypoints_checked": 113,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Finset.sum_pairwise_sq_sub": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Finset.sum_pairwise_sq_sub",
+          "statement_sha256": "70f317af42b1e7900f79b5ac2fff5be545386ed9e593ce094d15932ab787f6a4",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "Finset",
+            "Finset.card",
+            "Finset.sum",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toMonoid",
+            "SubNegMonoid.toSub",
+            "instDistribOfSemiring",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 1804,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "finite-pairwise-squared-difference",
+  "trusted_receiver_revision": "4189b3998bbeac986b4bc4c6d616f6ac16d2ea43",
+  "validated_candidate_revision": "480facaa6b69b772b83c1ac48e3c2d31a2e1682f",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/32478248077"
+}
