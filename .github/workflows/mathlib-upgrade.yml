@@ -89,10 +89,17 @@ jobs:
             -v "$GITHUB_WORKSPACE/upgrade-output:/output" -w /workspace leanfrontier-upgrade:ci \
             python3 tools/build_mathlib_index.py --output /output/index.json
           install -m 0644 "$GITHUB_WORKSPACE/upgrade-output/index.json" "policy/$index_name"
+          # The report goes to the dedicated writable mount, as the index does
+          # above, and is installed on the host afterwards. Writing it straight
+          # into /workspace fails: the container's user does not own the
+          # directory the runner created, so the audit died with EACCES the
+          # first time a release actually needed upgrading.
           docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges \
             --memory 6g --cpus 2 --pids-limit 512 --tmpfs /tmp:size=6g \
-            -v "$GITHUB_WORKSPACE/elan:/elan:ro" -v "$GITHUB_WORKSPACE:/workspace" -w /workspace leanfrontier-upgrade:ci \
-            python3 tools/audit_mathlib_upgrade.py --report "policy/mathlib-upgrades/$revision.json"
+            -v "$GITHUB_WORKSPACE/elan:/elan:ro" -v "$GITHUB_WORKSPACE:/workspace" \
+            -v "$GITHUB_WORKSPACE/upgrade-output:/output" -w /workspace leanfrontier-upgrade:ci \
+            python3 tools/audit_mathlib_upgrade.py --report "/output/upgrade.json"
+          install -m 0644 "$GITHUB_WORKSPACE/upgrade-output/upgrade.json" "policy/mathlib-upgrades/$revision.json"
       - name: Open and protect the generated upgrade pull request
         if: steps.release.outputs.upgrade == 'true'
         env:
