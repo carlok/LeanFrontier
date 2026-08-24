@@ -13,8 +13,19 @@ from mathlib_release import load_release_policy
 STATIC_PATHS = {"lean-toolchain", "lakefile.toml", "lake-manifest.json", "policy/mathlib-release.json"}
 
 
+# Directories that exist because something ran, not because somebody committed.
+# `__pycache__` matters here for a specific reason: this script imports a module
+# from the base checkout, so running it creates bytecode inside the very tree it
+# is about to compare. That file is then present before and absent after, and
+# the comparison rejects the upgrade over a file it wrote itself. Every upgrade
+# would fail, always.
+GENERATED = {".git", "__pycache__", ".lake"}
+
+
 def files(root: Path) -> dict[str, bytes]:
-    return {path.relative_to(root).as_posix(): path.read_bytes() for path in root.rglob("*") if path.is_file() and ".git" not in path.parts}
+    return {path.relative_to(root).as_posix(): path.read_bytes()
+            for path in root.rglob("*")
+            if path.is_file() and not GENERATED & set(path.parts)}
 
 
 def main(argv: list[str] | None = None) -> int:
