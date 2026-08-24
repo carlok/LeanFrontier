@@ -72,10 +72,11 @@ jobs:
           docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges \
             --memory 6g --cpus 2 --pids-limit 512 --tmpfs /tmp:size=6g \
             -v "$GITHUB_WORKSPACE/elan:/elan:ro" -v "$GITHUB_WORKSPACE:/workspace" -w /workspace \
+            -v "$GITHUB_WORKSPACE/upgrade-output:/output" \
             leanfrontier-upgrade:ci \
-            python3 tools/audit_mathlib_upgrade.py --report "policy/mathlib-upgrades/$(python3 -c 'import json; print(json.load(open("policy/mathlib-release.json"))["mathlib_revision"])').check.json"
+            python3 tools/audit_mathlib_upgrade.py --report /output/rebuilt-audit.json
           audit_name="$(python3 -c 'import json; print(json.load(open("policy/mathlib-release.json"))["mathlib_revision"])')"
-          cmp "policy/mathlib-upgrades/$audit_name.check.json" "policy/mathlib-upgrades/$audit_name.json"
+          cmp "$GITHUB_WORKSPACE/upgrade-output/rebuilt-audit.json" "policy/mathlib-upgrades/$audit_name.json"
       - uses: actions/upload-artifact@v4
         if: always() && steps.target.outputs.enabled == 'true'
         with:
