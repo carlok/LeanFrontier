@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 08: the corpus moved to a new Mathlib release without anyone choosing to, after three stacked defects that only running could find.">
+    <title>Field Note 08 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">24 August 2026 · Field Note 08</p>
+          <h1>Nobody Chose the Version.</h1>
+          <p class="hero-copy">The corpus is pinned to a Mathlib release, and this morning it moved to a new one without a person deciding. Getting there took three defects, stacked so that each was invisible until the one before it was fixed — and the best of them was a validator refusing an upgrade because of a file it had written itself, while running.</p>
+        </header>
+
+        <section>
+          <h2>A pin is a promise that has to be kept</h2>
+          <p>Every claim this project makes is relative to one Mathlib revision. The fingerprint index that decides whether a submission restates known mathematics is built from that revision; the axiom audit and the kernel replay run against it. A pin that never moves goes stale, and a pin that moves carelessly invalidates every acceptance behind it.</p>
+          <p>So the upgrade is not a version bump. It rebuilds the index, re-audits all 114 entrypoints in the corpus against it, replays the kernel, checks that a downstream import still compiles, and confirms zero fingerprint collisions between the corpus and the new library. Only then does it open a pull request carrying the toolchain, the manifest, the new index and the audit report that records all of it.</p>
+          <p>That ran this morning and the corpus is now on <code>v4.33.1</code>. The receiver bot opened the change; the branch sits under <code>maintenance/</code>, which auto-merge is forbidden to touch, so a person still merged it. The part nobody chose was the version.</p>
+        </section>
+
+        <section>
+          <h2>Three defects, each hiding the next</h2>
+          <p>The workflow had existed for weeks and had run once, that morning, on schedule. It failed. Every earlier firing had found no new release and stopped at the fifth step, so everything past that point had never executed in the workflow's life.</p>
+          <p>The first defect: the audit step wrote its report straight into the working tree from inside a hardened container, whose user does not own the directory the runner created. The index step beside it already wrote to a dedicated mount and installed the result afterwards; the audit did not, and died with a permission error after building the index for thirty-six minutes.</p>
+          <p>Fixing that exposed the second, which lived in the validator. Fixing <em>that</em> exposed the third, the same permission bug in a different workflow — one that had been swept for and reported clean, by a check that matched the wrong thing and missed the only instance that mattered.</p>
+          <p>None of the three was reachable by reading. Each needed the previous one gone.</p>
+        </section>
+
+        <section>
+          <h2>It rejected its own bytecode</h2>
+          <p>The upgrade validator enforces a narrow contract: an upgrade may touch the toolchain, the manifest, the release policy, the new index, the audit report and the index it replaces, and nothing else. It compares the two checkouts by walking the filesystem, excluding <code>.git</code>.</p>
+          <p>It is run from the base checkout, and it imports a module from that checkout. Python writes the compiled bytecode into the tree the validator is about to compare. The file is present in the base and absent in the candidate, so it registers as a change to a forbidden path, and the upgrade is refused.</p>
+          <p>The refusal names a file no commit contains. It would have happened on every upgrade, forever, and it could not have happened until an upgrade actually existed. The fix excludes directories that exist because something ran rather than because somebody committed.</p>
+        </section>
+
+        <section>
+          <h2>A fourth person</h2>
+          <p>A submission arrived from a contributor who had never opened one here before — the fourth distinct person besides the maintainer to send mathematics to this corpus. It is open rather than merged: the main branch changed toolchain underneath it this morning, so it needs rebasing before the receiver will judge it at all.</p>
+          <p>That is worth recording plainly because it is the ordinary case and the interesting one at the same time. The project's question is whether machine-produced mathematics accumulates, and accumulation is not only a property of the generator. Somebody else pointing their own agent at the contract and getting a pull request out of it is the part that does not scale by adding compute.</p>
+        </section>
+
+        <section>
+          <h2>What this was</h2>
+          <p>One release upgrade nobody chose, three defects, and 114 entrypoints re-audited against a library that changed under them without a single acceptance being weakened.</p>
+          <p>The through-line is the previous note's, sharpened. There it was that running finds what reasoning does not. Here it is narrower and less comfortable: <em>a pipeline whose later stages have never executed tells you nothing about whether they work.</em> Three of them were broken. The schedule would have discovered them one Monday at a time, at forty minutes of index building each, and reported nothing in between except a red mark nobody was watching.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
