@@ -70,8 +70,11 @@ One submission per pull request: Lean sources under `LeanFrontier/` and exactly
 one `Submissions/<id>.json`. No documentation, workflow, policy or formatting
 edits alongside it — those paths are refused.
 
-Your pull request will wait for a maintainer rather than merging itself. That
-is deliberate for a new contributor and says nothing about the work.
+If the author is listed in the auto-merge allowlist, an accepted receiver
+report permits the machine to merge the ordinary submission without a human
+reviewing its mathematics. Everyone else waits for a maintainer to merge on
+the same accepted-or-rejected verdict. The distinction is about permission to
+merge, never the admission standard.
 
 ## If it is rejected
 
