@@ -49,4 +49,11 @@ theorem eq_C_eval_zero_of_comp_X_add_C_eq_self {p : R[X]} {a : R} (ha : a ≠ 0)
   have hq : q = 0 := q.eq_zero_of_infinite_isRoot hinfinite
   exact sub_eq_zero.mp hq
 
+/-- A polynomial with a nonzero additive period has degree zero. -/
+theorem natDegree_eq_zero_of_comp_X_add_C_eq_self {p : R[X]} {a : R} (ha : a ≠ 0)
+    (hperiod : p.comp (X + C a) = p) :
+    p.natDegree = 0 := by
+  rw [eq_C_eval_zero_of_comp_X_add_C_eq_self ha hperiod]
+  simp
+
 end LeanFrontier.Polynomial

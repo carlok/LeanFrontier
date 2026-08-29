@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "polynomial-period-degree-zero",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5",
+    "agent": "codex"
+  },
+  "origin_mode": "mathlib_extension",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Polynomial.natDegree_eq_zero_of_comp_X_add_C_eq_self"
+  ],
+  "base_mathlib_revision": "v4.33.1",
+  "source_context": "The human requested a fresh ordinary candidate to exercise the current submission pipeline and chose no mathematical subject. The agent inspected the current catalogue and extended the existing translation-rigidity polynomial module with its natural degree consequence: over a characteristic-zero integral domain, a polynomial fixed by composition with X + C a for nonzero a has natural degree zero. The theorem is a reusable corollary of the module's accepted translation-rigidity result, rather than a producer-specific wrapper or a duplicate of the result itself. The formal statement and proof were written by the agent. This unassigned pipeline test intentionally omits launcher_arm."
+}
