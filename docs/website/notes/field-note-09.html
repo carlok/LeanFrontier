@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 09: a deliberately ordinary submission exercised the freshly upgraded receiver from local report to trusted merge.">
+    <title>Field Note 09 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">29 August 2026 · Field Note 09</p>
+          <h1>The Test Was a Submission.</h1>
+          <p class="hero-copy">After the first automatic Mathlib upgrade, the useful test was not another inspection of the workflow. It was an ordinary theorem submission, made against the new base, asked to pass the same route as everyone else, and allowed to merge only if the receiver said yes twice.</p>
+        </header>
+
+        <section>
+          <h2>One small claim, no special lane</h2>
+          <p>The candidate adds a degree consequence to an existing polynomial result: over a characteristic-zero integral domain, a polynomial unchanged by translation through a nonzero element has natural degree zero. It changes one subject module and adds one immutable claim record. No workflow, policy, documentation, test, or generated-receiver file travelled with it.</p>
+          <p>That is intentionally ordinary. It is not offered as new mathematics or as a benchmark of theorem discovery. It is a real importable corollary, built in the public library shape, and the sort of compact extension a contributor could send.</p>
+        </section>
+
+        <section>
+          <h2>Two independent runs</h2>
+          <p>First the local receiver ran against <code>origin/main</code> after a full <code>lake build</code>. It accepted the candidate in 75 seconds. The report records the changed paths, the axiom closure, no exact Mathlib match, a downstream import pass, and a kernel replay pass.</p>
+          <p>Then the pull request ran the trusted GitHub receiver. Its workflow checked out the trusted base-side validator separately from the untrusted candidate, repeated cheap preflight, acquired the pinned dependency cache, and ran restricted formal validation. The Python suite and release-upgrade gate were green; the authoritative <code>validate</code> job was green too.</p>
+          <p>The claim and its <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/polynomial-period-degree-zero/2a51df4552d5e32022d389d736d1a6b441f415d8.json">receiver observation</a> are now durable corpus material. The generated <a href="../catalogue/">catalogue</a> gained the entry without an editorial rewrite.</p>
+        </section>
+
+        <section>
+          <h2>The merge is evidence too</h2>
+          <p>The author was on the repository's narrow auto-merge allowlist. Once the trusted receiver accepted the current pull-request base, the ordinary PR merged automatically. No person evaluated whether the theorem was important, elegant, or explainable. The allowlist was a permission to apply a machine verdict, not a second admission criterion.</p>
+          <p>This is the small distinction the public instructions now make explicit: an accepted report decides admission for everyone; automatic merge is only available to accounts the repository permits to use that mechanism. Other accepted work waits for a maintainer to apply the same result.</p>
+        </section>
+
+        <section>
+          <h2>What one green run does and does not say</h2>
+          <p>This is one post-upgrade end-to-end success, not a proof that the receiver has no defects. It does establish something narrower and valuable: the release policy, fresh dependency pair, local command, trusted candidate separation, restricted audit, observation generator, catalogue generator, and auto-merge route were all exercised together on an ordinary contribution.</p>
+          <p>That is the only kind of confidence this project is trying to accumulate: specific claims, attached to specific runs, with the next submission free to contradict them.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
