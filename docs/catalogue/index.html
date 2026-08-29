@@ -7,7 +7,7 @@
 question about the dependency graph rather than the theorem count. These are the
 numbers that answer it, regenerated with the catalogue.</p>
 <dl><dt>Modules</dt><dd>29</dd>
-<dt>Import edges</dt><dd>5 internal, 0.18 per accepted submission</dd>
+<dt>Import edges</dt><dd>5 internal, 0.17 per accepted submission</dd>
 <dt>Referenced</dt><dd>29 corpus constants appear in some statement</dd>
 <dt>Shared</dt><dd>5 of them appear in statements from more than one submission</dd></dl>
 <p>The last line is the one that resists gaming. An import costs a line and need
@@ -34,6 +34,17 @@ was written about it.</p>
   <dt>Fingerprint</dt><dd><code>4471db112a180535628781ebb0b5f4883b29fbaca8befa7ba4b3bcf16bdcd0d9</code></dd></dl>
   <p>A polynomial over a characteristic-zero integral domain with a nonzero additive period is constant.</p>
   <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Algebra/Polynomial/TranslationRigidity.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/polynomial-translation-rigidity-char-zero/c67573a56e6c4d3406c1fbbf2a95a1a95fe337b1.json">receiver report</a></p>
+</article>
+<article>
+  <h2><code>LeanFrontier.Polynomial.natDegree_eq_zero_of_comp_X_add_C_eq_self</code></h2>
+  <p class="statement">{p : R[X]} {a : R} (ha : a ≠ 0) (hperiod : p.comp (X + C a) = p) : p.natDegree = 0</p>
+  <dl><dt>Import</dt><dd><code>import LeanFrontier.Algebra.Polynomial.TranslationRigidity</code></dd>
+  <dt>Claim</dt><dd>polynomial-period-degree-zero · mathlib_extension · codex</dd>
+  <dt>Receiver</dt><dd>accepted at <code>2a51df4552d5e32022d389d736d1a6b441f415d8</code> · downstream import pass</dd>
+  <dt>Axioms</dt><dd><code>propext, Classical.choice, Quot.sound</code></dd>
+  <dt>Fingerprint</dt><dd><code>e837b697abf2a5e34742cdb8a2ab48e26c51161cb766e2a468488a2421ac4ec3</code></dd></dl>
+  <p>A polynomial with a nonzero additive period has degree zero.</p>
+  <p><a href="https://github.com/carlok/LeanFrontier/blob/main/LeanFrontier/Algebra/Polynomial/TranslationRigidity.lean">View source</a> · <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/polynomial-period-degree-zero/2a51df4552d5e32022d389d736d1a6b441f415d8.json">receiver report</a></p>
 </article>
 <article>
   <h2><code>LeanFrontier.Nat.three_pow_le_two_pow_mul_fib</code></h2>

@@ -1,0 +1,164 @@
+{
+  "accepted_revision": "2a51df4552d5e32022d389d736d1a6b441f415d8",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-29T16:34:46Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 69.151,
+    "observed": {
+      "added_lines": 60,
+      "audited_declarations": {
+        "LeanFrontier.Polynomial.eq_C_eval_zero_of_comp_X_add_C_eq_self": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Polynomial.eq_C_eval_zero_of_comp_X_add_C_eq_self",
+          "restatement": false,
+          "statement_sha256": "4471db112a180535628781ebb0b5f4883b29fbaca8befa7ba4b3bcf16bdcd0d9",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "CharZero",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "Eq",
+            "HAdd.hAdd",
+            "IsDomain",
+            "MulZeroClass.toZero",
+            "Ne",
+            "OfNat.ofNat",
+            "Polynomial",
+            "Polynomial.C",
+            "Polynomial.X",
+            "Polynomial.comp",
+            "Polynomial.eval",
+            "Polynomial.instAdd",
+            "Polynomial.semiring",
+            "Ring.toAddGroupWithOne",
+            "RingHom",
+            "RingHom.instFunLike",
+            "Semiring.toNonAssocSemiring",
+            "Zero.toOfNat0",
+            "instHAdd",
+            "instMulZeroClassOfSemiring"
+          ]
+        },
+        "LeanFrontier.Polynomial.natDegree_eq_zero_of_comp_X_add_C_eq_self": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Polynomial.natDegree_eq_zero_of_comp_X_add_C_eq_self",
+          "restatement": false,
+          "statement_sha256": "e837b697abf2a5e34742cdb8a2ab48e26c51161cb766e2a468488a2421ac4ec3",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "CharZero",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "Eq",
+            "HAdd.hAdd",
+            "IsDomain",
+            "MulZeroClass.toZero",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "Polynomial",
+            "Polynomial.C",
+            "Polynomial.X",
+            "Polynomial.comp",
+            "Polynomial.instAdd",
+            "Polynomial.natDegree",
+            "Polynomial.semiring",
+            "Ring.toAddGroupWithOne",
+            "RingHom",
+            "RingHom.instFunLike",
+            "Semiring.toNonAssocSemiring",
+            "Zero.toOfNat0",
+            "instHAdd",
+            "instMulZeroClassOfSemiring",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Polynomial.natDegree_eq_zero_of_comp_X_add_C_eq_self": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 3214,
+      "changed_files": [
+        "LeanFrontier/Algebra/Polynomial/TranslationRigidity.lean",
+        "Submissions/polynomial-period-degree-zero.json"
+      ],
+      "corpus_entrypoints_checked": 114,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Polynomial.natDegree_eq_zero_of_comp_X_add_C_eq_self": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Polynomial.natDegree_eq_zero_of_comp_X_add_C_eq_self",
+          "statement_sha256": "e837b697abf2a5e34742cdb8a2ab48e26c51161cb766e2a468488a2421ac4ec3",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "CharZero",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "Eq",
+            "HAdd.hAdd",
+            "IsDomain",
+            "MulZeroClass.toZero",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "Polynomial",
+            "Polynomial.C",
+            "Polynomial.X",
+            "Polynomial.comp",
+            "Polynomial.instAdd",
+            "Polynomial.natDegree",
+            "Polynomial.semiring",
+            "Ring.toAddGroupWithOne",
+            "RingHom",
+            "RingHom.instFunLike",
+            "Semiring.toNonAssocSemiring",
+            "Zero.toOfNat0",
+            "instHAdd",
+            "instMulZeroClassOfSemiring",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2088,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 2
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "polynomial-period-degree-zero",
+  "trusted_receiver_revision": "61c3f5683859be5bba3b8f193ca3b3b4d364d7c0",
+  "validated_candidate_revision": "edace7046b4f05464023f6353d64bcd17e590f4a",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/33263171721"
+}
