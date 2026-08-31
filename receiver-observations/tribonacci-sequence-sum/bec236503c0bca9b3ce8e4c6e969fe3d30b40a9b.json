@@ -1,0 +1,167 @@
+{
+  "accepted_revision": "bec236503c0bca9b3ce8e4c6e969fe3d30b40a9b",
+  "observation_version": "0.1",
+  "observed_at": "2026-08-31T13:53:06+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 136.051,
+    "observed": {
+      "added_lines": 82,
+      "audited_declarations": {
+        "LeanFrontier.Tribonacci.tribonacci": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Tribonacci.tribonacci",
+          "restatement": false,
+          "statement_sha256": "79181c7f4b758c1c40ed2cbb52b75a62fbd6c0a82e859369d7ff80d8805a34c4",
+          "type_dependencies": [
+            "Nat"
+          ]
+        },
+        "LeanFrontier.Tribonacci.tribonacci_add_three": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Tribonacci.tribonacci_add_three",
+          "restatement": false,
+          "statement_sha256": "d1ab908f637b5d042e69f5ed0f49883549ac5f04fdf3a3610b2b3be6659c258b",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Tribonacci.tribonacci",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Tribonacci.tribonacci_succ_pos": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Tribonacci.tribonacci_succ_pos",
+          "restatement": false,
+          "statement_sha256": "958af4578aa35eb9e57020ae66c58d03fb14b15d905d54dadf4392605a2ed085",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "LE.le",
+            "LeanFrontier.Tribonacci.tribonacci",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instLENat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Tribonacci.tribonacci_two_mul_sum_add_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Tribonacci.tribonacci_two_mul_sum_add_one",
+          "restatement": false,
+          "statement_sha256": "e3ad41e30f6df12a21d6280ab37f7a8502b77d9b9dd6ddd5c2ecfc7be41225bd",
+          "type_dependencies": [
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "LeanFrontier.Tribonacci.tribonacci",
+            "Nat",
+            "Nat.instAddCommMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Tribonacci.tribonacci_succ_pos": "inconclusive",
+        "LeanFrontier.Tribonacci.tribonacci_two_mul_sum_add_one": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 6811,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/Tribonacci.lean",
+        "Submissions/tribonacci-sequence-sum.json"
+      ],
+      "corpus_entrypoints_checked": 115,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Tribonacci.tribonacci_succ_pos": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Tribonacci.tribonacci_succ_pos",
+          "statement_sha256": "958af4578aa35eb9e57020ae66c58d03fb14b15d905d54dadf4392605a2ed085",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "LE.le",
+            "LeanFrontier.Tribonacci.tribonacci",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instLENat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Tribonacci.tribonacci_two_mul_sum_add_one": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Tribonacci.tribonacci_two_mul_sum_add_one",
+          "statement_sha256": "e3ad41e30f6df12a21d6280ab37f7a8502b77d9b9dd6ddd5c2ecfc7be41225bd",
+          "type_dependencies": [
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "LeanFrontier.Tribonacci.tribonacci",
+            "Nat",
+            "Nat.instAddCommMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3187,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 4
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "tribonacci-sequence-sum",
+  "trusted_receiver_revision": "5268fb2774a57ae1fd7e8e9cdb7d73b4803311e3",
+  "validated_candidate_revision": "5f39dd3a37e994de10f16d2ad2c1acd3644016b2",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/33388588418"
+}
