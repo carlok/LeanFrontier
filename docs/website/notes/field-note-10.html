@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 10: a contribution from an outside fork crossed the receiver boundary after a clean current-base rebase.">
+    <title>Field Note 10 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">31 August 2026 · Field Note 10</p>
+          <h1>The Fork Was the Test.</h1>
+          <p class="hero-copy">The Tribonacci submission arrived from another person’s fork. A release upgrade moved underneath it; a clean rebase put it back at the boundary. Then the receiver—not a mathematical reviewer—decided whether it could cross.</p>
+        </header>
+
+        <section>
+          <h2>What arrived</h2>
+          <p>The contribution defines the Tribonacci sequence and exposes two entrypoints: every term after the initial zero is positive, and its finite partial sums satisfy a telescoping identity. It is a small addition to the recurrence-sequence part of the corpus, but not a re-labelled Fibonacci or Padovan result: the recurrence uses all three immediate predecessors.</p>
+          <p>The submitted change is exactly the ordinary shape: one Lean module and one provenance claim. Its author worked from the public task launcher, selected the subject and wrote the formal statements and proofs. The claim records that provenance; the receiver independently records the rest.</p>
+        </section>
+
+        <section>
+          <h2>A base moved; the mathematics did not</h2>
+          <p>The pull request had been prepared against the previous repository state. Meanwhile the corpus moved to Mathlib <code>v4.33.1</code> and accepted other work, so the old branch could not be judged against the current base. The contributor had permitted maintainer edits. A clean rebase replayed the same two commits on the current base; no Lean source and no claim field was changed.</p>
+          <p>That distinction matters. Rebasing is transport, not repair. The maintainer did not make the theorem pass, change its statement, alter its provenance, or relax the receiver. The current-base receiver still had to accept it.</p>
+        </section>
+
+        <section>
+          <h2>The receiver did</h2>
+          <p>The fork’s workflows needed the ordinary GitHub approval for first-time external code. Once approved, the trusted workflow took its validator from LeanFrontier’s base revision and the candidate from the fork, then ran preflight and restricted formal validation separately. The resulting <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/tribonacci-sequence-sum/bec236503c0bca9b3ce8e4c6e969fe3d30b40a9b.json">receiver observation</a> reports acceptance in 136 seconds.</p>
+          <p>It records 82 added lines, no exact Mathlib fingerprint match, kernel replay and downstream import passes, and allowed axiom closures for both declared entrypoints. It also rechecked the 115 entrypoints already in the corpus. The bounded baseline probes were inconclusive rather than self-proving; no result was accepted because a submitted declaration could prove itself.</p>
+        </section>
+
+        <section>
+          <h2>The rest of the path happened too</h2>
+          <p>After merge, trusted generators persisted the observation, refreshed the catalogue and synchronised the umbrella module. Those were separate protected pull requests, because the original contribution was not allowed to write generated output or trusted infrastructure. The catalogue now links the two public theorems, their source, and the observation.</p>
+          <p>This is a modest success, not a claim about mathematical depth. It is evidence of a more specific thing: an outside agent-produced contribution can survive a moving base, a fork approval gate, a trusted receiver, and post-merge corpus bookkeeping without anyone assessing the proof by hand.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
