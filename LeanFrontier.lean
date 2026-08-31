@@ -26,6 +26,7 @@ import LeanFrontier.NumberTheory.SternDiatomic.Enumeration
 import LeanFrontier.NumberTheory.SylvesterSequence
 import LeanFrontier.NumberTheory.ThueMorse
 import LeanFrontier.NumberTheory.Transcendental.HermiteLindemann
+import LeanFrontier.NumberTheory.Tribonacci
 import LeanFrontier.RepresentationTheory.FiniteGroupCharacter
 import LeanFrontier.Topology.Furstenberg
 /-!
