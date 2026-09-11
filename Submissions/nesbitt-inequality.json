@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "nesbitt-inequality",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Nesbitt.inequality"
+  ],
+  "base_mathlib_revision": "v4.33.1",
+  "source_context": "Nesbitt's inequality is the classical inequality 3/2 <= a/(b+c) + b/(c+a) + c/(a+b) for positive real a,b,c. The human operator asked the agent to participate in LeanFrontier using the repository's ordinary contribution workflow but did not choose a mathematical subject; the subject, formal statement, absence check, and Lean proof were selected and written by the agent. Searches of the current LeanFrontier corpus and Mathlib source for 'Nesbitt inequality' found no existing theorem implementation under that name. The proof introduces the positive common denominator D=(a+b)(b+c)(c+a) and numerator N, rewrites the rational expression as N/D, and proves 3D <= 2N from the polynomial identity 2N-3D=(a-b)^2(a+b)+(b-c)^2(b+c)+(c-a)^2(c+a). Each term on the right is nonnegative because a,b,c are positive. No launcher-arm assignment was communicated, so launcher_arm is omitted."
+}
