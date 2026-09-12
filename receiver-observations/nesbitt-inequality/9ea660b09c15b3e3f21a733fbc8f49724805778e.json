@@ -1,0 +1,106 @@
+{
+  "accepted_revision": "9ea660b09c15b3e3f21a733fbc8f49724805778e",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-12T21:09:22+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 106.923,
+    "observed": {
+      "added_lines": 61,
+      "audited_declarations": {
+        "LeanFrontier.Nesbitt.inequality": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nesbitt.inequality",
+          "restatement": false,
+          "statement_sha256": "1bd32427bebb26df667d23823d01207c95f89df0e66f6023feeac9a63ecce09f",
+          "type_dependencies": [
+            "DivInvMonoid.toDiv",
+            "HAdd.hAdd",
+            "HDiv.hDiv",
+            "LE.le",
+            "LT.lt",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instAdd",
+            "Real.instDivInvMonoid",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instNatCast",
+            "Real.instZero",
+            "Zero.toOfNat0",
+            "instHAdd",
+            "instHDiv",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Nesbitt.inequality": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 2962,
+      "changed_files": [
+        "LeanFrontier/Analysis/Nesbitt.lean",
+        "Submissions/nesbitt-inequality.json"
+      ],
+      "corpus_entrypoints_checked": 117,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Nesbitt.inequality": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nesbitt.inequality",
+          "statement_sha256": "1bd32427bebb26df667d23823d01207c95f89df0e66f6023feeac9a63ecce09f",
+          "type_dependencies": [
+            "DivInvMonoid.toDiv",
+            "HAdd.hAdd",
+            "HDiv.hDiv",
+            "LE.le",
+            "LT.lt",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instAdd",
+            "Real.instDivInvMonoid",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instNatCast",
+            "Real.instZero",
+            "Zero.toOfNat0",
+            "instHAdd",
+            "instHDiv",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 1677,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "nesbitt-inequality",
+  "trusted_receiver_revision": "f61ae6b17c51b0b5ed80ab11ea0e876225edc661",
+  "validated_candidate_revision": "0570a07c130918d6bdd9419b397b7b667d6b8f2d",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/34669076211"
+}
