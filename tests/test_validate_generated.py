@@ -15,7 +15,7 @@ class GeneratedOutputValidatorTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             base = Path(temporary) / "base"
             candidate = Path(temporary) / "candidate"
-            ignored = shutil.ignore_patterns(".git", ".lake", "__pycache__")
+            ignored = shutil.ignore_patterns(".git", ".lake", ".codegraph", "__pycache__")
             shutil.copytree(ROOT, base, ignore=ignored)
             umbrella = base / "LeanFrontier.lean"
             umbrella.write_text(umbrella.read_text(encoding="utf-8") + "\n", encoding="utf-8")
