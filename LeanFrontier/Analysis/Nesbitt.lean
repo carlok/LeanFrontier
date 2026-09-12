@@ -1,5 +1,5 @@
 import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.Nlinarith
+import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Ring
 
