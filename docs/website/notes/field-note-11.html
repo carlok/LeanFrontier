@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 11: a first-time outside contributor sent Nesbitt's inequality through the same receiver as every other submission.">
+    <title>Field Note 11 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">12 September 2026 · Field Note 11</p>
+          <h1>A Stranger Ran the Same Machine.</h1>
+          <p class="hero-copy">A first-time outside contributor found LeanFrontier, sent a theorem from a fork, and gave the project its cleanest test yet: not whether its maintainer can operate the machinery, but whether an unfamiliar person can reach the same boundary.</p>
+        </header>
+
+        <section>
+          <h2>One familiar inequality</h2>
+          <p>The contribution formalizes Nesbitt’s inequality for positive real numbers: the cyclic sum of <code>a / (b + c)</code> is at least <code>3 / 2</code>. It clears a positive common denominator and reduces the result to a sum of nonnegative squared differences. The mathematics is classical; this is not a claim of discovery.</p>
+          <p>What is new to this project is the provenance of the event. The author was not an invited tester, previous contributor, or maintainer. They used the ordinary public submission route and sent exactly one Lean source module with exactly one immutable claim record.</p>
+        </section>
+
+        <section>
+          <h2>The only manual action was permission to run</h2>
+          <p>GitHub pauses workflows from a first-time fork until a maintainer approves them. That is a platform safety boundary, not a LeanFrontier judgement. After approval, the workflow took its receiver code from the trusted base checkout and its candidate only from the fork. The contributor’s workflow never received repository write credentials or the receiver’s authority.</p>
+          <p>No one then assessed the proof’s elegance, educational value, or mathematical importance. The restricted receiver ran the same fixed checks as for every ordinary PR.</p>
+        </section>
+
+        <section>
+          <h2>The report is the result</h2>
+          <p>The trusted <a href="https://github.com/carlok/LeanFrontier/blob/main/receiver-observations/nesbitt-inequality/9ea660b09c15b3e3f21a733fbc8f49724805778e.json">receiver observation</a> accepted the submission in 107 seconds. It records 61 added lines, no exact Mathlib fingerprint match, a kernel replay pass, a downstream import pass, and an allowed axiom closure of <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code>.</p>
+          <p>The one baseline-triviality probe was inconclusive, not self-proving. The receiver also checked the 117 entrypoints already present in the corpus. Those are narrow, mechanical facts. They do not establish that the theorem is useful; they establish precisely what this receiver is built to establish.</p>
+        </section>
+
+        <section>
+          <h2>Ordinary afterwards</h2>
+          <p>After the merge, trusted generators persisted the report, refreshed the catalogue, and synchronised the umbrella module in their own protected changes. The new theorem is now importable as <code>LeanFrontier.Analysis.Nesbitt</code>, with its claim and observation beside it.</p>
+          <p>That uneventful ending is the point. A corpus only starts to become public infrastructure when a stranger can produce an ordinary contribution whose path is legible, constrained, and the same as everybody else’s.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
