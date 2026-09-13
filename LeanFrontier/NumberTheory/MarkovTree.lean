@@ -1,5 +1,4 @@
 import LeanFrontier.NumberTheory.MarkovEquation
-import Mathlib.Tactic.Omega
 
 /-!
 # Descent for ordered positive Markov triples
@@ -33,23 +32,34 @@ private theorem root_of_middle_eq_largest
       exact mul_nonneg (sub_nonneg.mpr hxy) (by linarith)
     nlinarith
 
-  have hx1 : 1 ≤ x := by omega
-  have hy_sq_pos : 0 < y ^ 2 := by positivity
+  have hx1 : 1 ≤ x := by
+    have h1 : 0 + 1 ≤ x := Int.add_one_le_iff.mpr hx
+    simpa using h1
 
   have hx_lt_two : x < 2 := by
     by_contra hx_not
-    have hx2 : 2 ≤ x := by omega
+    have hx2 : 2 ≤ x := le_of_not_gt hx_not
     nlinarith
 
-  have hx_eq : x = 1 := by omega
+  have hx_le_one : x ≤ 1 := by
+    have hlt : x < 1 + 1 := by simpa using hx_lt_two
+    exact Int.lt_add_one_iff.mp hlt
+
+  have hx_eq : x = 1 := le_antisymm hx_le_one hx1
   subst x
+
+  have hy1 : 1 ≤ y := by
+    have h1 : 0 + 1 ≤ y := Int.add_one_le_iff.mpr hy
+    simpa using h1
 
   have hy_le : y ≤ 1 := by
     by_contra hy_not
-    have hy2 : 2 ≤ y := by omega
+    have hy_gt_one : 1 < y := lt_of_not_ge hy_not
+    have hy2' : 1 + 1 ≤ y := Int.add_one_le_iff.mpr hy_gt_one
+    have hy2 : 2 ≤ y := by simpa using hy2'
     nlinarith
 
-  have hy_eq : y = 1 := by omega
+  have hy_eq : y = 1 := le_antisymm hy_le hy1
   subst y
 
   exact ⟨rfl, rfl, rfl⟩
@@ -86,7 +96,11 @@ theorem jump_descends_ordered_positive
       exact mul_nonneg (sub_nonneg.mpr hxy) (by linarith)
     nlinarith
 
-  have hx_minus_one : 0 ≤ x - 1 := by omega
+  have hx1 : 1 ≤ x := by
+    have h1 : 0 + 1 ≤ x := Int.add_one_le_iff.mpr hx
+    simpa using h1
+
+  have hx_minus_one : 0 ≤ x - 1 := sub_nonneg.mpr hx1
   have htail : 0 ≤ (x - 1) * y ^ 2 :=
     mul_nonneg hx_minus_one (sq_nonneg y)
 
