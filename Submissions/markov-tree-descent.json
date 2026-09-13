@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-tree-descent",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "target_driven",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.jump_descends_ordered_positive"
+  ],
+  "base_mathlib_revision": "v4.33.1",
+  "source_context": "Extension of the accepted Markov-equation Vieta-jumping submission. The human operator chose the Markov-tree direction from a shortlist proposed by the agent; the formal theorem statement and Lean proof were authored by the agent. The accepted MarkovEquation module deliberately leaves the tree's descent ordering for separate work. This submission proves the local descent step for a positive ordered Markov triple x <= y <= z away from the root (1,1,1): the existing Vieta jump in the largest coordinate stays positive, is at most the middle coordinate, and therefore strictly decreases the largest coordinate. The proof imports and depends on the accepted MarkovEquation API, in particular jump_pos and mul_jump_eq, rather than restating the Vieta involution. No claim of new mathematics is made; this is a formalization of the classical Markov-tree descent mechanism."
+}
