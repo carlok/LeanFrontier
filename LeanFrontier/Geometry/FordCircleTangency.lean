@@ -22,10 +22,10 @@ tangency by centre distance and nonnegative radii.
 namespace LeanFrontier.FordCircle
 
 /-- The Euclidean centre of the Ford circle of `p / q`, represented in the complex plane. -/
-def euclideanCenter (p q : ℝ) : ℂ := ⟨p / q, radius q⟩
+noncomputable def euclideanCenter (p q : ℝ) : ℂ := ⟨p / q, radius q⟩
 
 /-- The Ford circle of `p / q` as a Mathlib Euclidean sphere in the complex plane. -/
-def euclideanSphere (p q : ℝ) : EuclideanGeometry.Sphere ℂ where
+noncomputable def euclideanSphere (p q : ℝ) : EuclideanGeometry.Sphere ℂ where
   center := euclideanCenter p q
   radius := radius q
 
@@ -35,6 +35,7 @@ theorem dist_euclideanCenter_sq (p q r s : ℝ) :
     dist (euclideanCenter p q) (euclideanCenter r s) ^ 2 = centerDistSq p q r s := by
   rw [Complex.dist_eq, Complex.sq_norm]
   simp [euclideanCenter, centerDistSq, Complex.normSq_apply]
+  ring
 
 private theorem radius_nonneg (q : ℝ) : 0 ≤ radius q := by
   unfold radius
