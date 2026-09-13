@@ -1,7 +1,7 @@
 import LeanFrontier.NumberTheory.FordCircle
 import Mathlib.Analysis.Complex.Basic
 import Mathlib.Geometry.Euclidean.Sphere.Tangent
-import Mathlib.Tactic.Nlinarith
+import Mathlib.Tactic.Linarith
 
 /-!
 # Ford circles as Euclidean spheres
