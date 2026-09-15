@@ -29,7 +29,9 @@ arbitrary initial states through the whole recurrence. For the fundamental seque
 and `companionMatrix_pow_succ` identifies it with `A^(n+1)`.
 
 The companion matrix has determinant `Q`, trace `P`, and the same characteristic polynomial
-as the corresponding order-two scalar recurrence.
+as the corresponding order-two scalar recurrence. Positive powers have trace
+`U (n+2) - Q * U n` and determinant `Q^(n+1)`, which also gives their characteristic
+polynomial explicitly.
 -/
 
 namespace LeanFrontier.Horadam
@@ -127,9 +129,25 @@ theorem det_companionMatrix_pow (P Q : R) (n : ℕ) :
   rw [companionMatrix, Matrix.trace_fin_two_of]
   simp
 
+/-- The trace of a positive companion-matrix power is the diagonal combination of the
+fundamental Horadam sequence appearing in the explicit power formula. -/
+theorem trace_companionMatrix_pow_succ_fundamental (P Q : R) (n : ℕ) :
+    (companionMatrix P Q ^ (n + 1)).trace
+      = W P Q 0 1 (n + 2) - Q * W P Q 0 1 n := by
+  rw [companionMatrix_pow_succ, companionPowerFormula, Matrix.trace_fin_two_of]
+  ring
+
 /-- The companion matrix and the scalar recurrence have the same characteristic polynomial. -/
 theorem charpoly_companionMatrix [Nontrivial R] (P Q : R) :
     (companionMatrix P Q).charpoly = (recurrence P Q).charPoly := by
   rw [Matrix.charpoly_fin_two, trace_companionMatrix, det_companionMatrix, recurrence_charPoly]
+
+/-- The characteristic polynomial of a positive companion-matrix power is determined by the
+fundamental Horadam trace formula and determinant `Q^(n+1)`. -/
+theorem charpoly_companionMatrix_pow_succ_fundamental [Nontrivial R] (P Q : R) (n : ℕ) :
+    (companionMatrix P Q ^ (n + 1)).charpoly =
+      X ^ 2 - C (W P Q 0 1 (n + 2) - Q * W P Q 0 1 n) * X + C (Q ^ (n + 1)) := by
+  rw [Matrix.charpoly_fin_two, trace_companionMatrix_pow_succ_fundamental,
+      det_companionMatrix_pow]
 
 end LeanFrontier.Horadam
