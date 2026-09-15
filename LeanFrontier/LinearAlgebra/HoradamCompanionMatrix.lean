@@ -57,6 +57,7 @@ theorem recurrence_charPoly (P Q : R) :
     (recurrence P Q).charPoly = X ^ 2 - C P * X + C Q := by
   rw [recurrence, LinearRecurrence.charPoly]
   simp [Finset.sum_fin_eq_sum_range, Finset.sum_range_succ', ← Polynomial.smul_X_eq_monomial]
+  rw [Polynomial.smul_eq_C_mul, Polynomial.smul_eq_C_mul]
   ring
 
 /-- The companion matrix of `x² - P x + Q`. -/
@@ -65,13 +66,13 @@ def companionMatrix (P Q : R) : Matrix (Fin 2) (Fin 2) R :=
 
 /-- One multiplication by the companion matrix advances a recurrence state by one step. -/
 theorem companionMatrix_mulVec (P Q x y : R) :
-    companionMatrix P Q *ᵥ ![x, y] = ![P * x - Q * y, x] := by
+    (companionMatrix P Q) *ᵥ ![x, y] = ![P * x - Q * y, x] := by
   ext i
   fin_cases i <;> simp [companionMatrix, Matrix.mulVec] <;> ring
 
 /-- The companion matrix advances the Horadam state vector by one recurrence step. -/
 theorem companionMatrix_mulVec_W_state (P Q a b : R) (n : ℕ) :
-    companionMatrix P Q *ᵥ ![W P Q a b (n + 1), W P Q a b n]
+    (companionMatrix P Q) *ᵥ ![W P Q a b (n + 1), W P Q a b n]
       = ![W P Q a b (n + 2), W P Q a b (n + 1)] := by
   rw [companionMatrix_mulVec, W_add_two]
 
@@ -79,7 +80,7 @@ theorem companionMatrix_mulVec_W_state (P Q a b : R) (n : ℕ) :
 `n`th Horadam state `![W (n+1), W n]`. This is the state-space realization of the recurrence
 for arbitrary initial conditions. -/
 theorem companionMatrix_pow_mulVec_initial (P Q a b : R) (n : ℕ) :
-    companionMatrix P Q ^ n *ᵥ ![b, a]
+    (companionMatrix P Q ^ n) *ᵥ ![b, a]
       = ![W P Q a b (n + 1), W P Q a b n] := by
   induction n with
   | zero => simp [W]
