@@ -108,7 +108,7 @@ theorem companionMatrix_pow_succ (P Q : R) (n : ℕ) :
   | succ n ih =>
     rw [pow_succ, ih, companionPowerFormula, companionMatrix, Matrix.mul_fin_two]
     ext i j
-    fin_cases i <;> fin_cases j <;> simp [W_add_two] <;> ring
+    fin_cases i <;> fin_cases j <;> simp [companionPowerFormula, W_add_two] <;> ring
 
 /-- The determinant of the Horadam companion matrix is `Q`. -/
 @[simp] theorem det_companionMatrix (P Q : R) :
