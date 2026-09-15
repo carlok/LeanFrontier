@@ -143,7 +143,7 @@ theorem charpoly_companionMatrix [Nontrivial R] (P Q : R) :
 
 /-- The polynomial determined by the fundamental-sequence trace and determinant of the
 `(n+1)`st companion-matrix power. -/
-def companionPowerCharPoly (P Q : R) (n : ℕ) : Polynomial R :=
+noncomputable def companionPowerCharPoly (P Q : R) (n : ℕ) : Polynomial R :=
   X ^ 2 - C (W P Q 0 1 (n + 2) - Q * W P Q 0 1 n) * X + C (Q ^ (n + 1))
 
 /-- The characteristic polynomial of a positive companion-matrix power is the polynomial
