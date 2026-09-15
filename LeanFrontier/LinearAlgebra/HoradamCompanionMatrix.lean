@@ -22,12 +22,14 @@ to Mathlib's `LinearRecurrence` abstraction and to the explicit companion matrix
 
 The companion matrix advances the state vector `![W (n + 1), W n]`; its powers advance
 arbitrary initial states through the whole recurrence. For the fundamental sequence
-`U n = W P Q 0 1 n`, its powers are explicitly
+`U n = W P Q 0 1 n`, `companionPowerFormula P Q n` is the explicit matrix
 
-`A^(n+1) = !![U (n+2), -Q * U (n+1); U (n+1), -Q * U n]`.
+`!![U (n+2), -Q * U (n+1); U (n+1), -Q * U n]`,
 
-Its determinant is `Q`, its trace is `P`, and its characteristic polynomial agrees with the
-characteristic polynomial of the corresponding order-two linear recurrence.
+and `companionMatrix_pow_succ` identifies it with `A^(n+1)`.
+
+The companion matrix has determinant `Q`, trace `P`, and the same characteristic polynomial
+as the corresponding order-two scalar recurrence.
 -/
 
 namespace LeanFrontier.Horadam
@@ -87,23 +89,24 @@ theorem companionMatrix_pow_mulVec_initial (P Q a b : R) (n : ℕ) :
   | succ n ih =>
     rw [pow_succ', ← Matrix.mulVec_mulVec, ih, companionMatrix_mulVec, W_add_two]
 
-/-- Explicit powers of the Horadam companion matrix in terms of the fundamental sequence
-`U n = W P Q 0 1 n`:
-`A^(n+1) = !![U (n+2), -Q U (n+1); U (n+1), -Q U n]`. -/
+/-- The explicit matrix built from the fundamental Horadam sequence `U n = W P Q 0 1 n`
+that represents the `(n+1)`st power of the companion matrix. Naming the matrix keeps the
+associated theorem's public type small while preserving the full formula as ordinary API. -/
+def companionPowerFormula (P Q : R) (n : ℕ) : Matrix (Fin 2) (Fin 2) R :=
+  !![W P Q 0 1 (n + 2), -Q * W P Q 0 1 (n + 1);
+     W P Q 0 1 (n + 1), -Q * W P Q 0 1 n]
+
+/-- Explicit powers of the Horadam companion matrix in terms of the fundamental sequence:
+`A^(n+1) = companionPowerFormula P Q n`. -/
 theorem companionMatrix_pow_succ (P Q : R) (n : ℕ) :
-    companionMatrix P Q ^ (n + 1) =
-      !![W P Q 0 1 (n + 2), -Q * W P Q 0 1 (n + 1);
-         W P Q 0 1 (n + 1), -Q * W P Q 0 1 n] := by
+    companionMatrix P Q ^ (n + 1) = companionPowerFormula P Q n := by
   induction n with
   | zero =>
-    rw [pow_one, companionMatrix]
+    rw [pow_one, companionMatrix, companionPowerFormula]
     ext i j
     fin_cases i <;> fin_cases j <;> simp [W]
   | succ n ih =>
-    show companionMatrix P Q ^ (n + 2) =
-      !![W P Q 0 1 (n + 3), -Q * W P Q 0 1 (n + 2);
-         W P Q 0 1 (n + 2), -Q * W P Q 0 1 (n + 1)]
-    rw [pow_succ, ih, companionMatrix, Matrix.mul_fin_two]
+    rw [pow_succ, ih, companionPowerFormula, companionMatrix, Matrix.mul_fin_two]
     ext i j
     fin_cases i <;> fin_cases j <;> simp [W_add_two] <;> ring
 
