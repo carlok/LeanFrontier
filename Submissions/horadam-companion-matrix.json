@@ -10,16 +10,15 @@
   "statement_origin": "machine",
   "proof_origin": "machine",
   "entrypoints": [
-    "LeanFrontier.Horadam.recurrence",
     "LeanFrontier.Horadam.W_isSolution_recurrence",
     "LeanFrontier.Horadam.recurrence_charPoly",
-    "LeanFrontier.Horadam.companionMatrix",
-    "LeanFrontier.Horadam.companionMatrix_mulVec",
     "LeanFrontier.Horadam.companionMatrix_mulVec_W_state",
+    "LeanFrontier.Horadam.companionMatrix_pow_mulVec_initial",
     "LeanFrontier.Horadam.det_companionMatrix",
+    "LeanFrontier.Horadam.det_companionMatrix_pow",
     "LeanFrontier.Horadam.trace_companionMatrix",
     "LeanFrontier.Horadam.charpoly_companionMatrix"
   ],
   "base_mathlib_revision": "v4.33.1",
-  "source_context": "Large-scale extension of the accepted LeanFrontier Horadam, Fibonacci-matrix, and Lucas developments. The producing agent surveyed the current corpus and contribution-direction dossier and recommended a general Horadam companion-matrix theory as the best substantial project to develop while earlier upstream PRs wait. The human operator selected that recommendation and asked the agent to begin; the human did not author or materially edit the formal Lean statements or proofs. This submission connects LeanFrontier.Horadam.W to Mathlib's general LinearRecurrence abstraction and to the explicit 2x2 companion matrix [[P,-Q],[1,0]]. The initial public surface defines the associated recurrence and companion matrix, proves that every Horadam sequence is a solution of the Mathlib recurrence, proves one-step state-vector evolution, and identifies determinant, trace, and the common characteristic polynomial X^2 - P X + Q. The intended completed submission will build on this foundation with matrix-power/state-vector theorems and restrained Fibonacci/Lucas specializations, keeping proof-only scaffolding private. No claim of new mathematics is made; this is a formalization and integration of classical second-order recurrence theory."
+  "source_context": "Large-scale extension of the accepted LeanFrontier Horadam, Fibonacci-matrix, and Lucas developments. The producing agent surveyed the current corpus and contribution-direction dossier and recommended a general Horadam companion-matrix theory as the best substantial project to develop while earlier upstream PRs wait. The human operator selected that recommendation and asked the agent to begin; the human did not author or materially edit the formal Lean statements or proofs. This submission connects LeanFrontier.Horadam.W to Mathlib's general LinearRecurrence abstraction and to the explicit 2x2 companion matrix [[P,-Q],[1,0]]. The public theorem surface proves that every Horadam sequence is a solution of the Mathlib recurrence, identifies the recurrence characteristic polynomial, proves one-step and arbitrary-power state-vector evolution, and identifies determinant, trace, determinant powers, and the common characteristic polynomial X^2 - P X + Q. The supporting recurrence and companion-matrix definitions are ordinary public mathematical API but are not claim entrypoints. The intended completed submission will build on this foundation with an explicit fundamental-sequence matrix-power formula and restrained Fibonacci/Lucas specializations, keeping proof-only scaffolding private. No claim of new mathematics is made; this is a formalization and integration of classical second-order recurrence theory."
 }
