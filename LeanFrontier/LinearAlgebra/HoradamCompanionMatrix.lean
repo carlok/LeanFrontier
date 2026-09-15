@@ -92,8 +92,7 @@ theorem companionMatrix_pow_mulVec_initial (P Q a b : R) (n : ℕ) :
     rw [pow_succ', ← Matrix.mulVec_mulVec, ih, companionMatrix_mulVec, W_add_two]
 
 /-- The explicit matrix built from the fundamental Horadam sequence `U n = W P Q 0 1 n`
-that represents the `(n+1)`st power of the companion matrix. Naming the matrix keeps the
-associated theorem's public type small while preserving the full formula as ordinary API. -/
+that represents the `(n+1)`st power of the companion matrix. -/
 def companionPowerFormula (P Q : R) (n : ℕ) : Matrix (Fin 2) (Fin 2) R :=
   !![W P Q 0 1 (n + 2), -Q * W P Q 0 1 (n + 1);
      W P Q 0 1 (n + 1), -Q * W P Q 0 1 n]
@@ -142,12 +141,16 @@ theorem charpoly_companionMatrix [Nontrivial R] (P Q : R) :
     (companionMatrix P Q).charpoly = (recurrence P Q).charPoly := by
   rw [Matrix.charpoly_fin_two, trace_companionMatrix, det_companionMatrix, recurrence_charPoly]
 
-/-- The characteristic polynomial of a positive companion-matrix power is determined by the
-fundamental Horadam trace formula and determinant `Q^(n+1)`. -/
+/-- The polynomial determined by the fundamental-sequence trace and determinant of the
+`(n+1)`st companion-matrix power. -/
+def companionPowerCharPoly (P Q : R) (n : ℕ) : Polynomial R :=
+  X ^ 2 - C (W P Q 0 1 (n + 2) - Q * W P Q 0 1 n) * X + C (Q ^ (n + 1))
+
+/-- The characteristic polynomial of a positive companion-matrix power is the polynomial
+specified by its fundamental Horadam trace and determinant. -/
 theorem charpoly_companionMatrix_pow_succ_fundamental [Nontrivial R] (P Q : R) (n : ℕ) :
-    (companionMatrix P Q ^ (n + 1)).charpoly =
-      X ^ 2 - C (W P Q 0 1 (n + 2) - Q * W P Q 0 1 n) * X + C (Q ^ (n + 1)) := by
+    (companionMatrix P Q ^ (n + 1)).charpoly = companionPowerCharPoly P Q n := by
   rw [Matrix.charpoly_fin_two, trace_companionMatrix_pow_succ_fundamental,
-      det_companionMatrix_pow]
+      det_companionMatrix_pow, companionPowerCharPoly]
 
 end LeanFrontier.Horadam
