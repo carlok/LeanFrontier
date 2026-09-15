@@ -21,9 +21,13 @@ to Mathlib's `LinearRecurrence` abstraction and to the explicit companion matrix
 `!![P, -Q; 1, 0]`.
 
 The companion matrix advances the state vector `![W (n + 1), W n]`; its powers advance
-arbitrary initial states through the whole recurrence. Its determinant is `Q`, its trace is `P`,
-and its characteristic polynomial agrees with the characteristic polynomial of the corresponding
-order-two linear recurrence.
+arbitrary initial states through the whole recurrence. For the fundamental sequence
+`U n = W P Q 0 1 n`, its powers are explicitly
+
+`A^(n+1) = !![U (n+2), -Q * U (n+1); U (n+1), -Q * U n]`.
+
+Its determinant is `Q`, its trace is `P`, and its characteristic polynomial agrees with the
+characteristic polynomial of the corresponding order-two linear recurrence.
 -/
 
 namespace LeanFrontier.Horadam
@@ -81,6 +85,26 @@ theorem companionMatrix_pow_mulVec_initial (P Q a b : R) (n : ℕ) :
   | zero => simp [W]
   | succ n ih =>
     rw [pow_succ', ← Matrix.mulVec_mulVec, ih, companionMatrix_mulVec, W_add_two]
+
+/-- Explicit powers of the Horadam companion matrix in terms of the fundamental sequence
+`U n = W P Q 0 1 n`:
+`A^(n+1) = !![U (n+2), -Q U (n+1); U (n+1), -Q U n]`. -/
+theorem companionMatrix_pow_succ (P Q : R) (n : ℕ) :
+    companionMatrix P Q ^ (n + 1) =
+      !![W P Q 0 1 (n + 2), -Q * W P Q 0 1 (n + 1);
+         W P Q 0 1 (n + 1), -Q * W P Q 0 1 n] := by
+  induction n with
+  | zero =>
+    rw [pow_one, companionMatrix]
+    ext i j
+    fin_cases i <;> fin_cases j <;> simp [W]
+  | succ n ih =>
+    show companionMatrix P Q ^ (n + 2) =
+      !![W P Q 0 1 (n + 3), -Q * W P Q 0 1 (n + 2);
+         W P Q 0 1 (n + 2), -Q * W P Q 0 1 (n + 1)]
+    rw [pow_succ, ih, companionMatrix, Matrix.mul_fin_two]
+    ext i j
+    fin_cases i <;> fin_cases j <;> simp [W_add_two] <;> ring
 
 /-- The determinant of the Horadam companion matrix is `Q`. -/
 @[simp] theorem det_companionMatrix (P Q : R) :
