@@ -20,9 +20,10 @@ to Mathlib's `LinearRecurrence` abstraction and to the explicit companion matrix
 
 `!![P, -Q; 1, 0]`.
 
-The companion matrix advances the state vector `![W (n + 1), W n]`; its determinant is `Q`,
-its trace is `P`, and its characteristic polynomial agrees with the characteristic polynomial
-of the corresponding order-two linear recurrence.
+The companion matrix advances the state vector `![W (n + 1), W n]`; its powers advance
+arbitrary initial states through the whole recurrence. Its determinant is `Q`, its trace is `P`,
+and its characteristic polynomial agrees with the characteristic polynomial of the corresponding
+order-two linear recurrence.
 -/
 
 namespace LeanFrontier.Horadam
@@ -70,11 +71,27 @@ theorem companionMatrix_mulVec_W_state (P Q a b : R) (n : ℕ) :
       = ![W P Q a b (n + 2), W P Q a b (n + 1)] := by
   rw [companionMatrix_mulVec, W_add_two]
 
+/-- The `n`th power of the companion matrix sends the initial state `![b, a]` to the
+`n`th Horadam state `![W (n+1), W n]`. This is the state-space realization of the recurrence
+for arbitrary initial conditions. -/
+theorem companionMatrix_pow_mulVec_initial (P Q a b : R) (n : ℕ) :
+    companionMatrix P Q ^ n *ᵥ ![b, a]
+      = ![W P Q a b (n + 1), W P Q a b n] := by
+  induction n with
+  | zero => simp [W]
+  | succ n ih =>
+    rw [pow_succ', ← Matrix.mulVec_mulVec, ih, companionMatrix_mulVec, W_add_two]
+
 /-- The determinant of the Horadam companion matrix is `Q`. -/
 @[simp] theorem det_companionMatrix (P Q : R) :
     (companionMatrix P Q).det = Q := by
   rw [companionMatrix, Matrix.det_fin_two_of]
   ring
+
+/-- Powers of the companion matrix have determinant `Q^n`. -/
+theorem det_companionMatrix_pow (P Q : R) (n : ℕ) :
+    (companionMatrix P Q ^ n).det = Q ^ n := by
+  rw [Matrix.det_pow, det_companionMatrix]
 
 /-- The trace of the Horadam companion matrix is `P`. -/
 @[simp] theorem trace_companionMatrix (P Q : R) :
