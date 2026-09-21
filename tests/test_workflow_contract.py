@@ -22,6 +22,14 @@ LAKEFILE = (ROOT / "lakefile.toml").read_text()
 # a pull request opened with GITHUB_TOKEN never triggers the checks the
 # ruleset requires of it.
 GENERATOR_BOT = "leanfrontier-receiver[bot]"
+# `lake exe cache get` exits 0 even when the Mathlib cache is missing files, as
+# it was for Mathlib.Probability.Kernel.Invariance at v4.34.0. The build that
+# follows compiles whatever the download left out, and is a no-op otherwise.
+FETCH_AND_FILL = "sh -c 'lake update && lake exe cache get && lake build Mathlib'"
+MATHLIB_WORKFLOWS = {
+    name: (ROOT / ".github" / "workflows" / name).read_text()
+    for name in ("validate-submission.yml", "mathlib-upgrade.yml", "test.yml", "build-mathlib-index.yml")
+}
 
 
 class WorkflowContractTests(unittest.TestCase):
@@ -52,6 +60,12 @@ class WorkflowContractTests(unittest.TestCase):
         ):
             self.assertIn(required, WORKFLOW)
 
+    def test_every_cache_fetch_builds_what_the_mathlib_cache_is_missing(self) -> None:
+        for name, workflow in MATHLIB_WORKFLOWS.items():
+            with self.subTest(workflow=name):
+                self.assertIn(FETCH_AND_FILL, workflow)
+                self.assertEqual(workflow.count("lake exe cache get"), workflow.count(FETCH_AND_FILL))
+
     def test_receiver_image_installs_the_pinned_toolchain_via_its_shared_elan_volume(self) -> None:
         self.assertIn("FROM debian:bookworm-slim", DOCKERFILE)
         self.assertIn("elan-init.sh", DOCKERFILE)
@@ -61,7 +75,7 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn('ELAN_HOME=/elan', DOCKERFILE)
         self.assertIn('-v "$GITHUB_WORKSPACE/elan:/elan"', WORKFLOW)
         self.assertIn('-v "$GITHUB_WORKSPACE/elan:/elan:ro"', WORKFLOW)
-        self.assertIn("sh -c 'lake update && lake exe cache get'", WORKFLOW)
+        self.assertIn(FETCH_AND_FILL, WORKFLOW)
         self.assertIn("for attempt in 1 2 3", WORKFLOW)
         self.assertNotIn("sh -lc 'lake update", WORKFLOW)
         self.assertNotIn("leanprover/lean4", DOCKERFILE)
