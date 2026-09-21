@@ -70,12 +70,16 @@ jobs:
         run: docker build -f tools/Dockerfile.validator -t leanfrontier-upgrade:ci .
       - name: Acquire selected dependencies and cache
         if: steps.release.outputs.upgrade == 'true'
+        # `cache get` exits 0 even when the release's cache is incomplete, as
+        # v4.34.0's was for Mathlib.Probability.Kernel.Invariance; the offline
+        # index then died on a missing Mathlib.olean. Building Mathlib here,
+        # while the network is still available, compiles only what is missing.
         run: >-
           docker run --rm
           -v "$GITHUB_WORKSPACE/elan:/elan"
           -v "$GITHUB_WORKSPACE:/workspace"
           -w /workspace
-          leanfrontier-upgrade:ci sh -c 'lake update && lake exe cache get'
+          leanfrontier-upgrade:ci sh -c 'lake update && lake exe cache get && lake build Mathlib'
       - name: Build the index and collision-free upgrade evidence offline
         if: steps.release.outputs.upgrade == 'true'
         run: |

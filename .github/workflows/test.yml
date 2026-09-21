@@ -54,7 +54,7 @@ jobs:
           -v "$GITHUB_WORKSPACE/elan:/elan"
           -v "$GITHUB_WORKSPACE:/workspace"
           -w /workspace
-          leanfrontier-upgrade:ci sh -c 'lake update && lake exe cache get'
+          leanfrontier-upgrade:ci sh -c 'lake update && lake exe cache get && lake build Mathlib'
       - name: Rebuild the active index and audit the whole corpus
         if: steps.target.outputs.enabled == 'true'
         run: |
