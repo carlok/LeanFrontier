@@ -1,4 +1,5 @@
 import LeanFrontier.RepresentationTheory.FiniteGroupCharacter
+import Mathlib.Algebra.Field.Defs
 
 /-!
 # Orthogonality of finite-group multiplicative characters
