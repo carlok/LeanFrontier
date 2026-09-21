@@ -77,7 +77,7 @@ jobs:
               -v "$GITHUB_WORKSPACE/elan:/elan" \
               -v "$GITHUB_WORKSPACE/candidate:/candidate" \
               -w /candidate \
-              leanfrontier-validator:ci sh -c 'lake update && lake exe cache get' && exit 0
+              leanfrontier-validator:ci sh -c 'lake update && lake exe cache get && lake build Mathlib' && exit 0
             if [ "$attempt" -eq 3 ]; then exit 1; fi
             sleep 5
           done

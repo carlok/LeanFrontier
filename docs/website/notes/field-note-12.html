@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 12: the first outside contributor returned with two extensions, their tooling exposed a receiver bug, and the move to Mathlib v4.34.0 took three attempts.">
+    <title>Field Note 12 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">21 September 2026 · Field Note 12</p>
+          <h1>The Stranger Came Back.</h1>
+          <p class="hero-copy">The contributor from Field Note 11 returned with two theorems built on earlier ones. Their tooling exposed a receiver bug. The same day, the weekly Mathlib upgrade failed on a gap in Mathlib's own cache and took three runs to land.</p>
+        </header>
+
+        <section>
+          <h2>Extensions, not isolated results</h2>
+          <p><a href="https://github.com/carlok/LeanFrontier/pull/179">#179</a> proves the local descent step of the Markov tree: for an ordered positive Markov triple other than <code>(1, 1, 1)</code>, the Vieta jump in the largest coordinate is positive, at most the middle coordinate, and so strictly smaller than the largest. It imports the accepted <code>MarkovEquation</code> module and uses its API rather than restating it.</p>
+          <p><a href="https://github.com/carlok/LeanFrontier/pull/180">#180</a> connects the accepted Ford-circle criterion to Mathlib's own geometry: two Ford circles with nonzero denominators are externally tangent, in the sense of <code>EuclideanGeometry.Sphere.IsExtTangent</code>, exactly when their cross determinant squares to one.</p>
+          <p>Both claims record an agent as the author of the statement and the proof. A human chose the direction from the agent's shortlist, and the claim's <code>source_context</code> says so. The receiver accepted #179 in 111 seconds and #180 in 79. Each had zero exact Mathlib matches, passed the kernel replay and the downstream import, got an inconclusive result from every triviality probe, and passed the check of all 118 and 119 entrypoints already in the corpus. Nothing else about them was assessed.</p>
+        </section>
+
+        <section>
+          <h2>A question about cadence</h2>
+          <p>The contributor asked whether there was a limit on open pull requests, or anything else that should slow their agent down. There isn't. The practical costs are mechanical: <code>main</code> requires branches to be up to date, so each merge puts every other open PR behind; and a claim pins a Mathlib revision, so an upgrade invalidates open claims until they are bumped. The maintainer added a preference, not a rule: the less trivial, the better.</p>
+          <p>The contributor also keeps a private map of where the corpus should connect, ranking bridge targets and recording the formulations they rejected, with the reasons. <a href="https://github.com/carlok/LeanFrontier/issues/186">#186</a> asks whether they'd upstream it.</p>
+        </section>
+
+        <section>
+          <h2>Their harness found our bug</h2>
+          <p>Before sending anything to the receiver, the contributor's agent runs a plain <code>lake build</code>, because the receiver only ever said <code>BUILD_FAILED</code>. That turned out to be a defect, not a design choice. On a failed build, Lake prints the Lean errors on standard output and only <code>error: build failed</code> on standard error. The receiver kept standard error whenever it wasn't empty, so every build rejection reported just that summary line. <a href="https://github.com/carlok/LeanFrontier/pull/187">#187</a> keeps both streams, so a rejection now carries the error in the submitter's own file. Admission did not change, only the text of the rejection.</p>
+        </section>
+
+        <section>
+          <h2>Mathlib v4.34.0, on the third run</h2>
+          <p>The weekly upgrade failed first for a reason outside this repository. Mathlib's download cache had no compiled file for one module, <code>Mathlib.Probability.Kernel.Invariance</code>, so the root <code>Mathlib</code> module was missing too. <code>lake exe cache get</code> reports such gaps as a warning and exits successfully, and the index builder then failed on the missing file. <a href="https://github.com/carlok/LeanFrontier/pull/185">#185</a> builds whatever the download left out, which took about twenty seconds for those two modules.</p>
+          <p>The second run built everything, but <code>main</code> moved while it was working, and the upgrade check refused a branch whose evidence predated the new <code>main</code>. That refusal was correct. The third run's evidence was sound, but the independent re-audit ran twice per head under one check name, and the slower copy hit the 45-minute limit twice. <a href="https://github.com/carlok/LeanFrontier/pull/189">#189</a> gave those jobs more time. <a href="https://github.com/carlok/LeanFrontier/pull/190">#190</a> now audits each head once, and re-audits it when a maintainer updates the branch rather than silently skipping.</p>
+          <p>The upgrade landed in <a href="https://github.com/carlok/LeanFrontier/pull/188">#188</a>. The corpus built unchanged on the new release, all 120 entrypoints passed the kernel recheck and the import check, and none turned out to be an exact duplicate of anything new in Mathlib.</p>
+        </section>
+
+        <section>
+          <h2>What the day showed</h2>
+          <p>An outside contributor working at agent speed stresses the process more than the mathematics. The receiver's verdicts held up every time. What gave way were the edges around it: a message that dropped its evidence, a cache that failed quietly, and a check whose cost nobody had measured on a slow runner. Each is now a test in the repository.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>

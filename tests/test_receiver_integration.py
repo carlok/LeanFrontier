@@ -64,6 +64,17 @@ class ReceiverIntegrationTests(unittest.TestCase):
         self.assertEqual(result.returncode == 0, payload["accepted"])
         return payload
 
+    def test_a_broken_submission_reports_its_own_lean_error(self) -> None:
+        fixture = (ROOT / "tests" / "fixtures" / "receiver" / "BrokenFixture.lean").read_text(encoding="utf-8")
+        (self.candidate / "LeanFrontier" / "Algebra" / "Binomial.lean").write_text(fixture, encoding="utf-8")
+        self.claim("LeanFrontier.BrokenFixture.sq_add_sq_ne")
+        payload = self.validate()
+        self.assertFalse(payload["accepted"])
+        failures = [item["message"] for item in payload["diagnostics"] if item["code"] == "BUILD_FAILED"]
+        self.assertTrue(failures, payload["diagnostics"])
+        self.assertIn("Binomial.lean:7:64: unsolved goals", failures[0])
+        self.assertNotIn("Furstenberg", failures[0])
+
     def test_valid_bundle_exercises_build_axioms_and_mathlib_comparison(self) -> None:
         payload = self.validate()
         self.assertTrue(payload["accepted"])

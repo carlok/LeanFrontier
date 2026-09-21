@@ -1,0 +1,112 @@
+✔ [2414/2449] Built LeanFrontier.Combinatorics.Josephus (2.6s)
+✔ [2415/2449] Built LeanFrontier.Algebra.Binomial (4.1s)
+✔ [2416/2449] Built LeanFrontier.GroupTheory.ChangeRinging (2.2s)
+✔ [2417/2449] Built LeanFrontier.Combinatorics.FibonacciComposition (4.1s)
+✔ [2418/2449] Built LeanFrontier.Combinatorics.FiniteVariance (4.0s)
+✔ [2419/2449] Built LeanFrontier.NumberTheory.Mediant (3.9s)
+⚠ [2420/2449] Built LeanFrontier.Analysis.SlopeMinorant (4.7s)
+warning: LeanFrontier/Analysis/SlopeMinorant.lean:2:0: 'Mathlib.Data.Real.Basic' has been deprecated: please replace this import by
+
+import Mathlib.Basic.Real.Basic
+✔ [2421/2449] Built LeanFrontier.Algebra.Polynomial.TranslationRigidity (5.0s)
+⚠ [2422/2449] Built LeanFrontier.Dynamics.LogisticMap (5.8s)
+warning: LeanFrontier/Dynamics/LogisticMap.lean:61:69: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanFrontier/Dynamics/LogisticMap.lean:64:2: `if_neg` has been deprecated: Use `ite_eq_right` instead
+⚠ [2423/2449] Built LeanFrontier.Analysis.Nesbitt (6.4s)
+warning: LeanFrontier/Analysis/Nesbitt.lean:1:0: 'Mathlib.Data.Real.Basic' has been deprecated: please replace this import by
+
+import Mathlib.Basic.Real.Basic
+warning: LeanFrontier/Analysis/Nesbitt.lean:41:8: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: LeanFrontier/Analysis/Nesbitt.lean:41:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+✔ [2425/2449] Built LeanFrontier.NumberTheory.DescartesCircle (2.6s)
+✔ [2426/2449] Built LeanFrontier.NumberTheory.HoradamSequence (2.5s)
+✔ [2427/2449] Built LeanFrontier.NumberTheory.Padovan (2.3s)
+✔ [2428/2449] Built LeanFrontier.LinearAlgebra.FibonacciMatrix (4.1s)
+✔ [2430/2449] Built LeanFrontier.NumberTheory.LucasNumber (2.9s)
+✔ [2431/2449] Built LeanFrontier.NumberTheory.MarkovEquation (2.8s)
+✔ [2436/2466] Built LeanFrontier.NumberTheory.PowerSums (2.7s)
+⚠ [2483/2532] Built LeanFrontier.NumberTheory.SternDiatomic (2.7s)
+warning: LeanFrontier/NumberTheory/SternDiatomic.lean:68:18: `if_pos` has been deprecated: Use `ite_eq_left` instead
+warning: LeanFrontier/NumberTheory/SternDiatomic.lean:77:18: `if_neg` has been deprecated: Use `ite_eq_right` instead
+✔ [2513/2538] Built LeanFrontier.NumberTheory.SylvesterSequence (2.6s)
+✔ [2517/2541] Built LeanFrontier.Combinatorics.Josephus.OneIndexed (2.6s)
+⚠ [2520/2541] Built LeanFrontier.Geometry.InversiveGeometry (2.7s)
+warning: LeanFrontier/Geometry/InversiveGeometry.lean:1:0: 'Mathlib.Data.Complex.Basic' has been deprecated: please replace this import by
+
+import Mathlib.Basic.Complex.Basic
+⚠ [2521/2541] Built LeanFrontier.NumberTheory.ThueMorse (2.0s)
+warning: LeanFrontier/NumberTheory/ThueMorse.lean:85:38: `if_neg` has been deprecated: Use `ite_eq_right` instead
+warning: LeanFrontier/NumberTheory/ThueMorse.lean:87:38: `if_pos` has been deprecated: Use `ite_eq_left` instead
+✔ [2525/2541] Built LeanFrontier.NumberTheory.Farey (2.0s)
+✔ [2526/2541] Built LeanFrontier.Analysis.SlopeMinorant.Constraints (2.8s)
+✔ [2527/2541] Built LeanFrontier.NumberTheory.FordCircle (3.0s)
+✔ [2528/2541] Built LeanFrontier.NumberTheory.Tribonacci (2.3s)
+✔ [2529/2541] Built LeanFrontier.Analysis.FibonacciReciprocal (10s)
+✔ [2530/2541] Built LeanFrontier.RepresentationTheory.FiniteGroupCharacter (2.4s)
+✔ [2531/2541] Built LeanFrontier.NumberTheory.MarkovTree (3.5s)
+✖ [2532/2541] Building LeanFrontier.Algebra.BrokenFixture (1.0s)
+trace: .> LEAN_PATH=/candidate/.lake/packages/Cli/.lake/build/lib/lean:/candidate/.lake/packages/batteries/.lake/build/lib/lean:/candidate/.lake/packages/Qq/.lake/build/lib/lean:/candidate/.lake/packages/aesop/.lake/build/lib/lean:/candidate/.lake/packages/proofwidgets/.lake/build/lib/lean:/candidate/.lake/packages/importGraph/.lake/build/lib/lean:/candidate/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/candidate/.lake/packages/plausible/.lake/build/lib/lean:/candidate/.lake/packages/mathlib/.lake/build/lib/lean:/candidate/.lake/build/lib/lean /elan/toolchains/leanprover--lean4---v4.34.0/bin/lean /candidate/LeanFrontier/Algebra/BrokenFixture.lean -o /candidate/.lake/build/lib/lean/LeanFrontier/Algebra/BrokenFixture.olean -i /candidate/.lake/build/lib/lean/LeanFrontier/Algebra/BrokenFixture.ilean -c /candidate/.lake/build/ir/LeanFrontier/Algebra/BrokenFixture.c --setup /candidate/.lake/build/ir/LeanFrontier/Algebra/BrokenFixture.setup.json --json
+info: LeanFrontier/Algebra/BrokenFixture.lean:8:2: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+error: LeanFrontier/Algebra/BrokenFixture.lean:7:64: unsolved goals
+a b : ℤ
+⊢ a * b * 2 + a ^ 2 + b ^ 2 = a ^ 2 + b ^ 2
+✔ [2533/2541] Built LeanFrontier.NumberTheory.SternDiatomic.Enumeration (2.4s)
+⚠ [2534/2541] Built LeanFrontier.Topology.Furstenberg (2.3s)
+warning: LeanFrontier/Topology/Furstenberg.lean:79:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: LeanFrontier/Topology/Furstenberg.lean:97:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: LeanFrontier/Topology/Furstenberg.lean:106:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: LeanFrontier/Topology/Furstenberg.lean:151:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: LeanFrontier/Topology/Furstenberg.lean:162:25: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+warning: LeanFrontier/Topology/Furstenberg.lean:193:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+✔ [2535/2541] Built LeanFrontier.NumberTheory.Transcendental.HermiteLindemann (2.8s)
+✔ [2536/2541] Built tools.FrontierAudit (3.2s)
+✔ [2537/2541] Built LeanFrontier.Geometry.FordCircleTangency (3.1s)
+✔ [2538/2541] Built tools.FrontierAudit:c.o (480ms)
+✔ [2539/2541] Built «frontier-audit»:exe (1.1s)
+✔ [2540/2541] Built LeanFrontier (1.9s)
+Some required targets logged failures:
+- LeanFrontier.Algebra.BrokenFixture

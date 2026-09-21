@@ -22,6 +22,14 @@ LAKEFILE = (ROOT / "lakefile.toml").read_text()
 # a pull request opened with GITHUB_TOKEN never triggers the checks the
 # ruleset requires of it.
 GENERATOR_BOT = "leanfrontier-receiver[bot]"
+# `lake exe cache get` exits 0 even when the Mathlib cache is missing files, as
+# it was for Mathlib.Probability.Kernel.Invariance at v4.34.0. The build that
+# follows compiles whatever the download left out, and is a no-op otherwise.
+FETCH_AND_FILL = "sh -c 'lake update && lake exe cache get && lake build Mathlib'"
+MATHLIB_WORKFLOWS = {
+    name: (ROOT / ".github" / "workflows" / name).read_text()
+    for name in ("validate-submission.yml", "mathlib-upgrade.yml", "test.yml", "build-mathlib-index.yml")
+}
 
 
 class WorkflowContractTests(unittest.TestCase):
@@ -52,6 +60,19 @@ class WorkflowContractTests(unittest.TestCase):
         ):
             self.assertIn(required, WORKFLOW)
 
+    def test_every_cache_fetch_builds_what_the_mathlib_cache_is_missing(self) -> None:
+        for name, workflow in MATHLIB_WORKFLOWS.items():
+            with self.subTest(workflow=name):
+                self.assertIn(FETCH_AND_FILL, workflow)
+                self.assertEqual(workflow.count("lake exe cache get"), workflow.count(FETCH_AND_FILL))
+
+    def test_mathlib_rebuilds_have_room_for_a_slow_runner(self) -> None:
+        """The v4.34.0 index and audit took 30 minutes on one runner and over 45 on another."""
+        for name, minimum in (("mathlib-upgrade.yml", 90), ("test.yml", 75), ("build-mathlib-index.yml", 60)):
+            with self.subTest(workflow=name):
+                limits = [int(value) for value in re.findall(r"timeout-minutes: (\d+)", MATHLIB_WORKFLOWS[name])]
+                self.assertGreaterEqual(max(limits), minimum)
+
     def test_receiver_image_installs_the_pinned_toolchain_via_its_shared_elan_volume(self) -> None:
         self.assertIn("FROM debian:bookworm-slim", DOCKERFILE)
         self.assertIn("elan-init.sh", DOCKERFILE)
@@ -61,7 +82,7 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn('ELAN_HOME=/elan', DOCKERFILE)
         self.assertIn('-v "$GITHUB_WORKSPACE/elan:/elan"', WORKFLOW)
         self.assertIn('-v "$GITHUB_WORKSPACE/elan:/elan:ro"', WORKFLOW)
-        self.assertIn("sh -c 'lake update && lake exe cache get'", WORKFLOW)
+        self.assertIn(FETCH_AND_FILL, WORKFLOW)
         self.assertIn("for attempt in 1 2 3", WORKFLOW)
         self.assertNotIn("sh -lc 'lake update", WORKFLOW)
         self.assertNotIn("leanprover/lean4", DOCKERFILE)
@@ -398,15 +419,31 @@ class WorkflowContractTests(unittest.TestCase):
         for note in notes:
             self.assertIn(note.name, index, f"{note.name} is not linked from the notes index")
 
+    def test_an_upgrade_head_is_re_audited_once(self) -> None:
+        """A branch push and its pull_request event each ran the 40-minute re-audit.
+
+        Both report the required check name, so the slower copy decided the
+        result. Branch pushes other than main no longer trigger the workflow,
+        and a newer head cancels the older run of the same pull request.
+        """
+        test_workflow = MATHLIB_WORKFLOWS["test.yml"]
+        self.assertIn("  push:\n    branches: [main]\n", test_workflow)
+        self.assertIn("group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}", test_workflow)
+        self.assertIn("cancel-in-progress: ${{ github.event_name == 'pull_request' }}", test_workflow)
+
     def test_mathlib_upgrade_has_a_required_gate_and_a_trusted_path_policy(self) -> None:
         test_workflow = (ROOT / ".github" / "workflows" / "test.yml").read_text()
         validator = (ROOT / "tools" / "validate_mathlib_upgrade.py").read_text()
         self.assertIn("mathlib-upgrade:", test_workflow)
         self.assertIn("maintenance/mathlib-upgrade-", test_workflow)
-        self.assertIn('ACTOR: ${{ github.actor }}', test_workflow)
-        self.assertIn(f'"$ACTOR" == "{GENERATOR_BOT}"', test_workflow)
+        # The pull request's author, not whoever last pushed or re-ran it. A
+        # maintainer updating the branch must re-run the audit, not skip it.
+        self.assertIn('AUTHOR: ${{ github.event.pull_request.user.login || github.actor }}', test_workflow)
+        self.assertIn(f'"$AUTHOR" == "{GENERATOR_BOT}"', test_workflow)
+        self.assertNotIn("ACTOR: ${{ github.actor }}", test_workflow)
         self.assertIn("validate_mathlib_upgrade.py", WORKFLOW)
         self.assertIn("Mathlib upgrade changes forbidden paths", validator)
+        self.assertIn("re-dispatch mathlib-release-upgrade", validator)
 
 
 if __name__ == "__main__":

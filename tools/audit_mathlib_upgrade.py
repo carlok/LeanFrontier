@@ -11,6 +11,7 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
+from frontier_validate import failure_output, lean_errors
 from mathlib_release import ROOT, load_release_policy
 
 
@@ -95,17 +96,14 @@ def main(argv: list[str] | None = None) -> int:
         entrypoints = accepted_entrypoints(root)
         build = run(["lake", "build"], cwd=root, timeout=480)
         if build.returncode:
-            raise RuntimeError(build.stderr.strip()[-2000:] or "lake build failed")
+            raise RuntimeError(lean_errors(build, None) or "lake build failed")
         for module in corpus_modules(root):
             recheck = run(["lake", "env", "leanchecker", module], cwd=root, timeout=300)
             if recheck.returncode:
-                raise RuntimeError(
-                    (recheck.stderr.strip() or recheck.stdout.strip())[-2000:]
-                    or f"leanchecker rejected {module} after the upgrade"
-                )
+                raise RuntimeError(failure_output(recheck) or f"leanchecker rejected {module} after the upgrade")
         audit = run(["lake", "exe", "frontier-audit", "--", "LeanFrontier"], cwd=root, timeout=240)
         if audit.returncode:
-            raise RuntimeError(audit.stderr.strip()[-2000:] or "frontier-audit failed")
+            raise RuntimeError(failure_output(audit) or "frontier-audit failed")
         findings = {item["name"]: item for line in audit.stdout.splitlines() if isinstance(item := json.loads(line), dict) and isinstance(item.get("name"), str)}
         index_path = root / "policy" / release["fingerprint_index"]
         collisions = find_collisions(entrypoints, findings, load_index(root, release))
@@ -114,7 +112,7 @@ def main(argv: list[str] | None = None) -> int:
             client.write_text("import LeanFrontier\n\n" + "\n".join(f"#check {name}" for name in sorted(entrypoints)) + "\n", encoding="utf-8")
             smoke = run(["lake", "env", "lean", str(client)], cwd=root, timeout=120)
             if smoke.returncode:
-                raise RuntimeError(smoke.stderr.strip()[-2000:] or "downstream entrypoint smoke test failed")
+                raise RuntimeError(lean_errors(smoke, None) or "downstream entrypoint smoke test failed")
         result.update({
             "mathlib_commit": resolved_mathlib_commit(root),
             "fingerprint_index": release["fingerprint_index"],
