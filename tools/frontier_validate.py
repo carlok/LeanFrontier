@@ -576,6 +576,65 @@ def failure_output(result: subprocess.CompletedProcess[str], limit: int = 2000) 
     return "\n".join(lines)[-limit:]
 
 
+DIAGNOSTIC_LIMIT = 4000
+# Lake prefixes the severity (`error: F.lean:7:64: ...`); plain `lean` suffixes
+# it (`F.lean:7:64: error: ...`). A message runs until the next line that
+# starts another message or is one of Lake's own status lines.
+DIAGNOSTIC_RE = re.compile(
+    r"^(?:(?P<severity>error|warning|info): (?P<file>\S+?\.lean):\d+:\d+: "
+    r"|(?P<file_after>\S+?\.lean):\d+:\d+: (?P<severity_after>error|warning|info): )"
+)
+LAKE_STATUS_RE = re.compile(r"^(?:[✔✖⚠] \[|trace: |Some required targets logged failures:|(?:error|warning|info): )")
+
+
+def lean_messages(output: str) -> list[tuple[str, str, str]]:
+    """Split Lean/Lake output into (severity, file, text) messages."""
+    messages: list[tuple[str, str, list[str]]] = []
+    current: list[str] | None = None
+    for line in output.splitlines():
+        match = DIAGNOSTIC_RE.match(line)
+        if match:
+            severity = match.group("severity") or match.group("severity_after")
+            file = (match.group("file") or match.group("file_after")).removeprefix("./")
+            if "/LeanFrontier/" in file:
+                file = "LeanFrontier/" + file.split("/LeanFrontier/", 1)[1]
+            current = [line]
+            messages.append((severity, file, current))
+        elif current is not None and not LAKE_STATUS_RE.match(line):
+            current.append(line)
+        else:
+            current = None
+    return [(severity, file, "\n".join(lines).rstrip()) for severity, file, lines in messages]
+
+
+def lean_errors(result: subprocess.CompletedProcess[str], files: set[str] | None, limit: int = DIAGNOSTIC_LIMIT) -> str:
+    """The Lean diagnostics a submitter needs from a failed command.
+
+    Every message about the submitter's own files, in the order Lean emitted
+    them; otherwise every error, since an edit can break a module the
+    submission did not touch. Warnings about untouched modules are dropped:
+    after a Mathlib upgrade they can outnumber the one error that matters.
+    Lake's failure summary and stderr follow. The first message is the
+    likeliest cause, so an oversized report is cut from the end.
+    """
+    messages = lean_messages(result.stdout or "")
+    chosen = [text for _, file, text in messages if files is not None and file in files]
+    if not chosen:
+        chosen = [text for severity, _, text in messages if severity == "error"]
+    if not chosen:
+        return failure_output(result, limit)
+    stdout = (result.stdout or "").splitlines()
+    summary: list[str] = []
+    if "Some required targets logged failures:" in stdout:
+        start = stdout.index("Some required targets logged failures:")
+        summary = [stdout[start], *(line for line in stdout[start + 1:] if line.startswith("- "))]
+    text = "\n".join([*chosen, *summary, *(result.stderr or "").strip().splitlines()])
+    if len(text) <= limit:
+        return text
+    note = f"\n[{len(text) - limit} more characters elided]"
+    return text[: limit - len(note)] + note
+
+
 def parse_audit(output: str) -> dict[str, Any]:
     findings: dict[str, Any] = {}
     for line in output.splitlines():
@@ -817,7 +876,7 @@ def downstream_smoke(candidate: Path, modules: list[str], entrypoints: list[str]
         report.reject("BUILD_FAILED", f"downstream import smoke test did not complete: {error}")
         return
     if result.returncode:
-        report.reject("BUILD_FAILED", failure_output(result) or "downstream import smoke test failed")
+        report.reject("BUILD_FAILED", lean_errors(result, None) or "downstream import smoke test failed")
         return
     report.observations["downstream_import_smoke"] = "pass"
 
@@ -850,7 +909,8 @@ def lean_audit(base: Path | None, candidate: Path, modules: list[str], submitted
         report.reject("BUILD_FAILED", f"Lake build did not complete: {error}")
         return
     if build.returncode:
-        report.reject("BUILD_FAILED", failure_output(build) or "Lake build failed")
+        own = {module.replace(".", "/") + ".lean" for module in submitted}
+        report.reject("BUILD_FAILED", lean_errors(build, own) or "Lake build failed")
         return
     kernel_recheck(candidate, submitted, limits, report)
     if not report.accepted:
@@ -861,7 +921,7 @@ def lean_audit(base: Path | None, candidate: Path, modules: list[str], submitted
         report.reject("BUILD_FAILED", f"Lean audit did not complete: {error}")
         return
     if audit.returncode:
-        report.reject("BUILD_FAILED", failure_output(audit) or "Lean audit failed")
+        report.reject("BUILD_FAILED", lean_errors(audit, None) or "Lean audit failed")
         return
     findings = parse_audit(audit.stdout)
     # The umbrella is imported, so every accepted declaration should be visible
