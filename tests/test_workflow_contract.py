@@ -66,6 +66,13 @@ class WorkflowContractTests(unittest.TestCase):
                 self.assertIn(FETCH_AND_FILL, workflow)
                 self.assertEqual(workflow.count("lake exe cache get"), workflow.count(FETCH_AND_FILL))
 
+    def test_mathlib_rebuilds_have_room_for_a_slow_runner(self) -> None:
+        """The v4.34.0 index and audit took 30 minutes on one runner and over 45 on another."""
+        for name, minimum in (("mathlib-upgrade.yml", 90), ("test.yml", 75), ("build-mathlib-index.yml", 60)):
+            with self.subTest(workflow=name):
+                limits = [int(value) for value in re.findall(r"timeout-minutes: (\d+)", MATHLIB_WORKFLOWS[name])]
+                self.assertGreaterEqual(max(limits), minimum)
+
     def test_receiver_image_installs_the_pinned_toolchain_via_its_shared_elan_volume(self) -> None:
         self.assertIn("FROM debian:bookworm-slim", DOCKERFILE)
         self.assertIn("elan-init.sh", DOCKERFILE)
