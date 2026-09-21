@@ -1,4 +1,5 @@
 import LeanFrontier.RepresentationTheory.FiniteGroupCharacter
+import Mathlib.Algebra.Field.Defs
 
 /-!
 # Orthogonality of finite-group multiplicative characters
@@ -13,8 +14,7 @@ open scoped BigOperators
 
 namespace LeanFrontier.FiniteGroupCharacter
 
-variable {G K : Type*} [Group G] [Fintype G] [CommRing K] [CommGroupWithZero K]
-  [NoZeroDivisors K]
+variable {G K : Type*} [Group G] [Fintype G] [Field K]
 
 /-- The pointwise quotient of two distinct multiplicative characters of a finite
 group has sum zero. -/
