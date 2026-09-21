@@ -419,15 +419,31 @@ class WorkflowContractTests(unittest.TestCase):
         for note in notes:
             self.assertIn(note.name, index, f"{note.name} is not linked from the notes index")
 
+    def test_an_upgrade_head_is_re_audited_once(self) -> None:
+        """A branch push and its pull_request event each ran the 40-minute re-audit.
+
+        Both report the required check name, so the slower copy decided the
+        result. Branch pushes other than main no longer trigger the workflow,
+        and a newer head cancels the older run of the same pull request.
+        """
+        test_workflow = MATHLIB_WORKFLOWS["test.yml"]
+        self.assertIn("  push:\n    branches: [main]\n", test_workflow)
+        self.assertIn("group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}", test_workflow)
+        self.assertIn("cancel-in-progress: ${{ github.event_name == 'pull_request' }}", test_workflow)
+
     def test_mathlib_upgrade_has_a_required_gate_and_a_trusted_path_policy(self) -> None:
         test_workflow = (ROOT / ".github" / "workflows" / "test.yml").read_text()
         validator = (ROOT / "tools" / "validate_mathlib_upgrade.py").read_text()
         self.assertIn("mathlib-upgrade:", test_workflow)
         self.assertIn("maintenance/mathlib-upgrade-", test_workflow)
-        self.assertIn('ACTOR: ${{ github.actor }}', test_workflow)
-        self.assertIn(f'"$ACTOR" == "{GENERATOR_BOT}"', test_workflow)
+        # The pull request's author, not whoever last pushed or re-ran it. A
+        # maintainer updating the branch must re-run the audit, not skip it.
+        self.assertIn('AUTHOR: ${{ github.event.pull_request.user.login || github.actor }}', test_workflow)
+        self.assertIn(f'"$AUTHOR" == "{GENERATOR_BOT}"', test_workflow)
+        self.assertNotIn("ACTOR: ${{ github.actor }}", test_workflow)
         self.assertIn("validate_mathlib_upgrade.py", WORKFLOW)
         self.assertIn("Mathlib upgrade changes forbidden paths", validator)
+        self.assertIn("re-dispatch mathlib-release-upgrade", validator)
 
 
 if __name__ == "__main__":

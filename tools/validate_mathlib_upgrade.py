@@ -42,7 +42,11 @@ def main(argv: list[str] | None = None) -> int:
     old_index = f"policy/{previous['fingerprint_index']}"
     allowed = STATIC_PATHS | {index, audit, old_index}
     if changed - allowed:
-        raise ValueError(f"Mathlib upgrade changes forbidden paths: {sorted(changed - allowed)}")
+        raise ValueError(
+            f"Mathlib upgrade changes forbidden paths: {sorted(changed - allowed)}. "
+            "If main moved after the upgrade branched, re-dispatch mathlib-release-upgrade "
+            "rather than updating the branch: its audit evidence predates those changes."
+        )
     if not {"lean-toolchain", "lakefile.toml", "lake-manifest.json", "policy/mathlib-release.json", index, audit}.issubset(changed):
         raise ValueError("Mathlib upgrade is missing required generated changes")
     if old_index != index and old_index in after:
