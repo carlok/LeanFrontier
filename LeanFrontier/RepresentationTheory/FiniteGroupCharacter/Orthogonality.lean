@@ -4,7 +4,7 @@ import LeanFrontier.RepresentationTheory.FiniteGroupCharacter
 # Orthogonality of finite-group multiplicative characters
 
 Distinct one-dimensional multiplicative characters of a finite group have zero
-sum after taking their pointwise quotient.  The proof packages the quotient in
+sum after taking their pointwise quotient. The proof packages the quotient in
 the unit group and reuses the accepted zero-sum theorem for nontrivial
 characters.
 -/
@@ -24,7 +24,10 @@ theorem sum_div_eq_zero_of_ne (chi psi : G →* K) (hchi : chi ≠ psi) :
   have hqUnits : qUnits ≠ 1 := by
     intro hq
     apply hchi
-    exact MonoidHom.toHomUnitsMulEquiv.injective (eq_of_div_eq_one hq)
+    apply MonoidHom.ext
+    intro g
+    have hg := congrArg (fun f : G →* Kˣ => f g) (eq_of_div_eq_one hq)
+    simpa using congrArg (fun u : Kˣ => (u : K)) hg
   have hq : q ≠ 1 := by
     intro hq'
     apply hqUnits
