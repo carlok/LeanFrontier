@@ -22,7 +22,7 @@ jobs:
           -v "$GITHUB_WORKSPACE/elan:/elan"
           -v "$GITHUB_WORKSPACE:/workspace"
           -w /workspace
-          leanfrontier-index:ci sh -c 'lake update && lake exe cache get'
+          leanfrontier-index:ci sh -c 'lake update && lake exe cache get && lake build Mathlib'
       - name: Generate the trusted Mathlib theorem fingerprint index
         run: |
           mkdir -p "$GITHUB_WORKSPACE/index-output"
