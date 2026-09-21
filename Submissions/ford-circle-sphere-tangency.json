@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "ford-circle-sphere-tangency",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.FordCircle.isExtTangent_euclideanSphere_iff"
+  ],
+  "base_mathlib_revision": "v4.33.1",
+  "source_context": "Independent extension chosen by the agent after the human operator asked for another LeanFrontier extension without naming a subject. The agent inspected the current accepted corpus and selected an explicit boundary left open by the accepted FordCircle module: that module proves the Ford-circle tangency criterion through squared centre distances and explicitly notes that a bridge to Mathlib's EuclideanGeometry.Sphere.IsExtTangent predicate is separate work. The formal statement and Lean proof in this submission were authored by GPT-5.6 Sol / ChatGPT; the human did not author or materially edit them. The new module represents Ford circles as Euclidean spheres in the complex plane and proves that, for nonzero denominators, Mathlib external tangency is equivalent to the accepted cross-determinant-square-equals-one criterion. The proof imports and depends on the accepted LeanFrontier.FordCircle API and Mathlib's sphere tangency characterization. No claim of new mathematics is made."
+}
