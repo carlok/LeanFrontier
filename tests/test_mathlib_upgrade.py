@@ -90,6 +90,27 @@ class MathlibUpgradePathTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validate_mathlib_upgrade.main(["--base", str(base), "--candidate", str(candidate)])
 
+    def test_a_corpus_build_failure_reports_the_lean_errors(self) -> None:
+        """Lake prints elaboration errors on stdout and only a summary on stderr."""
+
+        class Result:
+            returncode = 1
+            stdout = "error: LeanFrontier/Algebra/Binomial.lean:9:2: unknown constant 'Nat.choose_symm_diff'\n"
+            stderr = "error: build failed\n"
+
+        original = audit_mathlib_upgrade.run
+        audit_mathlib_upgrade.run = lambda command, *, cwd, timeout: Result()
+        try:
+            with tempfile.TemporaryDirectory() as directory:
+                report = Path(directory) / "upgrade.json"
+                status = audit_mathlib_upgrade.main(["--root", str(ROOT), "--report", str(report)])
+                result = json.loads(report.read_text())
+        finally:
+            audit_mathlib_upgrade.run = original
+        self.assertEqual(status, 1)
+        self.assertEqual(result["code"], "BUILD_FAILED")
+        self.assertIn("unknown constant 'Nat.choose_symm_diff'", result["error"])
+
     def test_upgrade_audit_rechecks_the_corpus_against_the_kernel(self) -> None:
         """A release bump must not land with proofs nobody re-verified."""
         source = (ROOT / "tools" / "audit_mathlib_upgrade.py").read_text()

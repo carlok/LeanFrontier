@@ -272,6 +272,52 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
         self.assertFalse(report.accepted)
         self.assertEqual(report.diagnostics[0].code, "KERNEL_RECHECK_FAILED")
 
+    def test_a_failed_build_reports_the_lean_errors(self) -> None:
+        """Lake prints elaboration errors on stdout and only a summary on stderr."""
+
+        class Result:
+            returncode = 1
+            stdout = (
+                "✖ [2/3] Building LeanFrontier.Algebra.New (1.4s)\n"
+                "trace: .> LEAN_PATH=/candidate/.lake/build/lib/lean lean /candidate/LeanFrontier/Algebra/New.lean\n"
+                "error: LeanFrontier/Algebra/New.lean:1:21: Type mismatch\n"
+                "error: Lean exited with code 1\n"
+            )
+            stderr = "error: build failed\n"
+
+        original = frontier_validate.run
+        frontier_validate.run = lambda cmd, cwd, timeout: Result()
+        try:
+            report = frontier_validate.Report()
+            frontier_validate.lean_audit(
+                None, self.candidate, [], [], {}, {}, {"build_timeout_seconds": 300}, {}, {}, set(), report,
+            )
+        finally:
+            frontier_validate.run = original
+        self.assertEqual(report.diagnostics[0].code, "BUILD_FAILED")
+        message = report.diagnostics[0].message
+        self.assertIn("New.lean:1:21: Type mismatch", message)
+        self.assertIn("error: build failed", message)
+        self.assertNotIn("LEAN_PATH", message)
+
+    def test_a_failed_smoke_test_reports_the_lean_errors(self) -> None:
+
+        class Result:
+            returncode = 1
+            stdout = "Client.lean:3:7: error: unknown identifier 'LeanFrontier.Algebra.new_result'\n"
+            stderr = ""
+
+        original = frontier_validate.run
+        frontier_validate.run = lambda cmd, cwd, timeout: Result()
+        try:
+            report = frontier_validate.Report()
+            frontier_validate.downstream_smoke(
+                self.candidate, ["LeanFrontier.Algebra.New"], ["LeanFrontier.Algebra.new_result"], report,
+            )
+        finally:
+            frontier_validate.run = original
+        self.assertIn("unknown identifier", report.diagnostics[0].message)
+
     def test_the_ignore_set_follows_the_repository_gitignore(self) -> None:
         """A submitter running the receiver in a working tree should see what CI sees."""
         derived = frontier_validate.ignored_names(ROOT)

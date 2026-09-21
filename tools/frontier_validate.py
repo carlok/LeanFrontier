@@ -560,6 +560,22 @@ def run(command: list[str], cwd: Path, timeout: int) -> subprocess.CompletedProc
     return subprocess.run(command, cwd=cwd, text=True, capture_output=True, timeout=timeout, check=False)
 
 
+def failure_output(result: subprocess.CompletedProcess[str], limit: int = 2000) -> str:
+    """Return the tail of a failed Lean command's output, stdout first.
+
+    Lake prints elaboration errors on stdout and only `error: build failed` on
+    stderr, so reporting stderr alone hid every actual Lean error. `trace:`
+    lines echo the compiler invocation, and only use up the budget.
+    """
+    lines = [
+        line
+        for stream in (result.stdout, result.stderr)
+        for line in (stream or "").strip().splitlines()
+        if not line.startswith("trace:")
+    ]
+    return "\n".join(lines)[-limit:]
+
+
 def parse_audit(output: str) -> dict[str, Any]:
     findings: dict[str, Any] = {}
     for line in output.splitlines():
@@ -801,7 +817,7 @@ def downstream_smoke(candidate: Path, modules: list[str], entrypoints: list[str]
         report.reject("BUILD_FAILED", f"downstream import smoke test did not complete: {error}")
         return
     if result.returncode:
-        report.reject("BUILD_FAILED", result.stderr.strip()[-2000:] or "downstream import smoke test failed")
+        report.reject("BUILD_FAILED", failure_output(result) or "downstream import smoke test failed")
         return
     report.observations["downstream_import_smoke"] = "pass"
 
@@ -822,8 +838,7 @@ def kernel_recheck(candidate: Path, modules: list[str], limits: dict[str, Any], 
             report.reject("KERNEL_RECHECK_FAILED", f"leanchecker did not complete for {module}: {error}")
             return
         if result.returncode:
-            detail = (result.stderr.strip() or result.stdout.strip())[-2000:]
-            report.reject("KERNEL_RECHECK_FAILED", detail or f"leanchecker rejected {module}")
+            report.reject("KERNEL_RECHECK_FAILED", failure_output(result) or f"leanchecker rejected {module}")
             return
     report.observations["kernel_recheck"] = "pass"
 
@@ -835,7 +850,7 @@ def lean_audit(base: Path | None, candidate: Path, modules: list[str], submitted
         report.reject("BUILD_FAILED", f"Lake build did not complete: {error}")
         return
     if build.returncode:
-        report.reject("BUILD_FAILED", build.stderr.strip()[-2000:] or build.stdout.strip()[-2000:])
+        report.reject("BUILD_FAILED", failure_output(build) or "Lake build failed")
         return
     kernel_recheck(candidate, submitted, limits, report)
     if not report.accepted:
@@ -846,7 +861,7 @@ def lean_audit(base: Path | None, candidate: Path, modules: list[str], submitted
         report.reject("BUILD_FAILED", f"Lean audit did not complete: {error}")
         return
     if audit.returncode:
-        report.reject("BUILD_FAILED", audit.stderr.strip()[-2000:] or audit.stdout.strip()[-2000:])
+        report.reject("BUILD_FAILED", failure_output(audit) or "Lean audit failed")
         return
     findings = parse_audit(audit.stdout)
     # The umbrella is imported, so every accepted declaration should be visible
