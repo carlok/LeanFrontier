@@ -21,7 +21,9 @@ concurrency:
 jobs:
   prepare:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # Index plus whole-corpus audit took 30 min on v4.34.0 and longer on a
+    # slower runner; 60 left too little headroom.
+    timeout-minutes: 90
     steps:
       - name: Mint a generator token
         # PRs opened with GITHUB_TOKEN do not trigger workflow runs, so their
