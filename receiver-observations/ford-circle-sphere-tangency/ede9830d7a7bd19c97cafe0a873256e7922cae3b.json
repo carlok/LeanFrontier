@@ -1,0 +1,162 @@
+{
+  "accepted_revision": "ede9830d7a7bd19c97cafe0a873256e7922cae3b",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-21T11:17:40+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 79.177,
+    "observed": {
+      "added_lines": 72,
+      "audited_declarations": {
+        "LeanFrontier.FordCircle.dist_euclideanCenter_sq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.FordCircle.dist_euclideanCenter_sq",
+          "restatement": false,
+          "statement_sha256": "fc9a1311d18e3a0bb4d1492814043f436e8086b6c0c091ea7dd57bfca326d66c",
+          "type_dependencies": [
+            "Complex",
+            "Complex.instNormedField",
+            "Dist.dist",
+            "Eq",
+            "HPow.hPow",
+            "LeanFrontier.FordCircle.centerDistSq",
+            "LeanFrontier.FordCircle.euclideanCenter",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "NormedCommRing.toSeminormedCommRing",
+            "NormedField.toNormedCommRing",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instField",
+            "Real.instMonoid",
+            "SeminormedCommRing.toSeminormedRing",
+            "SeminormedRing.toPseudoMetricSpace",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.FordCircle.isExtTangent_euclideanSphere_iff": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.FordCircle.isExtTangent_euclideanSphere_iff",
+          "restatement": false,
+          "statement_sha256": "a1e1264d75c5a06f35511fc8d87b57fe2237e53fa3cefe5a59ef8f0959e96b5e",
+          "type_dependencies": [
+            "Complex",
+            "Complex.instNormedAddCommGroup",
+            "Complex.instNormedField",
+            "Eq",
+            "EuclideanGeometry.Sphere.IsExtTangent",
+            "HPow.hPow",
+            "Iff",
+            "LeanFrontier.FordCircle.euclideanSphere",
+            "LeanFrontier.Mediant.crossDet",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Ne",
+            "NonUnitalSeminormedCommRing.toNonUnitalSeminormedRing",
+            "NonUnitalSeminormedRing.toSeminormedAddCommGroup",
+            "NormedCommRing.toSeminormedCommRing",
+            "NormedField.toMetricSpace",
+            "NormedField.toNormedCommRing",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Real",
+            "Real.commRing",
+            "Real.instMonoid",
+            "Real.instOne",
+            "Real.instZero",
+            "SeminormedAddCommGroup.toNormedAddTorsor",
+            "SeminormedCommRing.toNonUnitalSeminormedCommRing",
+            "Zero.toOfNat0",
+            "instHPow",
+            "instInnerProductSpaceRealComplex",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.FordCircle.isExtTangent_euclideanSphere_iff": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4575,
+      "changed_files": [
+        "LeanFrontier/Geometry/FordCircleTangency.lean",
+        "Submissions/ford-circle-sphere-tangency.json"
+      ],
+      "corpus_entrypoints_checked": 119,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.FordCircle.isExtTangent_euclideanSphere_iff": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.FordCircle.isExtTangent_euclideanSphere_iff",
+          "statement_sha256": "a1e1264d75c5a06f35511fc8d87b57fe2237e53fa3cefe5a59ef8f0959e96b5e",
+          "type_dependencies": [
+            "Complex",
+            "Complex.instNormedAddCommGroup",
+            "Complex.instNormedField",
+            "Eq",
+            "EuclideanGeometry.Sphere.IsExtTangent",
+            "HPow.hPow",
+            "Iff",
+            "LeanFrontier.FordCircle.euclideanSphere",
+            "LeanFrontier.Mediant.crossDet",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Ne",
+            "NonUnitalSeminormedCommRing.toNonUnitalSeminormedRing",
+            "NonUnitalSeminormedRing.toSeminormedAddCommGroup",
+            "NormedCommRing.toSeminormedCommRing",
+            "NormedField.toMetricSpace",
+            "NormedField.toNormedCommRing",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Real",
+            "Real.commRing",
+            "Real.instMonoid",
+            "Real.instOne",
+            "Real.instZero",
+            "SeminormedAddCommGroup.toNormedAddTorsor",
+            "SeminormedCommRing.toNonUnitalSeminormedCommRing",
+            "Zero.toOfNat0",
+            "instHPow",
+            "instInnerProductSpaceRealComplex",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3145,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 5
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "ford-circle-sphere-tangency",
+  "trusted_receiver_revision": "2c172a0c152338ede99122cc3929ea8963918c5c",
+  "validated_candidate_revision": "3192a3c44de5a523eedfb1ea4d24f330ba57beb1",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35582001374"
+}
