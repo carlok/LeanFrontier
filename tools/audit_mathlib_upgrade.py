@@ -11,7 +11,7 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-from frontier_validate import failure_output
+from frontier_validate import failure_output, lean_errors
 from mathlib_release import ROOT, load_release_policy
 
 
@@ -96,7 +96,7 @@ def main(argv: list[str] | None = None) -> int:
         entrypoints = accepted_entrypoints(root)
         build = run(["lake", "build"], cwd=root, timeout=480)
         if build.returncode:
-            raise RuntimeError(failure_output(build) or "lake build failed")
+            raise RuntimeError(lean_errors(build, None) or "lake build failed")
         for module in corpus_modules(root):
             recheck = run(["lake", "env", "leanchecker", module], cwd=root, timeout=300)
             if recheck.returncode:
@@ -112,7 +112,7 @@ def main(argv: list[str] | None = None) -> int:
             client.write_text("import LeanFrontier\n\n" + "\n".join(f"#check {name}" for name in sorted(entrypoints)) + "\n", encoding="utf-8")
             smoke = run(["lake", "env", "lean", str(client)], cwd=root, timeout=120)
             if smoke.returncode:
-                raise RuntimeError(failure_output(smoke) or "downstream entrypoint smoke test failed")
+                raise RuntimeError(lean_errors(smoke, None) or "downstream entrypoint smoke test failed")
         result.update({
             "mathlib_commit": resolved_mathlib_commit(root),
             "fingerprint_index": release["fingerprint_index"],

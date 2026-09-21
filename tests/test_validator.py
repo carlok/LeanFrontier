@@ -300,6 +300,71 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
         self.assertIn("error: build failed", message)
         self.assertNotIn("LEAN_PATH", message)
 
+    def test_a_failed_build_reports_the_submitters_error_from_real_lake_output(self) -> None:
+        """Real `lake build` output for tests/fixtures/receiver/BrokenFixture.lean.
+
+        The error sits mid-stream: other modules keep building after it, and
+        v4.34.0 linter warnings in untouched modules follow. A plain tail of
+        the output lost the error entirely; the report must carry it, and
+        nothing about files the submission did not change.
+        """
+        fixtures = ROOT / "tests" / "fixtures" / "receiver"
+
+        class Result:
+            returncode = 1
+            stdout = (fixtures / "broken-build.stdout").read_text(encoding="utf-8")
+            stderr = (fixtures / "broken-build.stderr").read_text(encoding="utf-8")
+
+        self.assertNotIn("BrokenFixture.lean:7:64", Result.stdout[-2000:], "fixture no longer shows the tail problem")
+        original = frontier_validate.run
+        frontier_validate.run = lambda cmd, cwd, timeout: Result()
+        try:
+            report = frontier_validate.Report()
+            frontier_validate.lean_audit(
+                None, self.candidate, [], ["LeanFrontier.Algebra.BrokenFixture"], {}, {},
+                {"build_timeout_seconds": 300}, {}, {}, set(), report,
+            )
+        finally:
+            frontier_validate.run = original
+        message = report.diagnostics[0].message
+        self.assertEqual(report.diagnostics[0].code, "BUILD_FAILED")
+        self.assertIn("error: LeanFrontier/Algebra/BrokenFixture.lean:7:64: unsolved goals", message)
+        self.assertIn("⊢ a * b * 2 + a ^ 2 + b ^ 2 = a ^ 2 + b ^ 2", message)
+        self.assertIn("The `ring` tactic failed to close the goal", message)
+        self.assertIn("error: build failed", message)
+        for noise in ("Furstenberg", "✔", "LEAN_PATH"):
+            self.assertNotIn(noise, message)
+        self.assertLessEqual(len(message), frontier_validate.DIAGNOSTIC_LIMIT)
+
+    def test_a_pathological_build_is_capped(self) -> None:
+
+        class Result:
+            returncode = 1
+            stdout = "".join(
+                f"error: LeanFrontier/Algebra/New.lean:{line}:0: unknown identifier 'x{line}'\n" for line in range(1, 20001)
+            )
+            stderr = "error: build failed\n"
+
+        message = frontier_validate.lean_errors(Result(), {"LeanFrontier/Algebra/New.lean"})
+        self.assertLessEqual(len(message), frontier_validate.DIAGNOSTIC_LIMIT)
+        self.assertTrue(message.startswith("error: LeanFrontier/Algebra/New.lean:1:0:"), "the first error is the likeliest cause")
+        self.assertIn("elided", message)
+
+    def test_errors_elsewhere_are_kept_when_the_submitters_files_have_none(self) -> None:
+        """Editing an existing module can break a module the submission did not touch."""
+
+        class Result:
+            returncode = 1
+            stdout = (
+                "warning: LeanFrontier/Topology/Furstenberg.lean:97:2: Try this: letI\n"
+                "error: LeanFrontier/NumberTheory/MarkovTree.lean:12:4: unknown constant 'MarkovEquation.jump_pos'\n"
+            )
+            stderr = "error: build failed\n"
+
+        message = frontier_validate.lean_errors(Result(), {"LeanFrontier/NumberTheory/MarkovEquation.lean"})
+        self.assertIn("MarkovTree.lean:12:4: unknown constant", message)
+        self.assertNotIn("Furstenberg", message)
+
     def test_a_failed_smoke_test_reports_the_lean_errors(self) -> None:
 
         class Result:
