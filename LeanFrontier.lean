@@ -10,6 +10,7 @@ import LeanFrontier.Combinatorics.FiniteVariance
 import LeanFrontier.Combinatorics.Josephus
 import LeanFrontier.Combinatorics.Josephus.OneIndexed
 import LeanFrontier.Dynamics.LogisticMap
+import LeanFrontier.Geometry.FordCircleTangency
 import LeanFrontier.Geometry.InversiveGeometry
 import LeanFrontier.GroupTheory.ChangeRinging
 import LeanFrontier.LinearAlgebra.FibonacciMatrix
