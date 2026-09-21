@@ -1,5 +1,6 @@
 import LeanFrontier.NumberTheory.Farey
 import LeanFrontier.NumberTheory.FordCircle
+import Mathlib.Basic.Real.Basic
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Positivity
 
