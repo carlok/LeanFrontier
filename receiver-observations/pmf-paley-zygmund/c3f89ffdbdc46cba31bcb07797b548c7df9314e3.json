@@ -1,0 +1,193 @@
+{
+  "accepted_revision": "c3f89ffdbdc46cba31bcb07797b548c7df9314e3",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T13:56:46+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 151.759,
+    "observed": {
+      "added_lines": 109,
+      "audited_declarations": {
+        "LeanFrontier.ProbabilityTheory.pmf_paleyZygmund": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ProbabilityTheory.pmf_paleyZygmund",
+          "restatement": false,
+          "statement_sha256": "155b427ca7037e8ebb84d9033c4702af4aa445a793e23f0a34f9cfd7f1d4aa40",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "DivInvMonoid.toDiv",
+            "ENNReal",
+            "ENNReal.toReal",
+            "Fintype",
+            "HDiv.hDiv",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "InnerProductSpace.toNormedSpace",
+            "LE.le",
+            "LT.lt",
+            "MeasurableSingletonClass",
+            "MeasurableSpace",
+            "MeasureTheory.Measure",
+            "MeasureTheory.Measure.instFunLike",
+            "MeasureTheory.integral",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PMF",
+            "PMF.toMeasure",
+            "RCLike.toInnerProductSpaceReal",
+            "Real",
+            "Real.instDivInvMonoid",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instMonoid",
+            "Real.instMul",
+            "Real.instOne",
+            "Real.instRCLike",
+            "Real.instSub",
+            "Real.instZero",
+            "Real.normedAddCommGroup",
+            "Set",
+            "Set.ofPred",
+            "Zero.toOfNat0",
+            "instHDiv",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.ProbabilityTheory.pmf_paleyZygmund": [
+            {
+              "outcome": "failed",
+              "seconds": 5.786,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.795,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.797,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.777,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.732,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.729,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 34.616,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.ProbabilityTheory.pmf_paleyZygmund": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 5323,
+      "changed_files": [
+        "LeanFrontier/Probability/PMFPaleyZygmund.lean",
+        "Submissions/pmf-paley-zygmund.json"
+      ],
+      "corpus_entrypoints_checked": 160,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.ProbabilityTheory.pmf_paleyZygmund": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.ProbabilityTheory.pmf_paleyZygmund",
+          "statement_sha256": "155b427ca7037e8ebb84d9033c4702af4aa445a793e23f0a34f9cfd7f1d4aa40",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "DivInvMonoid.toDiv",
+            "ENNReal",
+            "ENNReal.toReal",
+            "Fintype",
+            "HDiv.hDiv",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "InnerProductSpace.toNormedSpace",
+            "LE.le",
+            "LT.lt",
+            "MeasurableSingletonClass",
+            "MeasurableSpace",
+            "MeasureTheory.Measure",
+            "MeasureTheory.Measure.instFunLike",
+            "MeasureTheory.integral",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PMF",
+            "PMF.toMeasure",
+            "RCLike.toInnerProductSpaceReal",
+            "Real",
+            "Real.instDivInvMonoid",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instMonoid",
+            "Real.instMul",
+            "Real.instOne",
+            "Real.instRCLike",
+            "Real.instSub",
+            "Real.instZero",
+            "Real.normedAddCommGroup",
+            "Set",
+            "Set.ofPred",
+            "Zero.toOfNat0",
+            "instHDiv",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3836,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "pmf-paley-zygmund",
+  "trusted_receiver_revision": "6ba2d41195208dfc8b203dfd1e503a12ba97a9c2",
+  "validated_candidate_revision": "70cdbcf803804102ff20c8ec034cc954e88883d6",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35723775794"
+}
