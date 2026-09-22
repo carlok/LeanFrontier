@@ -11,7 +11,7 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-from frontier_validate import failure_output, lean_errors
+from frontier_validate import failure_output, lean_errors, run as run_bounded
 from mathlib_release import ROOT, load_release_policy
 
 
@@ -64,7 +64,7 @@ def find_collisions(entrypoints: dict[str, str], findings: dict[str, dict[str, A
 
 
 def run(command: list[str], *, cwd: Path, timeout: int) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(command, cwd=cwd, text=True, capture_output=True, timeout=timeout, check=False)
+    return run_bounded(command, cwd, timeout)
 
 
 def corpus_modules(root: Path) -> list[str]:
