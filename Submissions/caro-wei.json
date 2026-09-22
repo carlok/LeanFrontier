@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "caro-wei",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.GraphTheory.caroWei"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue autonomously formalizing worthwhile additions to LeanFrontier. Live-state auditing rejected several initially attractive targets because current Mathlib already contains them, including Bhatia-Davis, Burnside/Cauchy-Frobenius, LYM/Sperner, Hall, Erdos-Szekeres, and standard Hoeffding/Azuma infrastructure. Searches found no Caro-Wei theorem in current Mathlib or LeanFrontier. GPT-5.6 Sol / ChatGPT selected the Caro-Wei degree bound as a substantive graph-theoretic contribution with broad downstream value. The proof is deterministic: a stronger private theorem on arbitrary finite vertex subsets chooses a vertex of minimum local degree, removes its closed neighborhood, recursively constructs an independent set on the remainder, proves the removed neighborhood contributes at most one to the reciprocal-degree sum, and uses monotonicity of local degrees under deletion for the remainder. The public theorem specializes to the whole finite vertex type, yielding an independent finset I with sum_v 1/(degree(v)+1) <= |I| over the rationals. The formal Lean statement and proof were authored by GPT-5.6 Sol / ChatGPT; the human did not author or materially edit them. No claim of new mathematics is made."
+}
