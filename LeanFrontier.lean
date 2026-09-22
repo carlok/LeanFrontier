@@ -5,6 +5,7 @@ import LeanFrontier.Analysis.FibonacciReciprocal
 import LeanFrontier.Analysis.Nesbitt
 import LeanFrontier.Analysis.SlopeMinorant
 import LeanFrontier.Analysis.SlopeMinorant.Constraints
+import LeanFrontier.Combinatorics.CircularDominoTilings
 import LeanFrontier.Combinatorics.FibonacciComposition
 import LeanFrontier.Combinatorics.FiniteVariance
 import LeanFrontier.Combinatorics.Josephus
