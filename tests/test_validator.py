@@ -445,6 +445,44 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
         self.assertIn("has been deprecated", Result.stdout)
         self.assertEqual(frontier_validate.deprecations(Result(), {"LeanFrontier/Algebra/New.lean"}), [])
 
+    def test_undeclared_conjectures_reach_the_probes(self) -> None:
+        """The probes need the submitted *modules* to find `def X : Prop := ...`.
+
+        `lean_audit` reused the name `submitted` for the declaration names it
+        compares against Mathlib, and handed those to the probes, which then
+        found no conjecture to probe in either direction.
+        """
+        module = "LeanFrontier.Algebra.New"
+        finding = {
+            "name": "LeanFrontier.Algebra.new_result", "kind": "theorem", "axioms": [],
+            "normalized_term_bytes": 10, "type_canonical": "00", "type_hint": "h",
+        }
+
+        class Result:
+            returncode = 0
+            stdout = json.dumps(finding) + "\n"
+            stderr = ""
+
+        seen: dict[str, object] = {}
+        saved = {name: getattr(frontier_validate, name) for name in ("run", "mathlib_duplicates", "baseline_probes", "downstream_smoke")}
+        frontier_validate.run = lambda cmd, cwd, timeout: Result()
+        frontier_validate.mathlib_duplicates = lambda hints, release, report: set()
+        frontier_validate.baseline_probes = lambda candidate, modules, submitted, *rest: seen.setdefault("submitted", submitted)
+        frontier_validate.downstream_smoke = lambda *args: None
+        try:
+            report = frontier_validate.Report()
+            frontier_validate.lean_audit(
+                None, self.candidate, [module], [module], {}, {"entrypoints": ["LeanFrontier.Algebra.new_result"]},
+                {"build_timeout_seconds": 300, "kernel_recheck_timeout_seconds": 180, "validation_timeout_seconds": 600,
+                 "max_normalized_term_bytes": 65536},
+                {"allowed_axioms": [], "always_reject": []}, {}, set(), report,
+            )
+        finally:
+            for name, value in saved.items():
+                setattr(frontier_validate, name, value)
+        self.assertEqual(report.diagnostics, [])
+        self.assertEqual(list(seen.get("submitted", [])), [module])
+
     def test_a_pathological_build_is_capped(self) -> None:
 
         class Result:
