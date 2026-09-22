@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "ford-farey-descartes-configuration",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.FordCircle.farey_mediant_descartes_configuration"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked ChatGPT to continue autonomous LeanFrontier work with a general preference for substantive, reusable mathematics, but did not choose this subject, theorem, or formal statement. GPT-5.6 Sol / ChatGPT inspected current upstream main, recent merged and open PRs, the contract and submitter guidance, the live corpus and contribution-directions roadmap, the Lean/Mathlib v4.34.0 pin, and receiver policy. It selected the Ford-Farey-Descartes synthesis after confirming that the previously blocking Ford-circle sphere tangency bridge had merged. The theorem composes the accepted geometric Ford-circle tangency criterion, the accepted mediant determinant invariance, and the accepted Descartes-circle relation: for positive-denominator unimodular parents, the two parent Ford circles and the mediant Ford circle are pairwise externally tangent, while their actual reciprocal radii together with curvature zero satisfy Descartes' equation. The formal Lean statement and proof were authored by GPT-5.6 Sol / ChatGPT; the human did not author or materially edit either. No claim of new mathematics is made."
+}
