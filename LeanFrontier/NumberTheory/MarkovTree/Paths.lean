@@ -62,7 +62,8 @@ theorem move_isSolution (m : Move) {s : State} (h : s.IsSolution) :
   rcases s with ⟨x, y, z⟩
   cases m <;>
     simp only [State.IsSolution, move] at h ⊢ <;>
-    unfold MarkovEquation.IsSolution MarkovEquation.jump at h ⊢ <;>
+    unfold MarkovEquation.IsSolution at h ⊢ <;>
+    unfold MarkovEquation.jump <;>
     linear_combination h
 
 /-- Each coordinate Vieta move is an involution. -/
