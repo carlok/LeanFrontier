@@ -53,6 +53,11 @@ support a possible future migration. Source MUST use explicit imports where
 practical and MUST NOT organize mathematical modules by producer, model, or
 submission identifier.
 
+The submitted modules MUST build without deprecation warnings under the pinned
+Lean/Mathlib pair. A deprecation is a warning today and an error after a later
+upgrade, so the receiver rejects each one in the submission's own files as
+`DEPRECATED_API`; Lean's warning names the replacement.
+
 Every declared public entrypoint MUST elaborate and be accepted by Lean. The
 receiver additionally replays each submitted module through the kernel with
 `leanchecker`, so admission does not rest on the elaborator's word alone. A
@@ -185,7 +190,7 @@ Stable rejection categories include `SCHEMA_INVALID`,
 `SORRY_DETECTED`, `UNAUTHORIZED_AXIOM`, `DUPLICATE_STATEMENT`,
 `TRIVIAL_BASELINE_RESULT`, `DEGENERATE_THEOREM_FAMILY`, `CORPUS_REGRESSION`,
 `KERNEL_RECHECK_FAILED`, `CONJECTURE_PROVABLE`, `CONJECTURE_REFUTED`,
-`CONJECTURE_QUOTA_EXCEEDED`, and `SECURITY_POLICY_VIOLATION`.
+`CONJECTURE_QUOTA_EXCEEDED`, `DEPRECATED_API`, and `SECURITY_POLICY_VIOLATION`.
 
 A submission the receiver accepts is merged without human action when its
 author appears in `policy/auto_merge_allowlist.json`. Nobody reads the

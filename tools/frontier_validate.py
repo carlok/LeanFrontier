@@ -667,6 +667,20 @@ def lean_errors(result: subprocess.CompletedProcess[str], files: set[str] | None
     return text[: limit - len(note)] + note
 
 
+def deprecations(result: subprocess.CompletedProcess[str], files: set[str]) -> list[str]:
+    """Deprecation warnings Lean reported about `files`.
+
+    A deprecation is a warning under the pinned Mathlib and an error after a
+    later one, so each admitted use is a future break in the upgrade audit.
+    Other modules' deprecations are left alone: under the add-only rule the
+    submitter cannot edit them.
+    """
+    return [
+        text for severity, file, text in lean_messages(result.stdout or "")
+        if severity == "warning" and file in files and "has been deprecated" in text.splitlines()[0]
+    ]
+
+
 def parse_audit(output: str) -> dict[str, Any]:
     findings: dict[str, Any] = {}
     for line in output.splitlines():
@@ -959,9 +973,17 @@ def lean_audit(base: Path | None, candidate: Path, modules: list[str], submitted
     except (OSError, subprocess.TimeoutExpired) as error:
         report.reject("BUILD_FAILED", f"Lake build did not complete: {error}")
         return
+    own = {module.replace(".", "/") + ".lean" for module in submitted}
     if build.returncode:
-        own = {module.replace(".", "/") + ".lean" for module in submitted}
         report.reject("BUILD_FAILED", lean_errors(build, own) or "Lake build failed")
+        return
+    deprecated = deprecations(build, own)
+    if deprecated:
+        text = "\n".join(deprecated)
+        if len(text) > DIAGNOSTIC_LIMIT:
+            note = f"\n[{len(text) - DIAGNOSTIC_LIMIT} more characters elided]"
+            text = text[: DIAGNOSTIC_LIMIT - len(note)] + note
+        report.reject("DEPRECATED_API", text)
         return
     kernel_recheck(candidate, submitted, limits, report)
     if not report.accepted:

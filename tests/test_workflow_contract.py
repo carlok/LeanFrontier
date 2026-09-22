@@ -130,6 +130,8 @@ class WorkflowContractTests(unittest.TestCase):
         validator = (ROOT / "tools" / "frontier_validate.py").read_text()
         self.assertIn('"lake", "env", "leanchecker"', validator)
         self.assertIn("KERNEL_RECHECK_FAILED", validator)
+        self.assertIn("DEPRECATED_API", validator)
+        self.assertIn("`DEPRECATED_API`", (ROOT / "CONTRACT.md").read_text(encoding="utf-8"))
         self.assertIn("kernel_recheck_timeout_seconds", validator)
 
     def test_receiver_smoke_tests_downstream_imports(self) -> None:

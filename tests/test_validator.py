@@ -394,6 +394,57 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
             self.assertNotIn(noise, message)
         self.assertLessEqual(len(message), frontier_validate.DIAGNOSTIC_LIMIT)
 
+    def test_a_deprecated_api_in_the_submission_is_rejected(self) -> None:
+        """A deprecation is a warning today and an error after a later Mathlib upgrade.
+
+        Every one admitted became a future break in the upgrade audit; eleven
+        had to be fixed by hand in #224.
+        """
+        calls: list[list[str]] = []
+
+        class Result:
+            returncode = 0
+            stdout = (
+                "✔ [2530/2541] Built LeanFrontier.NumberTheory.SternDiatomic (2.4s)\n"
+                "⚠ [2531/2541] Built LeanFrontier.Algebra.New (1.2s)\n"
+                "warning: LeanFrontier/Algebra/New.lean:3:40: `if_pos` has been deprecated: Use `ite_eq_left` instead\n"
+                "warning: LeanFrontier/Algebra/New.lean:1:0: 'Mathlib.Data.Real.Basic' has been deprecated: please replace this import by\n"
+                "\n"
+                "import Mathlib.Basic.Real.Basic\n"
+                "warning: LeanFrontier/Algebra/New.lean:9:2: this tactic is never executed\n"
+                "warning: LeanFrontier/Topology/Furstenberg.lean:162:25: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead\n"
+            )
+            stderr = ""
+
+        original = frontier_validate.run
+        frontier_validate.run = lambda cmd, cwd, timeout: (calls.append(cmd), Result())[1]
+        try:
+            report = frontier_validate.Report()
+            frontier_validate.lean_audit(
+                None, self.candidate, [], ["LeanFrontier.Algebra.New"], {}, {},
+                {"build_timeout_seconds": 300, "kernel_recheck_timeout_seconds": 180}, {}, {}, set(), report,
+            )
+        finally:
+            frontier_validate.run = original
+        self.assertEqual([item.code for item in report.diagnostics], ["DEPRECATED_API"])
+        message = report.diagnostics[0].message
+        self.assertIn("`if_pos` has been deprecated: Use `ite_eq_left` instead", message)
+        self.assertIn("import Mathlib.Basic.Real.Basic", message)
+        self.assertNotIn("never executed", message, "only deprecations are rejected, not style lints")
+        self.assertNotIn("Furstenberg", message, "another module's deprecation is not the submitter's to fix")
+        self.assertEqual(calls, [["lake", "build"]], "a rejected build stops before the kernel recheck")
+
+    def test_deprecations_elsewhere_do_not_reject_a_submission(self) -> None:
+        fixtures = ROOT / "tests" / "fixtures" / "receiver"
+
+        class Result:
+            returncode = 0
+            stdout = (fixtures / "broken-build.stdout").read_text(encoding="utf-8")
+            stderr = ""
+
+        self.assertIn("has been deprecated", Result.stdout)
+        self.assertEqual(frontier_validate.deprecations(Result(), {"LeanFrontier/Algebra/New.lean"}), [])
+
     def test_a_pathological_build_is_capped(self) -> None:
 
         class Result:
