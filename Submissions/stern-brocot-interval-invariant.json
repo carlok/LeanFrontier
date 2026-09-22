@@ -1,0 +1,20 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "stern-brocot-interval-invariant",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.SternBrocot.bounds_append",
+    "LeanFrontier.SternBrocot.crossDet_bounds",
+    "LeanFrontier.SternBrocot.mediantDen_pos",
+    "LeanFrontier.SternBrocot.mediant_isCoprime"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked ChatGPT to continue the ongoing autonomous LeanFrontier formalization but did not choose this subject, API, statements, or proofs. After opening accepted-candidate PRs for independent Calkin-Wilf and Stern-Brocot path enumerations, GPT-5.6 Sol / ChatGPT identified their direct bridge as merge-gated and selected an independently admissible Stern-Brocot interval invariant instead. The development models the classical boundary update from 0/1 and 1/0, substantively reuses LeanFrontier.Mediant.crossDet_left_mediant, crossDet_mediant_right, and isCoprime_mediant, and exposes the exact boundary update when an edge is appended, and proves that every path preserves cross determinant one, has positive mediant denominator, and produces a reduced mediant. The formal Lean definitions, statements, and proofs were authored by GPT-5.6 Sol / ChatGPT; the human did not author or materially edit them. No claim of new mathematics is made."
+}
