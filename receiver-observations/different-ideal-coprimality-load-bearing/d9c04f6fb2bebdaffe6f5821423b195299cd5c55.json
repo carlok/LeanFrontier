@@ -1,0 +1,308 @@
+{
+  "accepted_revision": "d9c04f6fb2bebdaffe6f5821423b195299cd5c55",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T11:48:35Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 228.885,
+    "observed": {
+      "added_lines": 99,
+      "audited_declarations": {
+        "LeanFrontier.DiscriminantTower.CoprimalityIsLoadBearing": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "conjecture",
+          "name": "LeanFrontier.DiscriminantTower.CoprimalityIsLoadBearing",
+          "restatement": false,
+          "statement_sha256": "ed62a5be3e6900e00d95565594a2e39a2f908fea3fb788cd7a0258a3b2911e85",
+          "type_dependencies": [
+            "Algebra.id",
+            "BoundedOrder.toOrderTop",
+            "CommSemiring.toSemiring",
+            "CompleteLattice.toBoundedOrder",
+            "CompleteLattice.toConditionallyCompleteLattice",
+            "CompleteLattice.toLattice",
+            "ConditionallyCompleteLattice.toLattice",
+            "DivisionRing.toRatAlgebra",
+            "Eq",
+            "Field",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "IntermediateField",
+            "IntermediateField.LinearDisjoint",
+            "IntermediateField.instAlgebraSubtypeMem",
+            "IntermediateField.instCompleteLattice",
+            "IntermediateField.instSetLike",
+            "IntermediateField.toField",
+            "Lattice.toSemilatticeSup",
+            "LeanFrontier.DiscriminantTower.CoprimalityIsLoadBearing._proof_1",
+            "LeanFrontier.DiscriminantTower.CoprimalityIsLoadBearing._proof_2",
+            "LeanFrontier.DiscriminantTower.DiscrIdentity",
+            "Max.max",
+            "Membership.mem",
+            "Not",
+            "NumberField",
+            "NumberField.to_charZero",
+            "OrderTop.toTop",
+            "PartialOrder.toPreorder",
+            "Preorder.toLE",
+            "Rat",
+            "Rat.instField",
+            "Semifield.toCommSemiring",
+            "SemilatticeSup.toMax",
+            "SemilatticeSup.toPartialOrder",
+            "SetLike.instMembership",
+            "Subtype",
+            "Top.top"
+          ]
+        },
+        "LeanFrontier.DiscriminantTower.DiscrIdentity": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.DiscriminantTower.DiscrIdentity",
+          "restatement": false,
+          "statement_sha256": "5abbfe7e3ec50be54298cecd68039dd7cbd0633fab161d29790e6a65b0562b8c",
+          "type_dependencies": [
+            "DivisionRing.toRatAlgebra",
+            "Field",
+            "Field.toDivisionRing",
+            "IntermediateField",
+            "NumberField",
+            "NumberField.to_charZero",
+            "Rat",
+            "Rat.instField"
+          ]
+        },
+        "LeanFrontier.DiscriminantTower.Splits": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.DiscriminantTower.Splits",
+          "restatement": false,
+          "statement_sha256": "5abbfe7e3ec50be54298cecd68039dd7cbd0633fab161d29790e6a65b0562b8c",
+          "type_dependencies": [
+            "DivisionRing.toRatAlgebra",
+            "Field",
+            "Field.toDivisionRing",
+            "IntermediateField",
+            "NumberField",
+            "NumberField.to_charZero",
+            "Rat",
+            "Rat.instField"
+          ]
+        },
+        "LeanFrontier.DiscriminantTower.loadBearing_of_witness": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.DiscriminantTower.loadBearing_of_witness",
+          "restatement": false,
+          "statement_sha256": "03dc43f4a9ed20630d375544ec6ba7054e77e9bee62d24b9b02087247506756d",
+          "type_dependencies": [
+            "DivisionRing.toRatAlgebra",
+            "Eq",
+            "Field",
+            "Field.toDivisionRing",
+            "Int.natAbs",
+            "IntermediateField",
+            "LeanFrontier.DiscriminantTower.CoprimalityIsLoadBearing",
+            "LeanFrontier.DiscriminantTower.Splits",
+            "LeanFrontier.DiscriminantTower.degree",
+            "LeanFrontier.DiscriminantTower.discrAbs",
+            "Nat",
+            "NumberField",
+            "NumberField.discr",
+            "NumberField.to_charZero",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.instField",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 18,
+        "by_entrypoint": {
+          "CoprimalityIsLoadBearing": [
+            {
+              "outcome": "failed",
+              "seconds": 5.526,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 7.378,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 7.512,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.715,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.645,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.507,
+              "tactic": "decide"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.424,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 8.827,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 8.935,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.556,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.462,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.416,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.DiscriminantTower.loadBearing_of_witness": [
+            {
+              "outcome": "failed",
+              "seconds": 5.837,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.676,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.706,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.677,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.7,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.719,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 111.218,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "CoprimalityIsLoadBearing": "inconclusive",
+        "LeanFrontier.DiscriminantTower.loadBearing_of_witness": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 7090,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/DiscriminantTower.lean",
+        "Submissions/different-ideal-coprimality-load-bearing.json"
+      ],
+      "conjecture_quota": {
+        "accepted_theorems": 109,
+        "allowance": 109,
+        "producer": "agent:claude-code",
+        "proposed": 1,
+        "unresolved": 0
+      },
+      "corpus_entrypoints_checked": 159,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.DiscriminantTower.loadBearing_of_witness": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.DiscriminantTower.loadBearing_of_witness",
+          "statement_sha256": "03dc43f4a9ed20630d375544ec6ba7054e77e9bee62d24b9b02087247506756d",
+          "type_dependencies": [
+            "DivisionRing.toRatAlgebra",
+            "Eq",
+            "Field",
+            "Field.toDivisionRing",
+            "Int.natAbs",
+            "IntermediateField",
+            "LeanFrontier.DiscriminantTower.CoprimalityIsLoadBearing",
+            "LeanFrontier.DiscriminantTower.Splits",
+            "LeanFrontier.DiscriminantTower.degree",
+            "LeanFrontier.DiscriminantTower.discrAbs",
+            "Nat",
+            "NumberField",
+            "NumberField.discr",
+            "NumberField.to_charZero",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.instField",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 5147,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 6
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "different-ideal-coprimality-load-bearing",
+  "trusted_receiver_revision": "96b5b37643a316b9959c12c8c60fd1d5685be04f",
+  "validated_candidate_revision": "6908f7e8f3c73cc8966e599521908467fec35234",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35722892384"
+}
