@@ -1,0 +1,143 @@
+{
+  "accepted_revision": "af928552d6ec1dac459b2c028df88d75cdaf8d25",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T10:39:01+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 128.109,
+    "observed": {
+      "added_lines": 143,
+      "audited_declarations": {
+        "LeanFrontier.SternDiatomic.fib_is_max_on_dyadic_row": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.fib_is_max_on_dyadic_row",
+          "restatement": false,
+          "statement_sha256": "3fe5a78cb4abfc7991446469771a062c2623022220a9ef39e75a8f1331b04dfc",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "Exists",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "LE.le",
+            "LT.lt",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.fib",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHPow",
+            "instLENat",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.SternDiatomic.fib_is_max_on_dyadic_row": [
+            {
+              "outcome": "failed",
+              "seconds": 4.979,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.925,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.92,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.882,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.871,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.904,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 29.481,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SternDiatomic.fib_is_max_on_dyadic_row": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 7421,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SternDiatomic/RowMaximum.lean",
+        "Submissions/stern-diatomic-row-max.json"
+      ],
+      "corpus_entrypoints_checked": 152,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SternDiatomic.fib_is_max_on_dyadic_row": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternDiatomic.fib_is_max_on_dyadic_row",
+          "statement_sha256": "3fe5a78cb4abfc7991446469771a062c2623022220a9ef39e75a8f1331b04dfc",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "Exists",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "LE.le",
+            "LT.lt",
+            "LeanFrontier.SternDiatomic.fusc",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.fib",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHPow",
+            "instLENat",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 6142,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 4
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "stern-diatomic-row-max",
+  "trusted_receiver_revision": "b5b36759ebeb116d5579d75485c673236c2a98d0",
+  "validated_candidate_revision": "5fa865e2e3915cd39b83760d6d3ec10d467824c7",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35700502792"
+}
