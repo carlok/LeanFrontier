@@ -146,3 +146,54 @@ distinguish a prompt effect from an interaction between the prompt and one
 generator's habits. If arm B succeeds, the honest claim is that this
 instruction changes what these models do, and replication with a different
 producer becomes the obvious follow-up rather than an optional extra.
+
+## Deviation, 22 September 2026
+
+Recorded after data exists: three accepted submissions carry an arm (A: 2,
+B: 1), all landed on or before 20 August. This is not an amendment to the
+design. It records receiver changes made for security and maintenance reasons
+between then and now, so that the analysis can account for them. The
+hypothesis, the primary metric, the stopping point and the decision rule are
+unchanged.
+
+The receiver is still identical across arms, as the design requires. Five
+changes landed:
+
+- **#193**: a rejected build now reports the Lean errors in the submitter's own
+  files instead of only `error: build failed`. This changes the feedback a
+  producer iterates on, not what is admitted.
+- **#201**: a timed-out probe no longer leaves `lean` running, and each probe's
+  outcome and time are recorded. This changes resources and observations, not
+  admission.
+- **#216**: ordinary submissions may only **add** files, and code that runs at
+  build or import time is rejected.
+- **#239**: deprecation warnings in the submission's own files are rejected as
+  `DEPRECATED_API`.
+- **#241**: a conjecture the claim does not list as an entrypoint is now probed
+  in both directions, as the contract always required. It was silently skipped
+  before. None of the three arm-tagged submissions is a conjecture.
+
+**The add-only rule interacts with the primary metric.** Before #216, a
+submission could extend an accepted module by editing it, which creates no
+import edge. Now it must add a module that imports the one it extends, which
+creates an edge by construction. The metric can therefore rise for reasons that
+have nothing to do with the launcher, and plausibly more in arm B, whose
+paragraph asks for exactly that kind of extension. Of the corpus's accepted
+submissions before the change, one (#169, unassigned) extended a module by
+editing it.
+
+To keep this separable, the analysis will:
+
+- report the primary metric separately for arm-tagged submissions accepted
+  before and after 22 September 2026;
+- count, for each arm, the edges whose target is a module the same submission
+  could previously have edited instead: an accepted module extended rather than
+  merely used.
+
+If the two periods disagree, the pre-change submissions are the cleaner test of
+the hypothesis. The post-change result will be reported as conditional on the
+add-only rule.
+
+The deprecation rule can reject submissions that would have been accepted
+before. It applies identically to both arms and counts toward neither arm's
+stopping point until a corrected resubmission is accepted.
