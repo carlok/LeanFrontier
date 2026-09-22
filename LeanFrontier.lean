@@ -11,6 +11,7 @@ import LeanFrontier.Combinatorics.Josephus
 import LeanFrontier.Combinatorics.Josephus.OneIndexed
 import LeanFrontier.Dynamics.LogisticMap
 import LeanFrontier.Geometry.FareyFordCircle
+import LeanFrontier.Geometry.FordCircleDescartes
 import LeanFrontier.Geometry.FordCircleTangency
 import LeanFrontier.Geometry.InversiveGeometry
 import LeanFrontier.GroupTheory.ChangeRinging
