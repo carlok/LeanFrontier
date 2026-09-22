@@ -1,0 +1,20 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-tree-paths",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.move_isSolution",
+    "LeanFrontier.MarkovTree.move_involutive",
+    "LeanFrontier.MarkovTree.walk_isSolution",
+    "LeanFrontier.MarkovTree.walk_reverse"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue autonomously with another target of its choice after the explicit Thue-Morse cube-sum submission. GPT-5.6 Sol / ChatGPT re-read live upstream state and the contribution-directions roadmap and selected the long-term Markov/Farey direction at its missing representation boundary rather than attempting the final correspondence prematurely. Current LeanFrontier contains the Markov equation, the one-coordinate Vieta involution, and the ordered positive local descent theorem, but no reusable representation of finite paths of coordinate Vieta moves; searches found no competing Markov-tree path API in LeanFrontier or Mathlib. This submission therefore introduces a bundled integer Markov state, one parameterized three-way coordinate Move type, the corresponding move and finite walk operations, and proves that moves and walks preserve the Markov equation and that reversing the move list exactly reverses a walk. The parameterized move deliberately avoids three permutation-copy theorem families. The development does not choose canonical parents, identify distinct paths, or assert injectivity of numerical Markov labels, so it stays clear of the Markov uniqueness-conjecture boundary. The intended downstream consumer is a future path-preserving Markov-tree to Farey/Stern-Brocot correspondence. GPT-5.6 Sol / ChatGPT chose the subject and API and authored the Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
