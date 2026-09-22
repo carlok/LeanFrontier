@@ -1,0 +1,171 @@
+{
+  "accepted_revision": "1517a077bebaf42e4246a154855451b6a97e33fa",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T17:53:13+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 161.053,
+    "observed": {
+      "added_lines": 181,
+      "audited_declarations": {
+        "LeanFrontier.ProbabilityTheory.chungErdos": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ProbabilityTheory.chungErdos",
+          "restatement": false,
+          "statement_sha256": "b531b36156cb1d93b4d8d29da71979f30966eebec1eeff2e67e479b687490be6",
+          "type_dependencies": [
+            "DivInvMonoid.toDiv",
+            "Finset",
+            "Finset.instSetLike",
+            "Finset.sum",
+            "HDiv.hDiv",
+            "HPow.hPow",
+            "Inter.inter",
+            "LE.le",
+            "LT.lt",
+            "MeasurableSet",
+            "MeasurableSpace",
+            "MeasureTheory.IsProbabilityMeasure",
+            "MeasureTheory.Measure",
+            "MeasureTheory.Measure.real",
+            "Membership.mem",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instAddCommMonoid",
+            "Real.instDivInvMonoid",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instMonoid",
+            "Real.instZero",
+            "Set",
+            "Set.iUnion",
+            "Set.instInter",
+            "SetLike.instMembership",
+            "Zero.toOfNat0",
+            "instHDiv",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.ProbabilityTheory.chungErdos": [
+            {
+              "outcome": "failed",
+              "seconds": 5.18,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.09,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.132,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.069,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.004,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.017,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 30.492,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.ProbabilityTheory.chungErdos": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 7328,
+      "changed_files": [
+        "LeanFrontier/Probability/ChungErdos.lean",
+        "Submissions/chung-erdos.json"
+      ],
+      "corpus_entrypoints_checked": 163,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.ProbabilityTheory.chungErdos": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.ProbabilityTheory.chungErdos",
+          "statement_sha256": "b531b36156cb1d93b4d8d29da71979f30966eebec1eeff2e67e479b687490be6",
+          "type_dependencies": [
+            "DivInvMonoid.toDiv",
+            "Finset",
+            "Finset.instSetLike",
+            "Finset.sum",
+            "HDiv.hDiv",
+            "HPow.hPow",
+            "Inter.inter",
+            "LE.le",
+            "LT.lt",
+            "MeasurableSet",
+            "MeasurableSpace",
+            "MeasureTheory.IsProbabilityMeasure",
+            "MeasureTheory.Measure",
+            "MeasureTheory.Measure.real",
+            "Membership.mem",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instAddCommMonoid",
+            "Real.instDivInvMonoid",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instMonoid",
+            "Real.instZero",
+            "Set",
+            "Set.iUnion",
+            "Set.instInter",
+            "SetLike.instMembership",
+            "Zero.toOfNat0",
+            "instHDiv",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 5862,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "chung-erdos",
+  "trusted_receiver_revision": "7044f44a686ed566b1375c1eb1a9591286b241a9",
+  "validated_candidate_revision": "d463dc3b6fa5e86b3265e5b465298dcdf9b47bcf",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35741062277"
+}
