@@ -45,8 +45,7 @@ theorem pmf_paleyZygmund (p : PMF α) (X : α → ℝ)
   classical
 
   have hsumENN : ∑ i : α, p i = 1 := by
-    rw [← tsum_fintype]
-    exact p.tsum_coe
+    simpa only [tsum_fintype] using p.tsum_coe
 
   have hnorm : ∑ i : α, (p i).toReal = 1 := by
     calc
