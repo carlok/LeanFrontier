@@ -1006,11 +1006,14 @@ def lean_audit(base: Path | None, candidate: Path, modules: list[str], submitted
     entrypoints = metadata.get("entrypoints", [])
     # Findings now span the accepted corpus as well, so the Mathlib comparison
     # is kept to declarations this submission actually introduces.
-    submitted = set(declared_facts) | set(entrypoints)
+    # A separate name: `submitted` is the module list, and the baseline probes
+    # below need it to find conjectures the claim does not list. Reusing it for
+    # declarations left every undeclared conjecture unprobed.
+    introduced = set(declared_facts) | set(entrypoints)
     candidate_hints = {
         item.get("type_hint")
         for name, item in findings.items()
-        if name in submitted and isinstance(item.get("type_hint"), str)
+        if name in introduced and isinstance(item.get("type_hint"), str)
     }
     baseline_fingerprints = mathlib_duplicates(candidate_hints, mathlib_release, report)
     for entrypoint in entrypoints:
