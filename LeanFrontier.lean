@@ -29,6 +29,7 @@ import LeanFrontier.NumberTheory.MarkovTree
 import LeanFrontier.NumberTheory.Mediant
 import LeanFrontier.NumberTheory.Padovan
 import LeanFrontier.NumberTheory.PowerSums
+import LeanFrontier.NumberTheory.SternBrocot
 import LeanFrontier.NumberTheory.SternDiatomic
 import LeanFrontier.NumberTheory.SternDiatomic.Enumeration
 import LeanFrontier.NumberTheory.SylvesterSequence
