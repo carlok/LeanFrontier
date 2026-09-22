@@ -313,6 +313,10 @@ modest.
 
 ### G. Maximum Stern-row value is Fibonacci
 
+**Status:** landed as `LeanFrontier.SternDiatomic.fib_is_max_on_dyadic_row`
+(`LeanFrontier/NumberTheory/SternDiatomic/RowMaximum.lean`), with attainment in both Fibonacci
+orientations.
+
 **Primary parent:** `SternDiatomic`; Fibonacci support would mainly come from Mathlib.
 
 The classical extremal theorem says the maximum of Stern's sequence on an appropriate dyadic
@@ -330,10 +334,13 @@ Treat it as a good independent Stern extension, not as a top corpus-synthesis ta
 
 ### H. Stern diatomic / Calkin–Wilf to Stern–Brocot representation bridge
 
-**Status:** the infrastructure has landed: both path enumerations
-(`LeanFrontier.CalkinWilf.exists_code_eq`, `LeanFrontier.SternBrocot.existsUnique_pair_of_coprime`)
-and the Stern–Brocot interval invariants (`LeanFrontier/NumberTheory/SternBrocot/Intervals.lean`).
-The bridge itself, relating the two path conventions, remains open.
+**Status:** landed. Both path enumerations
+(`LeanFrontier.CalkinWilf.exists_code_eq`, `LeanFrontier.SternBrocot.existsUnique_pair_of_coprime`),
+the Stern–Brocot interval invariants (`LeanFrontier/NumberTheory/SternBrocot/Intervals.lean`),
+and the bridge itself: `LeanFrontier.CalkinWilf.pair_reverse_eq_sternBrocot` and
+`pair_eq_sternBrocot_iff_reverse` (`LeanFrontier/NumberTheory/CalkinWilfSternBrocot.lean`)
+show that a Calkin–Wilf path and a Stern–Brocot path reach the same pair exactly when they are
+reverses. Traversal orders are not identified; that remains open.
 
 **Critical correction:**
 
