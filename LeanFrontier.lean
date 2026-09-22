@@ -31,6 +31,7 @@ import LeanFrontier.NumberTheory.ThueMorse
 import LeanFrontier.NumberTheory.Transcendental.HermiteLindemann
 import LeanFrontier.NumberTheory.Tribonacci
 import LeanFrontier.RepresentationTheory.FiniteGroupCharacter
+import LeanFrontier.RepresentationTheory.FiniteGroupCharacter.Orthogonality
 import LeanFrontier.Topology.Furstenberg
 /-!
 # LeanFrontier
