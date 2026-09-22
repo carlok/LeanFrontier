@@ -50,8 +50,8 @@ theorem sum_cubes_thueMorse_partition (k : ℕ) :
   have hsum :
       (∑ n ∈ range (2 ^ (k + 4)), n)
         = 8 * 2 ^ k * (2 ^ (k + 4) - 1) := by
-    have hsum2 := Finset.sum_range_id_mul_two (2 ^ (k + 4))
-    rw [hpow] at hsum2
+    rw [hpow]
+    have hsum2 := Finset.sum_range_id_mul_two (16 * 2 ^ k)
     nlinarith
   have htotal :
       (∑ n ∈ range (2 ^ (k + 4)), n ^ 3)
