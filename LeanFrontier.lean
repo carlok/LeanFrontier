@@ -20,6 +20,7 @@ import LeanFrontier.LinearAlgebra.FibonacciMatrix
 import LeanFrontier.LinearAlgebra.HoradamCompanionMatrix
 import LeanFrontier.LinearAlgebra.HoradamCompanionMatrixSpecializations
 import LeanFrontier.NumberTheory.CalkinWilf
+import LeanFrontier.NumberTheory.CalkinWilfSternBrocot
 import LeanFrontier.NumberTheory.DescartesCircle
 import LeanFrontier.NumberTheory.Farey
 import LeanFrontier.NumberTheory.FordCircle
@@ -34,6 +35,7 @@ import LeanFrontier.NumberTheory.SternBrocot
 import LeanFrontier.NumberTheory.SternBrocot.Intervals
 import LeanFrontier.NumberTheory.SternDiatomic
 import LeanFrontier.NumberTheory.SternDiatomic.Enumeration
+import LeanFrontier.NumberTheory.SternDiatomic.RowMaximum
 import LeanFrontier.NumberTheory.SylvesterSequence
 import LeanFrontier.NumberTheory.ThueMorse
 import LeanFrontier.NumberTheory.Transcendental.HermiteLindemann
