@@ -26,6 +26,7 @@ fibonacci-q-matrix,unassigned,claude-fable-5
 fibonacci-reciprocal-summable,unassigned,claude-fable-5
 finite-character-orthogonality,unassigned,gpt-5.6-sol
 finite-pairwise-squared-difference,unassigned,gpt-5
+finite-paley-zygmund,unassigned,gpt-5.6-sol
 ford-circle-sphere-tangency,unassigned,gpt-5.6-sol
 ford-circle-tangency,unassigned,claude-opus-5
 ford-farey-descartes-configuration,unassigned,gpt-5.6-sol
