@@ -1,0 +1,675 @@
+{
+  "accepted_revision": "6b868e75a4c88873500d7ed276bfdd74e4c323dd",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T08:47:50+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 244.158,
+    "observed": {
+      "added_lines": 218,
+      "audited_declarations": {
+        "LeanFrontier.CalkinWilf.code": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.CalkinWilf.code",
+          "restatement": false,
+          "statement_sha256": "0ee172b7b72a930f7644d99aae15d43f440352df9f8d86cd45402222e2a41055",
+          "type_dependencies": [
+            "Bool",
+            "List",
+            "Nat"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.code_eq_iff": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.code_eq_iff",
+          "restatement": false,
+          "statement_sha256": "87082d8a2518cb4c4716dc60175db3e5f146fd85d4af844d4a6b0861b82595af",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "LeanFrontier.CalkinWilf.code",
+            "List",
+            "Nat"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.code_pos": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.code_pos",
+          "restatement": false,
+          "statement_sha256": "9e55c97808df000bc51ec349c6c07d52dc0187a55d9eef415e95eab7b9373cf7",
+          "type_dependencies": [
+            "Bool",
+            "LT.lt",
+            "LeanFrontier.CalkinWilf.code",
+            "List",
+            "Nat",
+            "OfNat.ofNat",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.existsUnique_pair_of_coprime": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.existsUnique_pair_of_coprime",
+          "restatement": false,
+          "statement_sha256": "aeff5d431738e75c8c1712ffb9b0a69be3d5d241e95ba7aed857421146243dde",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "ExistsUnique",
+            "LT.lt",
+            "LeanFrontier.CalkinWilf.pair",
+            "List",
+            "Nat",
+            "Nat.Coprime",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.mk",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.exists_code_eq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.exists_code_eq",
+          "restatement": false,
+          "statement_sha256": "1c27c81bb0fcdc665683e16b57266cbad6ecabad206c763371ae17313a4440df",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Exists",
+            "LT.lt",
+            "LeanFrontier.CalkinWilf.code",
+            "List",
+            "Nat",
+            "OfNat.ofNat",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.fusc_pair_code": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.fusc_pair_code",
+          "restatement": false,
+          "statement_sha256": "f4a246e02fa718127cb7d7eead7176cfa4d9f9e4c5d0641315fd8a24869620bc",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.CalkinWilf.code",
+            "LeanFrontier.CalkinWilf.pair",
+            "LeanFrontier.SternDiatomic.fusc",
+            "List",
+            "Nat",
+            "OfNat.ofNat",
+            "Prod.fst",
+            "Prod.snd",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.pair": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.CalkinWilf.pair",
+          "restatement": false,
+          "statement_sha256": "8457fb58938baccf8ce7099385a3fed039f6f958533fbc21ef66ea188a18813e",
+          "type_dependencies": [
+            "Bool",
+            "List",
+            "Nat",
+            "Prod"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.pair_append": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.pair_append",
+          "restatement": false,
+          "statement_sha256": "bc60674a9ae86f92db6da5a018205e554f5d996351bcc353ce2d401f7fb747bb",
+          "type_dependencies": [
+            "Bool",
+            "Bool.true",
+            "Eq",
+            "HAdd.hAdd",
+            "HAppend.hAppend",
+            "LeanFrontier.CalkinWilf.pair",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "List.nil",
+            "Nat",
+            "Prod",
+            "Prod.fst",
+            "Prod.mk",
+            "Prod.snd",
+            "instAddNat",
+            "instDecidableEqBool",
+            "instHAdd",
+            "instHAppendOfAppend",
+            "ite"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.pair_eq_iff": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.pair_eq_iff",
+          "restatement": false,
+          "statement_sha256": "1ad1e05bb1549c8dbc265761318f15b30069326ffedf0f79a53992b5e30cc57e",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "LeanFrontier.CalkinWilf.pair",
+            "List",
+            "Nat",
+            "Prod"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.pair_positive_coprime": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.pair_positive_coprime",
+          "restatement": false,
+          "statement_sha256": "30198e05a95cd629f26063914eae5ecad4300fcdaba8ab31c400e8a303a78ae8",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "LT.lt",
+            "LeanFrontier.CalkinWilf.pair",
+            "List",
+            "Nat",
+            "Nat.Coprime",
+            "OfNat.ofNat",
+            "Prod.fst",
+            "Prod.snd",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 42,
+        "by_entrypoint": {
+          "LeanFrontier.CalkinWilf.code_eq_iff": [
+            {
+              "outcome": "failed",
+              "seconds": 4.487,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.41,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.269,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.162,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.112,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.162,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.CalkinWilf.existsUnique_pair_of_coprime": [
+            {
+              "outcome": "failed",
+              "seconds": 4.032,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.251,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.075,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.986,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.018,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.206,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.CalkinWilf.exists_code_eq": [
+            {
+              "outcome": "failed",
+              "seconds": 4.141,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.174,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.029,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.148,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.021,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.982,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.CalkinWilf.fusc_pair_code": [
+            {
+              "outcome": "failed",
+              "seconds": 4.404,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.305,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.52,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.353,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.309,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.473,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.CalkinWilf.pair_append": [
+            {
+              "outcome": "failed",
+              "seconds": 4.325,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.372,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.332,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.375,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.415,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.368,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.CalkinWilf.pair_eq_iff": [
+            {
+              "outcome": "failed",
+              "seconds": 4.101,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.137,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.158,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.106,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.395,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.116,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.CalkinWilf.pair_positive_coprime": [
+            {
+              "outcome": "failed",
+              "seconds": 4.13,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.142,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.099,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.077,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.107,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.029,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 176.813,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.CalkinWilf.code_eq_iff": "inconclusive",
+        "LeanFrontier.CalkinWilf.existsUnique_pair_of_coprime": "inconclusive",
+        "LeanFrontier.CalkinWilf.exists_code_eq": "inconclusive",
+        "LeanFrontier.CalkinWilf.fusc_pair_code": "inconclusive",
+        "LeanFrontier.CalkinWilf.pair_append": "inconclusive",
+        "LeanFrontier.CalkinWilf.pair_eq_iff": "inconclusive",
+        "LeanFrontier.CalkinWilf.pair_positive_coprime": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 10293,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/CalkinWilf.lean",
+        "Submissions/calkin-wilf-path-bijection.json"
+      ],
+      "corpus_entrypoints_checked": 137,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.CalkinWilf.code_eq_iff": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.code_eq_iff",
+          "statement_sha256": "87082d8a2518cb4c4716dc60175db3e5f146fd85d4af844d4a6b0861b82595af",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "LeanFrontier.CalkinWilf.code",
+            "List",
+            "Nat"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.existsUnique_pair_of_coprime": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.existsUnique_pair_of_coprime",
+          "statement_sha256": "aeff5d431738e75c8c1712ffb9b0a69be3d5d241e95ba7aed857421146243dde",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "ExistsUnique",
+            "LT.lt",
+            "LeanFrontier.CalkinWilf.pair",
+            "List",
+            "Nat",
+            "Nat.Coprime",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.mk",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.exists_code_eq": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.exists_code_eq",
+          "statement_sha256": "1c27c81bb0fcdc665683e16b57266cbad6ecabad206c763371ae17313a4440df",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Exists",
+            "LT.lt",
+            "LeanFrontier.CalkinWilf.code",
+            "List",
+            "Nat",
+            "OfNat.ofNat",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.fusc_pair_code": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.fusc_pair_code",
+          "statement_sha256": "f4a246e02fa718127cb7d7eead7176cfa4d9f9e4c5d0641315fd8a24869620bc",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.CalkinWilf.code",
+            "LeanFrontier.CalkinWilf.pair",
+            "LeanFrontier.SternDiatomic.fusc",
+            "List",
+            "Nat",
+            "OfNat.ofNat",
+            "Prod.fst",
+            "Prod.snd",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.pair_append": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.pair_append",
+          "statement_sha256": "bc60674a9ae86f92db6da5a018205e554f5d996351bcc353ce2d401f7fb747bb",
+          "type_dependencies": [
+            "Bool",
+            "Bool.true",
+            "Eq",
+            "HAdd.hAdd",
+            "HAppend.hAppend",
+            "LeanFrontier.CalkinWilf.pair",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "List.nil",
+            "Nat",
+            "Prod",
+            "Prod.fst",
+            "Prod.mk",
+            "Prod.snd",
+            "instAddNat",
+            "instDecidableEqBool",
+            "instHAdd",
+            "instHAppendOfAppend",
+            "ite"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.pair_eq_iff": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.pair_eq_iff",
+          "statement_sha256": "1ad1e05bb1549c8dbc265761318f15b30069326ffedf0f79a53992b5e30cc57e",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "LeanFrontier.CalkinWilf.pair",
+            "List",
+            "Nat",
+            "Prod"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.pair_positive_coprime": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.pair_positive_coprime",
+          "statement_sha256": "30198e05a95cd629f26063914eae5ecad4300fcdaba8ab31c400e8a303a78ae8",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "LT.lt",
+            "LeanFrontier.CalkinWilf.pair",
+            "List",
+            "Nat",
+            "Nat.Coprime",
+            "OfNat.ofNat",
+            "Prod.fst",
+            "Prod.snd",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 8462,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 16
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "calkin-wilf-path-bijection",
+  "trusted_receiver_revision": "d1d5676e9e06871859a25781c856eebcd1ec34e1",
+  "validated_candidate_revision": "63f49549ab5ea93683d770d82db0323f0bc52594",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35695927100"
+}
