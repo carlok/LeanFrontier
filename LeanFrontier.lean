@@ -43,6 +43,7 @@ import LeanFrontier.NumberTheory.SylvesterSequence
 import LeanFrontier.NumberTheory.ThueMorse
 import LeanFrontier.NumberTheory.Transcendental.HermiteLindemann
 import LeanFrontier.NumberTheory.Tribonacci
+import LeanFrontier.Probability.Cantelli
 import LeanFrontier.Probability.PMFPaleyZygmund
 import LeanFrontier.Probability.PaleyZygmund
 import LeanFrontier.RepresentationTheory.FiniteGroupCharacter
