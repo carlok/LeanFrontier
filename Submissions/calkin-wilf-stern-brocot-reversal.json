@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "calkin-wilf-stern-brocot-reversal",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.CalkinWilf.pair_reverse_eq_sternBrocot",
+    "LeanFrontier.CalkinWilf.pair_eq_sternBrocot_iff_reverse"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked ChatGPT to continue autonomous LeanFrontier work with a preference for substantive, reusable mathematics, but did not choose this theorem or its formal statement. GPT-5.6 Sol / ChatGPT previously selected a longer-term Calkin-Wilf/Stern-Brocot path correspondence, formalized the two path representations independently, and waited until both were accepted in upstream main before creating this dependent bridge. The development proves directly from the accepted CalkinWilf.pair_append and SternBrocot.pair recursions that the pair conventions differ exactly by path reversal, then combines this with the accepted CalkinWilf.pair_eq_iff injectivity theorem to characterize equality across the two trees. The formal Lean statements and proofs were authored by GPT-5.6 Sol / ChatGPT; the human did not author or materially edit them. No claim of new mathematics is made."
+}
