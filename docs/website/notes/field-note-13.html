@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 13: eighteen submissions in a day, one outside producer, and the question of what trust would actually skip, which found two holes that had nothing to do with proofs.">
+    <title>Field Note 13 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">22 September 2026 · Field Note 13</p>
+          <h1>What Would Trust Skip?</h1>
+          <p class="hero-copy">Eighteen submissions landed in one day, seventeen of them from the outside contributor of the last two notes. At that pace, the only step the contributor could not do was the maintainer's merge click, which raised the obvious question: what exactly would it cost to stop clicking?</p>
+        </header>
+
+        <section>
+          <h2>A day at agent speed</h2>
+          <p>The corpus went from 33 to 52 modules. Most of the new work formed two clusters. One built out the rational trees: both path enumerations of the positive rationals, the Stern–Brocot interval invariants, and the bridge the contribution directions had marked as high-effort, which proves that a Calkin–Wilf path and a Stern–Brocot path reach the same pair exactly when one is the reverse of the other. The other opened <code>Probability/</code> with three versions of the Paley–Zygmund inequality, Cantelli's inequality and the Chung–Erdős inequality. Six of the eleven targets in the contributor's own roadmap, which landed in the repository this morning as <code>docs/CONTRIBUTION-DIRECTIONS.md</code>, are now marked as landed there.</p>
+          <p>Every one of them was merged by hand, one at a time. <code>main</code> requires branches to be up to date, so each merge left every other open submission behind; each had to be updated, revalidated for four to eleven minutes, and only then merged, before the next. The mathematics was never the bottleneck.</p>
+        </section>
+
+        <section>
+          <h2>The allowlist question</h2>
+          <p>Adding the contributor to the auto-merge allowlist would remove the click, and nothing else. The workflow still waits for the receiver to accept the exact commit, never touches maintenance branches, and hands the merge to GitHub, which still requires every check. So the real question was narrower than it sounded: what does a maintainer's glance at a pull request catch that the receiver does not?</p>
+          <p>The answer is not "a wrong proof". A Lean kernel does not accept one, and the receiver replays every submission through it. It was two things that were not about proofs at all.</p>
+        </section>
+
+        <section>
+          <h2>Two holes that were not about mathematics</h2>
+          <p><strong>Code that runs on import.</strong> A Lean <code>initialize</code> block runs ordinary code whenever its module is imported. A two-file experiment showed it passing the receiver's list of forbidden constructs untouched, building cleanly, and writing a file on disk the moment another file said <code>import</code>. Anyone depending on LeanFrontier builds it from source and imports it, so that is code execution on their machine. <a href="https://github.com/carlok/LeanFrontier/pull/216">#216</a> rejects it, along with every other construct that runs at build or import time.</p>
+          <p><strong>Meaning drift.</strong> A submission could edit an existing module, and the receiver only checked that every accepted result still existed <em>by name</em>. Redefining something an accepted theorem depends on would keep that theorem compiling while changing what it says. The same pull request made ordinary submissions add-only: extending a module now means importing it from a new one. Of the corpus's accepted submissions, exactly one had ever edited an existing file.</p>
+          <p>Neither hole had been used. Both were there because nobody had asked what a patient contributor could do after a run of good behaviour. With them closed, the contributor stayed off the allowlist anyway: the manual merge is still the cheapest place to catch misleading prose, which no receiver reads.</p>
+        </section>
+
+        <section>
+          <h2>Warnings that become errors</h2>
+          <p>The contributor's modules kept using lemmas that the current Mathlib has deprecated. A deprecation is a warning today and an error after the next upgrade, so every one admitted is a future failure of that upgrade's audit. <a href="https://github.com/carlok/LeanFrontier/pull/224">#224</a> fixed the thirteen already in the corpus, two of them in a module merged an hour earlier, and showed that the whole corpus kept identical statements and axioms before and after. <a href="https://github.com/carlok/LeanFrontier/pull/239">#239</a> now rejects deprecations in a submission's own files, quoting the replacement Lean suggests.</p>
+        </section>
+
+        <section>
+          <h2>The first conjecture found a bug</h2>
+          <p>A conjecture written a month ago and never sent, that the coprimality assumption on the different ideals in Mathlib's compositum discriminant identity cannot be dropped, was finally submitted. The receiver's new probe timings showed six probe attempts where eighteen were due. The conjecture had not been probed at all: an internal list of module names had been overwritten with declaration names, so the receiver found no conjecture to probe in either direction, and had not since conjectures were introduced. <a href="https://github.com/carlok/LeanFrontier/pull/241">#241</a> fixed it, and the conjecture was admitted with both directions probed. The corpus had held no conjectures before, so nothing had slipped through; the first one to arrive is what exposed the gap.</p>
+        </section>
+
+        <section>
+          <h2>Smaller things</h2>
+          <p>The contributor reported that timed-out probes left <code>lean</code> processes running with no parent on their small server, until memory and swap ran out. That was our bug: a timeout killed <code>lake</code> but not the <code>lean</code> it had started. <a href="https://github.com/carlok/LeanFrontier/pull/201">#201</a> kills the whole process group. And a submission that had fallen behind <code>main</code> was rejected with ten path violations, among them "deleting" another contributor's module, when its only fault was being out of date. <a href="https://github.com/carlok/LeanFrontier/pull/254">#254</a> reports that case as what it is.</p>
+          <p>Several of these rules changed the receiver during a pre-registered experiment. <a href="https://github.com/carlok/LeanFrontier/pull/240">#240</a> records them as a dated deviation. The add-only rule in particular creates import edges by construction, and import edges are that experiment's metric.</p>
+        </section>
+
+        <section>
+          <h2>What the day showed</h2>
+          <p>A proof checker settles whether a theorem is true. It does not settle what else a file does when it is built, whether a name still means what it meant, or whether a warning will turn into an error. Those are the questions that trusting a contributor would have left unasked. They are now checks, and trusting a contributor is back to being about the prose alone.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
