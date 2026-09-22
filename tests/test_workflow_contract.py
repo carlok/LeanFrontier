@@ -43,6 +43,13 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("path: candidate", WORKFLOW)
         self.assertGreaterEqual(WORKFLOW.count("persist-credentials: false"), 2)
 
+    def test_a_stale_pull_request_is_named_as_stale(self) -> None:
+        self.assertIn("compare/$BASE_SHA...$HEAD_SHA\" --jq .behind_by", WORKFLOW)
+        self.assertIn('--behind-by "$BEHIND_BY"', WORKFLOW)
+        self.assertIn("GH_TOKEN: ${{ github.token }}", WORKFLOW)
+        # Untrusted values reach the shell only through the environment.
+        self.assertNotIn("compare/${{", WORKFLOW)
+
     def test_receiver_has_restricted_formal_execution_and_report(self) -> None:
         for required in (
             "--network none",

@@ -146,6 +146,48 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
         paths = {item.get("path") for item in report["diagnostics"] if item["code"] == "PATH_POLICY_VIOLATION"}  # type: ignore[union-attr]
         self.assertIn("LeanFrontier/Algebra/Existing.lean", paths)
 
+    def test_a_branch_behind_main_gets_one_clear_diagnostic(self) -> None:
+        """Diffing a stale head against a newer base blamed the submitter for main's changes.
+
+        #248 was rejected with ten path violations (deleting another
+        submission, editing the catalogue, ...) for commits it simply lacked.
+        """
+        (self.base / "LeanFrontier" / "Algebra" / "Landed.lean").write_text("-- merged to main meanwhile\n")
+        output = io.StringIO()
+        with redirect_stdout(output):
+            status = frontier_validate.main(["--base-dir", str(self.base), "--candidate-dir", str(self.candidate), "--preflight-only", "--behind-by", "3"])
+        report = json.loads(output.getvalue())
+        self.assertEqual(status, 1)
+        self.assertEqual([item["code"] for item in report["diagnostics"]], ["BRANCH_BEHIND"])
+        self.assertIn("3 commit", report["diagnostics"][0]["message"])
+        self.assertIn("update", report["diagnostics"][0]["message"])
+
+    def test_an_up_to_date_branch_is_validated_normally(self) -> None:
+        output = io.StringIO()
+        with redirect_stdout(output):
+            status = frontier_validate.main(["--base-dir", str(self.base), "--candidate-dir", str(self.candidate), "--preflight-only", "--behind-by", "0"])
+        self.assertEqual(status, 0, output.getvalue())
+
+    def test_a_local_run_detects_a_stale_branch_from_git(self) -> None:
+        repo = Path(self.temp.name) / "repo"
+        git = lambda *args: subprocess.run(["git", "-C", str(repo), *args], check=True, capture_output=True, text=True).stdout.strip()
+        repo.mkdir()
+        git("init", "-q", "-b", "main")
+        git("config", "user.email", "t@example.com")
+        git("config", "user.name", "t")
+        (repo / "a").write_text("1\n")
+        git("add", "a")
+        git("commit", "-qm", "base")
+        git("switch", "-qc", "topic")
+        git("switch", "-q", "main")
+        (repo / "b").write_text("2\n")
+        git("add", "b")
+        git("commit", "-qm", "moved on")
+        git("switch", "-q", "topic")
+        self.assertEqual(frontier_validate.commits_behind("main", repo), 1)
+        git("merge", "-q", "main")
+        self.assertEqual(frontier_validate.commits_behind("main", repo), 0)
+
     def test_unauthorized_path_is_rejected(self) -> None:
         (self.candidate / "README.md").write_text("payload")
         self.assert_rejected("PATH_POLICY_VIOLATION")
