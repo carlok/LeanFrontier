@@ -1,0 +1,223 @@
+{
+  "accepted_revision": "751140fbf0a50784cab31c1f70310473c9df2592",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T14:42:26+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 129.281,
+    "observed": {
+      "added_lines": 159,
+      "audited_declarations": {
+        "LeanFrontier.ProbabilityTheory.paleyZygmund": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ProbabilityTheory.paleyZygmund",
+          "restatement": false,
+          "statement_sha256": "dd0479a25f1aca57b6e01aa98357ab92d6ce1a2683dbc2911ed722b59c83011a",
+          "type_dependencies": [
+            "AddCommMonoidWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "ContinuousENorm.toENorm",
+            "DivInvMonoid.toDiv",
+            "ENNReal",
+            "ENNReal.instAddCommMonoidWithOne",
+            "HDiv.hDiv",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "InnerProductSpace.toNormedSpace",
+            "LE.le",
+            "LT.lt",
+            "Measurable",
+            "MeasurableSpace",
+            "MeasureTheory.IsProbabilityMeasure",
+            "MeasureTheory.Measure",
+            "MeasureTheory.Measure.real",
+            "MeasureTheory.MemLp",
+            "MeasureTheory.integral",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "NonUnitalSeminormedCommRing.toNonUnitalSeminormedRing",
+            "NonUnitalSeminormedRing.toSeminormedAddCommGroup",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "NormedCommRing.toSeminormedCommRing",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "RCLike.toInnerProductSpaceReal",
+            "Real",
+            "Real.instDivInvMonoid",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instMonoid",
+            "Real.instMul",
+            "Real.instOne",
+            "Real.instRCLike",
+            "Real.instSub",
+            "Real.instZero",
+            "Real.measurableSpace",
+            "Real.normedAddCommGroup",
+            "Real.normedCommRing",
+            "Real.pseudoMetricSpace",
+            "SeminormedAddCommGroup.toSeminormedAddGroup",
+            "SeminormedAddGroup.toContinuousENorm",
+            "SeminormedAddGroup.toPseudoMetricSpace",
+            "SeminormedCommRing.toNonUnitalSeminormedCommRing",
+            "Set.ofPred",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instHDiv",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.ProbabilityTheory.paleyZygmund": [
+            {
+              "outcome": "failed",
+              "seconds": 4.601,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.583,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.556,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.545,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.557,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.527,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 27.369,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.ProbabilityTheory.paleyZygmund": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 6817,
+      "changed_files": [
+        "LeanFrontier/Probability/MeasurePaleyZygmund.lean",
+        "Submissions/measure-paley-zygmund.json"
+      ],
+      "corpus_entrypoints_checked": 162,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.ProbabilityTheory.paleyZygmund": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.ProbabilityTheory.paleyZygmund",
+          "statement_sha256": "dd0479a25f1aca57b6e01aa98357ab92d6ce1a2683dbc2911ed722b59c83011a",
+          "type_dependencies": [
+            "AddCommMonoidWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "ContinuousENorm.toENorm",
+            "DivInvMonoid.toDiv",
+            "ENNReal",
+            "ENNReal.instAddCommMonoidWithOne",
+            "HDiv.hDiv",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "InnerProductSpace.toNormedSpace",
+            "LE.le",
+            "LT.lt",
+            "Measurable",
+            "MeasurableSpace",
+            "MeasureTheory.IsProbabilityMeasure",
+            "MeasureTheory.Measure",
+            "MeasureTheory.Measure.real",
+            "MeasureTheory.MemLp",
+            "MeasureTheory.integral",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "NonUnitalSeminormedCommRing.toNonUnitalSeminormedRing",
+            "NonUnitalSeminormedRing.toSeminormedAddCommGroup",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "NormedCommRing.toSeminormedCommRing",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "RCLike.toInnerProductSpaceReal",
+            "Real",
+            "Real.instDivInvMonoid",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instMonoid",
+            "Real.instMul",
+            "Real.instOne",
+            "Real.instRCLike",
+            "Real.instSub",
+            "Real.instZero",
+            "Real.measurableSpace",
+            "Real.normedAddCommGroup",
+            "Real.normedCommRing",
+            "Real.pseudoMetricSpace",
+            "SeminormedAddCommGroup.toSeminormedAddGroup",
+            "SeminormedAddGroup.toContinuousENorm",
+            "SeminormedAddGroup.toPseudoMetricSpace",
+            "SeminormedCommRing.toNonUnitalSeminormedCommRing",
+            "Set.ofPred",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instHDiv",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 5438,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 2
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "measure-paley-zygmund",
+  "trusted_receiver_revision": "075f80f46aee88c6f8d4abdd38125dda533aa142",
+  "validated_candidate_revision": "05648edd3fcaaad218e959f6b9c026ec5169e68d",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35728172542"
+}
