@@ -22,6 +22,7 @@ import LeanFrontier.LinearAlgebra.HoradamCompanionMatrixSpecializations
 import LeanFrontier.NumberTheory.CalkinWilf
 import LeanFrontier.NumberTheory.CalkinWilfSternBrocot
 import LeanFrontier.NumberTheory.DescartesCircle
+import LeanFrontier.NumberTheory.DiscriminantTower
 import LeanFrontier.NumberTheory.Farey
 import LeanFrontier.NumberTheory.FordCircle
 import LeanFrontier.NumberTheory.HoradamSequence
