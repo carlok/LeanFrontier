@@ -19,15 +19,22 @@ with a receiver observation.
 
 ## 2. Permitted changes
 
-An ordinary submission MAY add or modify mathematical source only below
+An ordinary submission MAY add new mathematical source files only below
 `LeanFrontier/`, and MUST add its single submission record. It MUST NOT modify
+or delete a file that already exists, including a module an earlier submission
+introduced: extend an accepted module by importing it from a new one. Changing
+an existing module is maintenance work, done in a `maintenance/` pull request.
+An ordinary submission also MUST NOT modify
 `.github/`, `tools/`, `policy/`, `schema/`, `lakefile.toml`,
 `lake-manifest.json`, `lean-toolchain`, `CONTRACT.md`, `README.md`,
 `MANIFEST.md`, prompts, tests, or any other trusted infrastructure.
 
 The receiver rejects binary files, archives, symlinks, generated payloads,
 hidden files outside the permitted source tree, and executable content that is
-not ordinary Lean source.
+not ordinary Lean source. Consumers build LeanFrontier from source and import
+it, so code that runs at build or import time is rejected too: `initialize`
+and `builtin_initialize`, `run_cmd`/`run_elab`/`run_meta`, simprocs, the
+`init`, `extern` and `implemented_by` attributes, and syntax extensions.
 
 ## 3. Lean source and trust boundary
 
@@ -89,8 +96,9 @@ A conjecture is **resolved** by a later submission that adds
 theorem collatz_bounded_holds : collatz_bounded := ...
 ```
 
-The resolving submission MUST NOT delete or rewrite the original definition.
-`CORPUS_REGRESSION` already enforces this, and keeping it preserves the dated
+The resolving submission MUST NOT delete or rewrite the original definition;
+it adds its theorem in a new module that imports the conjecture's. The
+add-only rule of section 2 enforces this, and keeping it preserves the dated
 chain from statement to proof.
 
 ## 4. Provenance and entrypoints
@@ -128,11 +136,12 @@ The receiver performs cheap checks before Lean compilation and fails closed on
 missing evidence. It enforces the versioned resource limits in
 `policy/limits.json`.
 
-A submission MAY modify a module an earlier submission introduced, but it MUST
-NOT remove, rename, or overwrite an entrypoint that an accepted submission
-declares. The receiver imports the accepted corpus alongside the candidate and
-rejects the difference as `CORPUS_REGRESSION`. Extending a module is ordinary;
-replacing somebody else's accepted result is not.
+A submission MUST NOT modify an existing module (section 2). Checking that an
+accepted entrypoint still exists protects its name, not its meaning: an edit to
+a definition it depends on would keep it compiling while changing what it says.
+The receiver also imports the accepted corpus alongside the candidate and
+rejects any accepted entrypoint the candidate no longer exposes as
+`CORPUS_REGRESSION`.
 
 Each public theorem is checked for exact normalized duplication against the
 baseline and the same submission, canonical propositional degeneracy, and

@@ -92,6 +92,60 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
         path.write_text("axiom bad : False\ntheorem new_result : True := True.intro\n")
         self.assert_rejected("UNAUTHORIZED_AXIOM")
 
+    def test_code_that_runs_on_import_or_build_is_rejected(self) -> None:
+        """Consumers build LeanFrontier from source and import it, so both run code.
+
+        An `initialize` block ran arbitrary IO in any file that merely imported
+        its module, and passed every earlier check.
+        """
+        path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
+        theorem = "theorem new_result (n : Nat) : n ^ 2 + 2 * n + 1 = (n + 1) ^ 2 := by omega\n"
+        for payload in (
+            'initialize do\n  IO.FS.writeFile "x" "y"\n',
+            "builtin_initialize pure ()\n",
+            "@[init initFn] opaque hook : Nat\n",
+            "attribute [init initFn] hook\n",
+            '@[extern "c_fn"] opaque native : Nat → Nat\n',
+            "@[implemented_by other] def fast : Nat := 0\n",
+            'run_cmd Lean.logInfo "x"\n',
+            "run_elab pure ()\n",
+            "run_meta pure ()\n",
+            "simproc reduceFoo (foo _) := fun _ => pure .continue\n",
+            "dsimproc reduceBar (bar _) := fun _ => pure .continue\n",
+            "macro_rules | `(tactic| trivial) => `(tactic| rfl)\n",
+            "elab_rules : tactic | `(tactic| trivial) => pure ()\n",
+            "declare_syntax_cat payload\n",
+        ):
+            with self.subTest(payload=payload.splitlines()[0]):
+                path.write_text(payload + theorem)
+                self.assert_rejected("SECURITY_POLICY_VIOLATION")
+
+    def test_ordinary_names_near_the_banned_words_are_accepted(self) -> None:
+        path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
+        path.write_text(
+            "namespace LeanFrontier.Algebra\n"
+            "def initialSegment (n : Nat) : Nat := n\n"
+            "def externalAngle (n : Nat) : Nat := n\n"
+            "theorem new_result (n : Nat) : initialSegment n + externalAngle n = 2 * n := by\n"
+            "  simp [initialSegment, externalAngle]; omega\n"
+            "end LeanFrontier.Algebra\n"
+        )
+        status, report = self.validate()
+        self.assertEqual(status, 0, report["diagnostics"])
+
+    def test_an_existing_module_cannot_be_modified(self) -> None:
+        """Only names of accepted results were protected, not their meaning.
+
+        Redefining something an accepted theorem depends on kept its name
+        compiling while changing what it says. Edits go through maintenance.
+        """
+        existing = self.candidate / "LeanFrontier" / "Algebra" / "Existing.lean"
+        existing.write_text(existing.read_text() + "-- a harmless-looking edit\n")
+        status, report = self.validate()
+        self.assertEqual(status, 1)
+        paths = {item.get("path") for item in report["diagnostics"] if item["code"] == "PATH_POLICY_VIOLATION"}  # type: ignore[union-attr]
+        self.assertIn("LeanFrontier/Algebra/Existing.lean", paths)
+
     def test_unauthorized_path_is_rejected(self) -> None:
         (self.candidate / "README.md").write_text("payload")
         self.assert_rejected("PATH_POLICY_VIOLATION")

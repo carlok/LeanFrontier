@@ -35,8 +35,17 @@ SUBMISSION_RE = re.compile(r"^Submissions/([a-z0-9][a-z0-9-]{2,63})\.json$")
 # root namespace once the prefix is removed, and leaves the next submission in
 # the same area no name to use.
 ENTRYPOINT_RE = re.compile(r"^LeanFrontier(?:\.[A-Za-z_][A-Za-z0-9_']*){2,}$")
+# Code that runs when a module is built or imported. Consumers build
+# LeanFrontier from source and import it, so either is code execution on their
+# machine: an `initialize` block ran arbitrary IO in a file that merely imported
+# its module. Attributes are matched only inside `@[...]` or `attribute [...]`,
+# where `init` cannot be an ordinary identifier.
 FORBIDDEN_SECURITY = re.compile(
-    r"\b(?:unsafe|run_tac|elab|macro|syntax)\b|#(?:eval|print|reduce|check|guard)", re.MULTILINE
+    r"\b(?:unsafe|run_tac|run_cmd|run_elab|run_meta|elab|elab_rules|macro|macro_rules|syntax"
+    r"|declare_syntax_cat|simproc|dsimproc|initialize|builtin_initialize|implemented_by|extern)\b"
+    r"|#(?:eval|print|reduce|check|guard)"
+    r"|(?:@|\battribute\s*)\[[^\]]*\b(?:init|builtin_init)\b",
+    re.MULTILINE,
 )
 SORRY_RE = re.compile(r"\b(?:sorry|sorryAx)\b")
 AXIOM_RE = re.compile(r"\baxiom\b")
@@ -376,6 +385,11 @@ def static_preflight(base: Path | None, candidate: Path, limits: dict[str, Any],
         if path is None:
             report.reject("PATH_POLICY_VIOLATION", "ordinary submissions may not delete files", relative)
             continue
+        if relative in before:
+            # Accepted results were protected by name only: redefining what an
+            # accepted theorem depends on kept its name compiling while changing
+            # what it says. Editing an existing module is maintenance work.
+            report.reject("PATH_POLICY_VIOLATION", "ordinary submissions may only add new files; changing an existing one is maintenance work", relative)
         if path.is_symlink():
             report.reject("SECURITY_POLICY_VIOLATION", "symlinks are not permitted", relative)
             continue
