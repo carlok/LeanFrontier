@@ -1,5 +1,5 @@
 import Mathlib.Data.Finset.Lattice.Fold
-import Mathlib.Data.Real.Basic
+import Mathlib.Basic.Real.Basic
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
 

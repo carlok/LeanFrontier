@@ -56,7 +56,7 @@ theorem card_circularOneTwoTilings_add_two (n : ℕ) :
     obtain ⟨l, -, rfl⟩ := Finset.mem_image.mp hxFalse
     obtain ⟨r, -, h⟩ := Finset.mem_image.mp hxTrue
     simp at h
-  rw [circularOneTwoTilings, if_pos htwo, hsub,
+  rw [circularOneTwoTilings, ite_eq_left htwo, hsub,
     Finset.card_union_of_disjoint hdisj,
     Finset.card_image_of_injective _ (by
       intro a b h

@@ -82,9 +82,9 @@ theorem thueMorse_two_mul_add_one (n : ℕ) : thueMorse (2 * n + 1) = !thueMorse
 theorem thueMorseSign_eq_ite (n : ℕ) :
     thueMorseSign n = if thueMorse n then -1 else 1 := by
   rcases Nat.even_or_odd (Nat.digits 2 n).sum with h | h
-  · rw [thueMorseSign, h.neg_one_pow, if_neg]
+  · rw [thueMorseSign, h.neg_one_pow, ite_eq_right]
     simp [thueMorse, Nat.not_odd_iff_even, h]
-  · rw [thueMorseSign, h.neg_one_pow, if_pos]
+  · rw [thueMorseSign, h.neg_one_pow, ite_eq_left]
     simp [thueMorse, h]
 
 private theorem thueMorseSign_two_mul (n : ℕ) : thueMorseSign (2 * n) = thueMorseSign n := by
