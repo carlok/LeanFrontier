@@ -11,6 +11,7 @@ import argparse
 import json
 import os
 import re
+import signal
 import subprocess
 import tempfile
 import time
@@ -557,7 +558,24 @@ def declared_public_facts(candidate: Path, paths: Iterable[str]) -> dict[str, di
 
 
 def run(command: list[str], cwd: Path, timeout: int) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(command, cwd=cwd, text=True, capture_output=True, timeout=timeout, check=False)
+    """Run `command`, killing its whole process group if it times out.
+
+    `subprocess.run` kills only its direct child. Every Lean step here is
+    `lake ...`, which starts `lean` underneath, so a timed-out probe left its
+    `lean` running under PID 1; orphans piled up across probes until memory
+    ran out. Each command now gets its own session, and the group dies with it.
+    """
+    with subprocess.Popen(command, cwd=cwd, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True) as process:
+        try:
+            stdout, stderr = process.communicate(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            try:
+                os.killpg(process.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            process.communicate()
+            raise
+    return subprocess.CompletedProcess(command, process.returncode, stdout, stderr)
 
 
 def failure_output(result: subprocess.CompletedProcess[str], limit: int = 2000) -> str:
@@ -804,17 +822,27 @@ def conjecture_quota(base: Path | None, candidate: Path, modules: list[str], ent
             f"against an allowance of {allowance} from {theorems.get(who, 0)} accepted theorems")
 
 
-def probe_goal(candidate: Path, probe_file: Path, goal: str, triviality: dict[str, Any]) -> str | None:
-    """First bounded tactic that closes `goal` from the baseline, if any."""
+def probe_goal(candidate: Path, probe_file: Path, goal: str, triviality: dict[str, Any], runs: list[dict[str, Any]] | None = None) -> str | None:
+    """First bounded tactic that closes `goal` from the baseline, if any.
+
+    Each attempt is appended to `runs` with its outcome and wall time, so a
+    long receiver run shows whether the probes or the host were slow.
+    """
     for tactic in triviality["baseline_probes"]:
         probe_file.write_text(
             "import Mathlib\nimport LeanFrontier\n\n" f"example {goal} := by\n  {tactic}\n",
             encoding="utf-8")
+        started = time.monotonic()
         try:
             result = run(["lake", "env", "lean", str(probe_file)], candidate, triviality["probe_timeout_seconds"])
-        except (OSError, subprocess.TimeoutExpired):
-            continue
-        if result.returncode == 0:
+            outcome = "closed" if result.returncode == 0 else "failed"
+        except subprocess.TimeoutExpired:
+            outcome = "timeout"
+        except OSError:
+            outcome = "error"
+        if runs is not None:
+            runs.append({"tactic": tactic, "outcome": outcome, "seconds": round(time.monotonic() - started, 3)})
+        if outcome == "closed":
             return tactic
     return None
 
@@ -842,9 +870,11 @@ def baseline_probes(candidate: Path, modules: list[str], submitted: list[str], e
         goals.setdefault(name, body)
         kinds.setdefault(name, "conjecture")
     outcomes: dict[str, str] = {}
+    runs: dict[str, list[dict[str, Any]]] = {}
     for entrypoint, body in goals.items():
         conjecture = kinds.get(entrypoint) == "conjecture"
-        proved = probe_goal(candidate, probe_file, body, triviality)
+        attempts = runs.setdefault(entrypoint, [])
+        proved = probe_goal(candidate, probe_file, body, triviality, attempts)
         if proved:
             outcomes[entrypoint] = proved
             if conjecture:
@@ -854,13 +884,20 @@ def baseline_probes(candidate: Path, modules: list[str], submitted: list[str], e
             continue
         if conjecture:
             # `body` is `: P`, so the negation goal is `: ¬(P)`.
-            refuted = probe_goal(candidate, probe_file, f": ¬({body.lstrip()[1:].strip()})", triviality)
+            refuted = probe_goal(candidate, probe_file, f": ¬({body.lstrip()[1:].strip()})", triviality, attempts)
             if refuted:
                 outcomes[entrypoint] = f"refuted by {refuted}"
                 report.reject("CONJECTURE_REFUTED", f"baseline-only probe '{refuted}' proved the negation of {entrypoint}")
                 continue
         outcomes.setdefault(entrypoint, "inconclusive")
     report.observations["baseline_triviality_probes"] = outcomes
+    every = [attempt for attempts in runs.values() for attempt in attempts]
+    report.observations["baseline_probe_runs"] = {
+        "attempts": len(every),
+        "timeouts": sum(attempt["outcome"] == "timeout" for attempt in every),
+        "seconds": round(sum(attempt["seconds"] for attempt in every), 3),
+        "by_entrypoint": runs,
+    }
 
 
 def downstream_smoke(candidate: Path, modules: list[str], entrypoints: list[str], report: Report) -> None:
