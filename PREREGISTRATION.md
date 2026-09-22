@@ -156,7 +156,7 @@ between then and now, so that the analysis can account for them. The
 hypothesis, the primary metric, the stopping point and the decision rule are
 unchanged.
 
-The receiver is still identical across arms, as the design requires. Four
+The receiver is still identical across arms, as the design requires. Five
 changes landed:
 
 - **#193**: a rejected build now reports the Lean errors in the submitter's own
@@ -169,6 +169,9 @@ changes landed:
   build or import time is rejected.
 - **#239**: deprecation warnings in the submission's own files are rejected as
   `DEPRECATED_API`.
+- **#241**: a conjecture the claim does not list as an entrypoint is now probed
+  in both directions, as the contract always required. It was silently skipped
+  before. None of the three arm-tagged submissions is a conjecture.
 
 **The add-only rule interacts with the primary metric.** Before #216, a
 submission could extend an accepted module by editing it, which creates no
