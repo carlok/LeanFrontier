@@ -1,5 +1,6 @@
 import LeanFrontier.NumberTheory.SternBrocot
 import LeanFrontier.NumberTheory.SternBrocot.Intervals
+import Mathlib.Data.List.Induction
 
 /-!
 # Stern-Brocot nodes as interval mediants
@@ -48,7 +49,7 @@ theorem mediant_bounds_eq_pair (path : List Bool) :
       (bounds path).1.2 + (bounds path).2.2 = ((pair path).2 : ℤ) := by
   induction path with
   | nil =>
-      norm_num [bounds, pair]
+      rfl
   | cons dir path ih =>
       rw [bounds_cons]
       cases dir
