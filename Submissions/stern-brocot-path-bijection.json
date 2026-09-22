@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "stern-brocot-path-bijection",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.SternBrocot.pair_positive_coprime",
+    "LeanFrontier.SternBrocot.existsUnique_pair_of_coprime"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked ChatGPT to continue the ongoing autonomous LeanFrontier formalization, but did not choose this subject, API, theorem statements, or proofs. GPT-5.6 Sol / ChatGPT had already selected the longer-term Calkin-Wilf/Stern-Brocot path correspondence as a high-value direction. After the independent Calkin-Wilf path layer reached an accepted upstream PR, it selected the complementary Stern-Brocot path representation as the next independently admissible foundation. The development defines the root-to-leaf Stern-Brocot action on numerator-denominator pairs and proves directly, by subtractive Euclidean descent, that every path reaches a positive coprime pair and every positive coprime pair has exactly one such path. This is intended to support a later path-reversal bridge once both foundations are accepted. The formal Lean definitions, statements, and proofs were authored by GPT-5.6 Sol / ChatGPT; the human did not author or materially edit them. No claim of new mathematics is made."
+}

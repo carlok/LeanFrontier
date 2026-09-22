@@ -1,0 +1,253 @@
+{
+  "accepted_revision": "1c6bcaa3eff6b2212a939e70948a07003d4313c3",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T09:09:04+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 160.061,
+    "observed": {
+      "added_lines": 74,
+      "audited_declarations": {
+        "LeanFrontier.Nat.card_circularOneTwoTilings_add_two": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.card_circularOneTwoTilings_add_two",
+          "restatement": false,
+          "statement_sha256": "d26b3a040f0d0d552d3f336f676c7511eb5063671ef5abd024194a76a0ee1ffb",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Finset.card",
+            "HAdd.hAdd",
+            "LeanFrontier.Nat.circularOneTwoTilings",
+            "LeanFrontier.Nat.lucas",
+            "List",
+            "Nat",
+            "OfNat.ofNat",
+            "Prod",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.circularOneTwoTilings": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Nat.circularOneTwoTilings",
+          "restatement": false,
+          "statement_sha256": "1aa9f9f5f8ca8e392fd91a82e96d119639399f788920990b0c183a82f495f180",
+          "type_dependencies": [
+            "Bool",
+            "Finset",
+            "List",
+            "Nat",
+            "Prod"
+          ]
+        },
+        "LeanFrontier.Nat.mem_circularOneTwoTilings_add_two": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.mem_circularOneTwoTilings_add_two",
+          "restatement": false,
+          "statement_sha256": "65695fe4ea64d79c8b4303513fd2aeb9d2aa0ca2c2689cb829ecf9f031ed2059",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "Finset",
+            "Finset.instSetLike",
+            "HAdd.hAdd",
+            "Iff",
+            "LeanFrontier.Nat.circularOneTwoTilings",
+            "LeanFrontier.Nat.oneTwoCompositions",
+            "List",
+            "Membership.mem",
+            "Nat",
+            "OfNat.ofNat",
+            "Or",
+            "Prod",
+            "Prod.mk",
+            "SetLike.instMembership",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.Nat.card_circularOneTwoTilings_add_two": [
+            {
+              "outcome": "failed",
+              "seconds": 5.286,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.167,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.205,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.26,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.302,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.237,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Nat.mem_circularOneTwoTilings_add_two": [
+            {
+              "outcome": "failed",
+              "seconds": 5.123,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.067,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.915,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.13,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.953,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.009,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 61.654,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Nat.card_circularOneTwoTilings_add_two": "inconclusive",
+        "LeanFrontier.Nat.mem_circularOneTwoTilings_add_two": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4848,
+      "changed_files": [
+        "LeanFrontier/Combinatorics/CircularDominoTilings.lean",
+        "Submissions/circular-tilings-lucas.json"
+      ],
+      "corpus_entrypoints_checked": 146,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Nat.card_circularOneTwoTilings_add_two": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.card_circularOneTwoTilings_add_two",
+          "statement_sha256": "d26b3a040f0d0d552d3f336f676c7511eb5063671ef5abd024194a76a0ee1ffb",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Finset.card",
+            "HAdd.hAdd",
+            "LeanFrontier.Nat.circularOneTwoTilings",
+            "LeanFrontier.Nat.lucas",
+            "List",
+            "Nat",
+            "OfNat.ofNat",
+            "Prod",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Nat.mem_circularOneTwoTilings_add_two": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.mem_circularOneTwoTilings_add_two",
+          "statement_sha256": "65695fe4ea64d79c8b4303513fd2aeb9d2aa0ca2c2689cb829ecf9f031ed2059",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "Finset",
+            "Finset.instSetLike",
+            "HAdd.hAdd",
+            "Iff",
+            "LeanFrontier.Nat.circularOneTwoTilings",
+            "LeanFrontier.Nat.oneTwoCompositions",
+            "List",
+            "Membership.mem",
+            "Nat",
+            "OfNat.ofNat",
+            "Or",
+            "Prod",
+            "Prod.mk",
+            "SetLike.instMembership",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3206,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 3
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "circular-tilings-lucas",
+  "trusted_receiver_revision": "08554385466a3d281d9e470c8fbd3c2cdc94ff19",
+  "validated_candidate_revision": "34d32cdbbc4eb186448ea1fb78a4e48694f7ee31",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35697694662"
+}

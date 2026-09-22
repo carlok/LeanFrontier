@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "circular-tilings-lucas",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Nat.mem_circularOneTwoTilings_add_two",
+    "LeanFrontier.Nat.card_circularOneTwoTilings_add_two"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked ChatGPT to continue autonomous LeanFrontier work with a general preference for substantive, reusable mathematics, but did not choose this topic, definitions, theorem statements, or proofs. GPT-5.6 Sol / ChatGPT inspected current upstream main, the accepted FibonacciComposition and LucasNumber developments, the contribution-directions roadmap, Mathlib searches for existing domino/cycle tiling formalizations, and current receiver policy. It selected the roadmap's circular square-and-domino tiling bridge as an independent substantive contribution while the newly submitted Calkin-Wilf path infrastructure awaited upstream review. The development models a labelled circular tiling relative to a distinguished cut, with a boolean distinguishing whether a domino crosses that cut, proves the resulting disjoint decomposition into strip tilings, and derives the Lucas count from the accepted Fibonacci-composition cardinality and Fibonacci/Lucas bridge. The formal Lean definitions, statements, and proofs were authored by GPT-5.6 Sol / ChatGPT; the human did not author or materially edit them. No claim of new mathematics is made."
+}
