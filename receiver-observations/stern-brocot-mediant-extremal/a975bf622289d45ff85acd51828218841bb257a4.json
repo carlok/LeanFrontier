@@ -1,0 +1,223 @@
+{
+  "accepted_revision": "a975bf622289d45ff85acd51828218841bb257a4",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T10:55:07+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 161.543,
+    "observed": {
+      "added_lines": 53,
+      "audited_declarations": {
+        "LeanFrontier.SternBrocot.mediant_isStrictlyBetween_bounds": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.mediant_isStrictlyBetween_bounds",
+          "restatement": false,
+          "statement_sha256": "5ac3c51f75362d705fb0d8cabbfb98cf644e1e25869980f5f3359c587a2a49a6",
+          "type_dependencies": [
+            "Bool",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "LeanFrontier.Farey.IsStrictlyBetween",
+            "LeanFrontier.SternBrocot.bounds",
+            "List",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.SternBrocot.mediant_leastDenominator_bounds": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.mediant_leastDenominator_bounds",
+          "restatement": false,
+          "statement_sha256": "955ce58db6aaece9e19a80ba9302b65fa54a15ae21437f4019c11394be54935a",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "Eq",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "Int.instLEInt",
+            "Int.instLTInt",
+            "LE.le",
+            "LT.lt",
+            "LeanFrontier.Farey.IsStrictlyBetween",
+            "LeanFrontier.SternBrocot.bounds",
+            "List",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instHAdd",
+            "instOfNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.SternBrocot.mediant_isStrictlyBetween_bounds": [
+            {
+              "outcome": "failed",
+              "seconds": 5.067,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.034,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.099,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.103,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.963,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.043,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.SternBrocot.mediant_leastDenominator_bounds": [
+            {
+              "outcome": "failed",
+              "seconds": 5.094,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.148,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.145,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.036,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.008,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.099,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 60.839,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SternBrocot.mediant_isStrictlyBetween_bounds": "inconclusive",
+        "LeanFrontier.SternBrocot.mediant_leastDenominator_bounds": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 3735,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SternBrocot/Extremal.lean",
+        "Submissions/stern-brocot-mediant-extremal.json"
+      ],
+      "corpus_entrypoints_checked": 155,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SternBrocot.mediant_isStrictlyBetween_bounds": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.mediant_isStrictlyBetween_bounds",
+          "statement_sha256": "5ac3c51f75362d705fb0d8cabbfb98cf644e1e25869980f5f3359c587a2a49a6",
+          "type_dependencies": [
+            "Bool",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "LeanFrontier.Farey.IsStrictlyBetween",
+            "LeanFrontier.SternBrocot.bounds",
+            "List",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.SternBrocot.mediant_leastDenominator_bounds": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.mediant_leastDenominator_bounds",
+          "statement_sha256": "955ce58db6aaece9e19a80ba9302b65fa54a15ae21437f4019c11394be54935a",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "Eq",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "Int.instLEInt",
+            "Int.instLTInt",
+            "LE.le",
+            "LT.lt",
+            "LeanFrontier.Farey.IsStrictlyBetween",
+            "LeanFrontier.SternBrocot.bounds",
+            "List",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instHAdd",
+            "instOfNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2246,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 2
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "stern-brocot-mediant-extremal",
+  "trusted_receiver_revision": "82ebfdb635700c7d15f2902d317e851c49df04b0",
+  "validated_candidate_revision": "e0bf9ae40ae1fa83ca8e6bff4bc1ea024ab3b77e",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35706896917"
+}

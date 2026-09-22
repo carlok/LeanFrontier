@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "stern-brocot-mediant-extremal",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.SternBrocot.mediant_isStrictlyBetween_bounds",
+    "LeanFrontier.SternBrocot.mediant_leastDenominator_bounds"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked ChatGPT to continue autonomous LeanFrontier work with a preference for substantive, reusable mathematics, but did not choose this theorem or its formal statement. After the Stern-Brocot interval invariant submission merged upstream, GPT-5.6 Sol / ChatGPT selected the natural extremal consequence that composes that interval state with the already accepted Farey least-denominator theory. The first theorem proves directly from the accepted crossDet_bounds invariant that the current mediant is strictly between the two boundary pairs in Farey's cross-multiplied sense, including outer-spine states. The second specializes the accepted Farey denominator lower bound and equality theorem to positive-denominator Stern-Brocot intervals, proving sharp minimality and the numerator uniqueness case. The formal Lean statements and proofs were authored by GPT-5.6 Sol / ChatGPT; the human did not author or materially edit them. No claim of new mathematics is made."
+}
