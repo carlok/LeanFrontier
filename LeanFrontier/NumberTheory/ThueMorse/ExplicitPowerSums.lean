@@ -1,8 +1,7 @@
 import LeanFrontier.NumberTheory.PowerSums
 import LeanFrontier.NumberTheory.ThueMorse
-import Mathlib.Tactic.Nlinarith
+import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.NormNum
-import Mathlib.Tactic.Omega
 
 /-!
 # Explicit Thue-Morse cube sums
@@ -32,7 +31,7 @@ theorem sum_cubes_thueMorse_partition (k : ℕ) :
       ∧
     (∑ n ∈ (range (2 ^ (k + 4))).filter (fun n => thueMorse n = true), n ^ 3)
           = 32 * (2 ^ k) ^ 2 * (2 ^ (k + 4) - 1) ^ 2 := by
-  have heq := sum_pow_eq_sum_pow_thueMorse (j := 3) (k := k + 4) (by omega)
+  have heq := sum_pow_eq_sum_pow_thueMorse (j := 3) (k := k + 4) (by nlinarith)
   have hfilter :
       (range (2 ^ (k + 4))).filter (fun n => ¬ thueMorse n = false)
         = (range (2 ^ (k + 4))).filter (fun n => thueMorse n = true) :=
