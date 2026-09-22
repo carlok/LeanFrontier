@@ -143,12 +143,29 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("branches: [main]", RECONCILE_WORKFLOW)
         self.assertIn("gh pr update-branch", RECONCILE_WORKFLOW)
         self.assertIn('startswith("automation/generated/")', RECONCILE_WORKFLOW)
-        self.assertIn('select(.mergeStateStatus == "BEHIND")', RECONCILE_WORKFLOW)
         # Only the app's own generated output, never a contributor's branch.
         self.assertIn('.author.login == "app/${{ steps.app-token.outputs.app-slug }}"', RECONCILE_WORKFLOW)
-        # Mergeability is computed asynchronously; a single read races the push.
-        self.assertIn('select(.mergeStateStatus == "UNKNOWN")', RECONCILE_WORKFLOW)
         self.assertIn("actions/create-github-app-token", RECONCILE_WORKFLOW)
+
+    def test_generated_pull_request_staleness_is_read_from_git(self) -> None:
+        """#184 and #199 read neither BEHIND nor UNKNOWN right after main moved.
+
+        mergeStateStatus is recomputed lazily, and required checks that were
+        still pending when main moved hide BEHIND behind another state. The
+        commit graph answers the question directly.
+        """
+        self.assertIn("/compare/${base}...${sha}", RECONCILE_WORKFLOW)
+        self.assertIn("--jq .behind_by", RECONCILE_WORKFLOW)
+        self.assertNotIn(".mergeStateStatus", RECONCILE_WORKFLOW)
+        # A generated pull request whose head was pushed after the last merge's
+        # reconcile listed pull requests is caught when its checks complete.
+        self.assertIn("workflow_run:", RECONCILE_WORKFLOW)
+        self.assertIn("workflows: [test, validate-submission]", RECONCILE_WORKFLOW)
+        self.assertIn("types: [completed]", RECONCILE_WORKFLOW)
+        # workflow_run carries a write token even for fork runs: the job must
+        # never check out or execute the triggering run's code.
+        self.assertNotIn("actions/checkout", RECONCILE_WORKFLOW)
+        self.assertNotIn("github.event.workflow_run.head", RECONCILE_WORKFLOW)
 
     def test_catalogue_defers_to_the_observation_writer(self) -> None:
         """Racing it can only publish a render without receiver-report links."""
