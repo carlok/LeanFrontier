@@ -53,12 +53,12 @@ theorem mediant_bounds_eq_pair (path : List Bool) :
   | cons dir path ih =>
       rw [bounds_cons]
       cases dir
-      · simp only [mapBounds, mapPair, Bool.false_eq_true, if_false, Prod.fst, Prod.snd, pair]
+      · simp only [mapBounds, mapPair, Bool.false_eq_true, ite_false, Prod.fst, Prod.snd, pair]
         constructor
         · exact ih.1
         · rw [Nat.cast_add]
           omega
-      · simp only [mapBounds, mapPair, if_true, Prod.fst, Prod.snd, pair]
+      · simp only [mapBounds, mapPair, ite_true, Prod.fst, Prod.snd, pair]
         constructor
         · rw [Nat.cast_add]
           omega
