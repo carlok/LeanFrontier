@@ -1,0 +1,226 @@
+{
+  "accepted_revision": "1bacfad752c35f0133d4311550543b2b6044ddfe",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T08:56:35+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 159.824,
+    "observed": {
+      "added_lines": 147,
+      "audited_declarations": {
+        "LeanFrontier.SternBrocot.existsUnique_pair_of_coprime": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.existsUnique_pair_of_coprime",
+          "restatement": false,
+          "statement_sha256": "2d51641f6d39e00ed4d94bbfdb0025554dda64523e1b4379f7ecc151e032d190",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "ExistsUnique",
+            "LT.lt",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "Nat",
+            "Nat.Coprime",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.mk",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternBrocot.pair": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.SternBrocot.pair",
+          "restatement": false,
+          "statement_sha256": "8457fb58938baccf8ce7099385a3fed039f6f958533fbc21ef66ea188a18813e",
+          "type_dependencies": [
+            "Bool",
+            "List",
+            "Nat",
+            "Prod"
+          ]
+        },
+        "LeanFrontier.SternBrocot.pair_positive_coprime": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.pair_positive_coprime",
+          "restatement": false,
+          "statement_sha256": "0def422f8307687347e698908d413aba50fc1209365e29e5da676d919d4d9152",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "LT.lt",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "Nat",
+            "Nat.Coprime",
+            "OfNat.ofNat",
+            "Prod.fst",
+            "Prod.snd",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.SternBrocot.existsUnique_pair_of_coprime": [
+            {
+              "outcome": "failed",
+              "seconds": 5.223,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.211,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.156,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.15,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.094,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.092,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.SternBrocot.pair_positive_coprime": [
+            {
+              "outcome": "failed",
+              "seconds": 5.079,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.169,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.182,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.201,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.216,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.201,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 61.974,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SternBrocot.existsUnique_pair_of_coprime": "inconclusive",
+        "LeanFrontier.SternBrocot.pair_positive_coprime": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 6943,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SternBrocot.lean",
+        "Submissions/stern-brocot-path-bijection.json"
+      ],
+      "corpus_entrypoints_checked": 144,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SternBrocot.existsUnique_pair_of_coprime": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.existsUnique_pair_of_coprime",
+          "statement_sha256": "2d51641f6d39e00ed4d94bbfdb0025554dda64523e1b4379f7ecc151e032d190",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "ExistsUnique",
+            "LT.lt",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "Nat",
+            "Nat.Coprime",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.mk",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.SternBrocot.pair_positive_coprime": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.pair_positive_coprime",
+          "statement_sha256": "0def422f8307687347e698908d413aba50fc1209365e29e5da676d919d4d9152",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "LT.lt",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "Nat",
+            "Nat.Coprime",
+            "OfNat.ofNat",
+            "Prod.fst",
+            "Prod.snd",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 5443,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 4
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "stern-brocot-path-bijection",
+  "trusted_receiver_revision": "61576bfa49976f94cadb82482284a3c18ad91e27",
+  "validated_candidate_revision": "d72e80cd88bb606e727a6950a995610f2a9bf5fe",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35696724456"
+}
