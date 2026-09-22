@@ -1,0 +1,169 @@
+{
+  "accepted_revision": "5cfadeef4bf0262ea553633d0f72c0edd17c2391",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T08:34:48+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 103.936,
+    "observed": {
+      "added_lines": 63,
+      "audited_declarations": {
+        "LeanFrontier.FordCircle.farey_mediant_descartes_configuration": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.FordCircle.farey_mediant_descartes_configuration",
+          "restatement": false,
+          "statement_sha256": "43d7d1a707d77915017106285019b9a6593b31baeef9ec863c1fc0784fca3144",
+          "type_dependencies": [
+            "And",
+            "Complex",
+            "Complex.instNormedAddCommGroup",
+            "Complex.instNormedField",
+            "Eq",
+            "EuclideanGeometry.Sphere.IsExtTangent",
+            "HAdd.hAdd",
+            "Inv.inv",
+            "LT.lt",
+            "LeanFrontier.DescartesCircle.IsQuadruple",
+            "LeanFrontier.FordCircle.euclideanSphere",
+            "LeanFrontier.FordCircle.radius",
+            "LeanFrontier.Mediant.crossDet",
+            "NonUnitalSeminormedCommRing.toNonUnitalSeminormedRing",
+            "NonUnitalSeminormedRing.toSeminormedAddCommGroup",
+            "NormedCommRing.toSeminormedCommRing",
+            "NormedField.toMetricSpace",
+            "NormedField.toNormedCommRing",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Real",
+            "Real.commRing",
+            "Real.instAdd",
+            "Real.instField",
+            "Real.instInv",
+            "Real.instLT",
+            "Real.instOne",
+            "Real.instZero",
+            "SeminormedAddCommGroup.toNormedAddTorsor",
+            "SeminormedCommRing.toNonUnitalSeminormedCommRing",
+            "Zero.toOfNat0",
+            "instHAdd",
+            "instInnerProductSpaceRealComplex"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.FordCircle.farey_mediant_descartes_configuration": [
+            {
+              "outcome": "failed",
+              "seconds": 5.027,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.94,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.948,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.937,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.916,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.939,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 29.707,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.FordCircle.farey_mediant_descartes_configuration": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4176,
+      "changed_files": [
+        "LeanFrontier/Geometry/FordCircleDescartes.lean",
+        "Submissions/ford-farey-descartes-configuration.json"
+      ],
+      "corpus_entrypoints_checked": 136,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.FordCircle.farey_mediant_descartes_configuration": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.FordCircle.farey_mediant_descartes_configuration",
+          "statement_sha256": "43d7d1a707d77915017106285019b9a6593b31baeef9ec863c1fc0784fca3144",
+          "type_dependencies": [
+            "And",
+            "Complex",
+            "Complex.instNormedAddCommGroup",
+            "Complex.instNormedField",
+            "Eq",
+            "EuclideanGeometry.Sphere.IsExtTangent",
+            "HAdd.hAdd",
+            "Inv.inv",
+            "LT.lt",
+            "LeanFrontier.DescartesCircle.IsQuadruple",
+            "LeanFrontier.FordCircle.euclideanSphere",
+            "LeanFrontier.FordCircle.radius",
+            "LeanFrontier.Mediant.crossDet",
+            "NonUnitalSeminormedCommRing.toNonUnitalSeminormedRing",
+            "NonUnitalSeminormedRing.toSeminormedAddCommGroup",
+            "NormedCommRing.toSeminormedCommRing",
+            "NormedField.toMetricSpace",
+            "NormedField.toNormedCommRing",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Real",
+            "Real.commRing",
+            "Real.instAdd",
+            "Real.instField",
+            "Real.instInv",
+            "Real.instLT",
+            "Real.instOne",
+            "Real.instZero",
+            "SeminormedAddCommGroup.toNormedAddTorsor",
+            "SeminormedCommRing.toNonUnitalSeminormedCommRing",
+            "Zero.toOfNat0",
+            "instHAdd",
+            "instInnerProductSpaceRealComplex"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2603,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "ford-farey-descartes-configuration",
+  "trusted_receiver_revision": "01ff0171762c971162ed5b07395d815778f227ec",
+  "validated_candidate_revision": "265cbb71ac880c1349cf28490a23c3f6253b6896",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35690008011"
+}
