@@ -34,6 +34,7 @@ import LeanFrontier.NumberTheory.PowerSums
 import LeanFrontier.NumberTheory.SternBrocot
 import LeanFrontier.NumberTheory.SternBrocot.Extremal
 import LeanFrontier.NumberTheory.SternBrocot.Intervals
+import LeanFrontier.NumberTheory.SternBrocot.NodeInterval
 import LeanFrontier.NumberTheory.SternDiatomic
 import LeanFrontier.NumberTheory.SternDiatomic.Enumeration
 import LeanFrontier.NumberTheory.SternDiatomic.RowMaximum
