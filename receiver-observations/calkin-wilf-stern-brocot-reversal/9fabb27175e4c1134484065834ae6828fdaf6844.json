@@ -1,0 +1,193 @@
+{
+  "accepted_revision": "9fabb27175e4c1134484065834ae6828fdaf6844",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T10:46:41+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 112.262,
+    "observed": {
+      "added_lines": 39,
+      "audited_declarations": {
+        "LeanFrontier.CalkinWilf.pair_eq_sternBrocot_iff_reverse": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.pair_eq_sternBrocot_iff_reverse",
+          "restatement": false,
+          "statement_sha256": "cf0c39da0443b2231a79c08735e6aa979e2716e746107d14f1b67ce04d02eac3",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "LeanFrontier.CalkinWilf.pair",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "List.reverse",
+            "Nat",
+            "Prod"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.pair_reverse_eq_sternBrocot": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.pair_reverse_eq_sternBrocot",
+          "restatement": false,
+          "statement_sha256": "5443ada51e1effc87ddd47dbce43f0d153abdcb6ab28e86636d7bc4c0a2912d3",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.CalkinWilf.pair",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "List.reverse",
+            "Nat",
+            "Prod"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.CalkinWilf.pair_eq_sternBrocot_iff_reverse": [
+            {
+              "outcome": "failed",
+              "seconds": 3.629,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.517,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.461,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.453,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.452,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.49,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.CalkinWilf.pair_reverse_eq_sternBrocot": [
+            {
+              "outcome": "failed",
+              "seconds": 3.585,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.437,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.468,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.448,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.492,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.631,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 42.063,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.CalkinWilf.pair_eq_sternBrocot_iff_reverse": "inconclusive",
+        "LeanFrontier.CalkinWilf.pair_reverse_eq_sternBrocot": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 2869,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/CalkinWilfSternBrocot.lean",
+        "Submissions/calkin-wilf-stern-brocot-reversal.json"
+      ],
+      "corpus_entrypoints_checked": 153,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.CalkinWilf.pair_eq_sternBrocot_iff_reverse": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.pair_eq_sternBrocot_iff_reverse",
+          "statement_sha256": "cf0c39da0443b2231a79c08735e6aa979e2716e746107d14f1b67ce04d02eac3",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "LeanFrontier.CalkinWilf.pair",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "List.reverse",
+            "Nat",
+            "Prod"
+          ]
+        },
+        "LeanFrontier.CalkinWilf.pair_reverse_eq_sternBrocot": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.CalkinWilf.pair_reverse_eq_sternBrocot",
+          "statement_sha256": "5443ada51e1effc87ddd47dbce43f0d153abdcb6ab28e86636d7bc4c0a2912d3",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.CalkinWilf.pair",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "List.reverse",
+            "Nat",
+            "Prod"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 1475,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 2
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "calkin-wilf-stern-brocot-reversal",
+  "trusted_receiver_revision": "1d283b9d870335406c8d67e88c04d9d762886d82",
+  "validated_candidate_revision": "6298120a2579fb07d353515ae89cf22fa01a3840",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35706195806"
+}

@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "stern-diatomic-row-max",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.SternDiatomic.fib_is_max_on_dyadic_row"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked ChatGPT to continue autonomous LeanFrontier work with a preference for substantive, reusable mathematics, but did not choose this theorem, statement, or proof. GPT-5.6 Sol / ChatGPT inspected the live Stern-diatomic development, Mathlib's Fibonacci API, and the contribution-directions roadmap, then selected the classical Fibonacci row-maximum theorem as an independent strengthening while the newer path-representation PRs remained under upstream review. The proof establishes a stronger adjacent-pair bound on each dyadic row and constructively exhibits adjacent Stern pairs in both Fibonacci orientations, yielding both the upper bound and an attaining index. The formal Lean statement and proof were authored by GPT-5.6 Sol / ChatGPT; the human did not author or materially edit them. No claim of new mathematics is made."
+}

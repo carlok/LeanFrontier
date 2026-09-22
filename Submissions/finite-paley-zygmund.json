@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "finite-paley-zygmund",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.FiniteProbability.paleyZygmund"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked ChatGPT to audit underrepresented LeanFrontier areas and autonomously begin a new non-trivial formalization unrelated to the currently dense Stern/Farey/Calkin-Wilf clusters. GPT-5.6 Sol / ChatGPT inspected live upstream main, the current add-only contract and submitter guidance, sparse subject directories, and Mathlib coverage. Hall's marriage theorem, Erdos-Szekeres, Sperner, and Erdos-Ko-Rado were rejected as targets because Mathlib already contains them. Probability remained essentially empty in LeanFrontier, and searches found no Paley-Zygmund or second-moment-method theorem in Mathlib or LeanFrontier. The selected theorem is a finite weighted Paley-Zygmund inequality: for nonnegative normalized weights and a nonnegative observable, the weighted mass of the strict superlevel set times the second moment dominates the square of (1-theta) times the first moment. The proof uses threshold decomposition and finite weighted Cauchy-Schwarz, providing reusable second-moment infrastructure and a natural future path to PMF and measure-theoretic specializations. The formal Lean statement and proof were authored by GPT-5.6 Sol / ChatGPT; the human did not author or materially edit them. No claim of new mathematics is made."
+}

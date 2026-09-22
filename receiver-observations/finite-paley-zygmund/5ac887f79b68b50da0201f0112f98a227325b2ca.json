@@ -1,0 +1,167 @@
+{
+  "accepted_revision": "5ac887f79b68b50da0201f0112f98a227325b2ca",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T11:12:31+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 146.6,
+    "observed": {
+      "added_lines": 141,
+      "audited_declarations": {
+        "LeanFrontier.FiniteProbability.paleyZygmund": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.FiniteProbability.paleyZygmund",
+          "restatement": false,
+          "statement_sha256": "51732e88af0738f451b0ae267a758557a5d0d7303901303a91873bc5a19abeab",
+          "type_dependencies": [
+            "Eq",
+            "Finset",
+            "Finset.filter",
+            "Finset.instSetLike",
+            "Finset.sum",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LE.le",
+            "LT.lt",
+            "Membership.mem",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Real",
+            "Real.decidableLT",
+            "Real.instAddCommMonoid",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instMonoid",
+            "Real.instMul",
+            "Real.instOne",
+            "Real.instSub",
+            "Real.instZero",
+            "SetLike.instMembership",
+            "Zero.toOfNat0",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.FiniteProbability.paleyZygmund": [
+            {
+              "outcome": "failed",
+              "seconds": 5.894,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.832,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.689,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.819,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.692,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.747,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 34.673,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.FiniteProbability.paleyZygmund": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 6483,
+      "changed_files": [
+        "LeanFrontier/Probability/PaleyZygmund.lean",
+        "Submissions/finite-paley-zygmund.json"
+      ],
+      "corpus_entrypoints_checked": 158,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.FiniteProbability.paleyZygmund": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.FiniteProbability.paleyZygmund",
+          "statement_sha256": "51732e88af0738f451b0ae267a758557a5d0d7303901303a91873bc5a19abeab",
+          "type_dependencies": [
+            "Eq",
+            "Finset",
+            "Finset.filter",
+            "Finset.instSetLike",
+            "Finset.sum",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LE.le",
+            "LT.lt",
+            "Membership.mem",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Real",
+            "Real.decidableLT",
+            "Real.instAddCommMonoid",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instMonoid",
+            "Real.instMul",
+            "Real.instOne",
+            "Real.instSub",
+            "Real.instZero",
+            "SetLike.instMembership",
+            "Zero.toOfNat0",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 4806,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "finite-paley-zygmund",
+  "trusted_receiver_revision": "ea2f68ee75cc3b6e85eec1f2ac9f604594cf3a61",
+  "validated_candidate_revision": "7a9ec790ea290f4e9f8c11c03e83c978ea31fa92",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35708542574"
+}
