@@ -3,6 +3,10 @@ from __future__ import annotations
 import json
 import io
 import hashlib
+import os
+import signal
+import subprocess
+import time
 import tempfile
 import unittest
 from contextlib import redirect_stdout
@@ -382,6 +386,55 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
         finally:
             frontier_validate.run = original
         self.assertIn("unknown identifier", report.diagnostics[0].message)
+
+    def test_a_timed_out_command_leaves_no_orphaned_grandchild(self) -> None:
+        """A probe is `lake env lean`: killing only `lake` left `lean` running under PID 1.
+
+        Orphans accumulated across probes and exhausted memory on a small host.
+        """
+        pidfile = self.candidate / "grandchild.pid"
+        with self.assertRaises(subprocess.TimeoutExpired):
+            frontier_validate.run(["sh", "-c", f"sleep 60 & echo $! > {pidfile}; wait"], self.candidate, 1)
+        grandchild = int(pidfile.read_text())
+        deadline = time.time() + 5
+        while time.time() < deadline:
+            try:
+                os.kill(grandchild, 0)
+            except ProcessLookupError:
+                return
+            time.sleep(0.1)
+        os.kill(grandchild, signal.SIGKILL)
+        self.fail("the timed-out command's grandchild survived")
+
+    def test_probe_runs_are_timed_and_timeouts_counted(self) -> None:
+        outcomes = iter([subprocess.TimeoutExpired(["lake"], 10), 1, 0])
+
+        class Result:
+            stdout = stderr = ""
+
+            def __init__(self, code: int) -> None:
+                self.returncode = code
+
+        def fake_run(cmd, cwd, timeout):
+            outcome = next(outcomes)
+            if isinstance(outcome, Exception):
+                raise outcome
+            return Result(outcome)
+
+        original = frontier_validate.run
+        frontier_validate.run = fake_run
+        try:
+            runs: list[dict[str, object]] = []
+            proved = frontier_validate.probe_goal(
+                self.candidate, self.candidate / "probe.lean", ": True",
+                {"baseline_probes": ["simp", "omega", "decide"], "probe_timeout_seconds": 10}, runs,
+            )
+        finally:
+            frontier_validate.run = original
+        self.assertEqual(proved, "decide")
+        self.assertEqual([item["tactic"] for item in runs], ["simp", "omega", "decide"])
+        self.assertEqual([item["outcome"] for item in runs], ["timeout", "failed", "closed"])
+        self.assertTrue(all(isinstance(item["seconds"], float) for item in runs))
 
     def test_the_ignore_set_follows_the_repository_gitignore(self) -> None:
         """A submitter running the receiver in a working tree should see what CI sees."""

@@ -1,0 +1,122 @@
+{
+  "accepted_revision": "01e225d32be7f7713cd0a652dd699c26efd64f72",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T05:58:29+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 92.458,
+    "observed": {
+      "added_lines": 44,
+      "audited_declarations": {
+        "LeanFrontier.FiniteGroupCharacter.sum_div_eq_zero_of_ne": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.FiniteGroupCharacter.sum_div_eq_zero_of_ne",
+          "restatement": false,
+          "statement_sha256": "078811217712d84d05ddaa2e792f9ce42d27a55695898e3eb3d05b97abfc7561",
+          "type_dependencies": [
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "DivInvMonoid.toDiv",
+            "DivInvMonoid.toMonoid",
+            "DivisionRing.toDivInvMonoid",
+            "Eq",
+            "Field",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "Finset.sum",
+            "Finset.univ",
+            "Fintype",
+            "Group",
+            "Group.toDivInvMonoid",
+            "HDiv.hDiv",
+            "Monoid.toMulOneClass",
+            "MonoidHom",
+            "MonoidHom.instFunLike",
+            "MulOneClass.toMulOne",
+            "MulZeroClass.toZero",
+            "MulZeroOneClass.toMulOneClass",
+            "Ne",
+            "OfNat.ofNat",
+            "Semifield.toCommSemiring",
+            "Semiring.toAddCommMonoid",
+            "Zero.toOfNat0",
+            "instHDiv",
+            "instMulZeroClassOfSemiring",
+            "instMulZeroOneClassOfSemiring"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.FiniteGroupCharacter.sum_div_eq_zero_of_ne": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 2676,
+      "changed_files": [
+        "LeanFrontier/RepresentationTheory/FiniteGroupCharacter/Orthogonality.lean",
+        "Submissions/finite-character-orthogonality.json"
+      ],
+      "corpus_entrypoints_checked": 120,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.FiniteGroupCharacter.sum_div_eq_zero_of_ne": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.FiniteGroupCharacter.sum_div_eq_zero_of_ne",
+          "statement_sha256": "078811217712d84d05ddaa2e792f9ce42d27a55695898e3eb3d05b97abfc7561",
+          "type_dependencies": [
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "DivInvMonoid.toDiv",
+            "DivInvMonoid.toMonoid",
+            "DivisionRing.toDivInvMonoid",
+            "Eq",
+            "Field",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "Finset.sum",
+            "Finset.univ",
+            "Fintype",
+            "Group",
+            "Group.toDivInvMonoid",
+            "HDiv.hDiv",
+            "Monoid.toMulOneClass",
+            "MonoidHom",
+            "MonoidHom.instFunLike",
+            "MulOneClass.toMulOne",
+            "MulZeroClass.toZero",
+            "MulZeroOneClass.toMulOneClass",
+            "Ne",
+            "OfNat.ofNat",
+            "Semifield.toCommSemiring",
+            "Semiring.toAddCommMonoid",
+            "Zero.toOfNat0",
+            "instHDiv",
+            "instMulZeroClassOfSemiring",
+            "instMulZeroOneClassOfSemiring"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 1404,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "finite-character-orthogonality",
+  "trusted_receiver_revision": "2e83711e929c31b38e6280065483ed368b618c1d",
+  "validated_candidate_revision": "357bcfa19fcea761e4204da372c1d3709cef14be",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35656181001"
+}
