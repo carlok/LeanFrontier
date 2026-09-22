@@ -20,6 +20,7 @@ import LeanFrontier.LinearAlgebra.FibonacciMatrix
 import LeanFrontier.LinearAlgebra.HoradamCompanionMatrix
 import LeanFrontier.LinearAlgebra.HoradamCompanionMatrixSpecializations
 import LeanFrontier.NumberTheory.CalkinWilf
+import LeanFrontier.NumberTheory.CalkinWilfSternBrocot
 import LeanFrontier.NumberTheory.DescartesCircle
 import LeanFrontier.NumberTheory.Farey
 import LeanFrontier.NumberTheory.FordCircle
