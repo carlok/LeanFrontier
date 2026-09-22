@@ -1,0 +1,106 @@
+{
+  "accepted_revision": "606524387e44207494e49f32886572a1bd771075",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T06:09:25+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 77.788,
+    "observed": {
+      "added_lines": 84,
+      "audited_declarations": {
+        "LeanFrontier.FordCircle.mediant_is_unique_largest_in_farey_gap": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.FordCircle.mediant_is_unique_largest_in_farey_gap",
+          "restatement": false,
+          "statement_sha256": "e036783f594eb0e2768b499c2b143c9e578742acd93d16203826cc41fb526443",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "HAdd.hAdd",
+            "Iff",
+            "Int",
+            "Int.cast",
+            "Int.instAdd",
+            "Int.instCommRing",
+            "Int.instLTInt",
+            "LE.le",
+            "LT.lt",
+            "LeanFrontier.Farey.IsStrictlyBetween",
+            "LeanFrontier.FordCircle.radius",
+            "LeanFrontier.Mediant.crossDet",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instField",
+            "Real.instIntCast",
+            "Real.instLE",
+            "instHAdd",
+            "instOfNat"
+          ]
+        }
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.FordCircle.mediant_is_unique_largest_in_farey_gap": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4987,
+      "changed_files": [
+        "LeanFrontier/Geometry/FareyFordCircle.lean",
+        "Submissions/farey-ford-circle-maximality.json"
+      ],
+      "corpus_entrypoints_checked": 121,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.FordCircle.mediant_is_unique_largest_in_farey_gap": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.FordCircle.mediant_is_unique_largest_in_farey_gap",
+          "statement_sha256": "e036783f594eb0e2768b499c2b143c9e578742acd93d16203826cc41fb526443",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "HAdd.hAdd",
+            "Iff",
+            "Int",
+            "Int.cast",
+            "Int.instAdd",
+            "Int.instCommRing",
+            "Int.instLTInt",
+            "LE.le",
+            "LT.lt",
+            "LeanFrontier.Farey.IsStrictlyBetween",
+            "LeanFrontier.FordCircle.radius",
+            "LeanFrontier.Mediant.crossDet",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instField",
+            "Real.instIntCast",
+            "Real.instLE",
+            "instHAdd",
+            "instOfNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3563,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "farey-ford-circle-maximality",
+  "trusted_receiver_revision": "2c5b0f7cb5bb8ac1c91c9270cc71b07897ebb9d6",
+  "validated_candidate_revision": "4d0a8661aa5d49141b25eb2909dc80772491364b",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35685505190"
+}
