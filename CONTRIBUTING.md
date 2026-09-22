@@ -22,6 +22,28 @@ The receiver reports acceptance or stable diagnostic codes; it does not repair
 submissions. Correct a rejected submission in a new commit and run the same
 command again.
 
+For ideas on what to formalize next, see the non-normative
+[contribution directions](docs/CONTRIBUTION-DIRECTIONS.md). The contract
+remains authoritative.
+
+### How many pull requests at once
+
+There is no limit on open submission pull requests and no cadence rule, so
+don't hold accepted work back in a queue. Only conjectures have a quota
+(`policy/conjecture.json`). The practical constraints are mechanical:
+
+- Keep each contribution on its own branch and in its own pull request,
+  preferably in its own new module, so that independent work never conflicts.
+- `main` requires branches to be up to date. Every merge, including the
+  automated follow-ups, leaves other open pull requests behind; update the
+  branch and let the checks run again.
+- Each claim pins the active Mathlib revision from
+  `policy/mathlib-release.json`. If the project upgrades before a claim
+  merges, bump `base_mathlib_revision` and revalidate.
+
+Substantive extensions that build on accepted results are especially
+welcome.
+
 ## Questions and project maintenance
 
 Use GitHub issues for questions, protocol proposals, and non-sensitive bug
