@@ -84,7 +84,8 @@ private theorem exists_indepSet_caroWei_on (G : SimpleGraph V) [DecidableEq V]
               have hxs : x ∈ s := (Finset.mem_sdiff.mp hxr).1
               have hxCnot : x ∉ C := (Finset.mem_sdiff.mp hxr).2
               apply hxCnot
-              simp [C, N, hxs, (G.adj_comm x v).mp hadj]
+              have hyx : G.Adj y x := (G.adj_comm x y).mp hadj
+              simp [C, N, hxs, hyx]
             · exact hIind (by simpa using hxI) (by simpa using hyI) hxy
 
         have hcardC : C.card = N.card + 1 := by
@@ -152,10 +153,11 @@ private theorem exists_indepSet_caroWei_on (G : SimpleGraph V) [DecidableEq V]
                       rw [← hunion, Finset.sum_union hdisj]
             _ ≤ 1 + ∑ x ∈ r, (1 : ℚ) / (((G.neighborFinset x ∩ r).card : ℚ) + 1) :=
               add_le_add hCsum hRsum
-            _ ≤ 1 + (I.card : ℚ) := add_le_add_left hIbound 1
+            _ ≤ 1 + (I.card : ℚ) := add_le_add_right hIbound 1
             _ = ((insert v I).card : ℚ) := by
               rw [Finset.card_insert_of_notMem hvnotI]
               norm_num
+              ring
 
 /-- **Caro-Wei theorem.**
 
