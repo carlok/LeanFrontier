@@ -10,10 +10,25 @@ name: reconcile-generated
 # Every merge to main therefore brings the stragglers forward. Updating a
 # branch pushes to that branch rather than to main, so this cannot retrigger
 # itself.
+#
+# Staleness is read from the commit graph, not from mergeStateStatus. GitHub
+# recomputes that field lazily, and when main moved while a generated pull
+# request's required checks were still running it read neither BEHIND nor
+# UNKNOWN a few seconds later (#184 after #183, #199 after #198), so the
+# straggler sat with auto-merge armed until someone updated it by hand.
+#
+# Completed check runs also trigger a pass, which catches a generated branch
+# pushed after the merge's own pass had already listed pull requests. That
+# trigger runs with a write token even for fork pull requests, so this job
+# never checks out or reads anything from the triggering run: it only acts on
+# open pull requests authored by the app.
 
 on:
   push:
     branches: [main]
+  workflow_run:
+    workflows: [test, validate-submission]
+    types: [completed]
 
 permissions:
   contents: write
@@ -37,30 +52,28 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
-          # GitHub recomputes mergeability asynchronously, so a pull request
-          # reads UNKNOWN for a few seconds after the push that stales it.
-          behind=""
-          for attempt in 1 2 3 4 5 6; do
-            behind="$(gh pr list --repo "$GITHUB_REPOSITORY" --state open \
-              --json number,headRefName,mergeStateStatus,author \
-              --jq '.[]
-                    | select(.headRefName | startswith("automation/generated/"))
-                    | select(.author.login == "app/${{ steps.app-token.outputs.app-slug }}")
-                    | select(.mergeStateStatus == "BEHIND")
-                    | .number')"
-            unknown="$(gh pr list --repo "$GITHUB_REPOSITORY" --state open \
-              --json number,headRefName,mergeStateStatus \
-              --jq '[.[] | select(.headRefName | startswith("automation/generated/"))
-                     | select(.mergeStateStatus == "UNKNOWN")] | length')"
-            [ -n "$behind" ] && break
-            [ "$unknown" = "0" ] && break
-            sleep 10
-          done
-          if [ -z "$behind" ]; then
+          candidates="$(gh pr list --repo "$GITHUB_REPOSITORY" --state open --limit 100 \
+            --json number,headRefName,headRefOid,baseRefName,author \
+            --jq '.[]
+                  | select(.headRefName | startswith("automation/generated/"))
+                  | select(.author.login == "app/${{ steps.app-token.outputs.app-slug }}")
+                  | "\(.number) \(.baseRefName) \(.headRefOid)"')"
+          updated=0
+          failed=0
+          while read -r number base sha; do
+            [ -n "$number" ] || continue
+            # Commits on the base branch that the head does not contain.
+            behind_by="$(gh api "repos/$GITHUB_REPOSITORY/compare/${base}...${sha}" --jq .behind_by)"
+            if [ "$behind_by" -gt 0 ]; then
+              echo "updating #$number ($behind_by behind $base)"
+              if gh pr update-branch "$number" --repo "$GITHUB_REPOSITORY"; then
+                updated=$((updated + 1))
+              else
+                failed=1
+              fi
+            fi
+          done <<< "$candidates"
+          if [ "$updated" = "0" ] && [ "$failed" = "0" ]; then
             echo "no generated pull request is behind"
-            exit 0
           fi
-          for number in $behind; do
-            echo "updating #$number"
-            gh pr update-branch "$number" --repo "$GITHUB_REPOSITORY"
-          done
+          exit "$failed"
