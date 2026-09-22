@@ -75,11 +75,9 @@ theorem paleyZygmund
               have hiS : i ∈ s := (Finset.mem_filter.mp hi).1
               have hiX : X i ≤ θ * m := (Finset.mem_filter.mp hi).2
               exact mul_le_mul_of_nonneg_left hiX (hw i hiS)
-      _ = (θ * m) * ∑ i ∈ B, w i := by
-            rw [Finset.mul_sum]
-            apply Finset.sum_congr rfl
-            intro i hi
-            ring
+      _ = (∑ i ∈ B, w i) * (θ * m) := by
+            rw [Finset.sum_mul]
+      _ = (θ * m) * ∑ i ∈ B, w i := by ring
       _ ≤ (θ * m) * 1 := mul_le_mul_of_nonneg_left hmassB htheta_m0
       _ = θ * m := by ring
 
@@ -112,9 +110,9 @@ theorem paleyZygmund
         (∑ i ∈ A, w i) * ∑ i ∈ A, w i * X i ^ 2 := by
     apply Finset.sum_sq_le_sum_mul_sum_of_sq_le_mul
     · intro i hi
-      exact hw i (Finset.mem_of_mem_filter hi)
+      exact hw i ((Finset.mem_filter.mp hi).1)
     · intro i hi
-      exact mul_nonneg (hw i (Finset.mem_of_mem_filter hi)) (sq_nonneg (X i))
+      exact mul_nonneg (hw i ((Finset.mem_filter.mp hi).1)) (sq_nonneg (X i))
     · intro i hi
       ring_nf
       exact le_rfl
@@ -122,7 +120,7 @@ theorem paleyZygmund
   have hmassA0 : 0 ≤ ∑ i ∈ A, w i := by
     apply Finset.sum_nonneg
     intro i hi
-    exact hw i (Finset.mem_of_mem_filter hi)
+    exact hw i ((Finset.mem_filter.mp hi).1)
 
   have hsecond :
       (∑ i ∈ A, w i * X i ^ 2) ≤ ∑ i ∈ s, w i * X i ^ 2 := by
