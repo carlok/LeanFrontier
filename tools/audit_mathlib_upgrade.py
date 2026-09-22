@@ -11,7 +11,7 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-from frontier_validate import failure_output, lean_errors, run as run_bounded
+from frontier_validate import deprecations, failure_output, lean_errors, run as run_bounded
 from mathlib_release import ROOT, load_release_policy
 
 
@@ -97,6 +97,12 @@ def main(argv: list[str] | None = None) -> int:
         build = run(["lake", "build"], cwd=root, timeout=480)
         if build.returncode:
             raise RuntimeError(lean_errors(build, None) or "lake build failed")
+        # Reported, not blocking: a release that deprecates something the corpus
+        # uses should still land, and the list is the follow-up maintenance work.
+        # Sorted because Lake's parallel build order is not deterministic, and
+        # the re-audit compares this report byte for byte.
+        corpus_files = {f"{module.replace('.', '/')}.lean" for module in corpus_modules(root)}
+        deprecated = sorted(deprecations(build, corpus_files))
         for module in corpus_modules(root):
             recheck = run(["lake", "env", "leanchecker", module], cwd=root, timeout=300)
             if recheck.returncode:
@@ -120,6 +126,7 @@ def main(argv: list[str] | None = None) -> int:
             "entrypoint_count": len(entrypoints),
             "downstream_import_smoke": "pass",
             "kernel_recheck": "pass",
+            "corpus_deprecations": deprecated,
             "collisions": collisions,
             "accepted": not collisions,
             "code": "MATHLIB_UPSTREAM_COLLISION" if collisions else "ACCEPTED",

@@ -111,6 +111,12 @@ class MathlibUpgradePathTests(unittest.TestCase):
         self.assertEqual(result["code"], "BUILD_FAILED")
         self.assertIn("unknown constant 'Nat.choose_symm_diff'", result["error"])
 
+    def test_upgrade_audit_reports_corpus_deprecations_without_blocking(self) -> None:
+        source = (ROOT / "tools" / "audit_mathlib_upgrade.py").read_text()
+        self.assertIn('"corpus_deprecations": deprecated', source)
+        self.assertIn("sorted(deprecations(build, corpus_files))", source)
+        self.assertNotIn("DEPRECATED_API", source, "an upgrade must not be blocked by deprecations")
+
     def test_upgrade_audit_rechecks_the_corpus_against_the_kernel(self) -> None:
         """A release bump must not land with proofs nobody re-verified."""
         source = (ROOT / "tools" / "audit_mathlib_upgrade.py").read_text()
