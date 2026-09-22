@@ -34,6 +34,7 @@ import LeanFrontier.NumberTheory.SternBrocot
 import LeanFrontier.NumberTheory.SternBrocot.Intervals
 import LeanFrontier.NumberTheory.SternDiatomic
 import LeanFrontier.NumberTheory.SternDiatomic.Enumeration
+import LeanFrontier.NumberTheory.SternDiatomic.RowMaximum
 import LeanFrontier.NumberTheory.SylvesterSequence
 import LeanFrontier.NumberTheory.ThueMorse
 import LeanFrontier.NumberTheory.Transcendental.HermiteLindemann
