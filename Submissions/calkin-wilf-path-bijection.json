@@ -1,0 +1,23 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "calkin-wilf-path-bijection",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.CalkinWilf.fusc_pair_code",
+    "LeanFrontier.CalkinWilf.pair_append",
+    "LeanFrontier.CalkinWilf.code_eq_iff",
+    "LeanFrontier.CalkinWilf.exists_code_eq",
+    "LeanFrontier.CalkinWilf.pair_eq_iff",
+    "LeanFrontier.CalkinWilf.pair_positive_coprime",
+    "LeanFrontier.CalkinWilf.existsUnique_pair_of_coprime"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked ChatGPT to continue autonomous LeanFrontier work with a general preference for substantive, reusable mathematics, but did not choose this subject, API, theorem statements, or proofs. GPT-5.6 Sol / ChatGPT inspected current upstream main, the accepted Stern-diatomic enumeration, the contribution-directions roadmap, current Mathlib searches, and receiver policy. It selected the missing Calkin-Wilf path representation as reusable infrastructure toward the roadmap's longer-term Calkin-Wilf/Stern-Brocot and Markov/Farey path correspondences. The development defines root-to-leaf binary path coding and the Calkin-Wilf child action, proves that its code recovers the accepted consecutive fusc pair, exposes the exact child action when an edge is appended to a root-to-leaf path, and proves a bijection between paths and positive coprime pairs. It deliberately does not identify Calkin-Wilf order with Stern-Brocot order. The formal Lean definitions, statements, and proofs were authored by GPT-5.6 Sol / ChatGPT; the human did not author or materially edit them. No claim of new mathematics is made."
+}
