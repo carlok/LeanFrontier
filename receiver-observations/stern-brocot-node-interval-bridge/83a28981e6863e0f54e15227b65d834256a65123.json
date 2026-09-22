@@ -1,0 +1,133 @@
+{
+  "accepted_revision": "83a28981e6863e0f54e15227b65d834256a65123",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T11:03:30+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 132.57,
+    "observed": {
+      "added_lines": 68,
+      "audited_declarations": {
+        "LeanFrontier.SternBrocot.mediant_bounds_eq_pair": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.mediant_bounds_eq_pair",
+          "restatement": false,
+          "statement_sha256": "6cd6373ff4ee4ce6ff9c210ec57df15cdc4a3b81c602644ab2c32f77702dec1d",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "Eq",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "LeanFrontier.SternBrocot.bounds",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "Nat",
+            "Nat.cast",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instHAdd",
+            "instNatCastInt"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.SternBrocot.mediant_bounds_eq_pair": [
+            {
+              "outcome": "failed",
+              "seconds": 5.033,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.95,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.015,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.027,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.046,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.956,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 30.027,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SternBrocot.mediant_bounds_eq_pair": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 3947,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SternBrocot/NodeInterval.lean",
+        "Submissions/stern-brocot-node-interval-bridge.json"
+      ],
+      "corpus_entrypoints_checked": 157,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SternBrocot.mediant_bounds_eq_pair": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.mediant_bounds_eq_pair",
+          "statement_sha256": "6cd6373ff4ee4ce6ff9c210ec57df15cdc4a3b81c602644ab2c32f77702dec1d",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "Eq",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "LeanFrontier.SternBrocot.bounds",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "Nat",
+            "Nat.cast",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instHAdd",
+            "instNatCastInt"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2574,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 4
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "stern-brocot-node-interval-bridge",
+  "trusted_receiver_revision": "eaa0fd5eb6acf7d11ccaad96fdfde50e145fc798",
+  "validated_candidate_revision": "5561664a05ead76bc28fed3b7dd8cdca6e110c2e",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35707683328"
+}
