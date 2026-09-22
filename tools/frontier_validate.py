@@ -1063,6 +1063,14 @@ def export_git_ref(ref: str, destination: Path) -> None:
         raise RuntimeError("unable to materialize base Git reference")
 
 
+def commits_behind(base_ref: str, cwd: Path) -> int:
+    """Commits on `base_ref` that the checked-out HEAD does not contain."""
+    process = subprocess.run(["git", "rev-list", "--count", f"HEAD..{base_ref}"], cwd=cwd, capture_output=True, text=True, check=False)
+    if process.returncode:
+        raise RuntimeError(process.stderr.strip() or "git rev-list failed")
+    return int(process.stdout.strip())
+
+
 def parse_args(argv: list[str] | None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     source = parser.add_mutually_exclusive_group()
@@ -1072,6 +1080,7 @@ def parse_args(argv: list[str] | None) -> argparse.Namespace:
     parser.add_argument("--json-out", type=Path, help="write the structured receiver report here")
     parser.add_argument("--preflight-only", action="store_true", help="do not run Lake or Lean")
     parser.add_argument("--bootstrap", action="store_true", help="validate the initial seed without a baseline tree")
+    parser.add_argument("--behind-by", type=int, help="commits on the base the candidate lacks, as computed by trusted CI")
     return parser.parse_args(argv)
 
 
@@ -1101,7 +1110,18 @@ def main(argv: list[str] | None = None) -> int:
                 report.reject("PATH_POLICY_VIOLATION", f"cannot export base ref {args.base_ref}: {error}")
         if base is None and not args.bootstrap:
             report.reject("PATH_POLICY_VIOLATION", "provide --base-dir or --base-ref (or use --bootstrap only for the initial seed)")
-        changed, metadata = static_preflight(base, candidate, limits, mathlib_release or {"mathlib_revision": ""}, triviality, report)
+        behind = args.behind_by
+        if behind is None and args.base_ref:
+            try:
+                behind = commits_behind(args.base_ref, candidate)
+            except (OSError, RuntimeError, ValueError):
+                behind = None
+        if behind:
+            # The receiver diffs trees, so everything the base gained since the
+            # branch point would read as this submission deleting and editing
+            # files. Say what is actually wrong instead.
+            report.reject("BRANCH_BEHIND", f"the branch is {behind} commit{'s' if behind != 1 else ''} behind the base; update it from main and validate again")
+        changed, metadata = ({}, None) if behind else static_preflight(base, candidate, limits, mathlib_release or {"mathlib_revision": ""}, triviality, report)
         if report.accepted and metadata is not None:
             # Textual, so it runs with the other cheap checks rather than after
             # a Mathlib build the submission was never going to survive.

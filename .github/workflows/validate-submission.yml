@@ -57,12 +57,30 @@ jobs:
           fetch-depth: 1
           persist-credentials: false
 
+      # The receiver diffs trees, so a head that lacks commits the base has
+      # reads as deleting and editing them. Counted from the commit graph with
+      # the read-only token; a failed call fails the job rather than guessing.
+      - name: Count commits the candidate lacks
+        id: freshness
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          behind="$(gh api "repos/$GITHUB_REPOSITORY/compare/$BASE_SHA...$HEAD_SHA" --jq .behind_by)"
+          [[ "$behind" =~ ^[0-9]+$ ]]
+          echo "behind=$behind" >> "$GITHUB_OUTPUT"
+
       - name: Trusted cheap preflight
+        env:
+          BEHIND_BY: ${{ steps.freshness.outputs.behind || '0' }}
         run: >-
           python3 trusted/tools/validate-submission
           --base-dir "$GITHUB_WORKSPACE/trusted"
           --candidate-dir "$GITHUB_WORKSPACE/candidate"
           --preflight-only
+          --behind-by "$BEHIND_BY"
           --json-out "$GITHUB_WORKSPACE/preflight-report.json"
 
       - name: Build trusted validation image
