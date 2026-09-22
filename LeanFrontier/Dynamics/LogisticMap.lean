@@ -58,10 +58,10 @@ noncomputable def tentMap (x : ℝ) : ℝ := if x ≤ 1 / 2 then 2 * x else 2 * 
 /-- The logistic map at parameter four, `x ↦ 4 * x * (1 - x)`, extended to all of `ℝ`. -/
 def logisticMap (x : ℝ) : ℝ := 4 * x * (1 - x)
 
-theorem tentMap_of_le {x : ℝ} (h : x ≤ 1 / 2) : tentMap x = 2 * x := if_pos h
+theorem tentMap_of_le {x : ℝ} (h : x ≤ 1 / 2) : tentMap x = 2 * x := ite_eq_left h
 
 theorem tentMap_of_half_lt {x : ℝ} (h : 1 / 2 < x) : tentMap x = 2 * (1 - x) :=
-  if_neg (not_le.mpr h)
+  ite_eq_right (not_le.mpr h)
 
 /-- The identity behind both branches of the semiconjugacy: doubling the angle inside
 `sin ^ 2` is applying the logistic map outside. -/

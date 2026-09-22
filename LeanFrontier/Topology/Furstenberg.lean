@@ -76,7 +76,7 @@ topology. -/
 theorem isTopologicalBasis_arithProgression :
     @IsTopologicalBasis ℤ furstenbergTopology
       {S : Set ℤ | ∃ a b, b ≠ 0 ∧ S = arithProgression a b} := by
-  letI := furstenbergTopology
+  let := furstenbergTopology
   refine ⟨?_, ?_, rfl⟩
   · rintro t₁ ⟨a₁, b₁, hb₁, rfl⟩ t₂ ⟨a₂, b₂, hb₂, rfl⟩ x ⟨hx₁, hx₂⟩
     refine ⟨arithProgression x (b₁ * b₂), ⟨x, b₁ * b₂, mul_ne_zero hb₁ hb₂, rfl⟩,
@@ -94,7 +94,7 @@ theorem isTopologicalBasis_arithProgression :
 /-- Arithmetic progressions with nonzero step are open. -/
 theorem isOpen_arithProgression (a b : ℤ) (hb : b ≠ 0) :
     IsOpen[furstenbergTopology] (arithProgression a b) := by
-  letI := furstenbergTopology
+  let := furstenbergTopology
   exact isTopologicalBasis_arithProgression.isOpen ⟨a, b, hb, rfl⟩
 
 /-- Arithmetic progressions with nonzero step are closed: after reducing to a positive
@@ -103,7 +103,7 @@ residues. Together with `isOpen_arithProgression`, the basic sets of the Fursten
 topology are clopen. -/
 theorem isClosed_arithProgression (a : ℤ) {b : ℤ} (hb : b ≠ 0) :
     IsClosed[furstenbergTopology] (arithProgression a b) := by
-  letI := furstenbergTopology
+  let := furstenbergTopology
   have habs : arithProgression a b = arithProgression a |b| :=
     Set.ext fun x => (abs_dvd b (x - a)).symm
   have hpos : 0 < |b| := abs_pos.mpr hb
@@ -148,7 +148,7 @@ theorem infinite_arithProgression (a : ℤ) {b : ℤ} (hb : b ≠ 0) :
 arithmetic progression around each of its points. -/
 theorem infinite_of_isOpen {U : Set ℤ} (hU : IsOpen[furstenbergTopology] U)
     (hne : U.Nonempty) : U.Infinite := by
-  letI := furstenbergTopology
+  let := furstenbergTopology
   obtain ⟨x, hx⟩ := hne
   obtain ⟨V, ⟨a, b, hb, rfl⟩, -, hVU⟩ :=
     isTopologicalBasis_arithProgression.exists_subset_of_mem_open hx hU
@@ -159,7 +159,7 @@ the integers other than `1` and `-1`. -/
 theorem iUnion_prime_arithProgression :
     ⋃ p ∈ {p : ℕ | p.Prime}, arithProgression 0 (p : ℤ) = ({1, -1} : Set ℤ)ᶜ := by
   ext x
-  simp only [mem_iUnion, mem_setOf_eq, mem_arithProgression, sub_zero, mem_compl_iff,
+  simp only [mem_iUnion, mem_ofPred_eq, mem_arithProgression, sub_zero, mem_compl_iff,
     mem_insert_iff, mem_singleton_iff, exists_prop]
   constructor
   · rintro ⟨p, hp, hdvd⟩ h
@@ -190,7 +190,7 @@ theorem infinite_of_iUnion_eq_compl {S : Set ℕ} (h0 : 0 ∉ S)
   by_contra hinf
   rw [Set.not_infinite] at hinf
   have hfin : S.Finite := hinf
-  letI := furstenbergTopology
+  let := furstenbergTopology
   have hclosed : IsClosed (⋃ p ∈ S, arithProgression 0 (p : ℤ)) :=
     hfin.isClosed_biUnion fun p hp =>
       isClosed_arithProgression 0 (Int.natCast_ne_zero.mpr (fun h => h0 (h ▸ hp)))

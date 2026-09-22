@@ -65,7 +65,7 @@ theorem fusc_two_mul (n : ℕ) : fusc (2 * n) = fusc n := by
   · have hm : 2 * (k + 1) = 2 * k + 2 := by ring
     have heven : (2 * k + 2) % 2 = 0 := by omega
     have hdiv : (2 * k + 2) / 2 = k + 1 := by omega
-    rw [hm, fusc, if_pos heven, hdiv]
+    rw [hm, fusc, ite_eq_left heven, hdiv]
 
 /-- An odd index splits into the two neighbouring values at half the index. -/
 theorem fusc_two_mul_add_one (n : ℕ) : fusc (2 * n + 1) = fusc n + fusc (n + 1) := by
@@ -74,7 +74,7 @@ theorem fusc_two_mul_add_one (n : ℕ) : fusc (2 * n + 1) = fusc n + fusc (n + 1
   · have hm : 2 * (k + 1) + 1 = (2 * k + 1) + 2 := by ring
     have hodd : ¬ ((2 * k + 1 + 2) % 2 = 0) := by omega
     have hdiv : (2 * k + 1 + 2) / 2 = k + 1 := by omega
-    rw [hm, fusc, if_neg hodd, hdiv]
+    rw [hm, fusc, ite_eq_right hodd, hdiv]
 
 /-- Consecutive values of Stern's diatomic sequence are coprime, so the fraction
 `fusc n / fusc (n + 1)` is always in lowest terms. -/

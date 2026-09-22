@@ -90,7 +90,8 @@ crossing the Markov uniqueness-conjecture boundary.
 
 ### A. Largest Ford circle between Farey neighbours
 
-**Current corpus fit:** ready to investigate.
+**Status:** landed as `LeanFrontier.FordCircle.mediant_is_unique_largest_in_farey_gap`
+(`LeanFrontier/Geometry/FareyFordCircle.lean`). Build on it rather than restating it.
 
 **Primary parents:**
 
@@ -133,7 +134,8 @@ gap."
 
 ### B. Ford–Farey–Descartes configuration
 
-**Current corpus fit:** ready to investigate.
+**Status:** landed as `LeanFrontier.FordCircle.farey_mediant_descartes_configuration`
+(`LeanFrontier/Geometry/FordCircleDescartes.lean`). Build on it rather than restating it.
 
 **Primary parents:**
 
@@ -176,7 +178,10 @@ gives `DescartesCircle` a genuine geometric interpretation.
 
 ### C. Lucas numbers as characteristic-polynomial data of Fibonacci Q-matrix powers
 
-**Current corpus fit:** ready to investigate.
+**Status:** partly covered by D. `LeanFrontier.Horadam.trace_fibMatrix_pow_succ_eq_lucas`
+proves the trace form, and the general companion-matrix power characteristic polynomial has
+landed, so the statement below may now be a short corollary. Check the catalogue before
+submitting it.
 
 **Primary parents:**
 
@@ -219,8 +224,10 @@ recurrence, determinant, and Binet-style work.
 
 ### D. General Horadam companion matrix
 
-**Current corpus fit:** high-value infrastructure; verify the live catalogue before
-implementation.
+**Status:** landed in `LeanFrontier/LinearAlgebra/HoradamCompanionMatrix.lean` and
+`HoradamCompanionMatrixSpecializations.lean`, including the explicit power formula, trace,
+determinant and characteristic-polynomial identities, and the Fibonacci/Lucas specialization.
+Build on it rather than restating it.
 
 **Primary parents:**
 
@@ -272,6 +279,9 @@ specializations, and later Binet-style results.
 
 ### E. Circular square/domino tilings counted by Lucas numbers
 
+**Status:** landed as `LeanFrontier.Nat.card_circularOneTwoTilings_add_two`
+(`LeanFrontier/Combinatorics/CircularDominoTilings.lean`).
+
 **Primary parents:** `FibonacciComposition` + `LucasNumber`.
 
 Classically, linear square/domino tilings are Fibonacci-counted while circular tilings are
@@ -303,6 +313,10 @@ modest.
 
 ### G. Maximum Stern-row value is Fibonacci
 
+**Status:** landed as `LeanFrontier.SternDiatomic.fib_is_max_on_dyadic_row`
+(`LeanFrontier/NumberTheory/SternDiatomic/RowMaximum.lean`), with attainment in both Fibonacci
+orientations.
+
 **Primary parent:** `SternDiatomic`; Fibonacci support would mainly come from Mathlib.
 
 The classical extremal theorem says the maximum of Stern's sequence on an appropriate dyadic
@@ -320,7 +334,13 @@ Treat it as a good independent Stern extension, not as a top corpus-synthesis ta
 
 ### H. Stern diatomic / Calkin–Wilf to Stern–Brocot representation bridge
 
-**Status:** reformulated; high effort.
+**Status:** landed. Both path enumerations
+(`LeanFrontier.CalkinWilf.exists_code_eq`, `LeanFrontier.SternBrocot.existsUnique_pair_of_coprime`),
+the Stern–Brocot interval invariants (`LeanFrontier/NumberTheory/SternBrocot/Intervals.lean`),
+and the bridge itself: `LeanFrontier.CalkinWilf.pair_reverse_eq_sternBrocot` and
+`pair_eq_sternBrocot_iff_reverse` (`LeanFrontier/NumberTheory/CalkinWilfSternBrocot.lean`)
+show that a Calkin–Wilf path and a Stern–Brocot path reach the same pair exactly when they are
+reverses. Traversal orders are not identified; that remains open.
 
 **Critical correction:**
 
