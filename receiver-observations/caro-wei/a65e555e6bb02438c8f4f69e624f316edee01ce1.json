@@ -1,0 +1,171 @@
+{
+  "accepted_revision": "a65e555e6bb02438c8f4f69e624f316edee01ce1",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T21:45:54+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 162.237,
+    "observed": {
+      "added_lines": 180,
+      "audited_declarations": {
+        "LeanFrontier.GraphTheory.caroWei": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.GraphTheory.caroWei",
+          "restatement": false,
+          "statement_sha256": "edc1400edd39a6b5b1811b120d841ccdc90c54a860a0051b1299b5e0ccbe3796",
+          "type_dependencies": [
+            "And",
+            "DecidableRel",
+            "Exists",
+            "Finset",
+            "Finset.card",
+            "Finset.instSetLike",
+            "Finset.sum",
+            "Finset.univ",
+            "Fintype",
+            "HAdd.hAdd",
+            "HDiv.hDiv",
+            "LE.le",
+            "Membership.mem",
+            "Nat.cast",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.addCommMonoid",
+            "Rat.instAdd",
+            "Rat.instDiv",
+            "Rat.instLE",
+            "Rat.instNatCast",
+            "Rat.instOfNat",
+            "Set",
+            "Set.instMembership",
+            "SetLike.coe",
+            "SimpleGraph",
+            "SimpleGraph.Adj",
+            "SimpleGraph.IsIndepSet",
+            "SimpleGraph.degree",
+            "SimpleGraph.neighborSet",
+            "SimpleGraph.neighborSet.memDecidable",
+            "Subtype.fintype",
+            "instHAdd",
+            "instHDiv"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.GraphTheory.caroWei": [
+            {
+              "outcome": "failed",
+              "seconds": 5.165,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.106,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.218,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.188,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.132,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.092,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 30.901,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.GraphTheory.caroWei": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 8795,
+      "changed_files": [
+        "LeanFrontier/Combinatorics/CaroWei.lean",
+        "Submissions/caro-wei.json"
+      ],
+      "corpus_entrypoints_checked": 164,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.GraphTheory.caroWei": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.GraphTheory.caroWei",
+          "statement_sha256": "edc1400edd39a6b5b1811b120d841ccdc90c54a860a0051b1299b5e0ccbe3796",
+          "type_dependencies": [
+            "And",
+            "DecidableRel",
+            "Exists",
+            "Finset",
+            "Finset.card",
+            "Finset.instSetLike",
+            "Finset.sum",
+            "Finset.univ",
+            "Fintype",
+            "HAdd.hAdd",
+            "HDiv.hDiv",
+            "LE.le",
+            "Membership.mem",
+            "Nat.cast",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.addCommMonoid",
+            "Rat.instAdd",
+            "Rat.instDiv",
+            "Rat.instLE",
+            "Rat.instNatCast",
+            "Rat.instOfNat",
+            "Set",
+            "Set.instMembership",
+            "SetLike.coe",
+            "SimpleGraph",
+            "SimpleGraph.Adj",
+            "SimpleGraph.IsIndepSet",
+            "SimpleGraph.degree",
+            "SimpleGraph.neighborSet",
+            "SimpleGraph.neighborSet.memDecidable",
+            "Subtype.fintype",
+            "instHAdd",
+            "instHDiv"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 7135,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 2
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "caro-wei",
+  "trusted_receiver_revision": "6ba6c3ee43c4bc56acee98f94f9587d4c2ddac3e",
+  "validated_candidate_revision": "a2f0bf94d2f3d729c8840b7bc15464a3dc4464a1",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35769245944"
+}
