@@ -1,0 +1,404 @@
+{
+  "accepted_revision": "45d75e52229002d285d487c3f0f0c00c63784173",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-22T09:17:46+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 200.628,
+    "observed": {
+      "added_lines": 133,
+      "audited_declarations": {
+        "LeanFrontier.SternBrocot.bounds": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.SternBrocot.bounds",
+          "restatement": false,
+          "statement_sha256": "cd93fa4d9d50a495c8698531f446ea354f6665f4c46b9cd5286b6edc52a52d72",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "List",
+            "Prod"
+          ]
+        },
+        "LeanFrontier.SternBrocot.bounds_append": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.bounds_append",
+          "restatement": false,
+          "statement_sha256": "6f9ffacc2abae848f1008fd29487823d15f0a77e675a9d8c0cc6f1cfbd869701",
+          "type_dependencies": [
+            "Bool",
+            "Bool.true",
+            "Eq",
+            "HAdd.hAdd",
+            "HAppend.hAppend",
+            "Int",
+            "Int.instAdd",
+            "LeanFrontier.SternBrocot.bounds",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "List.nil",
+            "Prod",
+            "Prod.fst",
+            "Prod.mk",
+            "Prod.snd",
+            "instDecidableEqBool",
+            "instHAdd",
+            "instHAppendOfAppend",
+            "ite"
+          ]
+        },
+        "LeanFrontier.SternBrocot.crossDet_bounds": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.crossDet_bounds",
+          "restatement": false,
+          "statement_sha256": "aee62da93a75fa39b94708f1c72bdaf5d26547a4d5e96b7ca06cf97db10f750e",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Int",
+            "Int.instCommRing",
+            "LeanFrontier.Mediant.crossDet",
+            "LeanFrontier.SternBrocot.bounds",
+            "List",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.SternBrocot.mediantDen_pos": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.mediantDen_pos",
+          "restatement": false,
+          "statement_sha256": "d046d9a081924211234e28e495a95421d865248174e46bfeb0ff636a3aa2f633",
+          "type_dependencies": [
+            "Bool",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.SternBrocot.bounds",
+            "List",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instHAdd",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.SternBrocot.mediant_isCoprime": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.mediant_isCoprime",
+          "restatement": false,
+          "statement_sha256": "e7b5af69a7b7456ddd5571ce133bf033c78d2afc0803e45f30393b5e48d6c4c3",
+          "type_dependencies": [
+            "Bool",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "Int.instCommSemiring",
+            "IsCoprime",
+            "LeanFrontier.SternBrocot.bounds",
+            "List",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instHAdd"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 24,
+        "by_entrypoint": {
+          "LeanFrontier.SternBrocot.bounds_append": [
+            {
+              "outcome": "failed",
+              "seconds": 4.838,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.77,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.8,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.778,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.798,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.823,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.SternBrocot.crossDet_bounds": [
+            {
+              "outcome": "failed",
+              "seconds": 4.786,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.813,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.78,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.786,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.831,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.82,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.SternBrocot.mediantDen_pos": [
+            {
+              "outcome": "failed",
+              "seconds": 4.791,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.817,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.912,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.866,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.745,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.956,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.SternBrocot.mediant_isCoprime": [
+            {
+              "outcome": "failed",
+              "seconds": 4.864,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.818,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.872,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.861,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.862,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.934,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 115.921,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SternBrocot.bounds_append": "inconclusive",
+        "LeanFrontier.SternBrocot.crossDet_bounds": "inconclusive",
+        "LeanFrontier.SternBrocot.mediantDen_pos": "inconclusive",
+        "LeanFrontier.SternBrocot.mediant_isCoprime": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 6968,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SternBrocot/Intervals.lean",
+        "Submissions/stern-brocot-interval-invariant.json"
+      ],
+      "corpus_entrypoints_checked": 148,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SternBrocot.bounds_append": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.bounds_append",
+          "statement_sha256": "6f9ffacc2abae848f1008fd29487823d15f0a77e675a9d8c0cc6f1cfbd869701",
+          "type_dependencies": [
+            "Bool",
+            "Bool.true",
+            "Eq",
+            "HAdd.hAdd",
+            "HAppend.hAppend",
+            "Int",
+            "Int.instAdd",
+            "LeanFrontier.SternBrocot.bounds",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "List.nil",
+            "Prod",
+            "Prod.fst",
+            "Prod.mk",
+            "Prod.snd",
+            "instDecidableEqBool",
+            "instHAdd",
+            "instHAppendOfAppend",
+            "ite"
+          ]
+        },
+        "LeanFrontier.SternBrocot.crossDet_bounds": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.crossDet_bounds",
+          "statement_sha256": "aee62da93a75fa39b94708f1c72bdaf5d26547a4d5e96b7ca06cf97db10f750e",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Int",
+            "Int.instCommRing",
+            "LeanFrontier.Mediant.crossDet",
+            "LeanFrontier.SternBrocot.bounds",
+            "List",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.SternBrocot.mediantDen_pos": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.mediantDen_pos",
+          "statement_sha256": "d046d9a081924211234e28e495a95421d865248174e46bfeb0ff636a3aa2f633",
+          "type_dependencies": [
+            "Bool",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.SternBrocot.bounds",
+            "List",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instHAdd",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.SternBrocot.mediant_isCoprime": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.mediant_isCoprime",
+          "statement_sha256": "e7b5af69a7b7456ddd5571ce133bf033c78d2afc0803e45f30393b5e48d6c4c3",
+          "type_dependencies": [
+            "Bool",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "Int.instCommSemiring",
+            "IsCoprime",
+            "LeanFrontier.SternBrocot.bounds",
+            "List",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instHAdd"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 5441,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 16
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "stern-brocot-interval-invariant",
+  "trusted_receiver_revision": "67f9e0a81f0c3d56d5a4cb9f93370a2d2be8ae73",
+  "validated_candidate_revision": "042d1ff10ba399424021b44653ea27c53a1ccdbf",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35698341259"
+}
