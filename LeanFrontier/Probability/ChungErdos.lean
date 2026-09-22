@@ -84,7 +84,7 @@ theorem chungErdos (μ : Measure Ω) [IsProbabilityMeasure μ]
 
   have hX2 : MemLp X 2 μ := by
     dsimp [X]
-    exact memLp_finsetSum' s fun i hi =>
+    exact memLp_finsetSum s fun i hi =>
       (memLp_const (μ := μ) (1 : ℝ)).indicator (hA i hi)
 
   have hmean :
@@ -109,7 +109,8 @@ theorem chungErdos (μ : Measure Ω) [IsProbabilityMeasure μ]
     intro i hi
     apply Finset.sum_congr rfl
     intro j hj
-    simp [Set.inter_indicator_one]
+    by_cases hiω : ω ∈ A i <;> by_cases hjω : ω ∈ A j <;>
+      simp [hiω, hjω]
 
   have hsecondMoment :
       (∫ ω, X ω ^ 2 ∂μ) =
