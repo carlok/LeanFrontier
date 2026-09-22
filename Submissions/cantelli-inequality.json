@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "cantelli-inequality",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.ProbabilityTheory.cantelli"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue autonomously formalizing worthwhile additions to LeanFrontier. After developing Paley-Zygmund interfaces, GPT-5.6 Sol / ChatGPT audited current Mathlib and LeanFrontier for another independent probability theorem. Searches found the ordinary two-sided Chebyshev inequality in Mathlib but no Cantelli inequality / one-sided Chebyshev bound in either corpus. This submission proves the sharp upper-tail bound P(X-E[X] >= a) <= Var(X)/(Var(X)+a^2) for square-integrable real random variables and a>0. The proof uses the classical optimized-shift argument, applying Mathlib's real-valued Markov integral lemma to ((X-E[X]+t)/(a+t))^2 with t=Var(X)/a, computing the shifted second moment from the variance identity, and simplifying the optimizing algebra. The formal Lean statement and proof were authored by GPT-5.6 Sol / ChatGPT; the human did not author or materially edit them. No claim of new mathematics is made."
+}

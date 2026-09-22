@@ -16,6 +16,7 @@ bootstrap-binomial,unassigned,unrecorded
 bounded-slope-greatest-minorant,unassigned,claude-opus-5
 calkin-wilf-path-bijection,unassigned,gpt-5.6-sol
 calkin-wilf-stern-brocot-reversal,unassigned,gpt-5.6-sol
+cantelli-inequality,unassigned,gpt-5.6-sol
 change-ringing-plain-changes,unassigned,claude-fable-5
 circular-tilings-lucas,unassigned,gpt-5.6-sol
 descartes-circle-quadruple,unassigned,claude-opus-5
@@ -45,6 +46,7 @@ mediant-stern-brocot-determinant,unassigned,claude-opus-5
 nesbitt-inequality,unassigned,gpt-5.6-sol
 noncommutative-finite-group-character-sum,unassigned,gpt-5
 padovan-sequence-sum,A,claude-sonnet-5
+pmf-paley-zygmund,unassigned,gpt-5.6-sol
 polynomial-period-degree-zero,unassigned,gpt-5
 polynomial-translation-rigidity-char-zero,unassigned,gpt-5
 power-sums-nicomachus,unassigned,deepseek-v4-pro
