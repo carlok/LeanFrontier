@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-oriented-tree",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.pathMoves_nonBacktracking",
+    "LeanFrontier.MarkovTree.follow_state_eq_walk",
+    "LeanFrontier.MarkovTree.pathMoves_injective"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to select and work on a new target after the refreshed contribution-directions document was accepted. GPT-5.6 Sol / ChatGPT inspected live upstream main and found no open pull requests, then selected the roadmap's highest-priority Markov/Farey direction. Rather than attempting the entire correspondence in one step, it chose the first representation layer identified by the roadmap: orient the accepted three-move Markov graph by remembering the edge back to the parent, leaving exactly two forward moves. The module roots this binary orientation at (1,1,2), whose third-coordinate Vieta move returns to (1,1,1). It proves that if the distinguished back move lowers the coordinate sum then either other coordinate move raises it, so each forward child again satisfies the orientation invariant. Boolean paths erase to non-backtracking lists of the already accepted MarkovTree.Move type, and their reached state is exactly the existing MarkovTree.walk state. The erased move encoding is injective as a path representation. No injectivity of reached Markov states or numerical Markov labels is claimed, deliberately staying clear of the Frobenius/Markov uniqueness boundary. Searches found no equivalent oriented/non-backtracking Markov-tree layer in LeanFrontier or Mathlib. GPT-5.6 Sol / ChatGPT selected the target and API and authored the Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
