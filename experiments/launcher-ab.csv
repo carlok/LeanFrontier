@@ -44,6 +44,7 @@ josephus-survivor-binary-shift,unassigned,claude-opus-5
 lucas-numbers,unassigned,claude-fable-5
 markov-equation-vieta-jumping,unassigned,claude-opus-5
 markov-tree-descent,unassigned,gpt-5.6-sol
+markov-tree-paths,unassigned,gpt-5.6-sol
 measure-paley-zygmund,unassigned,gpt-5.6-sol
 mediant-stern-brocot-determinant,unassigned,claude-opus-5
 nesbitt-inequality,unassigned,gpt-5.6-sol
@@ -63,5 +64,6 @@ stern-diatomic-coprime,unassigned,claude-opus-5
 stern-diatomic-row-max,unassigned,gpt-5.6-sol
 sylvester-sequence-coprimality,unassigned,claude-opus-5
 tent-logistic-semiconjugacy,unassigned,claude-fable-5
+thue-morse-explicit-cube-sums,unassigned,gpt-5.6-sol
 thue-morse-prouhet-power-sums,A,claude-opus-5
 tribonacci-sequence-sum,unassigned,claude-sonnet-5

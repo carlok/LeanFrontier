@@ -30,6 +30,7 @@ import LeanFrontier.NumberTheory.HoradamSequence
 import LeanFrontier.NumberTheory.LucasNumber
 import LeanFrontier.NumberTheory.MarkovEquation
 import LeanFrontier.NumberTheory.MarkovTree
+import LeanFrontier.NumberTheory.MarkovTree.Paths
 import LeanFrontier.NumberTheory.Mediant
 import LeanFrontier.NumberTheory.Padovan
 import LeanFrontier.NumberTheory.PowerSums
@@ -42,6 +43,7 @@ import LeanFrontier.NumberTheory.SternDiatomic.Enumeration
 import LeanFrontier.NumberTheory.SternDiatomic.RowMaximum
 import LeanFrontier.NumberTheory.SylvesterSequence
 import LeanFrontier.NumberTheory.ThueMorse
+import LeanFrontier.NumberTheory.ThueMorse.ExplicitPowerSums
 import LeanFrontier.NumberTheory.Transcendental.HermiteLindemann
 import LeanFrontier.NumberTheory.Tribonacci
 import LeanFrontier.Probability.Cantelli

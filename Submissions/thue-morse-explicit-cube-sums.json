@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "thue-morse-explicit-cube-sums",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Nat.sum_cubes_thueMorse_partition"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to inspect the current LeanFrontier repository, its agent entry point and referenced documentation, compare the live corpus with docs/CONTRIBUTION-DIRECTIONS.md, and then autonomously choose and implement a useful extension; combinatorics was offered only as an optional direction, not as a selected target. GPT-5.6 Sol / ChatGPT observed that most formerly highest-priority roadmap bridges had already landed, while the audited Thue-Morse + PowerSums direction remained open. Current LeanFrontier search found the general Prouhet equality and Nicomachus cube-sum theorem but no theorem evaluating either Thue-Morse block explicitly; current Mathlib search found no Thue-Morse or Prouhet development. The agent therefore selected one synthesis theorem rather than symmetric theorem padding: for the two Thue-Morse parity classes in {0,...,2^(k+4)-1}, it identifies both cube sums with 32*(2^k)^2*(2^(k+4)-1)^2. The proof uses LeanFrontier.Nat.sum_pow_eq_sum_pow_thueMorse for equality of the two block sums, LeanFrontier.PowerSums.sum_cubes_eq_sum_sq for the total cube sum, and Finset.sum_range_id_mul_two to evaluate the first-power sum without natural-number division. The shift by four makes the cube Prouhet hypothesis automatic and exposes an integral factorization. GPT-5.6 Sol / ChatGPT authored the formal statement and proof; the human did not choose the subject, theorem, or formalization and did not materially edit them. No claim of new mathematics is made."
+}
