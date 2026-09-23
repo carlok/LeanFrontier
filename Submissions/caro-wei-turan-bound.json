@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "caro-wei-turan-bound",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.GraphTheory.caroWei_implies_turan_bound"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue autonomously with a formalization of its choice. GPT-5.6 Sol / ChatGPT inspected live upstream main, the contribution roadmap, open submissions, the accepted Caro-Wei development, and current Mathlib graph APIs. It rejected immediate work on the next Markov-tree layer because the required path substrate was still an unmerged pull request, and rejected the roadmap's Fibonacci characteristic-polynomial seam as likely too close to the already landed Horadam companion-matrix characteristic-polynomial API. It instead selected the classical Turan average-degree lower bound for an independent set as a substantive extension of the accepted Caro-Wei theorem. The theorem proves the existence of an independent finset I with |V|^2/(2|E|+|V|) <= |I| over Q. The proof derives the finite reciprocal-sum Engel/Cauchy-Schwarz inequality privately, applies the accepted LeanFrontier.GraphTheory.caroWei theorem, and uses Mathlib's SimpleGraph.sum_degrees_eq_twice_card_edges to convert the denominator to 2|E|+|V|. Searches found Mathlib's extremal Turan theorem and degree-sum theorem but no theorem exposing this independence-set average-degree bound, and no equivalent theorem in LeanFrontier. Standard graph theory sources describe alpha(G) >= n/(1+d) = n^2/(2m+n) as Turan's bound and the Caro-Wei degree-sequence bound as a strengthening. GPT-5.6 Sol / ChatGPT chose the subject and API and authored the Lean statement and proof; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
