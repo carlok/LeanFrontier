@@ -124,7 +124,13 @@ def depth_of(sources: dict[str, str], edges: list[tuple[str, str]]) -> int:
     return max((depth(name) for name in sources), default=0)
 
 
+class ShallowHistory(RuntimeError):
+    """The series needs every commit; a shallow clone would silently truncate it."""
+
+
 def rows(root: Path) -> list[tuple[str, ...]]:
+    if run(["rev-parse", "--is-shallow-repository"], root).strip() == "true":
+        raise ShallowHistory(f"{root} is a shallow clone; fetch full history (git fetch --unshallow) first")
     first_seen: dict[str, date] = {}
     result: list[tuple[str, ...]] = []
     for commit, day, submission in submission_commits(root):
@@ -172,7 +178,11 @@ def main() -> int:
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     destination = args.root / DESTINATION
-    expected = render(args.root)
+    try:
+        expected = render(args.root)
+    except ShallowHistory as error:
+        print(error)
+        return 2
     existing = destination.read_text(encoding="utf-8") if destination.exists() else ""
     if expected == existing:
         return 0
