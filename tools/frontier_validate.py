@@ -190,6 +190,21 @@ def is_allowed_path(path: str) -> bool:
     return path.startswith("LeanFrontier/") or SUBMISSION_RE.fullmatch(path) is not None
 
 
+def is_documentation_path(path: str) -> bool:
+    """Prose a contribution may propose on its own, with no Lean and no claim.
+
+    Markdown under `docs/` only. `docs/catalogue/` is generated from the corpus
+    and `docs/website/` is deployed to GitHub Pages, so neither is prose a
+    submitter may edit: a change there would publish under the project's name.
+    """
+    return (
+        path.startswith("docs/")
+        and path.endswith(".md")
+        and not path.startswith("docs/catalogue/")
+        and not path.startswith("docs/website/")
+    )
+
+
 def line_count(path: Path) -> int:
     try:
         return path.read_text(encoding="utf-8").count("\n") + 1
@@ -369,6 +384,15 @@ def static_preflight(base: Path | None, candidate: Path, limits: dict[str, Any],
     changed, before = changed_paths(base, candidate)
     corpus = corpus_skeletons(base)
     report.observations["changed_files"] = sorted(changed)
+    # A documentation proposal: prose, no Lean, no claim, nothing to build. It
+    # is admitted by the same trusted receiver as everything else, and merged by
+    # a human like every other change that is not an ordinary submission.
+    if changed and all(path is not None and is_documentation_path(relative) for relative, path in changed.items()):
+        oversized = [relative for relative, path in changed.items() if path is not None and path.stat().st_size > limits["max_individual_file_bytes"]]
+        for relative in oversized:
+            report.reject("RESOURCE_LIMIT_EXCEEDED", "individual file exceeds policy limit", relative)
+        report.observations["docs_only"] = not oversized
+        return {}, None
     if len(changed) > limits["max_changed_files"]:
         report.reject("RESOURCE_LIMIT_EXCEEDED", "too many changed files")
     changed_bytes = 0
@@ -1129,7 +1153,7 @@ def main(argv: list[str] | None = None) -> int:
                 base, candidate, submitted_modules(changed),
                 [e for e in metadata.get("entrypoints", []) if isinstance(e, str)],
                 metadata, load_json(DEFAULT_CONJECTURE), report)
-        if report.accepted and not args.preflight_only:
+        if report.accepted and not args.preflight_only and not report.observations.get("docs_only"):
             if metadata is None:
                 report.reject("SCHEMA_INVALID", "no valid metadata record was available for audit")
             else:

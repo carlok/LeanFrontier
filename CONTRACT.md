@@ -29,6 +29,14 @@ An ordinary submission also MUST NOT modify
 `lake-manifest.json`, `lean-toolchain`, `CONTRACT.md`, `README.md`,
 `MANIFEST.md`, prompts, tests, or any other trusted infrastructure.
 
+A **documentation proposal** is the one other contribution an ordinary
+contributor may open: a pull request changing only Markdown files under `docs/`,
+with no Lean source and no submission record. It carries no claim, builds
+nothing, and runs no candidate code. `docs/catalogue/` is generated from the
+corpus and `docs/website/` is published under the project's name, so neither is
+prose a submitter may edit. A documentation proposal is never merged
+unattended: a person reads it, because nothing mechanical reads prose.
+
 The receiver rejects binary files, archives, symlinks, generated payloads,
 hidden files outside the permitted source tree, and executable content that is
 not ordinary Lean source. Consumers build LeanFrontier from source and import

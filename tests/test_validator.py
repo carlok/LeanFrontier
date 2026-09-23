@@ -188,6 +188,60 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
         git("merge", "-q", "main")
         self.assertEqual(frontier_validate.commits_behind("main", repo), 0)
 
+    def docs_tree(self) -> None:
+        for root in (self.base, self.candidate):
+            (root / "docs").mkdir(exist_ok=True)
+            (root / "docs" / "CONTRIBUTION-DIRECTIONS.md").write_text("# directions\n")
+        (self.candidate / "LeanFrontier" / "Algebra" / "New.lean").unlink()
+        (self.candidate / "Submissions" / "valid-bundle.json").unlink()
+
+    def test_a_documentation_only_change_is_accepted_without_a_claim(self) -> None:
+        """Twice a docs PR from the one external contributor was refused for not being a submission.
+
+        `maintenance/` only routes around the submission rules for the owner, so
+        a fork cannot propose documentation at all.
+        """
+        self.docs_tree()
+        (self.candidate / "docs" / "CONTRIBUTION-DIRECTIONS.md").write_text("# directions\n\nnew target\n")
+        status, report = self.validate()
+        self.assertEqual(status, 0, report["diagnostics"])
+        self.assertTrue(report["accepted"])
+        self.assertTrue(report["observed"]["docs_only"])
+
+    def test_a_new_documentation_file_is_accepted(self) -> None:
+        self.docs_tree()
+        (self.candidate / "docs" / "threat-model.md").write_text("# threat model\n")
+        status, report = self.validate()
+        self.assertEqual(status, 0, report["diagnostics"])
+
+    def test_documentation_mixed_with_lean_source_is_rejected(self) -> None:
+        self.docs_tree()
+        (self.candidate / "docs" / "CONTRIBUTION-DIRECTIONS.md").write_text("# directions\n\nnew\n")
+        (self.candidate / "LeanFrontier" / "Algebra" / "Sneak.lean").write_text("theorem sneak : True := trivial\n")
+        status, report = self.validate()
+        self.assertEqual(status, 1)
+        self.assertFalse(report["observed"].get("docs_only"))
+
+    def test_the_published_site_and_catalogue_are_not_documentation(self) -> None:
+        """docs/website is deployed to Pages and docs/catalogue is generated."""
+        for relative in ("docs/website/index.html", "docs/catalogue/index.html"):
+            with self.subTest(path=relative):
+                self.setUp()
+                self.docs_tree()
+                target = self.candidate / relative
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text("<p>hello</p>\n")
+                status, report = self.validate()
+                self.assertEqual(status, 1)
+                codes = {item["code"] for item in report["diagnostics"]}
+                self.assertIn("PATH_POLICY_VIOLATION", codes)
+
+    def test_documentation_may_not_delete(self) -> None:
+        self.docs_tree()
+        (self.candidate / "docs" / "CONTRIBUTION-DIRECTIONS.md").unlink()
+        status, report = self.validate()
+        self.assertEqual(status, 1)
+
     def test_unauthorized_path_is_rejected(self) -> None:
         (self.candidate / "README.md").write_text("payload")
         self.assert_rejected("PATH_POLICY_VIOLATION")

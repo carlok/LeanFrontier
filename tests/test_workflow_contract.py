@@ -50,6 +50,14 @@ class WorkflowContractTests(unittest.TestCase):
         # Untrusted values reach the shell only through the environment.
         self.assertNotIn("compare/${{", WORKFLOW)
 
+    def test_a_documentation_change_skips_the_lean_stages(self) -> None:
+        self.assertIn('--json-out "$GITHUB_WORKSPACE/preflight-report.json"', WORKFLOW)
+        self.assertIn("docs_only", WORKFLOW)
+        # Every stage that builds or runs candidate code is gated on it.
+        for stage in ("Build trusted validation image", "Fetch pinned dependencies", "Restricted formal validation"):
+            index = WORKFLOW.index(stage)
+            self.assertIn("steps.preflight.outputs.docs_only != 'true'", WORKFLOW[index:index + 900], stage)
+
     def test_receiver_has_restricted_formal_execution_and_report(self) -> None:
         for required in (
             "--network none",

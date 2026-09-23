@@ -44,6 +44,13 @@ don't hold accepted work back in a queue. Only conjectures have a quota
 Substantive extensions that build on accepted results are especially
 welcome.
 
+## Proposing documentation
+
+A pull request that changes only Markdown under `docs/` needs no claim and no
+Lean source. The receiver accepts it as a documentation proposal and skips the
+build entirely; a maintainer then reads it and merges it. `docs/catalogue/` is
+generated and `docs/website/` is published, so neither can be changed this way.
+
 ## Questions and project maintenance
 
 Use GitHub issues for questions, protocol proposals, and non-sensitive bug
