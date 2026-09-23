@@ -338,6 +338,21 @@ class WorkflowContractTests(unittest.TestCase):
             self.assertIn(required, UPGRADE_WORKFLOW)
         self.assertNotIn("/pulls", UPGRADE_WORKFLOW)
 
+    def test_every_step_using_the_trusted_checkout_shares_its_guard(self) -> None:
+        """A step that runs .trusted-receiver code must be skipped whenever that checkout is.
+
+        The accumulation step was added without the guard, ran on a maintenance
+        merge that skipped the checkout, and failed on a missing file.
+        """
+        steps = OBSERVATION_WORKFLOW.split("\n      - ")
+        checkout = next(step for step in steps if step.startswith("name: Check out the trusted receiver revision"))
+        guard = next(line.strip() for line in checkout.splitlines() if line.strip().startswith("if:"))
+        users = [step for step in steps if ".trusted-receiver/tools/" in step]
+        self.assertTrue(users)
+        for step in users:
+            with self.subTest(step=step.splitlines()[0]):
+                self.assertIn(guard, step)
+
     def test_the_merge_queue_is_maintainer_triggered_and_never_overrides(self) -> None:
         """The sequencing a maintainer did by hand, made reproducible.
 
