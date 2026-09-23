@@ -30,6 +30,7 @@ import LeanFrontier.NumberTheory.HoradamSequence
 import LeanFrontier.NumberTheory.LucasNumber
 import LeanFrontier.NumberTheory.MarkovEquation
 import LeanFrontier.NumberTheory.MarkovTree
+import LeanFrontier.NumberTheory.MarkovTree.Paths
 import LeanFrontier.NumberTheory.Mediant
 import LeanFrontier.NumberTheory.Padovan
 import LeanFrontier.NumberTheory.PowerSums
