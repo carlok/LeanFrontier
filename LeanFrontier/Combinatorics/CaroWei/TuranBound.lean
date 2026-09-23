@@ -45,7 +45,7 @@ private theorem card_sq_div_sum_le_sum_inv
         exact ha y (by simp [hy])
       by_cases hs : s = ∅
       · subst s
-        simp [hax.ne']
+        simp
       · have hsne : s.Nonempty := Finset.nonempty_iff_ne_empty.mpr hs
         have hsum_pos : 0 < ∑ y ∈ s, a y :=
           Finset.sum_pos (fun y hy => has y hy) hsne
@@ -73,10 +73,13 @@ private theorem card_sq_div_sum_le_sum_inv
         calc
           (((insert x s).card : ℚ) ^ 2) / (∑ y ∈ insert x s, a y)
               = (n + 1) ^ 2 / (A + a x) := by
-                  simp [Finset.card_insert_of_notMem hx, Finset.sum_insert hx, n, A]
+                  simp [Finset.card_insert_of_notMem hx, Finset.sum_insert hx, n, A,
+                    add_comm]
           _ ≤ n ^ 2 / A + 1 / a x := hcombine
           _ ≤ (∑ y ∈ s, (1 : ℚ) / a y) + 1 / a x := by
-                exact add_le_add_right (by simpa [n, A] using ih has) _
+                have hih : n ^ 2 / A ≤ ∑ y ∈ s, (1 : ℚ) / a y := by
+                  simpa [n, A] using ih has
+                exact add_le_add hih le_rfl
           _ = ∑ y ∈ insert x s, (1 : ℚ) / a y := by
                 rw [Finset.sum_insert hx]
                 ring
