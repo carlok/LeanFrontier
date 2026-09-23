@@ -1,0 +1,116 @@
+name: maintainer-merge-queue
+
+# The sequencing a maintainer otherwise does by hand, one pull request at a
+# time. `main` requires branches to be up to date, so every merge leaves the
+# other open pull requests behind: each one then needs its branch updated and
+# the whole receiver run again before it can merge. On a twenty-submission day
+# that is hours of waiting and clicking.
+#
+# This automates the waiting, never the decision. It merges only what the
+# receiver has already accepted and what GitHub already considers mergeable. It
+# holds no administrator override, arms nothing to merge later, and stops on
+# the first genuine check failure rather than working around it. Running it is
+# an ordinary maintainer action: workflow_dispatch requires write access.
+
+on:
+  workflow_dispatch:
+    inputs:
+      pull_requests:
+        description: Pull request numbers to merge, in order, separated by spaces.
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: maintainer-merge-queue
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    # Each pull request costs a branch update plus a full revalidation, which
+    # ran 4 to 11 minutes per submission on 22 September.
+    timeout-minutes: 300
+    steps:
+      - name: Mint a merge token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Merge the listed pull requests in order
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          # Through the environment, never interpolated into the script.
+          PULL_REQUESTS: ${{ inputs.pull_requests }}
+        run: |
+          set -uo pipefail
+          # In a variable: [[ =~ ]] splits an unquoted pattern on the space
+          # inside the bracket expression and fails to parse.
+          numbers='^[0-9 ]+$'
+          [[ "$PULL_REQUESTS" =~ $numbers ]] || { echo "pull_requests must be numbers separated by spaces" >&2; exit 1; }
+
+          generated_open() {
+            gh pr list --repo "$GITHUB_REPOSITORY" --state open --json headRefName \
+              --jq '[.[] | select(.headRefName | startswith("automation/generated/"))] | length'
+          }
+
+          for pr in $PULL_REQUESTS; do
+            echo "::group::#$pr"
+            for attempt in $(seq 1 120); do
+              # The generators open their own pull requests after each merge and
+              # auto-merge them. Merging past them races the corpus they record.
+              if [ "$(generated_open)" != "0" ]; then
+                for generated in $(gh pr list --repo "$GITHUB_REPOSITORY" --state open \
+                    --json number,headRefName,mergeStateStatus \
+                    --jq '.[] | select(.headRefName | startswith("automation/generated/")) | select(.mergeStateStatus == "BEHIND") | .number'); do
+                  echo "generated #$generated is behind; updating it"
+                  gh pr update-branch "$generated" --repo "$GITHUB_REPOSITORY" || true
+                done
+                sleep 30
+                continue
+              fi
+
+              state="$(gh pr view "$pr" --repo "$GITHUB_REPOSITORY" --json state,mergeStateStatus --jq '.state + " " + .mergeStateStatus')"
+              case "$state" in
+                "MERGED "*) echo "#$pr merged"; break ;;
+                "CLOSED "*) echo "#$pr is closed; skipping"; break ;;
+                "OPEN CLEAN")
+                  echo "#$pr is mergeable; merging"
+                  gh pr merge "$pr" --repo "$GITHUB_REPOSITORY" --merge
+                  sleep 20
+                  ;;
+                *)
+                  # A branch behind main fails the receiver by construction: it
+                  # is diffed against a base it does not contain. Read staleness
+                  # from the commit graph rather than from mergeStateStatus,
+                  # which lags and reports BLOCKED while checks are pending.
+                  head="$(gh pr view "$pr" --repo "$GITHUB_REPOSITORY" --json headRefOid --jq .headRefOid)"
+                  behind="$(gh api "repos/$GITHUB_REPOSITORY/compare/${{ github.event.repository.default_branch }}...$head" --jq .behind_by)"
+                  if [ "$behind" != "0" ]; then
+                    echo "#$pr is $behind commits behind; updating and revalidating"
+                    gh pr update-branch "$pr" --repo "$GITHUB_REPOSITORY" || {
+                      echo "::error::cannot update #$pr; a fork branch needs 'allow edits by maintainers'"
+                      exit 1
+                    }
+                    sleep 45
+                    continue
+                  fi
+                  if gh pr checks "$pr" --repo "$GITHUB_REPOSITORY" 2>/dev/null | awk '{print $2}' | grep -q fail; then
+                    echo "::error::#$pr has a failing check; stopping so a person can look"
+                    gh pr checks "$pr" --repo "$GITHUB_REPOSITORY" || true
+                    exit 1
+                  fi
+                  sleep 30
+                  ;;
+              esac
+            done
+            echo "::endgroup::"
+          done
+
+          echo "### Merge queue finished" >> "$GITHUB_STEP_SUMMARY"
+          gh pr list --repo "$GITHUB_REPOSITORY" --state open --json number,headRefName \
+            --jq '.[] | "- #\(.number) \(.headRefName)"' >> "$GITHUB_STEP_SUMMARY"
