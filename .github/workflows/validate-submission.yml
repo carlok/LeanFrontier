@@ -72,23 +72,32 @@ jobs:
           [[ "$behind" =~ ^[0-9]+$ ]]
           echo "behind=$behind" >> "$GITHUB_OUTPUT"
 
+      # A documentation proposal (Markdown under docs/, no Lean, no claim) is
+      # accepted here and stops: there is nothing to build, and no candidate
+      # code should run for it. The trusted receiver decides that from the
+      # changed paths, never from the branch name.
       - name: Trusted cheap preflight
+        id: preflight
         env:
           BEHIND_BY: ${{ steps.freshness.outputs.behind || '0' }}
-        run: >-
-          python3 trusted/tools/validate-submission
-          --base-dir "$GITHUB_WORKSPACE/trusted"
-          --candidate-dir "$GITHUB_WORKSPACE/candidate"
-          --preflight-only
-          --behind-by "$BEHIND_BY"
-          --json-out "$GITHUB_WORKSPACE/preflight-report.json"
+        run: |
+          python3 trusted/tools/validate-submission \
+            --base-dir "$GITHUB_WORKSPACE/trusted" \
+            --candidate-dir "$GITHUB_WORKSPACE/candidate" \
+            --preflight-only \
+            --behind-by "$BEHIND_BY" \
+            --json-out "$GITHUB_WORKSPACE/preflight-report.json"
+          docs_only="$(python3 -c 'import json,sys; print(str(json.load(open(sys.argv[1]))["observed"].get("docs_only", False)).lower())' "$GITHUB_WORKSPACE/preflight-report.json")"
+          echo "docs_only=$docs_only" >> "$GITHUB_OUTPUT"
 
       - name: Build trusted validation image
+        if: steps.preflight.outputs.docs_only != 'true'
         run: docker build -f trusted/tools/Dockerfile.validator -t leanfrontier-validator:ci trusted
 
       # The candidate lakefile has already been proven identical to trusted
       # infrastructure. Network is available only for dependency acquisition.
       - name: Fetch pinned dependencies and compiled Mathlib cache
+        if: steps.preflight.outputs.docs_only != 'true'
         run: |
           for attempt in 1 2 3; do
             docker run --rm \
@@ -101,6 +110,7 @@ jobs:
           done
 
       - name: Restricted formal validation
+        if: steps.preflight.outputs.docs_only != 'true'
         run: |
           mkdir -p "$GITHUB_WORKSPACE/report-output"
           chmod 0777 "$GITHUB_WORKSPACE/report-output"
