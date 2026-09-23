@@ -145,13 +145,13 @@ private theorem exists_descending_move
 private theorem exists_walk_to_root_aux :
     ∀ N : ℕ, ∀ s : State,
       weight s = N →
-      Positive s →
-      s.IsSolution →
+      (Positive s ∧ s.IsSolution) →
       ∃ path : List Move, walk path s = ⟨1, 1, 1⟩ := by
   intro N
   induction N using Nat.strong_induction_on with
   | h N ih =>
-      intro s hweight hpos hsol
+      intro s hweight hs
+      rcases hs with ⟨hpos, hsol⟩
       by_cases hroot : s = ⟨1, 1, 1⟩
       · subst s
         exact ⟨[], rfl⟩
@@ -167,7 +167,7 @@ private theorem exists_walk_to_root_aux :
         have hN' : weight s' < N := by
           simpa [hweight] using hweight_lt
         obtain ⟨path, hpath⟩ :=
-          ih (weight s') hN' s' rfl hpos' hsol'
+          ih (weight s') hN' s' rfl ⟨hpos', hsol'⟩
         refine ⟨m :: path, ?_⟩
         simpa [walk, s'] using hpath
 
@@ -182,7 +182,7 @@ theorem exists_walk_from_root_of_positive_solution
     (hsol : s.IsSolution) :
     ∃ path : List Move, walk path ⟨1, 1, 1⟩ = s := by
   obtain ⟨path, hpath⟩ :=
-    exists_walk_to_root_aux (weight s) s rfl ⟨hx, hy, hz⟩ hsol
+    exists_walk_to_root_aux (weight s) s rfl ⟨⟨hx, hy, hz⟩, hsol⟩
   refine ⟨path.reverse, ?_⟩
   have hrev := walk_reverse path s
   rw [hpath] at hrev
