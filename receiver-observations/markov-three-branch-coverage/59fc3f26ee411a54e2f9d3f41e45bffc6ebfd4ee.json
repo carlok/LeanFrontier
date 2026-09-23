@@ -1,0 +1,373 @@
+{
+  "accepted_revision": "59fc3f26ee411a54e2f9d3f41e45bffc6ebfd4ee",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-23T16:36:46Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 208.253,
+    "observed": {
+      "added_lines": 212,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.branchNode": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.branchNode",
+          "restatement": false,
+          "statement_sha256": "c6df686c277ea83985a8eba96a51a789c27d58e909621b3d4a257136dcd88309",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.branchNode_third": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.branchNode_third",
+          "restatement": false,
+          "statement_sha256": "f8b4ae371fa5923e2fa7fc600c228aa10dfe796ad48983a42a32d1c84f1b80ec",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.MarkovTree.Move.third",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.branchNode",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.existsUnique_pathMoves_of_nonBacktracking": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.existsUnique_pathMoves_of_nonBacktracking",
+          "restatement": false,
+          "statement_sha256": "7a096985935d1af8e1b122ea626ff920eb91fd66bc45edfb3b4f03caa83af797",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "ExistsUnique",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.NonBacktrackingFrom",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.back",
+            "LeanFrontier.MarkovTree.pathMoves",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.exists_branchNode_state_of_positive_solution": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.exists_branchNode_state_of_positive_solution",
+          "restatement": false,
+          "statement_sha256": "164cf2b349778e1064f98d8ce10d9170809e21cbe3441c729c08fc455e7747fb",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Exists",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.IsSolution",
+            "LeanFrontier.MarkovTree.State.mk",
+            "LeanFrontier.MarkovTree.State.x",
+            "LeanFrontier.MarkovTree.State.y",
+            "LeanFrontier.MarkovTree.State.z",
+            "LeanFrontier.MarkovTree.branchNode",
+            "List",
+            "Ne",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.rootBranch": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.rootBranch",
+          "restatement": false,
+          "statement_sha256": "db46e533020ee731a7010af2c1469defb43ffb07e71e85bd146d3ba881929148",
+          "type_dependencies": [
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode"
+          ]
+        },
+        "LeanFrontier.MarkovTree.rootBranch_back": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.rootBranch_back",
+          "restatement": false,
+          "statement_sha256": "11ccade610c39fd3f2997fcae244b1055ac456029ebeec5e92a92df4cc3eb99f",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode.back",
+            "LeanFrontier.MarkovTree.rootBranch"
+          ]
+        },
+        "LeanFrontier.MarkovTree.rootBranch_state": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.rootBranch_state",
+          "restatement": false,
+          "statement_sha256": "902ac77959ee1db2dfa3943bf5388dd4ce4d455439332f30c5d8472f3fb7ce62",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.mk",
+            "LeanFrontier.MarkovTree.move",
+            "LeanFrontier.MarkovTree.rootBranch",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 18,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.branchNode_third": [
+            {
+              "outcome": "failed",
+              "seconds": 4.634,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.621,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.556,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.573,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.579,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.607,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.existsUnique_pathMoves_of_nonBacktracking": [
+            {
+              "outcome": "failed",
+              "seconds": 4.85,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.634,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.536,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.631,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.555,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.566,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.exists_branchNode_state_of_positive_solution": [
+            {
+              "outcome": "failed",
+              "seconds": 4.766,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.754,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.724,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.77,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.751,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.912,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 84.019,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.branchNode_third": "inconclusive",
+        "LeanFrontier.MarkovTree.existsUnique_pathMoves_of_nonBacktracking": "inconclusive",
+        "LeanFrontier.MarkovTree.exists_branchNode_state_of_positive_solution": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 10438,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/Coverage.lean",
+        "Submissions/markov-three-branch-coverage.json"
+      ],
+      "corpus_entrypoints_checked": 182,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.branchNode_third": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.branchNode_third",
+          "statement_sha256": "f8b4ae371fa5923e2fa7fc600c228aa10dfe796ad48983a42a32d1c84f1b80ec",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.MarkovTree.Move.third",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.branchNode",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.existsUnique_pathMoves_of_nonBacktracking": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.existsUnique_pathMoves_of_nonBacktracking",
+          "statement_sha256": "7a096985935d1af8e1b122ea626ff920eb91fd66bc45edfb3b4f03caa83af797",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "ExistsUnique",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.NonBacktrackingFrom",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.back",
+            "LeanFrontier.MarkovTree.pathMoves",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.exists_branchNode_state_of_positive_solution": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.exists_branchNode_state_of_positive_solution",
+          "statement_sha256": "164cf2b349778e1064f98d8ce10d9170809e21cbe3441c729c08fc455e7747fb",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Exists",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.IsSolution",
+            "LeanFrontier.MarkovTree.State.mk",
+            "LeanFrontier.MarkovTree.State.x",
+            "LeanFrontier.MarkovTree.State.y",
+            "LeanFrontier.MarkovTree.State.z",
+            "LeanFrontier.MarkovTree.branchNode",
+            "List",
+            "Ne",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 8569,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 13
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-three-branch-coverage",
+  "trusted_receiver_revision": "cbcc466dcd5acfe58ee3f0a3fcd04e30f46102c8",
+  "validated_candidate_revision": "7197f17d45779e95c1ac95537d212c2489094896",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35885077469"
+}
