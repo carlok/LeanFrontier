@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "furstenberg-separation",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Int.totallySeparatedSpace_furstenberg",
+    "LeanFrontier.Int.not_isOpen_singleton_furstenberg"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to find another worthwhile LeanFrontier target that depends only on currently accepted upstream code, explicitly avoiding unmerged pull requests. GPT-5.6 Sol / ChatGPT inspected live upstream main, confirmed the Markov root-reachability PR was still unmerged at target-selection time, audited several accepted-only clusters, rejected a near-neighbor Horadam target after discovering that the general Cassini identity was already accepted, and selected structural topology consequences of the accepted Furstenberg module. The accepted development already proves that every nonzero-step arithmetic progression is clopen and every nonempty open set is infinite. The new main theorem proves that the Furstenberg topology is totally separated by explicitly separating distinct integers x and y with the clopen progression through x of step 2*(y-x); y cannot lie in that progression because 2*(y-x) cannot divide the nonzero integer y-x. A second theorem records the complementary non-discreteness fact that no singleton is open, by reusing the accepted infinite_of_isOpen theorem. This strengthens the Furstenberg module from a topology tailored to the infinitude-of-primes proof into reusable separation-space structure. Searches found no equivalent result in LeanFrontier and no Mathlib Furstenberg-topology development. During validation the independent Markov root-reachability submission merged upstream and the generated umbrella sync advanced main; this branch was then refreshed onto that newer accepted main before final validation, without adding any dependency on the Markov theorem. GPT-5.6 Sol / ChatGPT chose the target and API and authored the Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
