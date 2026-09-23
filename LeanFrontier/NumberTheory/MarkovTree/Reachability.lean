@@ -65,7 +65,7 @@ private theorem exists_descending_move
         jump_descends_ordered_positive hx hxy hyz hsol hne'
       refine ⟨.third, ?_, move_isSolution .third hsol, ?_⟩
       · simpa [Positive, move] using And.intro hx (And.intro hy hj.1)
-      · simp only [move, State.x, State.y, State.z]
+      · simp only [move]
         linarith [hj.2.2]
     · have hzy : z < y := lt_of_not_ge hyz
       by_cases hxz : x ≤ z
@@ -77,23 +77,29 @@ private theorem exists_descending_move
             exact hne' ⟨hx1, hy1, hz1⟩)
         refine ⟨.second, ?_, move_isSolution .second hsol, ?_⟩
         · simpa [Positive, move] using And.intro hx (And.intro hj.1 hz)
-        · simp only [move, State.x, State.y, State.z]
+        · simp only [move]
           linarith [hj.2.2]
       · have hzx : z < x := lt_of_not_ge hxz
         have hperm : MarkovEquation.IsSolution z x y :=
           permuted_isSolution hsol (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl ⟨rfl, rfl, rfl⟩)))))
         have hj :=
-          jump_descends_ordered_positive hz (le_of_lt hzx) (le_of_trans (le_of_lt hzx) hxy)
+          jump_descends_ordered_positive hz (le_of_lt hzx) (le_trans (le_of_lt hzx) hxy)
             hperm (by
               rintro ⟨hz1, hx1, hy1⟩
               exact hne' ⟨hx1, hy1, hz1⟩)
+        have hswap :
+            MarkovEquation.jump z x y = MarkovEquation.jump x z y := by
+          unfold MarkovEquation.jump
+          ring
         have hjpos : 0 < MarkovEquation.jump x z y := by
-          simpa [MarkovEquation.jump, mul_comm] using hj.1
+          rw [← hswap]
+          exact hj.1
         have hjlt : MarkovEquation.jump x z y < y := by
-          simpa [MarkovEquation.jump, mul_comm] using hj.2.2
+          rw [← hswap]
+          exact hj.2.2
         refine ⟨.second, ?_, move_isSolution .second hsol, ?_⟩
         · simpa [Positive, move] using And.intro hx (And.intro hjpos hz)
-        · simp only [move, State.x, State.y, State.z]
+        · simp only [move]
           linarith
   · have hyx : y < x := lt_of_not_ge hxy
     by_cases hxz : x ≤ z
@@ -103,13 +109,19 @@ private theorem exists_descending_move
         jump_descends_ordered_positive hy (le_of_lt hyx) hxz hperm (by
           rintro ⟨hy1, hx1, hz1⟩
           exact hne' ⟨hx1, hy1, hz1⟩)
+      have hswap :
+          MarkovEquation.jump y x z = MarkovEquation.jump x y z := by
+        unfold MarkovEquation.jump
+        ring
       have hjpos : 0 < MarkovEquation.jump x y z := by
-        simpa [MarkovEquation.jump, mul_comm] using hj.1
+        rw [← hswap]
+        exact hj.1
       have hjlt : MarkovEquation.jump x y z < z := by
-        simpa [MarkovEquation.jump, mul_comm] using hj.2.2
+        rw [← hswap]
+        exact hj.2.2
       refine ⟨.third, ?_, move_isSolution .third hsol, ?_⟩
       · simpa [Positive, move] using And.intro hx (And.intro hy hjpos)
-      · simp only [move, State.x, State.y, State.z]
+      · simp only [move]
         linarith
     · have hzx : z < x := lt_of_not_ge hxz
       by_cases hyz : y ≤ z
@@ -123,23 +135,29 @@ private theorem exists_descending_move
         have hjlt : MarkovEquation.jump y z x < x := hj.2.2
         refine ⟨.first, ?_, move_isSolution .first hsol, ?_⟩
         · simpa [Positive, move] using And.intro hjpos (And.intro hy hz)
-        · simp only [move, State.x, State.y, State.z]
+        · simp only [move]
           linarith
       · have hzy : z < y := lt_of_not_ge hyz
         have hperm : MarkovEquation.IsSolution z y x :=
           permuted_isSolution hsol (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr ⟨rfl, rfl, rfl⟩)))))
         have hj :=
           jump_descends_ordered_positive hz (le_of_lt hzy)
-            (le_of_trans (le_of_lt hzy) (le_of_lt hyx)) hperm (by
+            (le_trans (le_of_lt hzy) (le_of_lt hyx)) hperm (by
               rintro ⟨hz1, hy1, hx1⟩
               exact hne' ⟨hx1, hy1, hz1⟩)
+        have hswap :
+            MarkovEquation.jump z y x = MarkovEquation.jump y z x := by
+          unfold MarkovEquation.jump
+          ring
         have hjpos : 0 < MarkovEquation.jump y z x := by
-          simpa [MarkovEquation.jump, mul_comm] using hj.1
+          rw [← hswap]
+          exact hj.1
         have hjlt : MarkovEquation.jump y z x < x := by
-          simpa [MarkovEquation.jump, mul_comm] using hj.2.2
+          rw [← hswap]
+          exact hj.2.2
         refine ⟨.first, ?_, move_isSolution .first hsol, ?_⟩
         · simpa [Positive, move] using And.intro hjpos (And.intro hy hz)
-        · simp only [move, State.x, State.y, State.z]
+        · simp only [move]
           linarith
 
 private theorem exists_walk_to_root_aux :
