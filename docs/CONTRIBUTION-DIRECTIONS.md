@@ -10,431 +10,406 @@ or equivalent formulations, and revalidate any mathematical literature claim.
 
 The purpose of this document is narrower: preserve useful, adversarially reviewed directions
 for making the corpus accumulate into connected, reusable bodies of mathematics rather than a
-bag of unrelated theorems. It should describe mathematical opportunities and representation
-boundaries, not the state or sequencing of particular contributors' branches or pull requests.
+bag of unrelated theorems.
+
+**Completed directions are intentionally removed from this file.** The catalogue, submission
+records and receiver observations are the historical record of what landed. Keeping completed
+targets here as a sequence of `Status: landed` sections makes the roadmap progressively less
+useful and encourages agents to rediscover already-finished work.
+
+Likewise, this file should describe mathematical opportunities and representation boundaries,
+not the state or sequencing of particular contributors' branches or pull requests.
 
 ## 1. Selection principle
 
-Prefer a bridge theorem when it does all or most of the following:
+Prefer a target when it does all or most of the following:
 
-- substantively uses two or more accepted LeanFrontier definitions or theorems, rather than
-  merely importing their modules;
-- expresses a recognized mathematical connection, or creates an abstraction with clear
-  independent purpose;
+- substantively uses accepted LeanFrontier definitions or theorems rather than merely importing
+  their modules;
+- expresses a recognized mathematical connection, or creates reusable infrastructure with a
+  clear independent purpose;
 - has plausible downstream consumers after it is merged;
-- strengthens the internal dependency graph for mathematical reasons rather than for graph
-  aesthetics;
+- strengthens the internal mathematical dependency graph for mathematical reasons rather than
+  graph aesthetics;
 - is not already present in Mathlib or LeanFrontier under an equivalent formulation;
 - survives an adversarial boundary review before a candidate is frozen.
 
 A useful test is:
 
-> If this bridge existed, what mathematically natural theorem would become easier or newly
+> If this result existed, what mathematically natural theorem would become easier or newly
 > possible next?
 
-If there is no good answer, do not formalize the bridge merely to create an import edge.
+If there is no good answer, do not formalize the result merely to create an import edge.
 
-## 2. Current high-value mathematical clusters
+A second useful test is now increasingly important because several corpus clusters have matured:
 
-The accepted corpus contains several mathematically related groups whose formal dependency
-structure is still weaker than their mathematical relationship.
+> Is this theorem adding a new interface, or is it only another short corollary of an interface
+> LeanFrontier already has?
 
-### Rational / Farey / Stern / Ford / Apollonian cluster
+The latter should usually be left to downstream users.
 
-Accepted material includes:
+## 2. Where the accepted corpus now has leverage
 
-- `LeanFrontier.NumberTheory.Mediant`
-- `LeanFrontier.NumberTheory.Farey`
-- `LeanFrontier.NumberTheory.FordCircle`
-- `LeanFrontier.Geometry.FordCircleTangency`
-- `LeanFrontier.NumberTheory.SternDiatomic`
-- `LeanFrontier.NumberTheory.SternDiatomic.Enumeration`
-- `LeanFrontier.NumberTheory.DescartesCircle`
-- `LeanFrontier.Geometry.InversiveGeometry`
+### Markov / Farey / Stern-Brocot
 
-This is currently the strongest synthesis cluster. In particular, the corpus now contains both
-the arithmetic Farey-neighbour criterion for Ford circles and the bridge to Mathlib's actual
-`EuclideanGeometry.Sphere.IsExtTangent` predicate.
+The prerequisites that used to block a structural Markov/Farey development are now largely
+present.
 
-### Fibonacci / Lucas / recurrence / matrix cluster
+On the Markov side the corpus has:
 
-Accepted material includes:
+- the Markov equation and Vieta involution;
+- the ordered-positive local descent theorem;
+- bundled `State`, coordinate `Move` and finite `walk`;
+- preservation, involutivity and exact reversal of walks;
+- global reachability of every positive Markov solution from `(1,1,1)`.
 
-- `LeanFrontier.Combinatorics.FibonacciComposition`
-- `LeanFrontier.Analysis.FibonacciReciprocal`
-- `LeanFrontier.LinearAlgebra.FibonacciMatrix`
-- `LeanFrontier.NumberTheory.LucasNumber`
-- `LeanFrontier.NumberTheory.HoradamSequence`
-- nearby higher-order recurrence modules `Padovan` and `Tribonacci`.
+On the rational-tree side it has:
 
-This cluster is mathematically dense but still has room for stronger interfaces between scalar
-recurrences and linear algebra.
+- Farey neighbours and mediants;
+- Stern-Brocot path enumeration and interval invariants;
+- Calkin-Wilf path enumeration;
+- the explicit Calkin-Wilf / Stern-Brocot path-reversal bridge.
 
-### Markov / rational-tree cluster
+The main missing object is no longer “some path representation”. It is the **right oriented
+binary Markov-tree representation** whose left/right recursion can be compared cleanly with the
+Farey/Stern-Brocot recursion.
 
-Accepted material includes:
+### Probability / second-moment methods
 
-- `LeanFrontier.NumberTheory.MarkovEquation`
-- `LeanFrontier.NumberTheory.MarkovTree`
-- the Farey / Stern material above.
+The corpus now has a coherent second-moment stack:
 
-The accepted Markov-tree development now supplies the local ordered-positive Vieta descent step
-`LeanFrontier.MarkovTree.jump_descends_ordered_positive`. What is still missing is a durable
-tree/path representation that can carry a full combinatorial correspondence to the
-Farey/Stern-Brocot side.
+- finite weighted Paley-Zygmund;
+- a finite-PMF interface;
+- a measure-theoretic Paley-Zygmund theorem;
+- Cantelli's one-sided inequality;
+- the finite-event Chung-Erdos inequality.
 
-A full Markov/Farey correspondence remains a high-value long-term target, but it must avoid
-crossing the Markov uniqueness-conjecture boundary.
+Mathlib already supplies first and second Borel-Cantelli results, including the independent-event
+second lemma. The useful missing step is therefore not another independent Borel-Cantelli
+statement, but an infinite-event theorem that **retains dependence information**, with
+Kochen-Stone the natural target.
 
-## 3. Audited directions — highest priority
+### Interval dynamics
 
-### A. Largest Ford circle between Farey neighbours
+`LeanFrontier.Dynamics.LogisticMap` already contains the classical semiconjugacy
 
-**Status:** landed as `LeanFrontier.FordCircle.mediant_is_unique_largest_in_farey_gap`
-(`LeanFrontier/Geometry/FareyFordCircle.lean`). Build on it rather than restating it.
+`h(x) = sin (pi*x/2)^2`
+
+between the full tent map and the logistic map at parameter four, together with iterate
+transport, interval invariance, fixed points and a genuine period-two orbit.
+
+On `[0,1]`, however, `h` is a homeomorphism. The accepted result is therefore one structural
+step short of the classical topological conjugacy statement.
+
+### Arithmetic topology and number fields
+
+Two accepted modules expose unusually clear infrastructure opportunities:
+
+- `LeanFrontier.Topology.Furstenberg` constructs the evenly spaced topology on `Z`, proves
+  arithmetic progressions clopen and proves every nonempty open set infinite;
+- `LeanFrontier.NumberTheory.DiscriminantTower` deliberately leaves one explicit proposition
+  unresolved and proves a reduction that turns a concrete cyclotomic witness into a proof.
+
+These are better targets for structural continuation than mining mature recurrence modules for
+additional special-case identities.
+
+### Mature clusters
+
+The Horadam/Fibonacci/Lucas cluster now has scalar recurrence identities, addition laws,
+companion matrices, explicit powers, trace, determinant, characteristic polynomials and
+specializations. The Farey/Ford/Descartes cluster likewise already contains several arithmetic-
+geometric synthesis theorems.
+
+Treat these as **consumer-ready APIs**, not default sources of easy follow-up submissions.
+Further work there should introduce a genuinely new abstraction or solve a new mathematical
+problem.
+
+## 3. Highest-priority directions
+
+### A. An oriented Markov tree matching the Farey / Stern-Brocot tree
+
+**Status:** prerequisites are now accepted; representation design is the main problem.
 
 **Primary parents:**
 
-- `LeanFrontier.NumberTheory.Farey`
-- `LeanFrontier.NumberTheory.FordCircle`
-- optionally `LeanFrontier.NumberTheory.Mediant` for the explicit mediant witness.
+- `LeanFrontier.NumberTheory.MarkovTree`;
+- `LeanFrontier.NumberTheory.MarkovTree.Paths`;
+- `LeanFrontier.NumberTheory.MarkovTree.Reachability`;
+- `LeanFrontier.NumberTheory.SternBrocot` and its interval/path modules;
+- optionally the accepted Calkin-Wilf/Stern-Brocot bridge for path conventions.
 
 **Mathematical target:**
 
-For positive-denominator Farey neighbours `a/b < c/d`, any fraction `p/q` strictly between
-them satisfies `q >= b + d`. Since a Ford-circle radius is `1 / (2*q^2)`, the Ford circle of
-the mediant `(a+c)/(b+d)` is the unique largest Ford circle whose rational tangency point lies
-strictly between the two neighbours.
+Classically, the Markov tree and Farey/Stern-Brocot tree are combinatorially equivalent. The
+next useful formal object should make that statement precise **at the tree/path level**, before
+talking about numerical Markov labels.
 
-A strong statement should include the equality/uniqueness case, not merely a monotone radius
-inequality:
+A promising design is an oriented Markov node carrying enough information to distinguish the
+two forward children from the parent edge. The raw `State` graph has three involutive moves,
+coordinate permutations and immediate backtracking; a binary Farey path does not. The
+orientation layer should remove that mismatch rather than hiding it in ad hoc case splits.
 
-- every interior fraction gives radius at most `radius (b+d)`;
-- equality forces `q = b+d` and then `p = a+c` by the accepted Farey equality theorem.
+A good staged development would aim for:
+
+1. an oriented positive Markov-node type or invariant;
+2. deterministic left/right child operations, each realized by an accepted Vieta `Move`;
+3. a recursive `List Bool` path map whose erasure is a `MarkovTree.walk`;
+4. positivity and Markov-solution preservation along that map;
+5. a theorem that the left/right recursion has the same rooted-tree shape as the chosen
+   Farey/Stern-Brocot representation.
+
+Only after that representation is stable should one use global reachability to study how much of
+the positive Markov solution graph it covers modulo coordinate symmetries.
+
+**Critical boundary:**
+
+Do **not** turn tree-position uniqueness into a claim that the numerical Markov number attached
+to a position is injective. The classical Frobenius/Markov uniqueness problem remains a genuine
+boundary. A bijection of *constructed tree nodes* or path positions is safe; injectivity of the
+maximum-coordinate label is not.
 
 **Why this is valuable:**
 
-This composes arithmetic denominator optimality with Ford geometry. Both accepted parents do
-essential work. It turns the classical phrase "the mediant is the simplest fraction in the
-gap" into the geometric statement "the mediant Ford circle is the largest Ford circle in the
-gap."
-
-**Adversarial checks required:**
-
-- positivity assumptions on all denominators;
-- representation issue: fractions are numerator/denominator pairs, not quotient types;
-- equality of radii must imply equality of positive denominators, not only equality of squares;
-- ensure reducible/non-reduced alternate representatives do not break the intended uniqueness
-  statement;
-- search Mathlib and current LeanFrontier for an equivalent Ford-gap extremal theorem.
+This is now the clearest long-term synthesis opportunity in the corpus. It would make the
+accepted Markov reachability theorem interact with the already rich rational-tree development
+and unlock later branch-specific identities without theorem padding.
 
 **Priority:** A+.
 
 ---
 
-### B. Ford–Farey–Descartes configuration
+### B. Kochen-Stone from Chung-Erdos
 
-**Status:** landed as `LeanFrontier.FordCircle.farey_mediant_descartes_configuration`
-(`LeanFrontier/Geometry/FordCircleDescartes.lean`). Build on it rather than restating it.
+**Status:** ready for a serious attempt.
 
 **Primary parents:**
 
-- `Mediant`
-- `Farey`
-- `FordCircle`
-- `FordCircleTangency`
-- `DescartesCircle`.
+- `LeanFrontier.ProbabilityTheory.chungErdos`;
+- the accepted measure-theoretic Paley-Zygmund stack;
+- Mathlib's limsup/measure and Borel-Cantelli infrastructure.
 
 **Mathematical target:**
 
-For a positive-denominator Farey-neighbour pair, the two parent Ford circles and the Ford circle
-of their mediant are pairwise externally tangent. Their curvatures are `2*b^2`, `2*d^2`,
-and `2*(b+d)^2`; together with curvature `0` for the tangent line, these form a Descartes
-quadruple.
+For measurable events `A n` with divergent `sum P(A n)`, prove the Kochen-Stone lower bound
 
-The accepted theorem
-`LeanFrontier.FordCircle.isExtTangent_euclideanSphere_iff` now supplies the geometric
-Ford-circle tangency interface, so the strongest version no longer needs a separate preliminary
-bridge to Mathlib's sphere language.
+[
+P(A_n 	ext{i.o.}) ge
+limsup_{N	oinfty}
+rac{left(sum_{nle N} P(A_n)ight)^2}
+     {sum_{m,nle N} P(A_mcap A_n)}.
+]
 
-**Important audit result:**
+The accepted finite Chung-Erdos theorem is exactly the finite second-moment estimate needed in
+the proof. The substantive new work is the tail/limit passage.
 
-Do **not** submit only the bare identity
+A plausible proof architecture is:
 
-`DescartesCircle.IsQuadruple 0 (2*b^2) (2*d^2) (2*(b+d)^2)`.
-
-That algebraic identity is true without the Farey-neighbour hypothesis and would barely compose
-the existing theories. The worthwhile theorem must include the actual Farey/Ford geometric
-configuration, with tangency or an equivalent meaningful geometric interface.
-
-**Why this is valuable:**
-
-It connects rational approximation / Stern-Brocot insertion to Apollonian circle geometry and
-gives `DescartesCircle` a genuine geometric interpretation.
-
-**Priority:** A+.
-
----
-
-### C. Lucas numbers as characteristic-polynomial data of Fibonacci Q-matrix powers
-
-**Status:** partly covered by D. `LeanFrontier.Horadam.trace_fibMatrix_pow_succ_eq_lucas`
-proves the trace form, and the general companion-matrix power characteristic polynomial has
-landed, so the statement below may now be a short corollary. Check the catalogue before
-submitting it.
-
-**Primary parents:**
-
-- `LeanFrontier.LinearAlgebra.FibonacciMatrix`
-- `LeanFrontier.NumberTheory.LucasNumber`.
-
-**Existing ingredients:**
-
-- `trace_fibMatrix_pow_succ` gives the trace of a Q-matrix power as a Fibonacci sum;
-- `lucas_succ_eq_fib_add_fib` identifies the same Fibonacci sum with a Lucas number;
-- `det_fibMatrix_pow` gives determinant `(-1)^n`;
-- Mathlib provides the `2 x 2` characteristic-polynomial formula in terms of trace and
-  determinant.
-
-**Preferred target:**
-
-Do not stop at the trivial bridge `trace (fibMatrix^n) = lucas n`. Promote it into the
-structural statement
-
-`charpoly (fibMatrix^n) = X^2 - C(lucas n) * X + C((-1)^n)`
-
-with the necessary casts and indices stated cleanly.
+1. apply Chung-Erdos to finite tail unions `union_{m <= i <= N} A i`;
+2. compare tail sums with prefix sums using divergence of the first moment;
+3. pass `N -> infinity` and then `m -> infinity`;
+4. identify the decreasing intersection of tail unions with the event limsup.
 
 **Why this is valuable:**
 
-It identifies Lucas numbers as actual linear-algebraic invariants of Fibonacci evolution, not
-merely another Fibonacci rewrite. It also creates a useful interface for later eigenvalue,
-recurrence, determinant, and Binet-style work.
+It turns the finite second-moment inequality into a genuinely infinite dependent-event theorem.
+It also provides a natural consumer for Mathlib's existing Borel-Cantelli API without
+duplicating the independent-event theorem already present there.
 
 **Adversarial checks required:**
 
-- index `n=0` and cast conventions over `Int`;
-- sign/cast of `(-1)^n`;
-- avoid merely restating a Mathlib theorem after rewriting;
-- determine whether a trace-only lemma should be public scaffolding or private proof support.
+- choose `Real` versus `ENNReal` probability expressions deliberately;
+- state denominator-zero and positivity conditions in a form stable under tails;
+- verify the exact Mathlib convention for set `limsup`;
+- do not smuggle in mutual independence;
+- audit whether a pairwise-independent Borel-Cantelli corollary is genuinely absent before
+  publishing it.
 
 **Priority:** A.
 
 ---
 
-### D. General Horadam companion matrix
+### C. Upgrade the tent/logistic semiconjugacy to a topological conjugacy on `[0,1]`
 
-**Status:** landed in `LeanFrontier/LinearAlgebra/HoradamCompanionMatrix.lean` and
-`HoradamCompanionMatrixSpecializations.lean`, including the explicit power formula, trace,
-determinant and characteristic-polynomial identities, and the Fibonacci/Lucas specialization.
-Build on it rather than restating it.
+**Status:** ready; the accepted semiconjugacy already contains the hard dynamical identity.
 
-**Primary parents:**
-
-- `LeanFrontier.NumberTheory.HoradamSequence`
-- `LeanFrontier.LinearAlgebra.FibonacciMatrix`
-- later `LucasNumber` as a natural consumer.
-
-The accepted corpus has the general Horadam recurrence and the specialized Fibonacci Q-matrix,
-but the abstraction boundary between the two is still a natural place to consolidate reusable
-linear-algebraic structure.
+**Primary parent:** `LeanFrontier.Dynamics.LogisticMap`.
 
 **Mathematical target:**
 
-For the Horadam recurrence
+Restrict
 
-`W(n+2) = P*W(n+1) - Q*W(n)`,
+`h(x) = sin (pi*x/2)^2`
 
-define the companion matrix
+to the unit interval and package it as a homeomorphism
 
-`A(P,Q) = [[P, -Q], [1, 0]]`.
+`Set.Icc (0 : R) 1 ≃ₜ Set.Icc (0 : R) 1`.
 
-For the fundamental sequence `U_n = W P Q 0 1 n`, prove an explicit power formula, e.g.
+Then express the accepted identity as an actual conjugacy between the subtype tent and logistic
+self-maps.
 
-`A(P,Q)^(n+1) = [[U_(n+2), -Q*U_(n+1)], [U_(n+1), -Q*U_n]]`
+The mathematical content still missing from the current module is that `h` is a continuous
+strictly increasing bijection of the unit interval, with continuous inverse. Once packaged as a
+homeomorphism, iterate and periodic-point transport should become structural consequences rather
+than repeated trigonometric rewrites.
 
-over an appropriate commutative ring, and connect the recurrence to Mathlib's
-`LinearRecurrence` abstraction when that yields a cleaner public interface.
+**Downstream consumers:**
 
-Then show that the existing Fibonacci Q-matrix is the specialization `A(1,-1)`.
+- equivalence of periodic-point statements under the conjugacy;
+- transport of topological transitivity or related dynamical properties when a suitable Mathlib
+  API is available;
+- a cleaner foundation for any later formalization of chaos at logistic parameter four.
+
+Do not jump directly to a broad theorem named “logistic map is chaotic” unless every component of
+the chosen definition is formalized explicitly.
+
+**Priority:** A.
+
+## 4. High-value infrastructure / larger projects
+
+### D. Resolve the discriminant-tower witness
+
+**Status:** explicit accepted open obligation; high implementation risk.
+
+**Primary parent:** `LeanFrontier.NumberTheory.DiscriminantTower`.
+
+The accepted theorem `loadBearing_of_witness` has already reduced
+`CoprimalityIsLoadBearing` to a concrete number-field construction. The intended witness is the
+pair of quadratic subfields corresponding to `Q(sqrt 2)` and `Q(sqrt (-2))` inside the
+eighth cyclotomic field.
+
+Current Mathlib has substantial cyclotomic number-field and discriminant machinery, including
+prime-power cyclotomic discriminant formulas. What is not currently packaged for this exact
+application is the complete pair of intermediate fields together with all the facts required by
+the reduction.
+
+A useful implementation plan is to treat the following as separate mathematical obligations:
+
+1. choose a concrete `L`, preferably `CyclotomicField 8 Q`;
+2. construct the two quadratic intermediate fields explicitly;
+3. prove both have degree two;
+4. prove their absolute discriminants are eight;
+5. prove they are linearly disjoint;
+6. prove their supremum is `top`;
+7. prove `|discr L| = 256`;
+8. apply `loadBearing_of_witness`.
+
+Intermediate lemmas are worth publishing only when they are independently reusable; do not
+replace the unresolved theorem by another reduction with differently named hypotheses.
 
 **Why this is valuable:**
 
-This creates an abstraction hub rather than a special-case bridge. It can support generalized
-Cassini identities, Lucas-like companion sequences, trace/determinant formulas, Chebyshev
-specializations, and later Binet-style results.
+Unlike many possible extensions, this closes a proposition that the accepted corpus explicitly
+marks unresolved and exercises serious number-field infrastructure.
 
-**Risks / design questions:**
+**Priority:** A for value, high risk/high cost.
 
-- choose the coefficient type/general ring assumptions carefully;
-- decide whether to reuse the existing `Horadam.W` directly or introduce a fundamental
-  companion-sequence namespace;
-- reuse Mathlib's generic linear-recurrence infrastructure rather than duplicating it;
-- preserve the existing `FibonacciMatrix` API rather than replacing it merely for architectural
-  neatness.
+---
 
-**Priority:** A+, but larger than a normal bridge contribution.
+### E. Make the Furstenberg topology algebraic: addition, negation and finite quotients
 
-## 4. Audited directions — worthwhile but secondary
+**Status:** ready from the accepted base topology.
 
-### E. Circular square/domino tilings counted by Lucas numbers
+**Primary parent:** `LeanFrontier.Topology.Furstenberg`.
 
-**Status:** landed as `LeanFrontier.Nat.card_circularOneTwoTilings_add_two`
-(`LeanFrontier/Combinatorics/CircularDominoTilings.lean`).
+The evenly spaced topology is not merely a topology with convenient clopen sets. It is the
+natural congruence/profinite-style topology on the additive group of integers.
 
-**Primary parents:** `FibonacciComposition` + `LucasNumber`.
+A worthwhile structural development would prove, without globally replacing the ordinary
+topology instance on `Z`:
 
-Classically, linear square/domino tilings are Fibonacci-counted while circular tilings are
-Lucas-counted. A credible Lean development should define a genuine circular tiling object and
-decompose it by whether a domino crosses a chosen seam, reducing the cases to existing linear
-`oneTwoCompositions` counts.
+- continuity of negation;
+- continuity of addition;
+- a clean local `TopologicalAddGroup` interface for `furstenbergTopology`;
+- identification of arithmetic progressions with fibers of reduction maps to finite cyclic
+  quotients such as `ZMod n`;
+- ultimately, a characterization of the topology as the one generated/induced by these finite
+  quotient maps.
 
-Do not define the circular object artificially as the disjoint union whose cardinality is
-already the desired formula.
+The last item is substantially more valuable than collecting separation-axiom corollaries one at
+a time. It gives a conceptual explanation of the clopen arithmetic-progressions basis and opens a
+route toward completion/profinite comparisons later.
+
+**Adversarial checks required:**
+
+- preserve the deliberate choice that `furstenbergTopology` is a named topology rather than the
+  global topology instance on `Z`;
+- handle the zero modulus/zero step separately and cleanly;
+- verify topology-order conventions before stating an “initial/coarsest” characterization;
+- search Mathlib's adic/profinite infrastructure again before inventing a competing abstraction.
 
 **Priority:** A-/B+.
 
 ---
 
-### F. Explicit Prouhet power sums from Thue–Morse + PowerSums
+### F. Close the plain changes into a cyclic adjacent-transposition Gray code
 
-**Primary parents:** `ThueMorse` + `PowerSums`.
+**Status:** worthwhile independent extension; smaller than A-E.
 
-The accepted Prouhet theorem gives equality of power sums between the two Thue–Morse classes.
-`PowerSums` can provide explicit total power sums, e.g. for cubes, so each equal half can be
-identified explicitly.
+**Primary parent:** `LeanFrontier.ChangeRinging`.
 
-This is a genuine composition of two accepted modules, but its current downstream value is
-modest.
+The accepted change-ringing module proves that `rows l`:
 
-**Priority:** B.
+- has `(length l)!` rows;
+- contains every permutation of a nodup start row exactly once;
+- starts at `l`;
+- changes adjacent rows by one adjacent transposition.
 
----
+The natural missing endpoint theorem is that, for at least two bells, the final row is also one
+adjacent transposition from the first. Combined with the accepted extent results, this packages
+the plain changes as a **cyclic** adjacent-transposition Gray code / Hamiltonian cycle through the
+permutations.
 
-### G. Maximum Stern-row value is Fibonacci
+The proof should expose the recursive endpoint/parity invariant of `weave` rather than verify
+the closing swap by enumeration.
 
-**Status:** landed as `LeanFrontier.SternDiatomic.fib_is_max_on_dyadic_row`
-(`LeanFrontier/NumberTheory/SternDiatomic/RowMaximum.lean`), with attainment in both Fibonacci
-orientations.
+**Why this is valuable:**
 
-**Primary parent:** `SternDiatomic`; Fibonacci support would mainly come from Mathlib.
+It completes the graph-theoretic content already latent in the accepted construction and gives
+the change-ringing module a stronger reusable combinatorial statement.
 
-The classical extremal theorem says the maximum of Stern's sequence on an appropriate dyadic
-row/block is a Fibonacci number.
+**Priority:** B+.
 
-**Audit result:** mathematically excellent, but it is a weaker *LeanFrontier bridge* than first
-thought. The proof does not naturally need `FibonacciComposition`; rewriting the Fibonacci
-value as a composition cardinality would be decorative.
+## 5. Conditional or deliberately deferred directions
 
-Treat it as a good independent Stern extension, not as a top corpus-synthesis target.
+### Markov Fibonacci branch
 
-**Priority:** A as mathematics, B as a bridge.
+A distinguished branch of the classical Markov tree produces Fibonacci-related Markov numbers.
+This becomes a good consequence **after** direction A provides a stable oriented Markov/Farey
+path representation. Before then, forcing a Fibonacci theorem onto raw Vieta walks is likely to
+produce coordinate bookkeeping rather than reusable mathematics.
 
-## 5. Dependency-gated / long-term directions
+### Descartes reflection versus inversive geometry
 
-### H. Stern diatomic / Calkin–Wilf to Stern–Brocot representation bridge
+The corpus still has an algebraic Descartes-curvature representation and a separate
+point/generalized-circle inversive-geometry representation. A genuine Apollonian reflection
+bridge needs oriented circles or curvature-center coordinates, tangency configurations and the
+specific inversion replacing one circle by the alternate Descartes completion.
 
-**Status:** landed. Both path enumerations
-(`LeanFrontier.CalkinWilf.exists_code_eq`, `LeanFrontier.SternBrocot.existsUnique_pair_of_coprime`),
-the Stern–Brocot interval invariants (`LeanFrontier/NumberTheory/SternBrocot/Intervals.lean`),
-and the bridge itself: `LeanFrontier.CalkinWilf.pair_reverse_eq_sternBrocot` and
-`pair_eq_sternBrocot_iff_reverse` (`LeanFrontier/NumberTheory/CalkinWilfSternBrocot.lean`)
-show that a Calkin–Wilf path and a Stern–Brocot path reach the same pair exactly when they are
-reverses. Traversal orders are not identified; that remains open.
+Do not equate existing operations merely because they are both called “reflection”. Keep this on
+hold until the missing representation is designed for an independent reason.
 
-**Critical correction:**
+### Calkin-Wilf versus Stern-Brocot traversal order
 
-Do not claim that increasing-index fractions
-
-`fusc n / fusc (n+1)`
-
-are simply the Stern–Brocot enumeration in the same order. They are naturally the Calkin–Wilf
-enumeration. Stern–Brocot contains the same positive rationals in a different tree/order.
-
-A correct bridge should explicitly represent paths/tree nodes and prove the appropriate
-transformation (such as path/bit reversal) relating the Calkin–Wilf / Stern-diatomic indexing to
-Stern–Brocot mediant paths.
-
-This likely requires new tree/path infrastructure before the final bridge theorem becomes clean.
-
-**Priority:** A mathematical importance, high implementation cost.
-
----
-
-### I. Markov tree to Farey / Stern–Brocot tree
-
-**Status:** long-term, with the local Markov descent step now accepted.
-
-Classical theory identifies a combinatorial correspondence between the Markov tree and the
-Farey/Stern–Brocot tree, allowing Markov numbers/triples to be indexed by rational tree
-positions.
-
-The accepted `LeanFrontier.MarkovTree.jump_descends_ordered_positive` supplies an important
-local descent theorem. Likely remaining prerequisites include:
-
-- a durable Markov-tree/path representation built around repeated Vieta moves;
-- coordinate-permutation handling without theorem padding;
-- a termination/root-normalization theorem at the representation level, using the accepted
-  strict descent;
-- a compatible Farey/Stern–Brocot path representation.
-
-**Critical boundary:**
-
-Do not claim that distinct rational tree positions necessarily yield distinct numerical
-Markov-number values. That risks crossing the classical Markov/Frobenius uniqueness conjecture
-boundary. A path-preserving/tree correspondence is the safe target.
-
-**Priority:** A+, long-term.
-
----
-
-### J. Markov Fibonacci branch
-
-**Status:** follow-up to a Markov/Farey tree correspondence.
-
-Classically, a distinguished branch of the Markov tree produces odd-index Fibonacci Markov
-numbers. This is a worthwhile consequence once the tree/path framework exists.
-
-Do not force this now merely because LeanFrontier contains Fibonacci modules; without the tree
-bridge it naturally depends on Mathlib's `Nat.fib`, not on a substantive LeanFrontier
-Fibonacci theorem.
-
-**Priority:** later A-/B+.
-
----
-
-### K. Descartes reflection and actual inversive geometry
-
-**Status:** hold; current representations are still too far apart.
-
-`DescartesCircle` knows curvatures satisfying an algebraic equation.
-`InversiveGeometry` knows anti-Möbius reflection of points across a generalized circle in
-`ℂ`.
-
-The genuine Apollonian geometric correspondence needs substantially more structure: oriented
-circles, centers/radii or curvature-center coordinates, tangency points/configurations, and the
-specific inversion/reflection that replaces one Descartes circle by the alternate completion.
-
-Do not submit a theorem equating the existing two `reflect` functions merely because they
-share that name; they act on different mathematical objects and are not directly the same
-operation.
-
-**Priority:** hold until representation infrastructure exists.
+The accepted path-reversal theorem already supplies the important structural bridge between the
+two trees. A further contribution should identify a precise, useful traversal-order theorem
+before implementation. “They enumerate the same rationals” is no longer enough.
 
 ## 6. Directions deliberately not promoted
 
-The following may be mathematically adjacent but currently lack a sufficiently useful bridge
-theorem:
+The following are currently poor default targets:
 
-- `Padovan` + `Tribonacci`: both fit higher-order linear-recurrence theory, but no compelling
-  direct bridge is known yet;
-- `FiniteGroupCharacter` + `ThueMorse`: a Boolean-cube character/Fourier viewpoint exists,
-  but the current Thue–Morse theorem is already stronger than the obvious character-sum
-  consequence;
-- `LogisticMap` + `ThueMorse`: binary symbolic dynamics is related in spirit, but no current
-  target clearly composes the accepted statements;
-- folder-based bridges such as connecting `FibonacciReciprocal` to `Nesbitt` merely because
-  both live under `Analysis` are not acceptable.
+- more Horadam/Fibonacci/Lucas identities that are short specializations of the accepted
+  companion-matrix/addition APIs;
+- `FiniteGroupCharacter` extensions whose main content is already covered by Mathlib's richer
+  finite-abelian Fourier/character orthogonality infrastructure;
+- direct `Padovan` + `Tribonacci` bridges without a compelling common higher-order recurrence
+  API and a concrete downstream theorem;
+- `LogisticMap` submissions consisting only of more hand-solved low-period orbits before the
+  conjugacy interface in C is built;
+- isolated separation-axiom corollaries for the Furstenberg topology when the algebraic/finite-
+  quotient structure in E would subsume them conceptually;
+- folder-based bridges, such as connecting two modules merely because they live under the same
+  top-level namespace.
 
 Keep isolated modules isolated until a real theorem justifies a connection.
 
@@ -454,7 +429,12 @@ Before implementation, create a concise dossier containing:
 
 Only after that dossier survives review should implementation begin.
 
-When refreshing this document, describe what is present in the accepted corpus and what
+When refreshing this document, describe what is present in the **accepted corpus** and what
 mathematical interfaces are missing. Do not encode contributor-specific branch states,
-pull-request queues, or submission sequencing; those are transient and belong in the relevant
+pull-request queues or submission sequencing; those are transient and belong in the relevant
 issue or pull request, not in a shared mathematical roadmap.
+
+A roadmap-refresh pull request should also state its own provenance: who or what selected the
+directions, which accepted revision was audited, which Mathlib/literature searches informed the
+reevaluation, and how much mathematical direction came from the human operator. That provenance
+describes the planning process; it is not a receiver-validated mathematical claim.
