@@ -1,0 +1,159 @@
+{
+  "accepted_revision": "d038488b4c3606df6819b69a9ec3a440ff22652b",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-23T08:27:47+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 169.744,
+    "observed": {
+      "added_lines": 64,
+      "audited_declarations": {
+        "LeanFrontier.Nat.sum_cubes_thueMorse_partition": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sum_cubes_thueMorse_partition",
+          "restatement": false,
+          "statement_sha256": "bc43d748db06ee88952e951f0590565c6b3edb1148f6257ee6ecc06e5e9a466e",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "Finset.filter",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.Nat.thueMorse",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAddCommMonoid",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instDecidableEqBool",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instMulNat",
+            "instOfNatNat",
+            "instSubNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.Nat.sum_cubes_thueMorse_partition": [
+            {
+              "outcome": "failed",
+              "seconds": 5.686,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.616,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.623,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.656,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.579,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.565,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 33.725,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Nat.sum_cubes_thueMorse_partition": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4306,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/ThueMorse/ExplicitPowerSums.lean",
+        "Submissions/thue-morse-explicit-cube-sums.json"
+      ],
+      "corpus_entrypoints_checked": 165,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Nat.sum_cubes_thueMorse_partition": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.sum_cubes_thueMorse_partition",
+          "statement_sha256": "bc43d748db06ee88952e951f0590565c6b3edb1148f6257ee6ecc06e5e9a466e",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "Finset.filter",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.Nat.thueMorse",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAddCommMonoid",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instDecidableEqBool",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instMulNat",
+            "instOfNatNat",
+            "instSubNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2359,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "thue-morse-explicit-cube-sums",
+  "trusted_receiver_revision": "01ec3eafb3624c4e8a387efcf131fcbdab8a1b89",
+  "validated_candidate_revision": "7df2681b2570970bb947ca3f3e507aa44f9642ec",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35794411276"
+}
