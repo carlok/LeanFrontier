@@ -338,6 +338,30 @@ class WorkflowContractTests(unittest.TestCase):
             self.assertIn(required, UPGRADE_WORKFLOW)
         self.assertNotIn("/pulls", UPGRADE_WORKFLOW)
 
+    def test_the_merge_queue_is_maintainer_triggered_and_never_overrides(self) -> None:
+        """The sequencing a maintainer did by hand, made reproducible.
+
+        Strict up-to-date checks mean each merge leaves the rest behind, so a
+        burst is merged one at a time with a branch update and a full
+        revalidation between. The queue automates the waiting, not the
+        decision: it merges nothing that the receiver has not accepted.
+        """
+        queue = (ROOT / ".github" / "workflows" / "maintainer-merge-queue.yml").read_text()
+        self.assertIn("workflow_dispatch:", queue)
+        self.assertNotIn("schedule:", queue)
+        # Only what a maintainer could do by hand, and never a bypass.
+        self.assertNotIn("--admin", queue)
+        self.assertNotIn("--auto", queue)
+        self.assertNotIn("bypass", queue)
+        self.assertIn("actions/create-github-app-token", queue)
+        # Numbers arrive as untrusted input and are validated before use.
+        self.assertIn("^[0-9 ]+$", queue)
+        self.assertIn("PULL_REQUESTS: ${{ inputs.pull_requests }}", queue)
+        self.assertNotIn("${{ inputs.pull_requests }}\n          gh", queue)
+        # It stops rather than guessing when a check has actually failed.
+        self.assertIn("failing check", queue)
+        self.assertIn("concurrency:", queue)
+
     def test_auto_merge_cannot_be_reached_by_untrusted_code(self) -> None:
         """A fork's pull_request token has no secrets, so this must run post hoc."""
         self.assertIn("workflow_run:", AUTO_MERGE_WORKFLOW)
