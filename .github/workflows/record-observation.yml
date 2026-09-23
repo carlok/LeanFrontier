@@ -115,6 +115,9 @@ jobs:
         # It derives from Submissions/, which this writer owns.
         if: steps.submission.outputs.should_record == 'true'
         run: python3 .trusted-receiver/tools/generate_experiment_ledger.py --root .
+
+      - name: Regenerate the accumulation series
+        run: python3 .trusted-receiver/tools/generate_accumulation_series.py --root .
       - name: Open a protected generated-output pull request
         if: steps.submission.outputs.should_record == 'true'
         env:

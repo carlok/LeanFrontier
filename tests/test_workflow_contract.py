@@ -372,6 +372,7 @@ class WorkflowContractTests(unittest.TestCase):
     def test_observation_writer_regenerates_the_experiment_ledger(self) -> None:
         """The ledger derives from Submissions/, which this writer owns."""
         self.assertIn("generate_experiment_ledger.py", OBSERVATION_WORKFLOW)
+        self.assertIn("generate_accumulation_series.py", OBSERVATION_WORKFLOW)
         self.assertIn("experiments/launcher-ab.csv", OBSERVATION_WORKFLOW)
         # The catalogue writer must not also claim it, or the two race.
         self.assertNotIn("generate_experiment_ledger.py", CATALOGUE_WORKFLOW)
