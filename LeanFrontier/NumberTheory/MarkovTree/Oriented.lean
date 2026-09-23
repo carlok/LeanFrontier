@@ -147,8 +147,13 @@ private theorem forwardMove_ascends (n : OrientedNode) (dir : Bool) :
         simp only [State.mass, move] at hdesc
         linarith
       have h := other_jumps_ascend hy hx hz hj
+      have hswap :
+          MarkovEquation.jump y x z = MarkovEquation.jump x y z := by
+        unfold MarkovEquation.jump
+        ring
       have hzasc : z < MarkovEquation.jump x y z := by
-        simpa [MarkovEquation.jump, mul_comm] using h.2
+        rw [← hswap]
+        exact h.2
       cases dir with
       | false =>
           simp only [forwardMove, State.mass, move]
@@ -161,10 +166,20 @@ private theorem forwardMove_ascends (n : OrientedNode) (dir : Bool) :
         simp only [State.mass, move] at hdesc
         linarith
       have h := other_jumps_ascend hz hx hy hj
+      have hswapFirst :
+          MarkovEquation.jump z y x = MarkovEquation.jump y z x := by
+        unfold MarkovEquation.jump
+        ring
+      have hswapSecond :
+          MarkovEquation.jump z x y = MarkovEquation.jump x z y := by
+        unfold MarkovEquation.jump
+        ring
       have hxasc : x < MarkovEquation.jump y z x := by
-        simpa [MarkovEquation.jump, mul_comm] using h.1
+        rw [← hswapFirst]
+        exact h.1
       have hyasc : y < MarkovEquation.jump x z y := by
-        simpa [MarkovEquation.jump, mul_comm] using h.2
+        rw [← hswapSecond]
+        exact h.2
       cases dir with
       | false =>
           simp only [forwardMove, State.mass, move]
