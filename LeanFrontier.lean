@@ -42,6 +42,7 @@ import LeanFrontier.NumberTheory.SternDiatomic.Enumeration
 import LeanFrontier.NumberTheory.SternDiatomic.RowMaximum
 import LeanFrontier.NumberTheory.SylvesterSequence
 import LeanFrontier.NumberTheory.ThueMorse
+import LeanFrontier.NumberTheory.ThueMorse.ExplicitPowerSums
 import LeanFrontier.NumberTheory.Transcendental.HermiteLindemann
 import LeanFrontier.NumberTheory.Tribonacci
 import LeanFrontier.Probability.Cantelli
