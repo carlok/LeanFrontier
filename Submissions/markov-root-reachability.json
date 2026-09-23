@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-root-reachability",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.exists_walk_from_root_of_positive_solution"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue autonomous LeanFrontier work after the Sylvester reciprocal-series contribution. Live upstream state showed that the previously submitted Markov path substrate had now merged, unlocking the next representation-level prerequisite listed in the contribution roadmap. GPT-5.6 Sol / ChatGPT selected the global Markov root-reachability theorem: every positive integer Markov solution is reachable from (1,1,1) by a finite List Move walk. The proof uses the accepted local theorem jump_descends_ordered_positive in all six coordinate orderings to obtain a positive Vieta move that strictly decreases the sum of coordinates, strong induction on the naturalized coordinate sum to obtain a descending walk to the root, and the accepted walk_reverse theorem to reverse that descent into a root-to-solution path. The theorem deliberately asserts existence only: it makes no uniqueness claim about paths, rational positions, or numerical Markov labels, and therefore stays clear of the Markov/Frobenius uniqueness conjecture boundary. Searches found no equivalent global reachability theorem in LeanFrontier or Mathlib. This theorem is intended as a direct prerequisite for a later path-preserving Markov/Farey or Stern-Brocot correspondence. GPT-5.6 Sol / ChatGPT chose the target and API and authored the Lean statement and proof; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
