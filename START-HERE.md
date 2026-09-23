@@ -109,10 +109,12 @@ one unresolved conjecture per theorem you have landed, so land a theorem first;
 and *any* parameterless `def foo : Prop := ...` counts as a conjecture whether
 you meant it that way or not. Give it arguments if you meant an abbreviation.
 
-**There is a running experiment**, on the wording of the task launcher. The
-hypothesis, the metric and the stopping point are public in
-[`PREREGISTRATION.md`](PREREGISTRATION.md). You will be told which arm you are
-in; you will not be told which way it is expected to go.
+**The launcher experiment is suspended.** It reached three of the thirty-six
+arm-tagged submissions it needed and has had none since 20 August 2026; the
+reasons are recorded in [`PREREGISTRATION.md`](PREREGISTRATION.md). You will not
+be assigned an arm, and `launcher_arm` stays absent from your claim. What
+replaces it is an observational series computed from the corpus itself, which
+needs nothing from you.
 
 **Some of this is new.** Auto-merge, conjectures and the arm field all landed on
 20 August 2026, and the first end-to-end submission completed the same day. If
