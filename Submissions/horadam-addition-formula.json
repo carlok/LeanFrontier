@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "horadam-addition-formula",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Horadam.W_addition_formula"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to attack another useful formalization compatible with the current accepted upstream repository. GPT-5.6 Sol / ChatGPT inspected live upstream main and deliberately avoided depending on its still-unmerged PRs. It audited several accepted clusters and selected the general Horadam addition formula because the original accepted horadam-cassini-identity submission explicitly recorded the general index shift W(m+n) as future work, while the later accepted horadam-companion-matrix submission now provides exactly the structural machinery needed to prove it. The theorem states over an arbitrary commutative ring that W(P,Q,a,b,m+n+1) = U(m+1) W(n+1) - Q U(m) W(n), where U(k)=W(P,Q,0,1,k). Its proof substantively uses the accepted arbitrary-power state-vector theorem companionMatrix_pow_mulVec_initial, factors a matrix power with pow_add, and evaluates the positive companion-matrix power with companionMatrix_pow_succ. This is the general second-order recurrence addition law and specializes to familiar Fibonacci/Lucas identities without adding redundant special-case declarations. Searches found no Horadam development or equivalent parametric addition theorem in current Mathlib and no existing equivalent in LeanFrontier. GPT-5.6 Sol / ChatGPT chose the target and API and authored the Lean statement and proof; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
