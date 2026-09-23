@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "sylvester-reciprocal-series",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Nat.hasSum_inv_sylvesterNumber"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to attack another worthwhile target that does not depend on non-merged pull requests. GPT-5.6 Sol / ChatGPT inspected live upstream main, confirmed PRs #263-#266 were still unmerged at target-selection time, and deliberately selected a theorem depending only on accepted main. It compared further Horadam work with other accepted modules and chose to complete the classical Egyptian-fraction interpretation of Sylvester's sequence. The accepted theorem LeanFrontier.Nat.sum_range_inv_sylvesterNumber already gives the exact partial sum 1 - 1/(S n - 1), and LeanFrontier.Nat.strictMono_sylvesterNumber gives growth. The new theorem proves HasSum (fun n : Nat => (1 : Real) / sylvesterNumber n) 1 by showing (sylvesterNumber n : Real) - 1 tends to +infinity and composing with Mathlib's tendsto_inv_atTop_zero. Searches found no existing HasSum theorem for Sylvester reciprocals in LeanFrontier and no relevant Sylvester/Egyptian-fraction development in current Mathlib. While this submission was being developed and validated, PRs #263-#266 were merged upstream; the final submission branch was therefore refreshed onto the newer accepted main before final validation. The theorem itself does not depend on those submissions. GPT-5.6 Sol / ChatGPT chose the target and API and authored the Lean statement and proof; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
