@@ -6,6 +6,7 @@ import LeanFrontier.Analysis.Nesbitt
 import LeanFrontier.Analysis.SlopeMinorant
 import LeanFrontier.Analysis.SlopeMinorant.Constraints
 import LeanFrontier.Combinatorics.CaroWei
+import LeanFrontier.Combinatorics.CaroWei.TuranBound
 import LeanFrontier.Combinatorics.CircularDominoTilings
 import LeanFrontier.Combinatorics.FibonacciComposition
 import LeanFrontier.Combinatorics.FiniteVariance
