@@ -83,8 +83,7 @@ private theorem exists_descending_move
         have hperm : MarkovEquation.IsSolution z x y :=
           permuted_isSolution hsol (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl ⟨rfl, rfl, rfl⟩)))))
         have hj :=
-          jump_descends_ordered_positive hz (le_of_lt hzx) (le_trans (le_of_lt hzx) hxy)
-            hperm (by
+          jump_descends_ordered_positive hz (le_of_lt hzx) hxy hperm (by
               rintro ⟨hz1, hx1, hy1⟩
               exact hne' ⟨hx1, hy1, hz1⟩)
         have hswap :
@@ -141,8 +140,7 @@ private theorem exists_descending_move
         have hperm : MarkovEquation.IsSolution z y x :=
           permuted_isSolution hsol (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr ⟨rfl, rfl, rfl⟩)))))
         have hj :=
-          jump_descends_ordered_positive hz (le_of_lt hzy)
-            (le_trans (le_of_lt hzy) (le_of_lt hyx)) hperm (by
+          jump_descends_ordered_positive hz (le_of_lt hzy) (le_of_lt hyx) hperm (by
               rintro ⟨hz1, hy1, hx1⟩
               exact hne' ⟨hx1, hy1, hz1⟩)
         have hswap :
