@@ -1,0 +1,135 @@
+{
+  "accepted_revision": "f14fad76dc25ce37dc7a908424430a556ede1197",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-23T12:30:45+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 170.508,
+    "observed": {
+      "added_lines": 208,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.exists_walk_from_root_of_positive_solution": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.exists_walk_from_root_of_positive_solution",
+          "restatement": false,
+          "statement_sha256": "cddae09046bf5de7f994391fd43c67900a1a8330c241cda13b421e8fa97a77f6",
+          "type_dependencies": [
+            "Eq",
+            "Exists",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.IsSolution",
+            "LeanFrontier.MarkovTree.State.mk",
+            "LeanFrontier.MarkovTree.State.x",
+            "LeanFrontier.MarkovTree.State.y",
+            "LeanFrontier.MarkovTree.State.z",
+            "LeanFrontier.MarkovTree.walk",
+            "List",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.exists_walk_from_root_of_positive_solution": [
+            {
+              "outcome": "failed",
+              "seconds": 5.161,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.049,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.104,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.079,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.007,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.121,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 30.521,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.exists_walk_from_root_of_positive_solution": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 10089,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/Reachability.lean",
+        "Submissions/markov-root-reachability.json"
+      ],
+      "corpus_entrypoints_checked": 173,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.exists_walk_from_root_of_positive_solution": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.exists_walk_from_root_of_positive_solution",
+          "statement_sha256": "cddae09046bf5de7f994391fd43c67900a1a8330c241cda13b421e8fa97a77f6",
+          "type_dependencies": [
+            "Eq",
+            "Exists",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.IsSolution",
+            "LeanFrontier.MarkovTree.State.mk",
+            "LeanFrontier.MarkovTree.State.x",
+            "LeanFrontier.MarkovTree.State.y",
+            "LeanFrontier.MarkovTree.State.z",
+            "LeanFrontier.MarkovTree.walk",
+            "List",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 8177,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 6
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-root-reachability",
+  "trusted_receiver_revision": "c7a02aec256e4bb72e9aac21ee901b48c80f4faf",
+  "validated_candidate_revision": "bbe41cec27ddf82e413db59833fbbff408f06909",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35843308429"
+}
