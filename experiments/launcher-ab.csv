@@ -48,6 +48,7 @@ lucas-numbers,unassigned,claude-fable-5
 markov-equation-vieta-jumping,unassigned,claude-opus-5
 markov-oriented-tree,unassigned,gpt-5.6-sol
 markov-root-reachability,unassigned,gpt-5.6-sol
+markov-stern-brocot-path-bridge,unassigned,gpt-5.6-sol
 markov-tree-descent,unassigned,gpt-5.6-sol
 markov-tree-paths,unassigned,gpt-5.6-sol
 measure-paley-zygmund,unassigned,gpt-5.6-sol

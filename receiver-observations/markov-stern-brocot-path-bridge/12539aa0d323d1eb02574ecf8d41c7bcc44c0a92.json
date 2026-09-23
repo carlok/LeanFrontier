@@ -1,0 +1,382 @@
+{
+  "accepted_revision": "12539aa0d323d1eb02574ecf8d41c7bcc44c0a92",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-23T17:29:44+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 228.01,
+    "observed": {
+      "added_lines": 121,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.sternBrocot_pair_eq_iff_sternMoves_eq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternBrocot_pair_eq_iff_sternMoves_eq",
+          "restatement": false,
+          "statement_sha256": "d09a4f59c53cc0e863237ca15ef6e39961867bf37f3f60d3af07f9d95b0bc4e0",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.sternMoves",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "Nat",
+            "Prod"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternMoves": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.sternMoves",
+          "restatement": false,
+          "statement_sha256": "c7c7e105bf54ae0177cc4e69e461bbe9f5b8cc2dc6dfe6c0f7078a3a3a51b5d2",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.Move",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternMoves_cons": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternMoves_cons",
+          "restatement": false,
+          "statement_sha256": "a2174e5ddeb754da2c84980ddbb3794ddae755fcb5c92d8cecb981eec21e8ac7",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "HAppend.hAppend",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode.back",
+            "LeanFrontier.MarkovTree.forwardMove",
+            "LeanFrontier.MarkovTree.sternMoves",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "List.nil",
+            "instHAppendOfAppend"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternMoves_injective": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternMoves_injective",
+          "restatement": false,
+          "statement_sha256": "0f49b5f39b77f3d92b3f924950fcb2b5902f27ecc6b6fb7b723b2eb5a776a1af",
+          "type_dependencies": [
+            "Bool",
+            "Function.Injective",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.sternMoves",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternMoves_nonBacktracking": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternMoves_nonBacktracking",
+          "restatement": false,
+          "statement_sha256": "39e637d7148c0b462b42d75ae81f213ef9db6db9462042fa97767d2068274a27",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.NonBacktrackingFrom",
+            "LeanFrontier.MarkovTree.OrientedNode.back",
+            "LeanFrontier.MarkovTree.orientedRoot",
+            "LeanFrontier.MarkovTree.sternMoves",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternNode": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.sternNode",
+          "restatement": false,
+          "statement_sha256": "9da04a5690a4affa728f2f6c62e7d62c6e7fa8c43a634b4a82b204c86bed1a30",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternNode_cons": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternNode_cons",
+          "restatement": false,
+          "statement_sha256": "520eab05332c9ea7973f6be862d363e8f66f407d93354c7c8a94662e8fcc1f99",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.child",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List",
+            "List.cons"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternNode_state_eq_walk": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternNode_state_eq_walk",
+          "restatement": false,
+          "statement_sha256": "b866e7be60b2bf057affd819ff9854921edf441d65df7aceca7cc35275d040d8",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.orientedRoot",
+            "LeanFrontier.MarkovTree.sternMoves",
+            "LeanFrontier.MarkovTree.sternNode",
+            "LeanFrontier.MarkovTree.walk",
+            "List"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 18,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.sternBrocot_pair_eq_iff_sternMoves_eq": [
+            {
+              "outcome": "failed",
+              "seconds": 4.696,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.673,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.676,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.706,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.671,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.686,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.sternMoves_cons": [
+            {
+              "outcome": "failed",
+              "seconds": 4.72,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.706,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.658,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.716,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.767,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.749,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.sternNode_cons": [
+            {
+              "outcome": "failed",
+              "seconds": 4.726,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.71,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.722,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.704,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.67,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.661,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 84.617,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.sternBrocot_pair_eq_iff_sternMoves_eq": "inconclusive",
+        "LeanFrontier.MarkovTree.sternMoves_cons": "inconclusive",
+        "LeanFrontier.MarkovTree.sternNode_cons": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 7412,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/SternBrocot.lean",
+        "Submissions/markov-stern-brocot-path-bridge.json"
+      ],
+      "corpus_entrypoints_checked": 179,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.sternBrocot_pair_eq_iff_sternMoves_eq": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternBrocot_pair_eq_iff_sternMoves_eq",
+          "statement_sha256": "d09a4f59c53cc0e863237ca15ef6e39961867bf37f3f60d3af07f9d95b0bc4e0",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.sternMoves",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "Nat",
+            "Prod"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternMoves_cons": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternMoves_cons",
+          "statement_sha256": "a2174e5ddeb754da2c84980ddbb3794ddae755fcb5c92d8cecb981eec21e8ac7",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "HAppend.hAppend",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode.back",
+            "LeanFrontier.MarkovTree.forwardMove",
+            "LeanFrontier.MarkovTree.sternMoves",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "List.nil",
+            "instHAppendOfAppend"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternNode_cons": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternNode_cons",
+          "statement_sha256": "520eab05332c9ea7973f6be862d363e8f66f407d93354c7c8a94662e8fcc1f99",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.child",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List",
+            "List.cons"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 5441,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 11
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-stern-brocot-path-bridge",
+  "trusted_receiver_revision": "b220e358fab748e6a6ae1de0a2e369ca14980a92",
+  "validated_candidate_revision": "fb7d2f6f62d09ec2b99005c12bbf444fa127adbd",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35879520455"
+}
