@@ -51,6 +51,8 @@ theorem W_addition_formula (P Q a b : R) (m n : ℕ) :
       companionMatrix_pow_succ P Q m] at hstate
   have hcoord :=
     congrArg (fun v : Fin 2 → R => v (1 : Fin 2)) hstate
-  simpa [companionPowerFormula, Matrix.mulVec, Fin.sum_univ_two] using hcoord
+  rw [hidx]
+  simpa [companionPowerFormula, Matrix.mulVec, Fin.sum_univ_two, sub_eq_add_neg]
+    using hcoord.symm
 
 end LeanFrontier.Horadam
