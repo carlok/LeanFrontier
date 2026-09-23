@@ -1,0 +1,159 @@
+{
+  "accepted_revision": "7f89071cd9d8733b7cad1e69146a4492a96c2417",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-23T08:51:49+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 175.243,
+    "observed": {
+      "added_lines": 59,
+      "audited_declarations": {
+        "LeanFrontier.Horadam.W_addition_formula": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Horadam.W_addition_formula",
+          "restatement": false,
+          "statement_sha256": "381a89806b87c1bb8c879a7720d42bf78efaa66caffbbc6213e7c26ff500f73d",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toOne",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LeanFrontier.Horadam.W",
+            "MulZeroClass.toZero",
+            "Nat",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "SubNegMonoid.toSub",
+            "Zero.toOfNat0",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instMulZeroClassOfSemiring",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.Horadam.W_addition_formula": [
+            {
+              "outcome": "failed",
+              "seconds": 5.234,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.132,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.178,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.31,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.316,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.214,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 31.384,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Horadam.W_addition_formula": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 3765,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/HoradamSequence/AdditionFormula.lean",
+        "Submissions/horadam-addition-formula.json"
+      ],
+      "corpus_entrypoints_checked": 171,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Horadam.W_addition_formula": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Horadam.W_addition_formula",
+          "statement_sha256": "381a89806b87c1bb8c879a7720d42bf78efaa66caffbbc6213e7c26ff500f73d",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toOne",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LeanFrontier.Horadam.W",
+            "MulZeroClass.toZero",
+            "Nat",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "SubNegMonoid.toSub",
+            "Zero.toOfNat0",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instMulZeroClassOfSemiring",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 1895,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "horadam-addition-formula",
+  "trusted_receiver_revision": "bdbee3c2141f01e77791cd58fcccdb090a90ba10",
+  "validated_candidate_revision": "3c7a26fc59a6cfbaea1014f9815d3fe3107db6b4",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35828267365"
+}
