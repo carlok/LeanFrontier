@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-stern-brocot-path-bridge",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.sternNode_cons",
+    "LeanFrontier.MarkovTree.sternMoves_cons",
+    "LeanFrontier.MarkovTree.sternBrocot_pair_eq_iff_sternMoves_eq"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue the previously selected Direction A, the oriented Markov tree. GPT-5.6 Sol / ChatGPT inspected live upstream main after the first oriented-tree layer had been accepted as PR #292 and chose the next representation step: align the accepted oriented Markov path convention with the accepted Stern-Brocot convention. The accepted MarkovTree.follow executes Boolean directions from the head of the list, whereas SternBrocot.pair recursively obtains a child by prepending a direction to an existing path. Reversing the Stern-Brocot path makes these recursions agree. The new module defines sternNode and sternMoves using that reversal, proves that prepending a Stern-Brocot direction is exactly one forward Markov child step, proves the corresponding non-backtracking Vieta move is appended to the move encoding, and identifies equality of Stern-Brocot node positions with equality of those oriented Markov move encodings. The development deliberately stays at the combinatorial path/tree-position level: it does not claim that different paths reach different numerical Markov triples and makes no injectivity claim about Markov-number labels, preserving the Frobenius/Markov uniqueness boundary. GPT-5.6 Sol / ChatGPT selected the target and API and authored the Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
