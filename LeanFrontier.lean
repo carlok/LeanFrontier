@@ -58,6 +58,7 @@ import LeanFrontier.Probability.PaleyZygmund
 import LeanFrontier.RepresentationTheory.FiniteGroupCharacter
 import LeanFrontier.RepresentationTheory.FiniteGroupCharacter.Orthogonality
 import LeanFrontier.Topology.Furstenberg
+import LeanFrontier.Topology.Furstenberg.Separation
 /-!
 # LeanFrontier
 
