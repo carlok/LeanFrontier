@@ -122,10 +122,13 @@ than mathematics.
 
 Since 20 August 2026 the task launcher exists in two variants and a submission
 may record which one produced it in its claim's `launcher_arm`. The field never
-affects admission. The hypothesis, metric, stopping point and known limitations
-are fixed in advance in [PREREGISTRATION.md](PREREGISTRATION.md), and
-[`experiments/launcher-ab.csv`](experiments/launcher-ab.csv) is generated from
-the accepted claims.
+affects admission. That A/B test is **suspended** as of 23 September 2026 with
+three of its thirty-six arm-tagged submissions, and no arm comparison will be
+reported; an observational accumulation series computed from the corpus replaces
+it. Both the suspension and the replacement are registered in
+[PREREGISTRATION.md](PREREGISTRATION.md), beside the original design.
+[`experiments/launcher-ab.csv`](experiments/launcher-ab.csv) remains the
+readable view of the three tagged claims.
 
 Validate a branch against its target branch locally:
 
