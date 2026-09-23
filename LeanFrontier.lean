@@ -28,6 +28,7 @@ import LeanFrontier.NumberTheory.DiscriminantTower
 import LeanFrontier.NumberTheory.Farey
 import LeanFrontier.NumberTheory.FordCircle
 import LeanFrontier.NumberTheory.HoradamSequence
+import LeanFrontier.NumberTheory.HoradamSequence.AdditionFormula
 import LeanFrontier.NumberTheory.LucasNumber
 import LeanFrontier.NumberTheory.MarkovEquation
 import LeanFrontier.NumberTheory.MarkovTree
