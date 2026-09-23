@@ -1,0 +1,182 @@
+{
+  "accepted_revision": "93c9556d72795bfa829bd00b267e5f4ab370a72b",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-23T08:44:00+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 169.056,
+    "observed": {
+      "added_lines": 132,
+      "audited_declarations": {
+        "LeanFrontier.GraphTheory.caroWei_implies_turan_bound": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.GraphTheory.caroWei_implies_turan_bound",
+          "restatement": false,
+          "statement_sha256": "1b812366a80c34e72660d36e09ac4f7e9ba0b7108a2b42b039bc084b052d3371",
+          "type_dependencies": [
+            "And",
+            "DecidableRel",
+            "Exists",
+            "Finset",
+            "Finset.card",
+            "Finset.instSetLike",
+            "Fintype",
+            "Fintype.card",
+            "HAdd.hAdd",
+            "HDiv.hDiv",
+            "HMul.hMul",
+            "HPow.hPow",
+            "LE.le",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.instAdd",
+            "Rat.instDiv",
+            "Rat.instLE",
+            "Rat.instMul",
+            "Rat.instNatCast",
+            "Rat.instOfNat",
+            "Rat.monoid",
+            "SetLike.coe",
+            "SimpleGraph",
+            "SimpleGraph.Adj",
+            "SimpleGraph.IsIndepSet",
+            "SimpleGraph.edgeFinset",
+            "SimpleGraph.fintypeEdgeSet",
+            "Sym2",
+            "Sym2.instFintype",
+            "instHAdd",
+            "instHDiv",
+            "instHMul",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        },
+        "and": null
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.GraphTheory.caroWei_implies_turan_bound": [
+            {
+              "outcome": "failed",
+              "seconds": 5.455,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.478,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.527,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.477,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.452,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.434,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 32.823,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.GraphTheory.caroWei_implies_turan_bound": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 6436,
+      "changed_files": [
+        "LeanFrontier/Combinatorics/CaroWei/TuranBound.lean",
+        "Submissions/caro-wei-turan-bound.json"
+      ],
+      "corpus_entrypoints_checked": 170,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.GraphTheory.caroWei_implies_turan_bound": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.GraphTheory.caroWei_implies_turan_bound",
+          "statement_sha256": "1b812366a80c34e72660d36e09ac4f7e9ba0b7108a2b42b039bc084b052d3371",
+          "type_dependencies": [
+            "And",
+            "DecidableRel",
+            "Exists",
+            "Finset",
+            "Finset.card",
+            "Finset.instSetLike",
+            "Fintype",
+            "Fintype.card",
+            "HAdd.hAdd",
+            "HDiv.hDiv",
+            "HMul.hMul",
+            "HPow.hPow",
+            "LE.le",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.instAdd",
+            "Rat.instDiv",
+            "Rat.instLE",
+            "Rat.instMul",
+            "Rat.instNatCast",
+            "Rat.instOfNat",
+            "Rat.monoid",
+            "SetLike.coe",
+            "SimpleGraph",
+            "SimpleGraph.Adj",
+            "SimpleGraph.IsIndepSet",
+            "SimpleGraph.edgeFinset",
+            "SimpleGraph.fintypeEdgeSet",
+            "Sym2",
+            "Sym2.instFintype",
+            "instHAdd",
+            "instHDiv",
+            "instHMul",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 4435,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 2
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "caro-wei-turan-bound",
+  "trusted_receiver_revision": "596ee488c786b4dd7cb4e2fd9e980fd5350aebf6",
+  "validated_candidate_revision": "2fe2188bec04fd961420befd3ae5e9eca4f76da9",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35827688508"
+}
