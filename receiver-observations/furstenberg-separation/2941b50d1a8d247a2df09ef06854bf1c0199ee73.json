@@ -1,0 +1,183 @@
+{
+  "accepted_revision": "2941b50d1a8d247a2df09ef06854bf1c0199ee73",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-23T14:00:14+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 207.65,
+    "observed": {
+      "added_lines": 66,
+      "audited_declarations": {
+        "LeanFrontier.Int.not_isOpen_singleton_furstenberg": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.not_isOpen_singleton_furstenberg",
+          "restatement": false,
+          "statement_sha256": "5d5f647018c0420e982b57b16a3f94ac2bbf593a3f53d65df616e5d8922d5621",
+          "type_dependencies": [
+            "Int",
+            "IsOpen",
+            "LeanFrontier.Int.furstenbergTopology",
+            "Not",
+            "Set",
+            "Set.instSingletonSet",
+            "Singleton.singleton"
+          ]
+        },
+        "LeanFrontier.Int.totallySeparatedSpace_furstenberg": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.totallySeparatedSpace_furstenberg",
+          "restatement": false,
+          "statement_sha256": "e9d8e867e7fd0ece4a3d2a84b14864c64b89b7b861245d61f12c34d2ab64370b",
+          "type_dependencies": [
+            "Int",
+            "LeanFrontier.Int.furstenbergTopology",
+            "TotallySeparatedSpace"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.Int.not_isOpen_singleton_furstenberg": [
+            {
+              "outcome": "failed",
+              "seconds": 5.137,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.115,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.147,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.104,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.097,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.102,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Int.totallySeparatedSpace_furstenberg": [
+            {
+              "outcome": "failed",
+              "seconds": 5.177,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.105,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.129,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.193,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.115,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.127,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 61.548,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Int.not_isOpen_singleton_furstenberg": "inconclusive",
+        "LeanFrontier.Int.totallySeparatedSpace_furstenberg": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4798,
+      "changed_files": [
+        "LeanFrontier/Topology/Furstenberg/Separation.lean",
+        "Submissions/furstenberg-separation.json"
+      ],
+      "corpus_entrypoints_checked": 174,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Int.not_isOpen_singleton_furstenberg": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.not_isOpen_singleton_furstenberg",
+          "statement_sha256": "5d5f647018c0420e982b57b16a3f94ac2bbf593a3f53d65df616e5d8922d5621",
+          "type_dependencies": [
+            "Int",
+            "IsOpen",
+            "LeanFrontier.Int.furstenbergTopology",
+            "Not",
+            "Set",
+            "Set.instSingletonSet",
+            "Singleton.singleton"
+          ]
+        },
+        "LeanFrontier.Int.totallySeparatedSpace_furstenberg": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.totallySeparatedSpace_furstenberg",
+          "statement_sha256": "e9d8e867e7fd0ece4a3d2a84b14864c64b89b7b861245d61f12c34d2ab64370b",
+          "type_dependencies": [
+            "Int",
+            "LeanFrontier.Int.furstenbergTopology",
+            "TotallySeparatedSpace"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2499,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 2
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "furstenberg-separation",
+  "trusted_receiver_revision": "b631be0f9608b95bde222ca81756e22db42c4b98",
+  "validated_candidate_revision": "cfbfc71ef32d2a3a67378cda0b0ad9702c724aa9",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35857206193"
+}
