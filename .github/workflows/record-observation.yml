@@ -115,6 +115,13 @@ jobs:
         # It derives from Submissions/, which this writer owns.
         if: steps.submission.outputs.should_record == 'true'
         run: python3 .trusted-receiver/tools/generate_experiment_ledger.py --root .
+
+      # The series is computed from every commit on the default branch; the
+      # checkout above keeps only the two parents this merge needs.
+      - name: Regenerate the accumulation series
+        run: |
+          git fetch --quiet --unshallow origin
+          python3 .trusted-receiver/tools/generate_accumulation_series.py --root .
       - name: Open a protected generated-output pull request
         if: steps.submission.outputs.should_record == 'true'
         env:
