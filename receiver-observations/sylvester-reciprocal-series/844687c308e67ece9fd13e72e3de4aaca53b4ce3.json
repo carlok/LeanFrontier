@@ -1,0 +1,139 @@
+{
+  "accepted_revision": "844687c308e67ece9fd13e72e3de4aaca53b4ce3",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-23T09:36:02+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 169.94,
+    "observed": {
+      "added_lines": 64,
+      "audited_declarations": {
+        "LeanFrontier.Nat.hasSum_inv_sylvesterNumber": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.hasSum_inv_sylvesterNumber",
+          "restatement": false,
+          "statement_sha256": "4f09bf8695d7cd0e573663e5e2280b29d856eb6edc5ad49073ae10efe006a938",
+          "type_dependencies": [
+            "DivInvMonoid.toDiv",
+            "HDiv.hDiv",
+            "HasSum",
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Nat",
+            "Nat.cast",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instAddCommMonoid",
+            "Real.instDivInvMonoid",
+            "Real.instNatCast",
+            "Real.instOne",
+            "Real.pseudoMetricSpace",
+            "SummationFilter.unconditional",
+            "UniformSpace.toTopologicalSpace",
+            "instHDiv"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.Nat.hasSum_inv_sylvesterNumber": [
+            {
+              "outcome": "failed",
+              "seconds": 5.135,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.053,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.067,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.059,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.053,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.111,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 30.478,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Nat.hasSum_inv_sylvesterNumber": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4186,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SylvesterSequence/ReciprocalSeries.lean",
+        "Submissions/sylvester-reciprocal-series.json"
+      ],
+      "corpus_entrypoints_checked": 172,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Nat.hasSum_inv_sylvesterNumber": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Nat.hasSum_inv_sylvesterNumber",
+          "statement_sha256": "4f09bf8695d7cd0e573663e5e2280b29d856eb6edc5ad49073ae10efe006a938",
+          "type_dependencies": [
+            "DivInvMonoid.toDiv",
+            "HDiv.hDiv",
+            "HasSum",
+            "LeanFrontier.Nat.sylvesterNumber",
+            "Nat",
+            "Nat.cast",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instAddCommMonoid",
+            "Real.instDivInvMonoid",
+            "Real.instNatCast",
+            "Real.instOne",
+            "Real.pseudoMetricSpace",
+            "SummationFilter.unconditional",
+            "UniformSpace.toTopologicalSpace",
+            "instHDiv"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2313,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "sylvester-reciprocal-series",
+  "trusted_receiver_revision": "6bca1bb82fd3a12f3185e94e3a6fbf8088487b4f",
+  "validated_candidate_revision": "c0618ff96d3ab478fbfe224e6bde57b02da2df69",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35832056261"
+}
