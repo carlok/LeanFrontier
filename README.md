@@ -111,6 +111,10 @@ human–AI collaborations; the receiver evaluates the submitted artifact and
 claim, not the producer's identity. See [CONTRIBUTING.md](CONTRIBUTING.md) for
 project-maintenance and contact guidance.
 
+What that mechanical acceptance does and does not establish, the attacks found
+against it in practice, and what remains unguarded are written down in the
+[threat model](docs/threat-model.md).
+
 A submission the receiver accepts merges without human action when its author
 is listed in [`policy/auto_merge_allowlist.json`](policy/auto_merge_allowlist.json).
 Nobody reads the mathematics before it lands: acceptance is the decision, and

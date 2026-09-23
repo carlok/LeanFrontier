@@ -446,6 +446,21 @@ class WorkflowContractTests(unittest.TestCase):
                         "PREREGISTRATION.md", "launcher_arm", "START-HERE.md"):
             self.assertIn(subject, readme, f"README does not mention {subject}")
 
+    def test_the_threat_model_names_every_check_it_claims(self) -> None:
+        """Each guarantee in the threat model has to exist in the receiver."""
+        threat = (ROOT / "docs" / "threat-model.md").read_text(encoding="utf-8")
+        validator = (ROOT / "tools" / "frontier_validate.py").read_text(encoding="utf-8")
+        self.assertIn("docs/threat-model.md", (ROOT / "README.md").read_text(encoding="utf-8"))
+        for claim in ("leanchecker", "CORPUS_REGRESSION", "DEPRECATED_API", "BRANCH_BEHIND", "initialize", "run_cmd", "implemented_by"):
+            with self.subTest(claim=claim):
+                self.assertIn(claim, threat)
+                self.assertIn(claim, validator)
+        # The sandbox flags it advertises are the ones the workflow passes.
+        for flag in ("--network none", "--read-only", "--cap-drop ALL", "--memory 2g", "--pids-limit 512"):
+            with self.subTest(flag=flag):
+                self.assertIn(flag, threat)
+                self.assertIn(flag, WORKFLOW)
+
     def test_the_latest_field_note_is_listed_and_shipped(self) -> None:
         notes = sorted((ROOT / "docs" / "website" / "notes").glob("field-note-*.html"))
         self.assertTrue(notes)
