@@ -157,7 +157,8 @@ noncomputable def ulamHomeomorph :
   Continuous.homeoOfEquivCompactToT2
     (f := Equiv.ofBijective ulamMapIcc ulamMapIcc_bijective)
     (by
-      simpa only [Equiv.ofBijective_apply] using continuous_ulamMapIcc)
+      change Continuous ulamMapIcc
+      exact continuous_ulamMapIcc)
 
 /-- The forward map of `ulamHomeomorph` is the accepted Ulam change of variables. -/
 @[simp]
