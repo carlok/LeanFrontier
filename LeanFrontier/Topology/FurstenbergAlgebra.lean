@@ -52,8 +52,8 @@ private theorem preimage_add_arithProgression (a b : ℤ) :
     convert h using 1 <;> ring
 
 private theorem isOpen_preimage_add_arithProgression (a b : ℤ) (hb : b ≠ 0) :
-    letI := furstenbergTopology
-    IsOpen ((fun p : ℤ × ℤ => p.1 + p.2) ⁻¹' arithProgression a b) := by
+    IsOpen[@instTopologicalSpaceProd ℤ ℤ furstenbergTopology furstenbergTopology]
+      ((fun p : ℤ × ℤ => p.1 + p.2) ⁻¹' arithProgression a b) := by
   letI := furstenbergTopology
   rw [preimage_add_arithProgression]
   exact isOpen_iUnion fun c =>
@@ -65,8 +65,7 @@ private theorem isOpen_preimage_add_arithProgression (a b : ℤ) (hb : b ≠ 0) 
 The topology is installed only locally by the theorem statement; this does not alter the ordinary
 global topology instance on the integers. -/
 theorem continuous_neg_furstenberg :
-    letI := furstenbergTopology
-    Continuous fun x : ℤ => -x := by
+    Continuous[furstenbergTopology, furstenbergTopology] (fun x : ℤ => -x) := by
   letI := furstenbergTopology
   rw [isTopologicalBasis_arithProgression.continuous_iff]
   rintro _ ⟨a, b, hb, rfl⟩
@@ -78,8 +77,9 @@ theorem continuous_neg_furstenberg :
 Again, the Furstenberg topology is local to the statement; the product topology on `ℤ × ℤ` is
 therefore the product of two copies of `furstenbergTopology`. -/
 theorem continuous_add_furstenberg :
-    letI := furstenbergTopology
-    Continuous fun p : ℤ × ℤ => p.1 + p.2 := by
+    Continuous[
+      @instTopologicalSpaceProd ℤ ℤ furstenbergTopology furstenbergTopology,
+      furstenbergTopology] (fun p : ℤ × ℤ => p.1 + p.2) := by
   letI := furstenbergTopology
   rw [isTopologicalBasis_arithProgression.continuous_iff]
   rintro _ ⟨a, b, hb, rfl⟩
