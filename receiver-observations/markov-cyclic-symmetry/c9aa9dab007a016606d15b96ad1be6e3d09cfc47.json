@@ -1,0 +1,499 @@
+{
+  "accepted_revision": "c9aa9dab007a016606d15b96ad1be6e3d09cfc47",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-24T06:27:05Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 242.42,
+    "observed": {
+      "added_lines": 210,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.branchPermMove": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.branchPermMove",
+          "restatement": false,
+          "statement_sha256": "b9ba11c3f3e17365a32e04eaa768a2cb92b30f78cd6a5a4049d63054163fdecb",
+          "type_dependencies": [
+            "LeanFrontier.MarkovTree.Move"
+          ]
+        },
+        "LeanFrontier.MarkovTree.branchPermMove_injective": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.branchPermMove_injective",
+          "restatement": false,
+          "statement_sha256": "bef386de602aef1bcee0fc3af9010ede876eedd7a858e66c53e5d55ce77a6c1c",
+          "type_dependencies": [
+            "Function.Injective",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.branchPermMove"
+          ]
+        },
+        "LeanFrontier.MarkovTree.branchPermMove_inverse_left": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.branchPermMove_inverse_left",
+          "restatement": false,
+          "statement_sha256": "7f319a6ee05b9bc48747d25bb7d38aef8f53eacd9302de1660d1a58b1d49858a",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.branchPermMove",
+            "LeanFrontier.MarkovTree.inverseBranch"
+          ]
+        },
+        "LeanFrontier.MarkovTree.branchPermMove_inverse_right": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.branchPermMove_inverse_right",
+          "restatement": false,
+          "statement_sha256": "673c773a36c7e2defd94ee8b1f348c73d2d0b630d3378a3e07b691d5084ad8b3",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.branchPermMove",
+            "LeanFrontier.MarkovTree.inverseBranch"
+          ]
+        },
+        "LeanFrontier.MarkovTree.branchPermMove_third": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.branchPermMove_third",
+          "restatement": false,
+          "statement_sha256": "f55ef38b5eacc5b019f37de6ff1a5514ea781d2229910817b6d5b263277a3db2",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.Move.third",
+            "LeanFrontier.MarkovTree.branchPermMove"
+          ]
+        },
+        "LeanFrontier.MarkovTree.branchPermState": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.branchPermState",
+          "restatement": false,
+          "statement_sha256": "6b97565ef2b4d50d29f602efaa9bb866ff5a3c61d626ea8ba32f211bdcbd3b5c",
+          "type_dependencies": [
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State"
+          ]
+        },
+        "LeanFrontier.MarkovTree.branchPermState_inverse_left": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.branchPermState_inverse_left",
+          "restatement": false,
+          "statement_sha256": "0ceb0eba560d5917d94b2351a8008ac4c7ecfd5c73295235f744da1f8a7cad39",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.branchPermState",
+            "LeanFrontier.MarkovTree.inverseBranch"
+          ]
+        },
+        "LeanFrontier.MarkovTree.branchPermState_inverse_right": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.branchPermState_inverse_right",
+          "restatement": false,
+          "statement_sha256": "c8555e77d9d077c204fab4f713d3548d8298da3d72e154fd1b4b8f9a32a4ea6e",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.branchPermState",
+            "LeanFrontier.MarkovTree.inverseBranch"
+          ]
+        },
+        "LeanFrontier.MarkovTree.branchPermState_move": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.branchPermState_move",
+          "restatement": false,
+          "statement_sha256": "deec79814cde2d4e7b0837ec92d998efb7399f16f9e33763b7da528f87e91a11",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.branchPermMove",
+            "LeanFrontier.MarkovTree.branchPermState",
+            "LeanFrontier.MarkovTree.move"
+          ]
+        },
+        "LeanFrontier.MarkovTree.branchPermState_orientedRoot": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.branchPermState_orientedRoot",
+          "restatement": false,
+          "statement_sha256": "d92a9055e8e3f79bb53545bcd9f7db3b141dcef7021760c2a616a80e85b38051",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.branchPermState",
+            "LeanFrontier.MarkovTree.orientedRoot",
+            "LeanFrontier.MarkovTree.rootBranch"
+          ]
+        },
+        "LeanFrontier.MarkovTree.branchPermState_walk": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.branchPermState_walk",
+          "restatement": false,
+          "statement_sha256": "5a14ad33bfb02c4cd37ceb6e52a06a6a1898007b9877adad98f93287c719790b",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.branchPermMove",
+            "LeanFrontier.MarkovTree.branchPermState",
+            "LeanFrontier.MarkovTree.walk",
+            "List",
+            "List.map"
+          ]
+        },
+        "LeanFrontier.MarkovTree.exists_permuted_sternNode_of_branchNode": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.exists_permuted_sternNode_of_branchNode",
+          "restatement": false,
+          "statement_sha256": "891cdfdb15a70d414a9789398b3ea1d27f816ce08e37cd8ee0f2fa1696fb017e",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Exists",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.branchNode",
+            "LeanFrontier.MarkovTree.branchPermState",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.exists_permuted_sternNode_of_positive_solution": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.exists_permuted_sternNode_of_positive_solution",
+          "restatement": false,
+          "statement_sha256": "74f92fd63e3adbda9560313ad4fd8769fe4fbf46ea33c30c814bb95a5f1dfd7a",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Exists",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.IsSolution",
+            "LeanFrontier.MarkovTree.State.mk",
+            "LeanFrontier.MarkovTree.State.x",
+            "LeanFrontier.MarkovTree.State.y",
+            "LeanFrontier.MarkovTree.State.z",
+            "LeanFrontier.MarkovTree.branchPermState",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List",
+            "Ne",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.inverseBranch": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.inverseBranch",
+          "restatement": false,
+          "statement_sha256": "08a956c0f7e01c2eba77267df8fec712f7eb170eb49d7f29b03f2699c378f7b2",
+          "type_dependencies": [
+            "LeanFrontier.MarkovTree.Move"
+          ]
+        },
+        "LeanFrontier.MarkovTree.inverseBranch_sends_initial_to_third": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.inverseBranch_sends_initial_to_third",
+          "restatement": false,
+          "statement_sha256": "0730d68716637047601fcc675862ca3fa569f508986b95f0c4b82b6710bcdd81",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.Move.third",
+            "LeanFrontier.MarkovTree.branchPermMove",
+            "LeanFrontier.MarkovTree.inverseBranch"
+          ]
+        },
+        "LeanFrontier.MarkovTree.nonBacktracking_map_branchPerm": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.nonBacktracking_map_branchPerm",
+          "restatement": false,
+          "statement_sha256": "75db21e31a1796aa7740aaab5bea9005b6d54a514915810474a421b11f16e945",
+          "type_dependencies": [
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.NonBacktrackingFrom",
+            "LeanFrontier.MarkovTree.branchPermMove",
+            "List",
+            "List.map"
+          ]
+        },
+        "modulo": null
+      },
+      "baseline_probe_runs": {
+        "attempts": 18,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.branchPermState_move": [
+            {
+              "outcome": "failed",
+              "seconds": 5.089,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.938,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.941,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.959,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.971,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.998,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.exists_permuted_sternNode_of_branchNode": [
+            {
+              "outcome": "failed",
+              "seconds": 5.164,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.157,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.155,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.168,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.151,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.159,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.exists_permuted_sternNode_of_positive_solution": [
+            {
+              "outcome": "failed",
+              "seconds": 5.03,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.041,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.004,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.007,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.006,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.004,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 90.942,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.branchPermState_move": "inconclusive",
+        "LeanFrontier.MarkovTree.exists_permuted_sternNode_of_branchNode": "inconclusive",
+        "LeanFrontier.MarkovTree.exists_permuted_sternNode_of_positive_solution": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 11323,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/Symmetry.lean",
+        "Submissions/markov-cyclic-symmetry.json"
+      ],
+      "corpus_entrypoints_checked": 185,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.branchPermState_move": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.branchPermState_move",
+          "statement_sha256": "deec79814cde2d4e7b0837ec92d998efb7399f16f9e33763b7da528f87e91a11",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.branchPermMove",
+            "LeanFrontier.MarkovTree.branchPermState",
+            "LeanFrontier.MarkovTree.move"
+          ]
+        },
+        "LeanFrontier.MarkovTree.exists_permuted_sternNode_of_branchNode": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.exists_permuted_sternNode_of_branchNode",
+          "statement_sha256": "891cdfdb15a70d414a9789398b3ea1d27f816ce08e37cd8ee0f2fa1696fb017e",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Exists",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.branchNode",
+            "LeanFrontier.MarkovTree.branchPermState",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.exists_permuted_sternNode_of_positive_solution": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.exists_permuted_sternNode_of_positive_solution",
+          "statement_sha256": "74f92fd63e3adbda9560313ad4fd8769fe4fbf46ea33c30c814bb95a5f1dfd7a",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Exists",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.IsSolution",
+            "LeanFrontier.MarkovTree.State.mk",
+            "LeanFrontier.MarkovTree.State.x",
+            "LeanFrontier.MarkovTree.State.y",
+            "LeanFrontier.MarkovTree.State.z",
+            "LeanFrontier.MarkovTree.branchPermState",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List",
+            "Ne",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 9526,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 16
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-cyclic-symmetry",
+  "trusted_receiver_revision": "e736fff28f27817a40c615fd1b81a4e23124dcac",
+  "validated_candidate_revision": "737fd10f307fafb50820bc5d108cf39f6634113f",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35959766230"
+}
