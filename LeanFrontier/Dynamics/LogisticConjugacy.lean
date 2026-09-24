@@ -50,12 +50,12 @@ noncomputable def ulamMapIcc :
   fun x => ⟨ulamMap x, ulamMap_mem_Icc x⟩
 
 /-- The real-valued Ulam map is continuous. -/
-theorem continuous_ulamMap : Continuous ulamMap := by
+private def continuous_ulamMap : Continuous ulamMap := by
   unfold ulamMap
   fun_prop
 
 /-- The subtype Ulam map is continuous. -/
-theorem continuous_ulamMapIcc : Continuous ulamMapIcc := by
+private def continuous_ulamMapIcc : Continuous ulamMapIcc := by
   exact Continuous.subtype_mk
     (continuous_ulamMap.comp continuous_subtype_val) _
 
@@ -85,7 +85,7 @@ private theorem sin_angle_nonneg
       nlinarith)
 
 /-- The Ulam map is injective on the closed unit interval. -/
-theorem ulamMapIcc_injective : Function.Injective ulamMapIcc := by
+private def ulamMapIcc_injective : Function.Injective ulamMapIcc := by
   intro x y hxy
   have hval := congrArg Subtype.val hxy
   change ulamMap (x : ℝ) = ulamMap (y : ℝ) at hval
@@ -111,7 +111,7 @@ theorem ulamMapIcc_injective : Function.Injective ulamMapIcc := by
 
 A point `y ∈ [0,1]` has the explicit preimage
 `2 * arcsin (sqrt y) / π`. -/
-theorem ulamMapIcc_surjective : Function.Surjective ulamMapIcc := by
+private def ulamMapIcc_surjective : Function.Surjective ulamMapIcc := by
   intro y
   let a : ℝ := arcsin (sqrt (y : ℝ))
   let x : ℝ := 2 * a / π
