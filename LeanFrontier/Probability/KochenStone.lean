@@ -202,6 +202,9 @@ theorem kochenStone (μ : Measure Ω) [IsProbabilityMeasure μ]
       μ.real (Filter.limsup A atTop) := by
   classical
 
+  change Filter.limsup (ksRatio μ A) atTop ≤
+    μ.real (Filter.limsup A atTop)
+
   let S : ℕ → ℝ := firstSum μ A
   let T : ℕ → ℝ := secondSum μ A
   let R : ℕ → ℝ := ksRatio μ A
@@ -337,7 +340,7 @@ theorem kochenStone (μ : Measure Ω) [IsProbabilityMeasure μ]
       exact habT
 
     have haD : a * D < F ^ 2 := by
-      exact lt_of_le_of_lt (mul_le_mul_of_nonneg_left hDleT ha_pos.le) haTD
+      exact lt_of_le_of_lt (mul_le_mul_of_nonneg_left hDleT ha_nonneg) haTD
 
     have haRatio : a < F ^ 2 / D := by
       exact (lt_div_iff₀ hDpos).2 haD
@@ -388,6 +391,6 @@ theorem kochenStone (μ : Measure Ω) [IsProbabilityMeasure μ]
     ge_of_tendsto' hmeasureReal htail
 
   rw [← limsup_eq_iInter_tailUnion A] at hfinal
-  simpa [L, R, ksRatio, S, T, firstSum, secondSum] using hfinal
+  simpa [L, R] using hfinal
 
 end LeanFrontier.ProbabilityTheory
