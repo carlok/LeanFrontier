@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-cyclic-symmetry",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.branchPermState_move",
+    "LeanFrontier.MarkovTree.exists_permuted_sternNode_of_branchNode",
+    "LeanFrontier.MarkovTree.exists_permuted_sternNode_of_positive_solution"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue Direction A after the accepted three-branch coverage theorem. GPT-5.6 Sol / ChatGPT inspected live upstream main and selected the next representation layer: collapse the three labelled oriented root branches to the single accepted Stern-Brocot branch modulo cyclic coordinate symmetry. The new module defines the cyclic permutations of bundled Markov states and coordinate moves indexed by the selected first root move, proves that state and move permutations commute with one Vieta step and hence with finite walks, proves that non-backtracking move words are preserved, and transports an arbitrary branch move word through the inverse permutation before decoding it with the accepted unique non-backtracking Boolean-path decoder. The final theorem states that every positive Markov solution other than (1,1,1) is a cyclic coordinate permutation of the state attached to some sternNode path. The development deliberately makes no uniqueness or numerical Markov-label injectivity claim. GPT-5.6 Sol / ChatGPT selected the target and API and authored the Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
