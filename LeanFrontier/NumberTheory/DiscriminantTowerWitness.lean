@@ -159,7 +159,7 @@ private def quadPlusQ_irreducible : Irreducible quadPlusQ := by
       quadPlusZ_irreducible
   have hmap : Polynomial.map (Int.castRingHom ℚ) quadPlusZ = quadPlusQ := by
     rw [quadPlusZ, quadPlusQ, Polynomial.map_sub, Polynomial.map_pow]
-    simp
+    simp [Polynomial.C_ofNat]
   rw [← hmap]
   exact h
 
@@ -170,7 +170,7 @@ private def quadMinusQ_irreducible : Irreducible quadMinusQ := by
       quadMinusZ_irreducible
   have hmap : Polynomial.map (Int.castRingHom ℚ) quadMinusZ = quadMinusQ := by
     rw [quadMinusZ, quadMinusQ, Polynomial.map_sub, Polynomial.map_pow]
-    simp
+    simp [Polynomial.C_ofNat]
   rw [← hmap]
   exact h
 
