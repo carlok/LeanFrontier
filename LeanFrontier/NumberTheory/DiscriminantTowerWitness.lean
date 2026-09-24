@@ -241,6 +241,43 @@ theorem cyclotomicEight_ambient_invariants :
       (NumberField.discr CyclotomicEight).natAbs = 256 :=
   ⟨cyclotomicEight_degree, cyclotomicEight_discr_abs⟩
 
+private noncomputable def sqrtTwoPowerBasis : PowerBasis ℚ sqrtTwoField :=
+  IntermediateField.adjoin.powerBasis (IsIntegral.of_finite ℚ sqrtTwoGen)
+
+private noncomputable def sqrtNegTwoPowerBasis : PowerBasis ℚ sqrtNegTwoField :=
+  IntermediateField.adjoin.powerBasis (IsIntegral.of_finite ℚ sqrtNegTwoGen)
+
+private def minpoly_sqrtTwoPowerBasis :
+    minpoly ℚ sqrtTwoPowerBasis.gen = quadPlusQ := by
+  rw [sqrtTwoPowerBasis, IntermediateField.adjoin.powerBasis_gen,
+    IntermediateField.minpoly_gen, minpoly_sqrtTwoGen]
+
+private def minpoly_sqrtNegTwoPowerBasis :
+    minpoly ℚ sqrtNegTwoPowerBasis.gen = quadMinusQ := by
+  rw [sqrtNegTwoPowerBasis, IntermediateField.adjoin.powerBasis_gen,
+    IntermediateField.minpoly_gen, minpoly_sqrtNegTwoGen]
+
+private def sqrtTwoPowerBasis_discr :
+    Algebra.discr ℚ sqrtTwoPowerBasis.basis = 8 := by
+  rw [Algebra.discr_powerBasis_eq_norm, quadraticFields_degrees.1,
+    minpoly_sqrtTwoPowerBasis]
+  norm_num [quadPlusQ, Algebra.PowerBasis.norm_gen_eq_coeff_zero_minpoly,
+    minpoly_sqrtTwoPowerBasis, quadraticFields_degrees.1, Algebra.norm_natCast]
+
+private def sqrtNegTwoPowerBasis_discr :
+    Algebra.discr ℚ sqrtNegTwoPowerBasis.basis = -8 := by
+  rw [Algebra.discr_powerBasis_eq_norm, quadraticFields_degrees.2,
+    minpoly_sqrtNegTwoPowerBasis]
+  norm_num [quadMinusQ, Algebra.PowerBasis.norm_gen_eq_coeff_zero_minpoly,
+    minpoly_sqrtNegTwoPowerBasis, quadraticFields_degrees.2, Algebra.norm_natCast]
+
+/-- Before passing to rings of integers, the canonical quadratic power bases already have the
+expected signed discriminants `8` and `-8`. -/
+theorem quadraticPowerBasis_discriminants :
+    Algebra.discr ℚ sqrtTwoPowerBasis.basis = 8 ∧
+      Algebra.discr ℚ sqrtNegTwoPowerBasis.basis = -8 :=
+  ⟨sqrtTwoPowerBasis_discr, sqrtNegTwoPowerBasis_discr⟩
+
 end
 
 end LeanFrontier.NumberTheory.DiscriminantTower
