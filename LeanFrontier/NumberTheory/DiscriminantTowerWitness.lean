@@ -258,8 +258,8 @@ private opaque cyclotomicEight_discr_abs :
     infer_instance
   have hdisc :=
     IsCyclotomicExtension.Rat.discr_prime_pow 2 3 CyclotomicEight
-  rw [hdisc]
-  simp
+  rw [hdisc, Int.natAbs_mul, Int.natAbs_pow]
+  norm_num
 
 /-- The two explicit quadratic subfields are linearly disjoint over `ℚ`. -/
 theorem quadraticFields_linearDisjoint :
