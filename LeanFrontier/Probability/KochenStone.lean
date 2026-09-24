@@ -132,7 +132,7 @@ private theorem tail_first_eq_sub
   rfl
 
 private theorem tail_second_le_prefix_second
-    (μ : Measure Ω) (A : ℕ → Set Ω) {m N : ℕ} (hmN : m ≤ N) :
+    (μ : Measure Ω) (A : ℕ → Set Ω) {m N : ℕ} (_hmN : m ≤ N) :
     (∑ i ∈ Finset.Ico m N, ∑ j ∈ Finset.Ico m N, μ.real (A i ∩ A j)) ≤
       secondSum μ A N := by
   dsimp [secondSum]
@@ -170,6 +170,7 @@ private theorem tail_first_le_tail_second
         (fun j hj => measureReal_nonneg)
         hi
 
+omit [MeasurableSpace Ω] in
 private theorem finiteTailUnion_subset_tailUnion
     (A : ℕ → Set Ω) {m N : ℕ} :
     (⋃ i ∈ Finset.Ico m N, A i) ⊆ tailUnion A m := by
@@ -234,12 +235,12 @@ theorem kochenStone (μ : Measure Ω) [IsProbabilityMeasure μ]
     intro m
     rw [← forall_lt_iff_le]
     intro a haL
-    by_cases ha0 : a ≤ 0
-    · exact ha0.trans
+    by_cases ha_neg : a < 0
+    · exact ha_neg.trans_le
         (measureReal_nonneg : 0 ≤ μ.real (tailUnion A m))
-    have ha_pos : 0 < a := lt_of_not_ge ha0
+    have ha_nonneg : 0 ≤ a := le_of_not_gt ha_neg
     obtain ⟨b, hab, hbL⟩ := exists_between haL
-    have hb_pos : 0 < b := ha_pos.trans hab
+    have hb_pos : 0 < b := lt_of_le_of_lt ha_nonneg hab
 
     have hfreq : ∃ᶠ N in atTop, b < R N := by
       exact frequently_lt_of_lt_limsup hR_cobdd (by simpa [L] using hbL)
@@ -268,9 +269,10 @@ theorem kochenStone (μ : Measure Ω) [IsProbabilityMeasure μ]
       dsimp [T, S] at hSpos ⊢
       exact secondSum_pos_of_firstSum_pos μ A N hSpos
 
-    have hratio : b * T N < S N ^ 2 := by
-      have := (div_lt_iff₀ hTpos).1 hbR
-      simpa [R, ksRatio] using this
+    have hbR' : b < S N ^ 2 / T N := by
+      simpa [R, ksRatio, S, T] using hbR
+    have hratio : b * T N < S N ^ 2 :=
+      (lt_div_iff₀ hTpos).1 hbR'
 
     have hba : 0 < b - a := sub_pos.mpr hab
     have hthreshold : 2 * b * c / (b - a) < S N := by
@@ -281,19 +283,30 @@ theorem kochenStone (μ : Measure Ω) [IsProbabilityMeasure μ]
           (le_max_right _ _)
       exact hKt.trans hKS
     have hlinear : 2 * b * c < (b - a) * S N := by
-      exact (div_lt_iff₀ hba).1 hthreshold
+      simpa [mul_comm] using (div_lt_iff₀ hba).1 hthreshold
 
+    have hlinmul :
+        2 * b * c * S N < (b - a) * S N * S N := by
+      exact mul_lt_mul_of_pos_right hlinear hSpos
+    have hbc2 : 0 ≤ b * c ^ 2 :=
+      mul_nonneg hb_pos.le (sq_nonneg c)
     have hquad :
         a * S N ^ 2 < b * (S N - c) ^ 2 := by
-      nlinarith [hc_nonneg, hSpos, hlinear]
+      nlinarith [hlinmul, hbc2]
 
     have habT :
         a * T N < (S N - c) ^ 2 := by
-      have hscaled : a * (b * T N) < a * S N ^ 2 :=
-        mul_lt_mul_of_pos_left hratio ha_pos
-      have hbmul : a * b * T N < b * (S N - c) ^ 2 := by
-        nlinarith [hscaled, hquad]
-      nlinarith [hb_pos, hTpos, hbmul]
+      by_cases ha_zero : a = 0
+      · subst a
+        simp only [zero_mul]
+        exact sq_pos_of_pos (sub_pos.mpr hSc)
+      · have ha_pos : 0 < a :=
+          lt_of_le_of_ne ha_nonneg (Ne.symm ha_zero)
+        have hscaled : a * (b * T N) < a * S N ^ 2 :=
+          mul_lt_mul_of_pos_left hratio ha_pos
+        have hbmul : a * b * T N < b * (S N - c) ^ 2 := by
+          nlinarith [hscaled, hquad]
+        nlinarith [hb_pos, hTpos, hbmul]
 
     let F : ℝ := ∑ i ∈ Finset.Ico m N, μ.real (A i)
     let D : ℝ :=
@@ -343,7 +356,7 @@ theorem kochenStone (μ : Measure Ω) [IsProbabilityMeasure μ]
           μ.real (tailUnion A m) :=
       measureReal_mono (finiteTailUnion_subset_tailUnion A)
 
-    exact (haRatio.trans_le (hfinite.trans hmono)).le
+    exact haRatio.trans_le (hfinite.trans hmono)
 
   have hUmeas : ∀ m, NullMeasurableSet (tailUnion A m) μ := by
     intro m
@@ -357,7 +370,7 @@ theorem kochenStone (μ : Measure Ω) [IsProbabilityMeasure μ]
         (fun m => μ (tailUnion A m))
         atTop
         (𝓝 (μ (⋂ m, tailUnion A m))) := by
-    simpa only [Function.comp_apply] using
+    simpa [Function.comp_def] using
       (tendsto_measure_iInter_atTop
         (μ := μ) (s := tailUnion A)
         hUmeas hUanti ⟨0, measure_ne_top μ _⟩)
@@ -367,12 +380,12 @@ theorem kochenStone (μ : Measure Ω) [IsProbabilityMeasure μ]
         (fun m => μ.real (tailUnion A m))
         atTop
         (𝓝 (μ.real (⋂ m, tailUnion A m))) := by
-    simpa only [measureReal_def] using
+    simpa [measureReal_def, Function.comp_def] using
       (ENNReal.tendsto_toReal (measure_ne_top μ (⋂ m, tailUnion A m))).comp hmeasure
 
   have hfinal :
       L ≤ μ.real (⋂ m, tailUnion A m) :=
-    le_of_tendsto' hmeasureReal htail
+    ge_of_tendsto' hmeasureReal htail
 
   rw [← limsup_eq_iInter_tailUnion A] at hfinal
   simpa [L, R, ksRatio, S, T, firstSum, secondSum] using hfinal
