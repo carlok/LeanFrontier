@@ -253,11 +253,13 @@ private opaque cyclotomicEight_degree :
 
 private opaque cyclotomicEight_discr_abs :
     (NumberField.discr CyclotomicEight).natAbs = 256 := by
+  letI : IsCyclotomicExtension {2 ^ 3} ℚ CyclotomicEight := by
+    norm_num
+    infer_instance
   have hdisc :=
     IsCyclotomicExtension.Rat.discr_prime_pow 2 3 CyclotomicEight
-  norm_num [Nat.totient_prime_pow Nat.prime_two (by norm_num : 0 < 3)] at hdisc
   rw [hdisc]
-  norm_num
+  simp
 
 /-- The two explicit quadratic subfields are linearly disjoint over `ℚ`. -/
 theorem quadraticFields_linearDisjoint :
