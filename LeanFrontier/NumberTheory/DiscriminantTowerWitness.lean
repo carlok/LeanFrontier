@@ -26,10 +26,6 @@ The discriminant computation is developed on top of this structure.
 
 namespace LeanFrontier.NumberTheory.DiscriminantTower
 
-set_option linter.defProp false
-set_option linter.unusedSimpArgs false
-set_option warn.classDefReducibility false
-
 open scoped IntermediateField
 open Polynomial IntermediateField NumberField
 
@@ -44,13 +40,13 @@ local instance cyclotomicEight_isCyclotomic :
 noncomputable def zetaEight : CyclotomicEight :=
   IsCyclotomicExtension.zeta 8 ℚ CyclotomicEight
 
-private def zetaEight_spec : IsPrimitiveRoot zetaEight 8 := by
+private theorem zetaEight_spec : IsPrimitiveRoot zetaEight 8 := by
   exact IsCyclotomicExtension.zeta_spec 8 ℚ CyclotomicEight
 
-private def zetaEight_pow_eight : zetaEight ^ 8 = 1 :=
+private theorem zetaEight_pow_eight : zetaEight ^ 8 = 1 :=
   zetaEight_spec.pow_eq_one
 
-private def zetaEight_pow_four : zetaEight ^ 4 = -1 := by
+private theorem zetaEight_pow_four : zetaEight ^ 4 = -1 := by
   have hsq : (zetaEight ^ 4) ^ 2 = 1 := by
     rw [← pow_mul]
     norm_num
@@ -64,12 +60,12 @@ noncomputable def sqrtTwoGen : CyclotomicEight :=
 noncomputable def sqrtNegTwoGen : CyclotomicEight :=
   zetaEight - zetaEight ^ 7
 
-private def zetaEight_pow_six : zetaEight ^ 6 = -(zetaEight ^ 2) := by
+private theorem zetaEight_pow_six : zetaEight ^ 6 = -(zetaEight ^ 2) := by
   calc
     zetaEight ^ 6 = zetaEight ^ 2 * zetaEight ^ 4 := by ring
     _ = -(zetaEight ^ 2) := by rw [zetaEight_pow_four]; ring
 
-private def zetaEight_pow_fourteen : zetaEight ^ 14 = zetaEight ^ 6 := by
+private theorem zetaEight_pow_fourteen : zetaEight ^ 14 = zetaEight ^ 6 := by
   calc
     zetaEight ^ 14 = zetaEight ^ 6 * zetaEight ^ 8 := by ring
     _ = zetaEight ^ 6 := by rw [zetaEight_pow_eight, mul_one]
@@ -105,20 +101,20 @@ private def quadMinusQ : ℚ[X] := X ^ 2 - C (-2)
 
 private def spanTwo : Ideal ℤ := Ideal.span ({(2 : ℤ)} : Set ℤ)
 
-private def spanTwo_prime : spanTwo.IsPrime := by
+private theorem spanTwo_prime : spanTwo.IsPrime := by
   rw [spanTwo, Ideal.span_singleton_prime (by norm_num : (2 : ℤ) ≠ 0),
     Int.prime_iff_natAbs_prime]
   norm_num
 
-private def quadPlusZ_monic : quadPlusZ.Monic := by
+private theorem quadPlusZ_monic : quadPlusZ.Monic := by
   rw [quadPlusZ]
   exact monic_X_pow_sub_C (2 : ℤ) (by decide)
 
-private def quadMinusZ_monic : quadMinusZ.Monic := by
+private theorem quadMinusZ_monic : quadMinusZ.Monic := by
   rw [quadMinusZ]
   exact monic_X_pow_sub_C (-2 : ℤ) (by decide)
 
-private def quadPlusZ_eisenstein : quadPlusZ.IsEisensteinAt spanTwo := by
+private theorem quadPlusZ_eisenstein : quadPlusZ.IsEisensteinAt spanTwo := by
   apply quadPlusZ_monic.isEisensteinAt_of_mem_of_notMem
   · exact spanTwo_prime.ne_top
   · intro n hn
@@ -132,7 +128,7 @@ private def quadPlusZ_eisenstein : quadPlusZ.IsEisensteinAt spanTwo := by
     rw [hcoeff, spanTwo, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
     norm_num
 
-private def quadMinusZ_eisenstein : quadMinusZ.IsEisensteinAt spanTwo := by
+private theorem quadMinusZ_eisenstein : quadMinusZ.IsEisensteinAt spanTwo := by
   apply quadMinusZ_monic.isEisensteinAt_of_mem_of_notMem
   · exact spanTwo_prime.ne_top
   · intro n hn
@@ -146,17 +142,17 @@ private def quadMinusZ_eisenstein : quadMinusZ.IsEisensteinAt spanTwo := by
     rw [hcoeff, spanTwo, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
     norm_num
 
-private def quadPlusZ_irreducible : Irreducible quadPlusZ :=
+private theorem quadPlusZ_irreducible : Irreducible quadPlusZ :=
   quadPlusZ_eisenstein.irreducible spanTwo_prime
     quadPlusZ_monic.isPrimitive
     (by rw [quadPlusZ, natDegree_X_pow_sub_C]; norm_num)
 
-private def quadMinusZ_irreducible : Irreducible quadMinusZ :=
+private theorem quadMinusZ_irreducible : Irreducible quadMinusZ :=
   quadMinusZ_eisenstein.irreducible spanTwo_prime
     quadMinusZ_monic.isPrimitive
     (by rw [quadMinusZ, natDegree_X_pow_sub_C]; norm_num)
 
-private def quadPlusQ_irreducible : Irreducible quadPlusQ := by
+private theorem quadPlusQ_irreducible : Irreducible quadPlusQ := by
   have h :=
     (Polynomial.IsPrimitive.Int.irreducible_iff_irreducible_map_cast
       quadPlusZ_monic.isPrimitive).mp
@@ -168,7 +164,7 @@ private def quadPlusQ_irreducible : Irreducible quadPlusQ := by
   rw [← hmap]
   exact h
 
-private def quadMinusQ_irreducible : Irreducible quadMinusQ := by
+private theorem quadMinusQ_irreducible : Irreducible quadMinusQ := by
   have h :=
     (Polynomial.IsPrimitive.Int.irreducible_iff_irreducible_map_cast
       quadMinusZ_monic.isPrimitive).mp
@@ -180,7 +176,7 @@ private def quadMinusQ_irreducible : Irreducible quadMinusQ := by
   rw [← hmap]
   exact h
 
-private def minpoly_sqrtTwoGen : minpoly ℚ sqrtTwoGen = quadPlusQ := by
+private theorem minpoly_sqrtTwoGen : minpoly ℚ sqrtTwoGen = quadPlusQ := by
   symm
   apply minpoly.eq_of_irreducible_of_monic quadPlusQ_irreducible
   · rw [quadPlusQ]
@@ -190,7 +186,7 @@ private def minpoly_sqrtTwoGen : minpoly ℚ sqrtTwoGen = quadPlusQ := by
   · rw [quadPlusQ]
     exact monic_X_pow_sub_C (2 : ℚ) (by decide)
 
-private def minpoly_sqrtNegTwoGen : minpoly ℚ sqrtNegTwoGen = quadMinusQ := by
+private theorem minpoly_sqrtNegTwoGen : minpoly ℚ sqrtNegTwoGen = quadMinusQ := by
   symm
   apply minpoly.eq_of_irreducible_of_monic quadMinusQ_irreducible
   · rw [quadMinusQ]
@@ -212,7 +208,7 @@ theorem quadraticFields_degrees :
       (IsIntegral.of_finite ℚ sqrtNegTwoGen), minpoly_sqrtNegTwoGen]
     simp [quadMinusQ]
 
-private def zetaEight_eq_half_sum :
+private theorem zetaEight_eq_half_sum :
     zetaEight = (2 : CyclotomicEight)⁻¹ * (sqrtTwoGen + sqrtNegTwoGen) := by
   rw [sqrtTwoGen, sqrtNegTwoGen]
   norm_num
@@ -245,21 +241,21 @@ theorem quadraticFields_sup :
   exact (sqrtTwoField ⊔ sqrtNegTwoField).mul_mem hhalf
     ((sqrtTwoField ⊔ sqrtNegTwoField).add_mem hu hv)
 
-private def cyclotomicEight_degree :
+private theorem cyclotomicEight_degree :
     Module.finrank ℚ CyclotomicEight = 4 := by
   calc
     Module.finrank ℚ CyclotomicEight = Nat.totient 8 :=
       IsCyclotomicExtension.Rat.finrank 8 CyclotomicEight
-    _ = 4 := by native_decide
+    _ = 4 := by decide
 
-private def cyclotomicEight_discr_abs :
+private theorem cyclotomicEight_discr_abs :
     (NumberField.discr CyclotomicEight).natAbs = 256 := by
   calc
     (NumberField.discr CyclotomicEight).natAbs =
         8 ^ Nat.totient 8 /
           ∏ p ∈ Nat.primeFactors 8, p ^ (Nat.totient 8 / (p - 1)) :=
       IsCyclotomicExtension.Rat.natAbs_discr (n := 8) (K := CyclotomicEight)
-    _ = 256 := by native_decide
+    _ = 256 := by decide
 
 /-- The two explicit quadratic subfields are linearly disjoint over `ℚ`. -/
 theorem quadraticFields_linearDisjoint :
