@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="LeanFrontier Field Note 14: nine submissions in a day, each one building on something already accepted, and a five-module chain built in thirty-six hours.">
+    <meta name="description" content="LeanFrontier Field Note 14: ten submissions in a day, each one building on something already accepted, and a six-module chain built in thirty-six hours.">
     <title>Field Note 14 — LeanFrontier</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../assets/site.css">
@@ -24,11 +24,11 @@
         <header class="note-header">
           <p class="eyebrow">23 September 2026 · Field Note 14</p>
           <h1>The Corpus Starts Eating Its Own Results.</h1>
-          <p class="hero-copy">Nine submissions arrived in a day. Every one is built on something already in the corpus: most on results accepted the day before, one on a module accepted three hours earlier, and one on a module another contributor submitted five weeks ago, which turns out to be the ordinary case rather than a first.</p>
+          <p class="hero-copy">Ten submissions arrived in a day. Every one is built on something already in the corpus: most on results accepted the day before, one on a module accepted three hours earlier, and one on a module another contributor submitted five weeks ago, which turns out to be the ordinary case rather than a first.</p>
         </header>
 
         <section>
-          <h2>Nine, each on top of something accepted</h2>
+          <h2>Ten, each on top of something accepted</h2>
           <p><strong>Explicit Thue–Morse cube sums.</strong> Prouhet's theorem says the two Thue–Morse parity classes of an interval have equal cube sums; Nicomachus evaluates the cube sum of the whole interval. Together they give each half explicitly. The submission shifts the interval by four so that the Prouhet hypothesis for cubes holds automatically and the total divides in two without natural-number division.</p>
           <p><strong>Markov tree paths.</strong> The corpus already had the Vieta involution and, since yesterday, the ordered descent step. This adds the representation needed to iterate moves: a state of three coordinates, one parameterized move that picks which coordinate is replaced by its Vieta companion, and a walk as a finite list of moves. The single parameterized move is the interesting choice, because three permuted copies of the same theorem is exactly the degenerate family the receiver rejects.</p>
           <p><strong>Turán from Caro–Wei.</strong> The Caro–Wei bound landed late yesterday evening. By the following morning it had a consumer: the coarser classical bound depending only on vertex and edge counts, derived from it rather than proved again.</p>
@@ -38,11 +38,12 @@
           <p><strong>Furstenberg separation.</strong> The interesting one. It builds on the Furstenberg topology on the integers, which a different contributor submitted on 18 August through a different model family, and proves that the topology separates any two integers by a clopen arithmetic progression and that no singleton is open. Reuse across contributors turns out to be the norm rather than the exception: 22 of the corpus's 39 internal import edges have a source and a target contributed by different people. The pre-registration dropped cross-producer reuse from its secondary metrics in August, on the grounds that a single producer made it undefined. The corpus went and produced the data anyway.</p>
           <p><strong>An oriented binary Markov tree.</strong> The three Vieta moves at a Markov state form an undirected degree-three graph. To compare it with a binary rational tree, one move has to be remembered as the edge back to the parent, leaving two forward choices. This submission records that orientation and claims nothing about the numerical labels, which is where the Markov uniqueness conjecture sits. It is the first entry of the roadmap its own author refreshed hours earlier, and it was written before that refresh had been merged.</p>
           <p><strong>And then the bridge.</strong> An hour after the oriented tree was accepted, the submission that uses it: the oriented Markov tree executes a path head-first, the accepted Stern–Brocot representation builds a child by prepending a direction, so reversing one path aligns the two recursions exactly. Like its predecessor it compares tree positions and move encodings, and says nothing about numerical Markov labels. The corpus's deepest chain now runs five modules and four import hops, from the Markov equation through the descent step, the path layer and the orientation to this bridge, with reachability branching off the path layer. Every hop after the first was built in the last thirty-six hours, and the last two arrived an hour apart.</p>
+          <p><strong>Coverage, to close the day.</strong> The last submission joined the two Markov branches back together: it imports both the reachability theorem and the Stern–Brocot bridge, and shows that every positive Markov solution other than the root lies in one of three oriented branches, according to the first coordinate move taken from <code>(1, 1, 1)</code>. The deepest chain grew to six modules.</p>
         </section>
 
         <section>
           <h2>What that pattern is worth</h2>
-          <p>The corpus is at 62 modules, with 41 internal import edges, 0.66 per module. The pre-registered question behind all of this is whether machine producers accumulate: whether a result, once accepted, gets used, or whether each submission is a fresh start beside the last one. Nine consecutive submissions that each import an accepted result are the shape of an answer, though not yet the measurement. What replaces the suspended launcher experiment is a series that measures exactly this, registered before it was computed.</p>
+          <p>The corpus is at 63 modules, with 43 internal import edges, 0.68 per module. The pre-registered question behind all of this is whether machine producers accumulate: whether a result, once accepted, gets used, or whether each submission is a fresh start beside the last one. Ten consecutive submissions that each import an accepted result are the shape of an answer, though not yet the measurement. What replaces the suspended launcher experiment is a series that measures exactly this, registered before it was computed.</p>
           <p>They are also the shape the add-only rule now forces. Since yesterday a submission may not edit an existing module; extending one means importing it from a new one. That makes an import edge the only way to build on accepted work, which is convenient for the metric and, for exactly that reason, something the experiment's analysis has to discount rather than celebrate.</p>
         </section>
 
