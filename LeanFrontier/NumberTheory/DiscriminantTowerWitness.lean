@@ -123,7 +123,7 @@ private def quadPlusZ_eisenstein : quadPlusZ.IsEisensteinAt spanTwo := by
       exact hn
     interval_cases n <;>
       simp [quadPlusZ, spanTwo, Ideal.mem_span_singleton]
-  · rw [spanTwo, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
+  · rw [← pow_two, spanTwo, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
     norm_num [quadPlusZ]
 
 private def quadMinusZ_eisenstein : quadMinusZ.IsEisensteinAt spanTwo := by
@@ -135,7 +135,7 @@ private def quadMinusZ_eisenstein : quadMinusZ.IsEisensteinAt spanTwo := by
       exact hn
     interval_cases n <;>
       simp [quadMinusZ, spanTwo, Ideal.mem_span_singleton]
-  · rw [spanTwo, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
+  · rw [← pow_two, spanTwo, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
     norm_num [quadMinusZ]
 
 private def quadPlusZ_irreducible : Irreducible quadPlusZ :=
