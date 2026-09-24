@@ -184,7 +184,7 @@ private def minpoly_sqrtTwoGen : minpoly ℚ sqrtTwoGen = quadPlusQ := by
   symm
   apply minpoly.eq_of_irreducible_of_monic quadPlusQ_irreducible
   · rw [quadPlusQ]
-    simp only [aeval_sub, aeval_pow, aeval_X, aeval_C]
+    simp only [map_sub, map_pow, aeval_X, aeval_C]
     rw [sqrtTwoGen_sq]
     norm_num
   · rw [quadPlusQ]
@@ -194,7 +194,7 @@ private def minpoly_sqrtNegTwoGen : minpoly ℚ sqrtNegTwoGen = quadMinusQ := by
   symm
   apply minpoly.eq_of_irreducible_of_monic quadMinusQ_irreducible
   · rw [quadMinusQ]
-    simp only [aeval_sub, aeval_pow, aeval_X, aeval_C]
+    simp only [map_sub, map_pow, aeval_X, aeval_C]
     rw [sqrtNegTwoGen_sq]
     norm_num
   · rw [quadMinusQ]
@@ -231,23 +231,35 @@ theorem quadraticFields_sup :
   simp only [Set.mem_singleton_iff] at hx
   subst x
   rw [zetaEight_eq_half_sum]
-  exact (sqrtTwoField ⊔ sqrtNegTwoField).mul_mem
-    ((sqrtTwoField ⊔ sqrtNegTwoField).algebraMap_mem ((2 : ℚ)⁻¹))
-    ((sqrtTwoField ⊔ sqrtNegTwoField).add_mem
-      (le_sup_left (show sqrtTwoGen ∈ sqrtTwoField from
-        IntermediateField.mem_adjoin_simple_self ℚ sqrtTwoGen))
-      (le_sup_right (show sqrtNegTwoGen ∈ sqrtNegTwoField from
-        IntermediateField.mem_adjoin_simple_self ℚ sqrtNegTwoGen)))
+  have hhalf : (2 : CyclotomicEight)⁻¹ ∈ sqrtTwoField ⊔ sqrtNegTwoField := by
+    simpa using
+      ((sqrtTwoField ⊔ sqrtNegTwoField).algebraMap_mem ((2 : ℚ)⁻¹))
+  have hu : sqrtTwoGen ∈ sqrtTwoField ⊔ sqrtNegTwoField := by
+    exact
+      (show sqrtTwoField ≤ sqrtTwoField ⊔ sqrtNegTwoField from le_sup_left)
+        (IntermediateField.mem_adjoin_simple_self ℚ sqrtTwoGen)
+  have hv : sqrtNegTwoGen ∈ sqrtTwoField ⊔ sqrtNegTwoField := by
+    exact
+      (show sqrtNegTwoField ≤ sqrtTwoField ⊔ sqrtNegTwoField from le_sup_right)
+        (IntermediateField.mem_adjoin_simple_self ℚ sqrtNegTwoGen)
+  exact (sqrtTwoField ⊔ sqrtNegTwoField).mul_mem hhalf
+    ((sqrtTwoField ⊔ sqrtNegTwoField).add_mem hu hv)
 
 private def cyclotomicEight_degree :
     Module.finrank ℚ CyclotomicEight = 4 := by
-  simpa using
-    (IsCyclotomicExtension.Rat.finrank 8 CyclotomicEight)
+  calc
+    Module.finrank ℚ CyclotomicEight = Nat.totient 8 :=
+      IsCyclotomicExtension.Rat.finrank 8 CyclotomicEight
+    _ = 4 := by native_decide
 
 private def cyclotomicEight_discr_abs :
     (NumberField.discr CyclotomicEight).natAbs = 256 := by
-  simpa using
-    (IsCyclotomicExtension.Rat.natAbs_discr (n := 8) (K := CyclotomicEight))
+  calc
+    (NumberField.discr CyclotomicEight).natAbs =
+        8 ^ Nat.totient 8 /
+          ∏ p ∈ Nat.primeFactors 8, p ^ (Nat.totient 8 / (p - 1)) :=
+      IsCyclotomicExtension.Rat.natAbs_discr (n := 8) (K := CyclotomicEight)
+    _ = 256 := by native_decide
 
 /-- The two explicit quadratic subfields are linearly disjoint over `ℚ`. -/
 theorem quadraticFields_linearDisjoint :
@@ -255,7 +267,6 @@ theorem quadraticFields_linearDisjoint :
   apply IntermediateField.LinearDisjoint.of_finrank_sup
   rw [quadraticFields_sup, IntermediateField.finrank_top', cyclotomicEight_degree,
     quadraticFields_degrees.1, quadraticFields_degrees.2]
-  norm_num
 
 /-- The ambient eighth cyclotomic field already has the degree and discriminant required by the
 load-bearing witness. -/
@@ -264,42 +275,6 @@ theorem cyclotomicEight_ambient_invariants :
       (NumberField.discr CyclotomicEight).natAbs = 256 :=
   ⟨cyclotomicEight_degree, cyclotomicEight_discr_abs⟩
 
-private noncomputable def sqrtTwoPowerBasis : PowerBasis ℚ sqrtTwoField :=
-  IntermediateField.adjoin.powerBasis (IsIntegral.of_finite ℚ sqrtTwoGen)
-
-private noncomputable def sqrtNegTwoPowerBasis : PowerBasis ℚ sqrtNegTwoField :=
-  IntermediateField.adjoin.powerBasis (IsIntegral.of_finite ℚ sqrtNegTwoGen)
-
-private def minpoly_sqrtTwoPowerBasis :
-    minpoly ℚ sqrtTwoPowerBasis.gen = quadPlusQ := by
-  rw [sqrtTwoPowerBasis, IntermediateField.adjoin.powerBasis_gen,
-    IntermediateField.minpoly_gen, minpoly_sqrtTwoGen]
-
-private def minpoly_sqrtNegTwoPowerBasis :
-    minpoly ℚ sqrtNegTwoPowerBasis.gen = quadMinusQ := by
-  rw [sqrtNegTwoPowerBasis, IntermediateField.adjoin.powerBasis_gen,
-    IntermediateField.minpoly_gen, minpoly_sqrtNegTwoGen]
-
-private def sqrtTwoPowerBasis_discr :
-    Algebra.discr ℚ sqrtTwoPowerBasis.basis = 8 := by
-  rw [Algebra.discr_powerBasis_eq_norm, quadraticFields_degrees.1,
-    minpoly_sqrtTwoPowerBasis]
-  norm_num [quadPlusQ, Algebra.PowerBasis.norm_gen_eq_coeff_zero_minpoly,
-    minpoly_sqrtTwoPowerBasis, quadraticFields_degrees.1, Algebra.norm_natCast]
-
-private def sqrtNegTwoPowerBasis_discr :
-    Algebra.discr ℚ sqrtNegTwoPowerBasis.basis = -8 := by
-  rw [Algebra.discr_powerBasis_eq_norm, quadraticFields_degrees.2,
-    minpoly_sqrtNegTwoPowerBasis]
-  norm_num [quadMinusQ, Algebra.PowerBasis.norm_gen_eq_coeff_zero_minpoly,
-    minpoly_sqrtNegTwoPowerBasis, quadraticFields_degrees.2, Algebra.norm_natCast]
-
-/-- Before passing to rings of integers, the canonical quadratic power bases already have the
-expected signed discriminants `8` and `-8`. -/
-theorem quadraticPowerBasis_discriminants :
-    Algebra.discr ℚ sqrtTwoPowerBasis.basis = 8 ∧
-      Algebra.discr ℚ sqrtNegTwoPowerBasis.basis = -8 :=
-  ⟨sqrtTwoPowerBasis_discr, sqrtNegTwoPowerBasis_discr⟩
 
 end
 
