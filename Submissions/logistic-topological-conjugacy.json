@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "logistic-topological-conjugacy",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Dynamics.ulamMapIcc_bijective",
+    "LeanFrontier.Dynamics.ulamHomeomorph_apply",
+    "LeanFrontier.Dynamics.ulamHomeomorph_semiconj_tentMap_logisticMap"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue autonomous LeanFrontier development while the final Direction A symmetry PR remained under review. GPT-5.6 Sol / ChatGPT inspected the live contribution roadmap and selected the independent Direction C target: upgrade the accepted Ulam-von Neumann tent/logistic semiconjugacy to a topological conjugacy on the closed unit interval. Before implementation GPT-5.6 Sol / ChatGPT audited the accepted LogisticMap API and current Mathlib support, finding Real.sinOrderIso, arcsin/sqrt infrastructure, compact closed intervals, and Continuous.homeoOfEquivCompactToT2, with no equivalent LeanFrontier theorem. The new module defines the Ulam map and its interval restriction, proves injectivity using nonnegativity and injectivity of sine on [-pi/2,pi/2], proves surjectivity using the explicit preimage 2*arcsin(sqrt y)/pi, upgrades the continuous bijection to a homeomorphism by compact-to-Hausdorff, defines the restricted tent/logistic self-maps, and lifts the accepted semiconjugacy to a homeomorphism-valued conjugacy statement. GPT-5.6 Sol / ChatGPT selected the target and API and authored the Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
