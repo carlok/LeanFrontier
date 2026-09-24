@@ -48,7 +48,7 @@ topology on the finite cyclic quotient. -/
 theorem continuous_zmodReduction {n : ℕ} (hn : n ≠ 0) :
     Continuous[furstenbergTopology, (⊥ : TopologicalSpace (ZMod n))]
       (zmodReduction n) := by
-  letI : NeZero n := ⟨hn⟩
+  let _ : NeZero n := ⟨hn⟩
   rw [continuous_def]
   intro s _hs
   have hpre :
@@ -64,19 +64,22 @@ theorem continuous_zmodReduction {n : ℕ} (hn : n ≠ 0) :
       simpa [zmodReduction] using ZMod.natCast_zmod_val (zmodReduction n x)
     · rintro ⟨y, hy, hxy⟩
       rw [mem_arithProgression, ← ZMod.intCast_eq_intCast_iff_dvd_sub] at hxy
+      have hcast : (y.val : ZMod n) = (x : ZMod n) := by
+        simpa only [Int.cast_natCast] using hxy
       have hred : zmodReduction n x = y := by
         calc
           zmodReduction n x = (x : ZMod n) := rfl
-          _ = (y.val : ZMod n) := hxy.symm
+          _ = (y.val : ZMod n) := hcast.symm
           _ = y := ZMod.natCast_zmod_val y
       rwa [hred]
+  let _ := furstenbergTopology
   rw [hpre]
   exact isOpen_biUnion fun y _ =>
     isOpen_arithProgression (y.val : ℤ) (n : ℤ)
       (Int.natCast_ne_zero.mpr hn)
 
 /-- The topology obtained by observing all nonzero finite cyclic quotients discretely. -/
-def finiteQuotientTopology : TopologicalSpace ℤ :=
+@[instance_reducible] def finiteQuotientTopology : TopologicalSpace ℤ :=
   ⨅ n : {n : ℕ // n ≠ 0},
     (⊥ : TopologicalSpace (ZMod n.1)).induced (zmodReduction n.1)
 
@@ -105,8 +108,11 @@ theorem furstenbergTopology_eq_finiteQuotientTopology :
     have hstep :
         arithProgression a b =
           arithProgression a (b.natAbs : ℤ) := by
-      simpa only [Int.natCast_natAbs] using
-        (Set.ext fun x => (abs_dvd b (x - a)).symm)
+      ext x
+      change (b ∣ x - a) ↔ (b.natAbs : ℤ) ∣ x - a
+      rw [Int.natCast_natAbs]
+      exact (abs_dvd b (x - a)).symm
+    let _ : TopologicalSpace (ZMod b.natAbs) := ⊥
     rw [hstep, arithProgression_eq_zmodReduction_fiber]
     exact isOpen_induced (by simp)
 
