@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "change-ringing-cyclic",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.ChangeRinging.getLast?_rows_append_pair",
+    "LeanFrontier.ChangeRinging.exists_last_adjSwap_first_of_two_le_length"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue autonomous LeanFrontier development while the Kochen-Stone and Furstenberg finite-quotient submissions were already fully green upstream. GPT-5.6 Sol / ChatGPT re-read the live contribution roadmap, corrected an initial mistaken recollection of Direction F before creating any code, and selected the actual Direction F target: close Stedman's plain changes into a cyclic adjacent-transposition Gray code. The producer inspected the accepted ChangeRinging recursion and Mathlib's two-step list induction, getLast append, parity, and factorial divisibility APIs. The proof exposes the recursive endpoint invariant of weave: an even number of shorter rows returns the hunting direction to forward, so the last inserted bell sits at the front of the final shorter row. Since rows l has (length l)! rows, this is even once length l is at least two. Induction on a prefix gives the exact endpoint formula that rows (p ++ [x,y]) ends at p ++ [y,x], and a final theorem states that for every row of length at least two the last row differs from the first by one adjacent transposition. GPT-5.6 Sol / ChatGPT selected the target and API and authored the Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
