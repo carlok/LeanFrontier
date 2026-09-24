@@ -203,9 +203,12 @@ private def zetaEight_eq_half_sum :
 /-- The two quadratic subfields generate the full eighth cyclotomic field. -/
 theorem quadraticFields_sup :
     sqrtTwoField ⊔ sqrtNegTwoField = (⊤ : IntermediateField ℚ CyclotomicEight) := by
+  have hzTop : ℚ⟮zetaEight⟯ = (⊤ : IntermediateField ℚ CyclotomicEight) := by
+    rw [IntermediateField.adjoin_simple_eq_top_iff_of_isAlgebraic
+      ((IsIntegral.of_finite ℚ zetaEight).isAlgebraic)]
+    exact IsCyclotomicExtension.adjoin_primitive_root_eq_top zetaEight_spec
   apply top_unique
-  rw [← IsCyclotomicExtension.adjoin_primitive_root_eq_top zetaEight_spec,
-    IntermediateField.adjoin_le_iff]
+  rw [← hzTop, IntermediateField.adjoin_le_iff]
   intro x hx
   simp only [Set.mem_singleton_iff] at hx
   subst x
