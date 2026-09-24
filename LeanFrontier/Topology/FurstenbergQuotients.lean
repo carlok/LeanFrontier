@@ -61,7 +61,8 @@ theorem continuous_zmodReduction {n : ℕ} (hn : n ≠ 0) :
       refine ⟨zmodReduction n x, hx, ?_⟩
       rw [mem_arithProgression]
       rw [← ZMod.intCast_eq_intCast_iff_dvd_sub]
-      simpa [zmodReduction] using ZMod.natCast_zmod_val (zmodReduction n x)
+      change ((zmodReduction n x).val : ZMod n) = zmodReduction n x
+      exact ZMod.natCast_zmod_val _
     · rintro ⟨y, hy, hxy⟩
       rw [mem_arithProgression, ← ZMod.intCast_eq_intCast_iff_dvd_sub] at hxy
       have hcast : (y.val : ZMod n) = (x : ZMod n) := by
@@ -113,7 +114,8 @@ theorem furstenbergTopology_eq_finiteQuotientTopology :
       rw [Int.natCast_natAbs]
       exact (abs_dvd b (x - a)).symm
     let _ : TopologicalSpace (ZMod b.natAbs) := ⊥
+    let _ : DiscreteTopology (ZMod b.natAbs) := ⟨rfl⟩
     rw [hstep, arithProgression_eq_zmodReduction_fiber]
-    exact isOpen_induced (by simp)
+    exact isOpen_induced (isOpen_discrete _)
 
 end LeanFrontier.Int
