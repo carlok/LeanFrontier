@@ -2,6 +2,7 @@ import LeanFrontier.GroupTheory.ChangeRinging
 import Mathlib.Algebra.Ring.Parity
 import Mathlib.Data.List.Induction
 import Mathlib.Data.Nat.Prime.Factorial
+import Mathlib.Tactic
 
 /-!
 # Cyclic closure of Stedman's plain changes
@@ -31,13 +32,18 @@ open List
 
 variable {α : Type*}
 
+private theorem hunt_ne_nil (a : α) (b : Bool) (r : List α) :
+    hunt a b r ≠ [] := by
+  cases b <;> simp [hunt, permutations'Aux_ne_nil]
+
 private theorem weave_ne_nil (a : α) (b : Bool) (rs : List (List α)) :
     weave a b rs ≠ [] ↔ rs ≠ [] := by
   cases rs with
   | nil =>
       simp
   | cons r rs =>
-      simp [weave_cons, hunt, permutations'Aux_ne_nil]
+      simp only [List.cons_ne_nil, iff_true, weave_cons]
+      exact List.append_ne_nil_of_left_ne_nil (hunt_ne_nil a b r)
 
 private theorem getLast?_weave_true_of_even
     (a : α) (rs : List (List α))
@@ -53,17 +59,26 @@ private theorem getLast?_weave_true_of_even
         simpa [parity_simps] using heven
       by_cases hrs : rs = []
       · subst rs
-        simp [weave_cons, getLast?_hunt_false]
+        have hhunt : hunt a false s ≠ [] :=
+          hunt_ne_nil a false s
+        rw [weave_cons, weave_cons, weave_nil, append_nil,
+          getLast?_append_of_ne_nil _ hhunt,
+          getLast?_hunt_false]
+        rfl
       · have hweave : weave a true rs ≠ [] :=
           (weave_ne_nil a true rs).2 hrs
         have htail :
-            hunt a false s ++ weave a true rs ≠ [] := by
-          simp [hweave]
+            hunt a false s ++ weave a true rs ≠ [] :=
+          List.append_ne_nil_of_right_ne_nil hweave
         simp only [weave_cons, Bool.not_true, Bool.not_false]
         rw [getLast?_append_of_ne_nil _ htail,
           getLast?_append_of_ne_nil _ hweave,
           ih heven_rs]
-        simp [hrs]
+        cases rs with
+        | nil =>
+            contradiction
+        | cons t ts =>
+            rw [getLast?_cons_cons]
 
 private theorem even_length_rows_of_two_le
     (l : List α) (h : 2 ≤ l.length) :
@@ -96,11 +111,17 @@ private theorem exists_append_pair_of_two_le_length
     simpa using h
   cases hr : l.reverse with
   | nil =>
-      simp at hrev
+      have hlen : l.length = 0 := by
+        have hlen' := congrArg List.length hr
+        simpa using hlen'
+      omega
   | cons x xs =>
       cases xs with
       | nil =>
-          simp [hr] at hrev
+          have hlen : l.length = 1 := by
+            have hlen' := congrArg List.length hr
+            simpa using hlen'
+          omega
       | cons y rs =>
           refine ⟨rs.reverse, y, x, ?_⟩
           calc
