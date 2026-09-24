@@ -276,6 +276,23 @@ theorem cyclotomicEight_ambient_invariants :
   ⟨cyclotomicEight_degree, cyclotomicEight_discr_abs⟩
 
 
+/-- There exist two quadratic intermediate fields of the eighth cyclotomic field which generate
+the whole field and are linearly disjoint over `ℚ`.
+
+The concrete witnesses are `sqrtTwoField = ℚ(√2)` and
+`sqrtNegTwoField = ℚ(√-2)`.  This compact existential interface is useful downstream without
+forcing clients to unfold the explicit cyclotomic generators. -/
+theorem exists_quadratic_disjoint_generators :
+    ∃ K₁ K₂ : IntermediateField ℚ CyclotomicEight,
+      Module.finrank ℚ K₁ = 2 ∧
+      Module.finrank ℚ K₂ = 2 ∧
+      K₁ ⊔ K₂ = (⊤ : IntermediateField ℚ CyclotomicEight) ∧
+      K₁.LinearDisjoint K₂ := by
+  exact ⟨sqrtTwoField, sqrtNegTwoField,
+    quadraticFields_degrees.1, quadraticFields_degrees.2,
+    quadraticFields_sup, quadraticFields_linearDisjoint⟩
+
+
 end
 
 end LeanFrontier.NumberTheory.DiscriminantTower
