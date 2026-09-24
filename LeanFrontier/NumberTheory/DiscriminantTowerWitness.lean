@@ -123,8 +123,10 @@ private def quadPlusZ_eisenstein : quadPlusZ.IsEisensteinAt spanTwo := by
       exact hn
     interval_cases n <;>
       simp [quadPlusZ, spanTwo, Ideal.mem_span_singleton]
-  · rw [← pow_two, spanTwo, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
-    norm_num [quadPlusZ]
+  · have hcoeff : quadPlusZ.coeff 0 = (-2 : ℤ) := by
+      simp [quadPlusZ]
+    rw [hcoeff, spanTwo, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
+    norm_num
 
 private def quadMinusZ_eisenstein : quadMinusZ.IsEisensteinAt spanTwo := by
   apply quadMinusZ_monic.isEisensteinAt_of_mem_of_notMem
@@ -135,32 +137,34 @@ private def quadMinusZ_eisenstein : quadMinusZ.IsEisensteinAt spanTwo := by
       exact hn
     interval_cases n <;>
       simp [quadMinusZ, spanTwo, Ideal.mem_span_singleton]
-  · rw [← pow_two, spanTwo, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
-    norm_num [quadMinusZ]
+  · have hcoeff : quadMinusZ.coeff 0 = (2 : ℤ) := by
+      simp [quadMinusZ]
+    rw [hcoeff, spanTwo, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
+    norm_num
 
 private def quadPlusZ_irreducible : Irreducible quadPlusZ :=
   quadPlusZ_eisenstein.irreducible spanTwo_prime
     quadPlusZ_monic.isPrimitive
-    (by simp [quadPlusZ])
+    (by rw [quadPlusZ, natDegree_X_pow_sub_C]; norm_num)
 
 private def quadMinusZ_irreducible : Irreducible quadMinusZ :=
   quadMinusZ_eisenstein.irreducible spanTwo_prime
     quadMinusZ_monic.isPrimitive
-    (by simp [quadMinusZ])
+    (by rw [quadMinusZ, natDegree_X_pow_sub_C]; norm_num)
 
 private def quadPlusQ_irreducible : Irreducible quadPlusQ := by
   have h :=
     (Polynomial.IsPrimitive.Int.irreducible_iff_irreducible_map_cast
       quadPlusZ_monic.isPrimitive).mp
       quadPlusZ_irreducible
-  simpa [quadPlusZ, quadPlusQ] using h
+  simpa only [quadPlusQ, Polynomial.C_ofNat] using h
 
 private def quadMinusQ_irreducible : Irreducible quadMinusQ := by
   have h :=
     (Polynomial.IsPrimitive.Int.irreducible_iff_irreducible_map_cast
       quadMinusZ_monic.isPrimitive).mp
       quadMinusZ_irreducible
-  simpa [quadMinusZ, quadMinusQ] using h
+  simpa [quadMinusQ, Polynomial.C_ofNat] using h
 
 private def minpoly_sqrtTwoGen : minpoly ℚ sqrtTwoGen = quadPlusQ := by
   symm
