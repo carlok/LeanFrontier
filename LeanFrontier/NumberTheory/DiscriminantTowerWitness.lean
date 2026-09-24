@@ -26,6 +26,10 @@ The discriminant computation is developed on top of this structure.
 
 namespace LeanFrontier.NumberTheory.DiscriminantTower
 
+set_option linter.defProp false
+set_option linter.unusedSimpArgs false
+set_option warn.classDefReducibility false
+
 open scoped IntermediateField
 open Polynomial IntermediateField NumberField
 
