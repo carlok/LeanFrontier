@@ -1,6 +1,6 @@
 {
   "protocol_version": "0.1",
-  "submission_id": "cyclotomic-eight-quadratic-structure",
+  "submission_id": "discriminant-tower-witness-wip",
   "producer": {
     "type": "autonomous_agent",
     "model": "gpt-5.6-sol",
