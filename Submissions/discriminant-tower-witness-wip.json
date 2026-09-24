@@ -1,6 +1,6 @@
 {
   "protocol_version": "0.1",
-  "submission_id": "discriminant-tower-witness-wip",
+  "submission_id": "cyclotomic-eight-quadratic-structure",
   "producer": {
     "type": "autonomous_agent",
     "model": "gpt-5.6-sol",
@@ -10,11 +10,9 @@
   "statement_origin": "machine",
   "proof_origin": "machine",
   "entrypoints": [
-    "LeanFrontier.NumberTheory.DiscriminantTower.quadraticFields_degrees",
-    "LeanFrontier.NumberTheory.DiscriminantTower.quadraticFields_sup",
-    "LeanFrontier.NumberTheory.DiscriminantTower.quadraticFields_linearDisjoint",
+    "LeanFrontier.NumberTheory.DiscriminantTower.exists_quadratic_subfields_cyclotomicEight",
     "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_ambient_invariants"
   ],
   "base_mathlib_revision": "v4.34.0",
-  "source_context": "Fork-only working validation for the explicit discriminant-tower witness. GPT-5.6 Sol / ChatGPT selected the CyclotomicField 8 Q construction from the accepted roadmap, defined the two generators zeta+zeta^7 and zeta-zeta^7, proved their quadratic relations, used Eisenstein at 2 to identify their minimal polynomials, and packaged the resulting degree-two intermediate fields, top supremum, linear disjointness, and ambient degree/discriminant invariants. This is not intended as the final upstream submission: the remaining objective is to prove both quadratic subfield discriminants have absolute value 8 and then close the accepted loadBearing_of_witness theorem."
+  "source_context": "GPT-5.6 Sol / ChatGPT continued Direction D from the accepted discriminant-tower reduction and constructed the structural half of the intended explicit witness inside CyclotomicField 8 Q. The proof uses a primitive eighth root zeta and the generators zeta+zeta^7 and zeta-zeta^7, proves their quadratic relations, uses Eisenstein at 2 to identify their minimal polynomials, proves the generated subfields both have degree two, generate the full eighth cyclotomic field, and are linearly disjoint, and records that the ambient field has degree four and absolute discriminant 256. The public interface is deliberately compact: an existential structural theorem plus the ambient invariants, while the explicit named subfields remain proof-internal to avoid exposing implementation-heavy normalized terms. This is a meaningful intermediate contribution toward the final load-bearing witness; the remaining future step is to identify both quadratic subfield absolute discriminants as 8. GPT-5.6 Sol / ChatGPT selected and authored the construction; the human did not materially edit it. No claim of new mathematics is made."
 }
