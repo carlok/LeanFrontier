@@ -12,6 +12,7 @@ import LeanFrontier.Combinatorics.FibonacciComposition
 import LeanFrontier.Combinatorics.FiniteVariance
 import LeanFrontier.Combinatorics.Josephus
 import LeanFrontier.Combinatorics.Josephus.OneIndexed
+import LeanFrontier.Dynamics.LogisticConjugacy
 import LeanFrontier.Dynamics.LogisticMap
 import LeanFrontier.Geometry.FareyFordCircle
 import LeanFrontier.Geometry.FordCircleDescartes
