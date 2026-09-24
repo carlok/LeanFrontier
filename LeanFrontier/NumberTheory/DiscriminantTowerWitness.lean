@@ -157,14 +157,22 @@ private def quadPlusQ_irreducible : Irreducible quadPlusQ := by
     (Polynomial.IsPrimitive.Int.irreducible_iff_irreducible_map_cast
       quadPlusZ_monic.isPrimitive).mp
       quadPlusZ_irreducible
-  simpa only [quadPlusQ, Polynomial.C_ofNat] using h
+  have hmap : Polynomial.map (Int.castRingHom ℚ) quadPlusZ = quadPlusQ := by
+    rw [quadPlusZ, quadPlusQ, Polynomial.map_sub, Polynomial.map_pow]
+    simp
+  rw [← hmap]
+  exact h
 
 private def quadMinusQ_irreducible : Irreducible quadMinusQ := by
   have h :=
     (Polynomial.IsPrimitive.Int.irreducible_iff_irreducible_map_cast
       quadMinusZ_monic.isPrimitive).mp
       quadMinusZ_irreducible
-  simpa [quadMinusQ, Polynomial.C_ofNat] using h
+  have hmap : Polynomial.map (Int.castRingHom ℚ) quadMinusZ = quadMinusQ := by
+    rw [quadMinusZ, quadMinusQ, Polynomial.map_sub, Polynomial.map_pow]
+    simp
+  rw [← hmap]
+  exact h
 
 private def minpoly_sqrtTwoGen : minpoly ℚ sqrtTwoGen = quadPlusQ := by
   symm
