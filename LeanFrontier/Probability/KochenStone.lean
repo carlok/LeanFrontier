@@ -41,7 +41,7 @@ private def firstSum (μ : Measure Ω) (A : ℕ → Set Ω) (N : ℕ) : ℝ :=
 private def secondSum (μ : Measure Ω) (A : ℕ → Set Ω) (N : ℕ) : ℝ :=
   ∑ i ∈ Finset.range N, ∑ j ∈ Finset.range N, μ.real (A i ∩ A j)
 
-private def ksRatio (μ : Measure Ω) (A : ℕ → Set Ω) (N : ℕ) : ℝ :=
+private noncomputable def ksRatio (μ : Measure Ω) (A : ℕ → Set Ω) (N : ℕ) : ℝ :=
   firstSum μ A N ^ 2 / secondSum μ A N
 
 private def tailUnion (A : ℕ → Set Ω) (m : ℕ) : Set Ω :=
@@ -67,6 +67,7 @@ private theorem firstSum_le_secondSum (μ : Measure Ω) (A : ℕ → Set Ω) (N 
     μ.real (A i) = μ.real (A i ∩ A i) := by rw [inter_self]
     _ ≤ ∑ j ∈ Finset.range N, μ.real (A i ∩ A j) := by
       exact Finset.single_le_sum
+        (f := fun j => μ.real (A i ∩ A j))
         (fun j hj => measureReal_nonneg)
         hi
 
@@ -96,8 +97,10 @@ private theorem ksRatio_le_one
       (by simpa [secondSum] using hTpos)
   have hunion : μ.real (⋃ i ∈ Finset.range N, A i) ≤ 1 :=
     measureReal_le_one
-  exact (by
-    simpa [ksRatio, firstSum, secondSum] using hce).trans hunion
+  have hce' :
+      ksRatio μ A N ≤ μ.real (⋃ i ∈ Finset.range N, A i) := by
+    simpa [ksRatio, firstSum, secondSum] using hce
+  exact hce'.trans hunion
 
 private theorem tailUnion_measurable
     (A : ℕ → Set Ω) (hA : ∀ n, MeasurableSet (A n)) (m : ℕ) :
@@ -106,14 +109,15 @@ private theorem tailUnion_measurable
   exact MeasurableSet.iUnion fun n =>
     MeasurableSet.iUnion fun hmn => hA n
 
+omit [MeasurableSpace Ω] in
 private theorem tailUnion_antitone (A : ℕ → Set Ω) :
     Antitone (tailUnion A) := by
-  intro m n hmn
-  intro ω hω
+  intro m n hmn ω hω
   simp only [tailUnion, mem_iUnion] at hω ⊢
   rcases hω with ⟨k, hk, hω⟩
   exact ⟨k, ⟨hmn.trans hk, hω⟩⟩
 
+omit [MeasurableSpace Ω] in
 private theorem limsup_eq_iInter_tailUnion (A : ℕ → Set Ω) :
     Filter.limsup A atTop = ⋂ m, tailUnion A m := by
   rw [Filter.limsup_eq_iInf_iSup_of_nat]
@@ -132,17 +136,25 @@ private theorem tail_second_le_prefix_second
     (∑ i ∈ Finset.Ico m N, ∑ j ∈ Finset.Ico m N, μ.real (A i ∩ A j)) ≤
       secondSum μ A N := by
   dsimp [secondSum]
-  apply Finset.sum_le_sum_of_subset_of_nonneg
-  · intro i hi
-    exact Finset.mem_range.2 (Finset.mem_Ico.1 hi).2
-  · intro i hiRange hiNot
-    exact Finset.sum_nonneg fun j hj => measureReal_nonneg
-  · intro i hiIco
-    apply Finset.sum_le_sum_of_subset_of_nonneg
-    · intro j hj
-      exact Finset.mem_range.2 (Finset.mem_Ico.1 hj).2
-    · intro j hjRange hjNot
-      exact measureReal_nonneg
+  calc
+    (∑ i ∈ Finset.Ico m N,
+        ∑ j ∈ Finset.Ico m N, μ.real (A i ∩ A j)) ≤
+        ∑ i ∈ Finset.Ico m N,
+          ∑ j ∈ Finset.range N, μ.real (A i ∩ A j) := by
+      apply Finset.sum_le_sum
+      intro i hi
+      apply Finset.sum_le_sum_of_subset_of_nonneg
+      · intro j hj
+        exact Finset.mem_range.2 (Finset.mem_Ico.1 hj).2
+      · intro j hjRange hjNot
+        exact measureReal_nonneg
+    _ ≤ ∑ i ∈ Finset.range N,
+          ∑ j ∈ Finset.range N, μ.real (A i ∩ A j) := by
+      apply Finset.sum_le_sum_of_subset_of_nonneg
+      · intro i hi
+        exact Finset.mem_range.2 (Finset.mem_Ico.1 hi).2
+      · intro i hiRange hiNot
+        exact Finset.sum_nonneg fun j hj => measureReal_nonneg
 
 private theorem tail_first_le_tail_second
     (μ : Measure Ω) (A : ℕ → Set Ω) {m N : ℕ} :
@@ -154,6 +166,7 @@ private theorem tail_first_le_tail_second
     μ.real (A i) = μ.real (A i ∩ A i) := by rw [inter_self]
     _ ≤ ∑ j ∈ Finset.Ico m N, μ.real (A i ∩ A j) := by
       exact Finset.single_le_sum
+        (f := fun j => μ.real (A i ∩ A j))
         (fun j hj => measureReal_nonneg)
         hi
 
@@ -161,8 +174,9 @@ private theorem finiteTailUnion_subset_tailUnion
     (A : ℕ → Set Ω) {m N : ℕ} :
     (⋃ i ∈ Finset.Ico m N, A i) ⊆ tailUnion A m := by
   intro ω hω
-  simp only [mem_iUnion] at hω ⊢
+  simp only [mem_iUnion] at hω
   rcases hω with ⟨i, hi, hω⟩
+  simp only [tailUnion, mem_iUnion]
   exact ⟨i, ⟨(Finset.mem_Ico.1 hi).1, hω⟩⟩
 
 /-- **Kochen-Stone inequality.**
@@ -192,7 +206,8 @@ theorem kochenStone (μ : Measure Ω) [IsProbabilityMeasure μ]
   let R : ℕ → ℝ := ksRatio μ A
 
   have hSdiv : Tendsto S atTop atTop := by
-    simpa [S, firstSum] using hdiv
+    dsimp [S, firstSum]
+    exact hdiv
 
   have hR_nonneg : ∀ N, 0 ≤ R N := by
     intro N
@@ -202,12 +217,11 @@ theorem kochenStone (μ : Measure Ω) [IsProbabilityMeasure μ]
     intro N
     simpa [R] using ksRatio_le_one μ A hA N
 
-  have hR_bdd : IsBoundedUnder (· ≤ ·) atTop R := by
-    exact ⟨1, Eventually.of_forall hR_le_one⟩
+  have hR_bdd : IsBoundedUnder (· ≤ ·) atTop R :=
+    isBoundedUnder_of ⟨1, hR_le_one⟩
 
-  have hR_cobdd : IsCoboundedUnder (· ≤ ·) atTop R := by
-    refine ⟨0, ?_⟩
-    exact Frequently.of_forall hR_nonneg
+  have hR_cobdd : IsCoboundedUnder (· ≤ ·) atTop R :=
+    IsCoboundedUnder.of_frequently_ge (Frequently.of_forall hR_nonneg)
 
   let L : ℝ := Filter.limsup R atTop
 
@@ -221,7 +235,8 @@ theorem kochenStone (μ : Measure Ω) [IsProbabilityMeasure μ]
     rw [← forall_lt_iff_le]
     intro a haL
     by_cases ha0 : a ≤ 0
-    · exact ha0.trans measureReal_nonneg
+    · exact ha0.trans
+        (measureReal_nonneg : 0 ≤ μ.real (tailUnion A m))
     have ha_pos : 0 < a := lt_of_not_ge ha0
     obtain ⟨b, hab, hbL⟩ := exists_between haL
     have hb_pos : 0 < b := ha_pos.trans hab
