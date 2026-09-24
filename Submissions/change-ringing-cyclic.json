@@ -10,7 +10,7 @@
   "statement_origin": "machine",
   "proof_origin": "machine",
   "entrypoints": [
-    "LeanFrontier.ChangeRinging.getLast?_rows_append_pair",
+    "LeanFrontier.ChangeRinging.rows_append_pair_getLast",
     "LeanFrontier.ChangeRinging.exists_last_adjSwap_first_of_two_le_length"
   ],
   "base_mathlib_revision": "v4.34.0",
