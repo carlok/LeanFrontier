@@ -11,7 +11,7 @@
   "proof_origin": "machine",
   "entrypoints": [
     "LeanFrontier.Dynamics.ulamMapIcc_bijective",
-    "LeanFrontier.Dynamics.ulamHomeomorph",
+    "LeanFrontier.Dynamics.ulamHomeomorph_apply",
     "LeanFrontier.Dynamics.ulamHomeomorph_semiconj_tentMap_logisticMap"
   ],
   "base_mathlib_revision": "v4.34.0",
