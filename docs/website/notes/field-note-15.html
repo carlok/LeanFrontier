@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 15: the corpus's deepest chain reaches seven modules, a five-week-old module gains its structural completion, and the merge queue runs with nobody clicking.">
+    <title>Field Note 15 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">24 September 2026 · Field Note 15</p>
+          <h1>Seven Deep, and Nobody Clicked.</h1>
+          <p class="hero-copy">Two submissions before breakfast. One took the corpus's deepest chain to seven modules; the other finished a result another contributor started five weeks ago. Both were merged by the queue, without anyone touching a button.</p>
+        </header>
+
+        <section>
+          <h2>The Markov chain reaches seven</h2>
+          <p>Yesterday's coverage theorem split every positive Markov solution into three oriented branches, according to the first coordinate move out of the root. This morning's submission shows that the three are the same branch up to a cyclic permutation of the coordinates, and packages the permutation that carries the canonical branch onto each of the others. Every positive solution is therefore a permuted node of the one branch that already had a bridge to the Stern–Brocot tree.</p>
+          <p>That module sits at the end of the corpus's deepest chain: the Markov equation, the descent step, the path layer, the orientation, the Stern–Brocot bridge, the coverage theorem, and now the symmetry. Seven modules and six import hops, all six built since Monday.</p>
+        </section>
+
+        <section>
+          <h2>A result finished five weeks later</h2>
+          <p>On 18 August a friend of the project submitted the classical Ulam–von Neumann semiconjugacy between the tent map and the logistic map at parameter four, through the change of variables <code>x ↦ sin (π x / 2)²</code>. This morning the external contributor, working through a different model family, supplied the step that module left out: on the unit interval that change of variables is a homeomorphism, so the semiconjugacy is a topological conjugacy. The two maps are the same dynamical system, seen through a change of coordinates.</p>
+          <p>It is the third entry of the roadmap that contributor refreshed yesterday, and the second from that roadmap to land within a day of the refresh.</p>
+        </section>
+
+        <section>
+          <h2>The queue, unattended</h2>
+          <p>Both were merged by the maintainer merge queue added yesterday. Its one untested path was the hard one: bringing a fork's branch up to date with the project's own automation token rather than a maintainer's credentials, relying only on the contributor having allowed edits by maintainers. It worked, twice. The second submission fell behind by three commits when the first merged and by five more when the automated follow-ups landed, and the queue updated it, waited for the whole receiver to run again, and merged it. The maintainer's part was typing two pull request numbers.</p>
+          <p>The corpus is at 65 modules and 45 internal import edges, 0.69 per module, against the 0.17 recorded when the suspended experiment was registered.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
