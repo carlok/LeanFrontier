@@ -73,7 +73,7 @@ private theorem even_length_rows_of_two_le
 
 /-- The exact endpoint of the plain changes: if the starting row is written as a prefix followed
 by two final bells, the last row is obtained by swapping precisely those final two bells. -/
-theorem getLast?_rows_append_pair (p : List α) (x y : α) :
+theorem rows_append_pair_getLast (p : List α) (x y : α) :
     (rows (p ++ [x, y])).getLast? = some (p ++ [y, x]) := by
   induction p with
   | nil =>
@@ -116,7 +116,7 @@ theorem exists_last_adjSwap_first_of_two_le_length
     ∃ last,
       (rows l).getLast? = some last ∧ AdjSwap last l := by
   obtain ⟨p, x, y, rfl⟩ := exists_append_pair_of_two_le_length l h
-  refine ⟨p ++ [y, x], getLast?_rows_append_pair p x y, ?_⟩
+  refine ⟨p ++ [y, x], rows_append_pair_getLast p x y, ?_⟩
   exact ⟨p, [], y, x, by simp, by simp⟩
 
 end LeanFrontier.ChangeRinging
