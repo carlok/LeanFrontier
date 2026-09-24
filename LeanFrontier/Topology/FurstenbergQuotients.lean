@@ -61,8 +61,8 @@ theorem continuous_zmodReduction {n : ℕ} (hn : n ≠ 0) :
       refine ⟨zmodReduction n x, hx, ?_⟩
       rw [mem_arithProgression]
       rw [← ZMod.intCast_eq_intCast_iff_dvd_sub]
-      change ((zmodReduction n x).val : ZMod n) = zmodReduction n x
-      exact ZMod.natCast_zmod_val _
+      simpa only [zmodReduction, Int.cast_natCast] using
+        ZMod.natCast_zmod_val (zmodReduction n x)
     · rintro ⟨y, hy, hxy⟩
       rw [mem_arithProgression, ← ZMod.intCast_eq_intCast_iff_dvd_sub] at hxy
       have hcast : (y.val : ZMod n) = (x : ZMod n) := by
