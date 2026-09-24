@@ -42,8 +42,13 @@ private theorem weave_ne_nil (a : α) (b : Bool) (rs : List (List α)) :
   | nil =>
       simp
   | cons r rs =>
-      simp only [List.cons_ne_nil, iff_true, weave_cons]
-      exact List.append_ne_nil_of_left_ne_nil (hunt_ne_nil a b r)
+      constructor
+      · intro _
+        exact List.cons_ne_nil r rs
+      · intro _
+        rw [weave_cons]
+        exact List.append_ne_nil_of_left_ne_nil
+          (hunt_ne_nil a b r) (weave a (!b) rs)
 
 private theorem getLast?_weave_true_of_even
     (a : α) (rs : List (List α))
@@ -62,6 +67,7 @@ private theorem getLast?_weave_true_of_even
         have hhunt : hunt a false s ≠ [] :=
           hunt_ne_nil a false s
         rw [weave_cons, weave_cons, weave_nil, append_nil,
+          Bool.not_true,
           getLast?_append_of_ne_nil _ hhunt,
           getLast?_hunt_false]
         rfl
@@ -69,7 +75,7 @@ private theorem getLast?_weave_true_of_even
           (weave_ne_nil a true rs).2 hrs
         have htail :
             hunt a false s ++ weave a true rs ≠ [] :=
-          List.append_ne_nil_of_right_ne_nil hweave
+          List.append_ne_nil_of_right_ne_nil (hunt a false s) hweave
         simp only [weave_cons, Bool.not_true, Bool.not_false]
         rw [getLast?_append_of_ne_nil _ htail,
           getLast?_append_of_ne_nil _ hweave,
@@ -78,7 +84,7 @@ private theorem getLast?_weave_true_of_even
         | nil =>
             contradiction
         | cons t ts =>
-            rw [getLast?_cons_cons]
+            simp only [getLast?_cons_cons]
 
 private theorem even_length_rows_of_two_le
     (l : List α) (h : 2 ≤ l.length) :
