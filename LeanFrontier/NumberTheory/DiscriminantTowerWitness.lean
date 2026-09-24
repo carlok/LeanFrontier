@@ -122,7 +122,7 @@ private opaque quadPlusZ_eisenstein : quadPlusZ.IsEisensteinAt spanTwo := by
       rw [quadPlusZ, natDegree_X_pow_sub_C] at hn
       exact hn
     interval_cases n <;>
-      simp [quadPlusZ, spanTwo, Ideal.mem_span_singleton]
+      simp [quadPlusZ, spanTwo]
   · have hcoeff : quadPlusZ.coeff 0 = (-2 : ℤ) := by
       simp [quadPlusZ]
     rw [hcoeff, spanTwo, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
@@ -136,7 +136,7 @@ private opaque quadMinusZ_eisenstein : quadMinusZ.IsEisensteinAt spanTwo := by
       rw [quadMinusZ, natDegree_X_pow_sub_C] at hn
       exact hn
     interval_cases n <;>
-      simp [quadMinusZ, spanTwo, Ideal.mem_span_singleton]
+      simp [quadMinusZ, spanTwo]
   · have hcoeff : quadMinusZ.coeff 0 = (2 : ℤ) := by
       simp [quadMinusZ]
     rw [hcoeff, spanTwo, Ideal.span_singleton_pow, Ideal.mem_span_singleton]
@@ -246,16 +246,18 @@ private opaque cyclotomicEight_degree :
   calc
     Module.finrank ℚ CyclotomicEight = Nat.totient 8 :=
       IsCyclotomicExtension.Rat.finrank 8 CyclotomicEight
-    _ = 4 := by decide
+    _ = 4 := by
+      change Nat.totient (2 ^ 3) = 4
+      rw [Nat.totient_prime_pow Nat.prime_two (by norm_num : 0 < 3)]
+      norm_num
 
 private opaque cyclotomicEight_discr_abs :
     (NumberField.discr CyclotomicEight).natAbs = 256 := by
-  calc
-    (NumberField.discr CyclotomicEight).natAbs =
-        8 ^ Nat.totient 8 /
-          ∏ p ∈ Nat.primeFactors 8, p ^ (Nat.totient 8 / (p - 1)) :=
-      IsCyclotomicExtension.Rat.natAbs_discr (n := 8) (K := CyclotomicEight)
-    _ = 256 := by decide
+  have hdisc :=
+    IsCyclotomicExtension.Rat.discr_prime_pow 2 3 CyclotomicEight
+  norm_num [Nat.totient_prime_pow Nat.prime_two (by norm_num : 0 < 3)] at hdisc
+  rw [hdisc]
+  norm_num
 
 /-- The two explicit quadratic subfields are linearly disjoint over `ℚ`. -/
 theorem quadraticFields_linearDisjoint :
