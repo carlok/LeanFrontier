@@ -1,0 +1,392 @@
+{
+  "accepted_revision": "b946d0880f775673cf016d10e08b2a046b0f6a95",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-24T06:35:10Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 206.746,
+    "observed": {
+      "added_lines": 194,
+      "audited_declarations": {
+        "LeanFrontier.Dynamics.logisticMapIcc": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Dynamics.logisticMapIcc",
+          "restatement": false,
+          "statement_sha256": "64751e4b0878d1752901731b305cb429da96b615004e8d1dc5fbdfac32a1b57a",
+          "type_dependencies": [
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Set.Elem",
+            "Set.Icc",
+            "Zero.toOfNat0"
+          ]
+        },
+        "LeanFrontier.Dynamics.ulamHomeomorph_apply": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.ulamHomeomorph_apply",
+          "restatement": false,
+          "statement_sha256": "ac363a82649e9b35d5232dcb8fc9c774a5fd103340e4e20e661b7cb6baa85801",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "Eq",
+            "EquivLike.toFunLike",
+            "Homeomorph",
+            "Homeomorph.instEquivLike",
+            "LeanFrontier.Dynamics.ulamHomeomorph",
+            "LeanFrontier.Dynamics.ulamMap",
+            "Membership.mem",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Real.pseudoMetricSpace",
+            "Set",
+            "Set.Elem",
+            "Set.Icc",
+            "Set.instMembership",
+            "Subtype.val",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instTopologicalSpaceSubtype"
+          ]
+        },
+        "LeanFrontier.Dynamics.ulamHomeomorph_semiconj_tentMap_logisticMap": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.ulamHomeomorph_semiconj_tentMap_logisticMap",
+          "restatement": false,
+          "statement_sha256": "8b62c8e4292250ec28ce520f8c77907c50dbd3cc28c7eabc5dfd6e4013e6d2c1",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "EquivLike.toFunLike",
+            "Function.Semiconj",
+            "Homeomorph",
+            "Homeomorph.instEquivLike",
+            "LeanFrontier.Dynamics.logisticMapIcc",
+            "LeanFrontier.Dynamics.tentMapIcc",
+            "LeanFrontier.Dynamics.ulamHomeomorph",
+            "Membership.mem",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Real.pseudoMetricSpace",
+            "Set",
+            "Set.Elem",
+            "Set.Icc",
+            "Set.instMembership",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instTopologicalSpaceSubtype"
+          ]
+        },
+        "LeanFrontier.Dynamics.ulamMapIcc_bijective": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.ulamMapIcc_bijective",
+          "restatement": false,
+          "statement_sha256": "38a5531e57da74e472a2b2d5735bc65bcf39f68d05327cc7c35081f13cdf532d",
+          "type_dependencies": [
+            "Function.Bijective",
+            "LeanFrontier.Dynamics.ulamMapIcc",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Set.Elem",
+            "Set.Icc",
+            "Zero.toOfNat0"
+          ]
+        },
+        "LeanFrontier.Dynamics.ulamMap_mem_Icc": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.ulamMap_mem_Icc",
+          "restatement": false,
+          "statement_sha256": "329e0c2df32b7737a554a1f5de0cf8182f6a34686a1b18d0d5ac5e1db2e29d90",
+          "type_dependencies": [
+            "LeanFrontier.Dynamics.ulamMap",
+            "Membership.mem",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Set",
+            "Set.Icc",
+            "Set.instMembership",
+            "Zero.toOfNat0"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 18,
+        "by_entrypoint": {
+          "LeanFrontier.Dynamics.ulamHomeomorph_apply": [
+            {
+              "outcome": "failed",
+              "seconds": 3.87,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.867,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.846,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.845,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.881,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.859,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Dynamics.ulamHomeomorph_semiconj_tentMap_logisticMap": [
+            {
+              "outcome": "failed",
+              "seconds": 3.894,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.889,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.872,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.853,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.872,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.862,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Dynamics.ulamMapIcc_bijective": [
+            {
+              "outcome": "failed",
+              "seconds": 3.935,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.874,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.843,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.897,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.846,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.841,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 69.646,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Dynamics.ulamHomeomorph_apply": "inconclusive",
+        "LeanFrontier.Dynamics.ulamHomeomorph_semiconj_tentMap_logisticMap": "inconclusive",
+        "LeanFrontier.Dynamics.ulamMapIcc_bijective": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 8505,
+      "changed_files": [
+        "LeanFrontier/Dynamics/LogisticConjugacy.lean",
+        "Submissions/logistic-topological-conjugacy.json"
+      ],
+      "corpus_entrypoints_checked": 188,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Dynamics.ulamHomeomorph_apply": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.ulamHomeomorph_apply",
+          "statement_sha256": "ac363a82649e9b35d5232dcb8fc9c774a5fd103340e4e20e661b7cb6baa85801",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "Eq",
+            "EquivLike.toFunLike",
+            "Homeomorph",
+            "Homeomorph.instEquivLike",
+            "LeanFrontier.Dynamics.ulamHomeomorph",
+            "LeanFrontier.Dynamics.ulamMap",
+            "Membership.mem",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Real.pseudoMetricSpace",
+            "Set",
+            "Set.Elem",
+            "Set.Icc",
+            "Set.instMembership",
+            "Subtype.val",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instTopologicalSpaceSubtype"
+          ]
+        },
+        "LeanFrontier.Dynamics.ulamHomeomorph_semiconj_tentMap_logisticMap": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.ulamHomeomorph_semiconj_tentMap_logisticMap",
+          "statement_sha256": "8b62c8e4292250ec28ce520f8c77907c50dbd3cc28c7eabc5dfd6e4013e6d2c1",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "EquivLike.toFunLike",
+            "Function.Semiconj",
+            "Homeomorph",
+            "Homeomorph.instEquivLike",
+            "LeanFrontier.Dynamics.logisticMapIcc",
+            "LeanFrontier.Dynamics.tentMapIcc",
+            "LeanFrontier.Dynamics.ulamHomeomorph",
+            "Membership.mem",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Real.pseudoMetricSpace",
+            "Set",
+            "Set.Elem",
+            "Set.Icc",
+            "Set.instMembership",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instTopologicalSpaceSubtype"
+          ]
+        },
+        "LeanFrontier.Dynamics.ulamMapIcc_bijective": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.ulamMapIcc_bijective",
+          "statement_sha256": "38a5531e57da74e472a2b2d5735bc65bcf39f68d05327cc7c35081f13cdf532d",
+          "type_dependencies": [
+            "Function.Bijective",
+            "LeanFrontier.Dynamics.ulamMapIcc",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Set.Elem",
+            "Set.Icc",
+            "Zero.toOfNat0"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 6687,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 15
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "logistic-topological-conjugacy",
+  "trusted_receiver_revision": "3aba88d860dbad0730caf6ce72735cc001d917ce",
+  "validated_candidate_revision": "d17573da987a961f83a44cb6d2336243f0a03543",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35964693384"
+}
