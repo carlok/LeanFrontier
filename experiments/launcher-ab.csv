@@ -81,6 +81,7 @@ polynomial-period-degree-zero,unassigned,gpt-5
 polynomial-translation-rigidity-char-zero,unassigned,gpt-5
 power-sums-nicomachus,unassigned,deepseek-v4-pro
 slope-minorant-constraints,unassigned,claude-opus-5
+sqrt-neg-one-from-sum-squares,unassigned,gpt-5.6-sol
 stern-brocot-coprime-enumeration,B,claude-opus-5
 stern-brocot-interval-invariant,unassigned,gpt-5.6-sol
 stern-brocot-mediant-extremal,unassigned,gpt-5.6-sol
