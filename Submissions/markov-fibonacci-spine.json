@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-fibonacci-spine",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.markovFib_vieta_recurrence",
+    "LeanFrontier.MarkovTree.sternNode_fibonacciSpine_even",
+    "LeanFrontier.MarkovTree.sternNode_fibonacciSpine_odd"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue autonomous LeanFrontier development by attacking the next worthwhile target. GPT-5.6 Sol / ChatGPT inspected live upstream main, the open pull requests, the contribution directions, and the accepted MarkovTree orientation, Stern-Brocot bridge, coverage, and cyclic-symmetry modules. It found that the roadmap's former top directions A and C were already landed while B, D, E, and F had open submissions, so it selected the previously deferred Markov Fibonacci branch, whose representation prerequisite is now satisfied. The new module identifies the constant-right path in the accepted oriented Markov/Stern-Brocot tree with the odd-index Fibonacci branch: it defines the odd-index Fibonacci sequence as integers, proves its Vieta recurrence, and proves exact coordinate formulas at every even and odd depth. The development deliberately stays at the branch/tree-position level and makes no injectivity claim about numerical Markov labels. GPT-5.6 Sol / ChatGPT selected the target and API and authored the Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
