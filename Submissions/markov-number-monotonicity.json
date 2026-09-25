@@ -1,0 +1,21 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-number-monotonicity",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.coordinate_lt_markovNumber_of_ne_back",
+    "LeanFrontier.MarkovTree.markovNumber_eq_max",
+    "LeanFrontier.MarkovTree.markovNumber_lt_child",
+    "LeanFrontier.MarkovTree.sternMarkovNumber_lt_cons",
+    "LeanFrontier.MarkovTree.pathLength_add_two_le_sternMarkovNumber"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to formalize additional mathematical machinery that could be useful before directly attacking the Markov uniqueness open problem. GPT-5.6 Sol / ChatGPT inspected live upstream main and the accepted oriented Markov-tree modules. The Markov uniqueness conjecture submission was still pending as upstream PR #341, so this submission was deliberately designed to be independent of it and based only on already accepted main. The key observation selected for formalization is latent in the accepted OrientedNode invariant: the coordinate chosen by the descending back move is necessarily the unique largest coordinate of the positive Markov triple. The new module exposes coordinate selection, defines the oriented-node Markov-number label as that back coordinate, proves it equals the maximum of the three coordinates, and proves that the label strictly increases along either forward child edge. It then transports the label to the canonical sternNode branch and proves the coarse but useful bound path.length + 2 <= sternMarkovNumber path. This isolates any possible equal-label collision to incomparable branches and gives a finite depth bound below any fixed Markov number, both directly useful for future uniqueness arguments or certified finite searches. GPT-5.6 Sol / ChatGPT selected the target and API and authored all Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}

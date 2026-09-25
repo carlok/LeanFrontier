@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "laguerre-samuelson-finite",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Finset.laguerre_samuelson"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to inspect current upstream LeanFrontier and formalize something useful, explicitly allowing a target unrelated to the existing clusters. GPT-5.6 Sol / ChatGPT re-read the live contract and submitter instructions, audited current main and the open upstream PR queue, and rejected several roadmap or cross-cluster candidates after discovering they had already landed (Markov orientation/bridge, logistic conjugacy, Furstenberg algebra/finite quotients, cyclic change-ringing, discriminant witness, circular tilings/Lucas, and the Caro-Wei Turan bound). It then inspected isolated accepted modules and selected the classical Laguerre-Samuelson inequality as a substantive continuation of LeanFrontier.Combinatorics.FiniteVariance. Searches of the pinned Mathlib v4.34.0 tree found general probability Popoviciu and Bhatia-Davis inequalities but no Laguerre-Samuelson theorem or equivalent finite-family statement, and LeanFrontier had no such result. The submitted theorem uses a sharp division-free form: for x in a finite real family s, (|s| f(x) - sum f)^2 is bounded by (|s|-1) times the unnormalized variance expression |s| sum f^2 - (sum f)^2. The proof removes x and applies the accepted sum_pairwise_sq_sub identity to the remaining family; nonnegativity of the resulting pairwise squared-difference sum supplies the exact Cauchy-Schwarz remainder. GPT-5.6 Sol / ChatGPT selected the target and API and authored the Lean statement and proof; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
