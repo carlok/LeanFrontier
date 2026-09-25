@@ -1,0 +1,205 @@
+{
+  "accepted_revision": "7d312dd2fe0ddf4eb1b6b8739e1c7c1a56c4c98c",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T19:15:44Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 290.821,
+    "observed": {
+      "added_lines": 61,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.State": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "inductive",
+          "name": "LeanFrontier.MarkovTree.State",
+          "restatement": false,
+          "statement_sha256": "d1ee2932d8f5566f1956b7ecac5161067e0f964f5d2844fa7cf958746e24f296",
+          "type_dependencies": []
+        },
+        "LeanFrontier.MarkovTree.coordinate_dvd_otherSquareSum": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.coordinate_dvd_otherSquareSum",
+          "restatement": false,
+          "statement_sha256": "30b42dd056392958dfed2526ea869ff78d092cbec0cee5628036d59b82a5315e",
+          "type_dependencies": [
+            "Dvd.dvd",
+            "Int",
+            "Int.instDvd",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.IsSolution",
+            "LeanFrontier.MarkovTree.State.coordinate",
+            "LeanFrontier.MarkovTree.State.otherSquareSum"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovNumber_dvd_otherSquareSum": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovNumber_dvd_otherSquareSum",
+          "restatement": false,
+          "statement_sha256": "e037fd2d17fd77d7f6bbdf38c9b5fb8a5d8344ef1821f2580db37f43e89b9cf5",
+          "type_dependencies": [
+            "Dvd.dvd",
+            "Int",
+            "Int.instDvd",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.back",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State.otherSquareSum"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.coordinate_dvd_otherSquareSum": [
+            {
+              "outcome": "failed",
+              "seconds": 5.112,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.061,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.009,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.96,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.997,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.925,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.markovNumber_dvd_otherSquareSum": [
+            {
+              "outcome": "failed",
+              "seconds": 5.002,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.961,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.017,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.01,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.035,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.015,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 60.104,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.coordinate_dvd_otherSquareSum": "inconclusive",
+        "LeanFrontier.MarkovTree.markovNumber_dvd_otherSquareSum": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 3479,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/SumSquaresDivisibility.lean",
+        "Submissions/markov-sum-squares-divisibility.json"
+      ],
+      "corpus_entrypoints_checked": 251,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.coordinate_dvd_otherSquareSum": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.coordinate_dvd_otherSquareSum",
+          "statement_sha256": "30b42dd056392958dfed2526ea869ff78d092cbec0cee5628036d59b82a5315e",
+          "type_dependencies": [
+            "Dvd.dvd",
+            "Int",
+            "Int.instDvd",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.IsSolution",
+            "LeanFrontier.MarkovTree.State.coordinate",
+            "LeanFrontier.MarkovTree.State.otherSquareSum"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovNumber_dvd_otherSquareSum": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovNumber_dvd_otherSquareSum",
+          "statement_sha256": "e037fd2d17fd77d7f6bbdf38c9b5fb8a5d8344ef1821f2580db37f43e89b9cf5",
+          "type_dependencies": [
+            "Dvd.dvd",
+            "Int",
+            "Int.instDvd",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.back",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State.otherSquareSum"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2011,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 3
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-sum-squares-divisibility",
+  "trusted_receiver_revision": "6f15cdceb75abcfec8ca1ca5c0f6193d1f07da39",
+  "validated_candidate_revision": "9deeb5e5d8047f72058fc53b4b9ce9f9c694d531",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36177782657"
+}

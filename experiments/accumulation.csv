@@ -89,3 +89,4 @@ date,submission_id,modules,edges,edges_per_module,connected_share,max_in_degree,
 2026-09-25,markov-child-label-algebra,79,59,0.747,0.608,4,8,true,true
 2026-09-25,markov-rerooted-subtree,80,60,0.750,0.613,4,8,true,true
 2026-09-25,markov-pairwise-coprime,81,62,0.765,0.617,4,8,true,true
+2026-09-25,markov-sum-squares-divisibility,82,63,0.768,0.622,4,8,true,true
