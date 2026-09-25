@@ -23,24 +23,15 @@ arguments.
 
 namespace LeanFrontier.MarkovTree
 
-private theorem modFourPattern_move (m : Move) {s : State}
-    (h :
-      (((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 1) ∨
-       ((s.x : ZMod 4) = 2 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 1) ∨
-       ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 2 ∧ (s.z : ZMod 4) = 1) ∨
-       ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 2))) :
-    ((((move m s).x : ZMod 4) = 1 ∧
-        ((move m s).y : ZMod 4) = 1 ∧
-        ((move m s).z : ZMod 4) = 1) ∨
-     (((move m s).x : ZMod 4) = 2 ∧
-        ((move m s).y : ZMod 4) = 1 ∧
-        ((move m s).z : ZMod 4) = 1) ∨
-     (((move m s).x : ZMod 4) = 1 ∧
-        ((move m s).y : ZMod 4) = 2 ∧
-        ((move m s).z : ZMod 4) = 1) ∨
-     (((move m s).x : ZMod 4) = 1 ∧
-        ((move m s).y : ZMod 4) = 1 ∧
-        ((move m s).z : ZMod 4) = 2)) := by
+private def hasModFourPattern (s : State) : Prop :=
+  (((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 1) ∨
+   ((s.x : ZMod 4) = 2 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 1) ∨
+   ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 2 ∧ (s.z : ZMod 4) = 1) ∨
+   ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 2))
+
+private theorem hasModFourPattern_move (m : Move) {s : State}
+    (h : hasModFourPattern s) :
+    hasModFourPattern (move m s) := by
   have h5 : (5 : ZMod 4) = 1 := by
     change ((5 : ℕ) : ZMod 4) = ((1 : ℕ) : ZMod 4)
     rw [ZMod.natCast_eq_natCast_iff']
@@ -56,36 +47,36 @@ private theorem modFourPattern_move (m : Move) {s : State}
     calc
       (3 : ZMod 4) * 2 - 1 = 5 := by ring
       _ = 1 := h5
+  unfold hasModFourPattern at h ⊢
   rcases s with ⟨x, y, z⟩
   rcases h with h | h | h | h <;>
     rcases h with ⟨hx, hy, hz⟩ <;>
     cases m <;>
     simp [move, MarkovEquation.jump, hx, hy, hz, h21, h12, h31, h32, h321]
 
-private theorem modFourPattern_walk (path : List Move) {s : State}
-    (h :
-      (((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 1) ∨
-       ((s.x : ZMod 4) = 2 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 1) ∨
-       ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 2 ∧ (s.z : ZMod 4) = 1) ∨
-       ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 2))) :
-    ((((walk path s).x : ZMod 4) = 1 ∧
-        ((walk path s).y : ZMod 4) = 1 ∧
-        ((walk path s).z : ZMod 4) = 1) ∨
-     (((walk path s).x : ZMod 4) = 2 ∧
-        ((walk path s).y : ZMod 4) = 1 ∧
-        ((walk path s).z : ZMod 4) = 1) ∨
-     (((walk path s).x : ZMod 4) = 1 ∧
-        ((walk path s).y : ZMod 4) = 2 ∧
-        ((walk path s).z : ZMod 4) = 1) ∨
-     (((walk path s).x : ZMod 4) = 1 ∧
-        ((walk path s).y : ZMod 4) = 1 ∧
-        ((walk path s).z : ZMod 4) = 2)) := by
+private theorem hasModFourPattern_walk (path : List Move) {s : State}
+    (h : hasModFourPattern s) :
+    hasModFourPattern (walk path s) := by
   induction path generalizing s with
   | nil =>
       simpa [walk] using h
   | cons m path ih =>
       simp only [walk]
-      exact ih (modFourPattern_move m h)
+      exact ih (hasModFourPattern_move m h)
+
+private theorem hasModFourPattern_of_positive_solution
+    (s : State)
+    (hx : 0 < s.x) (hy : 0 < s.y) (hz : 0 < s.z)
+    (hsol : s.IsSolution) :
+    hasModFourPattern s := by
+  obtain ⟨path, hpath⟩ :=
+    exists_walk_from_root_of_positive_solution s hx hy hz hsol
+  have hroot : hasModFourPattern (State.mk 1 1 1) := by
+    unfold hasModFourPattern
+    norm_num
+  have hwalk := hasModFourPattern_walk path hroot
+  rw [hpath] at hwalk
+  exact hwalk
 
 /-- Every positive integer Markov triple has, modulo four, either residue pattern
 `(1,1,1)` or a permutation of `(2,1,1)`. -/
@@ -97,25 +88,8 @@ theorem modFourPattern_of_positive_solution
      ((s.x : ZMod 4) = 2 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 1) ∨
      ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 2 ∧ (s.z : ZMod 4) = 1) ∨
      ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 2)) := by
-  obtain ⟨path, hpath⟩ :=
-    exists_walk_from_root_of_positive_solution s hx hy hz hsol
-  have hroot :
-      ((((State.mk 1 1 1).x : ZMod 4) = 1 ∧
-          ((State.mk 1 1 1).y : ZMod 4) = 1 ∧
-          ((State.mk 1 1 1).z : ZMod 4) = 1) ∨
-       (((State.mk 1 1 1).x : ZMod 4) = 2 ∧
-          ((State.mk 1 1 1).y : ZMod 4) = 1 ∧
-          ((State.mk 1 1 1).z : ZMod 4) = 1) ∨
-       (((State.mk 1 1 1).x : ZMod 4) = 1 ∧
-          ((State.mk 1 1 1).y : ZMod 4) = 2 ∧
-          ((State.mk 1 1 1).z : ZMod 4) = 1) ∨
-       (((State.mk 1 1 1).x : ZMod 4) = 1 ∧
-          ((State.mk 1 1 1).y : ZMod 4) = 1 ∧
-          ((State.mk 1 1 1).z : ZMod 4) = 2)) := by
-    norm_num
-  have hwalk := modFourPattern_walk path hroot
-  rw [hpath] at hwalk
-  exact hwalk
+  change hasModFourPattern s
+  exact hasModFourPattern_of_positive_solution s hx hy hz hsol
 
 /-- If the third coordinate of a positive Markov triple is even, then it is `2 mod 4`, while
 the other two coordinates are both `1 mod 4`. -/
