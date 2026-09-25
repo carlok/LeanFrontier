@@ -1,0 +1,159 @@
+{
+  "accepted_revision": "0f77b33fe7ba7d353065ef83b4d529fb12e4f332",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T15:12:04Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 241.07,
+    "observed": {
+      "added_lines": 77,
+      "audited_declarations": {
+        "LeanFrontier.Finset.laguerre_samuelson": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Finset.laguerre_samuelson",
+          "restatement": false,
+          "statement_sha256": "e61ee16a61b9b77d3ba2f34bba88720733f047f9a7ba2d39661b19b22e32e2e8",
+          "type_dependencies": [
+            "Finset",
+            "Finset.card",
+            "Finset.instSetLike",
+            "Finset.sum",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LE.le",
+            "Membership.mem",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Real",
+            "Real.instAddCommMonoid",
+            "Real.instLE",
+            "Real.instMonoid",
+            "Real.instMul",
+            "Real.instNatCast",
+            "Real.instOne",
+            "Real.instSub",
+            "SetLike.instMembership",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.Finset.laguerre_samuelson": [
+            {
+              "outcome": "failed",
+              "seconds": 5.428,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.398,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.426,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.352,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.375,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.356,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 32.335,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Finset.laguerre_samuelson": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4550,
+      "changed_files": [
+        "LeanFrontier/Combinatorics/FiniteVariance/LaguerreSamuelson.lean",
+        "Submissions/laguerre-samuelson-finite.json"
+      ],
+      "corpus_entrypoints_checked": 213,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Finset.laguerre_samuelson": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Finset.laguerre_samuelson",
+          "statement_sha256": "e61ee16a61b9b77d3ba2f34bba88720733f047f9a7ba2d39661b19b22e32e2e8",
+          "type_dependencies": [
+            "Finset",
+            "Finset.card",
+            "Finset.instSetLike",
+            "Finset.sum",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LE.le",
+            "Membership.mem",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Real",
+            "Real.instAddCommMonoid",
+            "Real.instLE",
+            "Real.instMonoid",
+            "Real.instMul",
+            "Real.instNatCast",
+            "Real.instOne",
+            "Real.instSub",
+            "SetLike.instMembership",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2552,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "laguerre-samuelson-finite",
+  "trusted_receiver_revision": "4cb6b7854e8934a1a2860b8bb72032b77dae95f9",
+  "validated_candidate_revision": "bee688e3d5600be8766065c3d87a27a1452dacdd",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36151824885"
+}
