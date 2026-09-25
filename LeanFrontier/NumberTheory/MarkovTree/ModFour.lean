@@ -46,7 +46,7 @@ private theorem modFourPattern_move (m : Move) {s : State}
     rcases h with ⟨hx, hy, hz⟩ <;>
     cases m <;>
     simp [move, MarkovEquation.jump, hx, hy, hz] <;>
-    norm_num
+    native_decide
 
 private theorem modFourPattern_walk (path : List Move) {s : State}
     (h :
@@ -82,7 +82,7 @@ theorem modFourPattern_of_positive_solution
     (((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 1) ∨
      ((s.x : ZMod 4) = 2 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 1) ∨
      ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 2 ∧ (s.z : ZMod 4) = 1) ∨
-     ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 2) := by
+     ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 2)) := by
   obtain ⟨path, hpath⟩ :=
     exists_walk_from_root_of_positive_solution s hx hy hz hsol
   have hroot :
