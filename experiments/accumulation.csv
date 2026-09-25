@@ -84,3 +84,4 @@ date,submission_id,modules,edges,edges_per_module,connected_share,max_in_degree,
 2026-09-25,laguerre-samuelson-finite,74,54,0.730,0.581,3,7,true,true
 2026-09-25,markov-uniqueness-reduction,75,55,0.733,0.587,3,8,true,true
 2026-09-25,markov-number-monotonicity,76,56,0.737,0.592,3,8,true,true
+2026-09-25,markov-branch-common-ancestor,77,57,0.740,0.597,4,8,true,true
