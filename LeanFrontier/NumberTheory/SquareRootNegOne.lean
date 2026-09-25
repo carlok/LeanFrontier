@@ -33,11 +33,14 @@ theorem exists_sq_modEq_neg_one_of_isCoprime_of_dvd_sq_add_sq
   have hdvd : m ∣ r ^ 2 + 1 := by
     refine ⟨b ^ 2 * k + a ^ 2 * m + 2 * a * b * v, ?_⟩
     dsimp [r]
+    have hbezout_sq : (1 : ℤ) = (a * m + b * v) ^ 2 := by
+      rw [hbezout]
+      norm_num
     calc
       (u * b) ^ 2 + 1 =
           b ^ 2 * (u ^ 2 + v ^ 2) +
             (a * m) ^ 2 + 2 * (a * m) * (b * v) := by
-              rw [← hbezout]
+              rw [hbezout_sq]
               ring
       _ = b ^ 2 * (m * k) +
             (a * m) ^ 2 + 2 * (a * m) * (b * v) := by
