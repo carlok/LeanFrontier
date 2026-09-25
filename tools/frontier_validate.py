@@ -63,8 +63,10 @@ CONJECTURE_RE = re.compile(
 )
 # `theorem c_holds : ConjectureName := ...` is how the contract says a
 # conjecture is resolved, so resolution is detectable from the source text.
+# Lean style puts a long qualified type on the next line, which is how the
+# first real resolution (#319) was written, so the gaps may span lines.
 RESOLUTION_RE = re.compile(
-    r"^[ \t]*theorem[ \t]+[A-Za-z_][A-Za-z0-9_']*[ \t]*:[ \t]*([A-Za-z_][A-Za-z0-9_.']*)[ \t]*:=",
+    r"^[ \t]*(?:(?:private|protected)[ \t]+)?theorem[ \t]+[A-Za-z_][A-Za-z0-9_']*\s*:\s*([A-Za-z_][A-Za-z0-9_.']*)\s*:=",
     re.M,
 )
 DECLARATION_RE = re.compile(r"\b(?:theorem|lemma|def|abbrev|opaque|structure|class|inductive|instance)\b")
