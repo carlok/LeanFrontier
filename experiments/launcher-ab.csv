@@ -35,6 +35,8 @@ finite-paley-zygmund,unassigned,gpt-5.6-sol
 ford-circle-sphere-tangency,unassigned,gpt-5.6-sol
 ford-circle-tangency,unassigned,claude-opus-5
 ford-farey-descartes-configuration,unassigned,gpt-5.6-sol
+furstenberg-add-group,unassigned,gpt-5.6-sol
+furstenberg-finite-quotients,unassigned,gpt-5.6-sol
 furstenberg-separation,unassigned,gpt-5.6-sol
 furstenberg-topology,unassigned,claude-fable-5
 hermite-lindemann-exp-injective-on-algebraics,unassigned,gpt-5
@@ -44,6 +46,7 @@ horadam-companion-matrix,unassigned,gpt-5.6-sol
 inversive-geometry-reflection,unassigned,claude-opus-5
 josephus-one-indexed-bridge,unassigned,claude-fable-5
 josephus-survivor-binary-shift,unassigned,claude-opus-5
+kochen-stone,unassigned,gpt-5.6-sol
 logistic-topological-conjugacy,unassigned,gpt-5.6-sol
 lucas-numbers,unassigned,claude-fable-5
 markov-cyclic-symmetry,unassigned,gpt-5.6-sol
