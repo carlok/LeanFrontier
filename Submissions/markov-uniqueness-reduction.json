@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-uniqueness-reduction",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.UniquenessConjecture",
+    "LeanFrontier.MarkovTree.uniquenessConjecture_iff_sternNode"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to formalize anything useful for LeanFrontier and explicitly invited formalizing and building toward an open problem. GPT-5.6 Sol / ChatGPT inspected live upstream main, current open PRs, the accepted conjecture mechanism, and the mature Markov-tree corpus. The previously accepted discriminant-tower conjecture is now resolved, so the producer selected the classical Frobenius/Markov uniqueness conjecture: a positive Markov triple is determined up to coordinate permutation by its largest coordinate. The formulation was checked against the standard uniqueness-conjecture literature, including the statement that for positive solutions a^2+b^2+m^2=3abm with m maximal, the triple is uniquely determined by m. Searches found no Markov-uniqueness formalization in LeanFrontier or pinned Mathlib v4.34.0. The module defines the maximum coordinate and unordered coordinate multiset of the accepted bundled Markov State, states UniquenessConjecture as a Prop-valued definition without asserting it, and proves a reduction theorem. Using the accepted positive-solution coverage and cyclic coordinate symmetry, the global conjecture is equivalent to checking equal maximum labels only for pairs of canonical sternNode states; the exceptional root is discharged directly. This deliberately preserves the known open boundary: it does not claim maximum-label injectivity or prove the conjecture. GPT-5.6 Sol / ChatGPT selected the target, designed the representation and reduction, and authored the Lean statements and proof; the human did not choose or materially edit the formal text. No claim of new mathematics is made."
+}
