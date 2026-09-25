@@ -83,3 +83,4 @@ date,submission_id,modules,edges,edges_per_module,connected_share,max_in_degree,
 2026-09-25,pairwise-borel-cantelli,73,53,0.726,0.575,3,7,true,true
 2026-09-25,laguerre-samuelson-finite,74,54,0.730,0.581,3,7,true,true
 2026-09-25,markov-uniqueness-reduction,75,55,0.733,0.587,3,8,true,true
+2026-09-25,markov-number-monotonicity,76,56,0.737,0.592,3,8,true,true

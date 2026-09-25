@@ -1,0 +1,499 @@
+{
+  "accepted_revision": "b282fc2656d74a54f8b4ba4558789d4955722931",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T15:34:02Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 365.615,
+    "observed": {
+      "added_lines": 191,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.OrientedNode": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "inductive",
+          "name": "LeanFrontier.MarkovTree.OrientedNode",
+          "restatement": false,
+          "statement_sha256": "d1ee2932d8f5566f1956b7ecac5161067e0f964f5d2844fa7cf958746e24f296",
+          "type_dependencies": []
+        },
+        "LeanFrontier.MarkovTree.State": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "inductive",
+          "name": "LeanFrontier.MarkovTree.State",
+          "restatement": false,
+          "statement_sha256": "d1ee2932d8f5566f1956b7ecac5161067e0f964f5d2844fa7cf958746e24f296",
+          "type_dependencies": []
+        },
+        "LeanFrontier.MarkovTree.coordinate_lt_markovNumber_of_ne_back": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.coordinate_lt_markovNumber_of_ne_back",
+          "restatement": false,
+          "statement_sha256": "0ac2842742fa807531215f34c7974bf56cf47b90861c19528be50c891503c847",
+          "type_dependencies": [
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.back",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State.coordinate",
+            "Ne"
+          ]
+        },
+        "LeanFrontier.MarkovTree.coordinate_move_of_ne": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.coordinate_move_of_ne",
+          "restatement": false,
+          "statement_sha256": "839bd82c2b0458bc0c5692b3857b23f7bccb2a7b91d8620e13f6d8d60ea94783",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.coordinate",
+            "LeanFrontier.MarkovTree.move",
+            "Ne"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovNumber_eq_max": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovNumber_eq_max",
+          "restatement": false,
+          "statement_sha256": "1446ea6d757a07b041119f652a7f87d6f8eee78186d2af81634c12b07c976840",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "Int.instMax",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State.x",
+            "LeanFrontier.MarkovTree.State.y",
+            "LeanFrontier.MarkovTree.State.z",
+            "Max.max"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovNumber_lt_child": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovNumber_lt_child",
+          "restatement": false,
+          "statement_sha256": "e87a5164e706c66b865d5c06c27f6148accecbcf08358161ab8d3b0340ef39eb",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.child"
+          ]
+        },
+        "LeanFrontier.MarkovTree.pathLength_add_two_le_sternMarkovNumber": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.pathLength_add_two_le_sternMarkovNumber",
+          "restatement": false,
+          "statement_sha256": "31142cb09816879182cb6007e1befd7e1c529c31a03d37976ae88bc7310922a8",
+          "type_dependencies": [
+            "Bool",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "Int.instLEInt",
+            "LE.le",
+            "LeanFrontier.MarkovTree.sternMarkovNumber",
+            "List",
+            "List.length",
+            "Nat.cast",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instNatCastInt",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternMarkovNumber": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.sternMarkovNumber",
+          "restatement": false,
+          "statement_sha256": "324a7b0f1338163e5e0bb25ede23dbf1c428f6eea83051c9fc3ef92c392ffad8",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternMarkovNumber_lt_cons": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternMarkovNumber_lt_cons",
+          "restatement": false,
+          "statement_sha256": "5f79f92ff0d984728d86a13ed1bcf8921ac868bdaad3d242eff19ef80a695738",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.sternMarkovNumber",
+            "List",
+            "List.cons"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 30,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.coordinate_lt_markovNumber_of_ne_back": [
+            {
+              "outcome": "failed",
+              "seconds": 5.037,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.984,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.011,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.981,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.972,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.958,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.markovNumber_eq_max": [
+            {
+              "outcome": "failed",
+              "seconds": 4.99,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.965,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.001,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.107,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.992,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.965,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.markovNumber_lt_child": [
+            {
+              "outcome": "failed",
+              "seconds": 5.156,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.152,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.133,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.165,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.167,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.155,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.pathLength_add_two_le_sternMarkovNumber": [
+            {
+              "outcome": "failed",
+              "seconds": 5.036,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.033,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.994,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.983,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.945,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.998,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.sternMarkovNumber_lt_cons": [
+            {
+              "outcome": "failed",
+              "seconds": 5.013,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.06,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.986,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.025,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.994,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.003,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 150.961,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.coordinate_lt_markovNumber_of_ne_back": "inconclusive",
+        "LeanFrontier.MarkovTree.markovNumber_eq_max": "inconclusive",
+        "LeanFrontier.MarkovTree.markovNumber_lt_child": "inconclusive",
+        "LeanFrontier.MarkovTree.pathLength_add_two_le_sternMarkovNumber": "inconclusive",
+        "LeanFrontier.MarkovTree.sternMarkovNumber_lt_cons": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 10156,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/MarkovNumber.lean",
+        "Submissions/markov-number-monotonicity.json"
+      ],
+      "corpus_entrypoints_checked": 216,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.coordinate_lt_markovNumber_of_ne_back": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.coordinate_lt_markovNumber_of_ne_back",
+          "statement_sha256": "0ac2842742fa807531215f34c7974bf56cf47b90861c19528be50c891503c847",
+          "type_dependencies": [
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.back",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State.coordinate",
+            "Ne"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovNumber_eq_max": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovNumber_eq_max",
+          "statement_sha256": "1446ea6d757a07b041119f652a7f87d6f8eee78186d2af81634c12b07c976840",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "Int.instMax",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State.x",
+            "LeanFrontier.MarkovTree.State.y",
+            "LeanFrontier.MarkovTree.State.z",
+            "Max.max"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovNumber_lt_child": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovNumber_lt_child",
+          "statement_sha256": "e87a5164e706c66b865d5c06c27f6148accecbcf08358161ab8d3b0340ef39eb",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.child"
+          ]
+        },
+        "LeanFrontier.MarkovTree.pathLength_add_two_le_sternMarkovNumber": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.pathLength_add_two_le_sternMarkovNumber",
+          "statement_sha256": "31142cb09816879182cb6007e1befd7e1c529c31a03d37976ae88bc7310922a8",
+          "type_dependencies": [
+            "Bool",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "Int.instLEInt",
+            "LE.le",
+            "LeanFrontier.MarkovTree.sternMarkovNumber",
+            "List",
+            "List.length",
+            "Nat.cast",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instNatCastInt",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternMarkovNumber_lt_cons": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternMarkovNumber_lt_cons",
+          "statement_sha256": "5f79f92ff0d984728d86a13ed1bcf8921ac868bdaad3d242eff19ef80a695738",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.sternMarkovNumber",
+            "List",
+            "List.cons"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 7998,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 10
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-number-monotonicity",
+  "trusted_receiver_revision": "a7d9651e4fbb2984a30aa6cd470991f076cc1d39",
+  "validated_candidate_revision": "81f373a08919a901ca74cec8f62a19525ca52058",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36154037102"
+}
