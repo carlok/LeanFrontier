@@ -36,6 +36,7 @@ import LeanFrontier.NumberTheory.HoradamSequence.AdditionFormula
 import LeanFrontier.NumberTheory.LucasNumber
 import LeanFrontier.NumberTheory.MarkovEquation
 import LeanFrontier.NumberTheory.MarkovTree
+import LeanFrontier.NumberTheory.MarkovTree.BranchStructure
 import LeanFrontier.NumberTheory.MarkovTree.Coverage
 import LeanFrontier.NumberTheory.MarkovTree.FibonacciSpine
 import LeanFrontier.NumberTheory.MarkovTree.Injectivity
