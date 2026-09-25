@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-collision-factorization",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "target_driven",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovEquation.collision_factorization"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to execute a research plan for attacking the Frobenius/Markov uniqueness conjecture after GPT-5.6 Sol / ChatGPT had reviewed relevant literature and identified Anitha Srinivasan's collision factorization as the most useful immediate target. The theorem formalized here is the classical algebraic identity from Lemma 2.1 of Srinivasan, 'Markoff numbers and ambiguous classes', J. Theorie des Nombres de Bordeaux 21 (2009), 757-770: two Markov triples sharing one coordinate satisfy a factorization relating the determinant and dot-product-like comparisons of the other coordinate pairs. The identity is independent of positivity, ordering, and the open uniqueness conjecture itself. Its intended downstream use is to split equal-label collision arithmetic into same-root versus opposite-root cases modulo prime-power factors, then formalize known prime-power uniqueness cases. GPT-5.6 Sol / ChatGPT selected the exact Lean statement and authored the proof; the human did not author or materially edit the formal statement or proof. No claim of new mathematics is made."
+}
