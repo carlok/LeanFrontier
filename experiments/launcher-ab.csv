@@ -62,6 +62,7 @@ markov-stern-state-injectivity,unassigned,gpt-5.6-sol
 markov-three-branch-coverage,unassigned,gpt-5.6-sol
 markov-tree-descent,unassigned,gpt-5.6-sol
 markov-tree-paths,unassigned,gpt-5.6-sol
+markov-uniqueness-reduction,unassigned,gpt-5.6-sol
 measure-paley-zygmund,unassigned,gpt-5.6-sol
 mediant-stern-brocot-determinant,unassigned,claude-opus-5
 nesbitt-inequality,unassigned,gpt-5.6-sol
