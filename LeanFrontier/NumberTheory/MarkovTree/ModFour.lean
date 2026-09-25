@@ -40,7 +40,7 @@ private theorem modFourPattern_move (m : Move) {s : State}
         ((move m s).z : ZMod 4) = 1) ∨
      (((move m s).x : ZMod 4) = 1 ∧
         ((move m s).y : ZMod 4) = 1 ∧
-        ((move m s).z : ZMod 4) = 2) := by
+        ((move m s).z : ZMod 4) = 2)) := by
   rcases s with ⟨x, y, z⟩
   rcases h with h | h | h | h <;>
     rcases h with ⟨hx, hy, hz⟩ <;>
@@ -65,7 +65,7 @@ private theorem modFourPattern_walk (path : List Move) {s : State}
         ((walk path s).z : ZMod 4) = 1) ∨
      (((walk path s).x : ZMod 4) = 1 ∧
         ((walk path s).y : ZMod 4) = 1 ∧
-        ((walk path s).z : ZMod 4) = 2) := by
+        ((walk path s).z : ZMod 4) = 2)) := by
   induction path generalizing s with
   | nil =>
       simpa [walk] using h
@@ -97,7 +97,7 @@ theorem modFourPattern_of_positive_solution
           ((State.mk 1 1 1).z : ZMod 4) = 1) ∨
        (((State.mk 1 1 1).x : ZMod 4) = 1 ∧
           ((State.mk 1 1 1).y : ZMod 4) = 1 ∧
-          ((State.mk 1 1 1).z : ZMod 4) = 2) := by
+          ((State.mk 1 1 1).z : ZMod 4) = 2)) := by
     norm_num
   have hwalk := modFourPattern_walk path hroot
   rw [hpath] at hwalk
@@ -122,7 +122,7 @@ theorem modFour_of_even_third_coordinate
     intro hz1
     have hmap :=
       congrArg (ZMod.castHom (by norm_num : 2 ∣ 4) (ZMod 2)) hz1
-    simpa [hz0] using hmap
+    simp [hz0] at hmap
   rcases hpattern with h | h | h | h
   · exact (hz_ne_one h.2.2).elim
   · exact (hz_ne_one h.2.2).elim
