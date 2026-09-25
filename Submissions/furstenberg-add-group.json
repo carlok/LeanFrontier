@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "furstenberg-add-group",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Int.continuous_neg_furstenberg",
+    "LeanFrontier.Int.continuous_add_furstenberg"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "After the independent Kochen-Stone submission had passed the LeanFrontier receiver and was frozen for upstream review, the human operator asked GPT-5.6 Sol / ChatGPT to continue. GPT-5.6 Sol / ChatGPT re-read the live contribution-directions document and chose the independent Furstenberg-topology algebra direction rather than stack on an unmerged probability PR. The producer inspected the accepted LeanFrontier.Topology.Furstenberg module and Mathlib's topological-group and basis APIs, and found no equivalent Furstenberg-topology development in Mathlib. The selected first milestone is the algebraic core: prove negation and addition continuous for the named Furstenberg topology and bundle those proofs as a named AddGroupTopology on the integers without replacing the ordinary global topology instance. The proof uses explicit preimage identities for arithmetic progressions: negation maps a residue class to the opposite residue class, while the preimage of a residue class under addition is a union of products of residue classes. GPT-5.6 Sol / ChatGPT selected the target and API and authored the Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}

@@ -1,0 +1,177 @@
+{
+  "accepted_revision": "dcdf3d1c777552d0bc0a89d901bc39fc515f4502",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T07:56:32Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 135.501,
+    "observed": {
+      "added_lines": 397,
+      "audited_declarations": {
+        "LeanFrontier.ProbabilityTheory.kochenStone": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ProbabilityTheory.kochenStone",
+          "restatement": false,
+          "statement_sha256": "ad071eaf1ebd4eeadc64a10ab9aa092a80b6ed2971d5fcbf6c531d5a786d63b9",
+          "type_dependencies": [
+            "CompleteAtomicBooleanAlgebra.toCompleteBooleanAlgebra",
+            "CompleteBooleanAlgebra.toCompleteLattice",
+            "CompleteLattice.toConditionallyCompleteLattice",
+            "ConditionallyCompleteLinearOrder.toConditionallyCompleteLattice",
+            "DivInvMonoid.toDiv",
+            "Filter.Tendsto",
+            "Filter.atTop",
+            "Filter.limsup",
+            "Finset.range",
+            "Finset.sum",
+            "HDiv.hDiv",
+            "HPow.hPow",
+            "Inter.inter",
+            "LE.le",
+            "MeasurableSet",
+            "MeasurableSpace",
+            "MeasureTheory.IsProbabilityMeasure",
+            "MeasureTheory.Measure",
+            "MeasureTheory.Measure.real",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instPreorder",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instAddCommMonoid",
+            "Real.instConditionallyCompleteLinearOrder",
+            "Real.instDivInvMonoid",
+            "Real.instLE",
+            "Real.instMonoid",
+            "Real.instPreorder",
+            "Set",
+            "Set.instCompleteAtomicBooleanAlgebra",
+            "Set.instInter",
+            "instHDiv",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.ProbabilityTheory.kochenStone": [
+            {
+              "outcome": "failed",
+              "seconds": 3.556,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.436,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.476,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.46,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.458,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.471,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 20.857,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.ProbabilityTheory.kochenStone": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 15310,
+      "changed_files": [
+        "LeanFrontier/Probability/KochenStone.lean",
+        "Submissions/kochen-stone.json"
+      ],
+      "corpus_entrypoints_checked": 191,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.ProbabilityTheory.kochenStone": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.ProbabilityTheory.kochenStone",
+          "statement_sha256": "ad071eaf1ebd4eeadc64a10ab9aa092a80b6ed2971d5fcbf6c531d5a786d63b9",
+          "type_dependencies": [
+            "CompleteAtomicBooleanAlgebra.toCompleteBooleanAlgebra",
+            "CompleteBooleanAlgebra.toCompleteLattice",
+            "CompleteLattice.toConditionallyCompleteLattice",
+            "ConditionallyCompleteLinearOrder.toConditionallyCompleteLattice",
+            "DivInvMonoid.toDiv",
+            "Filter.Tendsto",
+            "Filter.atTop",
+            "Filter.limsup",
+            "Finset.range",
+            "Finset.sum",
+            "HDiv.hDiv",
+            "HPow.hPow",
+            "Inter.inter",
+            "LE.le",
+            "MeasurableSet",
+            "MeasurableSpace",
+            "MeasureTheory.IsProbabilityMeasure",
+            "MeasureTheory.Measure",
+            "MeasureTheory.Measure.real",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instPreorder",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instAddCommMonoid",
+            "Real.instConditionallyCompleteLinearOrder",
+            "Real.instDivInvMonoid",
+            "Real.instLE",
+            "Real.instMonoid",
+            "Real.instPreorder",
+            "Set",
+            "Set.instCompleteAtomicBooleanAlgebra",
+            "Set.instInter",
+            "instHDiv",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 13553,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 18
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "kochen-stone",
+  "trusted_receiver_revision": "1922f7ec01b96b4816b369467216a7a4e2edafc3",
+  "validated_candidate_revision": "08dad83056464ec2738bf2ae89bb6701ff1bbfc2",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/35981948288"
+}
