@@ -44,7 +44,6 @@ private theorem modFourPattern_move (m : Move) {s : State}
   have h5 : (5 : ZMod 4) = 1 := by
     change ((5 : ℕ) : ZMod 4) = ((1 : ℕ) : ZMod 4)
     rw [ZMod.natCast_eq_natCast_iff']
-    norm_num
   have h21 : (2 : ZMod 4) ≠ 1 := by
     intro hEq
     change ((2 : ℕ) : ZMod 4) = ((1 : ℕ) : ZMod 4) at hEq
