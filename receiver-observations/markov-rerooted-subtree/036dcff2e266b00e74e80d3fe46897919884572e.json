@@ -1,0 +1,533 @@
+{
+  "accepted_revision": "036dcff2e266b00e74e80d3fe46897919884572e",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T18:55:58Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 418.137,
+    "observed": {
+      "added_lines": 114,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.descendFrom": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.descendFrom",
+          "restatement": false,
+          "statement_sha256": "3775d52046182685f74c4bc26face2d5bcfffbb27ee7c466ec6722bd351ae968",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.descendFrom_sternNode_state_injective": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.descendFrom_sternNode_state_injective",
+          "restatement": false,
+          "statement_sha256": "3687933d043f5204442772f5fb19ca254c63313cd8674e06c4ec8d2dab0cf70f",
+          "type_dependencies": [
+            "Bool",
+            "Function.Injective",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.descendFrom",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovNumber_le_descendFrom": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovNumber_le_descendFrom",
+          "restatement": false,
+          "statement_sha256": "7aa15cbf84d67d281e7dfa9ff36a91c441718f991f200f29b9f84456d707c5c3",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "Int.instLEInt",
+            "LE.le",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.descendFrom",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovNumber_lt_descendFrom_of_ne_nil": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovNumber_lt_descendFrom_of_ne_nil",
+          "restatement": false,
+          "statement_sha256": "6bda986da8dfcc84c25128d9f5a9981e47265e959671b2851e8c240f54a65e5b",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.descendFrom",
+            "List",
+            "List.nil",
+            "Ne"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternMarkovNumber_append_eq_descendFrom": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternMarkovNumber_append_eq_descendFrom",
+          "restatement": false,
+          "statement_sha256": "1bc843ad3c53f0cc5f1be990758990c76192ca63864a3d67371547a3f34ab154",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "HAppend.hAppend",
+            "Int",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.descendFrom",
+            "LeanFrontier.MarkovTree.sternMarkovNumber",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List",
+            "List.instAppend",
+            "instHAppendOfAppend"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternNode_append_eq_descendFrom": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternNode_append_eq_descendFrom",
+          "restatement": false,
+          "statement_sha256": "74adfa4d37ca2c711b84c669679557281cb1a54de436958d57b4755146ea410b",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "HAppend.hAppend",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.descendFrom",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List",
+            "List.instAppend",
+            "instHAppendOfAppend"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternNode_childSubtree_eq_descendFrom": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternNode_childSubtree_eq_descendFrom",
+          "restatement": false,
+          "statement_sha256": "907af8d97fe916e6289e4fcc623eda3d476090ed410b20b0e41bac69be8f5821",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "HAppend.hAppend",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.child",
+            "LeanFrontier.MarkovTree.descendFrom",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "instHAppendOfAppend"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 36,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.descendFrom_sternNode_state_injective": [
+            {
+              "outcome": "failed",
+              "seconds": 5.34,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.332,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.418,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.347,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.354,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.349,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.markovNumber_le_descendFrom": [
+            {
+              "outcome": "failed",
+              "seconds": 5.329,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.348,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.326,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.348,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.378,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.366,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.markovNumber_lt_descendFrom_of_ne_nil": [
+            {
+              "outcome": "failed",
+              "seconds": 5.374,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.337,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.349,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.37,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.362,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.327,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.sternMarkovNumber_append_eq_descendFrom": [
+            {
+              "outcome": "failed",
+              "seconds": 5.344,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.406,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.363,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.365,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.309,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.328,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.sternNode_append_eq_descendFrom": [
+            {
+              "outcome": "failed",
+              "seconds": 5.324,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.227,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.19,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.238,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.202,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.19,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.sternNode_childSubtree_eq_descendFrom": [
+            {
+              "outcome": "failed",
+              "seconds": 5.198,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.165,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.148,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.153,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.196,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.2,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 190.9,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.descendFrom_sternNode_state_injective": "inconclusive",
+        "LeanFrontier.MarkovTree.markovNumber_le_descendFrom": "inconclusive",
+        "LeanFrontier.MarkovTree.markovNumber_lt_descendFrom_of_ne_nil": "inconclusive",
+        "LeanFrontier.MarkovTree.sternMarkovNumber_append_eq_descendFrom": "inconclusive",
+        "LeanFrontier.MarkovTree.sternNode_append_eq_descendFrom": "inconclusive",
+        "LeanFrontier.MarkovTree.sternNode_childSubtree_eq_descendFrom": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 6697,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/ReRootedSubtree.lean",
+        "Submissions/markov-rerooted-subtree.json"
+      ],
+      "corpus_entrypoints_checked": 241,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.descendFrom_sternNode_state_injective": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.descendFrom_sternNode_state_injective",
+          "statement_sha256": "3687933d043f5204442772f5fb19ca254c63313cd8674e06c4ec8d2dab0cf70f",
+          "type_dependencies": [
+            "Bool",
+            "Function.Injective",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.descendFrom",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovNumber_le_descendFrom": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovNumber_le_descendFrom",
+          "statement_sha256": "7aa15cbf84d67d281e7dfa9ff36a91c441718f991f200f29b9f84456d707c5c3",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "Int.instLEInt",
+            "LE.le",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.descendFrom",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovNumber_lt_descendFrom_of_ne_nil": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovNumber_lt_descendFrom_of_ne_nil",
+          "statement_sha256": "6bda986da8dfcc84c25128d9f5a9981e47265e959671b2851e8c240f54a65e5b",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.descendFrom",
+            "List",
+            "List.nil",
+            "Ne"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternMarkovNumber_append_eq_descendFrom": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternMarkovNumber_append_eq_descendFrom",
+          "statement_sha256": "1bc843ad3c53f0cc5f1be990758990c76192ca63864a3d67371547a3f34ab154",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "HAppend.hAppend",
+            "Int",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.descendFrom",
+            "LeanFrontier.MarkovTree.sternMarkovNumber",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List",
+            "List.instAppend",
+            "instHAppendOfAppend"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternNode_append_eq_descendFrom": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternNode_append_eq_descendFrom",
+          "statement_sha256": "74adfa4d37ca2c711b84c669679557281cb1a54de436958d57b4755146ea410b",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "HAppend.hAppend",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.descendFrom",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List",
+            "List.instAppend",
+            "instHAppendOfAppend"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternNode_childSubtree_eq_descendFrom": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternNode_childSubtree_eq_descendFrom",
+          "statement_sha256": "907af8d97fe916e6289e4fcc623eda3d476090ed410b20b0e41bac69be8f5821",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "HAppend.hAppend",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.child",
+            "LeanFrontier.MarkovTree.descendFrom",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "instHAppendOfAppend"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 4615,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 7
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-rerooted-subtree",
+  "trusted_receiver_revision": "5b3da2e0d3bf379ab047e3ec83f2a6bb1c24cb91",
+  "validated_candidate_revision": "d5c23c4714b9dd73d643f8b00cf486dda200196a",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36175505466"
+}
