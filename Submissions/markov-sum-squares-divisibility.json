@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-sum-squares-divisibility",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.coordinate_dvd_otherSquareSum",
+    "LeanFrontier.MarkovTree.markovNumber_dvd_otherSquareSum"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue building mathematical machinery toward eventual work on the Frobenius/Markov uniqueness conjecture. GPT-5.6 Sol / ChatGPT selected an independent arithmetic bridge available from already accepted APIs: reducing the Markov equation modulo any selected coordinate shows that coordinate divides the sum of squares of the other two. The module packages the complementary square sum uniformly over the accepted Move selector and proves the divisibility for every bundled Markov solution; for OrientedNode it specializes to the Markov-number/back coordinate. This is intended to combine with pairwise coprimality to construct square roots of -1 modulo Markov numbers, a classical arithmetic handle relevant to uniqueness questions. GPT-5.6 Sol / ChatGPT selected the target and authored all definitions, statements, and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
