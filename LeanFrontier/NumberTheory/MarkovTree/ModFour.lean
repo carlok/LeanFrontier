@@ -42,18 +42,26 @@ private theorem modFourPattern_move (m : Move) {s : State}
         ((move m s).y : ZMod 4) = 1 ∧
         ((move m s).z : ZMod 4) = 2)) := by
   have h5 : (5 : ZMod 4) = 1 := by
+    change ((5 : ℕ) : ZMod 4) = ((1 : ℕ) : ZMod 4)
     rw [ZMod.natCast_eq_natCast_iff']
     norm_num
   have h21 : (2 : ZMod 4) ≠ 1 := by
     intro hEq
+    change ((2 : ℕ) : ZMod 4) = ((1 : ℕ) : ZMod 4) at hEq
     have hm := (ZMod.natCast_eq_natCast_iff' 2 1 4).mp hEq
     norm_num at hm
   have h12 : (1 : ZMod 4) ≠ 2 := Ne.symm h21
+  have h31 : (3 : ZMod 4) - 1 = 2 := by ring
+  have h32 : (3 : ZMod 4) - 2 = 1 := by ring
+  have h321 : (3 : ZMod 4) * 2 - 1 = 1 := by
+    calc
+      (3 : ZMod 4) * 2 - 1 = 5 := by ring
+      _ = 1 := h5
   rcases s with ⟨x, y, z⟩
   rcases h with h | h | h | h <;>
     rcases h with ⟨hx, hy, hz⟩ <;>
     cases m <;>
-    simp [move, MarkovEquation.jump, hx, hy, hz, h5, h21, h12]
+    simp [move, MarkovEquation.jump, hx, hy, hz, h21, h12, h31, h32, h321]
 
 private theorem modFourPattern_walk (path : List Move) {s : State}
     (h :
