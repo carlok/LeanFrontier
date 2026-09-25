@@ -1,0 +1,445 @@
+{
+  "accepted_revision": "65832dae7bfc674358a7a73fe13953bd2a42c322",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T18:33:35Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 359.017,
+    "observed": {
+      "added_lines": 171,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.DivergesBelow": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.DivergesBelow",
+          "restatement": false,
+          "statement_sha256": "2d44bc19c78ad3f8c74214024d03ea64d7a7ea3ec0e3b86536383232d180b2a5",
+          "type_dependencies": [
+            "Bool",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.PathsIncomparable": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.PathsIncomparable",
+          "restatement": false,
+          "statement_sha256": "b4b0ae094ba7f9528f57b3623ec6cea4a960e52030c255f08b98073edbfc9799",
+          "type_dependencies": [
+            "Bool",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonAncestor_length_lt_both_of_incomparable": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonAncestor_length_lt_both_of_incomparable",
+          "restatement": false,
+          "statement_sha256": "e24c23a63b3885a23d41e2fc6c44241094fdaa7cf831fe9ae151e7808ddfeb09",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.PathsIncomparable",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List",
+            "List.length",
+            "Nat",
+            "instLTNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.divergesBelow_commonAncestor_of_incomparable": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.divergesBelow_commonAncestor_of_incomparable",
+          "restatement": false,
+          "statement_sha256": "057a2a8281d527b6d11194e6add1e8e03773ec9420e62972b20b18880c0d7288",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.DivergesBelow",
+            "LeanFrontier.MarkovTree.PathsIncomparable",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.exists_opposite_child_decomposition_of_incomparable": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.exists_opposite_child_decomposition_of_incomparable",
+          "restatement": false,
+          "statement_sha256": "9013e757695995eba0b65aa0d43eaa61521555683357adecf1a45fc16c02d789",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "Exists",
+            "HAppend.hAppend",
+            "LeanFrontier.MarkovTree.PathsIncomparable",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "Or",
+            "instHAppendOfAppend"
+          ]
+        },
+        "LeanFrontier.MarkovTree.incomparable_of_divergesBelow_commonAncestor": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.incomparable_of_divergesBelow_commonAncestor",
+          "restatement": false,
+          "statement_sha256": "2a7ca1869a980d96c69bb1f18e2c4a6f3d55d5432ce5167d4f16a13e0471401a",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.DivergesBelow",
+            "LeanFrontier.MarkovTree.PathsIncomparable",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.pathsIncomparable_iff_divergesBelow_commonAncestor": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.pathsIncomparable_iff_divergesBelow_commonAncestor",
+          "restatement": false,
+          "statement_sha256": "4482d3ab304e401038b23b7bd2d9fb3ac0c548a8694e96a51711804b4839ddf7",
+          "type_dependencies": [
+            "Bool",
+            "Iff",
+            "LeanFrontier.MarkovTree.DivergesBelow",
+            "LeanFrontier.MarkovTree.PathsIncomparable",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 30,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.commonAncestor_length_lt_both_of_incomparable": [
+            {
+              "outcome": "failed",
+              "seconds": 5.062,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.122,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.1,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.103,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.068,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.086,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.divergesBelow_commonAncestor_of_incomparable": [
+            {
+              "outcome": "failed",
+              "seconds": 4.83,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.787,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.764,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.779,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.721,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.821,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.exists_opposite_child_decomposition_of_incomparable": [
+            {
+              "outcome": "failed",
+              "seconds": 4.792,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.822,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.848,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.836,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.811,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.783,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.incomparable_of_divergesBelow_commonAncestor": [
+            {
+              "outcome": "failed",
+              "seconds": 4.757,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.769,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.802,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.792,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.775,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.801,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.pathsIncomparable_iff_divergesBelow_commonAncestor": [
+            {
+              "outcome": "failed",
+              "seconds": 4.769,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.785,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.789,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.796,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.773,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.782,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 145.525,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.commonAncestor_length_lt_both_of_incomparable": "inconclusive",
+        "LeanFrontier.MarkovTree.divergesBelow_commonAncestor_of_incomparable": "inconclusive",
+        "LeanFrontier.MarkovTree.exists_opposite_child_decomposition_of_incomparable": "inconclusive",
+        "LeanFrontier.MarkovTree.incomparable_of_divergesBelow_commonAncestor": "inconclusive",
+        "LeanFrontier.MarkovTree.pathsIncomparable_iff_divergesBelow_commonAncestor": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 8751,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/BranchDivergence.lean",
+        "Submissions/markov-first-divergence.json"
+      ],
+      "corpus_entrypoints_checked": 230,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.commonAncestor_length_lt_both_of_incomparable": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonAncestor_length_lt_both_of_incomparable",
+          "statement_sha256": "e24c23a63b3885a23d41e2fc6c44241094fdaa7cf831fe9ae151e7808ddfeb09",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.PathsIncomparable",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List",
+            "List.length",
+            "Nat",
+            "instLTNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.divergesBelow_commonAncestor_of_incomparable": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.divergesBelow_commonAncestor_of_incomparable",
+          "statement_sha256": "057a2a8281d527b6d11194e6add1e8e03773ec9420e62972b20b18880c0d7288",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.DivergesBelow",
+            "LeanFrontier.MarkovTree.PathsIncomparable",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.exists_opposite_child_decomposition_of_incomparable": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.exists_opposite_child_decomposition_of_incomparable",
+          "statement_sha256": "9013e757695995eba0b65aa0d43eaa61521555683357adecf1a45fc16c02d789",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "Exists",
+            "HAppend.hAppend",
+            "LeanFrontier.MarkovTree.PathsIncomparable",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "Or",
+            "instHAppendOfAppend"
+          ]
+        },
+        "LeanFrontier.MarkovTree.incomparable_of_divergesBelow_commonAncestor": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.incomparable_of_divergesBelow_commonAncestor",
+          "statement_sha256": "2a7ca1869a980d96c69bb1f18e2c4a6f3d55d5432ce5167d4f16a13e0471401a",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.DivergesBelow",
+            "LeanFrontier.MarkovTree.PathsIncomparable",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.pathsIncomparable_iff_divergesBelow_commonAncestor": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.pathsIncomparable_iff_divergesBelow_commonAncestor",
+          "statement_sha256": "4482d3ab304e401038b23b7bd2d9fb3ac0c548a8694e96a51711804b4839ddf7",
+          "type_dependencies": [
+            "Bool",
+            "Iff",
+            "LeanFrontier.MarkovTree.DivergesBelow",
+            "LeanFrontier.MarkovTree.PathsIncomparable",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 6528,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 7
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-first-divergence",
+  "trusted_receiver_revision": "02f92e6108ef5842b07a63bf72a078b26f89b68f",
+  "validated_candidate_revision": "07fdcad609aad36dd4bdfedead8c2cb9760adf33",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36160585077"
+}
