@@ -1,0 +1,215 @@
+{
+  "accepted_revision": "aafd215d680d5619d21287e94d09401221d8f1bc",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T08:24:22Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 193.044,
+    "observed": {
+      "added_lines": 150,
+      "audited_declarations": {
+        "LeanFrontier.ChangeRinging.exists_last_adjSwap_first_of_two_le_length": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.exists_last_adjSwap_first_of_two_le_length",
+          "restatement": false,
+          "statement_sha256": "65cbf74b1b691e8b7f9828df790ba67ccda2364206f7fefcc9386f5ff94112ee",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "Exists",
+            "LE.le",
+            "LeanFrontier.ChangeRinging.AdjSwap",
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.getLast?",
+            "List.length",
+            "Nat",
+            "OfNat.ofNat",
+            "Option",
+            "Option.some",
+            "instLENat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.rows_append_pair_getLast": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.rows_append_pair_getLast",
+          "restatement": false,
+          "statement_sha256": "2f83984a690922c18bf5d665543d362b26647e30b920433b65cc25c6a66e829d",
+          "type_dependencies": [
+            "Eq",
+            "HAppend.hAppend",
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.cons",
+            "List.getLast?",
+            "List.instAppend",
+            "List.nil",
+            "Option",
+            "Option.some",
+            "instHAppendOfAppend"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.ChangeRinging.exists_last_adjSwap_first_of_two_le_length": [
+            {
+              "outcome": "failed",
+              "seconds": 4.087,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.036,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.042,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.034,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.027,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.991,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.ChangeRinging.rows_append_pair_getLast": [
+            {
+              "outcome": "failed",
+              "seconds": 4.107,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.034,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.02,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.997,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.018,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.96,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 48.353,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.ChangeRinging.exists_last_adjSwap_first_of_two_le_length": "inconclusive",
+        "LeanFrontier.ChangeRinging.rows_append_pair_getLast": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 7248,
+      "changed_files": [
+        "LeanFrontier/GroupTheory/ChangeRingingCyclic.lean",
+        "Submissions/change-ringing-cyclic.json"
+      ],
+      "corpus_entrypoints_checked": 197,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.ChangeRinging.exists_last_adjSwap_first_of_two_le_length": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.exists_last_adjSwap_first_of_two_le_length",
+          "statement_sha256": "65cbf74b1b691e8b7f9828df790ba67ccda2364206f7fefcc9386f5ff94112ee",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "Exists",
+            "LE.le",
+            "LeanFrontier.ChangeRinging.AdjSwap",
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.getLast?",
+            "List.length",
+            "Nat",
+            "OfNat.ofNat",
+            "Option",
+            "Option.some",
+            "instLENat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.ChangeRinging.rows_append_pair_getLast": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.ChangeRinging.rows_append_pair_getLast",
+          "statement_sha256": "2f83984a690922c18bf5d665543d362b26647e30b920433b65cc25c6a66e829d",
+          "type_dependencies": [
+            "Eq",
+            "HAppend.hAppend",
+            "LeanFrontier.ChangeRinging.rows",
+            "List",
+            "List.cons",
+            "List.getLast?",
+            "List.instAppend",
+            "List.nil",
+            "Option",
+            "Option.some",
+            "instHAppendOfAppend"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 5426,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 7
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "change-ringing-cyclic",
+  "trusted_receiver_revision": "958afcee172ed1b906c1d4845e195ebfbe438cd7",
+  "validated_candidate_revision": "ecca218b71c10864da539b3ed4558f05b6f38b59",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36112178203"
+}
