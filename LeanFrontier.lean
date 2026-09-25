@@ -10,6 +10,7 @@ import LeanFrontier.Combinatorics.CaroWei.TuranBound
 import LeanFrontier.Combinatorics.CircularDominoTilings
 import LeanFrontier.Combinatorics.FibonacciComposition
 import LeanFrontier.Combinatorics.FiniteVariance
+import LeanFrontier.Combinatorics.FiniteVariance.LaguerreSamuelson
 import LeanFrontier.Combinatorics.Josephus
 import LeanFrontier.Combinatorics.Josephus.OneIndexed
 import LeanFrontier.Dynamics.LogisticConjugacy
