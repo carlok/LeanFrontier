@@ -79,7 +79,7 @@ private theorem orientedRoot_mass_le_sternNode (path : List Bool) :
     orientedRoot.state.mass ≤ (sternNode path).state.mass := by
   induction path with
   | nil =>
-      simp [sternNode]
+      simp [sternNode, follow]
   | cons dir path ih =>
       rw [sternNode_cons]
       exact le_trans ih (le_of_lt (state_mass_lt_child (sternNode path) dir))
@@ -116,6 +116,9 @@ theorem sternNode_state_injective :
           have hstep := state_mass_lt_child (sternNode p) dir
           omega
       | cons dir' q =>
+          change
+            (sternNode (dir :: p)).state =
+              (sternNode (dir' :: q)).state at h
           rw [sternNode_cons, sternNode_cons] at h
           have hchildren :
               child (sternNode p) dir = child (sternNode q) dir' :=
