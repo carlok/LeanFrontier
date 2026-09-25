@@ -1,0 +1,161 @@
+{
+  "accepted_revision": "b2858db72f22549bb95fb9e54320ea311b8759ed",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T15:02:41Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 243.839,
+    "observed": {
+      "added_lines": 251,
+      "audited_declarations": {
+        "LeanFrontier.ProbabilityTheory.measure_limsup_eq_one_of_pairwise_indep": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.ProbabilityTheory.measure_limsup_eq_one_of_pairwise_indep",
+          "restatement": false,
+          "statement_sha256": "26b2df8bcad1368cf06226d9961b86f63ffde2446638a5d245f90547ad488c0d",
+          "type_dependencies": [
+            "CompleteAtomicBooleanAlgebra.toCompleteBooleanAlgebra",
+            "CompleteBooleanAlgebra.toCompleteLattice",
+            "CompleteLattice.toConditionallyCompleteLattice",
+            "DFunLike.coe",
+            "ENNReal",
+            "ENNReal.instOne",
+            "Eq",
+            "Filter.Tendsto",
+            "Filter.atTop",
+            "Filter.limsup",
+            "Finset.range",
+            "Finset.sum",
+            "MeasurableSet",
+            "MeasurableSpace",
+            "MeasureTheory.IsProbabilityMeasure",
+            "MeasureTheory.Measure",
+            "MeasureTheory.Measure.instFunLike",
+            "MeasureTheory.Measure.real",
+            "Nat",
+            "Nat.instPreorder",
+            "Ne",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "ProbabilityTheory.IndepSet",
+            "Real",
+            "Real.instAddCommMonoid",
+            "Real.instPreorder",
+            "Set",
+            "Set.instCompleteAtomicBooleanAlgebra"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.ProbabilityTheory.measure_limsup_eq_one_of_pairwise_indep": [
+            {
+              "outcome": "failed",
+              "seconds": 5.211,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.199,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.325,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.169,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.123,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.051,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 31.078,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.ProbabilityTheory.measure_limsup_eq_one_of_pairwise_indep": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 10809,
+      "changed_files": [
+        "LeanFrontier/Probability/PairwiseBorelCantelli.lean",
+        "Submissions/pairwise-borel-cantelli.json"
+      ],
+      "corpus_entrypoints_checked": 212,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.ProbabilityTheory.measure_limsup_eq_one_of_pairwise_indep": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.ProbabilityTheory.measure_limsup_eq_one_of_pairwise_indep",
+          "statement_sha256": "26b2df8bcad1368cf06226d9961b86f63ffde2446638a5d245f90547ad488c0d",
+          "type_dependencies": [
+            "CompleteAtomicBooleanAlgebra.toCompleteBooleanAlgebra",
+            "CompleteBooleanAlgebra.toCompleteLattice",
+            "CompleteLattice.toConditionallyCompleteLattice",
+            "DFunLike.coe",
+            "ENNReal",
+            "ENNReal.instOne",
+            "Eq",
+            "Filter.Tendsto",
+            "Filter.atTop",
+            "Filter.limsup",
+            "Finset.range",
+            "Finset.sum",
+            "MeasurableSet",
+            "MeasurableSpace",
+            "MeasureTheory.IsProbabilityMeasure",
+            "MeasureTheory.Measure",
+            "MeasureTheory.Measure.instFunLike",
+            "MeasureTheory.Measure.real",
+            "Nat",
+            "Nat.instPreorder",
+            "Ne",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "ProbabilityTheory.IndepSet",
+            "Real",
+            "Real.instAddCommMonoid",
+            "Real.instPreorder",
+            "Set",
+            "Set.instCompleteAtomicBooleanAlgebra"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 9346,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 10
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "pairwise-borel-cantelli",
+  "trusted_receiver_revision": "a1906c320d6a9ea90dc79a2cf3ac96d2ce62312e",
+  "validated_candidate_revision": "63916e5887087ad5ddbe153022cc3183a7573968",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36121039326"
+}
