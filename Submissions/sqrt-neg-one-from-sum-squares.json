@@ -10,7 +10,7 @@
   "statement_origin": "machine",
   "proof_origin": "machine",
   "entrypoints": [
-    "LeanFrontier.exists_sq_modEq_neg_one_of_isCoprime_of_dvd_sq_add_sq"
+    "LeanFrontier.Int.exists_sq_modEq_neg_one_of_isCoprime_of_dvd_sq_add_sq"
   ],
   "base_mathlib_revision": "v4.34.0",
   "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue building mathematical machinery useful for eventual work on the Frobenius/Markov uniqueness conjecture. GPT-5.6 Sol / ChatGPT identified a generic arithmetic bridge that can be formalized independently of pending Markov submissions: if m divides u^2+v^2 and m is coprime to v, then -1 has a square root modulo m. Searches of the pinned Mathlib tree found no theorem matching this coprime-sum-of-two-squares-to-ModEq bridge. The proof avoids quotient-ring inversion: a Bezout identity a*m+b*v=1 supplies an explicit modular inverse coefficient b, and r=u*b satisfies r^2+1 divisible by m after substituting both the Bezout identity and the divisibility hypothesis. This generic theorem is intended to combine later with Markov pairwise coprimality and coordinate sum-square divisibility. GPT-5.6 Sol / ChatGPT selected the target and authored the theorem and proof; the human did not choose or materially edit them. No claim of new mathematics is made."
