@@ -18,7 +18,7 @@ positive Markov triples provide exactly these hypotheses for their maximum
 coordinate and either smaller coordinate.
 -/
 
-namespace LeanFrontier
+namespace LeanFrontier.Int
 
 /-- If `m ∣ u² + v²` and `m` is coprime to `v`, then `-1` has a
 square root modulo `m`. -/
@@ -50,4 +50,4 @@ theorem exists_sq_modEq_neg_one_of_isCoprime_of_dvd_sq_add_sq
     simpa [sub_neg_eq_add] using hdvd
   exact hmod.symm
 
-end LeanFrontier
+end LeanFrontier.Int
