@@ -1,0 +1,573 @@
+{
+  "accepted_revision": "ca8b06882d1bb98ec03309430b7e4574e3ea2653",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T18:44:29Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 355.359,
+    "observed": {
+      "added_lines": 142,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.OrientedNode": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "inductive",
+          "name": "LeanFrontier.MarkovTree.OrientedNode",
+          "restatement": false,
+          "statement_sha256": "d1ee2932d8f5566f1956b7ecac5161067e0f964f5d2844fa7cf958746e24f296",
+          "type_dependencies": []
+        },
+        "LeanFrontier.MarkovTree.child_false_markovNumber_lt_child_true_iff": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.child_false_markovNumber_lt_child_true_iff",
+          "restatement": false,
+          "statement_sha256": "029780be23604abac44c8ba455d3071e32320321cafce158de6e3674dd4991a7",
+          "type_dependencies": [
+            "Bool.false",
+            "Bool.true",
+            "Iff",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.forwardCoordinate",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.child"
+          ]
+        },
+        "LeanFrontier.MarkovTree.child_markovNumber_eq_iff_forwardCoordinate_eq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.child_markovNumber_eq_iff_forwardCoordinate_eq",
+          "restatement": false,
+          "statement_sha256": "eb4c5ec850fe17de7bcae8d5a1d7ff6e8e88a2d749c3fe93ca727d5efbc840b5",
+          "type_dependencies": [
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "Iff",
+            "Int",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.forwardCoordinate",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.child"
+          ]
+        },
+        "LeanFrontier.MarkovTree.child_markovNumber_formula": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.child_markovNumber_formula",
+          "restatement": false,
+          "statement_sha256": "df67f8e3ac9a01bf69ef14d63ab1e2fe760cef11d973d3a723f5d11b8b66a8fc",
+          "type_dependencies": [
+            "Bool",
+            "Bool.not",
+            "Eq",
+            "HMul.hMul",
+            "HSub.hSub",
+            "Int",
+            "Int.instMul",
+            "Int.instSub",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.forwardCoordinate",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.child",
+            "OfNat.ofNat",
+            "instHMul",
+            "instHSub",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.child_markovNumber_sub_child_markovNumber": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.child_markovNumber_sub_child_markovNumber",
+          "restatement": false,
+          "statement_sha256": "c05a58b6e4af7eb0abddd7d01bc047ed367f6ea1eb6d2a2d6cbba6834048a1ed",
+          "type_dependencies": [
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "Int",
+            "Int.instAdd",
+            "Int.instMul",
+            "Int.instSub",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.forwardCoordinate",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.child",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.forwardCoordinate_pos": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.forwardCoordinate_pos",
+          "restatement": false,
+          "statement_sha256": "6f304fcfc2c0f8fb2ec6456b6a7b9d9b0444475645271e7a843e7ca717efe95b",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.forwardCoordinate",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovNumber_pos": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovNumber_pos",
+          "restatement": false,
+          "statement_sha256": "ff73c286e1c1117ebc37b89c39934799ad9748aeb246ca260f1def2ff08379f1",
+          "type_dependencies": [
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.three_mul_markovNumber_add_one_pos": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.three_mul_markovNumber_add_one_pos",
+          "restatement": false,
+          "statement_sha256": "12530eab07de5c723c4961fb79b1f81ee4395be0f70c6b355596dd101bd30048",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "Int",
+            "Int.instAdd",
+            "Int.instLTInt",
+            "Int.instMul",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHMul",
+            "instOfNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 36,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.child_false_markovNumber_lt_child_true_iff": [
+            {
+              "outcome": "failed",
+              "seconds": 4.537,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.535,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.513,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.583,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.551,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.56,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.child_markovNumber_eq_iff_forwardCoordinate_eq": [
+            {
+              "outcome": "failed",
+              "seconds": 4.55,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.547,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.54,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.519,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.517,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.515,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.child_markovNumber_formula": [
+            {
+              "outcome": "failed",
+              "seconds": 4.447,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.449,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.452,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.402,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.394,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.431,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.child_markovNumber_sub_child_markovNumber": [
+            {
+              "outcome": "failed",
+              "seconds": 4.573,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.57,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.565,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.581,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.515,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.585,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.forwardCoordinate_pos": [
+            {
+              "outcome": "failed",
+              "seconds": 4.193,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.218,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.281,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.235,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.257,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.271,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.markovNumber_pos": [
+            {
+              "outcome": "failed",
+              "seconds": 4.396,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.21,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.233,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.264,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.273,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.272,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 159.534,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.child_false_markovNumber_lt_child_true_iff": "inconclusive",
+        "LeanFrontier.MarkovTree.child_markovNumber_eq_iff_forwardCoordinate_eq": "inconclusive",
+        "LeanFrontier.MarkovTree.child_markovNumber_formula": "inconclusive",
+        "LeanFrontier.MarkovTree.child_markovNumber_sub_child_markovNumber": "inconclusive",
+        "LeanFrontier.MarkovTree.forwardCoordinate_pos": "inconclusive",
+        "LeanFrontier.MarkovTree.markovNumber_pos": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 7658,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/ChildLabels.lean",
+        "Submissions/markov-child-label-algebra.json"
+      ],
+      "corpus_entrypoints_checked": 235,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.child_false_markovNumber_lt_child_true_iff": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.child_false_markovNumber_lt_child_true_iff",
+          "statement_sha256": "029780be23604abac44c8ba455d3071e32320321cafce158de6e3674dd4991a7",
+          "type_dependencies": [
+            "Bool.false",
+            "Bool.true",
+            "Iff",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.forwardCoordinate",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.child"
+          ]
+        },
+        "LeanFrontier.MarkovTree.child_markovNumber_eq_iff_forwardCoordinate_eq": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.child_markovNumber_eq_iff_forwardCoordinate_eq",
+          "statement_sha256": "eb4c5ec850fe17de7bcae8d5a1d7ff6e8e88a2d749c3fe93ca727d5efbc840b5",
+          "type_dependencies": [
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "Iff",
+            "Int",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.forwardCoordinate",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.child"
+          ]
+        },
+        "LeanFrontier.MarkovTree.child_markovNumber_formula": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.child_markovNumber_formula",
+          "statement_sha256": "df67f8e3ac9a01bf69ef14d63ab1e2fe760cef11d973d3a723f5d11b8b66a8fc",
+          "type_dependencies": [
+            "Bool",
+            "Bool.not",
+            "Eq",
+            "HMul.hMul",
+            "HSub.hSub",
+            "Int",
+            "Int.instMul",
+            "Int.instSub",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.forwardCoordinate",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.child",
+            "OfNat.ofNat",
+            "instHMul",
+            "instHSub",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.child_markovNumber_sub_child_markovNumber": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.child_markovNumber_sub_child_markovNumber",
+          "statement_sha256": "c05a58b6e4af7eb0abddd7d01bc047ed367f6ea1eb6d2a2d6cbba6834048a1ed",
+          "type_dependencies": [
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "Int",
+            "Int.instAdd",
+            "Int.instMul",
+            "Int.instSub",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.forwardCoordinate",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "LeanFrontier.MarkovTree.child",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.forwardCoordinate_pos": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.forwardCoordinate_pos",
+          "statement_sha256": "6f304fcfc2c0f8fb2ec6456b6a7b9d9b0444475645271e7a843e7ca717efe95b",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.forwardCoordinate",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovNumber_pos": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovNumber_pos",
+          "statement_sha256": "ff73c286e1c1117ebc37b89c39934799ad9748aeb246ca260f1def2ff08379f1",
+          "type_dependencies": [
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 5584,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 8
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-child-label-algebra",
+  "trusted_receiver_revision": "f8c4d5c9eaf075cc82352166321eba6b0c9b3a5e",
+  "validated_candidate_revision": "6bbcad2539dcc4edd5bf8cbe7d9b61472dc444be",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36174360816"
+}
