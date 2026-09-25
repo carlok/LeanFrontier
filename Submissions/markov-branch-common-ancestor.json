@@ -1,0 +1,25 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-branch-common-ancestor",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.commonPrefix_isPrefix_left",
+    "LeanFrontier.MarkovTree.commonPrefix_isPrefix_right",
+    "LeanFrontier.MarkovTree.isPrefix_commonPrefix",
+    "LeanFrontier.MarkovTree.commonAncestor_isSuffix_left",
+    "LeanFrontier.MarkovTree.commonAncestor_isSuffix_right",
+    "LeanFrontier.MarkovTree.isSuffix_commonAncestor",
+    "LeanFrontier.MarkovTree.commonAncestor_eq_left_iff",
+    "LeanFrontier.MarkovTree.commonAncestor_eq_right_iff",
+    "LeanFrontier.MarkovTree.commonAncestor_comm"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue developing mathematical machinery before directly attacking the Markov uniqueness open problem. Live upstream main remained a1906c320d6a9ea90dc79a2cf3ac96d2ce62312e, with the Markov uniqueness conjecture and Markov-number monotonicity still pending independently as PRs #341 and #342. To avoid depending on either unmerged branch, GPT-5.6 Sol / ChatGPT selected a purely combinatorial structural layer over the already accepted sternNode path convention. In that convention, prepending a Boolean direction moves away from the root, so ancestry is suffix order. The new module defines a Boolean longest common prefix with its universal property, transports it through reversal to define commonAncestor, and proves that commonAncestor is a suffix of both paths and is greatest among their common suffixes. It also proves the expected ancestor characterizations and symmetry. This provides a canonical least/common branch point for later collision arguments: future Markov-number equalities can be localized below the deepest shared ancestor rather than handled as arbitrary path pairs. GPT-5.6 Sol / ChatGPT selected the target and API and authored all Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
