@@ -1,0 +1,20 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-stern-state-injectivity",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.state_mass_lt_child",
+    "LeanFrontier.MarkovTree.orientedNode_eq_of_state_eq",
+    "LeanFrontier.MarkovTree.sternNode_state_injective",
+    "LeanFrontier.MarkovTree.sternBrocot_pair_eq_iff_sternNode_state_eq"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to attack the next LeanFrontier target. GPT-5.6 Sol / ChatGPT inspected live upstream main, the current contribution-directions document, open pull requests, and the accepted Markov/Farey corpus. It found the roadmap lagging accepted work: the logistic conjugacy, oriented Markov tree, Stern-Brocot bridge, three-branch coverage, and cyclic symmetry were already on main. It therefore selected the next structural gap in that line: prove that the canonical Stern-Brocot path embedding is injective at the level of full labelled Markov states, not merely erased move words. The proof uses the accepted orientation invariant: a child has strictly larger coordinate mass than its parent, while the distinguished back move descends. This forces the back edge from the state itself, lets a child state reconstruct its parent, and supports induction proving distinct Stern-Brocot paths cannot merge. The final theorem equates equality of Stern-Brocot pairs with equality of the attached full Markov triples. The development explicitly does not claim that a maximum-coordinate Markov number determines the triple, so it does not cross the Frobenius/Markov uniqueness boundary. GPT-5.6 Sol / ChatGPT selected the target and API and authored the Lean statements and proofs; the human did not materially edit them. No claim of new mathematics is made."
+}

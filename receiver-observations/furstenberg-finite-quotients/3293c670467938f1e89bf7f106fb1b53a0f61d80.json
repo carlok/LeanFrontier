@@ -1,0 +1,314 @@
+{
+  "accepted_revision": "3293c670467938f1e89bf7f106fb1b53a0f61d80",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T08:16:00Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 267.396,
+    "observed": {
+      "added_lines": 122,
+      "audited_declarations": {
+        "LeanFrontier.Int.arithProgression_eq_zmodReduction_fiber": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.arithProgression_eq_zmodReduction_fiber",
+          "restatement": false,
+          "statement_sha256": "0c5431bc2fc6986b498574f8bddf1973b1b316773c552d734f78e592b66e7fb4",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "LeanFrontier.Int.arithProgression",
+            "LeanFrontier.Int.zmodReduction",
+            "Nat",
+            "Nat.cast",
+            "Set",
+            "Set.instSingletonSet",
+            "Set.preimage",
+            "Singleton.singleton",
+            "ZMod",
+            "instNatCastInt"
+          ]
+        },
+        "LeanFrontier.Int.continuous_zmodReduction": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.continuous_zmodReduction",
+          "restatement": false,
+          "statement_sha256": "e8b56aedca5a06f10b9a1c6155a845a4599fc895de8bf21ba64d51bd94a494d0",
+          "type_dependencies": [
+            "Bot.bot",
+            "BoundedOrder.toOrderBot",
+            "CompleteLattice.toBoundedOrder",
+            "CompleteLattice.toLattice",
+            "Continuous",
+            "Int",
+            "Lattice.toSemilatticeSup",
+            "LeanFrontier.Int.furstenbergTopology",
+            "LeanFrontier.Int.zmodReduction",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "OrderBot.toBot",
+            "PartialOrder.toPreorder",
+            "Preorder.toLE",
+            "SemilatticeSup.toPartialOrder",
+            "TopologicalSpace",
+            "TopologicalSpace.instCompleteLattice",
+            "ZMod",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Int.furstenbergTopology_eq_finiteQuotientTopology": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.furstenbergTopology_eq_finiteQuotientTopology",
+          "restatement": false,
+          "statement_sha256": "56634780bf261d2bed1d5d8b9c843dce8baaf53554ae72a0c66e777b4368926e",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "LeanFrontier.Int.finiteQuotientTopology",
+            "LeanFrontier.Int.furstenbergTopology",
+            "TopologicalSpace"
+          ]
+        },
+        "LeanFrontier.Int.zmodReduction": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Int.zmodReduction",
+          "restatement": false,
+          "statement_sha256": "d12a9aa9be627e5b39c3d0df16b8a956ac3ca90c0220b5ce0ba0eb98e3f3bb8d",
+          "type_dependencies": [
+            "Int",
+            "Nat",
+            "ZMod"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 18,
+        "by_entrypoint": {
+          "LeanFrontier.Int.arithProgression_eq_zmodReduction_fiber": [
+            {
+              "outcome": "failed",
+              "seconds": 5.196,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.091,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.146,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.149,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.113,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.125,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Int.continuous_zmodReduction": [
+            {
+              "outcome": "failed",
+              "seconds": 5.156,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.114,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.171,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.185,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.219,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.251,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Int.furstenbergTopology_eq_finiteQuotientTopology": [
+            {
+              "outcome": "failed",
+              "seconds": 5.176,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.273,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.109,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.133,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.015,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.03,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 92.652,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Int.arithProgression_eq_zmodReduction_fiber": "inconclusive",
+        "LeanFrontier.Int.continuous_zmodReduction": "inconclusive",
+        "LeanFrontier.Int.furstenbergTopology_eq_finiteQuotientTopology": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 6729,
+      "changed_files": [
+        "LeanFrontier/Topology/FurstenbergQuotients.lean",
+        "Submissions/furstenberg-finite-quotients.json"
+      ],
+      "corpus_entrypoints_checked": 194,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Int.arithProgression_eq_zmodReduction_fiber": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.arithProgression_eq_zmodReduction_fiber",
+          "statement_sha256": "0c5431bc2fc6986b498574f8bddf1973b1b316773c552d734f78e592b66e7fb4",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "LeanFrontier.Int.arithProgression",
+            "LeanFrontier.Int.zmodReduction",
+            "Nat",
+            "Nat.cast",
+            "Set",
+            "Set.instSingletonSet",
+            "Set.preimage",
+            "Singleton.singleton",
+            "ZMod",
+            "instNatCastInt"
+          ]
+        },
+        "LeanFrontier.Int.continuous_zmodReduction": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.continuous_zmodReduction",
+          "statement_sha256": "e8b56aedca5a06f10b9a1c6155a845a4599fc895de8bf21ba64d51bd94a494d0",
+          "type_dependencies": [
+            "Bot.bot",
+            "BoundedOrder.toOrderBot",
+            "CompleteLattice.toBoundedOrder",
+            "CompleteLattice.toLattice",
+            "Continuous",
+            "Int",
+            "Lattice.toSemilatticeSup",
+            "LeanFrontier.Int.furstenbergTopology",
+            "LeanFrontier.Int.zmodReduction",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "OrderBot.toBot",
+            "PartialOrder.toPreorder",
+            "Preorder.toLE",
+            "SemilatticeSup.toPartialOrder",
+            "TopologicalSpace",
+            "TopologicalSpace.instCompleteLattice",
+            "ZMod",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Int.furstenbergTopology_eq_finiteQuotientTopology": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.furstenbergTopology_eq_finiteQuotientTopology",
+          "statement_sha256": "56634780bf261d2bed1d5d8b9c843dce8baaf53554ae72a0c66e777b4368926e",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "LeanFrontier.Int.finiteQuotientTopology",
+            "LeanFrontier.Int.furstenbergTopology",
+            "TopologicalSpace"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 4914,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 5
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "furstenberg-finite-quotients",
+  "trusted_receiver_revision": "b617c0dd5603456577d217156fc2337ee15cbdfb",
+  "validated_candidate_revision": "33d7865f374158c041b3a2d017f9e028a7ec65ee",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36111280467"
+}

@@ -1,0 +1,211 @@
+{
+  "accepted_revision": "a2cfb113a19f249c0ed9eb677491644778ee62ab",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T08:06:04Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 254.582,
+    "observed": {
+      "added_lines": 100,
+      "audited_declarations": {
+        "LeanFrontier.Int.continuous_add_furstenberg": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.continuous_add_furstenberg",
+          "restatement": false,
+          "statement_sha256": "e71a39cd41a52fa959298bf2d7d0efd645cad576ebf2b670424ac9b53009ab9b",
+          "type_dependencies": [
+            "Continuous",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "LeanFrontier.Int.furstenbergTopology",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instHAdd",
+            "instTopologicalSpaceProd"
+          ]
+        },
+        "LeanFrontier.Int.continuous_neg_furstenberg": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.continuous_neg_furstenberg",
+          "restatement": false,
+          "statement_sha256": "ff5b6b5d3a8dfaf3c12667c039e15de828cb65f6b50536a59c8dbf63b25b0d98",
+          "type_dependencies": [
+            "Continuous",
+            "Int",
+            "Int.instNegInt",
+            "LeanFrontier.Int.furstenbergTopology",
+            "Neg.neg"
+          ]
+        },
+        "LeanFrontier.Int.furstenbergAddGroupTopology": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Int.furstenbergAddGroupTopology",
+          "restatement": false,
+          "statement_sha256": "9bea2b5ae25e1610809e396e7e8c11457874e5bffd1cd17f0f0052a02e6347fc",
+          "type_dependencies": [
+            "AddGroupTopology",
+            "Int",
+            "Int.instAddGroup"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.Int.continuous_add_furstenberg": [
+            {
+              "outcome": "failed",
+              "seconds": 6.008,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.972,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.94,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.91,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.03,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.938,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Int.continuous_neg_furstenberg": [
+            {
+              "outcome": "failed",
+              "seconds": 6.059,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.998,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.085,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.964,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.908,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.939,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 71.751,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Int.continuous_add_furstenberg": "inconclusive",
+        "LeanFrontier.Int.continuous_neg_furstenberg": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 5621,
+      "changed_files": [
+        "LeanFrontier/Topology/FurstenbergAlgebra.lean",
+        "Submissions/furstenberg-add-group.json"
+      ],
+      "corpus_entrypoints_checked": 192,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Int.continuous_add_furstenberg": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.continuous_add_furstenberg",
+          "statement_sha256": "e71a39cd41a52fa959298bf2d7d0efd645cad576ebf2b670424ac9b53009ab9b",
+          "type_dependencies": [
+            "Continuous",
+            "HAdd.hAdd",
+            "Int",
+            "Int.instAdd",
+            "LeanFrontier.Int.furstenbergTopology",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instHAdd",
+            "instTopologicalSpaceProd"
+          ]
+        },
+        "LeanFrontier.Int.continuous_neg_furstenberg": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.continuous_neg_furstenberg",
+          "statement_sha256": "ff5b6b5d3a8dfaf3c12667c039e15de828cb65f6b50536a59c8dbf63b25b0d98",
+          "type_dependencies": [
+            "Continuous",
+            "Int",
+            "Int.instNegInt",
+            "LeanFrontier.Int.furstenbergTopology",
+            "Neg.neg"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3930,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 6
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "furstenberg-add-group",
+  "trusted_receiver_revision": "6fd259452c39680e84a3f996a826598ff05cb34e",
+  "validated_candidate_revision": "8a6bf7a87ac50bb161556b4483eb9ccad3879f21",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36110444075"
+}
