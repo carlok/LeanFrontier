@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import subprocess
+from datetime import date
 from pathlib import Path
 
 
@@ -27,6 +28,7 @@ def allowed(path: str) -> bool:
         "LeanFrontier.lean",
         "docs/catalogue/index.html",
         "experiments/launcher-ab.csv",
+        "experiments/accumulation.csv",
     } or (
         path.startswith("receiver-observations/") and path.endswith(".json")
     )
@@ -46,6 +48,39 @@ def validate_observation(path: Path, root: Path) -> None:
     entrypoints = report.get("observed", {}).get("entrypoints", {})
     if set(claim.get("entrypoints", [])) != set(entrypoints):
         raise ValueError(f"observation entrypoints mismatch immutable claim: {path}")
+
+
+def validate_accumulation(base: Path, candidate: Path) -> None:
+    """The series can only grow: rows already published never change.
+
+    It cannot be regenerated here, because it is computed from the default
+    branch's full history and this checkout is shallow. What can be checked is
+    the property that makes it trustworthy: each row describes a commit that is
+    already on main, so a writer only ever appends.
+    """
+    from generate_accumulation_series import DESTINATION, HEADER
+
+    before_path = base / DESTINATION
+    before = before_path.read_text(encoding="utf-8") if before_path.exists() else HEADER
+    after = (candidate / DESTINATION).read_text(encoding="utf-8")
+    if not after.startswith(before) or not after.startswith(HEADER):
+        raise ValueError("accumulation series may only gain rows; an existing row or its header changed")
+    published = {line.split(",")[1] for line in before[len(HEADER):].splitlines()}
+    for line in after[len(before):].splitlines():
+        fields = line.split(",")
+        if len(fields) != 10:
+            raise ValueError(f"malformed accumulation row: {line!r}")
+        day, submission, modules, edges, per_module, connected, in_degree, depth, recent, add_only = fields
+        date.fromisoformat(day)
+        if submission in published or not (candidate / "Submissions" / f"{submission}.json").is_file():
+            raise ValueError(f"accumulation row for an unknown or repeated submission: {submission}")
+        published.add(submission)
+        for number in (modules, edges, in_degree, depth):
+            int(number)
+        for number in (per_module, connected):
+            float(number)
+        if recent not in {"true", "false"} or add_only not in {"true", "false"}:
+            raise ValueError(f"malformed accumulation row: {line!r}")
 
 
 def main() -> int:
@@ -69,6 +104,8 @@ def main() -> int:
         subprocess.run(["python3", str(ROOT / "tools" / "generate_catalogue.py"), "--root", str(args.candidate), "--check"], check=True)
     if "experiments/launcher-ab.csv" in paths:
         subprocess.run(["python3", str(ROOT / "tools" / "generate_experiment_ledger.py"), "--root", str(args.candidate), "--check"], check=True)
+    if "experiments/accumulation.csv" in paths:
+        validate_accumulation(args.base, args.candidate)
     for relative in paths:
         if relative.startswith("receiver-observations/"):
             validate_observation(args.candidate / relative, args.candidate)

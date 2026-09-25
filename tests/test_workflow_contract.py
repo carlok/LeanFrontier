@@ -414,6 +414,15 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("generate_accumulation_series.py", OBSERVATION_WORKFLOW)
         self.assertIn("git fetch --quiet --unshallow origin", OBSERVATION_WORKFLOW)
         self.assertIn("experiments/launcher-ab.csv", OBSERVATION_WORKFLOW)
+        # Regenerating a file is not publishing it. From #301 to this test the
+        # series was rebuilt after every merge and then left out of the commit,
+        # so it froze at the day it was introduced while looking maintained.
+        staged = [line.strip() for line in OBSERVATION_WORKFLOW.splitlines()
+                  if line.strip().startswith(("git add ", "git diff --quiet -- "))]
+        self.assertEqual(len(staged), 2, staged)
+        for line in staged:
+            self.assertIn("experiments/launcher-ab.csv", line)
+            self.assertIn("experiments/accumulation.csv", line)
         # The catalogue writer must not also claim it, or the two race.
         self.assertNotIn("generate_experiment_ledger.py", CATALOGUE_WORKFLOW)
 
