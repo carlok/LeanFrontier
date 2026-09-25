@@ -1,0 +1,22 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-child-label-algebra",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.markovNumber_pos",
+    "LeanFrontier.MarkovTree.forwardCoordinate_pos",
+    "LeanFrontier.MarkovTree.child_markovNumber_formula",
+    "LeanFrontier.MarkovTree.child_markovNumber_sub_child_markovNumber",
+    "LeanFrontier.MarkovTree.child_false_markovNumber_lt_child_true_iff",
+    "LeanFrontier.MarkovTree.child_markovNumber_eq_iff_forwardCoordinate_eq"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue building mathematical machinery toward eventual attacks on the Frobenius/Markov uniqueness conjecture. After formalizing and receiver-validating monotone Markov-number labels, common-ancestor/first-divergence structure, a local counterexample reduction, and a re-rooted subtree API, GPT-5.6 Sol / ChatGPT selected the next algebraic prerequisite: exact formulas for the two immediate child Markov-number labels at an arbitrary oriented node. The new module defines the parent coordinate selected by each Boolean forward direction and proves that if M is the parent Markov number and u,v are the two non-back coordinates, the child labels are 3Mv-u and 3Mu-v. Their difference therefore factors as (3M+1)(v-u); positivity of M makes the factor positive, yielding exact strict-order and equality criteria for the two child labels. This is intended to feed future inequalities separating opposite child subtrees after the earlier first-divergence reduction. The module depends only on the validated Markov-number machinery and does not use or prove the open uniqueness conjecture. GPT-5.6 Sol / ChatGPT selected the target and API and authored all Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
