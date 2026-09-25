@@ -23,15 +23,16 @@ arguments.
 
 namespace LeanFrontier.MarkovTree
 
-private def hasModFourPattern (s : State) : Prop :=
+/-- The four residue patterns modulo four that occur for positive Markov triples. -/
+def ModFourPattern (s : State) : Prop :=
   (((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 1) ∨
    ((s.x : ZMod 4) = 2 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 1) ∨
    ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 2 ∧ (s.z : ZMod 4) = 1) ∨
    ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 2))
 
-private theorem hasModFourPattern_move (m : Move) {s : State}
-    (h : hasModFourPattern s) :
-    hasModFourPattern (move m s) := by
+private theorem ModFourPattern_move (m : Move) {s : State}
+    (h : ModFourPattern s) :
+    ModFourPattern (move m s) := by
   have h5 : (5 : ZMod 4) = 1 := by
     change ((5 : ℕ) : ZMod 4) = ((1 : ℕ) : ZMod 4)
     rw [ZMod.natCast_eq_natCast_iff']
@@ -47,34 +48,34 @@ private theorem hasModFourPattern_move (m : Move) {s : State}
     calc
       (3 : ZMod 4) * 2 - 1 = 5 := by ring
       _ = 1 := h5
-  unfold hasModFourPattern at h ⊢
+  unfold ModFourPattern at h ⊢
   rcases s with ⟨x, y, z⟩
   rcases h with h | h | h | h <;>
     rcases h with ⟨hx, hy, hz⟩ <;>
     cases m <;>
     simp [move, MarkovEquation.jump, hx, hy, hz, h21, h12, h31, h32, h321]
 
-private theorem hasModFourPattern_walk (path : List Move) {s : State}
-    (h : hasModFourPattern s) :
-    hasModFourPattern (walk path s) := by
+private theorem ModFourPattern_walk (path : List Move) {s : State}
+    (h : ModFourPattern s) :
+    ModFourPattern (walk path s) := by
   induction path generalizing s with
   | nil =>
       simpa [walk] using h
   | cons m path ih =>
       simp only [walk]
-      exact ih (hasModFourPattern_move m h)
+      exact ih (ModFourPattern_move m h)
 
-private theorem hasModFourPattern_of_positive_solution
+private theorem ModFourPattern_of_positive_solution
     (s : State)
     (hx : 0 < s.x) (hy : 0 < s.y) (hz : 0 < s.z)
     (hsol : s.IsSolution) :
-    hasModFourPattern s := by
+    ModFourPattern s := by
   obtain ⟨path, hpath⟩ :=
     exists_walk_from_root_of_positive_solution s hx hy hz hsol
-  have hroot : hasModFourPattern (State.mk 1 1 1) := by
-    unfold hasModFourPattern
+  have hroot : ModFourPattern (State.mk 1 1 1) := by
+    unfold ModFourPattern
     norm_num
-  have hwalk := hasModFourPattern_walk path hroot
+  have hwalk := ModFourPattern_walk path hroot
   rw [hpath] at hwalk
   exact hwalk
 
@@ -84,12 +85,8 @@ theorem modFourPattern_of_positive_solution
     (s : State)
     (hx : 0 < s.x) (hy : 0 < s.y) (hz : 0 < s.z)
     (hsol : s.IsSolution) :
-    (((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 1) ∨
-     ((s.x : ZMod 4) = 2 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 1) ∨
-     ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 2 ∧ (s.z : ZMod 4) = 1) ∨
-     ((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 2)) := by
-  change hasModFourPattern s
-  exact hasModFourPattern_of_positive_solution s hx hy hz hsol
+    ModFourPattern s := by
+  exact ModFourPattern_of_positive_solution s hx hy hz hsol
 
 /-- If the third coordinate of a positive Markov triple is even, then it is `2 mod 4`, while
 the other two coordinates are both `1 mod 4`. -/
@@ -111,6 +108,7 @@ theorem modFour_of_even_third_coordinate
     have hmap :=
       congrArg (ZMod.castHom (by norm_num : 2 ∣ 4) (ZMod 2)) hz1
     simp [hz0] at hmap
+  unfold ModFourPattern at hpattern
   rcases hpattern with h | h | h | h
   · exact (hz_ne_one h.2.2).elim
   · exact (hz_ne_one h.2.2).elim
