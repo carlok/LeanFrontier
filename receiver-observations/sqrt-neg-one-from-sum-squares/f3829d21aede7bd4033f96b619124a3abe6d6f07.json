@@ -1,0 +1,141 @@
+{
+  "accepted_revision": "f3829d21aede7bd4033f96b619124a3abe6d6f07",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T19:24:29Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 224.867,
+    "observed": {
+      "added_lines": 57,
+      "audited_declarations": {
+        "LeanFrontier.Int.exists_sq_modEq_neg_one_of_isCoprime_of_dvd_sq_add_sq": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.exists_sq_modEq_neg_one_of_isCoprime_of_dvd_sq_add_sq",
+          "restatement": false,
+          "statement_sha256": "acb96b1358222ddfde543b29834e09d9c291d02337f7ad2250bfcb73c4d8f2de",
+          "type_dependencies": [
+            "Dvd.dvd",
+            "Exists",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "Int",
+            "Int.ModEq",
+            "Int.instAdd",
+            "Int.instCommSemiring",
+            "Int.instDvd",
+            "Int.instMonoid",
+            "Int.instNegInt",
+            "IsCoprime",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHPow",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.Int.exists_sq_modEq_neg_one_of_isCoprime_of_dvd_sq_add_sq": [
+            {
+              "outcome": "failed",
+              "seconds": 3.98,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.955,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.01,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.026,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.026,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.025,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 24.022,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Int.exists_sq_modEq_neg_one_of_isCoprime_of_dvd_sq_add_sq": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 3349,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SquareRootNegOne.lean",
+        "Submissions/sqrt-neg-one-from-sum-squares.json"
+      ],
+      "corpus_entrypoints_checked": 253,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Int.exists_sq_modEq_neg_one_of_isCoprime_of_dvd_sq_add_sq": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.exists_sq_modEq_neg_one_of_isCoprime_of_dvd_sq_add_sq",
+          "statement_sha256": "acb96b1358222ddfde543b29834e09d9c291d02337f7ad2250bfcb73c4d8f2de",
+          "type_dependencies": [
+            "Dvd.dvd",
+            "Exists",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "Int",
+            "Int.ModEq",
+            "Int.instAdd",
+            "Int.instCommSemiring",
+            "Int.instDvd",
+            "Int.instMonoid",
+            "Int.instNegInt",
+            "IsCoprime",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHPow",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 1886,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "sqrt-neg-one-from-sum-squares",
+  "trusted_receiver_revision": "b6ddd8ce5e76c1d879e8a62106bb68f17ba489da",
+  "validated_candidate_revision": "ea8554c204f6e11a239512794c76136e1aebd8d1",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36178806410"
+}
