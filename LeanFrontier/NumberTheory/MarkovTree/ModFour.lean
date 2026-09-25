@@ -65,7 +65,9 @@ private theorem ModFourPattern_walk (path : List Move) {s : State}
       simp only [walk]
       exact ih (ModFourPattern_move m h)
 
-private theorem ModFourPattern_of_positive_solution
+/-- Every positive integer Markov triple has, modulo four, either residue pattern
+`(1,1,1)` or a permutation of `(2,1,1)`. -/
+theorem modFourPattern_of_positive_solution
     (s : State)
     (hx : 0 < s.x) (hy : 0 < s.y) (hz : 0 < s.z)
     (hsol : s.IsSolution) :
@@ -78,15 +80,6 @@ private theorem ModFourPattern_of_positive_solution
   have hwalk := ModFourPattern_walk path hroot
   rw [hpath] at hwalk
   exact hwalk
-
-/-- Every positive integer Markov triple has, modulo four, either residue pattern
-`(1,1,1)` or a permutation of `(2,1,1)`. -/
-theorem modFourPattern_of_positive_solution
-    (s : State)
-    (hx : 0 < s.x) (hy : 0 < s.y) (hz : 0 < s.z)
-    (hsol : s.IsSolution) :
-    ModFourPattern s := by
-  exact ModFourPattern_of_positive_solution s hx hy hz hsol
 
 /-- If the third coordinate of a positive Markov triple is even, then it is `2 mod 4`, while
 the other two coordinates are both `1 mod 4`. -/
