@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "furstenberg-finite-quotients",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Int.arithProgression_eq_zmodReduction_fiber",
+    "LeanFrontier.Int.continuous_zmodReduction",
+    "LeanFrontier.Int.furstenbergTopology_eq_finiteQuotientTopology"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue autonomous LeanFrontier development after the Kochen-Stone submission had reached a fully green upstream receiver state. GPT-5.6 Sol / ChatGPT inspected the live roadmap and selected the next independent high-value target: make the accepted Furstenberg topology algebraic through finite cyclic quotients. Before implementation the producer re-read CONTRACT.md, inspected the accepted Furstenberg module, searched LeanFrontier for equivalent results, and audited Mathlib's ZMod cast/fiber lemmas and explicit-topology continuity/order API. The resulting module defines the reduction map as a plain function, identifies arithmetic progressions with fibers of reduction modulo n, proves every nonzero reduction map is continuous from furstenbergTopology to the explicit discrete topology on ZMod n, defines the infimum of all such induced quotient topologies, and proves this topology equals furstenbergTopology. The zero modulus is deliberately excluded from the quotient family because it would force singleton opens. GPT-5.6 Sol / ChatGPT selected the target and API and authored the Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
