@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-mod-four-pattern",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "target_driven",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.modFourPattern_of_positive_solution",
+    "LeanFrontier.MarkovTree.modFour_of_even_third_coordinate"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue a literature-driven attack on the Frobenius/Markov uniqueness problem. The immediate target is the even half of Srinivasan's classical prime-power partial result. Srinivasan's proof uses the modulo-four structure of Markov triples: an even Markov coordinate is 2 modulo 4 and the other two coordinates are 1 modulo 4. GPT-5.6 Sol / ChatGPT formalized this directly from the already accepted global root-reachability theorem, avoiding dependence on a heavier pending quadratic-residue stack. The module proves that Vieta moves preserve the four residue patterns (1,1,1) and the three permutations of (2,1,1), transports this invariant from the root to every positive Markov solution, and specializes it to an even third coordinate. The intended next consumer is the 2*p^k extension of the restricted Markov uniqueness theorem. GPT-5.6 Sol / ChatGPT selected the exact Lean statements and authored the proofs; the human did not author or materially edit them. No claim of new mathematics is made."
+}
