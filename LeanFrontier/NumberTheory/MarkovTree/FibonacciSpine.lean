@@ -37,8 +37,14 @@ successive Vieta jumps along the Markov branch. -/
 theorem markovFib_vieta_recurrence (n : ℕ) :
     markovFib (n + 2) = 3 * markovFib (n + 1) - markovFib n := by
   have h0 := Nat.fib_add_two (n := 2 * n + 1)
+  rw [show 2 * n + 1 + 2 = 2 * n + 3 by omega] at h0
+  rw [show 2 * n + 1 + 1 = 2 * n + 2 by omega] at h0
   have h1 := Nat.fib_add_two (n := 2 * n + 2)
+  rw [show 2 * n + 2 + 2 = 2 * n + 4 by omega] at h1
+  rw [show 2 * n + 2 + 1 = 2 * n + 3 by omega] at h1
   have h2 := Nat.fib_add_two (n := 2 * n + 3)
+  rw [show 2 * n + 3 + 2 = 2 * n + 5 by omega] at h2
+  rw [show 2 * n + 3 + 1 = 2 * n + 4 by omega] at h2
   have hNat :
       Nat.fib (2 * n + 5) + Nat.fib (2 * n + 1) =
         3 * Nat.fib (2 * n + 3) := by
@@ -69,34 +75,39 @@ private theorem fibonacciSpine_even_aux (n : ℕ) :
         simpa [node] using hstate
       have hback' : node.back = .third := by
         simpa [node] using hback
+      have hrec1 :
+          markovFib (2 * n + 2) =
+            3 * markovFib (2 * n + 1) - markovFib (2 * n) := by
+        simpa only using markovFib_vieta_recurrence (2 * n)
       have hfirstState :
           (child node true).state =
             ⟨1, markovFib (2 * n + 2), markovFib (2 * n + 1)⟩ := by
         change move (forwardMove node.back true) node.state =
           ⟨1, markovFib (2 * n + 2), markovFib (2 * n + 1)⟩
         rw [hback', hstate']
-        simp only [forwardMove, move]
-        have hrec := markovFib_vieta_recurrence (2 * n)
-        rw [show 2 * n + 2 = 2 * n + 0 + 2 by omega] at hrec
-        simp only [add_zero] at hrec
-        rw [MarkovEquation.jump]
-        ext <;> simp <;> linarith
+        simp [forwardMove, move, MarkovEquation.jump, hrec1]
       have hfirstBack : (child node true).back = .second := by
-        simp [child, hback', forwardMove]
+        change forwardMove node.back true = .second
+        rw [hback']
+        rfl
+      have hrec2 :
+          markovFib (2 * n + 3) =
+            3 * markovFib (2 * n + 2) - markovFib (2 * n + 1) := by
+        simpa only [
+          show (2 * n + 1) + 2 = 2 * n + 3 by omega,
+          show (2 * n + 1) + 1 = 2 * n + 2 by omega
+        ] using markovFib_vieta_recurrence (2 * n + 1)
       have hsecondState :
           (child (child node true) true).state =
             ⟨1, markovFib (2 * n + 2), markovFib (2 * n + 3)⟩ := by
         change move (forwardMove (child node true).back true) (child node true).state =
           ⟨1, markovFib (2 * n + 2), markovFib (2 * n + 3)⟩
         rw [hfirstBack, hfirstState]
-        simp only [forwardMove, move]
-        have hrec := markovFib_vieta_recurrence (2 * n + 1)
-        rw [show (2 * n + 1) + 1 = 2 * n + 2 by omega] at hrec
-        rw [show (2 * n + 1) + 2 = 2 * n + 3 by omega] at hrec
-        rw [MarkovEquation.jump]
-        ext <;> simp <;> linarith
+        simp [forwardMove, move, MarkovEquation.jump, hrec2]
       have hsecondBack : (child (child node true) true).back = .third := by
-        simp [child, hfirstBack, forwardMove]
+        change forwardMove (child node true).back true = .third
+        rw [hfirstBack]
+        rfl
       have hrepl :
           List.replicate (2 * (n + 1)) true =
             true :: true :: List.replicate (2 * n) true := by
@@ -104,7 +115,10 @@ private theorem fibonacciSpine_even_aux (n : ℕ) :
         rfl
       rw [hrepl, sternNode_cons, sternNode_cons]
       constructor
-      · simpa [node] using hsecondState
+      · simpa only [
+          show 2 * (n + 1) = 2 * n + 2 by omega,
+          show 2 * (n + 1) + 1 = 2 * n + 3 by omega
+        ] using hsecondState
       · simpa [node] using hsecondBack
 
 /-- At every even depth on the all-right Stern-Brocot path, the Markov state is
@@ -127,18 +141,17 @@ theorem sternNode_fibonacciSpine_odd (n : ℕ) :
     simpa [node] using heven.1
   have hback : node.back = .third := by
     simpa [node] using heven.2
+  have hrec :
+      markovFib (2 * n + 2) =
+        3 * markovFib (2 * n + 1) - markovFib (2 * n) := by
+    simpa only using markovFib_vieta_recurrence (2 * n)
   have hchild :
       (child node true).state =
         ⟨1, markovFib (2 * n + 2), markovFib (2 * n + 1)⟩ := by
     change move (forwardMove node.back true) node.state =
       ⟨1, markovFib (2 * n + 2), markovFib (2 * n + 1)⟩
     rw [hback, hstate]
-    simp only [forwardMove, move]
-    have hrec := markovFib_vieta_recurrence (2 * n)
-    rw [show 2 * n + 2 = 2 * n + 0 + 2 by omega] at hrec
-    simp only [add_zero] at hrec
-    rw [MarkovEquation.jump]
-    ext <;> simp <;> linarith
+    simp [forwardMove, move, MarkovEquation.jump, hrec]
   have hrepl :
       List.replicate (2 * n + 1) true =
         true :: List.replicate (2 * n) true := by
