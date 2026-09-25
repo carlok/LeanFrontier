@@ -1,0 +1,348 @@
+{
+  "accepted_revision": "3f8367ee4aa809b304a5a8cf1bfae82cfd69ddb4",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T08:55:26Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 312.814,
+    "observed": {
+      "added_lines": 164,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.markovFib": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.markovFib",
+          "restatement": false,
+          "statement_sha256": "3451edef6dbd848233e291ff93b47e0d8ee39f22d5b98e741135fdad3351d376",
+          "type_dependencies": [
+            "Int",
+            "Nat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovFib_vieta_recurrence": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovFib_vieta_recurrence",
+          "restatement": false,
+          "statement_sha256": "eb6ca9a03b8fe8afc97923c32b07db2e72c19d6bd8893573b983aa1e340820d2",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "Int",
+            "Int.instMul",
+            "Int.instSub",
+            "LeanFrontier.MarkovTree.markovFib",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternNode_fibonacciSpine_even": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternNode_fibonacciSpine_even",
+          "restatement": false,
+          "statement_sha256": "36d0638bb50d4856c86503313a2f01a4a904ba0d5147c946104131f22fbe3a26",
+          "type_dependencies": [
+            "Bool",
+            "Bool.true",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "Int",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.mk",
+            "LeanFrontier.MarkovTree.markovFib",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List.replicate",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instMulNat",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternNode_fibonacciSpine_odd": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternNode_fibonacciSpine_odd",
+          "restatement": false,
+          "statement_sha256": "f0e1f2ab1b0e817f8b0d549c8f6e5ea0562efc077bf85e34c37ad54ca75abd74",
+          "type_dependencies": [
+            "Bool",
+            "Bool.true",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "Int",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.mk",
+            "LeanFrontier.MarkovTree.markovFib",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List.replicate",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instMulNat",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 18,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.markovFib_vieta_recurrence": [
+            {
+              "outcome": "failed",
+              "seconds": 5.63,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.602,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.672,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.547,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.517,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.526,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.sternNode_fibonacciSpine_even": [
+            {
+              "outcome": "failed",
+              "seconds": 5.733,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.824,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.74,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.792,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.704,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.689,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.sternNode_fibonacciSpine_odd": [
+            {
+              "outcome": "failed",
+              "seconds": 5.737,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.557,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.657,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.772,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.754,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.65,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 102.103,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.markovFib_vieta_recurrence": "inconclusive",
+        "LeanFrontier.MarkovTree.sternNode_fibonacciSpine_even": "inconclusive",
+        "LeanFrontier.MarkovTree.sternNode_fibonacciSpine_odd": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 8518,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/FibonacciSpine.lean",
+        "Submissions/markov-fibonacci-spine.json"
+      ],
+      "corpus_entrypoints_checked": 209,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.markovFib_vieta_recurrence": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovFib_vieta_recurrence",
+          "statement_sha256": "eb6ca9a03b8fe8afc97923c32b07db2e72c19d6bd8893573b983aa1e340820d2",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "Int",
+            "Int.instMul",
+            "Int.instSub",
+            "LeanFrontier.MarkovTree.markovFib",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternNode_fibonacciSpine_even": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternNode_fibonacciSpine_even",
+          "statement_sha256": "36d0638bb50d4856c86503313a2f01a4a904ba0d5147c946104131f22fbe3a26",
+          "type_dependencies": [
+            "Bool",
+            "Bool.true",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "Int",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.mk",
+            "LeanFrontier.MarkovTree.markovFib",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List.replicate",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instMulNat",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternNode_fibonacciSpine_odd": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternNode_fibonacciSpine_odd",
+          "statement_sha256": "f0e1f2ab1b0e817f8b0d549c8f6e5ea0562efc077bf85e34c37ad54ca75abd74",
+          "type_dependencies": [
+            "Bool",
+            "Bool.true",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "Int",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.mk",
+            "LeanFrontier.MarkovTree.markovFib",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List.replicate",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instMulNat",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 6790,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 5
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-fibonacci-spine",
+  "trusted_receiver_revision": "760bc9481c5094e93e229406c5c6c73563f6f41e",
+  "validated_candidate_revision": "2b7af1808fc6cc7387668115e4d8a9e549e31784",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36114801185"
+}
