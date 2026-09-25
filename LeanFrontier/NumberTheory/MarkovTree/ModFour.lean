@@ -23,6 +23,18 @@ arguments.
 
 namespace LeanFrontier.MarkovTree
 
+private theorem zmodFour_five_eq_one : (5 : ZMod 4) = 1 := by
+  rw [ZMod.natCast_eq_natCast_iff']
+  norm_num
+
+private theorem zmodFour_two_ne_one : (2 : ZMod 4) ≠ 1 := by
+  intro h
+  have hm := (ZMod.natCast_eq_natCast_iff' 2 1 4).mp h
+  norm_num at hm
+
+private theorem zmodFour_one_ne_two : (1 : ZMod 4) ≠ 2 := by
+  exact Ne.symm zmodFour_two_ne_one
+
 private theorem modFourPattern_move (m : Move) {s : State}
     (h :
       (((s.x : ZMod 4) = 1 ∧ (s.y : ZMod 4) = 1 ∧ (s.z : ZMod 4) = 1) ∨
@@ -45,8 +57,8 @@ private theorem modFourPattern_move (m : Move) {s : State}
   rcases h with h | h | h | h <;>
     rcases h with ⟨hx, hy, hz⟩ <;>
     cases m <;>
-    simp [move, MarkovEquation.jump, hx, hy, hz] <;>
-    native_decide
+    simp [move, MarkovEquation.jump, hx, hy, hz, zmodFour_five_eq_one,
+      zmodFour_two_ne_one, zmodFour_one_ne_two]
 
 private theorem modFourPattern_walk (path : List Move) {s : State}
     (h :
