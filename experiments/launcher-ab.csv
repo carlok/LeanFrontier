@@ -65,6 +65,7 @@ markov-rerooted-subtree,unassigned,gpt-5.6-sol
 markov-root-reachability,unassigned,gpt-5.6-sol
 markov-stern-brocot-path-bridge,unassigned,gpt-5.6-sol
 markov-stern-state-injectivity,unassigned,gpt-5.6-sol
+markov-sum-squares-divisibility,unassigned,gpt-5.6-sol
 markov-three-branch-coverage,unassigned,gpt-5.6-sol
 markov-tree-descent,unassigned,gpt-5.6-sol
 markov-tree-paths,unassigned,gpt-5.6-sol
