@@ -853,14 +853,33 @@ class ConjectureQuotaTests(PreflightHarness, unittest.TestCase):
         self.assert_rejected("CONJECTURE_QUOTA_EXCEEDED")
 
     def test_resolving_a_conjecture_returns_the_allowance(self) -> None:
-        """The contract's resolution shape is `theorem name : ConjectureName := ...`."""
-        theorem = "namespace LeanFrontier.Algebra\ntheorem landed (n : Nat) : n = n := rfl\nend LeanFrontier.Algebra\n"
+        """The contract's resolution shape is `theorem name : ConjectureName := ...`.
+
+        No other accepted theorem: the resolving theorem is itself the one
+        allowance, so this passes only if the resolution is recognised.
+        """
         held = "namespace LeanFrontier.Algebra\ndef already_open : Prop := ∀ n : Nat, n = n\nend LeanFrontier.Algebra\n"
         proof = "namespace LeanFrontier.Algebra\ntheorem already_open_holds : already_open := fun _ => rfl\nend LeanFrontier.Algebra\n"
         for root in (self.base, self.candidate):
-            self.landed(root, "earlier", theorem, ["LeanFrontier.Algebra.landed"])
             self.landed(root, "held", held, ["LeanFrontier.Algebra.already_open"])
             self.landed(root, "resolution", proof, ["LeanFrontier.Algebra.already_open_holds"])
+        self.propose_conjecture()
+        status, report = self.validate()
+        self.assertEqual(status, 0, report)
+
+    def test_a_resolution_written_across_lines_returns_the_allowance(self) -> None:
+        """The first real resolution put its qualified type on the next line."""
+        held = "namespace LeanFrontier.Algebra\ndef already_open : Prop := ∀ n : Nat, n = n\nend LeanFrontier.Algebra\n"
+        proof = (
+            "namespace LeanFrontier.Algebra\n"
+            "theorem alreadyOpen :\n"
+            "    LeanFrontier.Algebra.already_open := by\n"
+            "  intro n\n  rfl\n"
+            "end LeanFrontier.Algebra\n"
+        )
+        for root in (self.base, self.candidate):
+            self.landed(root, "held", held, ["LeanFrontier.Algebra.already_open"])
+            self.landed(root, "resolution", proof, ["LeanFrontier.Algebra.alreadyOpen"])
         self.propose_conjecture()
         status, report = self.validate()
         self.assertEqual(status, 0, report)
