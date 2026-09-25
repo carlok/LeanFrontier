@@ -1,0 +1,305 @@
+{
+  "accepted_revision": "6d228f4731647094b6fbe243466d65484fe491dd",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T15:23:21Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 372.891,
+    "observed": {
+      "added_lines": 170,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.State": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "inductive",
+          "name": "LeanFrontier.MarkovTree.State",
+          "restatement": false,
+          "statement_sha256": "d1ee2932d8f5566f1956b7ecac5161067e0f964f5d2844fa7cf958746e24f296",
+          "type_dependencies": []
+        },
+        "LeanFrontier.MarkovTree.UniquenessConjecture": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "conjecture",
+          "name": "LeanFrontier.MarkovTree.UniquenessConjecture",
+          "restatement": false,
+          "statement_sha256": "76d157062443695228676f0792100c57e1effd2a48212923680bf4551f471c0c",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.IsSolution",
+            "LeanFrontier.MarkovTree.State.Permutes",
+            "LeanFrontier.MarkovTree.State.Positive",
+            "LeanFrontier.MarkovTree.State.maxCoord"
+          ]
+        },
+        "LeanFrontier.MarkovTree.uniquenessConjecture_iff_sternNode": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.uniquenessConjecture_iff_sternNode",
+          "restatement": false,
+          "statement_sha256": "0c1558e8539aa9a57dd441797ff14352e09004b4b7dddf722d026814611c490c",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "Int",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State.Permutes",
+            "LeanFrontier.MarkovTree.State.maxCoord",
+            "LeanFrontier.MarkovTree.UniquenessConjecture",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 30,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.UniquenessConjecture": [
+            {
+              "outcome": "failed",
+              "seconds": 5.293,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.318,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.301,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.283,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.308,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.336,
+              "tactic": "decide"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.333,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.287,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.337,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.277,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.317,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.357,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.uniquenessConjecture_iff_sternNode": [
+            {
+              "outcome": "failed",
+              "seconds": 5.515,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.519,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.505,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.457,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.473,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.438,
+              "tactic": "decide"
+            }
+          ],
+          "UniquenessConjecture": [
+            {
+              "outcome": "failed",
+              "seconds": 5.304,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.272,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.362,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.363,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.291,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.307,
+              "tactic": "decide"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.345,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.283,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.287,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.287,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.268,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.264,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 160.287,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.UniquenessConjecture": "inconclusive",
+        "LeanFrontier.MarkovTree.uniquenessConjecture_iff_sternNode": "inconclusive",
+        "UniquenessConjecture": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 9165,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/UniquenessConjecture.lean",
+        "Submissions/markov-uniqueness-reduction.json"
+      ],
+      "conjecture_quota": {
+        "accepted_theorems": 96,
+        "allowance": 96,
+        "producer": "agent:chatgpt",
+        "proposed": 1,
+        "unresolved": 0
+      },
+      "corpus_entrypoints_checked": 214,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.UniquenessConjecture": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "conjecture",
+          "name": "LeanFrontier.MarkovTree.UniquenessConjecture",
+          "statement_sha256": "76d157062443695228676f0792100c57e1effd2a48212923680bf4551f471c0c",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.IsSolution",
+            "LeanFrontier.MarkovTree.State.Permutes",
+            "LeanFrontier.MarkovTree.State.Positive",
+            "LeanFrontier.MarkovTree.State.maxCoord"
+          ]
+        },
+        "LeanFrontier.MarkovTree.uniquenessConjecture_iff_sternNode": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.uniquenessConjecture_iff_sternNode",
+          "statement_sha256": "0c1558e8539aa9a57dd441797ff14352e09004b4b7dddf722d026814611c490c",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "Int",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State.Permutes",
+            "LeanFrontier.MarkovTree.State.maxCoord",
+            "LeanFrontier.MarkovTree.UniquenessConjecture",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 7012,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 8
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-uniqueness-reduction",
+  "trusted_receiver_revision": "a63ed78e36716da3957044a93b983c7f88df4170",
+  "validated_candidate_revision": "bc22d4d086a97c57fe65390eb7fca2f3eccaec78",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36152835460"
+}
