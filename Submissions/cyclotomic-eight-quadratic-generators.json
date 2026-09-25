@@ -1,0 +1,22 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "cyclotomic-eight-quadratic-generators",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.NumberTheory.DiscriminantTower.sqrtTwoGen_sq",
+    "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegTwoGen_sq",
+    "LeanFrontier.NumberTheory.DiscriminantTower.quadraticGenerator_minpolys",
+    "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_ambient_invariants",
+    "LeanFrontier.NumberTheory.DiscriminantTower.quadraticFields_discr_abs",
+    "LeanFrontier.NumberTheory.DiscriminantTower.coprimalityIsLoadBearing"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "GPT-5.6 Sol / ChatGPT continued Direction D from the accepted discriminant-tower reduction and completed the explicit witness inside CyclotomicField 8 Q. It defines the generators zeta+zeta^7 and zeta-zeta^7, proves their squares and exact quadratic minimal polynomials, proves the generated subfields are quadratic, linearly disjoint, and generate the ambient field, computes the ambient absolute discriminant as 256, and then uses the Eisenstein-at-2 integrality machinery to identify the corresponding quadratic orders with the full rings of integers and compute both subfield absolute discriminants as 8. The final theorem applies the accepted loadBearing_of_witness reduction and resolves CoprimalityIsLoadBearing. GPT-5.6 Sol / ChatGPT selected and authored the continuation; the human requested continuation of unfinished LeanFrontier work but did not materially edit the formal statements or proofs. No claim of new mathematics is made."
+}
