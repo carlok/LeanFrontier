@@ -1,0 +1,339 @@
+{
+  "accepted_revision": "132f58d6ac00587a689e10a9b994f07b77668fee",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T08:45:27Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 330.722,
+    "observed": {
+      "added_lines": 169,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.orientedNode_eq_of_state_eq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.orientedNode_eq_of_state_eq",
+          "restatement": false,
+          "statement_sha256": "71838bd56bff44da4c5a0332f9a2322ab7a744c6f078b9146603714a3eb01e97",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State"
+          ]
+        },
+        "LeanFrontier.MarkovTree.state_mass_lt_child": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.state_mass_lt_child",
+          "restatement": false,
+          "statement_sha256": "586e781c138202a4db015000a9af65f069305fd5d672071cb7fdce08e19cc460",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State.mass",
+            "LeanFrontier.MarkovTree.child"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternBrocot_pair_eq_iff_sternNode_state_eq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternBrocot_pair_eq_iff_sternNode_state_eq",
+          "restatement": false,
+          "statement_sha256": "4c4f86391ae839db95265e2d03b0c5c6b3281017277ad0ef050e703ca1cc0d1e",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.sternNode",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "Nat",
+            "Prod"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternNode_state_injective": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternNode_state_injective",
+          "restatement": false,
+          "statement_sha256": "91844c2dd446ca89ce1951b5ee5b02374caad1b08c7fc8043d3997732ae0d790",
+          "type_dependencies": [
+            "Bool",
+            "Function.Injective",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 24,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.orientedNode_eq_of_state_eq": [
+            {
+              "outcome": "failed",
+              "seconds": 5.017,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.938,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.99,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.005,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.017,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.026,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.state_mass_lt_child": [
+            {
+              "outcome": "failed",
+              "seconds": 5.318,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.223,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.205,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.209,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.23,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.192,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.sternBrocot_pair_eq_iff_sternNode_state_eq": [
+            {
+              "outcome": "failed",
+              "seconds": 5.479,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.445,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.424,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.412,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.402,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.49,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.sternNode_state_injective": [
+            {
+              "outcome": "failed",
+              "seconds": 5.156,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.166,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.198,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.217,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.249,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.255,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 125.263,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.orientedNode_eq_of_state_eq": "inconclusive",
+        "LeanFrontier.MarkovTree.state_mass_lt_child": "inconclusive",
+        "LeanFrontier.MarkovTree.sternBrocot_pair_eq_iff_sternNode_state_eq": "inconclusive",
+        "LeanFrontier.MarkovTree.sternNode_state_injective": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 8442,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/Injectivity.lean",
+        "Submissions/markov-stern-state-injectivity.json"
+      ],
+      "corpus_entrypoints_checked": 205,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.orientedNode_eq_of_state_eq": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.orientedNode_eq_of_state_eq",
+          "statement_sha256": "71838bd56bff44da4c5a0332f9a2322ab7a744c6f078b9146603714a3eb01e97",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State"
+          ]
+        },
+        "LeanFrontier.MarkovTree.state_mass_lt_child": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.state_mass_lt_child",
+          "statement_sha256": "586e781c138202a4db015000a9af65f069305fd5d672071cb7fdce08e19cc460",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State.mass",
+            "LeanFrontier.MarkovTree.child"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternBrocot_pair_eq_iff_sternNode_state_eq": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternBrocot_pair_eq_iff_sternNode_state_eq",
+          "statement_sha256": "4c4f86391ae839db95265e2d03b0c5c6b3281017277ad0ef050e703ca1cc0d1e",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.sternNode",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "Nat",
+            "Prod"
+          ]
+        },
+        "LeanFrontier.MarkovTree.sternNode_state_injective": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.sternNode_state_injective",
+          "statement_sha256": "91844c2dd446ca89ce1951b5ee5b02374caad1b08c7fc8043d3997732ae0d790",
+          "type_dependencies": [
+            "Bool",
+            "Function.Injective",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.sternNode",
+            "List"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 6436,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 9
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-stern-state-injectivity",
+  "trusted_receiver_revision": "00d60f1e781639713f39d43b26d033d569ffe505",
+  "validated_candidate_revision": "34f3545b5689b56760adab498a5a72dc7ff50b3d",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36113901528"
+}
