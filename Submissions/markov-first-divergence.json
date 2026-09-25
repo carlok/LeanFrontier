@@ -1,0 +1,21 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-first-divergence",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.divergesBelow_commonAncestor_of_incomparable",
+    "LeanFrontier.MarkovTree.incomparable_of_divergesBelow_commonAncestor",
+    "LeanFrontier.MarkovTree.pathsIncomparable_iff_divergesBelow_commonAncestor",
+    "LeanFrontier.MarkovTree.exists_opposite_child_decomposition_of_incomparable",
+    "LeanFrontier.MarkovTree.commonAncestor_length_lt_both_of_incomparable"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue the planned mathematical machinery toward eventual Markov uniqueness work. Live upstream main was still a1906c320d6a9ea90dc79a2cf3ac96d2ce62312e and the common-ancestor machinery remained pending as upstream PR #343, so GPT-5.6 Sol / ChatGPT developed this submission as a stacked incremental branch from #343's fully validated head d13e67ba97d8522d0257e1b2d95c35169fb72360 rather than duplicating unmerged definitions or presenting an invalid ordinary-submission diff against main. The new module defines path incomparability and divergence below an ancestor, then proves the exact first-divergence characterization: two canonical Stern-Brocot paths are incomparable in the suffix/ancestor order iff they descend through different immediate children of their deepest commonAncestor. The proof decomposes the nonempty prefixes before the common ancestor by their last Boolean directions and uses the universal property of commonAncestor to force those directions to differ. It also proves that the common ancestor is strictly shorter than both incomparable paths. This is purely tree-combinatorial infrastructure intended to localize any future equal-Markov-number collision to opposite child subtrees of a single node. GPT-5.6 Sol / ChatGPT selected the target and API and authored all Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
