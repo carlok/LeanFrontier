@@ -1,0 +1,20 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-pairwise-coprime",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.pairwiseCoprime_move",
+    "LeanFrontier.MarkovTree.pairwiseCoprime_walk",
+    "LeanFrontier.MarkovTree.pairwiseCoprime_of_positive_solution",
+    "LeanFrontier.MarkovTree.OrientedNode.pairwiseCoprime"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue developing machinery toward eventual attacks on the Frobenius/Markov uniqueness conjecture. After formalizing child-label algebra, GPT-5.6 Sol / ChatGPT identified pairwise coprimality of positive Markov triples as the natural arithmetic invariant needed to collapse the equal-sibling-label case. Rather than use a separate prime-valuation proof, the module exploits LeanFrontier's accepted Markov-tree structure: pairwise IsCoprime is preserved by each Vieta coordinate move because replacing one coordinate by 3 times the product of the other two minus that coordinate preserves its gcd with either untouched coordinate; finite walks therefore preserve the invariant; and the accepted reachability theorem transports it from the pairwise-coprime root (1,1,1) to every positive Markov solution. The result is exposed both for arbitrary positive solutions and accepted OrientedNode values. GPT-5.6 Sol / ChatGPT selected the target and proof architecture and authored all Lean definitions, statements, and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}

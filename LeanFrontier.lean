@@ -36,13 +36,16 @@ import LeanFrontier.NumberTheory.HoradamSequence.AdditionFormula
 import LeanFrontier.NumberTheory.LucasNumber
 import LeanFrontier.NumberTheory.MarkovEquation
 import LeanFrontier.NumberTheory.MarkovTree
+import LeanFrontier.NumberTheory.MarkovTree.BranchDivergence
 import LeanFrontier.NumberTheory.MarkovTree.BranchStructure
+import LeanFrontier.NumberTheory.MarkovTree.ChildLabels
 import LeanFrontier.NumberTheory.MarkovTree.Coverage
 import LeanFrontier.NumberTheory.MarkovTree.FibonacciSpine
 import LeanFrontier.NumberTheory.MarkovTree.Injectivity
 import LeanFrontier.NumberTheory.MarkovTree.MarkovNumber
 import LeanFrontier.NumberTheory.MarkovTree.Oriented
 import LeanFrontier.NumberTheory.MarkovTree.Paths
+import LeanFrontier.NumberTheory.MarkovTree.ReRootedSubtree
 import LeanFrontier.NumberTheory.MarkovTree.Reachability
 import LeanFrontier.NumberTheory.MarkovTree.SternBrocot
 import LeanFrontier.NumberTheory.MarkovTree.Symmetry
