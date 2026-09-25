@@ -64,6 +64,7 @@ import LeanFrontier.Probability.ChungErdos
 import LeanFrontier.Probability.KochenStone
 import LeanFrontier.Probability.MeasurePaleyZygmund
 import LeanFrontier.Probability.PMFPaleyZygmund
+import LeanFrontier.Probability.PairwiseBorelCantelli
 import LeanFrontier.Probability.PaleyZygmund
 import LeanFrontier.RepresentationTheory.FiniteGroupCharacter
 import LeanFrontier.RepresentationTheory.FiniteGroupCharacter.Orthogonality
