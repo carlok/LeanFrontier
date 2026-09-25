@@ -111,7 +111,8 @@ private theorem pairwiseSecondSum_le_sq_add_first
             intro j hj
             by_cases hji : j = i
             · subst j
-              simp only [if_pos rfl, p, inter_self]
+              simp only [p, inter_self]
+              simp
               nlinarith [sq_nonneg (μ.real (A i))]
             · have hij : i ≠ j := Ne.symm hji
               rw [measureReal_inter_eq_mul_of_indep μ (hpair hij)]
@@ -127,7 +128,7 @@ private theorem pairwiseSecondSum_le_sq_add_first
     _ ≤ ∑ i ∈ r, (p i * (∑ j ∈ r, p j) + p i) := by
           exact Finset.sum_le_sum hinner
     _ = (∑ i ∈ r, p i) ^ 2 + ∑ i ∈ r, p i := by
-          rw [Finset.sum_add_distrib, Finset.sum_mul]
+          rw [Finset.sum_add_distrib, ← Finset.sum_mul]
           ring
     _ = pairwiseFirstSum μ A N ^ 2 + pairwiseFirstSum μ A N := by
           rfl
@@ -154,7 +155,10 @@ theorem measure_limsup_eq_one_of_pairwise_indep
   let R : ℕ → ℝ := pairwiseRatio μ A
 
   have hSdiv : Tendsto S atTop atTop := by
-    simpa [S, pairwiseFirstSum] using hdiv
+    change Tendsto
+      (fun N => ∑ i ∈ Finset.range N, μ.real (A i))
+      atTop atTop
+    exact hdiv
 
   have hR_nonneg : ∀ N, 0 ≤ R N := by
     intro N
@@ -167,9 +171,8 @@ theorem measure_limsup_eq_one_of_pairwise_indep
   have hR_bdd : IsBoundedUnder (· ≤ ·) atTop R :=
     isBoundedUnder_of ⟨1, hR_le_one⟩
 
-  have hlimsup_ge_one : 1 ≤ Filter.limsup R atTop := by
-    rw [← forall_lt_iff_le]
-    intro a ha
+  have hlimsup_lower {a : ℝ} (ha : a < 1) :
+      a ≤ Filter.limsup R atTop := by
     by_cases ha_neg : a < 0
     · exact ha_neg.le.trans
         (le_limsup_of_frequently_le
@@ -213,11 +216,24 @@ theorem measure_limsup_eq_one_of_pairwise_indep
       exact haR.le
     exact le_limsup_of_frequently_le hEventually.frequently hR_bdd
 
+  have hlimsup_ge_one : 1 ≤ Filter.limsup R atTop := by
+    rw [← forall_lt_iff_le]
+    intro a ha
+    obtain ⟨b, hab, hb⟩ := exists_between ha
+    exact hab.trans_le (hlimsup_lower hb)
+
   have hKS :=
     kochenStone μ A hA hdiv
   have hKS' :
       Filter.limsup R atTop ≤ μ.real (Filter.limsup A atTop) := by
-    simpa [R, pairwiseRatio, pairwiseFirstSum, pairwiseSecondSum] using hKS
+    change Filter.limsup
+        (fun N =>
+          ((∑ i ∈ Finset.range N, μ.real (A i)) ^ 2) /
+            (∑ i ∈ Finset.range N,
+              ∑ j ∈ Finset.range N, μ.real (A i ∩ A j)))
+        atTop ≤
+      μ.real (Filter.limsup A atTop)
+    exact hKS
 
   have hreal_ge :
       1 ≤ μ.real (Filter.limsup A atTop) :=
