@@ -302,6 +302,211 @@ theorem cyclotomicEight_ambient_invariants :
   ⟨cyclotomicEight_degree, cyclotomicEight_discr_abs⟩
 
 
+
+
+
+/-- The two quadratic subfields in the eighth cyclotomic field both have absolute
+discriminant 8.  The proof identifies the Eisenstein orders ℤ[√2] and ℤ[√-2]
+with the full rings of integers before transporting their power-basis discriminants. -/
+theorem quadraticFields_discr_abs :
+    (NumberField.discr sqrtTwoField).natAbs = 8 ∧
+      (NumberField.discr sqrtNegTwoField).natAbs = 8 := by
+  have hplus : NumberField.discr sqrtTwoField = 8 := by
+    let B : PowerBasis ℚ sqrtTwoField :=
+      IntermediateField.adjoin.powerBasis (IsIntegral.of_finite ℚ sqrtTwoGen)
+    have hgen_sq : B.gen ^ 2 = (2 : sqrtTwoField) := by
+      apply (algebraMap sqrtTwoField CyclotomicEight).injective
+      rw [map_pow]
+      change sqrtTwoGen ^ 2 = (2 : CyclotomicEight)
+      exact sqrtTwoGen_sq
+    have hminQ : minpoly ℚ B.gen = quadPlusQ := by
+      change minpoly ℚ (IntermediateField.AdjoinSimple.gen ℚ sqrtTwoGen) = quadPlusQ
+      rw [IntermediateField.minpoly_gen, minpoly_sqrtTwoGen]
+    have hint : IsIntegral ℤ B.gen := by
+      apply IsIntegral.of_pow (n := 2) (by norm_num)
+      rw [hgen_sq]
+      exact isIntegral_natCast 2
+    have hminZ : minpoly ℤ B.gen = quadPlusZ := by
+      apply Polynomial.map_injective (algebraMap ℤ ℚ) (algebraMap ℤ ℚ).injective_int
+      calc
+        Polynomial.map (algebraMap ℤ ℚ) (minpoly ℤ B.gen) = minpoly ℚ B.gen :=
+          (minpoly.isIntegrallyClosed_eq_field_fractions' ℚ hint).symm
+        _ = quadPlusQ := hminQ
+        _ = Polynomial.map (algebraMap ℤ ℚ) quadPlusZ := by
+          symm
+          rw [quadPlusZ, quadPlusQ, Polynomial.map_sub, Polynomial.map_pow]
+          simp
+          exact (Polynomial.C_ofNat (R := ℚ) 2).symm
+    have hdim : B.dim = 2 := by
+      rw [← PowerBasis.finrank]
+      exact quadraticFields_degrees.1
+    have hnormgen : Algebra.norm ℚ B.gen = -2 := by
+      rw [Algebra.PowerBasis.norm_gen_eq_coeff_zero_minpoly, hdim, hminQ]
+      norm_num [quadPlusQ]
+    have hdisc : Algebra.discr ℚ B.basis = 8 := by
+      rw [Algebra.discr_powerBasis_eq_norm, quadraticFields_degrees.1, hminQ]
+      norm_num [quadPlusQ]
+      rw [show (2 : sqrtTwoField) = algebraMap ℚ sqrtTwoField 2 by norm_num,
+        Algebra.norm_algebraMap, quadraticFields_degrees.1, hnormgen]
+      norm_num
+    have hclosure :
+        IsIntegralClosure (Algebra.adjoin ℤ ({B.gen} : Set sqrtTwoField))
+          ℤ sqrtTwoField := by
+      refine ⟨Subtype.val_injective, @fun x => ⟨fun h => ⟨⟨x, ?_⟩, rfl⟩, ?_⟩⟩
+      swap
+      · rintro ⟨y, rfl⟩
+        exact IsIntegral.algebraMap
+          ((le_integralClosure_iff_isIntegral.1
+            (adjoin_le_integralClosure hint)).isIntegral _)
+      have H := Algebra.discr_mul_isIntegral_mem_adjoin ℚ hint h
+      rw [hdisc] at H
+      exact
+        mem_adjoin_of_smul_prime_pow_smul_of_minpoly_isEisensteinAt (n := 3)
+          (by norm_num : Prime (2 : ℤ)) hint h
+          (by simpa [Algebra.smul_def, zsmul_eq_mul] using H) (by
+            rw [hminZ]
+            exact quadPlusZ_eisenstein)
+    letI : IsIntegralClosure
+        (Algebra.adjoin ℤ ({B.gen} : Set sqrtTwoField)) ℤ sqrtTwoField := hclosure
+    let e :
+        Algebra.adjoin ℤ ({B.gen} : Set sqrtTwoField) ≃ₐ[ℤ] 𝓞 sqrtTwoField :=
+      IsIntegralClosure.equiv ℤ
+        (Algebra.adjoin ℤ ({B.gen} : Set sqrtTwoField))
+        sqrtTwoField (𝓞 sqrtTwoField)
+    let pB : PowerBasis ℤ (𝓞 sqrtTwoField) :=
+      (Algebra.adjoin.powerBasis' hint).map e
+    have hgen :
+        algebraMap (𝓞 sqrtTwoField) sqrtTwoField pB.gen = B.gen := by
+      change algebraMap (𝓞 sqrtTwoField) sqrtTwoField
+        (e (Algebra.adjoin.powerBasis' hint).gen) = B.gen
+      rw [Algebra.adjoin.powerBasis'_gen]
+      simpa [e] using
+        (IsIntegralClosure.algebraMap_equiv ℤ
+          (Algebra.adjoin ℤ ({B.gen} : Set sqrtTwoField))
+          sqrtTwoField (𝓞 sqrtTwoField)
+          ⟨B.gen, Algebra.self_mem_adjoin_singleton ℤ B.gen⟩)
+    apply (algebraMap ℤ ℚ).injective_int
+    rw [← NumberField.discr_eq_discr _ pB.basis,
+      ← Algebra.discr_localizationLocalization ℤ (nonZeroDivisors ℤ) sqrtTwoField]
+    convert! hdisc using 1
+    · have hdim' : pB.dim = B.dim := by
+        rw [← PowerBasis.finrank, ← PowerBasis.finrank]
+        exact RingOfIntegers.rank sqrtTwoField
+      rw [← Algebra.discr_reindex _ _ (finCongr hdim')]
+      congr 1
+      ext i
+      simp_rw [Function.comp_apply, Module.Basis.localizationLocalization_apply,
+        PowerBasis.coe_basis]
+      rw [map_pow, hgen]
+      simp
+  have hminus : NumberField.discr sqrtNegTwoField = -8 := by
+    let B : PowerBasis ℚ sqrtNegTwoField :=
+      IntermediateField.adjoin.powerBasis (IsIntegral.of_finite ℚ sqrtNegTwoGen)
+    have hgen_sq : B.gen ^ 2 = (-2 : sqrtNegTwoField) := by
+      apply (algebraMap sqrtNegTwoField CyclotomicEight).injective
+      rw [map_pow]
+      change sqrtNegTwoGen ^ 2 = (-2 : CyclotomicEight)
+      exact sqrtNegTwoGen_sq
+    have hminQ : minpoly ℚ B.gen = quadMinusQ := by
+      change minpoly ℚ (IntermediateField.AdjoinSimple.gen ℚ sqrtNegTwoGen) = quadMinusQ
+      rw [IntermediateField.minpoly_gen, minpoly_sqrtNegTwoGen]
+    have hint : IsIntegral ℤ B.gen := by
+      apply IsIntegral.of_pow (n := 2) (by norm_num)
+      rw [hgen_sq]
+      exact (isIntegral_natCast 2).neg
+    have hminZ : minpoly ℤ B.gen = quadMinusZ := by
+      apply Polynomial.map_injective (algebraMap ℤ ℚ) (algebraMap ℤ ℚ).injective_int
+      calc
+        Polynomial.map (algebraMap ℤ ℚ) (minpoly ℤ B.gen) = minpoly ℚ B.gen :=
+          (minpoly.isIntegrallyClosed_eq_field_fractions' ℚ hint).symm
+        _ = quadMinusQ := hminQ
+        _ = Polynomial.map (algebraMap ℤ ℚ) quadMinusZ := by
+          symm
+          rw [quadMinusZ, quadMinusQ, Polynomial.map_sub, Polynomial.map_pow]
+          simp
+          exact (Polynomial.C_ofNat (R := ℚ) 2).symm
+    have hdim : B.dim = 2 := by
+      rw [← PowerBasis.finrank]
+      exact quadraticFields_degrees.2
+    have hnormgen : Algebra.norm ℚ B.gen = 2 := by
+      rw [Algebra.PowerBasis.norm_gen_eq_coeff_zero_minpoly, hdim, hminQ]
+      norm_num [quadMinusQ]
+    have hdisc : Algebra.discr ℚ B.basis = -8 := by
+      rw [Algebra.discr_powerBasis_eq_norm, quadraticFields_degrees.2, hminQ]
+      norm_num [quadMinusQ]
+      rw [show (2 : sqrtNegTwoField) = algebraMap ℚ sqrtNegTwoField 2 by norm_num,
+        Algebra.norm_algebraMap, quadraticFields_degrees.2, hnormgen]
+      norm_num
+    have hclosure :
+        IsIntegralClosure (Algebra.adjoin ℤ ({B.gen} : Set sqrtNegTwoField))
+          ℤ sqrtNegTwoField := by
+      refine ⟨Subtype.val_injective, @fun x => ⟨fun h => ⟨⟨x, ?_⟩, rfl⟩, ?_⟩⟩
+      swap
+      · rintro ⟨y, rfl⟩
+        exact IsIntegral.algebraMap
+          ((le_integralClosure_iff_isIntegral.1
+            (adjoin_le_integralClosure hint)).isIntegral _)
+      have H := Algebra.discr_mul_isIntegral_mem_adjoin ℚ hint h
+      rw [hdisc] at H
+      have H' : (8 : ℚ) • x ∈
+          Algebra.adjoin ℤ ({B.gen} : Set sqrtNegTwoField) := by
+        simpa using (Algebra.adjoin ℤ ({B.gen} : Set sqrtNegTwoField)).neg_mem H
+      exact
+        mem_adjoin_of_smul_prime_pow_smul_of_minpoly_isEisensteinAt (n := 3)
+          (by norm_num : Prime (2 : ℤ)) hint h
+          (by simpa [Algebra.smul_def, zsmul_eq_mul] using H') (by
+            rw [hminZ]
+            exact quadMinusZ_eisenstein)
+    letI : IsIntegralClosure
+        (Algebra.adjoin ℤ ({B.gen} : Set sqrtNegTwoField)) ℤ sqrtNegTwoField := hclosure
+    let e :
+        Algebra.adjoin ℤ ({B.gen} : Set sqrtNegTwoField) ≃ₐ[ℤ] 𝓞 sqrtNegTwoField :=
+      IsIntegralClosure.equiv ℤ
+        (Algebra.adjoin ℤ ({B.gen} : Set sqrtNegTwoField))
+        sqrtNegTwoField (𝓞 sqrtNegTwoField)
+    let pB : PowerBasis ℤ (𝓞 sqrtNegTwoField) :=
+      (Algebra.adjoin.powerBasis' hint).map e
+    have hgen :
+        algebraMap (𝓞 sqrtNegTwoField) sqrtNegTwoField pB.gen = B.gen := by
+      change algebraMap (𝓞 sqrtNegTwoField) sqrtNegTwoField
+        (e (Algebra.adjoin.powerBasis' hint).gen) = B.gen
+      rw [Algebra.adjoin.powerBasis'_gen]
+      simpa [e] using
+        (IsIntegralClosure.algebraMap_equiv ℤ
+          (Algebra.adjoin ℤ ({B.gen} : Set sqrtNegTwoField))
+          sqrtNegTwoField (𝓞 sqrtNegTwoField)
+          ⟨B.gen, Algebra.self_mem_adjoin_singleton ℤ B.gen⟩)
+    apply (algebraMap ℤ ℚ).injective_int
+    rw [← NumberField.discr_eq_discr _ pB.basis,
+      ← Algebra.discr_localizationLocalization ℤ (nonZeroDivisors ℤ) sqrtNegTwoField]
+    convert! hdisc using 1
+    · have hdim' : pB.dim = B.dim := by
+        rw [← PowerBasis.finrank, ← PowerBasis.finrank]
+        exact RingOfIntegers.rank sqrtNegTwoField
+      rw [← Algebra.discr_reindex _ _ (finCongr hdim')]
+      congr 1
+      ext i
+      simp_rw [Function.comp_apply, Module.Basis.localizationLocalization_apply,
+        PowerBasis.coe_basis]
+      rw [map_pow, hgen]
+      simp
+  rw [hplus, hminus]
+  norm_num
+
+/-- The explicit quadratic subfields of the eighth cyclotomic field witness that the
+coprimality hypothesis in the compositum discriminant identity is load-bearing. -/
+theorem coprimalityIsLoadBearing :
+    LeanFrontier.DiscriminantTower.CoprimalityIsLoadBearing := by
+  apply LeanFrontier.DiscriminantTower.loadBearing_of_witness
+    CyclotomicEight sqrtTwoField sqrtNegTwoField
+  · exact ⟨quadraticFields_linearDisjoint, quadraticFields_sup⟩
+  · exact cyclotomicEight_discr_abs
+  · simpa [LeanFrontier.DiscriminantTower.discrAbs] using quadraticFields_discr_abs.1
+  · simpa [LeanFrontier.DiscriminantTower.discrAbs] using quadraticFields_discr_abs.2
+  · simpa [LeanFrontier.DiscriminantTower.degree] using quadraticFields_degrees.1
+  · simpa [LeanFrontier.DiscriminantTower.degree] using quadraticFields_degrees.2
+
+
 end
 
 end LeanFrontier.NumberTheory.DiscriminantTower
