@@ -45,6 +45,7 @@ import LeanFrontier.NumberTheory.MarkovTree.Injectivity
 import LeanFrontier.NumberTheory.MarkovTree.MarkovNumber
 import LeanFrontier.NumberTheory.MarkovTree.Oriented
 import LeanFrontier.NumberTheory.MarkovTree.Paths
+import LeanFrontier.NumberTheory.MarkovTree.ReRootedSubtree
 import LeanFrontier.NumberTheory.MarkovTree.Reachability
 import LeanFrontier.NumberTheory.MarkovTree.SternBrocot
 import LeanFrontier.NumberTheory.MarkovTree.Symmetry
