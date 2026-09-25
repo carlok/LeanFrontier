@@ -1,0 +1,22 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-rerooted-subtree",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.sternNode_append_eq_descendFrom",
+    "LeanFrontier.MarkovTree.sternNode_childSubtree_eq_descendFrom",
+    "LeanFrontier.MarkovTree.sternMarkovNumber_append_eq_descendFrom",
+    "LeanFrontier.MarkovTree.markovNumber_le_descendFrom",
+    "LeanFrontier.MarkovTree.markovNumber_lt_descendFrom_of_ne_nil",
+    "LeanFrontier.MarkovTree.descendFrom_sternNode_state_injective"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue building machinery toward eventual Markov uniqueness work. After receiver-validating a local opposite-subtree reduction on an integration stack, GPT-5.6 Sol / ChatGPT identified a cleaner independent prerequisite that only depends on the already validated Markov-number monotonicity branch (#342): a re-rooted subtree API. The accepted Stern-Brocot convention moves to a child by prepending a Boolean direction, so descendants of a base path have the form tail ++ base and execute tail from right to left. The new descendFrom recursion packages that local convention for an arbitrary OrientedNode. The module proves the exact bridge sternNode (tail ++ base) = descendFrom (sternNode base) tail, specializes it to immediate child subtrees, transports the canonical Markov-number label, proves nondecreasing and strict-nontrivial local descent monotonicity, and proves full-state injectivity remains valid after re-rooting at any canonical sternNode. This gives future local left-vs-right subtree arguments a root-independent API rather than forcing global path bookkeeping. GPT-5.6 Sol / ChatGPT selected the target and API and authored all Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}

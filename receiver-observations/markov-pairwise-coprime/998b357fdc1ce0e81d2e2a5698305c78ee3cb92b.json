@@ -1,0 +1,292 @@
+{
+  "accepted_revision": "998b357fdc1ce0e81d2e2a5698305c78ee3cb92b",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T19:06:07Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 329.472,
+    "observed": {
+      "added_lines": 117,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.OrientedNode": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "inductive",
+          "name": "LeanFrontier.MarkovTree.OrientedNode",
+          "restatement": false,
+          "statement_sha256": "d1ee2932d8f5566f1956b7ecac5161067e0f964f5d2844fa7cf958746e24f296",
+          "type_dependencies": []
+        },
+        "LeanFrontier.MarkovTree.State": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "inductive",
+          "name": "LeanFrontier.MarkovTree.State",
+          "restatement": false,
+          "statement_sha256": "d1ee2932d8f5566f1956b7ecac5161067e0f964f5d2844fa7cf958746e24f296",
+          "type_dependencies": []
+        },
+        "LeanFrontier.MarkovTree.pairwiseCoprime_move": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.pairwiseCoprime_move",
+          "restatement": false,
+          "statement_sha256": "814464e968ad3a16a7f3ec0088f7adae5e7b9d2c6c39f5578a63a2d9b606c86e",
+          "type_dependencies": [
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.PairwiseCoprime",
+            "LeanFrontier.MarkovTree.move"
+          ]
+        },
+        "LeanFrontier.MarkovTree.pairwiseCoprime_of_positive_solution": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.pairwiseCoprime_of_positive_solution",
+          "restatement": false,
+          "statement_sha256": "510a000927d77f3c07e84b60d01f907bb5249beb09862ce7c18c4f77d443ad6d",
+          "type_dependencies": [
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.IsSolution",
+            "LeanFrontier.MarkovTree.State.PairwiseCoprime",
+            "LeanFrontier.MarkovTree.State.x",
+            "LeanFrontier.MarkovTree.State.y",
+            "LeanFrontier.MarkovTree.State.z",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.pairwiseCoprime_walk": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.pairwiseCoprime_walk",
+          "restatement": false,
+          "statement_sha256": "f8f1bd8b8dd6bee04d04c54ce2ebd48eba7215b1b30833c4830dfe96da8bd84a",
+          "type_dependencies": [
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.PairwiseCoprime",
+            "LeanFrontier.MarkovTree.walk",
+            "List"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 18,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.pairwiseCoprime_move": [
+            {
+              "outcome": "failed",
+              "seconds": 5.642,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.476,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.416,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.394,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.376,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.454,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.pairwiseCoprime_of_positive_solution": [
+            {
+              "outcome": "failed",
+              "seconds": 5.193,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.254,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.254,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.354,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.3,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.222,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.pairwiseCoprime_walk": [
+            {
+              "outcome": "failed",
+              "seconds": 5.557,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.475,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.468,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.414,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.461,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.337,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 97.047,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.pairwiseCoprime_move": "inconclusive",
+        "LeanFrontier.MarkovTree.pairwiseCoprime_of_positive_solution": "inconclusive",
+        "LeanFrontier.MarkovTree.pairwiseCoprime_walk": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 6302,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/Coprime.lean",
+        "Submissions/markov-pairwise-coprime.json"
+      ],
+      "corpus_entrypoints_checked": 247,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.OrientedNode.pairwiseCoprime": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.OrientedNode.pairwiseCoprime",
+          "statement_sha256": "d880c40d12238588a2b7ca409a3a4462af2949bf3a0ac3b2806ffc2d765a05ae",
+          "type_dependencies": [
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State.PairwiseCoprime"
+          ]
+        },
+        "LeanFrontier.MarkovTree.pairwiseCoprime_move": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.pairwiseCoprime_move",
+          "statement_sha256": "814464e968ad3a16a7f3ec0088f7adae5e7b9d2c6c39f5578a63a2d9b606c86e",
+          "type_dependencies": [
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.PairwiseCoprime",
+            "LeanFrontier.MarkovTree.move"
+          ]
+        },
+        "LeanFrontier.MarkovTree.pairwiseCoprime_of_positive_solution": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.pairwiseCoprime_of_positive_solution",
+          "statement_sha256": "510a000927d77f3c07e84b60d01f907bb5249beb09862ce7c18c4f77d443ad6d",
+          "type_dependencies": [
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.IsSolution",
+            "LeanFrontier.MarkovTree.State.PairwiseCoprime",
+            "LeanFrontier.MarkovTree.State.x",
+            "LeanFrontier.MarkovTree.State.y",
+            "LeanFrontier.MarkovTree.State.z",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.pairwiseCoprime_walk": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.pairwiseCoprime_walk",
+          "statement_sha256": "f8f1bd8b8dd6bee04d04c54ce2ebd48eba7215b1b30833c4830dfe96da8bd84a",
+          "type_dependencies": [
+            "LeanFrontier.MarkovTree.Move",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.PairwiseCoprime",
+            "LeanFrontier.MarkovTree.walk",
+            "List"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 4542,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 5
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-pairwise-coprime",
+  "trusted_receiver_revision": "0c2f442aac188e4e8ae67698ebe1a374887b8383",
+  "validated_candidate_revision": "e317a27c40385b59ed79538394f4731a19b5811f",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36176725767"
+}
