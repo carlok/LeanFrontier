@@ -1,0 +1,717 @@
+{
+  "accepted_revision": "d58090cebbf8e87129e8e392a1271acfb0fd9c25",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T08:35:13Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 332.474,
+    "observed": {
+      "added_lines": 513,
+      "audited_declarations": {
+        "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+          "restatement": false,
+          "statement_sha256": "d1ee2932d8f5566f1956b7ecac5161067e0f964f5d2844fa7cf958746e24f296",
+          "type_dependencies": []
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.coprimalityIsLoadBearing": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.coprimalityIsLoadBearing",
+          "restatement": false,
+          "statement_sha256": "4f7689930eb80353d2d79f4ce33063d223f92de09abe8f196f7f26e7156aaca8",
+          "type_dependencies": [
+            "LeanFrontier.DiscriminantTower.CoprimalityIsLoadBearing"
+          ]
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_ambient_invariants": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_ambient_invariants",
+          "restatement": false,
+          "statement_sha256": "45302f4f6be7a22f5290788cf1820290d9cd8dd840385432a6ca8a77d04b9d66",
+          "type_dependencies": [
+            "Algebra.toModule",
+            "And",
+            "CommSemiring.toSemiring",
+            "CyclotomicField.instCharZero",
+            "CyclotomicField.instField",
+            "CyclotomicField.instNumberField",
+            "DivisionRing.toRatAlgebra",
+            "Eq",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "Int.natAbs",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "Module.finrank",
+            "Nat",
+            "NumberField.discr",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.commSemiring",
+            "Rat.instCharZero",
+            "Rat.instField",
+            "Rat.numberField",
+            "Rat.semiring",
+            "Semifield.toCommSemiring",
+            "Semiring.toAddCommMonoid",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.quadraticFields_discr_abs": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.quadraticFields_discr_abs",
+          "restatement": false,
+          "statement_sha256": "9fb5ac70fd1ed61f3977ee3aa6e64a09c86b808b88a79433c3f80de0353ac430",
+          "type_dependencies": [
+            "And",
+            "CyclotomicField.instCharZero",
+            "CyclotomicField.instField",
+            "CyclotomicField.instNumberField",
+            "DivisionRing.toRatAlgebra",
+            "Eq",
+            "Field.toDivisionRing",
+            "Int.natAbs",
+            "IntermediateField",
+            "IntermediateField.instSetLike",
+            "IntermediateField.toField",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegTwoField",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtTwoField",
+            "Membership.mem",
+            "Nat",
+            "NumberField.discr",
+            "NumberField.of_intermediateField",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.instCharZero",
+            "Rat.instField",
+            "Rat.numberField",
+            "SetLike.instMembership",
+            "Subtype",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.quadraticGenerator_minpolys": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.quadraticGenerator_minpolys",
+          "restatement": false,
+          "statement_sha256": "1b73e3a950f8608b8078d40c4d0d5c8b0bb7c789bccff3c42c57b76474538992",
+          "type_dependencies": [
+            "And",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "CyclotomicField.instCharZero",
+            "CyclotomicField.instField",
+            "DFunLike.coe",
+            "DivisionRing.toRatAlgebra",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field.toDivisionRing",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegTwoGen",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtTwoGen",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "Polynomial",
+            "Polynomial.C",
+            "Polynomial.X",
+            "Polynomial.instAdd",
+            "Polynomial.instSub",
+            "Polynomial.semiring",
+            "Rat",
+            "Rat.commRing",
+            "Rat.instCharZero",
+            "Rat.instDivisionRing",
+            "Rat.instField",
+            "Rat.instOfNat",
+            "RingHom",
+            "RingHom.instFunLike",
+            "Semiring.toMonoid",
+            "Semiring.toNonAssocSemiring",
+            "instHAdd",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat",
+            "minpoly"
+          ]
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegTwoGen_sq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegTwoGen_sq",
+          "restatement": false,
+          "statement_sha256": "617214fbb5da236a9dc6e84cda533535e8aa4edabd95feb5bc61403a2c1cb874",
+          "type_dependencies": [
+            "AddCommGroup.toDivisionAddCommMonoid",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "CommSemiring.toSemiring",
+            "CyclotomicField.instField",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "HPow.hPow",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegTwoGen",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "Neg.neg",
+            "NegZeroClass.toNeg",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.instField",
+            "Ring.toAddCommGroup",
+            "Ring.toAddGroupWithOne",
+            "Semifield.toCommSemiring",
+            "Semiring.toMonoid",
+            "SubNegZeroMonoid.toNegZeroClass",
+            "SubtractionCommMonoid.toSubtractionMonoid",
+            "SubtractionMonoid.toSubNegZeroMonoid",
+            "instHPow",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.sqrtTwoGen_sq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.sqrtTwoGen_sq",
+          "restatement": false,
+          "statement_sha256": "04780ca87d935c901197fb477e5ad1903c4d20971b4997a3c55711eea2d8da6d",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "CommSemiring.toSemiring",
+            "CyclotomicField.instField",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "HPow.hPow",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtTwoGen",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.instField",
+            "Ring.toAddGroupWithOne",
+            "Semifield.toCommSemiring",
+            "Semiring.toMonoid",
+            "instHPow",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 36,
+        "by_entrypoint": {
+          "LeanFrontier.NumberTheory.DiscriminantTower.coprimalityIsLoadBearing": [
+            {
+              "outcome": "failed",
+              "seconds": 4.246,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.249,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.236,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.291,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.225,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.224,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_ambient_invariants": [
+            {
+              "outcome": "failed",
+              "seconds": 4.244,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.249,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.23,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.283,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.305,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.323,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.NumberTheory.DiscriminantTower.quadraticFields_discr_abs": [
+            {
+              "outcome": "failed",
+              "seconds": 4.411,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.386,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.513,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.464,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.546,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.542,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.NumberTheory.DiscriminantTower.quadraticGenerator_minpolys": [
+            {
+              "outcome": "failed",
+              "seconds": 4.181,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.157,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.168,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.188,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.164,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.175,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegTwoGen_sq": [
+            {
+              "outcome": "failed",
+              "seconds": 4.115,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.138,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.121,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.157,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.123,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.15,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.NumberTheory.DiscriminantTower.sqrtTwoGen_sq": [
+            {
+              "outcome": "failed",
+              "seconds": 4.343,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.121,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.096,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.115,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.127,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.133,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 152.739,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.NumberTheory.DiscriminantTower.coprimalityIsLoadBearing": "inconclusive",
+        "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_ambient_invariants": "inconclusive",
+        "LeanFrontier.NumberTheory.DiscriminantTower.quadraticFields_discr_abs": "inconclusive",
+        "LeanFrontier.NumberTheory.DiscriminantTower.quadraticGenerator_minpolys": "inconclusive",
+        "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegTwoGen_sq": "inconclusive",
+        "LeanFrontier.NumberTheory.DiscriminantTower.sqrtTwoGen_sq": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 23533,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/DiscriminantTowerWitness.lean",
+        "Submissions/cyclotomic-eight-quadratic-generators.json"
+      ],
+      "corpus_entrypoints_checked": 199,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.NumberTheory.DiscriminantTower.coprimalityIsLoadBearing": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.coprimalityIsLoadBearing",
+          "statement_sha256": "4f7689930eb80353d2d79f4ce33063d223f92de09abe8f196f7f26e7156aaca8",
+          "type_dependencies": [
+            "LeanFrontier.DiscriminantTower.CoprimalityIsLoadBearing"
+          ]
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_ambient_invariants": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_ambient_invariants",
+          "statement_sha256": "45302f4f6be7a22f5290788cf1820290d9cd8dd840385432a6ca8a77d04b9d66",
+          "type_dependencies": [
+            "Algebra.toModule",
+            "And",
+            "CommSemiring.toSemiring",
+            "CyclotomicField.instCharZero",
+            "CyclotomicField.instField",
+            "CyclotomicField.instNumberField",
+            "DivisionRing.toRatAlgebra",
+            "Eq",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "Int.natAbs",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "Module.finrank",
+            "Nat",
+            "NumberField.discr",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.commSemiring",
+            "Rat.instCharZero",
+            "Rat.instField",
+            "Rat.numberField",
+            "Rat.semiring",
+            "Semifield.toCommSemiring",
+            "Semiring.toAddCommMonoid",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.quadraticFields_discr_abs": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.quadraticFields_discr_abs",
+          "statement_sha256": "9fb5ac70fd1ed61f3977ee3aa6e64a09c86b808b88a79433c3f80de0353ac430",
+          "type_dependencies": [
+            "And",
+            "CyclotomicField.instCharZero",
+            "CyclotomicField.instField",
+            "CyclotomicField.instNumberField",
+            "DivisionRing.toRatAlgebra",
+            "Eq",
+            "Field.toDivisionRing",
+            "Int.natAbs",
+            "IntermediateField",
+            "IntermediateField.instSetLike",
+            "IntermediateField.toField",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegTwoField",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtTwoField",
+            "Membership.mem",
+            "Nat",
+            "NumberField.discr",
+            "NumberField.of_intermediateField",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.instCharZero",
+            "Rat.instField",
+            "Rat.numberField",
+            "SetLike.instMembership",
+            "Subtype",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.quadraticGenerator_minpolys": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.quadraticGenerator_minpolys",
+          "statement_sha256": "1b73e3a950f8608b8078d40c4d0d5c8b0bb7c789bccff3c42c57b76474538992",
+          "type_dependencies": [
+            "And",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "CyclotomicField.instCharZero",
+            "CyclotomicField.instField",
+            "DFunLike.coe",
+            "DivisionRing.toRatAlgebra",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field.toDivisionRing",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegTwoGen",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtTwoGen",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "Polynomial",
+            "Polynomial.C",
+            "Polynomial.X",
+            "Polynomial.instAdd",
+            "Polynomial.instSub",
+            "Polynomial.semiring",
+            "Rat",
+            "Rat.commRing",
+            "Rat.instCharZero",
+            "Rat.instDivisionRing",
+            "Rat.instField",
+            "Rat.instOfNat",
+            "RingHom",
+            "RingHom.instFunLike",
+            "Semiring.toMonoid",
+            "Semiring.toNonAssocSemiring",
+            "instHAdd",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat",
+            "minpoly"
+          ]
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegTwoGen_sq": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegTwoGen_sq",
+          "statement_sha256": "617214fbb5da236a9dc6e84cda533535e8aa4edabd95feb5bc61403a2c1cb874",
+          "type_dependencies": [
+            "AddCommGroup.toDivisionAddCommMonoid",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "CommSemiring.toSemiring",
+            "CyclotomicField.instField",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "HPow.hPow",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegTwoGen",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "Neg.neg",
+            "NegZeroClass.toNeg",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.instField",
+            "Ring.toAddCommGroup",
+            "Ring.toAddGroupWithOne",
+            "Semifield.toCommSemiring",
+            "Semiring.toMonoid",
+            "SubNegZeroMonoid.toNegZeroClass",
+            "SubtractionCommMonoid.toSubtractionMonoid",
+            "SubtractionMonoid.toSubNegZeroMonoid",
+            "instHPow",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.sqrtTwoGen_sq": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.sqrtTwoGen_sq",
+          "statement_sha256": "04780ca87d935c901197fb477e5ad1903c4d20971b4997a3c55711eea2d8da6d",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "CommSemiring.toSemiring",
+            "CyclotomicField.instField",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "HPow.hPow",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtTwoGen",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.instField",
+            "Ring.toAddGroupWithOne",
+            "Semifield.toCommSemiring",
+            "Semiring.toMonoid",
+            "instHPow",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 21754,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 41
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "cyclotomic-eight-quadratic-generators",
+  "trusted_receiver_revision": "dabe647eacec26872b810930033f32ed27b890de",
+  "validated_candidate_revision": "196a345a6ff3691ac88242339d67849a367bd405",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36112910491"
+}
