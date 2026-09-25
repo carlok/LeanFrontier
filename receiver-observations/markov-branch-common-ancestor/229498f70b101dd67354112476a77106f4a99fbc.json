@@ -1,0 +1,675 @@
+{
+  "accepted_revision": "229498f70b101dd67354112476a77106f4a99fbc",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-25T15:48:12Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 554.298,
+    "observed": {
+      "added_lines": 199,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.commonAncestor": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.commonAncestor",
+          "restatement": false,
+          "statement_sha256": "47b58c966e630301bc8670d8c6fbd10fdc3187bf2c70c800777df4d502c04cd3",
+          "type_dependencies": [
+            "Bool",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonAncestor_comm": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonAncestor_comm",
+          "restatement": false,
+          "statement_sha256": "440970de6e603df5e7759d4e3dfba707a4bb39c2e932aad604a23408d468582b",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonAncestor_eq_left_iff": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonAncestor_eq_left_iff",
+          "restatement": false,
+          "statement_sha256": "63f2e82164dec281b8bebcc9c7c41d5eefd30cfc25c6514935a002c593b5e88b",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List",
+            "List.IsSuffix"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonAncestor_eq_right_iff": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonAncestor_eq_right_iff",
+          "restatement": false,
+          "statement_sha256": "08a90b4ebafbde9d716cb45672e2037e27abaa49a0ae329a444adf914ca6861d",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List",
+            "List.IsSuffix"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonAncestor_isSuffix_left": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonAncestor_isSuffix_left",
+          "restatement": false,
+          "statement_sha256": "f6d79e2ee466bda4f098036cca660cd17e31e877cf460998414f6408ec473fa7",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List",
+            "List.IsSuffix"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonAncestor_isSuffix_right": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonAncestor_isSuffix_right",
+          "restatement": false,
+          "statement_sha256": "a55b32ded6e25bf296abc0c7f853a036ef9f3a238e52e35f18042794fb6d3a4d",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List",
+            "List.IsSuffix"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonPrefix": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.commonPrefix",
+          "restatement": false,
+          "statement_sha256": "47b58c966e630301bc8670d8c6fbd10fdc3187bf2c70c800777df4d502c04cd3",
+          "type_dependencies": [
+            "Bool",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonPrefix_isPrefix_left": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonPrefix_isPrefix_left",
+          "restatement": false,
+          "statement_sha256": "586ae888913bc876581ea36630c60b5dc7e88f22b019746c604de69b952cf29e",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.commonPrefix",
+            "List",
+            "List.IsPrefix"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonPrefix_isPrefix_right": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonPrefix_isPrefix_right",
+          "restatement": false,
+          "statement_sha256": "d701f3d96ee1cc4c0ecb3a122b2a555fe7e0cd7bdf450ba9c8bde48511216e49",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.commonPrefix",
+            "List",
+            "List.IsPrefix"
+          ]
+        },
+        "LeanFrontier.MarkovTree.isPrefix_commonPrefix": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.isPrefix_commonPrefix",
+          "restatement": false,
+          "statement_sha256": "4a510ca6c2ea5ad7388f2c79dce125b12cde8c751fcebe83680e1c0d69da18c5",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.commonPrefix",
+            "List",
+            "List.IsPrefix"
+          ]
+        },
+        "LeanFrontier.MarkovTree.isSuffix_commonAncestor": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.isSuffix_commonAncestor",
+          "restatement": false,
+          "statement_sha256": "1ecae49a3aaf7fcb29c1ec7ae515270ef95cc588a30c1a9f45c18986a4a035b6",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List",
+            "List.IsSuffix"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 54,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.commonAncestor_comm": [
+            {
+              "outcome": "failed",
+              "seconds": 5.84,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.851,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.853,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.957,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.961,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.94,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.commonAncestor_eq_left_iff": [
+            {
+              "outcome": "failed",
+              "seconds": 6.042,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.907,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.952,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.947,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.88,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.808,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.commonAncestor_eq_right_iff": [
+            {
+              "outcome": "failed",
+              "seconds": 5.84,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.829,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.824,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.83,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.789,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.846,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.commonAncestor_isSuffix_left": [
+            {
+              "outcome": "failed",
+              "seconds": 6.297,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.314,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.31,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.39,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.232,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.272,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.commonAncestor_isSuffix_right": [
+            {
+              "outcome": "failed",
+              "seconds": 6.21,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.209,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.234,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.243,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.308,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.277,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.commonPrefix_isPrefix_left": [
+            {
+              "outcome": "failed",
+              "seconds": 5.908,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.924,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.758,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.872,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.7,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.779,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.commonPrefix_isPrefix_right": [
+            {
+              "outcome": "failed",
+              "seconds": 6.042,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.063,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.148,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.096,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.085,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.931,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.isPrefix_commonPrefix": [
+            {
+              "outcome": "failed",
+              "seconds": 6.06,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.996,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.122,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.129,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.174,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.246,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.isSuffix_commonAncestor": [
+            {
+              "outcome": "failed",
+              "seconds": 6.25,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.228,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.202,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.226,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.238,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 6.216,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 326.585,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.commonAncestor_comm": "inconclusive",
+        "LeanFrontier.MarkovTree.commonAncestor_eq_left_iff": "inconclusive",
+        "LeanFrontier.MarkovTree.commonAncestor_eq_right_iff": "inconclusive",
+        "LeanFrontier.MarkovTree.commonAncestor_isSuffix_left": "inconclusive",
+        "LeanFrontier.MarkovTree.commonAncestor_isSuffix_right": "inconclusive",
+        "LeanFrontier.MarkovTree.commonPrefix_isPrefix_left": "inconclusive",
+        "LeanFrontier.MarkovTree.commonPrefix_isPrefix_right": "inconclusive",
+        "LeanFrontier.MarkovTree.isPrefix_commonPrefix": "inconclusive",
+        "LeanFrontier.MarkovTree.isSuffix_commonAncestor": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 9657,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/BranchStructure.lean",
+        "Submissions/markov-branch-common-ancestor.json"
+      ],
+      "corpus_entrypoints_checked": 221,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.commonAncestor_comm": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonAncestor_comm",
+          "statement_sha256": "440970de6e603df5e7759d4e3dfba707a4bb39c2e932aad604a23408d468582b",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonAncestor_eq_left_iff": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonAncestor_eq_left_iff",
+          "statement_sha256": "63f2e82164dec281b8bebcc9c7c41d5eefd30cfc25c6514935a002c593b5e88b",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List",
+            "List.IsSuffix"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonAncestor_eq_right_iff": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonAncestor_eq_right_iff",
+          "statement_sha256": "08a90b4ebafbde9d716cb45672e2037e27abaa49a0ae329a444adf914ca6861d",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "Iff",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List",
+            "List.IsSuffix"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonAncestor_isSuffix_left": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonAncestor_isSuffix_left",
+          "statement_sha256": "f6d79e2ee466bda4f098036cca660cd17e31e877cf460998414f6408ec473fa7",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List",
+            "List.IsSuffix"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonAncestor_isSuffix_right": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonAncestor_isSuffix_right",
+          "statement_sha256": "a55b32ded6e25bf296abc0c7f853a036ef9f3a238e52e35f18042794fb6d3a4d",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List",
+            "List.IsSuffix"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonPrefix_isPrefix_left": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonPrefix_isPrefix_left",
+          "statement_sha256": "586ae888913bc876581ea36630c60b5dc7e88f22b019746c604de69b952cf29e",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.commonPrefix",
+            "List",
+            "List.IsPrefix"
+          ]
+        },
+        "LeanFrontier.MarkovTree.commonPrefix_isPrefix_right": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.commonPrefix_isPrefix_right",
+          "statement_sha256": "d701f3d96ee1cc4c0ecb3a122b2a555fe7e0cd7bdf450ba9c8bde48511216e49",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.commonPrefix",
+            "List",
+            "List.IsPrefix"
+          ]
+        },
+        "LeanFrontier.MarkovTree.isPrefix_commonPrefix": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.isPrefix_commonPrefix",
+          "statement_sha256": "4a510ca6c2ea5ad7388f2c79dce125b12cde8c751fcebe83680e1c0d69da18c5",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.commonPrefix",
+            "List",
+            "List.IsPrefix"
+          ]
+        },
+        "LeanFrontier.MarkovTree.isSuffix_commonAncestor": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.isSuffix_commonAncestor",
+          "statement_sha256": "1ecae49a3aaf7fcb29c1ec7ae515270ef95cc588a30c1a9f45c18986a4a035b6",
+          "type_dependencies": [
+            "Bool",
+            "LeanFrontier.MarkovTree.commonAncestor",
+            "List",
+            "List.IsSuffix"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 7444,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 12
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-branch-common-ancestor",
+  "trusted_receiver_revision": "2462c98a8a676b915184e62b180c6fcde31ec407",
+  "validated_candidate_revision": "3c260af5a1c4bc3a2031d4020be2377d5a107b46",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36155271013"
+}
