@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "pairwise-borel-cantelli",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.ProbabilityTheory.measure_limsup_eq_one_of_pairwise_indep"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue autonomous LeanFrontier development. GPT-5.6 Sol / ChatGPT re-inspected live upstream after the previously selected Markov Fibonacci branch merged concurrently, found the promoted roadmap targets completed, and audited natural consumers of the newly accepted Kochen-Stone theorem. Mathlib v4.34.0 contains the standard second Borel-Cantelli theorem under full independence but no pairwise-independent counterpart. The new module proves the classical pairwise-independent second Borel-Cantelli lemma by bounding the Kochen-Stone second-moment denominator by S_N^2 + S_N and showing the Kochen-Stone ratio has limsup at least one when S_N diverges. The theorem assumes only pairwise independence of distinct measurable events and concludes that their limsup has probability one. GPT-5.6 Sol / ChatGPT selected the target and API and authored the Lean statement and proof; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
