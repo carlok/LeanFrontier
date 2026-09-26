@@ -45,6 +45,7 @@ import LeanFrontier.NumberTheory.MarkovTree.Coverage
 import LeanFrontier.NumberTheory.MarkovTree.FibonacciSpine
 import LeanFrontier.NumberTheory.MarkovTree.Injectivity
 import LeanFrontier.NumberTheory.MarkovTree.MarkovNumber
+import LeanFrontier.NumberTheory.MarkovTree.ModFour
 import LeanFrontier.NumberTheory.MarkovTree.ModularRoot
 import LeanFrontier.NumberTheory.MarkovTree.Oriented
 import LeanFrontier.NumberTheory.MarkovTree.Paths
