@@ -1,0 +1,379 @@
+{
+  "accepted_revision": "8a7e7f5a0a2ed11ff0b35a6cb7e32ddb66e64176",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-26T16:04:59+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 334.791,
+    "observed": {
+      "added_lines": 161,
+      "audited_declarations": {
+        "LeanFrontier.MarkovEquation.slope_scale_common_divisors_iff": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.slope_scale_common_divisors_iff",
+          "restatement": false,
+          "statement_sha256": "dc4f27453fac1ad7d7ac8af4cc61df9cf0b69dd9ac2e485eb58c499b34ff8e14",
+          "type_dependencies": [
+            "And",
+            "Dvd.dvd",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Iff",
+            "Int",
+            "Int.instAdd",
+            "Int.instCommSemiring",
+            "Int.instDvd",
+            "Int.instMonoid",
+            "Int.instMul",
+            "Int.instSemiring",
+            "Int.instSub",
+            "IsCoprime",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Odd",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.slope_scale_gcd_eq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.slope_scale_gcd_eq",
+          "restatement": false,
+          "statement_sha256": "19674d77eb3f7dee11b1636d1c151c2e504692b7be786bd14965e6dc2bd0c1ef",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Int",
+            "Int.gcd",
+            "Int.instAdd",
+            "Int.instCommSemiring",
+            "Int.instMonoid",
+            "Int.instMul",
+            "Int.instSemiring",
+            "Int.instSub",
+            "IsCoprime",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Odd",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.slope_scale_primitive_quotient_gcd": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.slope_scale_primitive_quotient_gcd",
+          "restatement": false,
+          "statement_sha256": "58965ac2e88fb81d90ffb82be09c4d10716a067cc31ffcce90492444364829f4",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Int",
+            "Int.gcd",
+            "Int.instAdd",
+            "Int.instCommSemiring",
+            "Int.instMonoid",
+            "Int.instMul",
+            "Int.instSub",
+            "Int.natAbs",
+            "IsCoprime",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 18,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovEquation.slope_scale_common_divisors_iff": [
+            {
+              "outcome": "failed",
+              "seconds": 5.8,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.477,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.559,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.67,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.599,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.466,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovEquation.slope_scale_gcd_eq": [
+            {
+              "outcome": "failed",
+              "seconds": 5.479,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.585,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.597,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.645,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.735,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.581,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovEquation.slope_scale_primitive_quotient_gcd": [
+            {
+              "outcome": "failed",
+              "seconds": 5.452,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.472,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.43,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.465,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.417,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.606,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 100.035,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovEquation.slope_scale_common_divisors_iff": "inconclusive",
+        "LeanFrontier.MarkovEquation.slope_scale_gcd_eq": "inconclusive",
+        "LeanFrontier.MarkovEquation.slope_scale_primitive_quotient_gcd": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 7216,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovEquation/SlopeScaleGCD.lean",
+        "Submissions/markov-slope-scale-gcd.json"
+      ],
+      "corpus_entrypoints_checked": 262,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovEquation.slope_scale_common_divisors_iff": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.slope_scale_common_divisors_iff",
+          "statement_sha256": "dc4f27453fac1ad7d7ac8af4cc61df9cf0b69dd9ac2e485eb58c499b34ff8e14",
+          "type_dependencies": [
+            "And",
+            "Dvd.dvd",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Iff",
+            "Int",
+            "Int.instAdd",
+            "Int.instCommSemiring",
+            "Int.instDvd",
+            "Int.instMonoid",
+            "Int.instMul",
+            "Int.instSemiring",
+            "Int.instSub",
+            "IsCoprime",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Odd",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.slope_scale_gcd_eq": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.slope_scale_gcd_eq",
+          "statement_sha256": "19674d77eb3f7dee11b1636d1c151c2e504692b7be786bd14965e6dc2bd0c1ef",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Int",
+            "Int.gcd",
+            "Int.instAdd",
+            "Int.instCommSemiring",
+            "Int.instMonoid",
+            "Int.instMul",
+            "Int.instSemiring",
+            "Int.instSub",
+            "IsCoprime",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Odd",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.slope_scale_primitive_quotient_gcd": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.slope_scale_primitive_quotient_gcd",
+          "statement_sha256": "58965ac2e88fb81d90ffb82be09c4d10716a067cc31ffcce90492444364829f4",
+          "type_dependencies": [
+            "And",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Int",
+            "Int.gcd",
+            "Int.instAdd",
+            "Int.instCommSemiring",
+            "Int.instMonoid",
+            "Int.instMul",
+            "Int.instSub",
+            "Int.natAbs",
+            "IsCoprime",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 5849,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 3
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-slope-scale-gcd",
+  "trusted_receiver_revision": "2542495e496a6d0a9139295f57f8bb15ed803ec5",
+  "validated_candidate_revision": "7ea18ef9d0c936bcc0c6b9cd1c8f7756778188bd",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36245086403"
+}
