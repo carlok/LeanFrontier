@@ -1,0 +1,235 @@
+{
+  "accepted_revision": "7a635e595d7d34d5ad7372a77e3dec4d787de8f3",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-26T11:08:59+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 210.729,
+    "observed": {
+      "added_lines": 79,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.isSquare_neg_one_mod_markovNumber": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.isSquare_neg_one_mod_markovNumber",
+          "restatement": false,
+          "statement_sha256": "5ba70600209ab46e02a339dc1bb79d204f7096ae792875ffcef83687cb5c4b58",
+          "type_dependencies": [
+            "AddCommGroup.toDivisionAddCommMonoid",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toOne",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Int.natAbs",
+            "IsSquare",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "Neg.neg",
+            "NegZeroClass.toNeg",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddCommGroup",
+            "Ring.toAddGroupWithOne",
+            "SubNegZeroMonoid.toNegZeroClass",
+            "SubtractionCommMonoid.toSubtractionMonoid",
+            "SubtractionMonoid.toSubNegZeroMonoid",
+            "ZMod",
+            "ZMod.commRing",
+            "instDistribOfSemiring"
+          ]
+        },
+        "LeanFrontier.MarkovTree.prime_dvd_markovNumber_mod_four_ne_three": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.prime_dvd_markovNumber_mod_four_ne_three",
+          "restatement": false,
+          "statement_sha256": "7afad2b9ee3fa7a9edceea01538fb8d4382e108a6a201874d6e0071f2572be33",
+          "type_dependencies": [
+            "Dvd.dvd",
+            "HMod.hMod",
+            "Int.natAbs",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "Nat",
+            "Nat.Prime",
+            "Nat.instDvd",
+            "Nat.instMod",
+            "Ne",
+            "OfNat.ofNat",
+            "instHMod",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.isSquare_neg_one_mod_markovNumber": [
+            {
+              "outcome": "failed",
+              "seconds": 3.594,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.47,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.501,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.466,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.385,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.461,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.prime_dvd_markovNumber_mod_four_ne_three": [
+            {
+              "outcome": "failed",
+              "seconds": 3.402,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.434,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.421,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.402,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.393,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.401,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 41.33,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.isSquare_neg_one_mod_markovNumber": "inconclusive",
+        "LeanFrontier.MarkovTree.prime_dvd_markovNumber_mod_four_ne_three": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 5071,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/QuadraticResidue.lean",
+        "Submissions/markov-quadratic-residue.json"
+      ],
+      "corpus_entrypoints_checked": 255,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.isSquare_neg_one_mod_markovNumber": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.isSquare_neg_one_mod_markovNumber",
+          "statement_sha256": "5ba70600209ab46e02a339dc1bb79d204f7096ae792875ffcef83687cb5c4b58",
+          "type_dependencies": [
+            "AddCommGroup.toDivisionAddCommMonoid",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toOne",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Int.natAbs",
+            "IsSquare",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "Neg.neg",
+            "NegZeroClass.toNeg",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddCommGroup",
+            "Ring.toAddGroupWithOne",
+            "SubNegZeroMonoid.toNegZeroClass",
+            "SubtractionCommMonoid.toSubtractionMonoid",
+            "SubtractionMonoid.toSubNegZeroMonoid",
+            "ZMod",
+            "ZMod.commRing",
+            "instDistribOfSemiring"
+          ]
+        },
+        "LeanFrontier.MarkovTree.prime_dvd_markovNumber_mod_four_ne_three": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.prime_dvd_markovNumber_mod_four_ne_three",
+          "statement_sha256": "7afad2b9ee3fa7a9edceea01538fb8d4382e108a6a201874d6e0071f2572be33",
+          "type_dependencies": [
+            "Dvd.dvd",
+            "HMod.hMod",
+            "Int.natAbs",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "Nat",
+            "Nat.Prime",
+            "Nat.instDvd",
+            "Nat.instMod",
+            "Ne",
+            "OfNat.ofNat",
+            "instHMod",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3422,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 3
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-quadratic-residue",
+  "trusted_receiver_revision": "e2e533aa7555899994795c625ed1c3ee0f1032a0",
+  "validated_candidate_revision": "62e731441c0f0821f2c0f4c342c671c29a5d3baf",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36230760898"
+}
