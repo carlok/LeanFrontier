@@ -1,0 +1,305 @@
+{
+  "accepted_revision": "1f3e8fae49d71521079cb17ea2cf18341072ac2d",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-26T11:43:23+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 264.769,
+    "observed": {
+      "added_lines": 85,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.exists_sq_modEq_neg_one_markovNumber": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.exists_sq_modEq_neg_one_markovNumber",
+          "restatement": false,
+          "statement_sha256": "8d9e5b57b0881bd469b7d5a8af6297a7c1171330769229ba10c71177d72b4ab8",
+          "type_dependencies": [
+            "Exists",
+            "HPow.hPow",
+            "Int",
+            "Int.ModEq",
+            "Int.instMonoid",
+            "Int.instNegInt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "instHPow",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovNumber_isCoprime_forwardCoordinate": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovNumber_isCoprime_forwardCoordinate",
+          "restatement": false,
+          "statement_sha256": "293503919611dded27b52d7e16d54c3ec2180d1f51045ad93ecaa35a8c9b3893",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "Int.instCommSemiring",
+            "IsCoprime",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.forwardCoordinate",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber"
+          ]
+        },
+        "LeanFrontier.MarkovTree.otherSquareSum_back_eq_forwardCoordinate_squares": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.otherSquareSum_back_eq_forwardCoordinate_squares",
+          "restatement": false,
+          "statement_sha256": "d2231b3204da32eb3a52d08f752a76e83adc8b443f9bd1b78fcb4aca5b2d789d",
+          "type_dependencies": [
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "Int",
+            "Int.instAdd",
+            "Int.instMonoid",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.back",
+            "LeanFrontier.MarkovTree.OrientedNode.forwardCoordinate",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State.otherSquareSum",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 18,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.exists_sq_modEq_neg_one_markovNumber": [
+            {
+              "outcome": "failed",
+              "seconds": 4.394,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.402,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.403,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.43,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.416,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.401,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.markovNumber_isCoprime_forwardCoordinate": [
+            {
+              "outcome": "failed",
+              "seconds": 4.502,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.415,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.433,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.394,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.403,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.444,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.otherSquareSum_back_eq_forwardCoordinate_squares": [
+            {
+              "outcome": "failed",
+              "seconds": 4.411,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.422,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.423,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.422,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.368,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.4,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 79.483,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.exists_sq_modEq_neg_one_markovNumber": "inconclusive",
+        "LeanFrontier.MarkovTree.markovNumber_isCoprime_forwardCoordinate": "inconclusive",
+        "LeanFrontier.MarkovTree.otherSquareSum_back_eq_forwardCoordinate_squares": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 5205,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/ModularRoot.lean",
+        "Submissions/markov-sqrt-neg-one.json"
+      ],
+      "corpus_entrypoints_checked": 257,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.exists_sq_modEq_neg_one_markovNumber": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.exists_sq_modEq_neg_one_markovNumber",
+          "statement_sha256": "8d9e5b57b0881bd469b7d5a8af6297a7c1171330769229ba10c71177d72b4ab8",
+          "type_dependencies": [
+            "Exists",
+            "HPow.hPow",
+            "Int",
+            "Int.ModEq",
+            "Int.instMonoid",
+            "Int.instNegInt",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Neg.neg",
+            "OfNat.ofNat",
+            "instHPow",
+            "instOfNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.markovNumber_isCoprime_forwardCoordinate": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.markovNumber_isCoprime_forwardCoordinate",
+          "statement_sha256": "293503919611dded27b52d7e16d54c3ec2180d1f51045ad93ecaa35a8c9b3893",
+          "type_dependencies": [
+            "Bool",
+            "Int",
+            "Int.instCommSemiring",
+            "IsCoprime",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.forwardCoordinate",
+            "LeanFrontier.MarkovTree.OrientedNode.markovNumber"
+          ]
+        },
+        "LeanFrontier.MarkovTree.otherSquareSum_back_eq_forwardCoordinate_squares": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.otherSquareSum_back_eq_forwardCoordinate_squares",
+          "statement_sha256": "d2231b3204da32eb3a52d08f752a76e83adc8b443f9bd1b78fcb4aca5b2d789d",
+          "type_dependencies": [
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "Int",
+            "Int.instAdd",
+            "Int.instMonoid",
+            "LeanFrontier.MarkovTree.OrientedNode",
+            "LeanFrontier.MarkovTree.OrientedNode.back",
+            "LeanFrontier.MarkovTree.OrientedNode.forwardCoordinate",
+            "LeanFrontier.MarkovTree.OrientedNode.state",
+            "LeanFrontier.MarkovTree.State.otherSquareSum",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "instHAdd",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3493,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 3
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-sqrt-neg-one",
+  "trusted_receiver_revision": "f3cbb9ab2b9044c9a9dd2dc0bcb4e01ebc3a50cb",
+  "validated_candidate_revision": "82dcd04e1f9cae09869528aa96f4adc3615b5c11",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36233237949"
+}

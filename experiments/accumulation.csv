@@ -93,3 +93,4 @@ date,submission_id,modules,edges,edges_per_module,connected_share,max_in_degree,
 2026-09-25,sqrt-neg-one-from-sum-squares,83,63,0.759,0.614,4,8,true,true
 2026-09-26,markov-collision-factorization,84,64,0.762,0.619,4,8,false,true
 2026-09-26,markov-quadratic-residue,85,66,0.776,0.624,4,9,true,true
+2026-09-26,markov-sqrt-neg-one,86,70,0.814,0.628,4,9,true,true
