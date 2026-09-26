@@ -95,3 +95,4 @@ date,submission_id,modules,edges,edges_per_module,connected_share,max_in_degree,
 2026-09-26,markov-quadratic-residue,85,66,0.776,0.624,4,9,true,true
 2026-09-26,markov-sqrt-neg-one,86,70,0.814,0.628,4,9,true,true
 2026-09-26,markov-mod-four-pattern,87,71,0.816,0.632,4,9,true,true
+2026-09-26,markov-slope-scale-gcd,88,71,0.807,0.625,4,9,true,true
