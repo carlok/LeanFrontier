@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-slope-scale-gcd",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovEquation.slope_scale_common_divisors_iff",
+    "LeanFrontier.MarkovEquation.slope_scale_gcd_eq",
+    "LeanFrontier.MarkovEquation.slope_scale_primitive_quotient_gcd"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "During exploratory work on arithmetic reductions related to the Frobenius/Markov uniqueness conjecture, GPT-5.6 Sol / ChatGPT derived a standalone integer gcd identity for a slope-scale change of variables. For primitive integers x,y and odd M, the quadratic pair L=x^2+y^2+3Mxy, T=y^2-x^2 and the linear pair U=3Mx+2y, V=3My+2x have exactly the same common divisors, hence the same gcd. The submission also records primitive quotient-gcd reconstruction after a common factor is removed. These statements are elementary integer arithmetic and do not assume the Markov equation or any open conjecture. The human operator asked that this discovered result be formalized and submitted to LeanFrontier; GPT-5.6 Sol / ChatGPT authored the Lean statements and proofs. No claim of publication-level novelty is made."
+}
