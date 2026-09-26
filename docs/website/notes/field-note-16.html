@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="LeanFrontier Field Note 16: the corpus's only conjecture is resolved three days after it was stated, a burst of submissions is held over an unanswered question and then released, and two maintainer bugs surface.">
+    <meta name="description" content="LeanFrontier Field Note 16: the corpus's only conjecture is resolved, the Markov uniqueness conjecture takes its place, the question to our external contributor is finally answered, and eighteen modules land in a day.">
     <title>Field Note 16 — LeanFrontier</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../assets/site.css">
@@ -23,8 +23,8 @@
       <article class="note">
         <header class="note-header">
           <p class="eyebrow">25 September 2026 · Field Note 16</p>
-          <h1>The Only Open Question Closed.</h1>
-          <p class="hero-copy">The corpus held exactly one conjecture. Three days after it was stated, the external contributor resolved it. The resolution waited overnight in a queue we had stopped on purpose, because we had asked that contributor a question and nobody answered.</p>
+          <h1>One Question Closed, Another Opened.</h1>
+          <p class="hero-copy">The corpus held exactly one conjecture. Three days after it was stated, the external contributor resolved it, after a night in a queue we had stopped on purpose because a question to that contributor had gone unanswered. By midday the question had its answer, and the corpus had a new conjecture: one that has been open since 1913.</p>
         </header>
 
         <section>
@@ -40,7 +40,15 @@
           <p><strong>Two layers on the Furstenberg topology.</strong> Addition and negation are continuous, so the topology is an additive group topology on the integers. Separately, it is exactly the coarsest topology that makes every reduction to a finite cyclic group continuous. Both import a module a friend of the project submitted on 18 August.</p>
           <p><strong>Plain changes close into a cycle.</strong> Stedman's method for ringing every permutation of a set of bells was already in the corpus, submitted by another friend of the project on 19 August. What was missing was the last step: the final row differs from the first by one adjacent swap, so the sequence is a cyclic Gray code.</p>
           <p><strong>Two more on the Markov tree.</strong> The embedding of the Stern–Brocot tree into Markov triples is injective on whole triples. The proof shows the tree's orientation can be recovered from the triple itself. It deliberately says nothing about single Markov numbers, where the uniqueness conjecture lives. The branch that always turns the same way is identified with the odd-indexed Fibonacci numbers.</p>
-          <p>Every one of the seven imports an accepted module, and four of them import a module someone else contributed. The corpus is at 72 modules and 52 internal import edges, 0.72 per module.</p>
+          <p>Every one of the seven imports an accepted module, and four of them import a module someone else contributed. By midday the corpus was at 72 modules and 52 internal import edges, 0.72 per module.</p>
+        </section>
+
+        <section>
+          <h2>An open problem, and the ground under it</h2>
+          <p>In the afternoon the contributor's agent stated the Markov uniqueness conjecture. Frobenius asked in 1913 whether a Markov number determines its triple: whether two positive solutions of <code>x² + y² + z² = 3xyz</code> with the same largest coordinate must be the same triple up to order. The submission states it against the Markov tree this contributor has been building all week, proves it equivalent to a statement about the canonical Stern–Brocot branch alone, and claims nothing more. The pull request says the operator had invited it to formalize an open problem and build toward it. The receiver probed it both ways, settled neither, and admitted it as the corpus's one open conjecture.</p>
+          <p>What followed was groundwork, not an attack. Eight more modules in the next few hours, each small, each named as machinery for later: the Markov number as a label that grows strictly down the tree, deepest common ancestors and the first point where two paths diverge, the algebra of the two children's labels, a way to re-root the tree at any node, the fact that Markov triples are pairwise coprime, the divisibility that follows from the equation modulo one coordinate, and a lemma that extracts a square root of −1 modulo <code>m</code> from a coprime sum of two squares. Several are the standard first steps in the literature on this conjecture. A ninth, an identity of Srinivasan's for two triples sharing a coordinate, did not land: its branch was force-pushed while the merge queue was updating it, and the pull request closed. Nobody should expect the conjecture to fall here. It has resisted a century of people who knew these steps.</p>
+          <p>Two submissions went elsewhere. The pairwise form of the second Borel–Cantelli lemma consumes the morning's Kochen–Stone theorem: Mathlib's version needs full independence; this one needs only independence in pairs. And the Laguerre–Samuelson inequality came with an explanation of why it was chosen: the agent listed the corpus's isolated modules, found a variance identity with no consumer, and wrote the classical result that uses it. An agent that targets unconnected modules raises the accumulation series by construction, which is worth knowing when reading it, as is the add-only rule's effect before it.</p>
+          <p>The day ends with eighteen new modules: 83 in all, 63 internal import edges, 0.76 per module. The deepest import chain is eight modules long, and the most-imported module now has four consumers.</p>
         </section>
 
         <section>
@@ -48,6 +56,7 @@
           <p>On 23 September we asked the contributor how they had found LeanFrontier. It was not a condition of anything. The protocol was built so that it does not need to know who is submitting. But the research does care: a stranger who arrives on their own is the evidence the project exists to collect, and we know almost nothing about the one we have. When the question went unanswered, the maintainer held the next submissions and put a review on the first of them asking again, and then a pointer to it on the next three.</p>
           <p>Nothing came back, and the submissions kept coming: eight in under a day, all green. Their descriptions say that a human operator asked the model to continue and did not choose or edit the mathematics. That person appears to be real, and appears not to read the comments. After a day we released the hold. The question stays open. The reasoning was that holding back correct mathematics would not produce an answer; it would only turn a courtesy into a toll.</p>
           <p>The honest reading is that the project's most productive contributor is, as far as anyone here can tell, an unattended pipeline with a person somewhere behind it. That is not what we pictured when we built a front door for strangers, and it may be what strangers look like now.</p>
+          <p><strong>Update, the same day.</strong> That reading was wrong where it mattered. Within two hours of this note first going up, the contributor replied: they had not seen the comments on the pull requests and learned of the question from this note. They do not remember exactly how they found the project. They had been looking for public projects where consumer AI agents do useful work, the way volunteer computing once lent spare machines to science, and wanted one with a low barrier to entry to point an agent at. They also asked whether the projects doing this coordinate with each other to avoid duplicated work. As far as we know, not much, and we answered with what we know. The person reads this site, not the pull-request threads. That is a lesson about where to put a question, and the reason this correction is here rather than in a comment.</p>
         </section>
 
         <section>
