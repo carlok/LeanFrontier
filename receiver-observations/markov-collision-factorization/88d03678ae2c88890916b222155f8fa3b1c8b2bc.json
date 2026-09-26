@@ -1,0 +1,137 @@
+{
+  "accepted_revision": "88d03678ae2c88890916b222155f8fa3b1c8b2bc",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-26T10:01:45+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 263.276,
+    "observed": {
+      "added_lines": 48,
+      "audited_declarations": {
+        "LeanFrontier.MarkovEquation.collision_factorization": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.collision_factorization",
+          "restatement": false,
+          "statement_sha256": "44a102cba6bfbd54bfa50b12278f641055d2543d234c3cfdbc9742af68907687",
+          "type_dependencies": [
+            "Eq",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Int",
+            "Int.instMonoid",
+            "Int.instMul",
+            "Int.instSub",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovEquation.collision_factorization": [
+            {
+              "outcome": "failed",
+              "seconds": 5.164,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.199,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.183,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.098,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.973,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.027,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 30.644,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovEquation.collision_factorization": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 3233,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovEquation/Collision.lean",
+        "Submissions/markov-collision-factorization.json"
+      ],
+      "corpus_entrypoints_checked": 254,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovEquation.collision_factorization": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.collision_factorization",
+          "statement_sha256": "44a102cba6bfbd54bfa50b12278f641055d2543d234c3cfdbc9742af68907687",
+          "type_dependencies": [
+            "Eq",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Int",
+            "Int.instMonoid",
+            "Int.instMul",
+            "Int.instSub",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 1690,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-collision-factorization",
+  "trusted_receiver_revision": "5fd472aac2fce6d27ca0a4543d3efe094acd285e",
+  "validated_candidate_revision": "5d46edd44206ac824c21b9ced8a47344f0935326",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36225979339"
+}
