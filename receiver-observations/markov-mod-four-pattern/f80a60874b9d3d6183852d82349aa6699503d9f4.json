@@ -1,0 +1,250 @@
+{
+  "accepted_revision": "f80a60874b9d3d6183852d82349aa6699503d9f4",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-26T12:26:56+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 307.628,
+    "observed": {
+      "added_lines": 112,
+      "audited_declarations": {
+        "LeanFrontier.MarkovTree.ModFourPattern": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.MarkovTree.ModFourPattern",
+          "restatement": false,
+          "statement_sha256": "bd7fc956886602c1246dd09077f9778669647e7d7cd1fb4a241f38a3ef949fd6",
+          "type_dependencies": [
+            "LeanFrontier.MarkovTree.State"
+          ]
+        },
+        "LeanFrontier.MarkovTree.modFourPattern_of_positive_solution": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.modFourPattern_of_positive_solution",
+          "restatement": false,
+          "statement_sha256": "0af91170bd43b5869228f2f0daba712a21dcf822a6c89e6d7b5a8e4b3e019a96",
+          "type_dependencies": [
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.ModFourPattern",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.IsSolution",
+            "LeanFrontier.MarkovTree.State.x",
+            "LeanFrontier.MarkovTree.State.y",
+            "LeanFrontier.MarkovTree.State.z",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.modFour_of_even_third_coordinate": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.modFour_of_even_third_coordinate",
+          "restatement": false,
+          "statement_sha256": "bbd236c2c6ea67284e7bb558a1fe31de2b1519e780b2e464a3c9428979bdf083",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddGroupWithOne.toIntCast",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "And",
+            "CommRing.toRing",
+            "Dvd.dvd",
+            "Eq",
+            "Int",
+            "Int.cast",
+            "Int.instDvd",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "ZMod",
+            "ZMod.commRing",
+            "instOfNat",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovTree.modFourPattern_of_positive_solution": [
+            {
+              "outcome": "failed",
+              "seconds": 5.215,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.916,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.124,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.964,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.938,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.892,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovTree.modFour_of_even_third_coordinate": [
+            {
+              "outcome": "failed",
+              "seconds": 4.899,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.964,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.944,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.038,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.866,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.893,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 59.653,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovTree.modFourPattern_of_positive_solution": "inconclusive",
+        "LeanFrontier.MarkovTree.modFour_of_even_third_coordinate": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 5490,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovTree/ModFour.lean",
+        "Submissions/markov-mod-four-pattern.json"
+      ],
+      "corpus_entrypoints_checked": 260,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovTree.modFourPattern_of_positive_solution": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.modFourPattern_of_positive_solution",
+          "statement_sha256": "0af91170bd43b5869228f2f0daba712a21dcf822a6c89e6d7b5a8e4b3e019a96",
+          "type_dependencies": [
+            "Int",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovTree.ModFourPattern",
+            "LeanFrontier.MarkovTree.State",
+            "LeanFrontier.MarkovTree.State.IsSolution",
+            "LeanFrontier.MarkovTree.State.x",
+            "LeanFrontier.MarkovTree.State.y",
+            "LeanFrontier.MarkovTree.State.z",
+            "OfNat.ofNat",
+            "instOfNat"
+          ]
+        },
+        "LeanFrontier.MarkovTree.modFour_of_even_third_coordinate": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovTree.modFour_of_even_third_coordinate",
+          "statement_sha256": "bbd236c2c6ea67284e7bb558a1fe31de2b1519e780b2e464a3c9428979bdf083",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddGroupWithOne.toIntCast",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "And",
+            "CommRing.toRing",
+            "Dvd.dvd",
+            "Eq",
+            "Int",
+            "Int.cast",
+            "Int.instDvd",
+            "Int.instLTInt",
+            "LT.lt",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "ZMod",
+            "ZMod.commRing",
+            "instOfNat",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3943,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 5
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-mod-four-pattern",
+  "trusted_receiver_revision": "03dd50e5d7caf3f6996532209a92112cbe0c2d97",
+  "validated_candidate_revision": "cc667c9d1ed6bac0bb746cee6ee533c7f7c19576",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36234820479"
+}
