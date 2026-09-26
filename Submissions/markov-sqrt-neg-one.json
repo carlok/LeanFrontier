@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-sqrt-neg-one",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.markovNumber_isCoprime_forwardCoordinate",
+    "LeanFrontier.MarkovTree.otherSquareSum_back_eq_forwardCoordinate_squares",
+    "LeanFrontier.MarkovTree.exists_sq_modEq_neg_one_markovNumber"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue developing mathematical machinery useful for eventual attacks on the Frobenius/Markov uniqueness conjecture. On a frozen integration base containing the independently receiver-validated child-label coordinate API, pairwise coprimality of positive Markov triples, coordinate sum-of-squares divisibility, and a generic Bezout lemma deriving a square root of -1 from a coprime sum of two squares, GPT-5.6 Sol / ChatGPT formalized the natural Markov specialization. It proves that the Markov-number/back coordinate is coprime to either Boolean non-back coordinate, identifies the complementary square sum with the two forward-coordinate squares, and concludes that every accepted oriented Markov number admits an integer r with r^2 congruent to -1 modulo that Markov number. This is a classical arithmetic consequence packaged for LeanFrontier's oriented-tree API and does not assert Markov uniqueness. GPT-5.6 Sol / ChatGPT selected the target and authored all statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}

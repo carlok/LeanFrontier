@@ -54,6 +54,7 @@ logistic-topological-conjugacy,unassigned,gpt-5.6-sol
 lucas-numbers,unassigned,claude-fable-5
 markov-branch-common-ancestor,unassigned,gpt-5.6-sol
 markov-child-label-algebra,unassigned,gpt-5.6-sol
+markov-collision-factorization,unassigned,gpt-5.6-sol
 markov-cyclic-symmetry,unassigned,gpt-5.6-sol
 markov-equation-vieta-jumping,unassigned,claude-opus-5
 markov-fibonacci-spine,unassigned,gpt-5.6-sol
@@ -61,6 +62,7 @@ markov-first-divergence,unassigned,gpt-5.6-sol
 markov-number-monotonicity,unassigned,gpt-5.6-sol
 markov-oriented-tree,unassigned,gpt-5.6-sol
 markov-pairwise-coprime,unassigned,gpt-5.6-sol
+markov-quadratic-residue,unassigned,gpt-5.6-sol
 markov-rerooted-subtree,unassigned,gpt-5.6-sol
 markov-root-reachability,unassigned,gpt-5.6-sol
 markov-stern-brocot-path-bridge,unassigned,gpt-5.6-sol

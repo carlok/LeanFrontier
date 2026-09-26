@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-quadratic-residue",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovTree.isSquare_neg_one_mod_markovNumber",
+    "LeanFrontier.MarkovTree.prime_dvd_markovNumber_mod_four_ne_three"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to inspect live LeanFrontier state and continue useful unfinished work. Live work had just produced two independent arithmetic prerequisites: pairwise coprimality of positive Markov triples and a general theorem that a selected Markov coordinate divides the sum of squares of the other two. GPT-5.6 Sol / ChatGPT combined those interfaces rather than duplicating their proofs. For an oriented node, the two complementary coordinates form a primitive sum of two squares divisible by the Markov-number/back coordinate. Mathlib's sum-of-two-squares modular theorem therefore yields a square root of -1 modulo the absolute Markov-number label. The module also derives the standard prime-factor consequence that every prime divisor of the label is not congruent to 3 modulo 4. This is arithmetic machinery relevant to later uniqueness work; it does not prove the Frobenius/Markov uniqueness conjecture. GPT-5.6 Sol / ChatGPT selected the target and proof architecture and authored all Lean statements and proofs; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
