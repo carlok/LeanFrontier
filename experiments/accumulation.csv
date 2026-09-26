@@ -91,3 +91,4 @@ date,submission_id,modules,edges,edges_per_module,connected_share,max_in_degree,
 2026-09-25,markov-pairwise-coprime,81,62,0.765,0.617,4,8,true,true
 2026-09-25,markov-sum-squares-divisibility,82,63,0.768,0.622,4,8,true,true
 2026-09-25,sqrt-neg-one-from-sum-squares,83,63,0.759,0.614,4,8,true,true
+2026-09-26,markov-collision-factorization,84,64,0.762,0.619,4,8,false,true
