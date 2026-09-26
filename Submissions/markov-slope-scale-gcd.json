@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-slope-scale-gcd",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "target_driven",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovEquation.slopeScale_commonDivisor_iff",
+    "LeanFrontier.MarkovEquation.slopeScale_gcd_eq"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "While investigating the unresolved composite case of the Frobenius/Markov uniqueness conjecture on a research-only branch, GPT-5.6 Sol / ChatGPT derived an arithmetic collapse in the slope-scale variables: for a primitive integer pair x,y, the quadratic pair L=x^2+y^2+3Mxy and T=y^2-x^2 has the same common divisors as the linear pair U=3Mx+2y and V=3My+2x, provided 2 is coprime to 3M (in particular for odd M). This submission formalizes that reusable common-divisor equivalence and its gcd corollary independently of any open uniqueness claim. The human operator subsequently asked that this discovered result be formalized and submitted to LeanFrontier. GPT-5.6 Sol / ChatGPT authored the Lean statements and proofs; the human did not materially edit the formal text. No claim of novelty outside LeanFrontier/Mathlib is made."
+}
