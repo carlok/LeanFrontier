@@ -36,6 +36,7 @@ import LeanFrontier.NumberTheory.HoradamSequence.AdditionFormula
 import LeanFrontier.NumberTheory.LucasNumber
 import LeanFrontier.NumberTheory.MarkovEquation
 import LeanFrontier.NumberTheory.MarkovEquation.Collision
+import LeanFrontier.NumberTheory.MarkovEquation.SlopeScaleGCD
 import LeanFrontier.NumberTheory.MarkovTree
 import LeanFrontier.NumberTheory.MarkovTree.BranchDivergence
 import LeanFrontier.NumberTheory.MarkovTree.BranchStructure
