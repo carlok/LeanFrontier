@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "varignon-theorem",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.AffineGeometry.varignon_theorem"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to attack a completely new LeanFrontier target outside the roadmap. GPT-5.6 Sol / ChatGPT screened Varignon's theorem against the live LeanFrontier fork and pinned Mathlib v4.34.0 and found no existing Varignon theorem or equivalent named quadrilateral-midpoint parallelogram statement. GPT-5.6 Sol / ChatGPT selected the affine formulation that the opposite side vectors of the midpoint quadrilateral are equal in pairs. The proof uses Mathlib's midpoint_vsub_midpoint and midpoint_eq_smul_add lemmas and affine torsor cancellation identities. GPT-5.6 Sol / ChatGPT selected the target and authored the statement and proof; the human did not author or materially edit them. No claim of new mathematics is made."
+}
