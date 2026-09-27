@@ -24,6 +24,7 @@ import LeanFrontier.GroupTheory.ChangeRingingCyclic
 import LeanFrontier.LinearAlgebra.FibonacciMatrix
 import LeanFrontier.LinearAlgebra.HoradamCompanionMatrix
 import LeanFrontier.LinearAlgebra.HoradamCompanionMatrixSpecializations
+import LeanFrontier.NumberTheory.A053067.ResidueOne
 import LeanFrontier.NumberTheory.CalkinWilf
 import LeanFrontier.NumberTheory.CalkinWilfSternBrocot
 import LeanFrontier.NumberTheory.DescartesCircle
