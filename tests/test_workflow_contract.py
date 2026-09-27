@@ -196,6 +196,15 @@ class WorkflowContractTests(unittest.TestCase):
         # The observation writer must still regenerate it, or nothing would.
         self.assertIn("generate_catalogue.py", OBSERVATION_WORKFLOW)
 
+    def test_the_catalogue_writers_install_graphviz_before_drawing(self) -> None:
+        """Both writers draw the import graph; without dot the step fails loudly."""
+        for workflow, command in (
+            (CATALOGUE_WORKFLOW, "python3 tools/generate_catalogue.py"),
+            (OBSERVATION_WORKFLOW, ".trusted-receiver/tools/generate_catalogue.py --root ."),
+        ):
+            self.assertIn("apt-get install -y --no-install-recommends graphviz", workflow)
+            self.assertLess(workflow.index("graphviz"), workflow.index(command))
+
     def test_catalogue_is_trusted_post_merge_output(self) -> None:
         self.assertIn("LeanFrontier/**/*.lean", CATALOGUE_WORKFLOW)
         self.assertIn("Submissions/**/*.json", CATALOGUE_WORKFLOW)

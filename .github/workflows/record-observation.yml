@@ -107,6 +107,10 @@ jobs:
           --trusted-receiver-revision ${{ steps.submission.outputs.base }}
           --validation-run "$(cat validation-run.txt)"
           --observed-at "${{ steps.submission.outputs.merged_at }}"
+      - name: Install Graphviz
+        # Draws the catalogue's import graph; checking the catalogue never draws.
+        if: steps.submission.outputs.should_record == 'true'
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends graphviz
       - name: Regenerate the catalogue from the trusted observation
         if: steps.submission.outputs.should_record == 'true'
         run: python3 .trusted-receiver/tools/generate_catalogue.py --root .
