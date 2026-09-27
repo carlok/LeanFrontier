@@ -1,0 +1,181 @@
+{
+  "accepted_revision": "0bcb8be77ae2fc0ae765e62d4301cdf459df73f7",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-27T17:28:13Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 326.539,
+    "observed": {
+      "added_lines": 103,
+      "audited_declarations": {
+        "LeanFrontier.EuclideanGeometry.weitzenbock_inequality": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.EuclideanGeometry.weitzenbock_inequality",
+          "restatement": false,
+          "statement_sha256": "dba1ebf0dd968635821b34ed236b4257d2c7984de1adf7570271b82557f690cb",
+          "type_dependencies": [
+            "Dist.dist",
+            "DivInvMonoid.toDiv",
+            "EuclideanGeometry.angle",
+            "HAdd.hAdd",
+            "HDiv.hDiv",
+            "HMul.hMul",
+            "HPow.hPow",
+            "InnerProductSpace",
+            "LE.le",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "NormedAddCommGroup",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "NormedAddTorsor",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instAdd",
+            "Real.instDivInvMonoid",
+            "Real.instLE",
+            "Real.instMonoid",
+            "Real.instMul",
+            "Real.instNatCast",
+            "Real.instOne",
+            "Real.instRCLike",
+            "Real.sin",
+            "Real.sqrt",
+            "instHAdd",
+            "instHDiv",
+            "instHMul",
+            "instHPow",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.EuclideanGeometry.weitzenbock_inequality": [
+            {
+              "outcome": "failed",
+              "seconds": 5.081,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.106,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.134,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.141,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.132,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.138,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 30.732,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.EuclideanGeometry.weitzenbock_inequality": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4849,
+      "changed_files": [
+        "LeanFrontier/Geometry/Weitzenbock.lean",
+        "Submissions/weitzenbock-inequality.json"
+      ],
+      "corpus_entrypoints_checked": 271,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.EuclideanGeometry.weitzenbock_inequality": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.EuclideanGeometry.weitzenbock_inequality",
+          "statement_sha256": "dba1ebf0dd968635821b34ed236b4257d2c7984de1adf7570271b82557f690cb",
+          "type_dependencies": [
+            "Dist.dist",
+            "DivInvMonoid.toDiv",
+            "EuclideanGeometry.angle",
+            "HAdd.hAdd",
+            "HDiv.hDiv",
+            "HMul.hMul",
+            "HPow.hPow",
+            "InnerProductSpace",
+            "LE.le",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "NormedAddCommGroup",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "NormedAddTorsor",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instAdd",
+            "Real.instDivInvMonoid",
+            "Real.instLE",
+            "Real.instMonoid",
+            "Real.instMul",
+            "Real.instNatCast",
+            "Real.instOne",
+            "Real.instRCLike",
+            "Real.sin",
+            "Real.sqrt",
+            "instHAdd",
+            "instHDiv",
+            "instHMul",
+            "instHPow",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3272,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "weitzenbock-inequality",
+  "trusted_receiver_revision": "13696ce64696fbd51b5abb48d2f745f08b230bd6",
+  "validated_candidate_revision": "cf289d9ed82c37abeedf2951bb87c3aad58986fc",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36336535991"
+}
