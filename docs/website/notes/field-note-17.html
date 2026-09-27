@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 17: the Markov submission that did not land lands, four submissions are merged by hand, two of them prove the same fact in two notations, and the deepest chain reaches nine modules.">
+    <title>Field Note 17 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">26 September 2026 · Field Note 17</p>
+          <h1>The Same Fact, Twice.</h1>
+          <p class="hero-copy">Field Note 16 ended with a Markov submission that did not land. The next morning it was the first of four merged by hand, one at a time. Two of the other three prove the same fact about Markov numbers in two notations. They were opened forty-six seconds apart from the same fork, and the receiver accepted both, because nothing in it can tell.</p>
+        </header>
+
+        <section>
+          <h2>The ninth lands</h2>
+          <p>The identity of Srinivasan's that the last note recorded as lost came back the same evening: the branch was rebuilt and the pull request reopened. For two Markov triples <code>(a₁, b₁, c)</code> and <code>(a₂, b₂, c)</code> that share a coordinate, <code>(a₁a₂ − b₁b₂)(a₁b₂ − b₁a₂) = c²(a₁b₁ − a₂b₂)</code>. It comes from Anitha Srinivasan's 2009 paper on Markov numbers and ambiguous classes, and it is pure algebra: nothing about positivity, and nothing about which coordinate is largest.</p>
+          <p>Its one import is the module that put the Markov equation into the corpus on 17 August. Only one other module imports that equation directly: the descent step of 13 September, through which every module of the tree development reaches it. The collision arithmetic has no use for the tree, and the new module does not touch it.</p>
+        </section>
+
+        <section>
+          <h2>The same fact, twice</h2>
+          <p>Late on Friday evening two submissions were opened forty-six seconds apart from the same contributor's fork. Both prove that −1 is a square modulo every Markov number <code>m</code>. The first says it in the integers modulo <code>m</code>, obtains it from Mathlib's theorem on primitive sums of two squares, and adds the classical corollary that no prime factor of a Markov number is congruent to 3 modulo 4. The second says there is an integer <code>r</code> with <code>r² ≡ −1 (mod m)</code>, and obtains it from the Bezout lemma the same contributor had landed earlier that evening. The first one's claim says it combined the accepted interfaces rather than duplicating their proofs. It did. The duplication was one level up.</p>
+          <p>The receiver accepted both, correctly by its own rules. It compares each new statement with Mathlib and with the corpus, exactly, after elaboration, and runs a handful of bounded tactics to catch statements that are trivial. Two notations for one fact are two statements to it. Deciding whether two statements say the same thing is not something it attempts. The corpus now holds a result twice, and the only reason anyone knows is that a person read both.</p>
+          <p>It also moved the series. The second module's four imports tie the largest number of edges a single submission has added, and they lifted edges per module from 0.78 to 0.81, the largest step of the day, for a result the corpus already had. Field Note 16 made the same point about agents that go looking for unconnected modules. The series counts imports; it cannot tell a new result from an old one reached by a longer road.</p>
+          <p>On Friday the contributor asked whether projects like this one coordinate to avoid duplicated work. This is the smallest version of that problem: two efforts forty-six seconds apart, from the same place, and nothing between them that noticed.</p>
+        </section>
+
+        <section>
+          <h2>Modulo four</h2>
+          <p>The fourth submission starts from Wednesday's theorem that every positive Markov triple is reached from <code>(1, 1, 1)</code> by Vieta moves. The moves preserve four residue patterns modulo 4: <code>(1, 1, 1)</code> and the three arrangements of <code>(2, 1, 1)</code>. So every positive triple has one of them, and an even coordinate is 2 modulo 4 while the other two are 1. The known statement is sharper, 2 modulo 32 for an even Markov number, but the claim says what this one is for: Markov numbers of the form <code>2pᵏ</code>, a case Srinivasan's paper treats alongside prime powers.</p>
+        </section>
+
+        <section>
+          <h2>Nine deep</h2>
+          <p>The first of the two square-root modules extends the corpus's deepest chain to nine modules: the Markov equation, the descent step, the path layer, the orientation, the Stern–Brocot bridge, the injectivity of that embedding, the Markov-number label, the divisibility that comes from the equation, and the residue. The first was accepted on 17 August. The other eight are the external contributor's, seven of them from the last four days.</p>
+          <p>By half past twelve the corpus was at 87 modules and 71 internal import edges, 0.82 per module, and the most-imported module, the Stern–Brocot bridge, still had four consumers.</p>
+        </section>
+
+        <section>
+          <h2>By hand</h2>
+          <p>None of the four went through the merge queue. The maintainer did what the queue does, one pull request at a time: bring the branch up to date, wait for the receiver to run again, merge, wait for the two automated commits that follow every merge, move on. From the first branch update to the last merge took a little over three hours.</p>
+          <p>Three of the four branches were brought up to date less than a minute before the previous merge's automated commits landed. Each fell behind again at once, and had to be updated and revalidated a second time. The queue waits for those commits before it touches the next branch, and this is why. Its comments say it automates the waiting and never the decision. The waiting turns out to be the part a person gets wrong.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>

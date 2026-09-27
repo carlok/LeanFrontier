@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 18: an elementary identity the agent derived rather than cited, the prime-power step behind the known cases of Markov uniqueness, and a clarification about the conjecture that closed on Friday.">
+    <title>Field Note 18 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">27 September 2026 · Field Note 18</p>
+          <h1>One Lemma of Its Own.</h1>
+          <p class="hero-copy">Two more, both merged by hand. One is a step in the known proofs of the prime-power case of Markov uniqueness. The other is the first result in this run of Markov submissions that its producer says it derived rather than took from a paper. It is elementary, and of the six merged since Friday's note it is the only one that imports nothing from the corpus and that nothing imports.</p>
+        </header>
+
+        <section>
+          <h2>An identity found on the way</h2>
+          <p>On Saturday afternoon the contributor's agent submitted an identity it had derived, by its own account, during exploratory work on reductions toward Markov uniqueness; the operator then asked for it to be formalized and submitted. For coprime integers <code>x</code> and <code>y</code> and odd <code>M</code>, the quadratic pair <code>x² + y² + 3Mxy</code> and <code>y² − x²</code> has exactly the same common divisors as the linear pair <code>3Mx + 2y</code> and <code>3My + 2x</code>, so the two pairs have the same greatest common divisor. The sum of the quadratic pair is <code>y(3Mx + 2y)</code> and their difference is <code>x(3My + 2x)</code>. Coprimality of <code>x</code> and <code>y</code> carries a common divisor from the quadratic pair to the linear one, and <code>M</code> being odd carries it back. The Markov equation is not used.</p>
+          <p>Most claims in the corpus end with the sentence "No claim of new mathematics is made." This one ends "No claim of publication-level novelty is made", the only claim worded that way. The wording is right. The identity may well appear nowhere in this form. It is also a few lines of algebra, of the kind someone working on the problem writes in a margin and does not publish.</p>
+          <p>And it stands apart. It imports nothing from the corpus and nothing imports it, so it added a module and no edges, and edges per module dipped.</p>
+        </section>
+
+        <section>
+          <h2>The prime-power step</h2>
+          <p>The Sunday-morning submission builds on Saturday's collision identity. Take two Markov triples that share a coordinate <code>c</code>, with the relevant coordinates prime to <code>c</code> as they are in positive triples, and an odd prime <code>p</code> dividing <code>c</code>. The two factors in that identity cannot both be divisible by <code>p</code>, so if <code>pᵏ</code> divides <code>c</code>, then <code>p²ᵏ</code> divides one factor entirely. In the language of the week's other modules, the two alternatives are the two triples carrying the same square root of −1 modulo <code>pᵏ</code>, or opposite ones.</p>
+          <p>It is the arithmetic core of the elementary proofs that a Markov number which is a prime power determines its triple. That case has been known since the work of Baragar, Button and Schmutz around the turn of the century, with shorter proofs by Lang and Tan and by Zhang in 2007, and an elementary one by Srinivasan in 2009, which is the one these modules follow. The pull request names the next two: uniqueness for odd prime powers, and the case <code>2pᵏ</code>, both already passing the receiver in the contributor's fork and waiting for this one. If they land, the corpus will hold the known partial results on the conjecture it states. Not the conjecture.</p>
+        </section>
+
+        <section>
+          <h2>What six submissions add up to</h2>
+          <p>Read in order, the Markov submissions since Friday formalize one line of the literature: a square root of −1 modulo every Markov number, the collision identity, the residues modulo four, the prime-power split. Five of the six claims end by saying their mathematics is not new, and they are right. The sixth is the gcd identity, and it is the piece nothing depends on.</p>
+          <p>That is a plausible place for something new to turn up first: a small lemma pulled out of exploratory work, before anyone knows whether it is useful. It is also a limit of the accumulation series worth stating plainly. The series counts imports. It cannot tell a chain of textbook steps from a new idea, and this week it recorded a great deal of the first and very little of the second.</p>
+          <p>The corpus is at 89 modules and 72 internal import edges, 0.81 per module. The deepest chain is nine modules, and the most-imported module still has four consumers.</p>
+        </section>
+
+        <section>
+          <h2>A clarification about the last conjecture</h2>
+          <p>Field Note 16 called the discriminant statement the corpus's one conjecture, and its resolution the closing of an open question. Both are true inside the corpus, and neither should be read as more. The statement was open in the protocol's sense: a proposition stated formally that the receiver's bounded tactics could neither prove nor refute. As mathematics it was known. The eighth cyclotomic field is a standard example of the discriminant formula failing when the two fields ramify at the same prime, and the claim that stated the conjecture named that witness itself and called the discriminants classical. What the resolution added was a formal computation of two rings of integers, which is real work of another kind.</p>
+          <p>The conjecture that replaced it is open in the other sense. Frobenius asked it in 1913, and it is still open.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
