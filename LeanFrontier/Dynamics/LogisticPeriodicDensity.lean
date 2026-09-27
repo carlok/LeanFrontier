@@ -34,9 +34,9 @@ private theorem logisticMap_iterate_sin_sq (n : ℕ) (x : ℝ) :
   | zero =>
       simp
   | succ n ih =>
-      rw [Function.iterate_succ_apply', ih]
+      rw [Function.iterate_succ_apply', ih, pow_succ]
       have h := (sin_sq_pi_mul (2 * ((2 : ℝ) ^ n * x))).symm
-      convert h using 1 <;> ring_nf [pow_succ]
+      convert h using 1 <;> ring
 
 private theorem logisticMapIcc_iterate_val
     (n : ℕ) (x : Icc (0 : ℝ) 1) :
@@ -46,8 +46,11 @@ private theorem logisticMapIcc_iterate_val
   | zero =>
       rfl
   | succ n ih =>
-      rw [Function.iterate_succ_apply', Function.iterate_succ_apply', ih]
-      rfl
+      rw [Function.iterate_succ_apply', Function.iterate_succ_apply']
+      change
+        logisticMap (((logisticMapIcc^[n]) x : Icc (0 : ℝ) 1) : ℝ) =
+          logisticMap (logisticMap^[n] (x : ℝ))
+      rw [ih]
 
 private theorem logistic_periodic_ulam_grid
     (n k : ℕ) (hn : 0 < n) :
@@ -57,7 +60,7 @@ private theorem logistic_periodic_ulam_grid
   have hpow : (1 : ℝ) < (2 : ℝ) ^ n :=
     one_lt_pow₀ (by norm_num) hn.ne'
   have hden : (2 : ℝ) ^ n - 1 ≠ 0 := by linarith
-  rw [ulamMap, ulamMap]
+  simp only [ulamMap]
   have hhalf :
       π * (2 * (k : ℝ) / ((2 : ℝ) ^ n - 1)) / 2 =
         π * ((k : ℝ) / ((2 : ℝ) ^ n - 1)) := by
@@ -123,7 +126,8 @@ theorem dense_periodicPts_tentMapIcc :
 
   let k : ℕ := ⌊(x : ℝ) * q / 2⌋₊
   let yR : ℝ := 2 * (k : ℝ) / q
-  have harg : 0 ≤ (x : ℝ) * q / 2 := by positivity
+  have harg : 0 ≤ (x : ℝ) * q / 2 :=
+    div_nonneg (mul_nonneg x.property.1 hq.le) (by norm_num)
   have hk_lower : (k : ℝ) ≤ (x : ℝ) * q / 2 := by
     dsimp [k]
     exact Nat.floor_le harg
@@ -144,7 +148,6 @@ theorem dense_periodicPts_tentMapIcc :
           ((x : ℝ) * q - 2 * (k : ℝ)) / q := by
       dsimp [yR]
       field_simp [hq.ne']
-      ring
     rw [heq, div_lt_div_iff₀ hq hq]
     nlinarith
   let y : Icc (0 : ℝ) 1 := ⟨yR, hy0, hy1⟩
