@@ -472,6 +472,61 @@ theorem triangularLast_modEq_one_of_index_modEq_one
   have hsum := hchoose.modEq_zero_nat.add hmodA
   simpa [natTriangularStart, Nat.add_assoc, Nat.add_sub_of_le hone] using hsum
 
+
+/-- If the block length is 1 modulo 2a, then its triangular offset sum is divisible by a. -/
+theorem choose_two_dvd_of_index_modEq_one
+    {a n : ℕ} (hn : 0 < n) (hmod : n ≡ 1 [MOD 2 * a]) :
+    a ∣ n.choose 2 := by
+  have hone : 1 ≤ n := hn
+  have hdvd : 2 * a ∣ n - 1 := by
+    exact (Nat.modEq_iff_dvd' hone).mp hmod.symm
+  obtain ⟨t, ht⟩ := hdvd
+  have hnEq : n = 2 * a * t + 1 := by
+    calc
+      n = (n - 1) + 1 := (Nat.sub_add_cancel hone).symm
+      _ = 2 * a * t + 1 := by rw [ht]
+  rw [hnEq, Nat.choose_two_right]
+  simp only [Nat.add_sub_cancel]
+  rw [show (2 * a * t + 1) * (2 * a * t) =
+    2 * ((2 * a * t + 1) * (a * t)) by ring]
+  rw [Nat.mul_div_cancel_left _ (by norm_num : 0 < 2)]
+  exact ⟨(2 * a * t + 1) * t, by ring⟩
+
+/-- Composite-modulus version of the residue-one mechanism.
+If the append base and block length are both 1 modulo a (the latter modulo 2a
+so that the triangular offset sum vanishes), the fixed concatenation is 1 modulo a. -/
+theorem natFixedA_modEq_one_of_base_one
+    {a q n : ℕ} (hn : 0 < n)
+    (hindex : n ≡ 1 [MOD 2 * a])
+    (hbase : q ≡ 1 [MOD a]) :
+    natFixedA q n ≡ 1 [MOD a] := by
+  have hchoose : a ∣ n.choose 2 :=
+    choose_two_dvd_of_index_modEq_one hn hindex
+  have hnmod : n ≡ 1 [MOD a] := by
+    apply hindex.of_dvd
+    exact ⟨2, by ring⟩
+  have hLmod : natTriangularStart n ≡ 1 [MOD a] := by
+    have h := hchoose.modEq_zero_nat.add (Nat.ModEq.refl 1)
+    simpa [natTriangularStart] using h
+  have hqZ : (q : ZMod a) = 1 := by
+    simpa using (ZMod.natCast_eq_natCast_iff q 1 a).2 hbase
+  have hLZ : ((natTriangularStart n : ℕ) : ZMod a) = 1 := by
+    simpa using
+      (ZMod.natCast_eq_natCast_iff (natTriangularStart n) 1 a).2 hLmod
+  have hnZ : (n : ZMod a) = 1 := by
+    simpa using (ZMod.natCast_eq_natCast_iff n 1 a).2 hnmod
+  have hoffsets :
+      (∑ i ∈ Finset.range n, (i : ZMod a)) = 0 := by
+    rw [← Nat.cast_sum, Finset.sum_range_id, ← Nat.choose_two_right]
+    exact (ZMod.natCast_eq_zero_iff (n.choose 2) a).2 hchoose
+  have hcast : ((natFixedA q n : ℕ) : ZMod a) = 1 := by
+    rw [natFixedA, natCast_fixedConcat]
+    exact fixedConcat_eq_one_of_residue_data
+      (q : ZMod a) ((natTriangularStart n : ℕ) : ZMod a) n
+      hqZ hLZ hnZ hoffsets
+  simpa using
+    (ZMod.natCast_eq_natCast_iff (natFixedA q n) 1 a).1 hcast
+
 /-- Combined residue-one criterion for the natural fixed-width A053067 recurrence. -/
 theorem natFixedA_modEq_one_of_base_dvd_and_index
     {a q n : ℕ} (hn : 0 < n) (hq : a ∣ q)
