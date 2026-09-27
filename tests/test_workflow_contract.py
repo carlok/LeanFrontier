@@ -386,6 +386,17 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("failing check", queue)
         self.assertIn("concurrency:", queue)
 
+    def test_the_merge_queue_names_the_workflow_permission_it_lacks(self) -> None:
+        """#406 changed two workflows; updating a fork branch then meant pushing
+        workflow files, which the app may not do, and the queue blamed the
+        contributor's fork settings instead. The app must stay without that
+        permission, so the queue has to say what a person should do."""
+        queue = (ROOT / ".github" / "workflows" / "maintainer-merge-queue.yml").read_text()
+        self.assertIn('grep -q "workflows. permission"', queue)
+        self.assertIn("Run 'gh pr update-branch $pr' as a maintainer", queue)
+        for workflow in (ROOT / ".github" / "workflows").glob("*.yml"):
+            self.assertNotIn("permission-workflows", workflow.read_text(), workflow.name)
+
     def test_auto_merge_cannot_be_reached_by_untrusted_code(self) -> None:
         """A fork's pull_request token has no secrets, so this must run post hoc."""
         self.assertIn("workflow_run:", AUTO_MERGE_WORKFLOW)

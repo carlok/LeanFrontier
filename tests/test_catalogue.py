@@ -89,12 +89,27 @@ theorem helper : True := trivial
         fewer = catalogue.graph_section({**shape, "edges": edges}, drawn=False)
         self.assertNotEqual(catalogue.comparable(fewer), catalogue.comparable(undrawn))
 
-    def test_the_committed_catalogue_checks_without_graphviz(self) -> None:
-        """The generated-output gate checks the catalogue and has no Graphviz."""
-        result = subprocess.run(
-            [sys.executable, str(ROOT / "tools" / "generate_catalogue.py"), "--check"],
-            capture_output=True, text=True, env={"PATH": ""},
-        )
+    def test_a_drawn_catalogue_checks_without_graphviz(self) -> None:
+        """The generated-output gate checks the catalogue and has no Graphviz.
+
+        Not the committed catalogue: on a submission branch it is stale by
+        design until the post-merge writer regenerates it, and asserting
+        otherwise failed every submission (#404).
+        """
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            for part in ("LeanFrontier", "Submissions", "receiver-observations"):
+                shutil.copytree(ROOT / part, root / part)
+            # A page as a writer with some Graphviz version would leave it.
+            page = catalogue.render(root, drawn=False).replace(
+                '"></div>', '"><svg>drawn elsewhere</svg></div>'
+            )
+            (root / catalogue.DESTINATION).parent.mkdir(parents=True)
+            (root / catalogue.DESTINATION).write_text(page, encoding="utf-8")
+            result = subprocess.run(
+                [sys.executable, str(ROOT / "tools" / "generate_catalogue.py"), "--root", str(root), "--check"],
+                capture_output=True, text=True, env={"PATH": ""},
+            )
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     @unittest.skipIf(shutil.which("dot") is None, "Graphviz is not installed")
