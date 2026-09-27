@@ -1,0 +1,1270 @@
+{
+  "accepted_revision": "76816cc5ea0b8c85838a17565ffe5798fcc77d35",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-27T10:39:40+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 304.14,
+    "observed": {
+      "added_lines": 778,
+      "audited_declarations": {
+        "LeanFrontier.A053067.IsFixedWidthIndex": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.A053067.IsFixedWidthIndex",
+          "restatement": false,
+          "statement_sha256": "3e437284102e02208effedfd8d8ce67789c8ca9e6ef84b84d4b3b2acd839aaa7",
+          "type_dependencies": [
+            "Nat"
+          ]
+        },
+        "LeanFrontier.A053067.at": null,
+        "LeanFrontier.A053067.cast_natTriangularStart": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.cast_natTriangularStart",
+          "restatement": false,
+          "statement_sha256": "e3e5a5af40c266aa33f76f1cb738c1c8441221342e0cd0a0a68a5f3e8c7ba607",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "CommSemiring.toSemiring",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "LeanFrontier.A053067.natTriangularStart",
+            "LeanFrontier.A053067.triangularStart",
+            "MulZeroClass.toZero",
+            "Nat",
+            "Nat.cast",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "NeZero",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "Semifield.toCommSemiring",
+            "instMulZeroClassOfSemiring",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.exists_fixedWidth_residue_one_above": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.exists_fixedWidth_residue_one_above",
+          "restatement": false,
+          "statement_sha256": "a932836b391c40d689635c796269c94a7dcdfc7594e830fc2f3d89c419248919",
+          "type_dependencies": [
+            "And",
+            "Exists",
+            "HPow.hPow",
+            "LT.lt",
+            "LeanFrontier.A053067.IsFixedWidthIndex",
+            "LeanFrontier.A053067.natFixedA",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.ModEq",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instHPow",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.finset_prime_avoidance": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.finset_prime_avoidance",
+          "restatement": false,
+          "statement_sha256": "d464ee775018f690265644565488e200107fe6a1b103c055816c2f5773586df8",
+          "type_dependencies": [
+            "Dvd.dvd",
+            "Finset",
+            "Finset.instSetLike",
+            "HPow.hPow",
+            "LeanFrontier.A053067.natFixedA",
+            "Membership.mem",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.ModEq",
+            "Nat.Prime",
+            "Nat.instDvd",
+            "Nat.instMonoid",
+            "Ne",
+            "Not",
+            "OfNat.ofNat",
+            "SetLike.instMembership",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.fixedConcat": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.A053067.fixedConcat",
+          "restatement": false,
+          "statement_sha256": "d8145d58409b5a24d2880b131051a65863a71c5f90b8dfff9641915507415e30",
+          "type_dependencies": [
+            "Nat",
+            "Semiring"
+          ]
+        },
+        "LeanFrontier.A053067.fixedConcat_closed_succ": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.fixedConcat_closed_succ",
+          "restatement": false,
+          "statement_sha256": "a3d73b5f39d024bcbc99e871ffc89dbbfc238d39e38c49845b9adb00f7d0ce14",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.A053067.fixedConcat",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toMonoid",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.fixedConcat_eq_one_of_cast_eq_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.fixedConcat_eq_one_of_cast_eq_one",
+          "restatement": false,
+          "statement_sha256": "d8bfdfdb9fc7a00c8f1d6c02368d8529664fd490ff46bfb310aaa8944d925255",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "LeanFrontier.A053067.fixedConcat",
+            "MulZeroClass.toZero",
+            "Nat",
+            "Nat.cast",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "Ne",
+            "NoZeroDivisors",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "Zero.toOfNat0",
+            "instDistribOfSemiring",
+            "instMulZeroClassOfSemiring",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.fixedConcat_eq_one_of_pow_eq_self": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.fixedConcat_eq_one_of_pow_eq_self",
+          "restatement": false,
+          "statement_sha256": "83af7a42cea1a8a2be9cb1caa9ee1ce6e3db9c90b3bbf64669d7b3f8554d2b01",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CommSemiring.toSemiring",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "HPow.hPow",
+            "LeanFrontier.A053067.fixedConcat",
+            "Monoid.toNPow",
+            "MulZeroClass.toZero",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "NeZero",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "Semifield.toCommSemiring",
+            "Semiring.toMonoid",
+            "instHPow",
+            "instMulZeroClassOfSemiring",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.fixedConcat_eq_one_of_residue_data": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.fixedConcat_eq_one_of_residue_data",
+          "restatement": false,
+          "statement_sha256": "da559cfb74326c2f768690df597cca727e8645715de31a31cef070711617f994",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "LeanFrontier.A053067.fixedConcat",
+            "MulZeroClass.toZero",
+            "Nat",
+            "Nat.cast",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toAddCommMonoid",
+            "Zero.toOfNat0",
+            "instMulZeroClassOfSemiring"
+          ]
+        },
+        "LeanFrontier.A053067.fixedConcat_eq_sum_of_eq_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.fixedConcat_eq_sum_of_eq_one",
+          "restatement": false,
+          "statement_sha256": "5cf4fe2257a673ff2cdb545792648cdf26f6a335d2768f7f5a40143331788549",
+          "type_dependencies": [
+            "AddCommMonoidWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "Distrib.toAdd",
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "LeanFrontier.A053067.fixedConcat",
+            "Nat",
+            "Nat.cast",
+            "NonAssocSemiring.toAddCommMonoidWithOne",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Semiring",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toNonAssocSemiring",
+            "instDistribOfSemiring",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.A053067.fixedConcat_natTriangular_eq_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.fixedConcat_natTriangular_eq_one",
+          "restatement": false,
+          "statement_sha256": "954efe6acd07fb466b52aac54bdcb10be758926cf30402601115201704139aff",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CommSemiring.toSemiring",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "LeanFrontier.A053067.fixedConcat",
+            "LeanFrontier.A053067.natTriangularStart",
+            "MulZeroClass.toZero",
+            "Nat",
+            "Nat.cast",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "NeZero",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "Semifield.toCommSemiring",
+            "instMulZeroClassOfSemiring",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.fixedConcat_natTriangular_eq_one_of_pow_eq_self": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.fixedConcat_natTriangular_eq_one_of_pow_eq_self",
+          "restatement": false,
+          "statement_sha256": "78bd51f051e1e7b8b3386a512fc0e5f700e351313936c6020f38e45f120651f3",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CommSemiring.toSemiring",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "HPow.hPow",
+            "LeanFrontier.A053067.fixedConcat",
+            "LeanFrontier.A053067.natTriangularStart",
+            "Monoid.toNPow",
+            "MulZeroClass.toZero",
+            "NPow.toPow",
+            "Nat",
+            "Nat.cast",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "NeZero",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "Semifield.toCommSemiring",
+            "Semiring.toMonoid",
+            "instHPow",
+            "instMulZeroClassOfSemiring",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.fixedConcat_one_eq_sum": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.fixedConcat_one_eq_sum",
+          "restatement": false,
+          "statement_sha256": "35061804f82987cb44b0414c7e72cec482fee091daf52cbdefd8f2777d0712e5",
+          "type_dependencies": [
+            "AddCommMonoidWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "Distrib.toAdd",
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "LeanFrontier.A053067.fixedConcat",
+            "Nat",
+            "Nat.cast",
+            "NonAssocSemiring.toAddCommMonoidWithOne",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Semiring",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toNonAssocSemiring",
+            "instDistribOfSemiring",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.A053067.fixedConcat_succ": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.fixedConcat_succ",
+          "restatement": false,
+          "statement_sha256": "4e346f5296c7981c7bd8fca110c758b9773e2ba7228ea479e774ed74181e231b",
+          "type_dependencies": [
+            "AddCommMonoidWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "LeanFrontier.A053067.fixedConcat",
+            "Nat",
+            "Nat.cast",
+            "NonAssocSemiring.toAddCommMonoidWithOne",
+            "OfNat.ofNat",
+            "Semiring",
+            "Semiring.toNonAssocSemiring",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.fixedConcat_triangular_eq_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.fixedConcat_triangular_eq_one",
+          "restatement": false,
+          "statement_sha256": "a91a73cc9647ebd415f7171d25c0c345340e93af689cd684605f898c298dd5b3",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CommSemiring.toSemiring",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "LeanFrontier.A053067.fixedConcat",
+            "LeanFrontier.A053067.triangularStart",
+            "MulZeroClass.toZero",
+            "Nat",
+            "Nat.cast",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "Ne",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "Semifield.toCommSemiring",
+            "Zero.toOfNat0",
+            "instMulZeroClassOfSemiring",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.fixedConcat_zero": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.fixedConcat_zero",
+          "restatement": false,
+          "statement_sha256": "54222d10de0979717b12dabfff2ec0438786d8565ac844f2d98f3d8fe0b5dba6",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.A053067.fixedConcat",
+            "MulZeroClass.toZero",
+            "Nat",
+            "OfNat.ofNat",
+            "Semiring",
+            "Zero.toOfNat0",
+            "instMulZeroClassOfSemiring",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.map_fixedConcat": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.map_fixedConcat",
+          "restatement": false,
+          "statement_sha256": "08ba0ebfd57663186bace3775be9b787896578d99203ad9122bffc8853d2ce36",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "Eq",
+            "LeanFrontier.A053067.fixedConcat",
+            "Nat",
+            "RingHom",
+            "RingHom.instFunLike",
+            "Semiring",
+            "Semiring.toNonAssocSemiring"
+          ]
+        },
+        "LeanFrontier.A053067.natCast_fixedConcat": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.natCast_fixedConcat",
+          "restatement": false,
+          "statement_sha256": "e2e92b586a07952934bc7c607ce9a099377c0996fd5c83033330eedc996cc96e",
+          "type_dependencies": [
+            "AddCommMonoidWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "Eq",
+            "LeanFrontier.A053067.fixedConcat",
+            "Nat",
+            "Nat.cast",
+            "Nat.instSemiring",
+            "NonAssocSemiring.toAddCommMonoidWithOne",
+            "Semiring",
+            "Semiring.toNonAssocSemiring"
+          ]
+        },
+        "LeanFrontier.A053067.natFixedA": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.A053067.natFixedA",
+          "restatement": false,
+          "statement_sha256": "68f2ae98c0be784fa0a8b510ac9659333e5f20112abddd16f162a792abc3ebae",
+          "type_dependencies": [
+            "Nat"
+          ]
+        },
+        "LeanFrontier.A053067.natFixedA_modEq_last_of_base_dvd": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.natFixedA_modEq_last_of_base_dvd",
+          "restatement": false,
+          "statement_sha256": "a790795d195ef51ad20f8bb1c3fd7d3bfa876e2dd85ecd6407dfde5435e91953",
+          "type_dependencies": [
+            "Dvd.dvd",
+            "HAdd.hAdd",
+            "HSub.hSub",
+            "LT.lt",
+            "LeanFrontier.A053067.natFixedA",
+            "LeanFrontier.A053067.natTriangularStart",
+            "Nat",
+            "Nat.ModEq",
+            "Nat.instDvd",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHSub",
+            "instLTNat",
+            "instOfNatNat",
+            "instSubNat"
+          ]
+        },
+        "LeanFrontier.A053067.natFixedA_modEq_one_of_base_dvd_and_index": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.natFixedA_modEq_one_of_base_dvd_and_index",
+          "restatement": false,
+          "statement_sha256": "b9143ad3df0d9a0b1089f95da92219c85b78ee6610b1e380fbf36853a880c3f4",
+          "type_dependencies": [
+            "Dvd.dvd",
+            "HMul.hMul",
+            "LT.lt",
+            "LeanFrontier.A053067.natFixedA",
+            "Nat",
+            "Nat.ModEq",
+            "Nat.instDvd",
+            "OfNat.ofNat",
+            "instHMul",
+            "instLTNat",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.natTriangularStart": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.A053067.natTriangularStart",
+          "restatement": false,
+          "statement_sha256": "79181c7f4b758c1c40ed2cbb52b75a62fbd6c0a82e859369d7ff80d8805a34c4",
+          "type_dependencies": [
+            "Nat"
+          ]
+        },
+        "LeanFrontier.A053067.prime_not_dvd_natFixedA_decimal": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.prime_not_dvd_natFixedA_decimal",
+          "restatement": false,
+          "statement_sha256": "2016e0d78a57d630fef07bbe2b7fdd04d90d085ffdf14880c06d068d387d71bd",
+          "type_dependencies": [
+            "Dvd.dvd",
+            "Fact",
+            "HPow.hPow",
+            "LeanFrontier.A053067.natFixedA",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.ModEq",
+            "Nat.Prime",
+            "Nat.instDvd",
+            "Nat.instMonoid",
+            "Ne",
+            "Not",
+            "OfNat.ofNat",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.sum_range_cast_eq_zero_of_cast_eq_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.sum_range_cast_eq_zero_of_cast_eq_one",
+          "restatement": false,
+          "statement_sha256": "0e6afc156ae66b4bd3cfbe8527fb6254b4d03851ce5486fd24d7aeb1f586bd18",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "MulZeroClass.toZero",
+            "Nat",
+            "Nat.cast",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "Ne",
+            "NoZeroDivisors",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toAddCommMonoid",
+            "Zero.toOfNat0",
+            "instDistribOfSemiring",
+            "instMulZeroClassOfSemiring",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.tenCoprimePart": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.A053067.tenCoprimePart",
+          "restatement": false,
+          "statement_sha256": "79181c7f4b758c1c40ed2cbb52b75a62fbd6c0a82e859369d7ff80d8805a34c4",
+          "type_dependencies": [
+            "Nat"
+          ]
+        },
+        "LeanFrontier.A053067.tenCoprimePart_coprime_ten": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.tenCoprimePart_coprime_ten",
+          "restatement": false,
+          "statement_sha256": "62e7acfc6df0182807d8eeda309b5062e1ff281300a00401b9666860c2ae1159",
+          "type_dependencies": [
+            "LeanFrontier.A053067.tenCoprimePart",
+            "Nat",
+            "Nat.Coprime",
+            "Ne",
+            "OfNat.ofNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.tenExponent": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.A053067.tenExponent",
+          "restatement": false,
+          "statement_sha256": "79181c7f4b758c1c40ed2cbb52b75a62fbd6c0a82e859369d7ff80d8805a34c4",
+          "type_dependencies": [
+            "Nat"
+          ]
+        },
+        "LeanFrontier.A053067.tenExponent_pos": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.tenExponent_pos",
+          "restatement": false,
+          "statement_sha256": "bae40502466ae70df7e93db31283ec6e305916073c7906570d6d4bea50cac1cf",
+          "type_dependencies": [
+            "LT.lt",
+            "LeanFrontier.A053067.tenExponent",
+            "Nat",
+            "OfNat.ofNat",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.tenPart": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.A053067.tenPart",
+          "restatement": false,
+          "statement_sha256": "79181c7f4b758c1c40ed2cbb52b75a62fbd6c0a82e859369d7ff80d8805a34c4",
+          "type_dependencies": [
+            "Nat"
+          ]
+        },
+        "LeanFrontier.A053067.tenPart_coprime_tenCoprimePart": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.tenPart_coprime_tenCoprimePart",
+          "restatement": false,
+          "statement_sha256": "f8756705a298b03b7383bc6a97525e6e25fac6eea67136a5f08cbf9bedab95d9",
+          "type_dependencies": [
+            "LeanFrontier.A053067.tenCoprimePart",
+            "LeanFrontier.A053067.tenPart",
+            "Nat",
+            "Nat.Coprime",
+            "Ne",
+            "OfNat.ofNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.tenPart_dvd_pow_ten": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.tenPart_dvd_pow_ten",
+          "restatement": false,
+          "statement_sha256": "8edd3daedd01586297e39fc20f019a2194a3241f04ef90a699dca93b5ec8aa77",
+          "type_dependencies": [
+            "Dvd.dvd",
+            "HPow.hPow",
+            "LeanFrontier.A053067.tenExponent",
+            "LeanFrontier.A053067.tenPart",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instDvd",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.tenPart_mul_tenCoprimePart": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.tenPart_mul_tenCoprimePart",
+          "restatement": false,
+          "statement_sha256": "36b5ec669c8d304ec46659c860d75301fc417bc8756f92a213adb91d2b6e02a5",
+          "type_dependencies": [
+            "Eq",
+            "HMul.hMul",
+            "LeanFrontier.A053067.tenCoprimePart",
+            "LeanFrontier.A053067.tenPart",
+            "Nat",
+            "instHMul",
+            "instMulNat"
+          ]
+        },
+        "LeanFrontier.A053067.triangularLast_modEq_one_of_index_modEq_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.triangularLast_modEq_one_of_index_modEq_one",
+          "restatement": false,
+          "statement_sha256": "342f5a21d33ac3cede920345d6205bb5a081cbc0b739068bbdc905f7bfe2e9cd",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LT.lt",
+            "LeanFrontier.A053067.natTriangularStart",
+            "Nat",
+            "Nat.ModEq",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instLTNat",
+            "instMulNat",
+            "instOfNatNat",
+            "instSubNat"
+          ]
+        },
+        "LeanFrontier.A053067.triangularStart": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.A053067.triangularStart",
+          "restatement": false,
+          "statement_sha256": "e46f2e78a39378ebedb12bcaed687da781116d845d83289d81ced1fd58de1f61",
+          "type_dependencies": [
+            "Field"
+          ]
+        },
+        "LeanFrontier.A053067.triangularStart_eq_one_of_eq_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.triangularStart_eq_one_of_eq_one",
+          "restatement": false,
+          "statement_sha256": "debf4697eae688d947b2188e8a71a69ebe267ccdd71a66a75484b21aea954690",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toOne",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field",
+            "Field.toDivisionRing",
+            "LeanFrontier.A053067.triangularStart",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne"
+          ]
+        },
+        "LeanFrontier.A053067.two_mul_sum_range_cast": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.two_mul_sum_range_cast",
+          "restatement": false,
+          "statement_sha256": "0040ea88e03d71b5d178126e26736e435fc1c30e75c0ec5b026294a0422c6736",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "Finset.range",
+            "Finset.sum",
+            "HMul.hMul",
+            "HSub.hSub",
+            "Nat",
+            "Nat.cast",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toAddCommMonoid",
+            "SubNegMonoid.toSub",
+            "instDistribOfSemiring",
+            "instHMul",
+            "instHSub",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.zmod_fixedConcat_natTriangular_eq_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.zmod_fixedConcat_natTriangular_eq_one",
+          "restatement": false,
+          "statement_sha256": "c4ddad935bb705a0fed610e4684aea9882f00cab7fe2961e2b57e34bbedb8c1f",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CommSemiring.toSemiring",
+            "DivisionRing.toRing",
+            "Eq",
+            "Fact",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "HPow.hPow",
+            "LeanFrontier.A053067.fixedConcat",
+            "LeanFrontier.A053067.natTriangularStart",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.ModEq",
+            "Nat.Prime",
+            "Nat.cast",
+            "Ne",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "Semifield.toCommSemiring",
+            "Semiring.toMonoid",
+            "ZMod",
+            "ZMod.instField",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.zmod_fixedConcat_natTriangular_eq_one_of_base_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.zmod_fixedConcat_natTriangular_eq_one_of_base_one",
+          "restatement": false,
+          "statement_sha256": "2924b1c3510adaa414496848baf48b60578a473231ad68415b39a3021fba2557",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "CommSemiring.toSemiring",
+            "DivisionRing.toRing",
+            "Eq",
+            "Fact",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "LeanFrontier.A053067.fixedConcat",
+            "LeanFrontier.A053067.natTriangularStart",
+            "Nat",
+            "Nat.ModEq",
+            "Nat.Prime",
+            "Nat.cast",
+            "Ne",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "Semifield.toCommSemiring",
+            "ZMod",
+            "ZMod.instField",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.zmod_natFixedA_decimal_eq_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.zmod_natFixedA_decimal_eq_one",
+          "restatement": false,
+          "statement_sha256": "bcef636333a178852ce2617e00699b802ec36c67df9d7c390ca944c49c24ec59",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "DivisionRing.toRing",
+            "Eq",
+            "Fact",
+            "Field.toDivisionRing",
+            "HPow.hPow",
+            "LeanFrontier.A053067.natFixedA",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.ModEq",
+            "Nat.Prime",
+            "Nat.cast",
+            "Nat.instMonoid",
+            "Ne",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "ZMod",
+            "ZMod.instField",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.A053067.zmod_natFixedA_eq_one_of_base_one": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.zmod_natFixedA_eq_one_of_base_one",
+          "restatement": false,
+          "statement_sha256": "b6a59eec5d975c76dcd7e3cc204b7854a1e3c14ec14eb3d5f0c331d15f869302",
+          "type_dependencies": [
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "AddMonoidWithOne.toOne",
+            "DivisionRing.toRing",
+            "Eq",
+            "Fact",
+            "Field.toDivisionRing",
+            "LeanFrontier.A053067.natFixedA",
+            "Nat",
+            "Nat.ModEq",
+            "Nat.Prime",
+            "Nat.cast",
+            "Ne",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Ring.toAddGroupWithOne",
+            "ZMod",
+            "ZMod.instField",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.A053067.exists_fixedWidth_residue_one_above": [
+            {
+              "outcome": "failed",
+              "seconds": 5.043,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.032,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.329,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.132,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.111,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.033,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 30.68,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.A053067.exists_fixedWidth_residue_one_above": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 29592,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/A053067/ResidueOne.lean",
+        "Submissions/a053067-residue-one.json"
+      ],
+      "corpus_entrypoints_checked": 267,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.A053067.exists_fixedWidth_residue_one_above": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.A053067.exists_fixedWidth_residue_one_above",
+          "statement_sha256": "a932836b391c40d689635c796269c94a7dcdfc7594e830fc2f3d89c419248919",
+          "type_dependencies": [
+            "And",
+            "Exists",
+            "HPow.hPow",
+            "LT.lt",
+            "LeanFrontier.A053067.IsFixedWidthIndex",
+            "LeanFrontier.A053067.natFixedA",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.ModEq",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instHPow",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 28402,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 40
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "a053067-residue-one",
+  "trusted_receiver_revision": "79800a5709a415e43230ffe1349bf89946f697c1",
+  "validated_candidate_revision": "bcf906ebc1911b3f515a9d0a6e8215382857c49b",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36304971147"
+}
