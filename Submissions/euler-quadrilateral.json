@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "euler-quadrilateral",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.EuclideanGeometry.euler_quadrilateral"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to attack a new useful LeanFrontier target explicitly outside the roadmap. GPT-5.6 Sol / ChatGPT screened several classical Euclidean-geometry candidates against live LeanFrontier and pinned Mathlib v4.34.0. British flag, Apollonius, Stewart, Ceva, and Ptolemy were already present in Mathlib or LeanFrontier, while searches found no Euler quadrilateral theorem or equivalent four-point midpoint-distance identity. GPT-5.6 Sol / ChatGPT selected Euler's quadrilateral theorem: for arbitrary points a,b,c,d, the sum AB^2+BC^2+CD^2+DA^2 equals AC^2+BD^2 plus four times the squared distance between the midpoints of AC and BD. The proof reuses Mathlib's Apollonius theorem three times: twice across one diagonal and once on the triangle formed by its midpoint and the endpoints of the other diagonal, then closes the resulting scalar identity algebraically. GPT-5.6 Sol / ChatGPT selected the target and authored the Lean statement and proof; the human did not author or materially edit them. No claim of new mathematics is made."
+}
