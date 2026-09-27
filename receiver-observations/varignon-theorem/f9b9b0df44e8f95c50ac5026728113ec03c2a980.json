@@ -1,0 +1,147 @@
+{
+  "accepted_revision": "f9b9b0df44e8f95c50ac5026728113ec03c2a980",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-27T18:14:30Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 349.623,
+    "observed": {
+      "added_lines": 47,
+      "audited_declarations": {
+        "LeanFrontier.AffineGeometry.varignon_theorem": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.AffineGeometry.varignon_theorem",
+          "restatement": false,
+          "statement_sha256": "75190a4e76e80f30105dae22610307f5438fc4cf93164f2e59619cb319aadb70",
+          "type_dependencies": [
+            "AddCommGroup",
+            "AddCommGroup.toAddCommMonoid",
+            "AddCommGroup.toAddGroup",
+            "AddTorsor",
+            "AddTorsor.toVSub",
+            "And",
+            "Eq",
+            "Field.toSemifield",
+            "FloorRing.toFloorSemiring",
+            "FloorSemiring.instCharZero",
+            "Module",
+            "Real",
+            "Real.instField",
+            "Real.instFloorRing",
+            "Real.instRing",
+            "Real.linearOrder",
+            "Real.partialOrder",
+            "Real.semiring",
+            "Semifield.toDivisionSemiring",
+            "VSub.vsub",
+            "invertibleTwo",
+            "midpoint"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.AffineGeometry.varignon_theorem": [
+            {
+              "outcome": "failed",
+              "seconds": 5.261,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.347,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.348,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.285,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.327,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.196,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 31.764,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.AffineGeometry.varignon_theorem": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 2688,
+      "changed_files": [
+        "LeanFrontier/Geometry/Varignon.lean",
+        "Submissions/varignon-theorem.json"
+      ],
+      "corpus_entrypoints_checked": 273,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.AffineGeometry.varignon_theorem": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.AffineGeometry.varignon_theorem",
+          "statement_sha256": "75190a4e76e80f30105dae22610307f5438fc4cf93164f2e59619cb319aadb70",
+          "type_dependencies": [
+            "AddCommGroup",
+            "AddCommGroup.toAddCommMonoid",
+            "AddCommGroup.toAddGroup",
+            "AddTorsor",
+            "AddTorsor.toVSub",
+            "And",
+            "Eq",
+            "Field.toSemifield",
+            "FloorRing.toFloorSemiring",
+            "FloorSemiring.instCharZero",
+            "Module",
+            "Real",
+            "Real.instField",
+            "Real.instFloorRing",
+            "Real.instRing",
+            "Real.linearOrder",
+            "Real.partialOrder",
+            "Real.semiring",
+            "Semifield.toDivisionSemiring",
+            "VSub.vsub",
+            "invertibleTwo",
+            "midpoint"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 1515,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "varignon-theorem",
+  "trusted_receiver_revision": "1542a797c9fd51fa8b8f372a33dcf8bf36900c07",
+  "validated_candidate_revision": "a7e763769dc18d22c53eb5659d86ea188dfcc817",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36338090246"
+}
