@@ -386,6 +386,23 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("failing check", queue)
         self.assertIn("concurrency:", queue)
 
+    def test_the_merge_queue_stops_instead_of_waiting_blind(self) -> None:
+        """On #404 the queue waited an hour on a failed check, gave up without a
+        word, and then looped on 401s once its hour-long token expired.
+
+        Under pipefail, `gh pr checks | ... | grep -q fail` takes gh's exit
+        status (1 when a check failed) over grep's match, so it never matched.
+        """
+        queue = (ROOT / ".github" / "workflows" / "maintainer-merge-queue.yml").read_text()
+        self.assertIn("set -uo pipefail", queue)
+        self.assertNotRegex(queue, r"gh pr checks[^\n]*\|")
+        self.assertIn('checks="$(gh pr checks', queue)
+        self.assertIn("cannot read the checks of", queue)
+        # It says when it gives up, and it stops before the token expires.
+        self.assertIn('if [ "$settled" != true ]', queue)
+        self.assertIn("50 * 60", queue)
+        self.assertIn("re-run the queue with: $remaining", queue)
+
     def test_the_merge_queue_names_the_workflow_permission_it_lacks(self) -> None:
         """#406 changed two workflows; updating a fork branch then meant pushing
         workflow files, which the app may not do, and the queue blamed the
