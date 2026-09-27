@@ -57,6 +57,11 @@ jobs:
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
+      # The import graph is drawn by Graphviz. Checking the catalogue never
+      # draws, so only the writers need it.
+      - name: Install Graphviz
+        if: steps.ownership.outputs.skip != 'true'
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends graphviz
       - if: steps.ownership.outputs.skip != 'true'
         run: python3 tools/generate_catalogue.py
       - name: Open a protected generated-output pull request

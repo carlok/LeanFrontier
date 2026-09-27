@@ -196,6 +196,15 @@ class WorkflowContractTests(unittest.TestCase):
         # The observation writer must still regenerate it, or nothing would.
         self.assertIn("generate_catalogue.py", OBSERVATION_WORKFLOW)
 
+    def test_the_catalogue_writers_install_graphviz_before_drawing(self) -> None:
+        """Both writers draw the import graph; without dot the step fails loudly."""
+        for workflow, command in (
+            (CATALOGUE_WORKFLOW, "python3 tools/generate_catalogue.py"),
+            (OBSERVATION_WORKFLOW, ".trusted-receiver/tools/generate_catalogue.py --root ."),
+        ):
+            self.assertIn("apt-get install -y --no-install-recommends graphviz", workflow)
+            self.assertLess(workflow.index("graphviz"), workflow.index(command))
+
     def test_catalogue_is_trusted_post_merge_output(self) -> None:
         self.assertIn("LeanFrontier/**/*.lean", CATALOGUE_WORKFLOW)
         self.assertIn("Submissions/**/*.json", CATALOGUE_WORKFLOW)
@@ -376,6 +385,17 @@ class WorkflowContractTests(unittest.TestCase):
         # It stops rather than guessing when a check has actually failed.
         self.assertIn("failing check", queue)
         self.assertIn("concurrency:", queue)
+
+    def test_the_merge_queue_names_the_workflow_permission_it_lacks(self) -> None:
+        """#406 changed two workflows; updating a fork branch then meant pushing
+        workflow files, which the app may not do, and the queue blamed the
+        contributor's fork settings instead. The app must stay without that
+        permission, so the queue has to say what a person should do."""
+        queue = (ROOT / ".github" / "workflows" / "maintainer-merge-queue.yml").read_text()
+        self.assertIn('grep -q "workflows. permission"', queue)
+        self.assertIn("Run 'gh pr update-branch $pr' as a maintainer", queue)
+        for workflow in (ROOT / ".github" / "workflows").glob("*.yml"):
+            self.assertNotIn("permission-workflows", workflow.read_text(), workflow.name)
 
     def test_auto_merge_cannot_be_reached_by_untrusted_code(self) -> None:
         """A fork's pull_request token has no secrets, so this must run post hoc."""

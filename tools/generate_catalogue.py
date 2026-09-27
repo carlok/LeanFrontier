@@ -4,9 +4,12 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import re
+import shutil
+import subprocess
 from pathlib import Path
 
 from frontier_validate import strip_comments
@@ -133,52 +136,117 @@ def corpus_shape(root: Path) -> dict[str, object]:
     }
 
 
-def shape_svg(shape: dict[str, object]) -> str:
-    """A deterministic picture of the import graph.
+def components(modules: list[str], edges: list[tuple[str, str]]) -> list[list[str]]:
+    """Modules grouped by import connectivity, largest group first."""
+    near: dict[str, set[str]] = {name: set() for name in modules}
+    for tail, head in edges:
+        if tail in near and head in near:
+            near[tail].add(head)
+            near[head].add(tail)
+    seen: set[str] = set()
+    groups: list[list[str]] = []
+    for name in modules:
+        if name in seen:
+            continue
+        stack, group = [name], set()
+        while stack:
+            current = stack.pop()
+            if current not in group:
+                group.add(current)
+                stack.extend(near[current])
+        seen |= group
+        groups.append(sorted(group))
+    return sorted(groups, key=lambda group: (-len(group), group[0]))
 
-    Connected modules are drawn first, in the order their edges appear, so the
-    clusters that carry the corpus are visible at a glance and the unattached
-    remainder is visible as exactly that. Layout is a function of the sorted
-    input alone: the catalogue is committed, and a layout that wandered between
-    runs would make every regeneration a diff.
+
+def graph_label(name: str, group: list[str]) -> str:
+    """The shortest readable name: the last segment, with its parent when that
+    segment is short or shared. The full module name is the node's hover title."""
+    parts = name.replace("LeanFrontier.", "").split(".")
+    last = parts[-1]
+    shared = sum(1 for other in group if other.rsplit(".", 1)[-1] == last) > 1
+    if len(parts) > 2 and (len(last) < 9 or shared):
+        return ".".join(parts[-2:])
+    return last
+
+
+def dot_source(group: list[str], edges: list[tuple[str, str]]) -> str:
+    """Graphviz input for one group. Arrows run from a module to its importers.
+
+    Courier is one of the fonts Graphviz measures without looking it up, so box
+    sizes do not depend on which fonts the machine drawing it has installed.
+    """
+    members = set(group)
+    lines = [
+        'digraph imports {',
+        '  rankdir=LR; bgcolor="transparent"; nodesep=0.18; ranksep=0.4;',
+        '  node [shape=box style="rounded,filled" fillcolor="#e6efe9" color="#0c6d56" '
+        'fontname="Courier" fontsize=10 height=0.28 margin="0.08,0.03"];',
+        '  edge [color="#0c6d5699" arrowsize=0.5];',
+    ]
+    for name in group:
+        lines.append(f'  "{name}" [label="{graph_label(name, group)}"];')
+    for tail, head in edges:
+        if tail in members and head in members:
+            lines.append(f'  "{head}" -> "{tail}";')
+    lines.append("}")
+    return "\n".join(lines) + "\n"
+
+
+DRAWING = re.compile(r'(<div class="drawing" data-graph="[0-9a-f]+">).*?(</div>)', re.DOTALL)
+
+
+def draw(source: str, caption: str) -> str:
+    """Lay one group out with Graphviz and return the bare SVG element."""
+    if shutil.which("dot") is None:
+        raise SystemExit("drawing the import graph needs Graphviz: install it (apt-get install graphviz) and rerun")
+    svg = subprocess.run(["dot", "-Tsvg"], input=source, capture_output=True, text=True, check=True).stdout
+    svg = svg[svg.index("<svg"):]
+    svg = re.sub(r"<!--.*?-->", "", svg, flags=re.DOTALL)
+    # Several drawings share a page; Graphviz numbers ids from one in each.
+    svg = re.sub(r'\sid="[^"]*"', "", svg)
+    return svg.replace("<svg ", f'<svg role="img" aria-label="{html.escape(caption)}" ', 1).strip()
+
+
+def graph_section(shape: dict[str, object], drawn: bool = True) -> str:
+    """The import graph, one Graphviz drawing per connected group.
+
+    Each drawing is tagged with a digest of its Graphviz input. Checking the
+    catalogue compares digests, not SVG bytes, so a different Graphviz version
+    on the machine that checks cannot fail a catalogue whose graph is current.
     """
     modules: list[str] = shape["modules"]  # type: ignore[assignment]
     edges: list[tuple[str, str]] = shape["edges"]  # type: ignore[assignment]
-    attached = {name for edge in edges for name in edge}
-    ordered = [m for m in modules if m in attached] + [m for m in modules if m not in attached]
-    columns, cell_w, cell_h, radius = 4, 250, 62, 7
-    position = {
-        name: (60 + (index % columns) * cell_w, 40 + (index // columns) * cell_h)
-        for index, name in enumerate(ordered)
-    }
-    height = 60 + ((len(ordered) + columns - 1) // columns) * cell_h
-    parts = [
-        f'<svg viewBox="0 0 {60 + columns * cell_w} {height}" width="100%" '
-        f'role="img" aria-label="corpus import graph" xmlns="http://www.w3.org/2000/svg">'
-    ]
-    for tail, head in edges:
-        if tail not in position or head not in position:
-            continue
-        (x1, y1), (x2, y2) = position[tail], position[head]
-        mid_x, mid_y = (x1 + x2) / 2, (y1 + y2) / 2 - 26
-        parts.append(
-            f'<path d="M{x1} {y1} Q{mid_x} {mid_y} {x2} {y2}" fill="none" '
-            f'stroke="#0c6d56" stroke-width="1.6"/>'
+    groups = components(modules, edges)
+    figures = []
+    for group in (group for group in groups if len(group) > 1):
+        source = dot_source(group, edges)
+        digest = hashlib.sha256(source.encode("utf-8")).hexdigest()[:16]
+        caption = f"{len(group)} modules"
+        drawing = draw(source, f"Import graph of {caption}") if drawn else ""
+        figures.append(
+            f'<figure class="graph"><figcaption>{caption}</figcaption>'
+            f'<div class="drawing" data-graph="{digest}">{drawing}</div></figure>'
         )
-    for name in ordered:
-        x, y = position[name]
-        colour = "#0c6d56" if name in attached else "#b8c3bc"
-        label = name.replace("LeanFrontier.", "")
-        parts.append(f'<circle cx="{x}" cy="{y}" r="{radius}" fill="{colour}"/>')
-        parts.append(
-            f'<text x="{x + 12}" y="{y + 4}" font-size="12" fill="#17221e" '
-            f'font-family="ui-monospace,monospace">{html.escape(label)}</text>'
-        )
-    parts.append("</svg>")
-    return "".join(parts)
+    alone = [group[0] for group in groups if len(group) == 1]
+    alone_items = "".join(
+        f"<li><code>{html.escape(name.replace('LeanFrontier.', ''))}</code></li>" for name in alone
+    ) or "<li>none</li>"
+    return (
+        '<p class="legend">Each connected group of modules is drawn on its own. Arrows point from a module '
+        "to the modules that import it; hover over a box for its full name.</p>"
+        + "".join(figures)
+        + f'<h3>Standing alone ({len(alone)})</h3><p class="legend">Modules that neither import another '
+        f'corpus module nor are imported by one.</p><ul class="alone">{alone_items}</ul>'
+    )
 
 
-def render(root: Path) -> str:
+def comparable(page: str) -> str:
+    """The page with each drawing reduced to its digest."""
+    return DRAWING.sub(r"\1\2", page)
+
+
+def render(root: Path, drawn: bool = True) -> str:
     by_name = claims(root)
     observed_by_name = observations(root)
     cards: list[str] = []
@@ -231,12 +299,11 @@ numbers that answer it, regenerated with the catalogue.</p>
 not be used; a constant reaching another submission's statement means a theorem
 was written about it.</p>
 <ul>{shared_rows}</ul>
-{shape_svg(shape)}
-<p class="legend">Filled nodes import or are imported by another corpus module; hollow nodes stand alone.</p>
+{graph_section(shape, drawn)}
 </section>"""
     return f"""<!doctype html>
 <html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>LeanFrontier theorem catalogue</title>
-<style>body{{max-width:72rem;margin:auto;padding:2rem;background:#f4f1e8;color:#17221e;font:1rem/1.55 Georgia,serif}}code{{font:0.88em ui-monospace,monospace}}article{{border-top:1px solid #b8c3bc;padding:1.5rem 0}}h1,h2{{line-height:1.1}}.statement{{font-family:ui-monospace,monospace;overflow-wrap:anywhere}}.shape{{border-top:1px solid #b8c3bc;padding:1.5rem 0}}.shape ul{{columns:2;font:0.9rem ui-monospace,monospace}}.legend{{font-size:0.85rem;color:#4a5b53}}dl{{display:grid;grid-template-columns:6rem 1fr;gap:.35rem 1rem}}dt{{font-weight:bold}}dd{{margin:0}}a{{color:#0c6d56}}</style></head>
+<style>body{{max-width:72rem;margin:auto;padding:2rem;background:#f4f1e8;color:#17221e;font:1rem/1.55 Georgia,serif}}code{{font:0.88em ui-monospace,monospace}}article{{border-top:1px solid #b8c3bc;padding:1.5rem 0}}h1,h2{{line-height:1.1}}h2{{overflow-wrap:anywhere}}.statement{{font-family:ui-monospace,monospace;overflow-wrap:anywhere}}.shape{{border-top:1px solid #b8c3bc;padding:1.5rem 0}}.shape ul{{display:grid;grid-template-columns:repeat(auto-fill,minmax(18rem,1fr));gap:.2rem 1.5rem;padding-left:1rem;font:0.85rem ui-monospace,monospace}}.shape li{{overflow-wrap:anywhere}}.legend{{font-size:0.85rem;color:#4a5b53}}.graph{{margin:1.25rem 0;border-top:1px solid #d9dfd9;padding-top:.4rem}}.graph figcaption{{font:.85rem ui-monospace,monospace;color:#4a5b53}}.drawing{{overflow-x:auto}}.drawing svg{{display:block}}.drawing text{{font-family:ui-monospace,Menlo,Consolas,monospace}}.shape ul.alone{{font-family:inherit}}.alone code{{overflow-wrap:anywhere}}dl{{display:grid;grid-template-columns:6rem minmax(0,1fr);gap:.35rem 1rem}}dt{{font-weight:bold}}dd{{margin:0;overflow-wrap:anywhere}}a{{color:#0c6d56}}</style></head>
 <body><p><a href=\"../\">LeanFrontier</a> / corpus</p><h1>Theorem catalogue</h1><p>Generated after merged submissions from Lean source and immutable submission claims. Source and receiver reports remain canonical.</p>{summary}{body}</body></html>
 """
 
@@ -247,15 +314,17 @@ def main() -> int:
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     destination = args.root / DESTINATION
-    expected = render(args.root)
     existing = destination.read_text(encoding="utf-8") if destination.exists() else ""
-    if expected == existing:
+    # Checking never draws: it needs no Graphviz, and a drawing that differs only
+    # because the layout engine changed is not a stale catalogue. For the same
+    # reason the writer leaves the file alone unless something it says changed.
+    if comparable(render(args.root, drawn=False)) == comparable(existing):
         return 0
     if args.check:
         print(f"{destination} is stale; run tools/generate_catalogue.py")
         return 1
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(expected, encoding="utf-8")
+    destination.write_text(render(args.root), encoding="utf-8")
     return 0
 
 
