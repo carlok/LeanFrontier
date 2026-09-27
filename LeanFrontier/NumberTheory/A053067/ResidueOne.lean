@@ -552,4 +552,228 @@ theorem natFixedA_modEq_one_of_base_dvd_and_index
   (natFixedA_modEq_last_of_base_dvd hn hq).trans
     (triangularLast_modEq_one_of_index_modEq_one hn hmod)
 
+
+/-- A genuine fixed-width A053067 index: all integers in the triangular block
+from the start through its last term have exactly d decimal digits. -/
+def IsFixedWidthIndex (d n : ℕ) : Prop :=
+  0 < d ∧
+    10 ^ (d - 1) ≤ natTriangularStart n ∧
+    natTriangularStart n + (n - 1) < 10 ^ d
+
+/-- Universal residue-one theorem for A053067, in an explicitly unbounded form.
+
+For every nonzero modulus m and every lower bound B, there is a genuine
+fixed-width A053067 index n > B whose fixed-width decimal concatenation is
+congruent to 1 modulo m. -/
+theorem exists_fixedWidth_residue_one_above
+    (m B : ℕ) (hm : 0 < m) :
+    ∃ d n : ℕ,
+      B < n ∧
+      IsFixedWidthIndex d n ∧
+      natFixedA (10 ^ d) n ≡ 1 [MOD m] := by
+  let a := tenPart m
+  let b := tenCoprimePart m
+  let e := tenExponent m
+  let M := b * (2 * a)
+  let R := M + e + B + 3
+  let t := Nat.totient b * R
+  let d := 2 * t
+  let N := 10 ^ t
+  let n := M * (N / M + 1) + 1
+
+  have hm0 : m ≠ 0 := hm.ne'
+  have ha : 0 < a := by
+    dsimp [a, tenPart]
+    exact Nat.mul_pos (Nat.ordProj_pos m 2)
+      (Nat.ordProj_pos (ordCompl[2] m) 5)
+  have hb : 0 < b := by
+    dsimp [b, tenCoprimePart]
+    exact Nat.ordCompl_pos 5 ((Nat.ordCompl_pos 2 hm0).ne')
+  have hM : 0 < M := by
+    dsimp [M]
+    exact Nat.mul_pos hb (Nat.mul_pos (by norm_num) ha)
+  have hR : 0 < R := by
+    dsimp [R]
+    omega
+  have hphi : 0 < Nat.totient b := Nat.totient_pos.mpr hb
+  have hRt : R ≤ t := by
+    dsimp [t]
+    exact Nat.le_mul_of_pos_left R hphi
+  have ht : 0 < t := lt_of_lt_of_le hR hRt
+  have hd : 0 < d := by
+    dsimp [d]
+    omega
+  have he_le_d : e ≤ d := by
+    dsimp [R] at hRt
+    dsimp [d]
+    omega
+  have hMtwo_le_t : M + 2 ≤ t := by
+    dsimp [R] at hRt
+    omega
+  have hB_lt_t : B < t := by
+    dsimp [R] at hRt
+    omega
+
+  have hselfPow : ∀ x : ℕ, 0 < x → x < 10 ^ x := by
+    intro x hx
+    induction x with
+    | zero => omega
+    | succ x ih =>
+        by_cases hx0 : x = 0
+        · subst x
+          norm_num
+        · have ihx := ih (Nat.pos_of_ne_zero hx0)
+          rw [pow_succ]
+          have hp : 0 < 10 ^ x := pow_pos (by norm_num) _
+          omega
+  have htN : t < N := by
+    simpa [N] using hselfPow t ht
+  have hBN : B < N := hB_lt_t.trans htN
+
+  have hfourPow : ∀ x : ℕ, 4 * (x + 1) ≤ 10 ^ (x + 2) := by
+    intro x
+    induction x with
+    | zero => norm_num
+    | succ x ih =>
+        calc
+          4 * (x + 1 + 1) ≤ 10 * (4 * (x + 1)) := by omega
+          _ ≤ 10 * 10 ^ (x + 2) := Nat.mul_le_mul_left 10 ih
+          _ = 10 ^ (x + 1 + 2) := by
+            rw [show x + 1 + 2 = (x + 2) + 1 by omega, pow_succ]
+            ring
+  have hfourMN : 4 * (M + 1) ≤ N := by
+    calc
+      4 * (M + 1) ≤ 10 ^ (M + 2) := hfourPow M
+      _ ≤ 10 ^ t := Nat.pow_le_pow_right (by norm_num) hMtwo_le_t
+      _ = N := by rfl
+  have hNpos : 0 < N := by
+    dsimp [N]
+    exact pow_pos (by norm_num) _
+
+  have hNltCore : N < M * (N / M + 1) :=
+    Nat.lt_mul_div_succ N hM
+  have hNn : N < n := by
+    dsimp [n]
+    omega
+  have hfloor : M * (N / M) ≤ N := Nat.mul_div_le N M
+  have hnUpper : n ≤ N + M + 1 := by
+    dsimp [n]
+    rw [mul_add, mul_one]
+    omega
+  have hfourN : 4 * n ≤ 5 * N := by
+    omega
+  have hNfour : 4 ≤ N := by
+    omega
+  have htwoSucc : 2 * (n + 1) ≤ 3 * N := by
+    omega
+  have hprodUpper : 8 * (n * (n + 1)) ≤ 15 * (N * N) := by
+    calc
+      8 * (n * (n + 1)) = (4 * n) * (2 * (n + 1)) := by ring
+      _ ≤ (5 * N) * (3 * N) := Nat.mul_le_mul hfourN htwoSucc
+      _ = 15 * (N * N) := by ring
+  have hNNpos : 0 < N * N := Nat.mul_pos hNpos hNpos
+  have hprodLt : n * (n + 1) < 2 * (N * N) := by
+    by_contra h
+    have hge : 2 * (N * N) ≤ n * (n + 1) := Nat.le_of_not_gt h
+    have h16 : 16 * (N * N) ≤ 8 * (n * (n + 1)) := by
+      have hx := Nat.mul_le_mul_left 8 hge
+      nlinarith
+    have hbad : 16 * (N * N) ≤ 15 * (N * N) :=
+      h16.trans hprodUpper
+    omega
+
+  have hnpos : 0 < n := lt_trans hNpos hNn
+  have hNm1 : N ≤ n - 1 := by omega
+  have hprodLower : N * N ≤ n * (n - 1) :=
+    Nat.mul_le_mul hNn.le hNm1
+  have hNNpow : N * N = 10 ^ d := by
+    dsimp [N, d]
+    rw [show 2 * t = t * 2 by ring, pow_mul, pow_two]
+  have hdOne : 1 ≤ d := hd
+  have hstep : 10 ^ (d - 1) * 10 = 10 ^ d := by
+    rw [← pow_succ, Nat.sub_add_cancel hdOne]
+  have htwoLower :
+      2 * 10 ^ (d - 1) ≤ n * (n - 1) := by
+    have hten :
+        10 * 10 ^ (d - 1) = N * N := by
+      rw [mul_comm, hstep, hNNpow]
+    have hsmall : 2 * 10 ^ (d - 1) ≤ N * N := by
+      rw [← hten]
+      have hp : 0 < 10 ^ (d - 1) := pow_pos (by norm_num) _
+      nlinarith
+    exact hsmall.trans hprodLower
+  have hstart :
+      10 ^ (d - 1) ≤ natTriangularStart n := by
+    have hchoose :
+        10 ^ (d - 1) ≤ n * (n - 1) / 2 := by
+      apply (Nat.le_div_iff_mul_le (by norm_num : 0 < 2)).2
+      simpa [mul_comm] using htwoLower
+    rw [natTriangularStart, Nat.choose_two_right]
+    omega
+  have hlast :
+      natTriangularStart n + (n - 1) = n * (n + 1) / 2 := by
+    rw [natTriangularStart, Nat.choose_two_right]
+    have hone : 1 ≤ n := hnpos
+    calc
+      n * (n - 1) / 2 + 1 + (n - 1) =
+          n * (n - 1) / 2 + n := by omega
+      _ = (n + 1) * ((n + 1) - 1) / 2 := (Nat.triangle_succ n).symm
+      _ = n * (n + 1) / 2 := by
+        simp only [Nat.add_sub_cancel]
+        rw [mul_comm]
+  have hfinish :
+      natTriangularStart n + (n - 1) < 10 ^ d := by
+    rw [hlast, ← hNNpow]
+    apply (Nat.div_lt_iff_lt_mul (by norm_num : 0 < 2)).2
+    simpa [mul_comm] using hprodLt
+  have hfixed : IsFixedWidthIndex d n := ⟨hd, hstart, hfinish⟩
+
+  have hindexM : n ≡ 1 [MOD M] := by
+    dsimp [n]
+    exact Nat.ModEq.modulus_mul_add
+  have htwoA_M : 2 * a ∣ M := by
+    refine ⟨b, ?_⟩
+    dsimp [M]
+    ring
+  have htwoB_M : 2 * b ∣ M := by
+    refine ⟨a, ?_⟩
+    dsimp [M]
+    ring
+  have hindexA : n ≡ 1 [MOD 2 * a] :=
+    hindexM.of_dvd htwoA_M
+  have hindexB : n ≡ 1 [MOD 2 * b] :=
+    hindexM.of_dvd htwoB_M
+
+  have hpowA : a ∣ 10 ^ d := by
+    have hae : a ∣ 10 ^ e := by
+      simpa [a, e] using tenPart_dvd_pow_ten m
+    exact hae.trans (Nat.pow_dvd_pow 10 he_le_d)
+  have hresA : natFixedA (10 ^ d) n ≡ 1 [MOD a] :=
+    natFixedA_modEq_one_of_base_dvd_and_index hnpos hpowA hindexA
+
+  have h10b : 10.Coprime b := by
+    exact (tenCoprimePart_coprime_ten hm0).symm
+  have heuler : 10 ^ Nat.totient b ≡ 1 [MOD b] :=
+    Nat.ModEq.pow_totient h10b
+  have hphiD : Nat.totient b ∣ d := by
+    refine ⟨2 * R, ?_⟩
+    dsimp [d, t]
+    ring
+  obtain ⟨j, hj⟩ := hphiD
+  have hbaseB : 10 ^ d ≡ 1 [MOD b] := by
+    rw [hj, pow_mul]
+    simpa using heuler.pow j
+  have hresB : natFixedA (10 ^ d) n ≡ 1 [MOD b] :=
+    natFixedA_modEq_one_of_base_one hnpos hindexB hbaseB
+
+  have hab : a.Coprime b := by
+    simpa [a, b] using tenPart_coprime_tenCoprimePart hm0
+  have hresAB : natFixedA (10 ^ d) n ≡ 1 [MOD a * b] :=
+    (Nat.modEq_and_modEq_iff_modEq_mul hab).2 ⟨hresA, hresB⟩
+  have habm : a * b = m := by
+    simpa [a, b] using tenPart_mul_tenCoprimePart m
+  rw [habm] at hresAB
+
+  exact ⟨d, n, hBN.trans hNn, hfixed, hresAB⟩
+
 end LeanFrontier.A053067
