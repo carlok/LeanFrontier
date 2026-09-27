@@ -756,13 +756,18 @@ theorem exists_fixedWidth_residue_one_above
         ((10 ^ d : ℕ) : ZMod b)
         ((natTriangularStart n : ℕ) : ZMod b) n
         hqZ hLZ hnZ hoffsets
-    simpa using
-      (ZMod.natCast_eq_natCast_iff (natFixedA (10 ^ d) n) 1 b).1 hcast
+    have hcast' :
+        ((natFixedA (10 ^ d) n : ℕ) : ZMod b) = ((1 : ℕ) : ZMod b) := by
+      simpa using hcast
+    exact
+      (ZMod.natCast_eq_natCast_iff (natFixedA (10 ^ d) n) 1 b).1 hcast'
 
   have hab : a.Coprime b := by
     simpa [a, b] using tenPart_coprime_tenCoprimePart hm0
   have hresAB : natFixedA (10 ^ d) n ≡ 1 [MOD a * b] :=
-    (Nat.modEq_and_modEq_iff_modEq_mul hab).2 ⟨hresA, hresB⟩
+    (Nat.modEq_and_modEq_iff_modEq_mul
+      (a := natFixedA (10 ^ d) n) (b := 1) (m := a) (n := b) hab).2
+      (And.intro hresA hresB)
   have habm : a * b = m := by
     simpa [a, b] using tenPart_mul_tenCoprimePart m
   rw [habm] at hresAB
