@@ -92,10 +92,19 @@ jobs:
                   behind="$(gh api "repos/$GITHUB_REPOSITORY/compare/${{ github.event.repository.default_branch }}...$head" --jq .behind_by)"
                   if [ "$behind" != "0" ]; then
                     echo "#$pr is $behind commits behind; updating and revalidating"
-                    gh pr update-branch "$pr" --repo "$GITHUB_REPOSITORY" || {
-                      echo "::error::cannot update #$pr; a fork branch needs 'allow edits by maintainers'"
+                    if ! output="$(gh pr update-branch "$pr" --repo "$GITHUB_REPOSITORY" 2>&1)"; then
+                      echo "$output"
+                      # The app holds no `workflows` permission, deliberately:
+                      # it would let it rewrite the workflows that constrain it.
+                      # So while main has workflow changes a branch lacks, only
+                      # a person can bring that branch up to date.
+                      if grep -q "workflows. permission" <<<"$output"; then
+                        echo "::error::cannot update #$pr: main has workflow changes this branch lacks, and the app may not push workflow files. Run 'gh pr update-branch $pr' as a maintainer, then re-run the queue."
+                      else
+                        echo "::error::cannot update #$pr; a fork branch needs 'allow edits by maintainers'"
+                      fi
                       exit 1
-                    }
+                    fi
                     sleep 45
                     continue
                   fi
