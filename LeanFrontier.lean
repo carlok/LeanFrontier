@@ -21,6 +21,7 @@ import LeanFrontier.Geometry.FareyFordCircle
 import LeanFrontier.Geometry.FordCircleDescartes
 import LeanFrontier.Geometry.FordCircleTangency
 import LeanFrontier.Geometry.InversiveGeometry
+import LeanFrontier.Geometry.Weitzenbock
 import LeanFrontier.GroupTheory.ChangeRinging
 import LeanFrontier.GroupTheory.ChangeRingingCyclic
 import LeanFrontier.LinearAlgebra.FibonacciMatrix
