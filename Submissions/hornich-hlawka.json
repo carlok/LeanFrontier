@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "hornich-hlawka",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.InnerProductGeometry.hornich_hlawka"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to formalize some known mathematics of its own choice that is absent from both Mathlib and LeanFrontier, with no prescribed subject. GPT-5.6 Sol / ChatGPT screened several classical candidates against live LeanFrontier and Mathlib, rejected Chebyshev's sum inequality, Popoviciu's variance inequality, Erdős-Szekeres, Beatty and the Gregory-Leibniz series because Mathlib already contains them, and selected the classical Hornich-Hlawka inequality for real inner-product spaces. Searches of LeanFrontier and current Mathlib found no theorem under Hornich-Hlawka/Hlawka or an equivalent quadrilateral-inequality formulation. The theorem states ||x+y||+||y+z||+||z+x|| <= ||x||+||y||+||z||+||x+y+z||. The proof is the standard one: use the inner-product norm-square identity relating the four single/total norms to the three pair-sum norms; after multiplying the target difference by the nonnegative sum of the four right-hand norms, rewrite it as a sum of three products, each product nonnegative by two applications of the triangle inequality. GPT-5.6 Sol / ChatGPT selected the target and authored the Lean statement and proof; the human did not choose or materially edit them. No claim of new mathematics is made."
+}
