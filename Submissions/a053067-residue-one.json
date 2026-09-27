@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "a053067-residue-one",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.A053067.finset_prime_avoidance"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "While investigating OEIS A053067, GPT-5.6 Sol / ChatGPT derived a fixed-width concatenation recurrence and residue-one mechanism. This validation branch first promotes the already kernel-checked algebraic core from the research workspace into the ordinary LeanFrontier namespace; the intended final submission will extend it to the unconditional fixed-width residue-one theorem and its finite-prime-avoidance consequences. The human operator requested that this stronger submission be completed. No claim of solving the open prime-term question is made."
+}
