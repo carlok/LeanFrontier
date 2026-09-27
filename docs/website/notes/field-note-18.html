@@ -24,7 +24,7 @@
         <header class="note-header">
           <p class="eyebrow">27 September 2026 · Field Note 18</p>
           <h1>One Lemma of Its Own.</h1>
-          <p class="hero-copy">Two more, both merged by hand. One is a step in the known proofs of the prime-power case of Markov uniqueness. The other is the first result in this run of Markov submissions that its producer says it derived rather than took from a paper. It is elementary, and of the six merged since Friday's note it is the only one that imports nothing from the corpus and that nothing imports. Two more, outside the Markov line, landed while it was being written.</p>
+          <p class="hero-copy">Two more, both merged by hand. One is a step in the known proofs of the prime-power case of Markov uniqueness. The other is the first result in this run of Markov submissions that its producer says it derived rather than took from a paper. It is elementary, and of the six merged since Friday's note it is the only one that imports nothing from the corpus and that nothing imports. Two more, outside the Markov line, landed while it was being written, and three pieces of classical geometry in the afternoon.</p>
         </header>
 
         <section>
@@ -52,8 +52,18 @@
           <p>While this note was being drafted, two submissions outside the Markov line were merged. The first is about OEIS A053067, a sequence whose terms are formed by writing decimal numbers side by side. For every modulus <code>m</code>, infinitely many terms are congruent to 1 modulo <code>m</code>, so no finite set of congruence obstructions can rule out further primes in the sequence. It does not find one. At 777 lines it is one of the larger modules in the corpus, and like the gcd identity it imports nothing from the corpus and nothing imports it.</p>
           <p>The second proves that periodic points are dense for the tent map on the unit interval, and carries the result to the logistic map at parameter four through the topological conjugacy that landed on Thursday. That conjugacy completed a module a friend of the project submitted on 18 August, so this is the third layer on one piece of dynamics, and the first two came from different contributors.</p>
           <p>The contributor also refreshed the roadmap they had written for the project. All six of its directions from Wednesday have landed, and the new version replaces them with five different ones. It moves further work on Markov uniqueness into a research-only section that asks for named results from the literature, which is a fair reading of what the week's Markov submissions were.</p>
-          <p>And one after it went up: Hlawka's inequality, that in any real inner-product space the norms of the three pairwise sums of <code>x</code>, <code>y</code>, <code>z</code> add up to at most <code>|x| + |y| + |z| + |x + y + z|</code>. It is classical, and like the A053067 theorem it neither imports anything from the corpus nor is imported. Two of today's four submissions stand alone.</p>
-          <p>The corpus now stands at 92 modules and 73 internal import edges, 0.79 per module.</p>
+          <p>And one after it went up: Hlawka's inequality, that in any real inner-product space the norms of the three pairwise sums of <code>x</code>, <code>y</code>, <code>z</code> add up to at most <code>|x| + |y| + |z| + |x + y + z|</code>. It is classical, and like the A053067 theorem it neither imports anything from the corpus nor is imported.</p>
+        </section>
+
+        <section>
+          <h2>An afternoon of geometry</h2>
+          <p>Three more followed, all classical and all in one style. Weitzenböck's inequality: a triangle's area is at most <code>(a² + b² + c²) / (4√3)</code>. Euler's quadrilateral theorem: the squared sides of any quadrilateral add up to the squared diagonals plus four times the squared distance between the diagonals' midpoints. Varignon's theorem: the midpoints of any quadrilateral's sides form a parallelogram. Each is short and rests on Mathlib alone: none imports anything from the corpus.</p>
+          <p>That makes five of the day's seven submissions that stand alone, against one of the six Markov submissions since Friday. Edges per module fell from 0.81 in the morning to 0.77, and the share of modules connected to another from 0.63 to 0.60. The accumulation series was registered to measure this, and here it measures something plain: the same producer, turned to a different kind of target, builds very differently. The corpus stands at 95 modules and 73 internal import edges.</p>
+        </section>
+
+        <section>
+          <h2>What changed underneath</h2>
+          <p>The catalogue's import graph, unreadable at ninety modules, is now drawn by Graphviz, one picture per connected group of modules. Getting there broke two things for an afternoon, both ours. A test added with it assumed the published catalogue is always current; on a submission's branch it never is, so every new submission failed a check until the test was fixed. And the merge queue, asked to merge the first of them, waited an hour on that failed check without noticing: its test for a failure could never succeed, because of how a shell pipeline reports a command's exit status. It now stops, says why, and gives up cleanly before its credentials expire.</p>
         </section>
 
         <section>
