@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "markov-collision-prime-split",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "target_driven",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.MarkovEquation.odd_prime_not_dvd_both_collision_factors",
+    "LeanFrontier.MarkovEquation.odd_prime_power_collision_factor_split"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to execute the literature-informed Markov-uniqueness attack plan proposed in the preceding research review. This incremental submission formalizes the prime-factor separation step surrounding Anitha Srinivasan's collision factorization. For an odd prime dividing the shared Markov coordinate, the two collision factors cannot both be divisible by that prime once the relevant coordinates are coprime to the shared coordinate. Combining this with the preceding collision-factorization theorem gives a stronger prime-power statement: if p^k divides the shared coordinate, then (p^k)^2 divides one entire collision factor or the other. In coordinate-root language these alternatives encode the same-root versus opposite-root choices modulo the prime-power component, making the result a direct formal interface for the CRT sign-splitting obstruction behind the general Frobenius/Markov uniqueness problem. The statements deliberately take only the coprimality assumptions needed by the arithmetic argument; the pending pairwise-coprimality Markov-tree result can later discharge them for positive triples. GPT-5.6 Sol / ChatGPT designed the exact Lean statements and proofs; the human did not author or materially edit the formal text. No claim of new mathematics is made."
+}
