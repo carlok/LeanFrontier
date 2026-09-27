@@ -639,8 +639,10 @@ theorem exists_fixedWidth_residue_one_above
   have hprodLower : N * N ≤ n * (n - 1) :=
     Nat.mul_le_mul hNn.le hNm1
   have hNNpow : N * N = 10 ^ d := by
-    dsimp [N, d]
-    rw [show 2 * t = t * 2 by ring, pow_mul, pow_two]
+    change 10 ^ t * 10 ^ t = 10 ^ (2 * t)
+    rw [← pow_add]
+    congr 1
+    omega
   have hdOne : 1 ≤ d := hd
   have hstep : 10 ^ (d - 1) * 10 = 10 ^ d := by
     rw [← pow_succ, Nat.sub_add_cancel hdOne]
@@ -703,7 +705,7 @@ theorem exists_fixedWidth_residue_one_above
   have hresA : natFixedA (10 ^ d) n ≡ 1 [MOD a] :=
     natFixedA_modEq_one_of_base_dvd_and_index hnpos hpowA hindexA
 
-  have h10b : 10.Coprime b := by
+  have h10b : (10 : ℕ).Coprime b := by
     exact (tenCoprimePart_coprime_ten hm0).symm
   have heuler : 10 ^ Nat.totient b ≡ 1 [MOD b] :=
     Nat.ModEq.pow_totient h10b
