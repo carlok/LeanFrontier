@@ -58,9 +58,20 @@ jobs:
               --jq '[.[] | select(.headRefName | startswith("automation/generated/"))] | length'
           }
 
+          # The app token lasts an hour and cannot be renewed inside this step.
+          # Stop well before it expires, saying what is left, rather than
+          # looping on 401s until someone cancels the run.
+          started=$(date +%s)
+          remaining="$PULL_REQUESTS"
+
           for pr in $PULL_REQUESTS; do
             echo "::group::#$pr"
+            settled=false
             for attempt in $(seq 1 120); do
+              if (( $(date +%s) - started > 50 * 60 )); then
+                echo "::error::stopping before the app token expires; re-run the queue with: $remaining"
+                exit 1
+              fi
               # The generators open their own pull requests after each merge and
               # auto-merge them. Merging past them races the corpus they record.
               if [ "$(generated_open)" != "0" ]; then
@@ -76,8 +87,8 @@ jobs:
 
               state="$(gh pr view "$pr" --repo "$GITHUB_REPOSITORY" --json state,mergeStateStatus --jq '.state + " " + .mergeStateStatus')"
               case "$state" in
-                "MERGED "*) echo "#$pr merged"; break ;;
-                "CLOSED "*) echo "#$pr is closed; skipping"; break ;;
+                "MERGED "*) echo "#$pr merged"; settled=true; break ;;
+                "CLOSED "*) echo "#$pr is closed; skipping"; settled=true; break ;;
                 "OPEN CLEAN")
                   echo "#$pr is mergeable; merging"
                   gh pr merge "$pr" --repo "$GITHUB_REPOSITORY" --merge
@@ -108,15 +119,34 @@ jobs:
                     sleep 45
                     continue
                   fi
-                  if gh pr checks "$pr" --repo "$GITHUB_REPOSITORY" 2>/dev/null | awk '{print $2}' | grep -q fail; then
+                  # Captured, not piped: gh exits 1 when a check has failed, and
+                  # under pipefail that status used to override grep's match, so
+                  # a failing check read as none and the queue waited an hour.
+                  checks="$(gh pr checks "$pr" --repo "$GITHUB_REPOSITORY" 2>&1)"
+                  checks_status=$?
+                  if awk -F'\t' '$2 == "fail"' <<<"$checks" | grep -q .; then
+                    echo "$checks"
                     echo "::error::#$pr has a failing check; stopping so a person can look"
-                    gh pr checks "$pr" --repo "$GITHUB_REPOSITORY" || true
                     exit 1
                   fi
+                  # 0: all passed, 1: something failed, 8: still pending. Any
+                  # other failure without a table of checks is gh failing.
+                  if [ "$checks_status" -ne 0 ] && ! grep -q $'\t' <<<"$checks"; then
+                    echo "$checks"
+                    echo "::error::cannot read the checks of #$pr"
+                    exit 1
+                  fi
+                  (( attempt % 10 == 0 )) && echo "#$pr: still waiting ($state)"
                   sleep 30
                   ;;
               esac
             done
+            if [ "$settled" != true ]; then
+              echo "::error::#$pr neither merged nor failed within the wait; stopping. Re-run with: $remaining"
+              exit 1
+            fi
+            remaining="${remaining#"$pr"}"
+            remaining="${remaining# }"
             echo "::endgroup::"
           done
 
