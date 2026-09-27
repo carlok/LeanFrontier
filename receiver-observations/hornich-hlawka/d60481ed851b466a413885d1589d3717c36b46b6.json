@@ -1,0 +1,137 @@
+{
+  "accepted_revision": "d60481ed851b466a413885d1589d3717c36b46b6",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-27T09:31:29Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 261.97,
+    "observed": {
+      "added_lines": 122,
+      "audited_declarations": {
+        "LeanFrontier.InnerProductGeometry.hornich_hlawka": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.InnerProductGeometry.hornich_hlawka",
+          "restatement": false,
+          "statement_sha256": "c00924ad4279807a4af08db87e7d45c24c4fdf53b2f077a8a88789d9cf4184d8",
+          "type_dependencies": [
+            "AddCommGroup.toAddCommMonoid",
+            "AddCommMagma.toAdd",
+            "AddCommMonoid.toAddCommSemigroup",
+            "AddCommSemigroup.toAddCommMagma",
+            "HAdd.hAdd",
+            "InnerProductSpace",
+            "LE.le",
+            "Norm.norm",
+            "NormedAddCommGroup",
+            "NormedAddCommGroup.toAddCommGroup",
+            "NormedAddCommGroup.toNorm",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "Real",
+            "Real.instAdd",
+            "Real.instLE",
+            "Real.instRCLike",
+            "instHAdd"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.InnerProductGeometry.hornich_hlawka": [
+            {
+              "outcome": "failed",
+              "seconds": 4.515,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.54,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.476,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.477,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.473,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.503,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 26.984,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.InnerProductGeometry.hornich_hlawka": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 5892,
+      "changed_files": [
+        "LeanFrontier/Analysis/HornichHlawka.lean",
+        "Submissions/hornich-hlawka.json"
+      ],
+      "corpus_entrypoints_checked": 270,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.InnerProductGeometry.hornich_hlawka": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.InnerProductGeometry.hornich_hlawka",
+          "statement_sha256": "c00924ad4279807a4af08db87e7d45c24c4fdf53b2f077a8a88789d9cf4184d8",
+          "type_dependencies": [
+            "AddCommGroup.toAddCommMonoid",
+            "AddCommMagma.toAdd",
+            "AddCommMonoid.toAddCommSemigroup",
+            "AddCommSemigroup.toAddCommMagma",
+            "HAdd.hAdd",
+            "InnerProductSpace",
+            "LE.le",
+            "Norm.norm",
+            "NormedAddCommGroup",
+            "NormedAddCommGroup.toAddCommGroup",
+            "NormedAddCommGroup.toNorm",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "Real",
+            "Real.instAdd",
+            "Real.instLE",
+            "Real.instRCLike",
+            "instHAdd"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 4212,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 3
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "hornich-hlawka",
+  "trusted_receiver_revision": "66dba9c0468edb864c045a38837bc3053def052f",
+  "validated_candidate_revision": "e7fb807ec02557acad8fb2aad76d2457a725b0e5",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36309255427"
+}
