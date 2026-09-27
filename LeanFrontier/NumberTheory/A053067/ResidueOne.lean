@@ -496,25 +496,6 @@ theorem triangularLast_modEq_one_of_index_modEq_one
   simpa [natTriangularStart, Nat.add_assoc, Nat.add_sub_of_le hone] using hsum
 
 
-/-- If the block length is 1 modulo 2a, then its triangular offset sum is divisible by a. -/
-theorem choose_two_dvd_of_index_modEq_one
-    {a n : ℕ} (hn : 0 < n) (hmod : n ≡ 1 [MOD 2 * a]) :
-    a ∣ n.choose 2 := by
-  have hone : 1 ≤ n := hn
-  have hdvd : 2 * a ∣ n - 1 := by
-    exact (Nat.modEq_iff_dvd' hone).mp hmod.symm
-  obtain ⟨t, ht⟩ := hdvd
-  have hnEq : n = 2 * a * t + 1 := by
-    calc
-      n = (n - 1) + 1 := (Nat.sub_add_cancel hone).symm
-      _ = 2 * a * t + 1 := by rw [ht]
-  rw [hnEq, Nat.choose_two_right]
-  simp only [Nat.add_sub_cancel]
-  rw [show (2 * a * t + 1) * (2 * a * t) =
-    2 * ((2 * a * t + 1) * (a * t)) by ring]
-  rw [Nat.mul_div_cancel_left _ (by norm_num : 0 < 2)]
-  exact ⟨(2 * a * t + 1) * t, by ring⟩
-
 /-- Composite-modulus version of the residue-one mechanism.
 If the append base and block length are both 1 modulo a (the latter modulo 2a
 so that the triangular offset sum vanishes), the fixed concatenation is 1 modulo a. -/
@@ -523,8 +504,21 @@ theorem natFixedA_modEq_one_of_base_one
     (hindex : n ≡ 1 [MOD 2 * a])
     (hbase : q ≡ 1 [MOD a]) :
     natFixedA q n ≡ 1 [MOD a] := by
-  have hchoose : a ∣ n.choose 2 :=
-    choose_two_dvd_of_index_modEq_one hn hindex
+  have hchoose : a ∣ n.choose 2 := by
+    have hone : 1 ≤ n := hn
+    have hdvd : 2 * a ∣ n - 1 := by
+      exact (Nat.modEq_iff_dvd' hone).mp hindex.symm
+    obtain ⟨t, ht⟩ := hdvd
+    have hnEq : n = 2 * a * t + 1 := by
+      calc
+        n = (n - 1) + 1 := (Nat.sub_add_cancel hone).symm
+        _ = 2 * a * t + 1 := by rw [ht]
+    rw [hnEq, Nat.choose_two_right]
+    simp only [Nat.add_sub_cancel]
+    rw [show (2 * a * t + 1) * (2 * a * t) =
+      2 * ((2 * a * t + 1) * (a * t)) by ring]
+    rw [Nat.mul_div_cancel_left _ (by norm_num : 0 < 2)]
+    exact ⟨(2 * a * t + 1) * t, by ring⟩
   have hnmod : n ≡ 1 [MOD a] := by
     apply hindex.of_dvd
     exact ⟨2, by ring⟩
