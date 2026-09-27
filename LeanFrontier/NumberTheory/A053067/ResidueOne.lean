@@ -381,4 +381,103 @@ theorem finset_prime_avoidance
   exact prime_not_dvd_natFixedA_decimal
     p d n (hodd p hp) (hnmod p hp) (hqmod p hp)
 
+
+/-- The factor of a modulus supported on the decimal primes 2 and 5. -/
+def tenPart (m : ℕ) : ℕ :=
+  ordProj[2] m * ordProj[5] (ordCompl[2] m)
+
+/-- The complementary factor, hence coprime to 10 for nonzero moduli. -/
+def tenCoprimePart (m : ℕ) : ℕ :=
+  ordCompl[5] (ordCompl[2] m)
+
+/-- The decimal and prime-to-decimal parts reconstruct the original modulus. -/
+theorem tenPart_mul_tenCoprimePart (m : ℕ) :
+    tenPart m * tenCoprimePart m = m := by
+  rw [tenPart, tenCoprimePart, mul_assoc,
+    Nat.ordProj_mul_ordCompl_eq_self (ordCompl[2] m) 5,
+    Nat.ordProj_mul_ordCompl_eq_self m 2]
+
+/-- The complementary modulus has no factor 2 or 5. -/
+theorem tenCoprimePart_coprime_ten {m : ℕ} (hm : m ≠ 0) :
+    (tenCoprimePart m).Coprime 10 := by
+  have htwoBase : (2 : ℕ).Coprime (ordCompl[2] m) :=
+    Nat.coprime_ordCompl Nat.prime_two hm
+  have hcomp2ne : ordCompl[2] m ≠ 0 :=
+    (Nat.ordCompl_pos 2 hm).ne'
+  have hstarDvd : tenCoprimePart m ∣ ordCompl[2] m := by
+    exact Nat.ordCompl_dvd (ordCompl[2] m) 5
+  have htwo : (2 : ℕ).Coprime (tenCoprimePart m) :=
+    Nat.Coprime.of_dvd_right hstarDvd htwoBase
+  have hfive : (5 : ℕ).Coprime (tenCoprimePart m) := by
+    exact Nat.coprime_ordCompl Nat.prime_five hcomp2ne
+  rw [show 10 = 2 * 5 by norm_num]
+  exact htwo.symm.mul_right hfive.symm
+
+/-- An exponent large enough that the 2/5-supported part of m divides 10^e. -/
+def tenExponent (m : ℕ) : ℕ :=
+  m.factorization 2 + (ordCompl[2] m).factorization 5 + 1
+
+theorem tenExponent_pos (m : ℕ) : 0 < tenExponent m := by
+  simp [tenExponent]
+
+/-- The decimal part of a modulus is absorbed by a sufficiently large power of 10. -/
+theorem tenPart_dvd_pow_ten (m : ℕ) :
+    tenPart m ∣ 10 ^ tenExponent m := by
+  let a := m.factorization 2
+  let b := (ordCompl[2] m).factorization 5
+  have h2 : 2 ^ a ∣ 2 ^ (a + b + 1) :=
+    Nat.pow_dvd_pow 2 (by omega)
+  have h5 : 5 ^ b ∣ 5 ^ (a + b + 1) :=
+    Nat.pow_dvd_pow 5 (by omega)
+  have hmul : 2 ^ a * 5 ^ b ∣ 2 ^ (a + b + 1) * 5 ^ (a + b + 1) :=
+    mul_dvd_mul h2 h5
+  simpa [tenPart, tenExponent, a, b, ← mul_pow] using hmul
+
+/-- If the positional base vanishes modulo a, a nonempty fixed concatenation
+is congruent to its final appended value. -/
+theorem natFixedA_modEq_last_of_base_dvd
+    {a q n : ℕ} (hn : 0 < n) (hq : a ∣ q) :
+    natFixedA q n ≡ natTriangularStart n + (n - 1) [MOD a] := by
+  obtain ⟨k, rfl⟩ := Nat.exists_eq_succ_of_ne_zero hn.ne'
+  have hzero :
+      q * fixedConcat q (natTriangularStart (k + 1)) k ≡ 0 [MOD a] := by
+    simpa using (hq.modEq_zero_nat.mul_right
+      (fixedConcat q (natTriangularStart (k + 1)) k))
+  have hadd := hzero.add
+    (Nat.ModEq.refl (natTriangularStart (k + 1) + k))
+  simpa [natFixedA, fixedConcat, Nat.add_assoc] using hadd
+
+/-- If n is 1 modulo 2a, the final integer in its triangular block is 1 modulo a. -/
+theorem triangularLast_modEq_one_of_index_modEq_one
+    {a n : ℕ} (hn : 0 < n) (hmod : n ≡ 1 [MOD 2 * a]) :
+    natTriangularStart n + (n - 1) ≡ 1 [MOD a] := by
+  have hone : 1 ≤ n := hn
+  have hdvd : 2 * a ∣ n - 1 := by
+    exact (Nat.modEq_iff_dvd' hone).mp hmod.symm
+  obtain ⟨t, ht⟩ := hdvd
+  have hnEq : n = 2 * a * t + 1 := by
+    calc
+      n = (n - 1) + 1 := (Nat.sub_add_cancel hone).symm
+      _ = 2 * a * t + 1 := by rw [ht]
+  have hchoose : a ∣ n.choose 2 := by
+    rw [hnEq, Nat.choose_two_right]
+    simp only [Nat.add_sub_cancel]
+    rw [show (2 * a * t + 1) * (2 * a * t) =
+      2 * ((2 * a * t + 1) * (a * t)) by ring]
+    rw [Nat.mul_div_cancel_left _ (by norm_num : 0 < 2)]
+    exact ⟨(2 * a * t + 1) * t, by ring⟩
+  have hmodA : n ≡ 1 [MOD a] := by
+    apply hmod.of_dvd
+    exact ⟨2, by ring⟩
+  have hsum := hchoose.modEq_zero_nat.add hmodA
+  simpa [natTriangularStart, Nat.add_assoc, Nat.add_sub_of_le hone] using hsum
+
+/-- Combined residue-one criterion for the natural fixed-width A053067 recurrence. -/
+theorem natFixedA_modEq_one_of_base_dvd_and_index
+    {a q n : ℕ} (hn : 0 < n) (hq : a ∣ q)
+    (hmod : n ≡ 1 [MOD 2 * a]) :
+    natFixedA q n ≡ 1 [MOD a] :=
+  (natFixedA_modEq_last_of_base_dvd hn hq).trans
+    (triangularLast_modEq_one_of_index_modEq_one hn hmod)
+
 end LeanFrontier.A053067
