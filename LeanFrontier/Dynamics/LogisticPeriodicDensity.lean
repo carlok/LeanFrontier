@@ -158,7 +158,7 @@ theorem dense_periodicPts_tentMapIcc :
   have hmem : y ∈ Function.periodicPts tentMapIcc :=
     Function.mk_mem_periodicPts hn hperiod
   refine ⟨y, ?_, hmem⟩
-  simpa only [Metric.mem_ball] using hdist
+  simpa only [Metric.mem_ball'] using hdist
 
 /-- The periodic points of the logistic map at parameter four are dense in the closed unit
 interval. -/
