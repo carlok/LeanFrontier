@@ -1,0 +1,239 @@
+{
+  "accepted_revision": "868f0b733c5de38a8805645385d1b8904f591272",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-27T10:56:37+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 335.088,
+    "observed": {
+      "added_lines": 180,
+      "audited_declarations": {
+        "LeanFrontier.Dynamics.dense_periodicPts_logisticMapIcc": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.dense_periodicPts_logisticMapIcc",
+          "restatement": false,
+          "statement_sha256": "e26a61fa4f8ebb84bc6ea1713b450ea5d30c8eb2752b79bbc9f05fe36598e8d8",
+          "type_dependencies": [
+            "Dense",
+            "Function.periodicPts",
+            "LeanFrontier.Dynamics.logisticMapIcc",
+            "Membership.mem",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Real.pseudoMetricSpace",
+            "Set",
+            "Set.Elem",
+            "Set.Icc",
+            "Set.instMembership",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instTopologicalSpaceSubtype"
+          ]
+        },
+        "LeanFrontier.Dynamics.dense_periodicPts_tentMapIcc": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.dense_periodicPts_tentMapIcc",
+          "restatement": false,
+          "statement_sha256": "662980c816725006fbe2ad278b5eeebb192af7211369be6d46e1cfca7b85dcda",
+          "type_dependencies": [
+            "Dense",
+            "Function.periodicPts",
+            "LeanFrontier.Dynamics.tentMapIcc",
+            "Membership.mem",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Real.pseudoMetricSpace",
+            "Set",
+            "Set.Elem",
+            "Set.Icc",
+            "Set.instMembership",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instTopologicalSpaceSubtype"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.Dynamics.dense_periodicPts_logisticMapIcc": [
+            {
+              "outcome": "failed",
+              "seconds": 4.882,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.838,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.88,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.851,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.954,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.908,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Dynamics.dense_periodicPts_tentMapIcc": [
+            {
+              "outcome": "failed",
+              "seconds": 4.899,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.944,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.833,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.854,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.867,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.851,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 58.561,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Dynamics.dense_periodicPts_logisticMapIcc": "inconclusive",
+        "LeanFrontier.Dynamics.dense_periodicPts_tentMapIcc": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 7799,
+      "changed_files": [
+        "LeanFrontier/Dynamics/LogisticPeriodicDensity.lean",
+        "Submissions/logistic-periodic-density.json"
+      ],
+      "corpus_entrypoints_checked": 268,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Dynamics.dense_periodicPts_logisticMapIcc": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.dense_periodicPts_logisticMapIcc",
+          "statement_sha256": "e26a61fa4f8ebb84bc6ea1713b450ea5d30c8eb2752b79bbc9f05fe36598e8d8",
+          "type_dependencies": [
+            "Dense",
+            "Function.periodicPts",
+            "LeanFrontier.Dynamics.logisticMapIcc",
+            "Membership.mem",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Real.pseudoMetricSpace",
+            "Set",
+            "Set.Elem",
+            "Set.Icc",
+            "Set.instMembership",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instTopologicalSpaceSubtype"
+          ]
+        },
+        "LeanFrontier.Dynamics.dense_periodicPts_tentMapIcc": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.dense_periodicPts_tentMapIcc",
+          "statement_sha256": "662980c816725006fbe2ad278b5eeebb192af7211369be6d46e1cfca7b85dcda",
+          "type_dependencies": [
+            "Dense",
+            "Function.periodicPts",
+            "LeanFrontier.Dynamics.tentMapIcc",
+            "Membership.mem",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Real.pseudoMetricSpace",
+            "Set",
+            "Set.Elem",
+            "Set.Icc",
+            "Set.instMembership",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instTopologicalSpaceSubtype"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 6308,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 6
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "logistic-periodic-density",
+  "trusted_receiver_revision": "8b1ec2c7f366db7909e7d0e516d9caee43d81e74",
+  "validated_candidate_revision": "4fa276e93e68522521e37f0b044afad2743f338c",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36307103396"
+}
