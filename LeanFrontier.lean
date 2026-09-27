@@ -15,6 +15,7 @@ import LeanFrontier.Combinatorics.Josephus
 import LeanFrontier.Combinatorics.Josephus.OneIndexed
 import LeanFrontier.Dynamics.LogisticConjugacy
 import LeanFrontier.Dynamics.LogisticMap
+import LeanFrontier.Dynamics.LogisticPeriodicDensity
 import LeanFrontier.Geometry.FareyFordCircle
 import LeanFrontier.Geometry.FordCircleDescartes
 import LeanFrontier.Geometry.FordCircleTangency
@@ -24,6 +25,7 @@ import LeanFrontier.GroupTheory.ChangeRingingCyclic
 import LeanFrontier.LinearAlgebra.FibonacciMatrix
 import LeanFrontier.LinearAlgebra.HoradamCompanionMatrix
 import LeanFrontier.LinearAlgebra.HoradamCompanionMatrixSpecializations
+import LeanFrontier.NumberTheory.A053067.ResidueOne
 import LeanFrontier.NumberTheory.CalkinWilf
 import LeanFrontier.NumberTheory.CalkinWilfSternBrocot
 import LeanFrontier.NumberTheory.DescartesCircle
