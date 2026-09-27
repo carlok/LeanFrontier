@@ -413,6 +413,29 @@ theorem tenCoprimePart_coprime_ten {m : ℕ} (hm : m ≠ 0) :
   rw [show 10 = 2 * 5 by norm_num]
   exact htwo.symm.mul_right hfive.symm
 
+
+/-- The decimal-supported and prime-to-decimal parts of a nonzero modulus are coprime. -/
+theorem tenPart_coprime_tenCoprimePart {m : ℕ} (hm : m ≠ 0) :
+    (tenPart m).Coprime (tenCoprimePart m) := by
+  have hb10 : (tenCoprimePart m).Coprime 10 :=
+    tenCoprimePart_coprime_ten hm
+  have hb2 : (tenCoprimePart m).Coprime 2 := by
+    apply Nat.Coprime.of_dvd_right (b₂ := 10)
+    · norm_num
+    · exact hb10
+  have hb5 : (tenCoprimePart m).Coprime 5 := by
+    apply Nat.Coprime.of_dvd_right (b₂ := 10)
+    · norm_num
+    · exact hb10
+  have h2pow :
+      (2 ^ m.factorization 2).Coprime (tenCoprimePart m) :=
+    (hb2.symm).pow_left _
+  have h5pow :
+      (5 ^ (ordCompl[2] m).factorization 5).Coprime
+        (tenCoprimePart m) :=
+    (hb5.symm).pow_left _
+  simpa [tenPart] using h2pow.mul_left h5pow
+
 /-- An exponent large enough that the 2/5-supported part of m divides 10^e. -/
 def tenExponent (m : ℕ) : ℕ :=
   m.factorization 2 + (ordCompl[2] m).factorization 5 + 1
