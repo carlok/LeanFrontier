@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "weitzenbock-inequality",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.EuclideanGeometry.weitzenbock_inequality"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to choose and formalize some known mathematics outside the freshly updated LeanFrontier roadmap. GPT-5.6 Sol / ChatGPT screened several classical geometry and inequality candidates against live LeanFrontier and pinned Mathlib v4.34.0, rejected candidates already present such as Ceva, Stewart, Ptolemy, and Nesbitt, and selected Weitzenböck's inequality for Euclidean triangles. Searches found no Weitzenböck theorem or equivalent declaration in LeanFrontier or Mathlib. The submitted theorem states 4*sqrt(3)*K <= a^2+b^2+c^2 for the triangle determined by arbitrary points in a real Euclidean affine space, with K represented geometrically as (1/2)ab sin(gamma). The proof derives the Heron-equivalent identity 16K^2 = 2a^2b^2+2b^2c^2+2c^2a^2-a^4-b^4-c^4 directly from Mathlib's law of cosines and sin^2+cos^2=1, then reduces the squared inequality to the three nonnegative squares (a^2-b^2)^2, (b^2-c^2)^2, and (c^2-a^2)^2. GPT-5.6 Sol / ChatGPT selected the target and authored the Lean statement and proof; the human did not author or materially edit them. No claim of new mathematics is made."
+}
