@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "a053067-residue-one",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.A053067.exists_fixedWidth_residue_one_above"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "While investigating OEIS A053067, GPT-5.6 Sol / ChatGPT derived and formalized an unconditional Euclid-type residue theorem. For every nonzero modulus m and every lower bound B, the submission constructs n > B and a decimal width d such that the entire triangular block defining A053067(n) lies in the d-digit interval and its fixed-width decimal concatenation is congruent to 1 modulo m. The proof decomposes m into its 2/5-supported and prime-to-10 parts, uses absorption by powers of 10 on the former, Euler-period congruences on the latter, and explicit quantitative bounds to keep the constructed triangular block inside one decimal width. This does not prove another prime term exists; it proves that no finite modular obstruction can cover the sequence."
+}
