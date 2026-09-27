@@ -766,7 +766,7 @@ theorem exists_fixedWidth_residue_one_above
     simpa [a, b] using tenPart_coprime_tenCoprimePart hm0
   have hresAB : natFixedA (10 ^ d) n ≡ 1 [MOD a * b] :=
     (Nat.modEq_and_modEq_iff_modEq_mul
-      (a := natFixedA (10 ^ d) n) (b := 1) (m := a) (n := b) hab).2
+      (a := natFixedA (10 ^ d) n) (b := 1) (m := a) (n := b) hab).1
       (And.intro hresA hresB)
   have habm : a * b = m := by
     simpa [a, b] using tenPart_mul_tenCoprimePart m
