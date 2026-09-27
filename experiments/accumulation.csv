@@ -97,3 +97,5 @@ date,submission_id,modules,edges,edges_per_module,connected_share,max_in_degree,
 2026-09-26,markov-mod-four-pattern,87,71,0.816,0.632,4,9,true,true
 2026-09-26,markov-slope-scale-gcd,88,71,0.807,0.625,4,9,true,true
 2026-09-27,markov-collision-prime-split,89,72,0.809,0.629,4,9,true,true
+2026-09-27,a053067-residue-one,90,72,0.800,0.622,4,9,true,true
+2026-09-27,logistic-periodic-density,91,73,0.802,0.626,4,9,true,true
