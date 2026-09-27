@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "logistic-periodic-density",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "target_driven",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Dynamics.dense_periodicPts_tentMapIcc",
+    "LeanFrontier.Dynamics.dense_periodicPts_logisticMapIcc"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to implement the next LeanFrontier target after selecting from a machine-generated shortlist. The selected classical result is that periodic points are dense for the full tent map on [0,1] and, via the accepted Ulam-von Neumann homeomorphic conjugacy, for the logistic map x ↦ 4x(1-x). GPT-5.6 Sol / ChatGPT audited current upstream main, the accepted LogisticMap and LogisticConjugacy APIs, and Mathlib's periodic-point, density, floor, Archimedean, and trigonometric APIs, with no equivalent density theorem found. The proof uses the explicit tent-periodic grids 2k/(2^n-1): under the Ulam homeomorphism their logistic angles are multiplied by 2^n and return modulo k*pi; floor approximation shows these grids have arbitrarily small mesh. Density and periodicity are then transported through the homeomorphism. The human selected the proposed target but did not author or materially edit the Lean statements or proofs. No claim of new mathematics is made."
+}
