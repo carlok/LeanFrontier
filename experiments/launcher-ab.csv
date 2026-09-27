@@ -27,6 +27,7 @@ circular-tilings-lucas,unassigned,gpt-5.6-sol
 cyclotomic-eight-quadratic-generators,unassigned,gpt-5.6-sol
 descartes-circle-quadruple,unassigned,claude-opus-5
 different-ideal-coprimality-load-bearing,unassigned,claude-opus-5
+euler-quadrilateral,unassigned,gpt-5.6-sol
 farey-ford-circle-maximality,unassigned,gpt-5.6-sol
 farey-least-denominator,unassigned,claude-opus-5
 fibonacci-composition-count,unassigned,claude-fable-5
@@ -104,3 +105,5 @@ tent-logistic-semiconjugacy,unassigned,claude-fable-5
 thue-morse-explicit-cube-sums,unassigned,gpt-5.6-sol
 thue-morse-prouhet-power-sums,A,claude-opus-5
 tribonacci-sequence-sum,unassigned,claude-sonnet-5
+varignon-theorem,unassigned,gpt-5.6-sol
+weitzenbock-inequality,unassigned,gpt-5.6-sol

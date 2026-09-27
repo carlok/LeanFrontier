@@ -1,0 +1,195 @@
+{
+  "accepted_revision": "65031c82657fb39f31a6fff01849cd242a335744",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-27T17:39:13Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 361.689,
+    "observed": {
+      "added_lines": 65,
+      "audited_declarations": {
+        "LeanFrontier.EuclideanGeometry.euler_quadrilateral": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.EuclideanGeometry.euler_quadrilateral",
+          "restatement": false,
+          "statement_sha256": "2d7cd482c41548873c8e10a015a27c4c476213037bab782747a103affd652172",
+          "type_dependencies": [
+            "Dist.dist",
+            "Eq",
+            "Field.toSemifield",
+            "FloorRing.toFloorSemiring",
+            "FloorSemiring.instCharZero",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "InnerProductSpace",
+            "InnerProductSpace.toNormedSpace",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "NormedAddCommGroup",
+            "NormedAddCommGroup.toAddCommGroup",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "NormedAddTorsor",
+            "NormedAddTorsor.toAddTorsor",
+            "NormedSpace.toModule",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instAdd",
+            "Real.instField",
+            "Real.instFloorRing",
+            "Real.instMonoid",
+            "Real.instMul",
+            "Real.instNatCast",
+            "Real.instRCLike",
+            "Real.instRing",
+            "Real.linearOrder",
+            "Real.normedField",
+            "Real.partialOrder",
+            "Real.semiring",
+            "Semifield.toDivisionSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat",
+            "invertibleTwo",
+            "midpoint"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.EuclideanGeometry.euler_quadrilateral": [
+            {
+              "outcome": "failed",
+              "seconds": 5.723,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.781,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.77,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.777,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.758,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.778,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 34.587,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.EuclideanGeometry.euler_quadrilateral": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 3824,
+      "changed_files": [
+        "LeanFrontier/Geometry/EulerQuadrilateral.lean",
+        "Submissions/euler-quadrilateral.json"
+      ],
+      "corpus_entrypoints_checked": 272,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.EuclideanGeometry.euler_quadrilateral": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.EuclideanGeometry.euler_quadrilateral",
+          "statement_sha256": "2d7cd482c41548873c8e10a015a27c4c476213037bab782747a103affd652172",
+          "type_dependencies": [
+            "Dist.dist",
+            "Eq",
+            "Field.toSemifield",
+            "FloorRing.toFloorSemiring",
+            "FloorSemiring.instCharZero",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "InnerProductSpace",
+            "InnerProductSpace.toNormedSpace",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "NormedAddCommGroup",
+            "NormedAddCommGroup.toAddCommGroup",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "NormedAddTorsor",
+            "NormedAddTorsor.toAddTorsor",
+            "NormedSpace.toModule",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instAdd",
+            "Real.instField",
+            "Real.instFloorRing",
+            "Real.instMonoid",
+            "Real.instMul",
+            "Real.instNatCast",
+            "Real.instRCLike",
+            "Real.instRing",
+            "Real.linearOrder",
+            "Real.normedField",
+            "Real.partialOrder",
+            "Real.semiring",
+            "Semifield.toDivisionSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat",
+            "invertibleTwo",
+            "midpoint"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2326,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "euler-quadrilateral",
+  "trusted_receiver_revision": "280438854845e6fb64e6f3ecd51189941101ae08",
+  "validated_candidate_revision": "7fb3690a79083bd0dbdd0c6e2813e0352c1f08a9",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36337186754"
+}
