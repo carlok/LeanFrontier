@@ -1,0 +1,263 @@
+{
+  "accepted_revision": "8890bd043dd27114e23d0805a6c1e752106aafa9",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-27T09:43:32+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 303.644,
+    "observed": {
+      "added_lines": 177,
+      "audited_declarations": {
+        "LeanFrontier.MarkovEquation.odd_prime_not_dvd_both_collision_factors": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.odd_prime_not_dvd_both_collision_factors",
+          "restatement": false,
+          "statement_sha256": "1bc5565888fd28d06b0fda25a9cc946386d863d07d47e3ed5c985ecf84dd3cf0",
+          "type_dependencies": [
+            "And",
+            "Dvd.dvd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "Int",
+            "Int.instCommSemiring",
+            "Int.instDvd",
+            "Int.instMul",
+            "Int.instSub",
+            "IsCoprime",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "Nat",
+            "Nat.Prime",
+            "Nat.cast",
+            "Ne",
+            "Not",
+            "OfNat.ofNat",
+            "instHMul",
+            "instHSub",
+            "instNatCastInt",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.odd_prime_power_collision_factor_split": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.odd_prime_power_collision_factor_split",
+          "restatement": false,
+          "statement_sha256": "250419670f87230d69e3542e5517fec548afbea743e3413a4d2b1f01d9cc1831",
+          "type_dependencies": [
+            "And",
+            "Dvd.dvd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Int",
+            "Int.instCommSemiring",
+            "Int.instDvd",
+            "Int.instMonoid",
+            "Int.instMul",
+            "Int.instSub",
+            "IsCoprime",
+            "LT.lt",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.Prime",
+            "Nat.cast",
+            "Ne",
+            "Not",
+            "OfNat.ofNat",
+            "Or",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instLTNat",
+            "instNatCastInt",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.MarkovEquation.odd_prime_not_dvd_both_collision_factors": [
+            {
+              "outcome": "failed",
+              "seconds": 5.181,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.099,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.137,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.128,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.117,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.093,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.MarkovEquation.odd_prime_power_collision_factor_split": [
+            {
+              "outcome": "failed",
+              "seconds": 5.089,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.138,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.322,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.337,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.161,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.14,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 61.942,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.MarkovEquation.odd_prime_not_dvd_both_collision_factors": "inconclusive",
+        "LeanFrontier.MarkovEquation.odd_prime_power_collision_factor_split": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 8412,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/MarkovEquation/CollisionPrimeSplit.lean",
+        "Submissions/markov-collision-prime-split.json"
+      ],
+      "corpus_entrypoints_checked": 265,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.MarkovEquation.odd_prime_not_dvd_both_collision_factors": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.odd_prime_not_dvd_both_collision_factors",
+          "statement_sha256": "1bc5565888fd28d06b0fda25a9cc946386d863d07d47e3ed5c985ecf84dd3cf0",
+          "type_dependencies": [
+            "And",
+            "Dvd.dvd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "Int",
+            "Int.instCommSemiring",
+            "Int.instDvd",
+            "Int.instMul",
+            "Int.instSub",
+            "IsCoprime",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "Nat",
+            "Nat.Prime",
+            "Nat.cast",
+            "Ne",
+            "Not",
+            "OfNat.ofNat",
+            "instHMul",
+            "instHSub",
+            "instNatCastInt",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.MarkovEquation.odd_prime_power_collision_factor_split": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.MarkovEquation.odd_prime_power_collision_factor_split",
+          "statement_sha256": "250419670f87230d69e3542e5517fec548afbea743e3413a4d2b1f01d9cc1831",
+          "type_dependencies": [
+            "And",
+            "Dvd.dvd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "Int",
+            "Int.instCommSemiring",
+            "Int.instDvd",
+            "Int.instMonoid",
+            "Int.instMul",
+            "Int.instSub",
+            "IsCoprime",
+            "LT.lt",
+            "LeanFrontier.MarkovEquation.IsSolution",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.Prime",
+            "Nat.cast",
+            "Ne",
+            "Not",
+            "OfNat.ofNat",
+            "Or",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instLTNat",
+            "instNatCastInt",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 6578,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 2
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "markov-collision-prime-split",
+  "trusted_receiver_revision": "fe1411a6829f0356a36bed1a243d7906a867682e",
+  "validated_candidate_revision": "ed44b224f7befc758c675903ceec5328592559ab",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36293435140"
+}

@@ -24,6 +24,7 @@ import LeanFrontier.GroupTheory.ChangeRingingCyclic
 import LeanFrontier.LinearAlgebra.FibonacciMatrix
 import LeanFrontier.LinearAlgebra.HoradamCompanionMatrix
 import LeanFrontier.LinearAlgebra.HoradamCompanionMatrixSpecializations
+import LeanFrontier.NumberTheory.A053067.ResidueOne
 import LeanFrontier.NumberTheory.CalkinWilf
 import LeanFrontier.NumberTheory.CalkinWilfSternBrocot
 import LeanFrontier.NumberTheory.DescartesCircle
@@ -36,6 +37,7 @@ import LeanFrontier.NumberTheory.HoradamSequence.AdditionFormula
 import LeanFrontier.NumberTheory.LucasNumber
 import LeanFrontier.NumberTheory.MarkovEquation
 import LeanFrontier.NumberTheory.MarkovEquation.Collision
+import LeanFrontier.NumberTheory.MarkovEquation.CollisionPrimeSplit
 import LeanFrontier.NumberTheory.MarkovEquation.SlopeScaleGCD
 import LeanFrontier.NumberTheory.MarkovTree
 import LeanFrontier.NumberTheory.MarkovTree.BranchDivergence
