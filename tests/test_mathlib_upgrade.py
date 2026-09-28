@@ -132,6 +132,21 @@ class MathlibUpgradePathTests(unittest.TestCase):
         self.assertIn("BUILD_FAILED", stderr.getvalue())
         self.assertIn("Nat.choose_symm_diff", stderr.getvalue())
 
+    def test_a_silent_kernel_recheck_kill_is_named(self) -> None:
+        """leanchecker killed for memory prints nothing; the report must still say so."""
+        message = audit_mathlib_upgrade.silent_failure("leanchecker", "LeanFrontier.X", -9)
+        self.assertIn("signal 9", message)
+        self.assertIn("memory", message)
+        self.assertIn("signal 9", audit_mathlib_upgrade.silent_failure("leanchecker", "LeanFrontier.X", 137))
+        self.assertIn("exited 1", audit_mathlib_upgrade.silent_failure("leanchecker", "LeanFrontier.X", 1))
+
+    def test_the_audit_container_has_room_for_the_kernel_recheck(self) -> None:
+        """MarkovTree's recheck peaks near 8 GB; the container allowed 6 GB."""
+        for name in ("mathlib-upgrade.yml", "test.yml"):
+            workflow = (ROOT / ".github" / "workflows" / name).read_text()
+            self.assertNotIn("--memory 6g", workflow, name)
+            self.assertIn("--memory 12g", workflow, name)
+
     def test_the_upgrade_workflow_keeps_the_evidence_of_a_rejection(self) -> None:
         workflow = (ROOT / ".github" / "workflows" / "mathlib-upgrade.yml").read_text()
         self.assertIn('--report "/output/upgrade.json" || status=$?', workflow)
