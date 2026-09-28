@@ -68,6 +68,21 @@ def run(command: list[str], *, cwd: Path, timeout: int) -> subprocess.CompletedP
     return run_bounded(command, cwd, timeout)
 
 
+def silent_failure(tool: str, module: str, returncode: int) -> str:
+    """Name a failure that printed nothing, which is usually a kill.
+
+    The v4.34.1 audit reported only "leanchecker rejected
+    LeanFrontier.NumberTheory.MarkovTree". Locally the kernel accepts that
+    module, peaking at 8 GB, and the audit's container then allowed 6 GB.
+    """
+    signal = -returncode if returncode < 0 else returncode - 128 if returncode > 128 else None
+    if signal == 9:
+        return f"{tool} was killed (signal 9) on {module}, most likely for exceeding the container's memory"
+    if signal is not None:
+        return f"{tool} was killed by signal {signal} on {module}"
+    return f"{tool} exited {returncode} on {module} without output"
+
+
 def corpus_modules(root: Path) -> list[str]:
     """Every subject module, as Lean module names."""
     return sorted(
@@ -110,7 +125,7 @@ def main(argv: list[str] | None = None) -> int:
         for module in corpus_modules(root):
             recheck = run(["lake", "env", "leanchecker", module], cwd=root, timeout=300)
             if recheck.returncode:
-                raise RuntimeError(failure_output(recheck) or f"leanchecker rejected {module} after the upgrade")
+                raise RuntimeError(failure_output(recheck) or silent_failure("leanchecker", module, recheck.returncode))
         audit = run(["lake", "exe", "frontier-audit", "--", "LeanFrontier"], cwd=root, timeout=240)
         if audit.returncode:
             raise RuntimeError(failure_output(audit) or "frontier-audit failed")
