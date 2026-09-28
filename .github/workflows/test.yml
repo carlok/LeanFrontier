@@ -72,7 +72,7 @@ jobs:
           mkdir -p "$GITHUB_WORKSPACE/upgrade-output"
           chmod 777 "$GITHUB_WORKSPACE/upgrade-output"
           docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges \
-            --memory 6g --cpus 2 --pids-limit 512 --tmpfs /tmp:size=6g \
+            --memory 12g --cpus 2 --pids-limit 512 --tmpfs /tmp:size=6g \
             -v "$GITHUB_WORKSPACE/elan:/elan:ro" \
             -v "$GITHUB_WORKSPACE:/workspace" \
             -v "$GITHUB_WORKSPACE/upgrade-output:/output" -w /workspace \
@@ -81,7 +81,7 @@ jobs:
           index_name="$(python3 -c 'import json; print(json.load(open("policy/mathlib-release.json"))["fingerprint_index"])')"
           cmp "$GITHUB_WORKSPACE/upgrade-output/rebuilt-index.json" "policy/$index_name"
           docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges \
-            --memory 6g --cpus 2 --pids-limit 512 --tmpfs /tmp:size=6g \
+            --memory 12g --cpus 2 --pids-limit 512 --tmpfs /tmp:size=6g \
             -v "$GITHUB_WORKSPACE/elan:/elan:ro" -v "$GITHUB_WORKSPACE:/workspace" -w /workspace \
             -v "$GITHUB_WORKSPACE/upgrade-output:/output" \
             leanfrontier-upgrade:ci \
