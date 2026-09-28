@@ -1,0 +1,235 @@
+{
+  "accepted_revision": "75f2d19582ff80f6fab133b79615739024c14f5f",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-28T13:57:33Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 359.828,
+    "observed": {
+      "added_lines": 93,
+      "audited_declarations": {
+        "LeanFrontier.SternBrocot.initial_run_euclidean_quotient": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.initial_run_euclidean_quotient",
+          "restatement": false,
+          "statement_sha256": "16648d83440a4e6e43d301af7980cb37ce8941e226feb136f3f8c61bb046e964",
+          "type_dependencies": [
+            "Bool",
+            "Bool.not",
+            "Bool.true",
+            "Eq",
+            "HAppend.hAppend",
+            "HDiv.hDiv",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "List.replicate",
+            "Nat",
+            "Nat.instDiv",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instDecidableEqBool",
+            "instHAppendOfAppend",
+            "instHDiv",
+            "ite"
+          ]
+        },
+        "LeanFrontier.SternBrocot.terminal_run_euclidean_quotient": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.terminal_run_euclidean_quotient",
+          "restatement": false,
+          "statement_sha256": "faa71f1530720a5b27b26ebd679ebfb4d38a390f1272ec3d6409511195ea834c",
+          "type_dependencies": [
+            "Bool",
+            "Bool.true",
+            "Eq",
+            "HAdd.hAdd",
+            "HDiv.hDiv",
+            "LeanFrontier.SternBrocot.pair",
+            "List.replicate",
+            "Nat",
+            "Nat.instDiv",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instAddNat",
+            "instDecidableEqBool",
+            "instHAdd",
+            "instHDiv",
+            "instOfNatNat",
+            "ite"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.SternBrocot.initial_run_euclidean_quotient": [
+            {
+              "outcome": "failed",
+              "seconds": 4.878,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.864,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.89,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.84,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.882,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.883,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.SternBrocot.terminal_run_euclidean_quotient": [
+            {
+              "outcome": "failed",
+              "seconds": 4.845,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.873,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.874,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.821,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.83,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.925,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 58.405,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SternBrocot.initial_run_euclidean_quotient": "inconclusive",
+        "LeanFrontier.SternBrocot.terminal_run_euclidean_quotient": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 5502,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SternBrocotEuclidean.lean",
+        "Submissions/stern-brocot-euclidean-runs.json"
+      ],
+      "corpus_entrypoints_checked": 274,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SternBrocot.initial_run_euclidean_quotient": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.initial_run_euclidean_quotient",
+          "statement_sha256": "16648d83440a4e6e43d301af7980cb37ce8941e226feb136f3f8c61bb046e964",
+          "type_dependencies": [
+            "Bool",
+            "Bool.not",
+            "Bool.true",
+            "Eq",
+            "HAppend.hAppend",
+            "HDiv.hDiv",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "List.replicate",
+            "Nat",
+            "Nat.instDiv",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instDecidableEqBool",
+            "instHAppendOfAppend",
+            "instHDiv",
+            "ite"
+          ]
+        },
+        "LeanFrontier.SternBrocot.terminal_run_euclidean_quotient": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.terminal_run_euclidean_quotient",
+          "statement_sha256": "faa71f1530720a5b27b26ebd679ebfb4d38a390f1272ec3d6409511195ea834c",
+          "type_dependencies": [
+            "Bool",
+            "Bool.true",
+            "Eq",
+            "HAdd.hAdd",
+            "HDiv.hDiv",
+            "LeanFrontier.SternBrocot.pair",
+            "List.replicate",
+            "Nat",
+            "Nat.instDiv",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instAddNat",
+            "instDecidableEqBool",
+            "instHAdd",
+            "instHDiv",
+            "instOfNatNat",
+            "ite"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3646,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 4
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "stern-brocot-euclidean-runs",
+  "trusted_receiver_revision": "b81e39fe609a55bbd24db5616d4b3eb106122947",
+  "validated_candidate_revision": "dbd1ae7e8e3fe53cdbc6b864b7984d32af9ab52a",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36427746112"
+}
