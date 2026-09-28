@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     # Index plus whole-corpus audit took 30 min on v4.34.0 and longer on a
     # slower runner; 60 left too little headroom.
-    timeout-minutes: 90
+    timeout-minutes: 150
     steps:
       - name: Mint a generator token
         # PRs opened with GITHUB_TOKEN do not trigger workflow runs, so their
@@ -100,12 +100,27 @@ jobs:
           # into /workspace fails: the container's user does not own the
           # directory the runner created, so the audit died with EACCES the
           # first time a release actually needed upgrading.
+          # A rejection must leave evidence: the audit prints its verdict, the
+          # report is summarised here and uploaded below whatever happens.
+          status=0
           docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges \
             --memory 6g --cpus 2 --pids-limit 512 --tmpfs /tmp:size=6g \
             -v "$GITHUB_WORKSPACE/elan:/elan:ro" -v "$GITHUB_WORKSPACE:/workspace" \
             -v "$GITHUB_WORKSPACE/upgrade-output:/output" -w /workspace leanfrontier-upgrade:ci \
-            python3 tools/audit_mathlib_upgrade.py --report "/output/upgrade.json"
+            python3 tools/audit_mathlib_upgrade.py --report "/output/upgrade.json" || status=$?
+          if [ "$status" -ne 0 ]; then
+            python3 -c 'import json, sys; r = json.load(open(sys.argv[1])); print("::error::upgrade audit rejected " + r["mathlib_revision"] + ": " + r["code"]); print(r.get("error", "")[:4000]); print("collisions:", len(r.get("collisions", [])), "deprecations:", len(r.get("corpus_deprecations", [])))' \
+              "$GITHUB_WORKSPACE/upgrade-output/upgrade.json" || echo "::error::upgrade audit exited $status without a report"
+            exit "$status"
+          fi
           install -m 0644 "$GITHUB_WORKSPACE/upgrade-output/upgrade.json" "policy/mathlib-upgrades/$revision.json"
+      - name: Keep the upgrade evidence
+        if: always() && steps.release.outputs.upgrade == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: mathlib-upgrade-evidence
+          path: upgrade-output/upgrade.json
+          if-no-files-found: warn
       - name: Open and protect the generated upgrade pull request
         if: steps.release.outputs.upgrade == 'true'
         env:
