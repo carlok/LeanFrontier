@@ -72,6 +72,10 @@ theorem varignon_perimeter (a b c d : P) :
   rcases varignon_adjacent_side_lengths a b c d with ⟨h₁, h₂⟩
   rcases varignon_opposite_side_lengths a b c d with ⟨h₃, h₄⟩
   rw [← h₃, ← h₄, h₁, h₂]
-  ring
+  calc
+    dist a c / 2 + dist b d / 2 + dist a c / 2 + dist b d / 2 =
+        (dist a c / 2 + dist a c / 2) + (dist b d / 2 + dist b d / 2) := by
+      ac_rfl
+    _ = dist a c + dist b d := by rw [add_halves, add_halves]
 
 end LeanFrontier.EuclideanGeometry
