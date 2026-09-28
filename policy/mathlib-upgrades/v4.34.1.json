@@ -1,0 +1,16 @@
+{
+  "accepted": true,
+  "code": "ACCEPTED",
+  "collisions": [],
+  "corpus_deprecations": [],
+  "downstream_import_smoke": "pass",
+  "entrypoint_count": 276,
+  "fingerprint_index": "mathlib-fingerprints-v4.34.1.json",
+  "fingerprint_index_sha256": "82f81ef66fb9201ff8a9dae6e2d3cfcdf7bffc6a6b87264a3498f673cb8e1d5a",
+  "format_version": 1,
+  "kernel_recheck": "pass",
+  "lean_toolchain": "leanprover/lean4:v4.34.1",
+  "mathlib_commit": "d13f23b723b8a846827a245b89c10fc7d3f11612",
+  "mathlib_revision": "v4.34.1",
+  "source_release_tag": "v4.34.1"
+}
