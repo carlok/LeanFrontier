@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import contextlib
+import io
 import json
 import tempfile
 import unittest
@@ -110,6 +112,32 @@ class MathlibUpgradePathTests(unittest.TestCase):
         self.assertEqual(status, 1)
         self.assertEqual(result["code"], "BUILD_FAILED")
         self.assertIn("unknown constant 'Nat.choose_symm_diff'", result["error"])
+
+    def test_a_rejected_upgrade_says_why_in_the_log(self) -> None:
+        """The report lives in the container's output; the log must carry the verdict too."""
+
+        class Result:
+            returncode = 1
+            stdout = "error: LeanFrontier/Algebra/Binomial.lean:9:2: unknown constant 'Nat.choose_symm_diff'\n"
+            stderr = "error: build failed\n"
+
+        original = audit_mathlib_upgrade.run
+        audit_mathlib_upgrade.run = lambda command, *, cwd, timeout: Result()
+        stderr = io.StringIO()
+        try:
+            with tempfile.TemporaryDirectory() as directory, contextlib.redirect_stderr(stderr):
+                audit_mathlib_upgrade.main(["--root", str(ROOT), "--report", str(Path(directory) / "upgrade.json")])
+        finally:
+            audit_mathlib_upgrade.run = original
+        self.assertIn("BUILD_FAILED", stderr.getvalue())
+        self.assertIn("Nat.choose_symm_diff", stderr.getvalue())
+
+    def test_the_upgrade_workflow_keeps_the_evidence_of_a_rejection(self) -> None:
+        workflow = (ROOT / ".github" / "workflows" / "mathlib-upgrade.yml").read_text()
+        self.assertIn('--report "/output/upgrade.json" || status=$?', workflow)
+        self.assertIn("::error::upgrade audit rejected", workflow)
+        self.assertIn("if: always() && steps.release.outputs.upgrade == 'true'", workflow)
+        self.assertIn("actions/upload-artifact@v4", workflow)
 
     def test_upgrade_audit_reports_corpus_deprecations_without_blocking(self) -> None:
         source = (ROOT / "tools" / "audit_mathlib_upgrade.py").read_text()
