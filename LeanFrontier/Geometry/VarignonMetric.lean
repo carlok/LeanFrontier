@@ -35,6 +35,32 @@ theorem varignon_adjacent_side_lengths (a b c d : P) :
     norm_num
     ring
 
+/-- Opposite sides of the Varignon parallelogram have equal lengths.  This is the metric
+form of the two vector equalities in `LeanFrontier.AffineGeometry.varignon_theorem`. -/
+theorem varignon_opposite_side_lengths (a b c d : P) :
+    dist (midpoint ℝ a b) (midpoint ℝ b c) =
+        dist (midpoint ℝ c d) (midpoint ℝ d a) ∧
+    dist (midpoint ℝ b c) (midpoint ℝ c d) =
+        dist (midpoint ℝ d a) (midpoint ℝ a b) := by
+  have hv := LeanFrontier.AffineGeometry.varignon_theorem a b c d
+  constructor
+  · have hdist :
+        dist (midpoint ℝ b c) (midpoint ℝ a b) =
+          dist (midpoint ℝ c d) (midpoint ℝ d a) := by
+      simpa only [dist_eq_norm_vsub V] using congrArg norm hv.1
+    calc
+      dist (midpoint ℝ a b) (midpoint ℝ b c) =
+          dist (midpoint ℝ b c) (midpoint ℝ a b) := dist_comm _ _
+      _ = dist (midpoint ℝ c d) (midpoint ℝ d a) := hdist
+  · have hdist :
+        dist (midpoint ℝ c d) (midpoint ℝ b c) =
+          dist (midpoint ℝ d a) (midpoint ℝ a b) := by
+      simpa only [dist_eq_norm_vsub V] using congrArg norm hv.2
+    calc
+      dist (midpoint ℝ b c) (midpoint ℝ c d) =
+          dist (midpoint ℝ c d) (midpoint ℝ b c) := dist_comm _ _
+      _ = dist (midpoint ℝ d a) (midpoint ℝ a b) := hdist
+
 /-- The perimeter of the Varignon parallelogram equals the sum of the lengths of the two
 diagonals of the original quadrilateral. -/
 theorem varignon_perimeter (a b c d : P) :
@@ -43,31 +69,9 @@ theorem varignon_perimeter (a b c d : P) :
         dist (midpoint ℝ c d) (midpoint ℝ d a) +
         dist (midpoint ℝ d a) (midpoint ℝ a b) =
       dist a c + dist b d := by
-  have hsides := varignon_adjacent_side_lengths a b c d
-  have hv := LeanFrontier.AffineGeometry.varignon_theorem a b c d
-  have hop₁ :
-      dist (midpoint ℝ c d) (midpoint ℝ d a) =
-        dist (midpoint ℝ a b) (midpoint ℝ b c) := by
-    have hdist :
-        dist (midpoint ℝ b c) (midpoint ℝ a b) =
-          dist (midpoint ℝ c d) (midpoint ℝ d a) := by
-      simpa [dist_eq_norm_vsub] using congrArg norm hv.1
-    calc
-      dist (midpoint ℝ c d) (midpoint ℝ d a) =
-          dist (midpoint ℝ b c) (midpoint ℝ a b) := hdist.symm
-      _ = dist (midpoint ℝ a b) (midpoint ℝ b c) := dist_comm _ _
-  have hop₂ :
-      dist (midpoint ℝ d a) (midpoint ℝ a b) =
-        dist (midpoint ℝ b c) (midpoint ℝ c d) := by
-    have hdist :
-        dist (midpoint ℝ c d) (midpoint ℝ b c) =
-          dist (midpoint ℝ d a) (midpoint ℝ a b) := by
-      simpa [dist_eq_norm_vsub] using congrArg norm hv.2
-    calc
-      dist (midpoint ℝ d a) (midpoint ℝ a b) =
-          dist (midpoint ℝ c d) (midpoint ℝ b c) := hdist.symm
-      _ = dist (midpoint ℝ b c) (midpoint ℝ c d) := dist_comm _ _
-  rw [hop₁, hop₂, hsides.1, hsides.2]
+  rcases varignon_adjacent_side_lengths a b c d with ⟨h₁, h₂⟩
+  rcases varignon_opposite_side_lengths a b c d with ⟨h₃, h₄⟩
+  rw [← h₃, ← h₄, h₁, h₂]
   ring
 
 end LeanFrontier.EuclideanGeometry
