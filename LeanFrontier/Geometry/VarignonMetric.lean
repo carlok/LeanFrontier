@@ -61,6 +61,17 @@ theorem varignon_opposite_side_lengths (a b c d : P) :
           dist (midpoint ℝ c d) (midpoint ℝ b c) := dist_comm _ _
       _ = dist (midpoint ℝ d a) (midpoint ℝ a b) := hdist
 
+private theorem four_term_sum_of_halves
+    {x y z w p q : ℝ}
+    (hx : x = p / 2) (hy : y = q / 2) (hz : z = x) (hw : w = y) :
+    x + y + z + w = p + q := by
+  rw [hz, hw, hx, hy]
+  calc
+    p / 2 + q / 2 + p / 2 + q / 2 =
+        (p / 2 + p / 2) + (q / 2 + q / 2) := by
+      ac_rfl
+    _ = p + q := by rw [add_halves, add_halves]
+
 /-- The perimeter of the Varignon parallelogram equals the sum of the lengths of the two
 diagonals of the original quadrilateral. -/
 theorem varignon_perimeter (a b c d : P) :
@@ -71,11 +82,6 @@ theorem varignon_perimeter (a b c d : P) :
       dist a c + dist b d := by
   rcases varignon_adjacent_side_lengths a b c d with ⟨h₁, h₂⟩
   rcases varignon_opposite_side_lengths a b c d with ⟨h₃, h₄⟩
-  rw [← h₃, ← h₄, h₁, h₂]
-  calc
-    dist a c / 2 + dist b d / 2 + dist a c / 2 + dist b d / 2 =
-        (dist a c / 2 + dist a c / 2) + (dist b d / 2 + dist b d / 2) := by
-      ac_rfl
-    _ = dist a c + dist b d := by rw [add_halves, add_halves]
+  exact four_term_sum_of_halves h₁ h₂ h₃.symm h₄.symm
 
 end LeanFrontier.EuclideanGeometry
