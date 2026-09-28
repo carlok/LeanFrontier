@@ -618,6 +618,18 @@ def run(command: list[str], cwd: Path, timeout: int) -> subprocess.CompletedProc
     return subprocess.CompletedProcess(command, process.returncode, stdout, stderr)
 
 
+def statement_too_large(entrypoint: str, size: object, limit: int) -> str:
+    """Say which term is measured. "Exceeds the normalized-term limit" read as
+    the proof term: one producer shrank a proof five times against a limit
+    that only ever measured the statement (#417)."""
+    measured = f"is {size} bytes" if isinstance(size, int) else "could not be measured"
+    return (
+        f"{entrypoint}: the statement, elaborated and normalized, {measured}; the limit is {limit}. "
+        "Only the statement is measured, not the proof: shorten the statement, for example by "
+        "naming a large subexpression with a definition."
+    )
+
+
 def failure_output(result: subprocess.CompletedProcess[str], limit: int = 2000) -> str:
     """Return the tail of a failed Lean command's output, stdout first.
 
@@ -1051,7 +1063,7 @@ def lean_audit(base: Path | None, candidate: Path, modules: list[str], submitted
             report.reject("SCHEMA_INVALID", f"entrypoint is neither a theorem nor a conjecture: {entrypoint}")
         term_bytes = finding.get("normalized_term_bytes")
         if not isinstance(term_bytes, int) or term_bytes > limits["max_normalized_term_bytes"]:
-            report.reject("RESOURCE_LIMIT_EXCEEDED", f"{entrypoint} exceeds the normalized-term limit")
+            report.reject("RESOURCE_LIMIT_EXCEEDED", statement_too_large(entrypoint, term_bytes, limits["max_normalized_term_bytes"]))
         used_axioms = set(finding.get("axioms", []))
         # `always_reject` is not merely the complement of `allowed_axioms`: an
         # axiom named there stays prohibited even if someone later permits it.
