@@ -307,6 +307,14 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
         source = (ROOT / "tools" / "frontier_validate.py").read_text()
         self.assertIn('triviality["family_threshold"]', source)
 
+    def test_the_statement_size_diagnostic_says_it_measures_the_statement(self) -> None:
+        """#417 shrank its proof five times against a limit on the statement."""
+        message = frontier_validate.statement_too_large("LeanFrontier.X.big", 70000, 65536)
+        self.assertIn("the statement", message)
+        self.assertIn("70000", message)
+        self.assertIn("65536", message)
+        self.assertIn("not the proof", message)
+
     def test_oversized_submission_is_rejected(self) -> None:
         path = self.candidate / "LeanFrontier" / "Algebra" / "New.lean"
         path.write_text("-- " + "x" * 52000)
