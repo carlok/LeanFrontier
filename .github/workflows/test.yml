@@ -40,7 +40,7 @@ jobs:
   mathlib-upgrade:
     name: mathlib-upgrade
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v5
         with:
