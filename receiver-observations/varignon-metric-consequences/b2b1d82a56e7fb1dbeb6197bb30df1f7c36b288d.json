@@ -1,0 +1,383 @@
+{
+  "accepted_revision": "b2b1d82a56e7fb1dbeb6197bb30df1f7c36b288d",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-29T07:24:24Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 296.657,
+    "observed": {
+      "added_lines": 93,
+      "audited_declarations": {
+        "LeanFrontier.EuclideanGeometry.varignon_adjacent_side_lengths": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.EuclideanGeometry.varignon_adjacent_side_lengths",
+          "restatement": false,
+          "statement_sha256": "9f63c5b7a9cd18d748c9f63a5df3e12022f4f3c701897db202efb28b13fac75c",
+          "type_dependencies": [
+            "And",
+            "Dist.dist",
+            "DivInvMonoid.toDiv",
+            "Eq",
+            "Field.toSemifield",
+            "FloorRing.toFloorSemiring",
+            "FloorSemiring.instCharZero",
+            "HDiv.hDiv",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "NormedAddCommGroup",
+            "NormedAddCommGroup.toAddCommGroup",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "NormedAddTorsor",
+            "NormedAddTorsor.toAddTorsor",
+            "NormedSpace",
+            "NormedSpace.toModule",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instDivInvMonoid",
+            "Real.instField",
+            "Real.instFloorRing",
+            "Real.instNatCast",
+            "Real.instRing",
+            "Real.linearOrder",
+            "Real.normedField",
+            "Real.partialOrder",
+            "Real.semiring",
+            "Semifield.toDivisionSemiring",
+            "instHDiv",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat",
+            "invertibleTwo",
+            "midpoint"
+          ]
+        },
+        "LeanFrontier.EuclideanGeometry.varignon_opposite_side_lengths": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.EuclideanGeometry.varignon_opposite_side_lengths",
+          "restatement": false,
+          "statement_sha256": "4153ddfa8a4a184f82df6ef6bca3a4512c8751282b8563f7b8b8a51339d75315",
+          "type_dependencies": [
+            "And",
+            "Dist.dist",
+            "Eq",
+            "Field.toSemifield",
+            "FloorRing.toFloorSemiring",
+            "FloorSemiring.instCharZero",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "NormedAddCommGroup",
+            "NormedAddCommGroup.toAddCommGroup",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "NormedAddTorsor",
+            "NormedAddTorsor.toAddTorsor",
+            "NormedSpace",
+            "NormedSpace.toModule",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instField",
+            "Real.instFloorRing",
+            "Real.instRing",
+            "Real.linearOrder",
+            "Real.normedField",
+            "Real.partialOrder",
+            "Real.semiring",
+            "Semifield.toDivisionSemiring",
+            "invertibleTwo",
+            "midpoint"
+          ]
+        },
+        "LeanFrontier.EuclideanGeometry.varignon_perimeter": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.EuclideanGeometry.varignon_perimeter",
+          "restatement": false,
+          "statement_sha256": "203334f123a3d69c2210280aef95d7268511d8e63376c1ffc4391aa54724246b",
+          "type_dependencies": [
+            "Dist.dist",
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.EuclideanGeometry.varignonPerimeter",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "NormedAddCommGroup",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "NormedAddTorsor",
+            "NormedSpace",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instAdd",
+            "Real.normedField",
+            "instHAdd"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 18,
+        "by_entrypoint": {
+          "LeanFrontier.EuclideanGeometry.varignon_adjacent_side_lengths": [
+            {
+              "outcome": "failed",
+              "seconds": 3.588,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.574,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.657,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.718,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.695,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.723,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.EuclideanGeometry.varignon_opposite_side_lengths": [
+            {
+              "outcome": "failed",
+              "seconds": 3.765,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.772,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.752,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.728,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.776,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.81,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.EuclideanGeometry.varignon_perimeter": [
+            {
+              "outcome": "failed",
+              "seconds": 3.722,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.765,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.749,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.65,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.752,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.782,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 66.978,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.EuclideanGeometry.varignon_adjacent_side_lengths": "inconclusive",
+        "LeanFrontier.EuclideanGeometry.varignon_opposite_side_lengths": "inconclusive",
+        "LeanFrontier.EuclideanGeometry.varignon_perimeter": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 6088,
+      "changed_files": [
+        "LeanFrontier/Geometry/VarignonMetric.lean",
+        "Submissions/varignon-metric-consequences.json"
+      ],
+      "corpus_entrypoints_checked": 276,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.EuclideanGeometry.varignon_adjacent_side_lengths": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.EuclideanGeometry.varignon_adjacent_side_lengths",
+          "statement_sha256": "9f63c5b7a9cd18d748c9f63a5df3e12022f4f3c701897db202efb28b13fac75c",
+          "type_dependencies": [
+            "And",
+            "Dist.dist",
+            "DivInvMonoid.toDiv",
+            "Eq",
+            "Field.toSemifield",
+            "FloorRing.toFloorSemiring",
+            "FloorSemiring.instCharZero",
+            "HDiv.hDiv",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "NormedAddCommGroup",
+            "NormedAddCommGroup.toAddCommGroup",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "NormedAddTorsor",
+            "NormedAddTorsor.toAddTorsor",
+            "NormedSpace",
+            "NormedSpace.toModule",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instDivInvMonoid",
+            "Real.instField",
+            "Real.instFloorRing",
+            "Real.instNatCast",
+            "Real.instRing",
+            "Real.linearOrder",
+            "Real.normedField",
+            "Real.partialOrder",
+            "Real.semiring",
+            "Semifield.toDivisionSemiring",
+            "instHDiv",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat",
+            "invertibleTwo",
+            "midpoint"
+          ]
+        },
+        "LeanFrontier.EuclideanGeometry.varignon_opposite_side_lengths": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.EuclideanGeometry.varignon_opposite_side_lengths",
+          "statement_sha256": "4153ddfa8a4a184f82df6ef6bca3a4512c8751282b8563f7b8b8a51339d75315",
+          "type_dependencies": [
+            "And",
+            "Dist.dist",
+            "Eq",
+            "Field.toSemifield",
+            "FloorRing.toFloorSemiring",
+            "FloorSemiring.instCharZero",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "NormedAddCommGroup",
+            "NormedAddCommGroup.toAddCommGroup",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "NormedAddTorsor",
+            "NormedAddTorsor.toAddTorsor",
+            "NormedSpace",
+            "NormedSpace.toModule",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instField",
+            "Real.instFloorRing",
+            "Real.instRing",
+            "Real.linearOrder",
+            "Real.normedField",
+            "Real.partialOrder",
+            "Real.semiring",
+            "Semifield.toDivisionSemiring",
+            "invertibleTwo",
+            "midpoint"
+          ]
+        },
+        "LeanFrontier.EuclideanGeometry.varignon_perimeter": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.EuclideanGeometry.varignon_perimeter",
+          "statement_sha256": "203334f123a3d69c2210280aef95d7268511d8e63376c1ffc4391aa54724246b",
+          "type_dependencies": [
+            "Dist.dist",
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.EuclideanGeometry.varignonPerimeter",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "NormedAddCommGroup",
+            "NormedAddCommGroup.toSeminormedAddCommGroup",
+            "NormedAddTorsor",
+            "NormedSpace",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instAdd",
+            "Real.normedField",
+            "instHAdd"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 4016,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 5
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "varignon-metric-consequences",
+  "trusted_receiver_revision": "477f40eb09fb76e049efba6b1d22045dd8c314e8",
+  "validated_candidate_revision": "ba39f9cbc801b4955628da301337409051fb0685",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36533467353"
+}

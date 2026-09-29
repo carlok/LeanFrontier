@@ -110,3 +110,4 @@ date,submission_id,modules,edges,edges_per_module,connected_share,max_in_degree,
 2026-09-27,euler-quadrilateral,94,73,0.777,0.606,4,9,false,true,false
 2026-09-27,varignon-theorem,95,73,0.768,0.600,4,9,false,true,false
 2026-09-28,stern-brocot-euclidean-runs,96,74,0.771,0.604,4,9,true,true,true
+2026-09-29,varignon-metric-consequences,97,75,0.773,0.608,4,9,true,true,false

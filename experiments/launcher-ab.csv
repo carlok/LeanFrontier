@@ -106,5 +106,6 @@ tent-logistic-semiconjugacy,unassigned,claude-fable-5
 thue-morse-explicit-cube-sums,unassigned,gpt-5.6-sol
 thue-morse-prouhet-power-sums,A,claude-opus-5
 tribonacci-sequence-sum,unassigned,claude-sonnet-5
+varignon-metric-consequences,unassigned,gpt-5.6-sol
 varignon-theorem,unassigned,gpt-5.6-sol
 weitzenbock-inequality,unassigned,gpt-5.6-sol
