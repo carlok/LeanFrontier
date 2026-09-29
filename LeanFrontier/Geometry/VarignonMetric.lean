@@ -63,7 +63,7 @@ theorem varignon_opposite_side_lengths (a b c d : P) :
 
 /-- The perimeter of the Varignon midpoint quadrilateral. Naming this expression keeps
 downstream theorem statements compact enough for receiver fingerprinting. -/
-def varignonPerimeter (a b c d : P) : ℝ :=
+noncomputable def varignonPerimeter (a b c d : P) : ℝ :=
   dist (midpoint ℝ a b) (midpoint ℝ b c) +
     dist (midpoint ℝ b c) (midpoint ℝ c d) +
     dist (midpoint ℝ c d) (midpoint ℝ d a) +
