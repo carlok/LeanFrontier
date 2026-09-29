@@ -23,6 +23,7 @@ import LeanFrontier.Geometry.FordCircleDescartes
 import LeanFrontier.Geometry.FordCircleTangency
 import LeanFrontier.Geometry.InversiveGeometry
 import LeanFrontier.Geometry.Varignon
+import LeanFrontier.Geometry.VarignonMetric
 import LeanFrontier.Geometry.Weitzenbock
 import LeanFrontier.GroupTheory.ChangeRinging
 import LeanFrontier.GroupTheory.ChangeRingingCyclic
@@ -72,6 +73,7 @@ import LeanFrontier.NumberTheory.SternBrocot
 import LeanFrontier.NumberTheory.SternBrocot.Extremal
 import LeanFrontier.NumberTheory.SternBrocot.Intervals
 import LeanFrontier.NumberTheory.SternBrocot.NodeInterval
+import LeanFrontier.NumberTheory.SternBrocot.RunLength
 import LeanFrontier.NumberTheory.SternBrocotEuclidean
 import LeanFrontier.NumberTheory.SternDiatomic
 import LeanFrontier.NumberTheory.SternDiatomic.Enumeration

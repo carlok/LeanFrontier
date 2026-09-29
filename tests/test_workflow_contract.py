@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import pathlib
 import re
 import unittest
 from pathlib import Path
@@ -410,13 +411,38 @@ class WorkflowContractTests(unittest.TestCase):
         """
         queue = (ROOT / ".github" / "workflows" / "maintainer-merge-queue.yml").read_text()
         self.assertIn("set -uo pipefail", queue)
-        self.assertNotRegex(queue, r"gh pr checks[^\n]*\|")
+        self.assertNotRegex(queue, r"gh pr checks[^\n|]*\|(?!\|)")  # a pipe, not ||
         self.assertIn('checks="$(gh pr checks', queue)
         self.assertIn("cannot read the checks of", queue)
         # It says when it gives up, and it stops before the token expires.
         self.assertIn('if [ "$settled" != true ]', queue)
         self.assertIn("50 * 60", queue)
         self.assertIn("re-run the queue with: $remaining", queue)
+
+    def test_the_merge_queue_reads_checks_under_bash_e(self) -> None:
+        """Run the queue's check-reading block the way Actions does (bash -e,
+        pipefail) against a stub gh: pending must wait, failing must stop, an
+        unreadable result must stop. Reading the code let two bugs through."""
+        import subprocess
+        import tempfile
+        queue = (ROOT / ".github" / "workflows" / "maintainer-merge-queue.yml").read_text()
+        block = queue.split("# BEGIN read-checks", 1)[1].split("# END read-checks", 1)[0]
+        cases = {
+            "pending": ("build\tpending\t0\turl", 8, 0, "reached the end"),
+            "passed": ("build\tpass\t1m\turl", 0, 0, "reached the end"),
+            "failed": ("build\tfail\t1m\turl", 1, 1, "has a failing check"),
+            "unreadable": ("HTTP 401: Bad credentials", 1, 1, "cannot read the checks"),
+        }
+        for name, (table, status, expected_exit, expected_text) in cases.items():
+            with self.subTest(name), tempfile.TemporaryDirectory() as directory:
+                stub = pathlib.Path(directory) / "gh"
+                stub.write_text(f"#!/bin/sh\nprintf '{table}\\n'\nexit {status}\n")
+                stub.chmod(0o755)
+                script = "set -euo pipefail\npr=1\n" + block + "\necho reached the end\n"
+                result = subprocess.run(["bash", "-e", "-c", script], capture_output=True, text=True,
+                                        env={"PATH": f"{directory}:/usr/bin:/bin", "GITHUB_REPOSITORY": "o/r"})
+                self.assertEqual(result.returncode, expected_exit, result.stdout + result.stderr)
+                self.assertIn(expected_text, result.stdout)
 
     def test_the_merge_queue_names_the_workflow_permission_it_lacks(self) -> None:
         """#406 changed two workflows; updating a fork branch then meant pushing

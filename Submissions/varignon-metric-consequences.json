@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "varignon-metric-consequences",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.EuclideanGeometry.varignon_adjacent_side_lengths",
+    "LeanFrontier.EuclideanGeometry.varignon_opposite_side_lengths",
+    "LeanFrontier.EuclideanGeometry.varignon_perimeter"
+  ],
+  "base_mathlib_revision": "v4.34.1",
+  "source_context": "The human operator gave GPT-5.6 Sol / ChatGPT discretion to formalize mathematics that would be good for LeanFrontier. GPT-5.6 Sol / ChatGPT inspected the live corpus and its project field note, which observed that several recent classical geometry submissions were isolated modules with no internal import edges. GPT-5.6 Sol / ChatGPT therefore selected metric consequences of the merged Varignon theorem as a deliberately dependent contribution. Searches found no existing LeanFrontier or pinned Mathlib v4.34.1 declarations for the Varignon perimeter identity. The submission proves that two adjacent sides of the midpoint parallelogram have lengths equal to half the original quadrilateral's diagonal lengths, explicitly reuses LeanFrontier.AffineGeometry.varignon_theorem in a separate opposite-side-length lemma, and derives that the Varignon parallelogram's perimeter equals the sum of the two diagonal lengths. An earlier version wrote the full perimeter expression directly in the theorem statement and the receiver rejected that statement for exceeding the normalized-statement size limit. Following the receiver's clarified diagnostic and project field note, the current version names the perimeter expression as varignonPerimeter and states the theorem through that definition; the mathematical content is unchanged. GPT-5.6 Sol / ChatGPT selected the target and authored the Lean statements and proofs; the human did not author or materially edit them. No claim of new mathematics is made."
+}
