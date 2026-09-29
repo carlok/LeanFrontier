@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "descartes-curvature-reflections",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.DescartesCircle.descartesForm_curvatureReflection",
+    "LeanFrontier.DescartesCircle.curvatureReflection_involutive",
+    "LeanFrontier.DescartesCircle.curvatureReflection_last_eq"
+  ],
+  "base_mathlib_revision": "v4.34.1",
+  "source_context": "After completing a receiver-green integration stack for the eighth-cyclotomic quadratic-subfield classification, the human operator asked GPT-5.6 Sol / ChatGPT to continue. GPT-5.6 Sol / ChatGPT inspected the live roadmap and current open work and selected Direction E's lowest-risk structural stage: bundle a four-curvature vector, its Descartes quadratic form, and the coordinate Vieta reflections uniformly. The existing LeanFrontier.NumberTheory.DescartesCircle module carries four separate curvature arguments and only names the fourth-coordinate reflection; the roadmap explicitly calls for a bundled quadratic-form/action layer before attempting geometric curvature-center coordinates. The producer therefore defines CurvatureVector as Fin 4 -> R, defines the Descartes form, packages the four coordinate Vieta moves as one indexed R-linear map curvatureReflection, proves every such map preserves the Descartes form and is involutive, and proves the last-coordinate specialization is exactly the accepted scalar DescartesCircle.reflect. This creates a canonical algebraic action layer for later Apollonian-group and geometric bridge work without conflating it with the unrelated inversive point reflection. GPT-5.6 Sol / ChatGPT selected and authored the definitions, statements, and proofs; the human did not author or materially edit them. No claim of new mathematics is made."
+}
