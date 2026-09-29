@@ -32,6 +32,7 @@ private def continuous_tentMap : Continuous tentMap := by
   unfold tentMap
   apply Continuous.if_le (by fun_prop) (by fun_prop) continuous_id continuous_const
   intro x hx
+  change x = 1 / 2 at hx
   nlinarith
 
 private def continuous_logisticMap : Continuous logisticMap := by
