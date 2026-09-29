@@ -96,6 +96,7 @@ import LeanFrontier.RepresentationTheory.FiniteGroupCharacter.Orthogonality
 import LeanFrontier.Topology.Furstenberg
 import LeanFrontier.Topology.Furstenberg.Separation
 import LeanFrontier.Topology.FurstenbergAlgebra
+import LeanFrontier.Topology.FurstenbergFiniteIndex
 import LeanFrontier.Topology.FurstenbergQuotients
 /-!
 # LeanFrontier
