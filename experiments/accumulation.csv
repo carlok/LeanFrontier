@@ -113,3 +113,4 @@ date,submission_id,modules,edges,edges_per_module,connected_share,max_in_degree,
 2026-09-29,varignon-metric-consequences,97,75,0.773,0.608,4,9,true,true,false
 2026-09-29,stern-brocot-canonical-initial-run,98,76,0.776,0.612,4,9,true,true,true
 2026-09-29,furstenberg-finite-index-cyclic,99,77,0.778,0.616,4,9,true,true,true
+2026-09-29,tent-logistic-topological-transitivity,100,78,0.780,0.620,4,9,true,true,false
