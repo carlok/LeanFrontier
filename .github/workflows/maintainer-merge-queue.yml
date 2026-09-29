@@ -122,8 +122,11 @@ jobs:
                   # Captured, not piped: gh exits 1 when a check has failed, and
                   # under pipefail that status used to override grep's match, so
                   # a failing check read as none and the queue waited an hour.
-                  checks="$(gh pr checks "$pr" --repo "$GITHUB_REPOSITORY" 2>&1)"
-                  checks_status=$?
+                  # And guarded: Actions runs this step with bash -e, so a bare
+                  # assignment from gh's 8 ("still pending") ended the step (#436).
+                  # BEGIN read-checks
+                  checks_status=0
+                  checks="$(gh pr checks "$pr" --repo "$GITHUB_REPOSITORY" 2>&1)" || checks_status=$?
                   if awk -F'\t' '$2 == "fail"' <<<"$checks" | grep -q .; then
                     echo "$checks"
                     echo "::error::#$pr has a failing check; stopping so a person can look"
@@ -136,6 +139,7 @@ jobs:
                     echo "::error::cannot read the checks of #$pr"
                     exit 1
                   fi
+                  # END read-checks
                   (( attempt % 10 == 0 )) && echo "#$pr: still waiting ($state)"
                   sleep 30
                   ;;
