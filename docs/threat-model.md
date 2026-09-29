@@ -131,7 +131,7 @@ theirs, which costs trust in every other diagnostic.
   base's code, with policy read from the base.
 - **Candidate code runs only in a restricted container:** `--network none`,
   `--read-only`, `--cap-drop ALL`, `--security-opt no-new-privileges`,
-  `--memory 2g`, `--cpus 2`, `--pids-limit 512`, with a size-limited `tmpfs`.
+  `--memory 4g`, `--cpus 2`, `--pids-limit 512`, with a size-limited `tmpfs`.
 - **No workflow that holds secrets reads the candidate.** Nothing uses
   `pull_request_target`. The generators and the merge path run on `push` or
   `workflow_run`, executing code from the default branch.

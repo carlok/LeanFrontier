@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import json
 import pathlib
 import subprocess
 import sys
@@ -68,6 +69,36 @@ class SyntheticHistory(unittest.TestCase):
         self.assertEqual([row["max_depth"] for row in rows], ["1", "2", "3"])
         self.assertEqual([row["imports_recent"] for row in rows], ["false", "true", "false"])
         self.assertEqual([row["add_only_rule"] for row in rows], ["false", "false", "true"])
+
+    def test_recency_counts_only_the_submissions_own_modules(self) -> None:
+        """Until 29 September a same-day neighbour's import marked every row of
+        the day as importing recent work."""
+        self.accept("a", {"A.lean": ""}, "2026-09-01")
+        self.accept("b", {"B.lean": "import LeanFrontier.A\n"}, "2026-09-03")
+        self.accept("alone", {"Alone.lean": ""}, "2026-09-03")
+        rows = {row["submission_id"]: row for row in self.generate()}
+        self.assertEqual(rows["b"]["imports_recent"], "true")
+        self.assertEqual(rows["alone"]["imports_recent"], "false")
+
+    def observe(self, submission: str, statements: dict[str, list[str]]) -> None:
+        """A receiver observation: entrypoint -> corpus constants in its statement."""
+        folder = self.root / "receiver-observations" / submission
+        folder.mkdir(parents=True, exist_ok=True)
+        entrypoints = {name: {"type_dependencies": deps} for name, deps in statements.items()}
+        record = {"submission_id": submission, "report": {"observed": {"entrypoints": entrypoints}}}
+        (folder / "0.json").write_text(json.dumps(record))
+
+    def test_statement_reuse_needs_an_earlier_statement_to_mention_the_constant(self) -> None:
+        """An import is not enough; the statement has to be about the corpus."""
+        self.accept("a", {"A.lean": ""}, "2026-09-01")
+        self.accept("imports", {"B.lean": "import LeanFrontier.A\n"}, "2026-09-02")
+        self.accept("states", {"C.lean": "import LeanFrontier.A\n"}, "2026-09-03")
+        self.accept("unobserved", {"D.lean": ""}, "2026-09-04")
+        self.observe("a", {"LeanFrontier.A.thm": ["LeanFrontier.A.pair"]})
+        self.observe("imports", {"LeanFrontier.B.thm": []})
+        self.observe("states", {"LeanFrontier.C.thm": ["LeanFrontier.A.pair", "LeanFrontier.C.own"]})
+        rows = {row["submission_id"]: row["statement_reuse"] for row in self.generate()}
+        self.assertEqual(rows, {"a": "false", "imports": "false", "states": "true", "unobserved": "unknown"})
 
     def test_a_submission_merged_from_a_stale_branch_sees_the_corpus_it_joined(self) -> None:
         """Rows describe the default branch at acceptance, not the submission's branch.
