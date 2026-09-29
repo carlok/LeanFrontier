@@ -28,21 +28,21 @@ open Real Set
 
 local notation "𝕀" => Icc (0 : ℝ) 1
 
-private theorem continuous_tentMap : Continuous tentMap := by
+private def continuous_tentMap : Continuous tentMap := by
   unfold tentMap
   apply Continuous.if_le (by fun_prop) (by fun_prop) continuous_id continuous_const
   intro x hx
   dsimp
   nlinarith
 
-private theorem continuous_logisticMap : Continuous logisticMap := by
+private def continuous_logisticMap : Continuous logisticMap := by
   unfold logisticMap
   fun_prop
 
-private theorem continuous_tentMapIcc : Continuous tentMapIcc :=
+private def continuous_tentMapIcc : Continuous tentMapIcc :=
   Continuous.subtype_mk (continuous_tentMap.comp continuous_subtype_val) _
 
-private theorem continuous_logisticMapIcc : Continuous logisticMapIcc :=
+private def continuous_logisticMapIcc : Continuous logisticMapIcc :=
   Continuous.subtype_mk (continuous_logisticMap.comp continuous_subtype_val) _
 
 /-- The natural-number flow obtained by iterating the full tent map on the unit interval. -/
