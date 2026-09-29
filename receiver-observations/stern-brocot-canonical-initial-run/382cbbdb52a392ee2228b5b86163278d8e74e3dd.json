@@ -1,0 +1,264 @@
+{
+  "accepted_revision": "382cbbdb52a392ee2228b5b86163278d8e74e3dd",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-29T09:35:20+02:00",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 366.892,
+    "observed": {
+      "added_lines": 118,
+      "audited_declarations": {
+        "LeanFrontier.SternBrocot.dropInitialRun": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.SternBrocot.dropInitialRun",
+          "restatement": false,
+          "statement_sha256": "e6082e9aa6203941fdd69769573d2b24c1b6ea92e436eaf765185761da9caa71",
+          "type_dependencies": [
+            "Bool",
+            "List"
+          ]
+        },
+        "LeanFrontier.SternBrocot.initialRunLength": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.SternBrocot.initialRunLength",
+          "restatement": false,
+          "statement_sha256": "c879ca3a7a4721b03365e3f5148c47958d57f19df4959b029affb89ec5a47b62",
+          "type_dependencies": [
+            "Bool",
+            "List",
+            "Nat"
+          ]
+        },
+        "LeanFrontier.SternBrocot.initialRun_decomposition": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.initialRun_decomposition",
+          "restatement": false,
+          "statement_sha256": "6c0eed3d7a6a07cb204aa00b8c982d1b56d46e7eb3d75c41cd98f026acda0ca4",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "HAppend.hAppend",
+            "LeanFrontier.SternBrocot.dropInitialRun",
+            "LeanFrontier.SternBrocot.initialRunLength",
+            "List",
+            "List.instAppend",
+            "List.replicate",
+            "instHAppendOfAppend"
+          ]
+        },
+        "LeanFrontier.SternBrocot.initialRun_euclidean_step": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.initialRun_euclidean_step",
+          "restatement": false,
+          "statement_sha256": "10e76308f3661c626aa535971bc04f08719695ae9efb6b4065a09e323c53853d",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "Bool.not",
+            "Bool.true",
+            "Eq",
+            "Exists",
+            "HAdd.hAdd",
+            "HAppend.hAppend",
+            "HDiv.hDiv",
+            "LeanFrontier.SternBrocot.dropInitialRun",
+            "LeanFrontier.SternBrocot.initialRunLength",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "List.nil",
+            "List.replicate",
+            "Nat",
+            "Nat.instDiv",
+            "OfNat.ofNat",
+            "Or",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instAddNat",
+            "instDecidableEqBool",
+            "instHAdd",
+            "instHAppendOfAppend",
+            "instHDiv",
+            "instOfNatNat",
+            "ite"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.SternBrocot.initialRun_decomposition": [
+            {
+              "outcome": "failed",
+              "seconds": 5.125,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.149,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.131,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.135,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.118,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.103,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.SternBrocot.initialRun_euclidean_step": [
+            {
+              "outcome": "failed",
+              "seconds": 5.108,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.102,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.132,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.068,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.14,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.127,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 61.438,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SternBrocot.initialRun_decomposition": "inconclusive",
+        "LeanFrontier.SternBrocot.initialRun_euclidean_step": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 6370,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SternBrocot/RunLength.lean",
+        "Submissions/stern-brocot-canonical-initial-run.json"
+      ],
+      "corpus_entrypoints_checked": 279,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SternBrocot.initialRun_decomposition": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.initialRun_decomposition",
+          "statement_sha256": "6c0eed3d7a6a07cb204aa00b8c982d1b56d46e7eb3d75c41cd98f026acda0ca4",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "HAppend.hAppend",
+            "LeanFrontier.SternBrocot.dropInitialRun",
+            "LeanFrontier.SternBrocot.initialRunLength",
+            "List",
+            "List.instAppend",
+            "List.replicate",
+            "instHAppendOfAppend"
+          ]
+        },
+        "LeanFrontier.SternBrocot.initialRun_euclidean_step": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.initialRun_euclidean_step",
+          "statement_sha256": "10e76308f3661c626aa535971bc04f08719695ae9efb6b4065a09e323c53853d",
+          "type_dependencies": [
+            "And",
+            "Bool",
+            "Bool.not",
+            "Bool.true",
+            "Eq",
+            "Exists",
+            "HAdd.hAdd",
+            "HAppend.hAppend",
+            "HDiv.hDiv",
+            "LeanFrontier.SternBrocot.dropInitialRun",
+            "LeanFrontier.SternBrocot.initialRunLength",
+            "LeanFrontier.SternBrocot.pair",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "List.nil",
+            "List.replicate",
+            "Nat",
+            "Nat.instDiv",
+            "OfNat.ofNat",
+            "Or",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instAddNat",
+            "instDecidableEqBool",
+            "instHAdd",
+            "instHAppendOfAppend",
+            "instHDiv",
+            "instOfNatNat",
+            "ite"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 4509,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 5
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "stern-brocot-canonical-initial-run",
+  "trusted_receiver_revision": "98104978c43e370ea9e6f09c6a8a19906ceeebf1",
+  "validated_candidate_revision": "e3b88346dd7459d87a47853d24ac2ef5aaf2df9f",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36536642488"
+}
