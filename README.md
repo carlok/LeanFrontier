@@ -82,13 +82,17 @@ rev = "<release-tag-or-full-commit>"
 ```
 
 For a private repository, use an SSH key (or another Git credential mechanism)
-that has read access. Then fetch dependencies and import either the umbrella
-library or a focused subject module:
+that has read access. Then fetch dependencies, download Mathlib's prebuilt
+files, and import either the umbrella library or a focused subject module:
 
 ```bash
 lake update
+lake exe cache get
 lake build
 ```
+
+Without `lake exe cache get`, `lake build` compiles all of Mathlib from
+source, which takes hours; with it, only LeanFrontier itself is built.
 
 ```lean
 import LeanFrontier
