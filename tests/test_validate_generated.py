@@ -41,7 +41,7 @@ class AccumulationSeriesGateTests(unittest.TestCase):
     """The gate cannot regenerate the series (shallow checkout), so it checks
     the one property that makes it trustworthy: rows are only ever appended."""
 
-    ROW = "2026-09-25,{id},64,44,0.688,0.500,3,6,true,true\n"
+    ROW = "2026-09-25,{id},64,44,0.688,0.500,3,6,true,true,false\n"
 
     def setUp(self) -> None:
         import sys

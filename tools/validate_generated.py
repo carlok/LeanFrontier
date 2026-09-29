@@ -69,9 +69,9 @@ def validate_accumulation(base: Path, candidate: Path) -> None:
     published = {line.split(",")[1] for line in before[len(HEADER):].splitlines()}
     for line in after[len(before):].splitlines():
         fields = line.split(",")
-        if len(fields) != 10:
+        if len(fields) != 11:
             raise ValueError(f"malformed accumulation row: {line!r}")
-        day, submission, modules, edges, per_module, connected, in_degree, depth, recent, add_only = fields
+        day, submission, modules, edges, per_module, connected, in_degree, depth, recent, add_only, stated = fields
         date.fromisoformat(day)
         if submission in published or not (candidate / "Submissions" / f"{submission}.json").is_file():
             raise ValueError(f"accumulation row for an unknown or repeated submission: {submission}")
@@ -80,7 +80,7 @@ def validate_accumulation(base: Path, candidate: Path) -> None:
             int(number)
         for number in (per_module, connected):
             float(number)
-        if recent not in {"true", "false"} or add_only not in {"true", "false"}:
+        if recent not in {"true", "false"} or add_only not in {"true", "false"} or stated not in {"true", "false", "unknown"}:
             raise ValueError(f"malformed accumulation row: {line!r}")
 
 

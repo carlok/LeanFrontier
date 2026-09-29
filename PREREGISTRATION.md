@@ -259,3 +259,33 @@ module at the same size and 1.55 at 2314 modules. At 58 modules LeanFrontier has
 **Committed in advance:** the series is published whatever it shows, including a
 flat or falling ratio, and including the case where it rises only after
 22 September and so is attributable to the rule rather than to the producers.
+
+## Deviation, 29 September 2026
+
+Two changes to the accumulation series registered on 23 September, recorded
+before either is read for a result.
+
+**A defect in the recency measure, corrected.** The share of submissions
+importing a module accepted within the preceding seven days was computed over
+every module first seen on the submission's *date*, not over the modules its
+own merge added. On any day when one connected submission was accepted, every
+other row of that day was marked as importing recent work. The corrected
+generator uses the modules each merge added. Recomputed from history, 32 of the
+96 rows change, all from true to false (71 true before, 39 after); no other
+column changes. No published field note quoted this measure. The old values
+are recoverable from the file's history and should not be used.
+
+**A second measure of reuse, added.** On 28 September a submission said in its
+own description that it had been chosen to add an import edge (Field Note 19).
+Import edges are cheap to add and may go unused, so a producer can aim at them.
+The series gains a column, `statement_reuse`: true when the submission's
+accepted theorem statements mention a LeanFrontier constant that an earlier
+submission's statements already mention; `unknown` when the submission has no
+receiver observation (one row, `bootstrap-binomial`). It is computed from the
+receiver observations, which are immutable per-submission records, so earlier
+rows are recomputed from history rather than reinterpreted. It is conservative:
+a corpus definition that no earlier statement mentions does not count.
+
+**Committed in advance:** both measures are reported side by side from now on.
+Where they diverge, the statement measure is the one the notes treat as
+evidence of reuse; the import measure is kept because it was registered first.
