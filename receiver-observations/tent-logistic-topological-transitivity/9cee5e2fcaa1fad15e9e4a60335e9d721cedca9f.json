@@ -1,0 +1,251 @@
+{
+  "accepted_revision": "9cee5e2fcaa1fad15e9e4a60335e9d721cedca9f",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-29T19:04:43Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 380.294,
+    "observed": {
+      "added_lines": 230,
+      "audited_declarations": {
+        "LeanFrontier.Dynamics.logisticMapFlow_isTopologicallyTransitive": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.logisticMapFlow_isTopologicallyTransitive",
+          "restatement": false,
+          "statement_sha256": "4597b965189436c92adb652f088e5d05319ff5640d497444c983863c167a4817",
+          "type_dependencies": [
+            "AddAction.IsTopologicallyTransitive",
+            "Flow.toAddAction",
+            "LeanFrontier.Dynamics.logisticMapFlow",
+            "Membership.mem",
+            "Nat",
+            "Nat.instAddMonoid",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Real.pseudoMetricSpace",
+            "Set",
+            "Set.Elem",
+            "Set.Icc",
+            "Set.instMembership",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instTopologicalSpaceNat",
+            "instTopologicalSpaceSubtype"
+          ]
+        },
+        "LeanFrontier.Dynamics.tentMapFlow_isTopologicallyTransitive": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.tentMapFlow_isTopologicallyTransitive",
+          "restatement": false,
+          "statement_sha256": "05407b98425f2838d1f9f99abe9af8aac54b6d911e5440a95599e5b2620a092c",
+          "type_dependencies": [
+            "AddAction.IsTopologicallyTransitive",
+            "Flow.toAddAction",
+            "LeanFrontier.Dynamics.tentMapFlow",
+            "Membership.mem",
+            "Nat",
+            "Nat.instAddMonoid",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Real.pseudoMetricSpace",
+            "Set",
+            "Set.Elem",
+            "Set.Icc",
+            "Set.instMembership",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instTopologicalSpaceNat",
+            "instTopologicalSpaceSubtype"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.Dynamics.logisticMapFlow_isTopologicallyTransitive": [
+            {
+              "outcome": "failed",
+              "seconds": 5.603,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.611,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.652,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.622,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.742,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.741,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Dynamics.tentMapFlow_isTopologicallyTransitive": [
+            {
+              "outcome": "failed",
+              "seconds": 5.689,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.563,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.596,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.71,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.587,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.622,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 67.738,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Dynamics.logisticMapFlow_isTopologicallyTransitive": "inconclusive",
+        "LeanFrontier.Dynamics.tentMapFlow_isTopologicallyTransitive": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 10598,
+      "changed_files": [
+        "LeanFrontier/Dynamics/LogisticTransitivity.lean",
+        "Submissions/tent-logistic-topological-transitivity.json"
+      ],
+      "corpus_entrypoints_checked": 283,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Dynamics.logisticMapFlow_isTopologicallyTransitive": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.logisticMapFlow_isTopologicallyTransitive",
+          "statement_sha256": "4597b965189436c92adb652f088e5d05319ff5640d497444c983863c167a4817",
+          "type_dependencies": [
+            "AddAction.IsTopologicallyTransitive",
+            "Flow.toAddAction",
+            "LeanFrontier.Dynamics.logisticMapFlow",
+            "Membership.mem",
+            "Nat",
+            "Nat.instAddMonoid",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Real.pseudoMetricSpace",
+            "Set",
+            "Set.Elem",
+            "Set.Icc",
+            "Set.instMembership",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instTopologicalSpaceNat",
+            "instTopologicalSpaceSubtype"
+          ]
+        },
+        "LeanFrontier.Dynamics.tentMapFlow_isTopologicallyTransitive": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.tentMapFlow_isTopologicallyTransitive",
+          "statement_sha256": "05407b98425f2838d1f9f99abe9af8aac54b6d911e5440a95599e5b2620a092c",
+          "type_dependencies": [
+            "AddAction.IsTopologicallyTransitive",
+            "Flow.toAddAction",
+            "LeanFrontier.Dynamics.tentMapFlow",
+            "Membership.mem",
+            "Nat",
+            "Nat.instAddMonoid",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instOne",
+            "Real.instPreorder",
+            "Real.instZero",
+            "Real.pseudoMetricSpace",
+            "Set",
+            "Set.Elem",
+            "Set.Icc",
+            "Set.instMembership",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instTopologicalSpaceNat",
+            "instTopologicalSpaceSubtype"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 8753,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 17
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "tent-logistic-topological-transitivity",
+  "trusted_receiver_revision": "9018bdce340ea5e944d344cfcfd8e228fa6e2e55",
+  "validated_candidate_revision": "7ff61eb95c0f25533d9b5a73d293037373fb3615",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36615489120"
+}

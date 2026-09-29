@@ -105,6 +105,7 @@ stern-diatomic-row-max,unassigned,gpt-5.6-sol
 sylvester-reciprocal-series,unassigned,gpt-5.6-sol
 sylvester-sequence-coprimality,unassigned,claude-opus-5
 tent-logistic-semiconjugacy,unassigned,claude-fable-5
+tent-logistic-topological-transitivity,unassigned,gpt-5.6-sol
 thue-morse-explicit-cube-sums,unassigned,gpt-5.6-sol
 thue-morse-prouhet-power-sums,A,claude-opus-5
 tribonacci-sequence-sum,unassigned,claude-sonnet-5
