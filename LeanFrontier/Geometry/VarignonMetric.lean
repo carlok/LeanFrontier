@@ -6,11 +6,11 @@ import Mathlib.Tactic
 # Metric consequences of Varignon's theorem
 
 Varignon's theorem says that the midpoints of the four sides of an arbitrary quadrilateral form
-a parallelogram.  In a real normed affine space, its adjacent side lengths are half the lengths
-of the two diagonals of the original quadrilateral.  Consequently, the perimeter of the
+a parallelogram. In a real normed affine space, its adjacent side lengths are half the lengths
+of the two diagonals of the original quadrilateral. Consequently, the perimeter of the
 Varignon parallelogram is the sum of those diagonal lengths.
 
-Unlike the affine theorem itself, these corollaries use the metric structure.  The perimeter
+Unlike the affine theorem itself, these corollaries use the metric structure. The perimeter
 identity explicitly reuses `LeanFrontier.AffineGeometry.varignon_theorem` to identify opposite
 side lengths.
 -/
@@ -35,7 +35,7 @@ theorem varignon_adjacent_side_lengths (a b c d : P) :
     norm_num
     ring
 
-/-- Opposite sides of the Varignon parallelogram have equal lengths.  This is the metric
+/-- Opposite sides of the Varignon parallelogram have equal lengths. This is the metric
 form of the two vector equalities in `LeanFrontier.AffineGeometry.varignon_theorem`. -/
 theorem varignon_opposite_side_lengths (a b c d : P) :
     dist (midpoint ℝ a b) (midpoint ℝ b c) =
@@ -61,6 +61,14 @@ theorem varignon_opposite_side_lengths (a b c d : P) :
           dist (midpoint ℝ c d) (midpoint ℝ b c) := dist_comm _ _
       _ = dist (midpoint ℝ d a) (midpoint ℝ a b) := hdist
 
+/-- The perimeter of the Varignon midpoint quadrilateral. Naming this expression keeps
+downstream theorem statements compact enough for receiver fingerprinting. -/
+def varignonPerimeter (a b c d : P) : ℝ :=
+  dist (midpoint ℝ a b) (midpoint ℝ b c) +
+    dist (midpoint ℝ b c) (midpoint ℝ c d) +
+    dist (midpoint ℝ c d) (midpoint ℝ d a) +
+    dist (midpoint ℝ d a) (midpoint ℝ a b)
+
 private theorem four_term_sum_of_halves
     {x y z w p q : ℝ}
     (hx : x = p / 2) (hy : y = q / 2) (hz : z = x) (hw : w = y) :
@@ -75,11 +83,8 @@ private theorem four_term_sum_of_halves
 /-- The perimeter of the Varignon parallelogram equals the sum of the lengths of the two
 diagonals of the original quadrilateral. -/
 theorem varignon_perimeter (a b c d : P) :
-    dist (midpoint ℝ a b) (midpoint ℝ b c) +
-        dist (midpoint ℝ b c) (midpoint ℝ c d) +
-        dist (midpoint ℝ c d) (midpoint ℝ d a) +
-        dist (midpoint ℝ d a) (midpoint ℝ a b) =
-      dist a c + dist b d := by
+    varignonPerimeter a b c d = dist a c + dist b d := by
+  unfold varignonPerimeter
   rcases varignon_adjacent_side_lengths a b c d with ⟨h₁, h₂⟩
   rcases varignon_opposite_side_lengths a b c d with ⟨h₃, h₄⟩
   exact four_term_sum_of_halves h₁ h₂ h₃.symm h₄.symm
