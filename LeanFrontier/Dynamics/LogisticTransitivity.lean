@@ -32,7 +32,6 @@ private def continuous_tentMap : Continuous tentMap := by
   unfold tentMap
   apply Continuous.if_le (by fun_prop) (by fun_prop) continuous_id continuous_const
   intro x hx
-  dsimp
   nlinarith
 
 private def continuous_logisticMap : Continuous logisticMap := by
@@ -170,7 +169,7 @@ private theorem tentMapIcc_exists_iterate_mem
     (dist_tentPullback_le n x y).trans_lt hn
   have hzU : z ∈ U := by
     apply hball
-    simpa only [Metric.mem_ball'] using hzdist
+    simpa only [Metric.mem_ball', dist_comm] using hzdist
   refine ⟨n, z, hzU, ?_⟩
   rw [tentMapIcc_iterate_pullback]
   exact hyV
