@@ -39,7 +39,9 @@ theorem initialRun_decomposition (dir : Bool) (path : List Bool) :
   | cons b path ih =>
       by_cases h : b = dir
       · subst b
-        simp [initialRunLength, dropInitialRun, ih, List.replicate_succ]
+        rw [initialRunLength, dropInitialRun]
+        simp only [if_pos rfl]
+        rw [List.replicate_succ, List.cons_append, ← ih]
       · simp [initialRunLength, dropInitialRun, h]
 
 private theorem dropInitialRun_eq_nil_or_cons_not (dir : Bool) (path : List Bool) :
@@ -51,11 +53,16 @@ private theorem dropInitialRun_eq_nil_or_cons_not (dir : Bool) (path : List Bool
   | cons b path ih =>
       by_cases h : b = dir
       · subst b
-        simpa [dropInitialRun] using ih
+        rw [dropInitialRun]
+        simp only [if_pos rfl]
+        exact ih
       · right
         have hb : b = Bool.not dir := by
           cases dir <;> cases b <;> simp_all
-        exact ⟨path, by simp [dropInitialRun, h, hb]⟩
+        refine ⟨path, ?_⟩
+        rw [dropInitialRun]
+        simp only [if_neg h]
+        rw [hb]
 
 /-- The canonical initial run packages one complete Euclidean quotient step.
 
@@ -78,17 +85,33 @@ theorem initialRun_euclidean_step (dir : Bool) (path : List Bool) :
     · left
       refine ⟨hnil, ?_⟩
       have hpath : path = List.replicate (initialRunLength dir path) dir := by
-        simpa [hnil] using initialRun_decomposition dir path
-      rw [hpath]
-      exact terminal_run_euclidean_quotient dir (initialRunLength dir path)
+        calc
+          path =
+              List.replicate (initialRunLength dir path) dir ++
+                dropInitialRun dir path :=
+            initialRun_decomposition dir path
+          _ = List.replicate (initialRunLength dir path) dir := by
+            rw [hnil, List.append_nil]
+      have hq := terminal_run_euclidean_quotient dir (initialRunLength dir path)
+      rw [← hpath] at hq
+      exact hq
     · right
       refine ⟨tail, htail, ?_⟩
       have hpath :
           path =
             List.replicate (initialRunLength dir path) dir ++
               (Bool.not dir :: tail) := by
-        rw [initialRun_decomposition dir path, htail]
-      rw [hpath]
-      exact initial_run_euclidean_quotient dir (initialRunLength dir path) tail
+        calc
+          path =
+              List.replicate (initialRunLength dir path) dir ++
+                dropInitialRun dir path :=
+            initialRun_decomposition dir path
+          _ =
+              List.replicate (initialRunLength dir path) dir ++
+                (Bool.not dir :: tail) := by
+            rw [htail]
+      have hq := initial_run_euclidean_quotient dir (initialRunLength dir path) tail
+      rw [← hpath] at hq
+      exact hq
 
 end LeanFrontier.SternBrocot
