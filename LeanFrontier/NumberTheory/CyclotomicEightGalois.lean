@@ -34,6 +34,8 @@ local instance cyclotomicEight_isCyclotomic_galois :
     IsCyclotomicExtension {8} ℚ CyclotomicEight :=
   CyclotomicField.isCyclotomicExtension 8 ℚ
 
+local instance zmodEight_one_lt : Fact (1 < (8 : ℕ)) := ⟨by norm_num⟩
+
 /-- The unit group modulo eight is a Klein four group. Kept as proof data here because
 Mathlib already provides all of the underlying arithmetic facts. -/
 private def zmodEightUnitsIsKleinFour : IsKleinFour (ZMod 8)ˣ where
