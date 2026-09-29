@@ -1,0 +1,139 @@
+{
+  "accepted_revision": "bb081c327db94fff36e6133c03b725e1aa27cfb8",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-29T19:17:46Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 361.214,
+    "observed": {
+      "added_lines": 83,
+      "audited_declarations": {
+        "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_galoisGroup_isKleinFour": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_galoisGroup_isKleinFour",
+          "restatement": false,
+          "statement_sha256": "f97119cf5d2ace982a0703a92f0c69429410fd15b5650559a284a30ab3e42415",
+          "type_dependencies": [
+            "AlgEquiv",
+            "AlgEquiv.aut",
+            "CommSemiring.toSemiring",
+            "CyclotomicField.instCharZero",
+            "CyclotomicField.instField",
+            "DivisionRing.toRatAlgebra",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "IsKleinFour",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "Nat",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.commSemiring",
+            "Rat.instCharZero",
+            "Rat.instField",
+            "Semifield.toCommSemiring",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_galoisGroup_isKleinFour": [
+            {
+              "outcome": "failed",
+              "seconds": 5.75,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.645,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.673,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.847,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.763,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.722,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 34.4,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_galoisGroup_isKleinFour": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 5061,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/CyclotomicEightGalois.lean",
+        "Submissions/cyclotomic-eight-klein-four.json"
+      ],
+      "corpus_entrypoints_checked": 285,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_galoisGroup_isKleinFour": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_galoisGroup_isKleinFour",
+          "statement_sha256": "f97119cf5d2ace982a0703a92f0c69429410fd15b5650559a284a30ab3e42415",
+          "type_dependencies": [
+            "AlgEquiv",
+            "AlgEquiv.aut",
+            "CommSemiring.toSemiring",
+            "CyclotomicField.instCharZero",
+            "CyclotomicField.instField",
+            "DivisionRing.toRatAlgebra",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "IsKleinFour",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "Nat",
+            "OfNat.ofNat",
+            "Rat",
+            "Rat.commSemiring",
+            "Rat.instCharZero",
+            "Rat.instField",
+            "Semifield.toCommSemiring",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3326,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 6
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "cyclotomic-eight-klein-four",
+  "trusted_receiver_revision": "c4559b38886bdeb2fac83210b70dbac5de8fe37c",
+  "validated_candidate_revision": "14e64f0db3ca531de197bddc92fde3d90e65ac42",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36616954911"
+}
