@@ -563,6 +563,16 @@ class WorkflowContractTests(unittest.TestCase):
                 self.assertIn(flag, threat)
                 self.assertIn(flag, WORKFLOW)
 
+    def test_the_home_page_points_at_evidence_that_cannot_go_stale(self) -> None:
+        """It said "ten subject areas" and teased Field Note 05 a month after both
+        were out of date. Link the living sources; do not restate their numbers."""
+        home = (ROOT / "docs" / "website" / "index.html").read_text()
+        self.assertNotRegex(home, r'href="notes/field-note-\d+\.html"')
+        self.assertNotIn("subject areas", home)
+        for target in ('href="notes/"', 'href="catalogue/"', "experiments/accumulation.csv",
+                       "PREREGISTRATION.md", "docs/threat-model.md"):
+            self.assertIn(target, home)
+
     def test_the_latest_field_note_is_listed_and_shipped(self) -> None:
         notes = sorted((ROOT / "docs" / "website" / "notes").glob("field-note-*.html"))
         self.assertTrue(notes)
