@@ -66,28 +66,27 @@ private theorem tentMapIcc_pullbackStep (x y : 𝕀) :
     tentMapIcc (tentPullbackStep x y) = y := by
   apply Subtype.ext
   by_cases hx : (x : ℝ) ≤ 1 / 2
-  · simp only [tentPullbackStep, hx, if_pos]
+  · simp only [tentPullbackStep, hx]
     change tentMap ((y : ℝ) / 2) = (y : ℝ)
     rw [tentMap_of_le (by linarith [y.property.2])]
     ring
-  · simp only [tentPullbackStep, hx, if_neg]
+  · simp only [tentPullbackStep, hx]
     change tentMap (1 - (y : ℝ) / 2) = (y : ℝ)
-    unfold tentMap
     by_cases hhalf : 1 - (y : ℝ) / 2 ≤ 1 / 2
-    · rw [if_pos hhalf]
+    · rw [tentMap_of_le hhalf]
       nlinarith [y.property.2]
-    · rw [if_neg hhalf]
+    · rw [tentMap_of_half_lt (lt_of_not_ge hhalf)]
       ring
 
 private theorem tentPullbackStep_map (x : 𝕀) :
     tentPullbackStep x (tentMapIcc x) = x := by
   apply Subtype.ext
   by_cases hx : (x : ℝ) ≤ 1 / 2
-  · simp only [tentPullbackStep, hx, if_pos]
+  · simp only [tentPullbackStep, hx]
     change tentMap (x : ℝ) / 2 = (x : ℝ)
     rw [tentMap_of_le hx]
     ring
-  · simp only [tentPullbackStep, hx, if_neg]
+  · simp only [tentPullbackStep, hx]
     change 1 - tentMap (x : ℝ) / 2 = (x : ℝ)
     rw [tentMap_of_half_lt (lt_of_not_ge hx)]
     ring
@@ -95,7 +94,7 @@ private theorem tentPullbackStep_map (x : 𝕀) :
 private theorem dist_tentPullbackStep (x y z : 𝕀) :
     dist (tentPullbackStep x y) (tentPullbackStep x z) = dist y z / 2 := by
   by_cases hx : (x : ℝ) ≤ 1 / 2
-  · simp only [tentPullbackStep, hx, if_pos]
+  · simp only [tentPullbackStep, hx]
     change dist ((y : ℝ) / 2) ((z : ℝ) / 2) = dist (y : ℝ) (z : ℝ) / 2
     rw [Real.dist_eq, Real.dist_eq]
     have hsub :
@@ -103,7 +102,7 @@ private theorem dist_tentPullbackStep (x y z : 𝕀) :
       ring
     rw [hsub, abs_div]
     norm_num
-  · simp only [tentPullbackStep, hx, if_neg]
+  · simp only [tentPullbackStep, hx]
     change
       dist (1 - (y : ℝ) / 2) (1 - (z : ℝ) / 2) =
         dist (y : ℝ) (z : ℝ) / 2
