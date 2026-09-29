@@ -17,6 +17,7 @@ import LeanFrontier.Combinatorics.Josephus.OneIndexed
 import LeanFrontier.Dynamics.LogisticConjugacy
 import LeanFrontier.Dynamics.LogisticMap
 import LeanFrontier.Dynamics.LogisticPeriodicDensity
+import LeanFrontier.Dynamics.LogisticTransitivity
 import LeanFrontier.Geometry.EulerQuadrilateral
 import LeanFrontier.Geometry.FareyFordCircle
 import LeanFrontier.Geometry.FordCircleDescartes
@@ -96,6 +97,7 @@ import LeanFrontier.RepresentationTheory.FiniteGroupCharacter.Orthogonality
 import LeanFrontier.Topology.Furstenberg
 import LeanFrontier.Topology.Furstenberg.Separation
 import LeanFrontier.Topology.FurstenbergAlgebra
+import LeanFrontier.Topology.FurstenbergFiniteIndex
 import LeanFrontier.Topology.FurstenbergQuotients
 /-!
 # LeanFrontier

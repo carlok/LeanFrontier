@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "cyclotomic-eight-klein-four",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_galoisGroup_isKleinFour"
+  ],
+  "base_mathlib_revision": "v4.34.1",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to attack the next worthwhile LeanFrontier target without prescribing a theorem. GPT-5.6 Sol / ChatGPT inspected current upstream, open submissions, the live contribution roadmap, the accepted DiscriminantTowerWitness development, Mathlib's generic cyclotomic Galois equivalence galEquivZMod, ZMod unit-group results, and the IsKleinFour API. Direction D asks for the Galois and quadratic-subfield structure of the eighth cyclotomic field and explicitly prefers generic cyclotomic Galois machinery over generator arithmetic. The producer selected the structural center of that direction: prove that Gal(Q(zeta_8)/Q) is a Klein four group. The proof shows that (ZMod 8)^* has cardinality four and exponent two, then transports these invariants through Mathlib's galEquivZMod. The module also exposes a noncanonical group isomorphism to Multiplicative (ZMod 2 x ZMod 2) for the next subgroup-lattice/Galois-correspondence step. Searches found no existing LeanFrontier or Mathlib theorem packaging this specific Galois group as IsKleinFour. GPT-5.6 Sol / ChatGPT selected the target and authored the Lean definitions, statement, and proof; the human did not author or materially edit them. No claim of new mathematics is made."
+}
