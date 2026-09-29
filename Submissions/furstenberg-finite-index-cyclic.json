@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "furstenberg-finite-index-cyclic",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Int.finiteIndexNormalAddSubgroup_eq_zmultiples_index",
+    "LeanFrontier.Int.finiteIndexQuotientEquivZMod_mk"
+  ],
+  "base_mathlib_revision": "v4.34.1",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to choose another worthwhile LeanFrontier target. GPT-5.6 Sol / ChatGPT inspected current upstream, open submissions, the live contribution roadmap, LeanFrontier's Furstenberg topology and finite-cyclic-quotient modules, and Mathlib's additive profinite-completion and ZMod quotient APIs. The roadmap ranks the identification of the Furstenberg topology with the profinite topology A+ and explicitly calls for expressing finite-index additive subgroups of the integers in the congruence language already used by zmodReduction. The producer selected that first missing cofinality layer: prove that every FiniteIndexNormalAddSubgroup of the integers is canonically the subgroup of multiples of its index, then package the corresponding generic quotient as ZMod of that index and identify quotient classes with ordinary modular reduction. Mathlib already proves the quotient equivalence when the subgroup is presented as nZ, but searches found no theorem classifying an arbitrary object of the profinite-completion indexing category in this canonical form. GPT-5.6 Sol / ChatGPT selected the target and authored the Lean definitions, statements, and proofs; the human did not author or materially edit them. No claim of new mathematics is made."
+}
