@@ -1,0 +1,239 @@
+{
+  "accepted_revision": "11b318ee4581597bca1ff1f599378b6f0e12c3c1",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-29T18:52:45Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 238.933,
+    "observed": {
+      "added_lines": 60,
+      "audited_declarations": {
+        "LeanFrontier.Int.finiteIndexNormalAddSubgroup_eq_zmultiples_index": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.finiteIndexNormalAddSubgroup_eq_zmultiples_index",
+          "restatement": false,
+          "statement_sha256": "17edd8d2bf09be62af56c043ccbef43ce1afa8185eba249d9d5cf2a3a59c5ffa",
+          "type_dependencies": [
+            "AddSubgroup",
+            "AddSubgroup.index",
+            "AddSubgroup.zmultiples",
+            "Eq",
+            "FiniteIndexNormalAddSubgroup",
+            "FiniteIndexNormalAddSubgroup.toAddSubgroup",
+            "Int",
+            "Int.instAddGroup",
+            "Nat.cast",
+            "instNatCastInt"
+          ]
+        },
+        "LeanFrontier.Int.finiteIndexQuotientEquivZMod_mk": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.finiteIndexQuotientEquivZMod_mk",
+          "restatement": false,
+          "statement_sha256": "8819408c8f20938055b07b4069507056c3e4d2f7443576b8ae6f5ff5320ab2a4",
+          "type_dependencies": [
+            "AddCommGroup.toAddCommMonoid",
+            "AddCommMagma.toAdd",
+            "AddCommMonoid.toAddCommSemigroup",
+            "AddCommSemigroup.toAddCommMagma",
+            "AddEquiv",
+            "AddEquiv.instEquivLike",
+            "AddSubgroup",
+            "AddSubgroup.index",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "Distrib.toAdd",
+            "Eq",
+            "EquivLike.toFunLike",
+            "FiniteIndexNormalAddSubgroup",
+            "FiniteIndexNormalAddSubgroup.toAddSubgroup",
+            "HasQuotient.Quotient",
+            "Int",
+            "Int.instAddCommGroup",
+            "Int.instAddGroup",
+            "LeanFrontier.Int.finiteIndexQuotientEquivZMod",
+            "LeanFrontier.Int.zmodReduction",
+            "QuotientAddGroup.Quotient.addCommGroup",
+            "QuotientAddGroup.instHasQuotientAddSubgroup",
+            "QuotientAddGroup.mk",
+            "ZMod",
+            "ZMod.commRing",
+            "instDistribOfSemiring"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.Int.finiteIndexNormalAddSubgroup_eq_zmultiples_index": [
+            {
+              "outcome": "failed",
+              "seconds": 3.23,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.203,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.37,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.249,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.329,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.198,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Int.finiteIndexQuotientEquivZMod_mk": [
+            {
+              "outcome": "failed",
+              "seconds": 3.239,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.223,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.267,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.212,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.205,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.251,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 38.976,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Int.finiteIndexNormalAddSubgroup_eq_zmultiples_index": "inconclusive",
+        "LeanFrontier.Int.finiteIndexQuotientEquivZMod_mk": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4369,
+      "changed_files": [
+        "LeanFrontier/Topology/FurstenbergFiniteIndex.lean",
+        "Submissions/furstenberg-finite-index-cyclic.json"
+      ],
+      "corpus_entrypoints_checked": 281,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Int.finiteIndexNormalAddSubgroup_eq_zmultiples_index": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.finiteIndexNormalAddSubgroup_eq_zmultiples_index",
+          "statement_sha256": "17edd8d2bf09be62af56c043ccbef43ce1afa8185eba249d9d5cf2a3a59c5ffa",
+          "type_dependencies": [
+            "AddSubgroup",
+            "AddSubgroup.index",
+            "AddSubgroup.zmultiples",
+            "Eq",
+            "FiniteIndexNormalAddSubgroup",
+            "FiniteIndexNormalAddSubgroup.toAddSubgroup",
+            "Int",
+            "Int.instAddGroup",
+            "Nat.cast",
+            "instNatCastInt"
+          ]
+        },
+        "LeanFrontier.Int.finiteIndexQuotientEquivZMod_mk": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.finiteIndexQuotientEquivZMod_mk",
+          "statement_sha256": "8819408c8f20938055b07b4069507056c3e4d2f7443576b8ae6f5ff5320ab2a4",
+          "type_dependencies": [
+            "AddCommGroup.toAddCommMonoid",
+            "AddCommMagma.toAdd",
+            "AddCommMonoid.toAddCommSemigroup",
+            "AddCommSemigroup.toAddCommMagma",
+            "AddEquiv",
+            "AddEquiv.instEquivLike",
+            "AddSubgroup",
+            "AddSubgroup.index",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "Distrib.toAdd",
+            "Eq",
+            "EquivLike.toFunLike",
+            "FiniteIndexNormalAddSubgroup",
+            "FiniteIndexNormalAddSubgroup.toAddSubgroup",
+            "HasQuotient.Quotient",
+            "Int",
+            "Int.instAddCommGroup",
+            "Int.instAddGroup",
+            "LeanFrontier.Int.finiteIndexQuotientEquivZMod",
+            "LeanFrontier.Int.zmodReduction",
+            "QuotientAddGroup.Quotient.addCommGroup",
+            "QuotientAddGroup.instHasQuotientAddSubgroup",
+            "QuotientAddGroup.mk",
+            "ZMod",
+            "ZMod.commRing",
+            "instDistribOfSemiring"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2574,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 3
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "furstenberg-finite-index-cyclic",
+  "trusted_receiver_revision": "aa3e7d6f42321b76b598c107aaeab22645b7eb3e",
+  "validated_candidate_revision": "6590005f2024548810eb5d30811a25876bc068d5",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36538800587"
+}

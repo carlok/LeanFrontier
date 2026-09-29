@@ -17,6 +17,7 @@ import LeanFrontier.Combinatorics.Josephus.OneIndexed
 import LeanFrontier.Dynamics.LogisticConjugacy
 import LeanFrontier.Dynamics.LogisticMap
 import LeanFrontier.Dynamics.LogisticPeriodicDensity
+import LeanFrontier.Dynamics.LogisticTransitivity
 import LeanFrontier.Geometry.EulerQuadrilateral
 import LeanFrontier.Geometry.FareyFordCircle
 import LeanFrontier.Geometry.FordCircleDescartes
@@ -33,6 +34,8 @@ import LeanFrontier.LinearAlgebra.HoradamCompanionMatrixSpecializations
 import LeanFrontier.NumberTheory.A053067.ResidueOne
 import LeanFrontier.NumberTheory.CalkinWilf
 import LeanFrontier.NumberTheory.CalkinWilfSternBrocot
+import LeanFrontier.NumberTheory.CyclotomicEightGalois
+import LeanFrontier.NumberTheory.CyclotomicEightGaussian
 import LeanFrontier.NumberTheory.DescartesCircle
 import LeanFrontier.NumberTheory.DiscriminantTower
 import LeanFrontier.NumberTheory.DiscriminantTowerWitness
@@ -96,6 +99,7 @@ import LeanFrontier.RepresentationTheory.FiniteGroupCharacter.Orthogonality
 import LeanFrontier.Topology.Furstenberg
 import LeanFrontier.Topology.Furstenberg.Separation
 import LeanFrontier.Topology.FurstenbergAlgebra
+import LeanFrontier.Topology.FurstenbergFiniteIndex
 import LeanFrontier.Topology.FurstenbergQuotients
 /-!
 # LeanFrontier

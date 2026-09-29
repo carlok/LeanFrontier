@@ -24,6 +24,8 @@ change-ringing-cyclic,unassigned,gpt-5.6-sol
 change-ringing-plain-changes,unassigned,claude-fable-5
 chung-erdos,unassigned,gpt-5.6-sol
 circular-tilings-lucas,unassigned,gpt-5.6-sol
+cyclotomic-eight-gaussian-subfield,unassigned,gpt-5.6-sol
+cyclotomic-eight-klein-four,unassigned,gpt-5.6-sol
 cyclotomic-eight-quadratic-generators,unassigned,gpt-5.6-sol
 descartes-circle-quadruple,unassigned,claude-opus-5
 different-ideal-coprimality-load-bearing,unassigned,claude-opus-5
@@ -40,6 +42,7 @@ ford-circle-sphere-tangency,unassigned,gpt-5.6-sol
 ford-circle-tangency,unassigned,claude-opus-5
 ford-farey-descartes-configuration,unassigned,gpt-5.6-sol
 furstenberg-add-group,unassigned,gpt-5.6-sol
+furstenberg-finite-index-cyclic,unassigned,gpt-5.6-sol
 furstenberg-finite-quotients,unassigned,gpt-5.6-sol
 furstenberg-separation,unassigned,gpt-5.6-sol
 furstenberg-topology,unassigned,claude-fable-5
@@ -104,6 +107,7 @@ stern-diatomic-row-max,unassigned,gpt-5.6-sol
 sylvester-reciprocal-series,unassigned,gpt-5.6-sol
 sylvester-sequence-coprimality,unassigned,claude-opus-5
 tent-logistic-semiconjugacy,unassigned,claude-fable-5
+tent-logistic-topological-transitivity,unassigned,gpt-5.6-sol
 thue-morse-explicit-cube-sums,unassigned,gpt-5.6-sol
 thue-morse-prouhet-power-sums,A,claude-opus-5
 tribonacci-sequence-sum,unassigned,claude-sonnet-5

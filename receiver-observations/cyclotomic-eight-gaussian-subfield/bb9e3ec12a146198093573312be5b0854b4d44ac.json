@@ -1,0 +1,288 @@
+{
+  "accepted_revision": "bb9e3ec12a146198093573312be5b0854b4d44ac",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-29T19:30:11Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 392.054,
+    "observed": {
+      "added_lines": 83,
+      "audited_declarations": {
+        "LeanFrontier.NumberTheory.DiscriminantTower.gaussianField_degree": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.gaussianField_degree",
+          "restatement": false,
+          "statement_sha256": "5fac0e12302b8aa6282f16766abac290a83031449697fa29b476a6330e22fa63",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.NumberTheory.DiscriminantTower.gaussianFieldDegree",
+            "Nat",
+            "OfNat.ofNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegOneGen_minpoly": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegOneGen_minpoly",
+          "restatement": false,
+          "statement_sha256": "d7bc04b3c06d5f25949e3f9953886e5f7067ad3781799b61ef0392c3710e8736",
+          "type_dependencies": [
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "CyclotomicField.instCharZero",
+            "CyclotomicField.instField",
+            "DFunLike.coe",
+            "DivisionRing.toRatAlgebra",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field.toDivisionRing",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegOneGen",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "Polynomial",
+            "Polynomial.C",
+            "Polynomial.X",
+            "Polynomial.instAdd",
+            "Polynomial.semiring",
+            "Rat",
+            "Rat.commRing",
+            "Rat.instCharZero",
+            "Rat.instField",
+            "Rat.instOfNat",
+            "RingHom",
+            "RingHom.instFunLike",
+            "Semiring.toMonoid",
+            "Semiring.toNonAssocSemiring",
+            "instHAdd",
+            "instHPow",
+            "instOfNatNat",
+            "minpoly"
+          ]
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegOneGen_sq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegOneGen_sq",
+          "restatement": false,
+          "statement_sha256": "4bf903169211fd23ea915ada6584f400c52086a032936edf69c665eabc061cad",
+          "type_dependencies": [
+            "AddCommGroup.toDivisionAddCommMonoid",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toOne",
+            "CommSemiring.toSemiring",
+            "CyclotomicField.instField",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field.toDivisionRing",
+            "Field.toSemifield",
+            "HPow.hPow",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegOneGen",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Neg.neg",
+            "NegZeroClass.toNeg",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Rat",
+            "Rat.instField",
+            "Ring.toAddCommGroup",
+            "Ring.toAddGroupWithOne",
+            "Semifield.toCommSemiring",
+            "Semiring.toMonoid",
+            "SubNegZeroMonoid.toNegZeroClass",
+            "SubtractionCommMonoid.toSubtractionMonoid",
+            "SubtractionMonoid.toSubNegZeroMonoid",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.NumberTheory.DiscriminantTower.gaussianField_degree": [
+            {
+              "outcome": "failed",
+              "seconds": 5.064,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.089,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.152,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.188,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.149,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.117,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegOneGen_minpoly": [
+            {
+              "outcome": "failed",
+              "seconds": 5.164,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.121,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.115,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.19,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.118,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.162,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 61.629,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.NumberTheory.DiscriminantTower.gaussianField_degree": "inconclusive",
+        "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegOneGen_minpoly": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 5151,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/CyclotomicEightGaussian.lean",
+        "Submissions/cyclotomic-eight-gaussian-subfield.json"
+      ],
+      "corpus_entrypoints_checked": 286,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.NumberTheory.DiscriminantTower.gaussianField_degree": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.gaussianField_degree",
+          "statement_sha256": "5fac0e12302b8aa6282f16766abac290a83031449697fa29b476a6330e22fa63",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.NumberTheory.DiscriminantTower.gaussianFieldDegree",
+            "Nat",
+            "OfNat.ofNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegOneGen_minpoly": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegOneGen_minpoly",
+          "statement_sha256": "d7bc04b3c06d5f25949e3f9953886e5f7067ad3781799b61ef0392c3710e8736",
+          "type_dependencies": [
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "CyclotomicField.instCharZero",
+            "CyclotomicField.instField",
+            "DFunLike.coe",
+            "DivisionRing.toRatAlgebra",
+            "DivisionRing.toRing",
+            "Eq",
+            "Field.toDivisionRing",
+            "HAdd.hAdd",
+            "HPow.hPow",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEight",
+            "LeanFrontier.NumberTheory.DiscriminantTower.sqrtNegOneGen",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "Polynomial",
+            "Polynomial.C",
+            "Polynomial.X",
+            "Polynomial.instAdd",
+            "Polynomial.semiring",
+            "Rat",
+            "Rat.commRing",
+            "Rat.instCharZero",
+            "Rat.instField",
+            "Rat.instOfNat",
+            "RingHom",
+            "RingHom.instFunLike",
+            "Semiring.toMonoid",
+            "Semiring.toNonAssocSemiring",
+            "instHAdd",
+            "instHPow",
+            "instOfNatNat",
+            "minpoly"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2956,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 10
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "cyclotomic-eight-gaussian-subfield",
+  "trusted_receiver_revision": "5c5a81bc69dcadff3b41ec3f8ecd36cc8d9189cd",
+  "validated_candidate_revision": "2a5e74878d7cd20ed7f6a11d844d5ca0042f4b3b",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36618571351"
+}
