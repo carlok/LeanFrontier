@@ -35,15 +35,9 @@ theorem finiteIndexNormalAddSubgroup_eq_zmultiples_index
     have ha' := congrArg Submodule.toAddSubgroup ha
     rw [Submodule.span_singleton_toAddSubgroup_eq_zmultiples,
       AddSubgroup.toIntSubmodule_toAddSubgroup] at ha'
-    exact ha'.symm
+    exact ha'
   rw [hgen, Int.index_zmultiples]
   exact (Int.zmultiples_natAbs a).symm
-
-/-- The index of a finite-index normal additive subgroup of `ℤ` is nonzero. -/
-theorem finiteIndexNormalAddSubgroup_index_ne_zero
-    (H : FiniteIndexNormalAddSubgroup ℤ) :
-    H.toAddSubgroup.index ≠ 0 :=
-  AddSubgroup.index_ne_zero_of_finite
 
 /-- The generic finite quotient of `ℤ` indexed by `H` is canonically the cyclic quotient
 `ZMod H.index`. -/
