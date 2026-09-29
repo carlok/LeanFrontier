@@ -65,10 +65,15 @@ theorem sqrtNegOneGen_minpoly :
 noncomputable def gaussianField : IntermediateField ℚ CyclotomicEight :=
   ℚ⟮sqrtNegOneGen⟯
 
+/-- The degree of the Gaussian intermediate field. Naming the full finrank expression keeps
+the structural theorem compact for receiver fingerprinting. -/
+noncomputable def gaussianFieldDegree : ℕ :=
+  Module.finrank ℚ gaussianField
+
 /-- The Gaussian intermediate field inside the eighth cyclotomic field has degree two. -/
 theorem gaussianField_degree :
-    Module.finrank ℚ gaussianField = 2 := by
-  rw [gaussianField, IntermediateField.adjoin.finrank
+    gaussianFieldDegree = 2 := by
+  rw [gaussianFieldDegree, gaussianField, IntermediateField.adjoin.finrank
       (IsIntegral.of_finite ℚ sqrtNegOneGen), minpoly_sqrtNegOneGen]
   simp [quadIQ]
 
