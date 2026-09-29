@@ -73,13 +73,30 @@ theorem descartesForm_curvatureReflection (i : Fin 4) (v : CurvatureVector R) :
     simp [descartesForm, curvatureReflection, Fin.sum_univ_four] <;>
     ring
 
+/-- The square of a coordinate curvature reflection, named so its structural
+involution theorem has a compact elaborated statement. -/
+def curvatureReflectionSquare (i : Fin 4) :
+    CurvatureVector R →ₗ[R] CurvatureVector R :=
+  (curvatureReflection i).comp (curvatureReflection i)
+
+/-- The identity linear map on bundled curvature vectors. -/
+def curvatureIdentity : CurvatureVector R →ₗ[R] CurvatureVector R :=
+  LinearMap.id
+
 /-- Every coordinate Vieta reflection is an involution. -/
-theorem curvatureReflection_involutive (i : Fin 4) (v : CurvatureVector R) :
-    curvatureReflection i (curvatureReflection i v) = v := by
-  ext j
+theorem curvatureReflectionSquare_eq_identity (i : Fin 4) :
+    curvatureReflectionSquare i = (curvatureIdentity : CurvatureVector R →ₗ[R] CurvatureVector R) := by
+  ext v j
   fin_cases i <;> fin_cases j <;>
-    simp [curvatureReflection, Fin.sum_univ_four] <;>
+    simp [curvatureReflectionSquare, curvatureIdentity, curvatureReflection,
+      Fin.sum_univ_four] <;>
     ring
+
+private theorem curvatureReflection_involutive (i : Fin 4) (v : CurvatureVector R) :
+    curvatureReflection i (curvatureReflection i v) = v := by
+  have h := congrArg (fun L : CurvatureVector R →ₗ[R] CurvatureVector R => L v)
+    (curvatureReflectionSquare_eq_identity (R := R) i)
+  simpa [curvatureReflectionSquare, curvatureIdentity] using h
 
 /-- The bundled Descartes equation is exactly the accepted scalar `IsQuadruple` relation. -/
 theorem isQuadruple_iff_descartesForm_eq_zero (v : CurvatureVector R) :
