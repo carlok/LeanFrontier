@@ -40,7 +40,7 @@ theorem initialRun_decomposition (dir : Bool) (path : List Bool) :
       by_cases h : b = dir
       · subst b
         rw [initialRunLength, dropInitialRun]
-        simp only [if_pos rfl]
+        simp only [if_true]
         rw [List.replicate_succ, List.cons_append, ← ih]
       · simp [initialRunLength, dropInitialRun, h]
 
@@ -54,14 +54,14 @@ private theorem dropInitialRun_eq_nil_or_cons_not (dir : Bool) (path : List Bool
       by_cases h : b = dir
       · subst b
         rw [dropInitialRun]
-        simp only [if_pos rfl]
+        simp only [if_true]
         exact ih
       · right
         have hb : b = Bool.not dir := by
           cases dir <;> cases b <;> simp_all
         refine ⟨path, ?_⟩
         rw [dropInitialRun]
-        simp only [if_neg h]
+        simp only [h, if_false]
         rw [hb]
 
 /-- The canonical initial run packages one complete Euclidean quotient step.
