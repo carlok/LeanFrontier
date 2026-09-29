@@ -166,7 +166,6 @@ def rows(root: Path) -> list[tuple[str, ...]]:
     first_seen: dict[str, date] = {}
     stated = statement_constants(root)
     stated_before: set[str] = set()
-    previous: set[str] = set()
     last_commit = ""
     fresh: set[str] = set()
     result: list[tuple[str, ...]] = []
@@ -184,12 +183,15 @@ def rows(root: Path) -> list[tuple[str, ...]]:
             incoming[target] = incoming.get(target, 0) + 1
             connected.add(source)
         # Did this submission's own new modules import anything accepted recently?
-        # Its modules are the ones its merge added. Until 29 September this was
-        # every module first seen that *day*, so one connected submission marked
-        # every other same-day row true (PREREGISTRATION.md, Deviation of that date).
+        # Its modules are the ones its merge added, against the merge's own first
+        # parent (maintenance commits can land between two submissions). Until
+        # 29 September this was every module first seen that *day*, so one
+        # connected submission marked every other same-day row true
+        # (PREREGISTRATION.md, Deviation of that date).
         if commit != last_commit:
-            fresh = set(sources) - previous
-            previous, last_commit = set(sources), commit
+            parent = run(["rev-list", "--parents", "-n", "1", commit], root).split()[1:]
+            fresh = set(sources) - (set(modules_at(parent[0], root)) if parent else set())
+            last_commit = commit
         recent = any(
             (accepted - first_seen[target]).days <= RECENT_DAYS
             for source, target in edges
