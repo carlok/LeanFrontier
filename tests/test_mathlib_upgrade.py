@@ -140,6 +140,29 @@ class MathlibUpgradePathTests(unittest.TestCase):
         self.assertIn("signal 9", audit_mathlib_upgrade.silent_failure("leanchecker", "LeanFrontier.X", 137))
         self.assertIn("exited 1", audit_mathlib_upgrade.silent_failure("leanchecker", "LeanFrontier.X", 1))
 
+    def test_no_module_family_outgrows_the_kernel_recheck(self) -> None:
+        """Tripwire for #429.
+
+        `leanchecker <Module>` checks every module whose name starts with
+        <Module>, in parallel, so a module that is also a folder is re-checked
+        with all its submodules, and memory grows with them: 13.5 GB for
+        NumberTheory.MarkovTree and its 19 submodules, about 0.6 GB each. The
+        upgrade audit's container has 12 GB. This fails before an upgrade does:
+        when it fires, apply option 2 of #429 (check each module exactly once)
+        or give the audit more memory, then raise the limit here.
+        """
+        limit = 30
+        modules = audit_mathlib_upgrade.corpus_modules(ROOT)
+        families = {
+            module: sum(1 for other in modules if other.startswith(module + "."))
+            for module in modules
+        }
+        largest, size = max(families.items(), key=lambda item: item[1])
+        self.assertLessEqual(
+            size, limit,
+            f"{largest} has {size} submodules; leanchecker re-checks them all with it (see #429)",
+        )
+
     def test_the_audit_container_has_room_for_the_kernel_recheck(self) -> None:
         """MarkovTree's recheck peaks near 8 GB; the container allowed 6 GB."""
         for name in ("mathlib-upgrade.yml", "test.yml"):
