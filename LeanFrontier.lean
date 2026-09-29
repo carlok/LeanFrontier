@@ -17,6 +17,7 @@ import LeanFrontier.Combinatorics.Josephus.OneIndexed
 import LeanFrontier.Dynamics.LogisticConjugacy
 import LeanFrontier.Dynamics.LogisticMap
 import LeanFrontier.Dynamics.LogisticPeriodicDensity
+import LeanFrontier.Dynamics.LogisticTransitivity
 import LeanFrontier.Geometry.EulerQuadrilateral
 import LeanFrontier.Geometry.FareyFordCircle
 import LeanFrontier.Geometry.FordCircleDescartes
