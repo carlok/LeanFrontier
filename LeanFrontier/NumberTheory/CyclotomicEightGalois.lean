@@ -30,6 +30,8 @@ open NumberField
 
 noncomputable section
 
+local instance : NeZero (8 : ℕ) := ⟨by decide⟩
+
 local instance cyclotomicEight_isCyclotomic_galois :
     IsCyclotomicExtension {8} ℚ CyclotomicEight :=
   CyclotomicField.isCyclotomicExtension 8 ℚ
