@@ -630,6 +630,22 @@ def statement_too_large(entrypoint: str, size: object, limit: int) -> str:
     )
 
 
+def silent_failure(tool: str, module: str, returncode: int) -> str:
+    """Name a failure that printed nothing, which is usually a kill.
+
+    The v4.34.1 upgrade audit reported only "leanchecker rejected
+    LeanFrontier.NumberTheory.MarkovTree". Locally the kernel accepts that
+    module, peaking at 8 GB, and the audit's container then allowed 6 GB. The
+    receiver's own recheck had the same blind message.
+    """
+    signal = -returncode if returncode < 0 else returncode - 128 if returncode > 128 else None
+    if signal == 9:
+        return f"{tool} was killed (signal 9) on {module}, most likely for exceeding the container's memory"
+    if signal is not None:
+        return f"{tool} was killed by signal {signal} on {module}"
+    return f"{tool} exited {returncode} on {module} without output"
+
+
 def failure_output(result: subprocess.CompletedProcess[str], limit: int = 2000) -> str:
     """Return the tail of a failed Lean command's output, stdout first.
 
@@ -1000,7 +1016,7 @@ def kernel_recheck(candidate: Path, modules: list[str], limits: dict[str, Any], 
             report.reject("KERNEL_RECHECK_FAILED", f"leanchecker did not complete for {module}: {error}")
             return
         if result.returncode:
-            report.reject("KERNEL_RECHECK_FAILED", failure_output(result) or f"leanchecker rejected {module}")
+            report.reject("KERNEL_RECHECK_FAILED", failure_output(result) or silent_failure("leanchecker", module, result.returncode))
             return
     report.observations["kernel_recheck"] = "pass"
 

@@ -307,6 +307,13 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
         source = (ROOT / "tools" / "frontier_validate.py").read_text()
         self.assertIn('triviality["family_threshold"]', source)
 
+    def test_a_silent_kernel_recheck_kill_is_named_by_the_receiver(self) -> None:
+        """The receiver ran leanchecker with the same blind fallback as the upgrade audit."""
+        self.assertIn("memory", frontier_validate.silent_failure("leanchecker", "LeanFrontier.X", -9))
+        source = (ROOT / "tools" / "frontier_validate.py").read_text()
+        self.assertIn('silent_failure("leanchecker", module, result.returncode)', source)
+        self.assertNotIn('f"leanchecker rejected {module}"', source)
+
     def test_the_statement_size_diagnostic_says_it_measures_the_statement(self) -> None:
         """#417 shrank its proof five times against a limit on the statement."""
         message = frontier_validate.statement_too_large("LeanFrontier.X.big", 70000, 65536)

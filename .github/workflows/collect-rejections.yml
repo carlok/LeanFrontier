@@ -1,0 +1,62 @@
+name: collect-rejections
+
+# Weekly aggregates of the receiver's verdicts (tools/collect_rejections.py):
+# per ISO week and diagnostic code, how many validation runs carried it. The
+# reports behind them are workflow artifacts that expire, so each completed
+# week is recorded once, here, and the generated-output gate keeps the file
+# append-only.
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+concurrency:
+  group: trusted-generated-main
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Mint a generator token
+        # PRs opened with GITHUB_TOKEN do not trigger workflow runs, so their
+        # required checks never run and auto-merge never fires.
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+      - uses: actions/checkout@v5
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          persist-credentials: true
+      - name: Append completed weeks
+        env:
+          # Reading run artifacts needs actions: read, which this token has.
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/collect_rejections.py --root .
+      - name: Open a protected generated-output pull request
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          git diff --quiet -- experiments/rejections.csv && test -z "$(git status --porcelain -- experiments/rejections.csv)" && exit 0
+          branch="automation/generated/rejections-${{ github.run_id }}"
+          git switch -c "$branch"
+          slug="${{ steps.app-token.outputs.app-slug }}"
+          git config user.name "$slug[bot]"
+          git config user.email "$(gh api "/users/$slug%5Bbot%5D" --jq .id)+$slug[bot]@users.noreply.github.com"
+          git add experiments/rejections.csv
+          git commit -m "chore: record weekly rejection aggregates"
+          git push origin "HEAD:$branch"
+          pr="$(gh pr create --base main --head "$branch" --title "chore: record weekly rejection aggregates" --body "Trusted generated output from run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.")"
+          gh workflow run test.yml --repo "$GITHUB_REPOSITORY" --ref "$branch"
+          gh workflow run validate-submission.yml --repo "$GITHUB_REPOSITORY" --ref "$branch" \
+            -f trusted_ref="${{ github.sha }}" -f candidate_ref="$branch" -f generated=true
+          gh pr merge "$pr" --auto --merge

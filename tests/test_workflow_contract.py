@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = (ROOT / ".github" / "workflows" / "validate-submission.yml").read_text()
 SYNC_WORKFLOW = (ROOT / ".github" / "workflows" / "sync-umbrella.yml").read_text()
 CATALOGUE_WORKFLOW = (ROOT / ".github" / "workflows" / "sync-catalogue.yml").read_text()
+REJECTIONS_WORKFLOW = (ROOT / ".github" / "workflows" / "collect-rejections.yml").read_text()
 OBSERVATION_WORKFLOW = (ROOT / ".github" / "workflows" / "record-observation.yml").read_text()
 PAGES_WORKFLOW = (ROOT / ".github" / "workflows" / "deploy-pages.yml").read_text()
 UPGRADE_WORKFLOW = (ROOT / ".github" / "workflows" / "mathlib-upgrade.yml").read_text()
@@ -64,7 +65,7 @@ class WorkflowContractTests(unittest.TestCase):
             "--read-only",
             "--cap-drop ALL",
             "no-new-privileges",
-            "--memory 2g",
+            "--memory 4g",
             "lake exe cache get",
             "preflight-report.json",
             "report-output/report.json",
@@ -195,6 +196,20 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("fetch-depth: 2", CATALOGUE_WORKFLOW)
         # The observation writer must still regenerate it, or nothing would.
         self.assertIn("generate_catalogue.py", OBSERVATION_WORKFLOW)
+
+    def test_rejection_aggregates_are_trusted_and_aggregate_only(self) -> None:
+        """Weekly counts from run artifacts: trusted code on main, no candidate
+        code, and nothing that identifies a submitter."""
+        self.assertIn("schedule:", REJECTIONS_WORKFLOW)
+        self.assertNotIn("pull_request", REJECTIONS_WORKFLOW.split("jobs:")[0])
+        self.assertIn("actions: read", REJECTIONS_WORKFLOW)
+        self.assertIn("python3 tools/collect_rejections.py --root .", REJECTIONS_WORKFLOW)
+        self.assertIn("git add experiments/rejections.csv", REJECTIONS_WORKFLOW)
+        collector = (ROOT / "tools" / "collect_rejections.py").read_text()
+        header = collector.split('HEADER = """', 1)[1].split('"""', 1)[0]
+        self.assertTrue(header.rstrip().endswith("week,code,runs"))
+        for identifying in ("login", "author", "head_branch", "pull_requests"):
+            self.assertNotIn(identifying, collector)
 
     def test_the_catalogue_writers_install_graphviz_before_drawing(self) -> None:
         """Both writers draw the import graph; without dot the step fails loudly."""
@@ -495,7 +510,7 @@ class WorkflowContractTests(unittest.TestCase):
         sys.path.insert(0, str(ROOT / "tools"))
         from validate_generated import allowed
         committed = set()
-        for workflow in (OBSERVATION_WORKFLOW, CATALOGUE_WORKFLOW, SYNC_WORKFLOW):
+        for workflow in (OBSERVATION_WORKFLOW, CATALOGUE_WORKFLOW, SYNC_WORKFLOW, REJECTIONS_WORKFLOW):
             for line in workflow.splitlines():
                 stripped = line.strip()
                 if stripped.startswith("git add "):
@@ -543,7 +558,7 @@ class WorkflowContractTests(unittest.TestCase):
                 self.assertIn(claim, threat)
                 self.assertIn(claim, validator)
         # The sandbox flags it advertises are the ones the workflow passes.
-        for flag in ("--network none", "--read-only", "--cap-drop ALL", "--memory 2g", "--pids-limit 512"):
+        for flag in ("--network none", "--read-only", "--cap-drop ALL", "--memory 4g", "--pids-limit 512"):
             with self.subTest(flag=flag):
                 self.assertIn(flag, threat)
                 self.assertIn(flag, WORKFLOW)
