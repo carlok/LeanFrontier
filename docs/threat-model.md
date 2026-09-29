@@ -167,10 +167,10 @@ Stated plainly, because an unstated residual risk is the dangerous kind.
 
 ## If you are adopting this
 
-Copy `tools/frontier_validate.py`, `policy/*.json`,
-`schema/submission.schema.json` and the three workflows, then change: the
-repository and app identities, the allowlist, the pinned release, and the
-limits. Read `CONTRACT.md` for the rules those files enforce.
+[`adopting-the-receiver.md`](adopting-the-receiver.md) lists the files, in
+layers from the receiver alone to the conveniences, what to change in each, and
+what running it in the open taught us. Read `CONTRACT.md` for the rules those
+files enforce.
 
 The part worth taking is not the code. It is the position that admission can be
 mechanical if, and only if, the mechanical checks cover what actually goes
