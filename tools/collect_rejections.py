@@ -29,9 +29,10 @@ import io
 import json
 import os
 import subprocess
+import time
 import zipfile
 from collections import Counter
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -48,8 +49,19 @@ week,code,runs
 """
 
 
+def gh_bytes(*args: str) -> bytes:
+    """Run gh, retrying transient failures: a backfill makes a thousand calls."""
+    for attempt in range(4):
+        result = subprocess.run(["gh", *args], capture_output=True)
+        if result.returncode == 0:
+            return result.stdout
+        if attempt < 3:
+            time.sleep(2 ** attempt * 5)
+    raise RuntimeError(f"gh {' '.join(args)} failed: {result.stderr.decode(errors='replace').strip()}")
+
+
 def gh(*args: str) -> str:
-    return subprocess.run(["gh", *args], capture_output=True, text=True, check=True).stdout
+    return gh_bytes(*args).decode("utf-8")
 
 
 def monday(day: date) -> date:
@@ -60,11 +72,19 @@ def recorded_weeks(text: str) -> set[str]:
     return {line.split(",", 1)[0] for line in text[len(HEADER):].splitlines() if line}
 
 
-def runs(repository: str, since: date) -> list[dict]:
+def run_ids(repository: str, week: date) -> list[int]:
+    """Every completed run created in one closed week, each once.
+
+    One week at a time, because the listing is newest first and paged: while
+    new runs are created, pages shift and a single long listing counts some
+    runs twice. The first backfill on main did (week of 17 August: 44 accepted
+    instead of 37). A closed week gains no new runs, so its pages hold still.
+    """
+    window = f"{week.isoformat()}..{(week + timedelta(days=6)).isoformat()}"
     listing = gh("api", "--paginate",
-                 f"repos/{repository}/actions/workflows/{WORKFLOW}/runs?status=completed&per_page=100&created=>={since.isoformat()}",
-                 "--jq", ".workflow_runs[] | {id, created_at, conclusion}")
-    return [json.loads(line) for line in listing.splitlines() if line.strip()]
+                 f"repos/{repository}/actions/workflows/{WORKFLOW}/runs?status=completed&per_page=100&created={window}",
+                 "--jq", ".workflow_runs[].id")
+    return sorted({int(line) for line in listing.split()})
 
 
 def codes_of(repository: str, run_id: int) -> set[str] | None:
@@ -80,8 +100,7 @@ def codes_of(repository: str, run_id: int) -> set[str] | None:
     wanted = [a for a in reports if not a.get("expired")]
     if not wanted:
         return {"REPORT_EXPIRED"}
-    archive = subprocess.run(["gh", "api", f"repos/{repository}/actions/artifacts/{wanted[0]['id']}/zip"],
-                             capture_output=True, check=True).stdout
+    archive = gh_bytes("api", f"repos/{repository}/actions/artifacts/{wanted[0]['id']}/zip")
     with zipfile.ZipFile(io.BytesIO(archive)) as bundle:
         names = bundle.namelist()
         # The formal report supersedes the preflight report when both exist.
@@ -98,17 +117,18 @@ def codes_of(repository: str, run_id: int) -> set[str] | None:
 
 def new_rows(repository: str, existing: str, today: date, since: date) -> list[str]:
     done = recorded_weeks(existing)
-    this_week = monday(today)
-    counts: dict[str, Counter] = {}
-    for run in runs(repository, since):
-        week = monday(datetime.fromisoformat(run["created_at"].replace("Z", "+00:00")).date())
-        if week >= this_week or week.isoformat() in done:
-            continue
-        codes = codes_of(repository, run["id"])
-        if codes is None:
-            continue
-        counts.setdefault(week.isoformat(), Counter()).update(codes)
-    return [f"{week},{code},{counts[week][code]}\n" for week in sorted(counts) for code in sorted(counts[week])]
+    rows: list[str] = []
+    week = monday(since)
+    while week < monday(today):
+        if week.isoformat() not in done:
+            counts: Counter = Counter()
+            for run_id in run_ids(repository, week):
+                codes = codes_of(repository, run_id)
+                if codes is not None:
+                    counts.update(codes)
+            rows.extend(f"{week.isoformat()},{code},{counts[code]}\n" for code in sorted(counts))
+        week += timedelta(days=7)
+    return rows
 
 
 def main() -> int:
