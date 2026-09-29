@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "stern-brocot-euclidean-runs",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.SternBrocot.initial_run_euclidean_quotient",
+    "LeanFrontier.SternBrocot.terminal_run_euclidean_quotient"
+  ],
+  "base_mathlib_revision": "v4.34.0",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to formalize something useful for LeanFrontier without requiring continuation of the current Varignon work. GPT-5.6 Sol / ChatGPT inspected current upstream main, the submission contract, and the 27 September contribution directions. It selected the highest-priority Stern-Brocot / Euclidean-algorithm / continued-fraction bridge, but deliberately bounded the first submission to the first genuine arithmetic interface: initial runs of identical Stern-Brocot moves encode Euclidean quotients. Searches of current LeanFrontier and pinned Mathlib v4.34.0 found no Stern-Brocot quotient/run theorem or equivalent bridge. The submission proves uniformly for both directions that a nonterminal run of k identical moves has Euclidean quotient k, and that a terminal run has quotient k+1, capturing the endpoint convention relevant to finite continued fractions. The proof substantively reuses LeanFrontier.SternBrocot.pair and pair_positive_coprime. These theorems are intended as the first reusable step toward identifying complete Stern-Brocot run-length encodings with Euclidean quotient sequences and finite regular continued fractions. GPT-5.6 Sol / ChatGPT selected the target and authored the Lean statements and proofs; the human did not author or materially edit them. No claim of new mathematics is made."
+}

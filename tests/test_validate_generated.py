@@ -41,7 +41,7 @@ class AccumulationSeriesGateTests(unittest.TestCase):
     """The gate cannot regenerate the series (shallow checkout), so it checks
     the one property that makes it trustworthy: rows are only ever appended."""
 
-    ROW = "2026-09-25,{id},64,44,0.688,0.500,3,6,true,true\n"
+    ROW = "2026-09-25,{id},64,44,0.688,0.500,3,6,true,true,false\n"
 
     def setUp(self) -> None:
         import sys
@@ -91,6 +91,50 @@ class AccumulationSeriesGateTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "malformed"):
             self.validate(self.base, self.candidate)
 
+
+class RejectionAggregateGateTests(unittest.TestCase):
+    """Weeks are appended once and never rewritten; the reports behind them expire."""
+
+    def setUp(self) -> None:
+        import sys
+        sys.path.insert(0, str(ROOT / "tools"))
+        from collect_rejections import HEADER
+        from validate_generated import validate_rejections
+        self.validate = validate_rejections
+        self.temporary = tempfile.TemporaryDirectory()
+        self.base = Path(self.temporary.name) / "base"
+        self.candidate = Path(self.temporary.name) / "candidate"
+        for root in (self.base, self.candidate):
+            (root / "experiments").mkdir(parents=True)
+        self.published = HEADER + "2026-09-21,ACCEPTED,12\n2026-09-21,RESOURCE_LIMIT_EXCEEDED,1\n"
+        (self.base / "experiments" / "rejections.csv").write_text(self.published)
+
+    def tearDown(self) -> None:
+        self.temporary.cleanup()
+
+    def write(self, text: str) -> None:
+        (self.candidate / "experiments" / "rejections.csv").write_text(text)
+
+    def test_accepts_a_new_week(self) -> None:
+        self.write(self.published + "2026-09-28,ACCEPTED,20\n2026-09-28,RESOURCE_LIMIT_EXCEEDED,6\n")
+        self.validate(self.base, self.candidate)
+
+    def test_rejects_a_rewritten_week(self) -> None:
+        self.write(self.published.replace(",12", ",13"))
+        with self.assertRaisesRegex(ValueError, "only gain rows"):
+            self.validate(self.base, self.candidate)
+
+    def test_rejects_a_week_already_recorded_or_not_a_monday(self) -> None:
+        for row in ("2026-09-21,SORRY,1\n", "2026-09-29,SORRY,1\n"):
+            self.write(self.published + row)
+            with self.assertRaisesRegex(ValueError, "not a new Monday"):
+                self.validate(self.base, self.candidate)
+
+    def test_rejects_malformed_rows(self) -> None:
+        for row in ("2026-09-28,sorry,1\n", "2026-09-28,SORRY,0\n", "2026-09-28,SORRY\n"):
+            self.write(self.published + row)
+            with self.assertRaises(ValueError):
+                self.validate(self.base, self.candidate)
 
 if __name__ == "__main__":
     unittest.main()

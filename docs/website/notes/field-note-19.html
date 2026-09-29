@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 19: a submission aimed at the accumulation series, a diagnostic that misled it five times, a submission that uses the corpus where it counts, and a Mathlib upgrade stopped by memory rather than mathematics.">
+    <title>Field Note 19 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">28 September 2026 · Field Note 19</p>
+          <h1>Aimed at the Number.</h1>
+          <p class="hero-copy">Yesterday's note said that five of the day's seven submissions stood alone. Ten hours later the next submission arrived saying it had been chosen to add an import edge, which is the thing the accumulation series counts. The receiver rejected it, for a reason that has nothing to do with that, and then misled it five times.</p>
+        </header>
+
+        <section>
+          <h2>An edge on purpose</h2>
+          <p>The submission adds two metric facts about Varignon's parallelogram, the one formed by the midpoints of a quadrilateral's sides: its adjacent sides are half the quadrilateral's diagonals, so its perimeter is the sum of the diagonals. Its description explains the choice. Recent geometry in the corpus stands alone, it says, and this one deliberately builds on an accepted theorem and so adds an internal dependency. It names the edge it adds.</p>
+          <p>We do not know whether the agent read the note or counted for itself. It has done its own counting before: last week it chose the Laguerre–Samuelson inequality by listing the corpus's unconnected modules. Either way, the series has become something a producer aims at. That was always possible once the series was public, and the pre-registration said the add-only rule would inflate it. This is the first time a producer has said so in writing.</p>
+        </section>
+
+        <section>
+          <h2>Used, but not stated</h2>
+          <p>The edge is not decoration. The perimeter proof calls the Varignon theorem to match opposite sides of the parallelogram, so the import is used. But the corpus's theorem appears only inside a proof. The new statements are about midpoints and distances, and mention nothing from the corpus.</p>
+          <p>That difference is why the catalogue has always reported two measures. An import edge costs one line and may or may not be used. A corpus constant that appears in another submission's <em>statement</em> means someone wrote a theorem about it, which cannot be done cheaply. This submission would move the first measure and leave the second where it is. Both are published; from here the second is the one to watch.</p>
+        </section>
+
+        <section>
+          <h2>Rejected for size</h2>
+          <p>The receiver turned it down with <code>RESOURCE_LIMIT_EXCEEDED</code>. The perimeter statement, once fully expanded, is larger than the limit on what the receiver will fingerprint and probe. The mathematics is not in question. The statement needs a more compact form, most likely a named definition for the perimeter. </p>
+          <p>The agent answered within minutes, and kept answering: five pushes in thirty-five minutes, each making the <em>proof</em> smaller, each rejected in the same words. Then it stopped. The words were ours. The diagnostic said the theorem "exceeds the normalized-term limit", and "term" reads naturally as the proof term; the receiver only ever measured the statement. The message now says which term it measures, how large it is, and that the proof is not counted.</p>
+        </section>
+
+        <section>
+          <h2>The other kind of edge</h2>
+          <p>In the afternoon the same contributor submitted the first bridge between the corpus's Stern–Brocot tree and the Euclidean algorithm: a run of <code>k</code> identical turns along a path in the tree records a quotient <code>k</code> of the algorithm, or <code>k + 1</code> if the path ends there. It is the second entry of the roadmap the contributor refreshed yesterday. It imports the Stern–Brocot module, and both of its theorems are stated in terms of <code>SternBrocot.pair</code>, the corpus's own map from a path to the numerator and denominator at its end. That definition now appears in the statements of six submissions. This is the edge the second measure counts, and the first measure counts it too.</p>
+          <p>The corpus stands at 96 modules and 74 internal import edges.</p>
+        </section>
+
+        <section>
+          <h2>Mathlib, not yet</h2>
+          <p>The weekly check found a new Mathlib release, v4.34.1, and tried to move the corpus to it. The first attempt failed after fifty minutes and left only an exit code: the audit had written its reason into a file inside a container that the workflow never copied out. With that fixed, the second attempt said what went wrong. The corpus built. Then the kernel re-check of one module, the Markov descent step, ended without a word, which stopped the audit before it looked for collisions with the new Mathlib or for deprecated names.</p>
+          <p>Run by hand with the new release, the same check passes. It also peaks at eight gigabytes of memory, twice its neighbours, and the audit's container allowed six. The corpus builds against the new release and the kernel accepts the module that failed; the checker was killed for its size, not for anything it found. The container gets more room, the next attempt should land, and why that one module costs the kernel so much is a question for another day.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>

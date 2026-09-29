@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import contextlib
+import io
 import json
 import tempfile
 import unittest
@@ -110,6 +112,70 @@ class MathlibUpgradePathTests(unittest.TestCase):
         self.assertEqual(status, 1)
         self.assertEqual(result["code"], "BUILD_FAILED")
         self.assertIn("unknown constant 'Nat.choose_symm_diff'", result["error"])
+
+    def test_a_rejected_upgrade_says_why_in_the_log(self) -> None:
+        """The report lives in the container's output; the log must carry the verdict too."""
+
+        class Result:
+            returncode = 1
+            stdout = "error: LeanFrontier/Algebra/Binomial.lean:9:2: unknown constant 'Nat.choose_symm_diff'\n"
+            stderr = "error: build failed\n"
+
+        original = audit_mathlib_upgrade.run
+        audit_mathlib_upgrade.run = lambda command, *, cwd, timeout: Result()
+        stderr = io.StringIO()
+        try:
+            with tempfile.TemporaryDirectory() as directory, contextlib.redirect_stderr(stderr):
+                audit_mathlib_upgrade.main(["--root", str(ROOT), "--report", str(Path(directory) / "upgrade.json")])
+        finally:
+            audit_mathlib_upgrade.run = original
+        self.assertIn("BUILD_FAILED", stderr.getvalue())
+        self.assertIn("Nat.choose_symm_diff", stderr.getvalue())
+
+    def test_a_silent_kernel_recheck_kill_is_named(self) -> None:
+        """leanchecker killed for memory prints nothing; the report must still say so."""
+        message = audit_mathlib_upgrade.silent_failure("leanchecker", "LeanFrontier.X", -9)
+        self.assertIn("signal 9", message)
+        self.assertIn("memory", message)
+        self.assertIn("signal 9", audit_mathlib_upgrade.silent_failure("leanchecker", "LeanFrontier.X", 137))
+        self.assertIn("exited 1", audit_mathlib_upgrade.silent_failure("leanchecker", "LeanFrontier.X", 1))
+
+    def test_no_module_family_outgrows_the_kernel_recheck(self) -> None:
+        """Tripwire for #429.
+
+        `leanchecker <Module>` checks every module whose name starts with
+        <Module>, in parallel, so a module that is also a folder is re-checked
+        with all its submodules, and memory grows with them: 13.5 GB for
+        NumberTheory.MarkovTree and its 19 submodules, about 0.6 GB each. The
+        upgrade audit's container has 12 GB. This fails before an upgrade does:
+        when it fires, apply option 2 of #429 (check each module exactly once)
+        or give the audit more memory, then raise the limit here.
+        """
+        limit = 30
+        modules = audit_mathlib_upgrade.corpus_modules(ROOT)
+        families = {
+            module: sum(1 for other in modules if other.startswith(module + "."))
+            for module in modules
+        }
+        largest, size = max(families.items(), key=lambda item: item[1])
+        self.assertLessEqual(
+            size, limit,
+            f"{largest} has {size} submodules; leanchecker re-checks them all with it (see #429)",
+        )
+
+    def test_the_audit_container_has_room_for_the_kernel_recheck(self) -> None:
+        """MarkovTree's recheck peaks near 8 GB; the container allowed 6 GB."""
+        for name in ("mathlib-upgrade.yml", "test.yml"):
+            workflow = (ROOT / ".github" / "workflows" / name).read_text()
+            self.assertNotIn("--memory 6g", workflow, name)
+            self.assertIn("--memory 12g", workflow, name)
+
+    def test_the_upgrade_workflow_keeps_the_evidence_of_a_rejection(self) -> None:
+        workflow = (ROOT / ".github" / "workflows" / "mathlib-upgrade.yml").read_text()
+        self.assertIn('--report "/output/upgrade.json" || status=$?', workflow)
+        self.assertIn("::error::upgrade audit rejected", workflow)
+        self.assertIn("if: always() && steps.release.outputs.upgrade == 'true'", workflow)
+        self.assertIn("actions/upload-artifact@v4", workflow)
 
     def test_upgrade_audit_reports_corpus_deprecations_without_blocking(self) -> None:
         source = (ROOT / "tools" / "audit_mathlib_upgrade.py").read_text()

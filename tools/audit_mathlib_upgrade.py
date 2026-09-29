@@ -7,11 +7,12 @@ import argparse
 import hashlib
 import json
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 from typing import Any
 
-from frontier_validate import deprecations, failure_output, lean_errors, run as run_bounded
+from frontier_validate import deprecations, failure_output, lean_errors, run as run_bounded, silent_failure
 from mathlib_release import ROOT, load_release_policy
 
 
@@ -94,7 +95,10 @@ def main(argv: list[str] | None = None) -> int:
     }
     try:
         entrypoints = accepted_entrypoints(root)
-        build = run(["lake", "build"], cwd=root, timeout=480)
+        # After an upgrade every corpus module rebuilds, and the corpus grows.
+        # Eight minutes fit 33 modules; at 95, on two runner cores, it was
+        # the prime suspect when the v4.34.1 audit failed without a word.
+        build = run(["lake", "build"], cwd=root, timeout=1800)
         if build.returncode:
             raise RuntimeError(lean_errors(build, None) or "lake build failed")
         # Reported, not blocking: a release that deprecates something the corpus
@@ -106,7 +110,7 @@ def main(argv: list[str] | None = None) -> int:
         for module in corpus_modules(root):
             recheck = run(["lake", "env", "leanchecker", module], cwd=root, timeout=300)
             if recheck.returncode:
-                raise RuntimeError(failure_output(recheck) or f"leanchecker rejected {module} after the upgrade")
+                raise RuntimeError(failure_output(recheck) or silent_failure("leanchecker", module, recheck.returncode))
         audit = run(["lake", "exe", "frontier-audit", "--", "LeanFrontier"], cwd=root, timeout=240)
         if audit.returncode:
             raise RuntimeError(failure_output(audit) or "frontier-audit failed")
@@ -135,6 +139,12 @@ def main(argv: list[str] | None = None) -> int:
         result["error"] = str(error)
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    if not result["accepted"]:
+        # The report can be lost with the container that wrote it; the verdict
+        # must also reach the log. The v4.34.1 upgrade failed after fifty
+        # minutes with nothing but "exit code 1" to show for it.
+        detail = result.get("error") or f"{len(result['collisions'])} collision(s) with Mathlib"
+        print(f"upgrade audit rejected {result['mathlib_revision']}: {result['code']}: {detail}", file=sys.stderr)
     return 0 if result["accepted"] else 1
 
 

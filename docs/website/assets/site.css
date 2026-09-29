@@ -127,6 +127,9 @@ pre { overflow-x: auto; margin: 0; padding: 1.5rem; color: #dce9e2; background: 
 .participate .button-secondary:hover { color: var(--accent-dark); background: #d2e4db; }
 .notes-preview { max-width: 760px; }
 .notes-preview > p:not(.eyebrow) { max-width: 620px; color: var(--muted); font-size: 1.08rem; }
+.evidence-list { max-width: 620px; margin: 1.2rem 0 0; padding-left: 1.1rem; color: var(--muted); font-size: 1.02rem; }
+.evidence-list li { margin: 0.35rem 0; overflow-wrap: anywhere; }
+.evidence-list a { color: var(--accent-dark); font-weight: 700; }
 .note-hero { max-width: 800px; padding-bottom: clamp(3rem, 7vw, 5rem); }
 .note-list article { max-width: 760px; }
 .note-list article p:not(.eyebrow) { max-width: 620px; color: var(--muted); font-size: 1.08rem; }

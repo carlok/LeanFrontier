@@ -29,6 +29,7 @@ def allowed(path: str) -> bool:
         "docs/catalogue/index.html",
         "experiments/launcher-ab.csv",
         "experiments/accumulation.csv",
+        "experiments/rejections.csv",
     } or (
         path.startswith("receiver-observations/") and path.endswith(".json")
     )
@@ -68,9 +69,9 @@ def validate_accumulation(base: Path, candidate: Path) -> None:
     published = {line.split(",")[1] for line in before[len(HEADER):].splitlines()}
     for line in after[len(before):].splitlines():
         fields = line.split(",")
-        if len(fields) != 10:
+        if len(fields) != 11:
             raise ValueError(f"malformed accumulation row: {line!r}")
-        day, submission, modules, edges, per_module, connected, in_degree, depth, recent, add_only = fields
+        day, submission, modules, edges, per_module, connected, in_degree, depth, recent, add_only, stated = fields
         date.fromisoformat(day)
         if submission in published or not (candidate / "Submissions" / f"{submission}.json").is_file():
             raise ValueError(f"accumulation row for an unknown or repeated submission: {submission}")
@@ -79,8 +80,36 @@ def validate_accumulation(base: Path, candidate: Path) -> None:
             int(number)
         for number in (per_module, connected):
             float(number)
-        if recent not in {"true", "false"} or add_only not in {"true", "false"}:
+        if recent not in {"true", "false"} or add_only not in {"true", "false"} or stated not in {"true", "false", "unknown"}:
             raise ValueError(f"malformed accumulation row: {line!r}")
+
+
+def validate_rejections(base: Path, candidate: Path) -> None:
+    """Weekly aggregates are recorded once, after the week ends, and never
+    rewritten: the reports behind them expire, so this file is the only copy."""
+    from collect_rejections import DESTINATION, HEADER
+
+    before_path = base / DESTINATION
+    before = before_path.read_text(encoding="utf-8") if before_path.exists() else HEADER
+    after = (candidate / DESTINATION).read_text(encoding="utf-8")
+    if not after.startswith(before) or not after.startswith(HEADER):
+        raise ValueError("rejection aggregates may only gain rows; an existing row or its header changed")
+    weeks = {line.split(",", 1)[0] for line in before[len(HEADER):].splitlines()}
+    latest = max(weeks, default="")
+    seen: set[tuple[str, str]] = set()
+    for line in after[len(before):].splitlines():
+        fields = line.split(",")
+        if len(fields) != 3:
+            raise ValueError(f"malformed rejection row: {line!r}")
+        week, code, runs = fields
+        day = date.fromisoformat(week)
+        if day.weekday() != 0 or week <= latest:
+            raise ValueError(f"rejection row for a week that is not a new Monday: {line!r}")
+        if not code.replace("_", "").isalpha() or not code.isupper() or (week, code) in seen:
+            raise ValueError(f"malformed or repeated rejection code: {line!r}")
+        if int(runs) < 1:
+            raise ValueError(f"rejection row with no runs: {line!r}")
+        seen.add((week, code))
 
 
 def main() -> int:
@@ -106,6 +135,8 @@ def main() -> int:
         subprocess.run(["python3", str(ROOT / "tools" / "generate_experiment_ledger.py"), "--root", str(args.candidate), "--check"], check=True)
     if "experiments/accumulation.csv" in paths:
         validate_accumulation(args.base, args.candidate)
+    if "experiments/rejections.csv" in paths:
+        validate_rejections(args.base, args.candidate)
     for relative in paths:
         if relative.startswith("receiver-observations/"):
             validate_observation(args.candidate / relative, args.candidate)

@@ -1,7 +1,7 @@
 {
-  "fingerprint_index": "mathlib-fingerprints-v4.34.0.json",
-  "lean_toolchain": "leanprover/lean4:v4.34.0",
-  "mathlib_revision": "v4.34.0",
+  "fingerprint_index": "mathlib-fingerprints-v4.34.1.json",
+  "lean_toolchain": "leanprover/lean4:v4.34.1",
+  "mathlib_revision": "v4.34.1",
   "policy_version": "0.1",
-  "source_release_tag": "v4.34.0"
+  "source_release_tag": "v4.34.1"
 }
