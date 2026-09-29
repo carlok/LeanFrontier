@@ -12,7 +12,7 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-from frontier_validate import deprecations, failure_output, lean_errors, run as run_bounded
+from frontier_validate import deprecations, failure_output, lean_errors, run as run_bounded, silent_failure
 from mathlib_release import ROOT, load_release_policy
 
 
@@ -66,21 +66,6 @@ def find_collisions(entrypoints: dict[str, str], findings: dict[str, dict[str, A
 
 def run(command: list[str], *, cwd: Path, timeout: int) -> subprocess.CompletedProcess[str]:
     return run_bounded(command, cwd, timeout)
-
-
-def silent_failure(tool: str, module: str, returncode: int) -> str:
-    """Name a failure that printed nothing, which is usually a kill.
-
-    The v4.34.1 audit reported only "leanchecker rejected
-    LeanFrontier.NumberTheory.MarkovTree". Locally the kernel accepts that
-    module, peaking at 8 GB, and the audit's container then allowed 6 GB.
-    """
-    signal = -returncode if returncode < 0 else returncode - 128 if returncode > 128 else None
-    if signal == 9:
-        return f"{tool} was killed (signal 9) on {module}, most likely for exceeding the container's memory"
-    if signal is not None:
-        return f"{tool} was killed by signal {signal} on {module}"
-    return f"{tool} exited {returncode} on {module} without output"
 
 
 def corpus_modules(root: Path) -> list[str]:

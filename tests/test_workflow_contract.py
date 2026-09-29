@@ -65,7 +65,7 @@ class WorkflowContractTests(unittest.TestCase):
             "--read-only",
             "--cap-drop ALL",
             "no-new-privileges",
-            "--memory 2g",
+            "--memory 4g",
             "lake exe cache get",
             "preflight-report.json",
             "report-output/report.json",
@@ -558,7 +558,7 @@ class WorkflowContractTests(unittest.TestCase):
                 self.assertIn(claim, threat)
                 self.assertIn(claim, validator)
         # The sandbox flags it advertises are the ones the workflow passes.
-        for flag in ("--network none", "--read-only", "--cap-drop ALL", "--memory 2g", "--pids-limit 512"):
+        for flag in ("--network none", "--read-only", "--cap-drop ALL", "--memory 4g", "--pids-limit 512"):
             with self.subTest(flag=flag):
                 self.assertIn(flag, threat)
                 self.assertIn(flag, WORKFLOW)
