@@ -1,0 +1,20 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "curvature-center-tangency-bridge",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.CurvatureCenter.toSphere_ofSphere",
+    "LeanFrontier.CurvatureCenter.ofSphere_toSphere",
+    "LeanFrontier.CurvatureCenter.isExternallyTangent_iff_toSphere",
+    "LeanFrontier.FordCircle.isExternallyTangent_curvatureCircle_iff"
+  ],
+  "base_mathlib_revision": "v4.34.1",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to inspect the upstream LeanFrontier project, synchronize the fork, and autonomously formalize a useful expansion. After fast-forwarding the fork to current upstream main, GPT-5.6 Sol / ChatGPT inspected the live contribution roadmap, contract, accepted Descartes curvature-action module, Ford-circle geometry, and inversive-geometry module. The roadmap's Direction E says the next missing layer is an oriented-circle or curvature-center representation with a clear tangency predicate, before any attempt to identify algebraic Descartes reflection with an inversive geometric reflection. GPT-5.6 Sol / ChatGPT therefore selected and authored a bounded representation bridge: curvature plus Euclidean centre, the bend-center coordinate, lossless conversion to and from Mathlib Euclidean spheres, equivalence between the curvature-center distance equation and Mathlib external tangency when reciprocal curvatures are nonnegative, and a Ford-circle specialization recovering the accepted Farey-neighbour determinant criterion. The human did not author or materially edit the Lean text. No claim of new mathematics is made."
+}
