@@ -1,0 +1,584 @@
+{
+  "accepted_revision": "c303e5d592e5c56cb6015845cdc1d987ec1764c1",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-30T03:56:34Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 446.13,
+    "observed": {
+      "added_lines": 119,
+      "audited_declarations": {
+        "LeanFrontier.DescartesCircle.CurvatureVector": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.DescartesCircle.CurvatureVector",
+          "restatement": false,
+          "statement_sha256": "19eccafd74a640ae8261202fad178f241eb3b7221a8e2a580febbf96a47ac797",
+          "type_dependencies": []
+        },
+        "LeanFrontier.DescartesCircle.curvatureIdentity": {
+          "alias": false,
+          "axioms": [
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.DescartesCircle.curvatureIdentity",
+          "restatement": false,
+          "statement_sha256": "d57ab5583e3b434191607bcca9767b5ca62f9a0c77b5d5019153ecdc36d14629",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Fin",
+            "LeanFrontier.DescartesCircle.CurvatureVector",
+            "LinearMap",
+            "Nat",
+            "OfNat.ofNat",
+            "Pi.Function.module",
+            "Pi.addCommMonoid",
+            "RingHom.id",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toModule",
+            "Semiring.toNonAssocSemiring",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.curvatureReflection": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.DescartesCircle.curvatureReflection",
+          "restatement": false,
+          "statement_sha256": "d4ba3c4a03ca4fb7cd76692de34cf0a937be86b1ba1082f80d36e43d20a47603",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Fin",
+            "LeanFrontier.DescartesCircle.CurvatureVector",
+            "LinearMap",
+            "Nat",
+            "OfNat.ofNat",
+            "Pi.Function.module",
+            "Pi.addCommMonoid",
+            "RingHom.id",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toModule",
+            "Semiring.toNonAssocSemiring",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.curvatureReflectionSquare": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.DescartesCircle.curvatureReflectionSquare",
+          "restatement": false,
+          "statement_sha256": "d4ba3c4a03ca4fb7cd76692de34cf0a937be86b1ba1082f80d36e43d20a47603",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Fin",
+            "LeanFrontier.DescartesCircle.CurvatureVector",
+            "LinearMap",
+            "Nat",
+            "OfNat.ofNat",
+            "Pi.Function.module",
+            "Pi.addCommMonoid",
+            "RingHom.id",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toModule",
+            "Semiring.toNonAssocSemiring",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.curvatureReflectionSquare_eq_identity": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.curvatureReflectionSquare_eq_identity",
+          "restatement": false,
+          "statement_sha256": "8732c30f768937d804b18118d962c63edc9c4729ff725f89327f1d46252341c6",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Eq",
+            "Fin",
+            "LeanFrontier.DescartesCircle.CurvatureVector",
+            "LeanFrontier.DescartesCircle.curvatureIdentity",
+            "LeanFrontier.DescartesCircle.curvatureReflectionSquare",
+            "LinearMap",
+            "Nat",
+            "OfNat.ofNat",
+            "Pi.Function.module",
+            "Pi.addCommMonoid",
+            "RingHom.id",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toModule",
+            "Semiring.toNonAssocSemiring",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.curvatureReflection_apply_ne": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.curvatureReflection_apply_ne",
+          "restatement": false,
+          "statement_sha256": "4c870e780cde35715fbd92dcb76afd0d8c704fcc852b3c94779151930e131f9c",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "Eq",
+            "Fin",
+            "LeanFrontier.DescartesCircle.CurvatureVector",
+            "LeanFrontier.DescartesCircle.curvatureReflection",
+            "LinearMap",
+            "LinearMap.instFunLike",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "Pi.Function.module",
+            "Pi.addCommMonoid",
+            "RingHom.id",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toModule",
+            "Semiring.toNonAssocSemiring",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.curvatureReflection_apply_same": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.curvatureReflection_apply_same",
+          "restatement": false,
+          "statement_sha256": "4e47b09c4d1ed5a3eaea9889a425b40d3fa2cbde58ec3446c920cccdfbb1d4e9",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "Distrib.toMul",
+            "Eq",
+            "Fin",
+            "Fin.fintype",
+            "Finset.sum",
+            "Finset.univ",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LeanFrontier.DescartesCircle.CurvatureVector",
+            "LeanFrontier.DescartesCircle.curvatureReflection",
+            "LinearMap",
+            "LinearMap.instFunLike",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "Pi.Function.module",
+            "Pi.addCommMonoid",
+            "Ring.toAddGroupWithOne",
+            "RingHom.id",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toModule",
+            "Semiring.toNonAssocSemiring",
+            "SubNegMonoid.toSub",
+            "instDistribOfSemiring",
+            "instHMul",
+            "instHSub",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.curvatureReflection_last_eq": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.curvatureReflection_last_eq",
+          "restatement": false,
+          "statement_sha256": "e6eabda4b932cdb3e123d82569bb31df1a5da9fc506359e210bf5c5d9ad7ebba",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "Eq",
+            "Fin",
+            "Fin.instOfNat",
+            "LeanFrontier.DescartesCircle.CurvatureVector",
+            "LeanFrontier.DescartesCircle.curvatureReflection",
+            "LeanFrontier.DescartesCircle.reflect",
+            "LinearMap",
+            "LinearMap.instFunLike",
+            "Matrix.vecCons",
+            "Matrix.vecEmpty",
+            "Nat",
+            "Nat.instNeZeroSucc",
+            "Nat.succ",
+            "OfNat.ofNat",
+            "Pi.Function.module",
+            "Pi.addCommMonoid",
+            "RingHom.id",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toModule",
+            "Semiring.toNonAssocSemiring",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.descartesForm": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.DescartesCircle.descartesForm",
+          "restatement": false,
+          "statement_sha256": "a9c90fee83f55fcae6a6c752baa4e25a50cea8c898f470cd90d20fa401811458",
+          "type_dependencies": [
+            "CommRing",
+            "LeanFrontier.DescartesCircle.CurvatureVector"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.descartesForm_curvatureReflection": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.descartesForm_curvatureReflection",
+          "restatement": false,
+          "statement_sha256": "ced963cf58c50c0c147d9e64e33348bc288e71af1684892cddb0001c9fda9600",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "Eq",
+            "Fin",
+            "LeanFrontier.DescartesCircle.CurvatureVector",
+            "LeanFrontier.DescartesCircle.curvatureReflection",
+            "LeanFrontier.DescartesCircle.descartesForm",
+            "LinearMap",
+            "LinearMap.instFunLike",
+            "Nat",
+            "OfNat.ofNat",
+            "Pi.Function.module",
+            "Pi.addCommMonoid",
+            "RingHom.id",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toModule",
+            "Semiring.toNonAssocSemiring",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.isQuadruple_iff_descartesForm_eq_zero": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.isQuadruple_iff_descartesForm_eq_zero",
+          "restatement": false,
+          "statement_sha256": "e4d3ed78962ce276fbd00ea2f3b43e71c350a102512e5deabbc28b771d846fe9",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Eq",
+            "Fin",
+            "Fin.instOfNat",
+            "Iff",
+            "LeanFrontier.DescartesCircle.CurvatureVector",
+            "LeanFrontier.DescartesCircle.IsQuadruple",
+            "LeanFrontier.DescartesCircle.descartesForm",
+            "MulZeroClass.toZero",
+            "Nat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "Zero.toOfNat0",
+            "instMulZeroClassOfSemiring",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 18,
+        "by_entrypoint": {
+          "LeanFrontier.DescartesCircle.curvatureReflectionSquare_eq_identity": [
+            {
+              "outcome": "failed",
+              "seconds": 5.638,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.631,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.642,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.624,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.644,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.624,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.DescartesCircle.curvatureReflection_last_eq": [
+            {
+              "outcome": "failed",
+              "seconds": 5.604,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.599,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.612,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.606,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.632,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.599,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.DescartesCircle.descartesForm_curvatureReflection": [
+            {
+              "outcome": "failed",
+              "seconds": 5.664,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.651,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.62,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.595,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.601,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.612,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 101.198,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.DescartesCircle.curvatureReflectionSquare_eq_identity": "inconclusive",
+        "LeanFrontier.DescartesCircle.curvatureReflection_last_eq": "inconclusive",
+        "LeanFrontier.DescartesCircle.descartesForm_curvatureReflection": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 7133,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/DescartesCurvatureAction.lean",
+        "Submissions/descartes-curvature-reflections.json"
+      ],
+      "corpus_entrypoints_checked": 289,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.DescartesCircle.curvatureReflectionSquare_eq_identity": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.curvatureReflectionSquare_eq_identity",
+          "statement_sha256": "8732c30f768937d804b18118d962c63edc9c4729ff725f89327f1d46252341c6",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Eq",
+            "Fin",
+            "LeanFrontier.DescartesCircle.CurvatureVector",
+            "LeanFrontier.DescartesCircle.curvatureIdentity",
+            "LeanFrontier.DescartesCircle.curvatureReflectionSquare",
+            "LinearMap",
+            "Nat",
+            "OfNat.ofNat",
+            "Pi.Function.module",
+            "Pi.addCommMonoid",
+            "RingHom.id",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toModule",
+            "Semiring.toNonAssocSemiring",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.curvatureReflection_last_eq": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.curvatureReflection_last_eq",
+          "statement_sha256": "e6eabda4b932cdb3e123d82569bb31df1a5da9fc506359e210bf5c5d9ad7ebba",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "Eq",
+            "Fin",
+            "Fin.instOfNat",
+            "LeanFrontier.DescartesCircle.CurvatureVector",
+            "LeanFrontier.DescartesCircle.curvatureReflection",
+            "LeanFrontier.DescartesCircle.reflect",
+            "LinearMap",
+            "LinearMap.instFunLike",
+            "Matrix.vecCons",
+            "Matrix.vecEmpty",
+            "Nat",
+            "Nat.instNeZeroSucc",
+            "Nat.succ",
+            "OfNat.ofNat",
+            "Pi.Function.module",
+            "Pi.addCommMonoid",
+            "RingHom.id",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toModule",
+            "Semiring.toNonAssocSemiring",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.DescartesCircle.descartesForm_curvatureReflection": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.DescartesCircle.descartesForm_curvatureReflection",
+          "statement_sha256": "ced963cf58c50c0c147d9e64e33348bc288e71af1684892cddb0001c9fda9600",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "DFunLike.coe",
+            "Eq",
+            "Fin",
+            "LeanFrontier.DescartesCircle.CurvatureVector",
+            "LeanFrontier.DescartesCircle.curvatureReflection",
+            "LeanFrontier.DescartesCircle.descartesForm",
+            "LinearMap",
+            "LinearMap.instFunLike",
+            "Nat",
+            "OfNat.ofNat",
+            "Pi.Function.module",
+            "Pi.addCommMonoid",
+            "RingHom.id",
+            "Semiring.toAddCommMonoid",
+            "Semiring.toModule",
+            "Semiring.toNonAssocSemiring",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 4727,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 12
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "descartes-curvature-reflections",
+  "trusted_receiver_revision": "eb1467e59427b976bbdd96b2884b9f97f528ba6c",
+  "validated_candidate_revision": "a5e55ed4efc331810d3b78c0ea59215f9c1795f5",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36665890275"
+}
