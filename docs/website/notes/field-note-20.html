@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 20: a rejected submission accepted after the diagnostic learned to say what to change, a roadmap worked through in three days, two of our own numbers corrected, and two releases.">
+    <title>Field Note 20 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">29 September 2026 · Field Note 20</p>
+          <h1>The Message Was the Fix.</h1>
+          <p class="hero-copy">The submission that failed six times on Monday was accepted on Tuesday morning, after doing exactly what the rewritten diagnostic suggests. By the next morning every direction of the roadmap the contributor wrote on Sunday had accepted work. On our side, two published numbers had to be corrected, a kernel check turned out to check twenty modules at a time, and the corpus got its first two releases in seven weeks.</p>
+        </header>
+
+        <section>
+          <h2>The message was the fix</h2>
+          <p>Field Note 19 left the Varignon perimeter submission rejected: its statement was too large once expanded, and the diagnostic said only that it "exceeds the normalized-term limit". The contributor's agent read "term" as the proof and shrank the proof five times. We rewrote the message the same afternoon. It now says the statement is what is measured, how large it is, what the limit is, and suggests "naming a large subexpression with a definition".</p>
+          <p>The next attempt, on Tuesday morning, refreshed the claim and stated the perimeter as a named definition: <code>varignonPerimeter a b c d = dist a c + dist b d</code>. It passed. We cannot tell from here whether the agent read the new wording or found the same answer on its own. The submission did exactly what the message says, and nothing it did before the message changed had worked.</p>
+          <p>It stays the case Note 19 described: the Varignon theorem is used in a proof and mentioned in no statement. By the measure added the same day, it does not count as reuse of the corpus.</p>
+        </section>
+
+        <section>
+          <h2>A roadmap in three days</h2>
+          <p>On Sunday the contributor replaced the project's roadmap with five new directions. By Wednesday morning each had accepted work. The Furstenberg topology now meets Mathlib's profinite machinery: every finite-index subgroup of the integers is cofinal with the cyclic quotients. Runs of turns in the Stern–Brocot tree were already matched to Euclidean quotients; they now have a canonical one-step interface. The tent map is topologically transitive, and so, through the accepted conjugacy, is the logistic map at parameter four. The eighth cyclotomic field's Galois group is a Klein four group, and its Gaussian subfield joins the square roots of 2 and −2. The fifth direction, Descartes' circle theorem, arrived overnight and is in the next note.</p>
+          <p>Four of Tuesday's six accepted submissions state their theorems in terms of something already in the corpus, not only in proofs. The corpus ended the day at 102 modules and 80 internal import edges.</p>
+        </section>
+
+        <section>
+          <h2>Two of our numbers were wrong</h2>
+          <p>The pre-registered series has a column recording whether each submission imports something accepted in the previous seven days. It was computed over every module first seen that <em>day</em>, not over the submission's own modules, so one connected submission marked every other row of its day as connected. Varignon's theorem, which imports nothing, was counted as building on recent work. Corrected, 32 of 96 rows change, all from true to false. The pre-registration records the defect and the fix, and no field note had quoted the measure. The same change adds the measure Note 19 asked for: whether a submission's statements mention something earlier statements mention.</p>
+          <p>The second was new. The receiver's rejections are now counted weekly, by diagnostic code, without source or submitter. The first published count was wrong the morning it went up: it listed seven weeks of runs in one pass while new runs were being created, the pages shifted under it, and some runs were counted twice and others missed. The week of 17 August showed 44 accepted runs; a count by hand gives 37. The collector now reads one closed week at a time, and the file was rebuilt from scratch.</p>
+        </section>
+
+        <section>
+          <h2>One check, twenty modules</h2>
+          <p>Monday's Mathlib upgrade had been stopped by the kernel re-check of one module running out of memory. On Tuesday the reason turned up in the checker's own source: asked to check a module, it checks every module whose name begins with that name, all at once. The Markov descent module shares its name with a folder of nineteen others, so checking it meant checking twenty. The module itself costs the kernel 18 milliseconds. Nothing was wrong with it, and the corpus was never at risk: every module was checked, some of them twice. A test now fails before any such family grows past thirty.</p>
+        </section>
+
+        <section>
+          <h2>Two releases</h2>
+          <p>The corpus has a citable snapshot for the first time: <code>corpus-v1</code>, one record per accepted submission joining its claim, its place in the import graph and the receiver's observation, published with a checksum and the two commands that regenerate it byte for byte. And the library had its first release since 13 August, when it held two modules: v0.2.0, with 102, on Mathlib v4.34.1, tested before tagging by a fresh project that depends on it.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
