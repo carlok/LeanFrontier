@@ -116,3 +116,4 @@ date,submission_id,modules,edges,edges_per_module,connected_share,max_in_degree,
 2026-09-29,tent-logistic-topological-transitivity,100,78,0.780,0.620,4,9,true,true,false
 2026-09-29,cyclotomic-eight-klein-four,101,79,0.782,0.624,4,9,true,true,true
 2026-09-29,cyclotomic-eight-gaussian-subfield,102,80,0.784,0.627,4,9,true,true,true
+2026-09-30,cyclotomic-eight-three-quadratic-fields,103,82,0.796,0.631,4,9,true,true,false

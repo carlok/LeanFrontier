@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "cyclotomic-eight-three-quadratic-fields",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_quadraticFields_card"
+  ],
+  "base_mathlib_revision": "v4.34.1",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue after independently preparing receiver-green upstream PRs #445 (the Galois group of Q(zeta_8)/Q is Klein four) and #446 (the Gaussian quadratic subfield Q(i)). Because those prerequisite PRs were still open, the producer created a temporary integration base containing their exact accepted heads and developed this next structural slice only against that combined state. The target is the roadmap's remaining global statement for Direction D: count all quadratic intermediate fields of the eighth cyclotomic extension. The proof uses Mathlib's Galois correspondence to identify quadratic intermediate fields with index-two subgroups; transports those subgroups through the accepted equivalence Gal(Q(zeta_8)/Q) ~= Multiplicative(ZMod 2 x ZMod 2); reinterprets subgroups of this elementary abelian two-group as ZMod 2 submodules; proves index two is equivalent to vector-space dimension one using subgroup index/cardinality and Module.natCard_eq_pow_finrank; and identifies one-dimensional subspaces with the projective line via Projectivization.equivSubmodule. Mathlib's Projectivization.card_of_finrank_two then gives cardinality 2+1=3. GPT-5.6 Sol / ChatGPT selected and authored the target, definitions, statement, and proof; the human did not author or materially edit the Lean text. No claim of new mathematics is made."
+}

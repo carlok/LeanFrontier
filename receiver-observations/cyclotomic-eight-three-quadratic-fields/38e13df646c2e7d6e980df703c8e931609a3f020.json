@@ -1,0 +1,129 @@
+{
+  "accepted_revision": "38e13df646c2e7d6e980df703c8e931609a3f020",
+  "observation_version": "0.1",
+  "observed_at": "2026-09-30T03:44:35Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 293.437,
+    "observed": {
+      "added_lines": 161,
+      "audited_declarations": {
+        "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEightQuadraticFields": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEightQuadraticFields",
+          "restatement": false,
+          "statement_sha256": "d1ee2932d8f5566f1956b7ecac5161067e0f964f5d2844fa7cf958746e24f296",
+          "type_dependencies": []
+        },
+        "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_quadraticFields_card": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_quadraticFields_card",
+          "restatement": false,
+          "statement_sha256": "3580d508664910f6b81dff2d210bbf108dd755aac4ccb1a1b87e3592d708d709",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEightQuadraticFields",
+            "Nat",
+            "Nat.card",
+            "OfNat.ofNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_quadraticFields_card": [
+            {
+              "outcome": "failed",
+              "seconds": 4.458,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.374,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.378,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.363,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.351,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.373,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 26.297,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_quadraticFields_card": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 8254,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/CyclotomicEightQuadraticClassification.lean",
+        "Submissions/cyclotomic-eight-three-quadratic-fields.json"
+      ],
+      "corpus_entrypoints_checked": 288,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_quadraticFields_card": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.NumberTheory.DiscriminantTower.cyclotomicEight_quadraticFields_card",
+          "statement_sha256": "3580d508664910f6b81dff2d210bbf108dd755aac4ccb1a1b87e3592d708d709",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.NumberTheory.DiscriminantTower.CyclotomicEightQuadraticFields",
+            "Nat",
+            "Nat.card",
+            "OfNat.ofNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 6397,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 18
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "cyclotomic-eight-three-quadratic-fields",
+  "trusted_receiver_revision": "d313118de643714d044ecbc4e8a0f685dc00aae3",
+  "validated_candidate_revision": "b99dd8061ec242c3b2558c8b2a8a07b0077cdbf4",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36630611430"
+}

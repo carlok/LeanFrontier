@@ -36,6 +36,7 @@ import LeanFrontier.NumberTheory.CalkinWilf
 import LeanFrontier.NumberTheory.CalkinWilfSternBrocot
 import LeanFrontier.NumberTheory.CyclotomicEightGalois
 import LeanFrontier.NumberTheory.CyclotomicEightGaussian
+import LeanFrontier.NumberTheory.CyclotomicEightQuadraticClassification
 import LeanFrontier.NumberTheory.DescartesCircle
 import LeanFrontier.NumberTheory.DiscriminantTower
 import LeanFrontier.NumberTheory.DiscriminantTowerWitness
