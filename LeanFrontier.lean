@@ -38,6 +38,7 @@ import LeanFrontier.NumberTheory.CyclotomicEightGalois
 import LeanFrontier.NumberTheory.CyclotomicEightGaussian
 import LeanFrontier.NumberTheory.CyclotomicEightQuadraticClassification
 import LeanFrontier.NumberTheory.DescartesCircle
+import LeanFrontier.NumberTheory.DescartesCurvatureAction
 import LeanFrontier.NumberTheory.DiscriminantTower
 import LeanFrontier.NumberTheory.DiscriminantTowerWitness
 import LeanFrontier.NumberTheory.Farey
