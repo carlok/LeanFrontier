@@ -1,0 +1,425 @@
+{
+  "accepted_revision": "61c19131cc2dfd1aeda710a970c621d2b3a77a3e",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-01T06:23:11Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 474.061,
+    "observed": {
+      "added_lines": 106,
+      "audited_declarations": {
+        "LeanFrontier.CurvatureCenter.Circle": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "inductive",
+          "name": "LeanFrontier.CurvatureCenter.Circle",
+          "restatement": false,
+          "statement_sha256": "d1ee2932d8f5566f1956b7ecac5161067e0f964f5d2844fa7cf958746e24f296",
+          "type_dependencies": []
+        },
+        "LeanFrontier.CurvatureCenter.IsExternallyTangent": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.CurvatureCenter.IsExternallyTangent",
+          "restatement": false,
+          "statement_sha256": "b8826bf1a4d386198604c4fa839c4b5b35c919a4b2ebee4f83984a7e5aaa52b7",
+          "type_dependencies": [
+            "LeanFrontier.CurvatureCenter.Circle"
+          ]
+        },
+        "LeanFrontier.CurvatureCenter.isExternallyTangent_iff_toSphere": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.CurvatureCenter.isExternallyTangent_iff_toSphere",
+          "restatement": false,
+          "statement_sha256": "5e6ff2e5602327f22eaae6f116d9d2d911ac27b5307468a7d73ac5b7e648f422",
+          "type_dependencies": [
+            "Complex",
+            "Complex.instNormedAddCommGroup",
+            "Complex.instNormedField",
+            "EuclideanGeometry.Sphere.IsExtTangent",
+            "Iff",
+            "Inv.inv",
+            "LE.le",
+            "LeanFrontier.CurvatureCenter.Circle",
+            "LeanFrontier.CurvatureCenter.Circle.curvature",
+            "LeanFrontier.CurvatureCenter.IsExternallyTangent",
+            "LeanFrontier.CurvatureCenter.toSphere",
+            "NonUnitalSeminormedCommRing.toNonUnitalSeminormedRing",
+            "NonUnitalSeminormedRing.toSeminormedAddCommGroup",
+            "NormedCommRing.toSeminormedCommRing",
+            "NormedField.toMetricSpace",
+            "NormedField.toNormedCommRing",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instInv",
+            "Real.instLE",
+            "Real.instZero",
+            "SeminormedAddCommGroup.toNormedAddTorsor",
+            "SeminormedCommRing.toNonUnitalSeminormedCommRing",
+            "Zero.toOfNat0",
+            "instInnerProductSpaceRealComplex"
+          ]
+        },
+        "LeanFrontier.CurvatureCenter.ofSphere_toSphere": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.CurvatureCenter.ofSphere_toSphere",
+          "restatement": false,
+          "statement_sha256": "0bba47f2d7a33a6545629c67b913ff1127cc5f1ce986d4064cd6496583bbf5ee",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.CurvatureCenter.Circle",
+            "LeanFrontier.CurvatureCenter.ofSphere",
+            "LeanFrontier.CurvatureCenter.toSphere"
+          ]
+        },
+        "LeanFrontier.CurvatureCenter.toSphere_ofSphere": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.CurvatureCenter.toSphere_ofSphere",
+          "restatement": false,
+          "statement_sha256": "a9b7e4230a48571c8757cc6e9a2a8f24c925bdd2da458be85410bedac8f635b7",
+          "type_dependencies": [
+            "Complex",
+            "Complex.instNormedField",
+            "Eq",
+            "EuclideanGeometry.Sphere",
+            "LeanFrontier.CurvatureCenter.ofSphere",
+            "LeanFrontier.CurvatureCenter.toSphere",
+            "NormedField.toMetricSpace"
+          ]
+        },
+        "LeanFrontier.FordCircle.isExternallyTangent_curvatureCircle_iff": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.FordCircle.isExternallyTangent_curvatureCircle_iff",
+          "restatement": false,
+          "statement_sha256": "ede644ad1ea58dead01d6678db0f8cf7fffbd1350515041247df9f7c5e6190ca",
+          "type_dependencies": [
+            "Eq",
+            "HPow.hPow",
+            "Iff",
+            "LeanFrontier.CurvatureCenter.IsExternallyTangent",
+            "LeanFrontier.FordCircle.curvatureCircle",
+            "LeanFrontier.Mediant.crossDet",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Real",
+            "Real.commRing",
+            "Real.instMonoid",
+            "Real.instOne",
+            "Real.instZero",
+            "Zero.toOfNat0",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 24,
+        "by_entrypoint": {
+          "LeanFrontier.CurvatureCenter.isExternallyTangent_iff_toSphere": [
+            {
+              "outcome": "failed",
+              "seconds": 5.204,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.263,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.204,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.251,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.255,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.271,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.CurvatureCenter.ofSphere_toSphere": [
+            {
+              "outcome": "failed",
+              "seconds": 5.082,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.088,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.133,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.061,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.072,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.063,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.CurvatureCenter.toSphere_ofSphere": [
+            {
+              "outcome": "failed",
+              "seconds": 5.039,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.041,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.054,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.071,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.142,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.986,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.FordCircle.isExternallyTangent_curvatureCircle_iff": [
+            {
+              "outcome": "failed",
+              "seconds": 5.085,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.011,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.09,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.071,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.064,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.031,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 122.632,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.CurvatureCenter.isExternallyTangent_iff_toSphere": "inconclusive",
+        "LeanFrontier.CurvatureCenter.ofSphere_toSphere": "inconclusive",
+        "LeanFrontier.CurvatureCenter.toSphere_ofSphere": "inconclusive",
+        "LeanFrontier.FordCircle.isExternallyTangent_curvatureCircle_iff": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 6408,
+      "changed_files": [
+        "LeanFrontier/Geometry/CurvatureCenter.lean",
+        "Submissions/curvature-center-tangency-bridge.json"
+      ],
+      "corpus_entrypoints_checked": 292,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.CurvatureCenter.isExternallyTangent_iff_toSphere": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.CurvatureCenter.isExternallyTangent_iff_toSphere",
+          "statement_sha256": "5e6ff2e5602327f22eaae6f116d9d2d911ac27b5307468a7d73ac5b7e648f422",
+          "type_dependencies": [
+            "Complex",
+            "Complex.instNormedAddCommGroup",
+            "Complex.instNormedField",
+            "EuclideanGeometry.Sphere.IsExtTangent",
+            "Iff",
+            "Inv.inv",
+            "LE.le",
+            "LeanFrontier.CurvatureCenter.Circle",
+            "LeanFrontier.CurvatureCenter.Circle.curvature",
+            "LeanFrontier.CurvatureCenter.IsExternallyTangent",
+            "LeanFrontier.CurvatureCenter.toSphere",
+            "NonUnitalSeminormedCommRing.toNonUnitalSeminormedRing",
+            "NonUnitalSeminormedRing.toSeminormedAddCommGroup",
+            "NormedCommRing.toSeminormedCommRing",
+            "NormedField.toMetricSpace",
+            "NormedField.toNormedCommRing",
+            "OfNat.ofNat",
+            "Real",
+            "Real.instInv",
+            "Real.instLE",
+            "Real.instZero",
+            "SeminormedAddCommGroup.toNormedAddTorsor",
+            "SeminormedCommRing.toNonUnitalSeminormedCommRing",
+            "Zero.toOfNat0",
+            "instInnerProductSpaceRealComplex"
+          ]
+        },
+        "LeanFrontier.CurvatureCenter.ofSphere_toSphere": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.CurvatureCenter.ofSphere_toSphere",
+          "statement_sha256": "0bba47f2d7a33a6545629c67b913ff1127cc5f1ce986d4064cd6496583bbf5ee",
+          "type_dependencies": [
+            "Eq",
+            "LeanFrontier.CurvatureCenter.Circle",
+            "LeanFrontier.CurvatureCenter.ofSphere",
+            "LeanFrontier.CurvatureCenter.toSphere"
+          ]
+        },
+        "LeanFrontier.CurvatureCenter.toSphere_ofSphere": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.CurvatureCenter.toSphere_ofSphere",
+          "statement_sha256": "a9b7e4230a48571c8757cc6e9a2a8f24c925bdd2da458be85410bedac8f635b7",
+          "type_dependencies": [
+            "Complex",
+            "Complex.instNormedField",
+            "Eq",
+            "EuclideanGeometry.Sphere",
+            "LeanFrontier.CurvatureCenter.ofSphere",
+            "LeanFrontier.CurvatureCenter.toSphere",
+            "NormedField.toMetricSpace"
+          ]
+        },
+        "LeanFrontier.FordCircle.isExternallyTangent_curvatureCircle_iff": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.FordCircle.isExternallyTangent_curvatureCircle_iff",
+          "statement_sha256": "ede644ad1ea58dead01d6678db0f8cf7fffbd1350515041247df9f7c5e6190ca",
+          "type_dependencies": [
+            "Eq",
+            "HPow.hPow",
+            "Iff",
+            "LeanFrontier.CurvatureCenter.IsExternallyTangent",
+            "LeanFrontier.FordCircle.curvatureCircle",
+            "LeanFrontier.Mediant.crossDet",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Ne",
+            "OfNat.ofNat",
+            "One.toOfNat1",
+            "Real",
+            "Real.commRing",
+            "Real.instMonoid",
+            "Real.instOne",
+            "Real.instZero",
+            "Zero.toOfNat0",
+            "instHPow",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 4615,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 10
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "curvature-center-tangency-bridge",
+  "trusted_receiver_revision": "0fe54635580a45c43023ff591e40e05071ae4a03",
+  "validated_candidate_revision": "7e2b63a02475c3c39e2e789e35eafa456e3eb62d",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/36770159926"
+}
