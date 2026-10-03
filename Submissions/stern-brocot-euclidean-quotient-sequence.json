@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "stern-brocot-euclidean-quotient-sequence",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.SternBrocot.euclideanRunQuotients_pair"
+  ],
+  "base_mathlib_revision": "v4.34.1",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to attack the next worthwhile LeanFrontier target after the canonical Stern-Brocot whole-path run encoding submission. At the time of this work that earlier PR was receiver-green but still unmerged upstream, so GPT-5.6 Sol / ChatGPT deliberately chose a stronger next theorem that depends only on the already accepted canonical initial-run API and can therefore be reviewed independently. The producer defined the symmetric Euclidean quotient algorithm on a natural pair (repeatedly divide the larger positive coordinate by the smaller), defined the corresponding recursive quotient list of a Stern-Brocot path using accepted initialRunLength and dropInitialRun boundaries, and proved that the complete lists agree for every path. Nonterminal runs contribute their length and the terminal run contributes length plus one, extending the accepted one-step Euclidean quotient theorem to the entire path. This is the arithmetic sequence interface intended for a later normalized regular continued-fraction coefficient theorem; the conventional leading zero for rationals below one is intentionally not included here. Searches of current LeanFrontier and Mathlib found no existing whole-sequence Stern-Brocot/Euclidean quotient bridge. GPT-5.6 Sol / ChatGPT selected the API, authored the statements and proofs, and handled implementation autonomously; the human did not author or materially edit the Lean text. No claim of new mathematics is made."
+}
