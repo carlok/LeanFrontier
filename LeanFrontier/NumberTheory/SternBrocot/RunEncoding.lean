@@ -24,10 +24,18 @@ private theorem dropInitialRun_length_lt (dir : Bool) (tail : List Bool) :
     (dropInitialRun dir (dir :: tail)).length < (dir :: tail).length := by
   have hk : 0 < initialRunLength dir (dir :: tail) := by
     simp [initialRunLength]
-  have hlen :=
-    congrArg List.length (initialRun_decomposition dir (dir :: tail))
-  simp only [List.length_cons, List.length_append, List.length_replicate] at hlen
-  omega
+  have hlen :
+      (dir :: tail).length =
+        initialRunLength dir (dir :: tail) +
+          (dropInitialRun dir (dir :: tail)).length := by
+    simpa using
+      congrArg List.length (initialRun_decomposition dir (dir :: tail))
+  calc
+    (dropInitialRun dir (dir :: tail)).length <
+        initialRunLength dir (dir :: tail) +
+          (dropInitialRun dir (dir :: tail)).length :=
+      Nat.lt_add_of_pos_left hk
+    _ = (dir :: tail).length := hlen.symm
 
 /-- Compress a Boolean path into its maximal constant runs.
 
@@ -52,7 +60,7 @@ def expandRuns : List (Bool × ℕ) → List Bool
 theorem expandRuns_runLengthEncode : ∀ path : List Bool,
     expandRuns (runLengthEncode path) = path
   | [] => by
-      rfl
+      rw [runLengthEncode, expandRuns]
   | dir :: tail => by
       rw [runLengthEncode, expandRuns]
       rw [expandRuns_runLengthEncode (dropInitialRun dir (dir :: tail))]
