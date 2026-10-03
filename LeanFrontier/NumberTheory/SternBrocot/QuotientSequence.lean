@@ -47,7 +47,7 @@ private theorem euclideanRunQuotients_zero_left (b : ℕ) :
 
 private theorem euclideanRunQuotients_zero_right (a : ℕ) :
     euclideanRunQuotients a 0 = [] := by
-  cases a <;> rw [euclideanRunQuotients]
+  cases a <;> rw [euclideanRunQuotients] <;> omega
 
 private theorem euclideanRunQuotients_of_lt {a b : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hab : a < b) :
