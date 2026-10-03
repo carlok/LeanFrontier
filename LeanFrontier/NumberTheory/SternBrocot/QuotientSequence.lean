@@ -24,45 +24,60 @@ namespace LeanFrontier.SternBrocot
 
 /-- Euclidean quotients obtained by repeatedly dividing the larger positive coordinate by the
 smaller. If either coordinate is zero, the process stops. -/
-def euclideanRunQuotients (a b : ℕ) : List ℕ :=
-  if _ha : a = 0 then []
-  else if _hb : b = 0 then []
-  else if _hlt : a < b then
-    b / a :: euclideanRunQuotients a (b % a)
-  else
-    a / b :: euclideanRunQuotients (a % b) b
-termination_by a + b
+def euclideanRunQuotients : ℕ → ℕ → List ℕ
+  | 0, _ => []
+  | _, 0 => []
+  | a + 1, b + 1 =>
+      if a + 1 < b + 1 then
+        (b + 1) / (a + 1) ::
+          euclideanRunQuotients (a + 1) ((b + 1) % (a + 1))
+      else
+        (a + 1) / (b + 1) ::
+          euclideanRunQuotients ((a + 1) % (b + 1)) (b + 1)
+termination_by a b => a + b
 decreasing_by
-  · have hmod : b % a < a := Nat.mod_lt _ (Nat.pos_of_ne_zero _ha)
+  · have hmod : (b + 1) % (a + 1) < a + 1 := Nat.mod_lt _ (by omega)
     omega
-  · have hmod : a % b < b := Nat.mod_lt _ (Nat.pos_of_ne_zero _hb)
+  · have hmod : (a + 1) % (b + 1) < b + 1 := Nat.mod_lt _ (by omega)
     omega
 
 private theorem euclideanRunQuotients_zero_left (b : ℕ) :
     euclideanRunQuotients 0 b = [] := by
   rw [euclideanRunQuotients]
-  simp only [if_pos rfl]
 
 private theorem euclideanRunQuotients_zero_right (a : ℕ) :
     euclideanRunQuotients a 0 = [] := by
-  rw [euclideanRunQuotients]
-  by_cases ha : a = 0
-  · simp only [if_pos ha]
-  · simp only [if_neg ha, if_pos rfl]
+  cases a <;> rw [euclideanRunQuotients]
 
 private theorem euclideanRunQuotients_of_lt {a b : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hab : a < b) :
     euclideanRunQuotients a b =
       b / a :: euclideanRunQuotients a (b % a) := by
-  rw [euclideanRunQuotients]
-  simp only [if_neg ha.ne', if_neg hb.ne', if_pos hab]
+  cases a with
+  | zero => omega
+  | succ a =>
+      cases b with
+      | zero => omega
+      | succ b =>
+          rw [euclideanRunQuotients]
+          split
+          · rfl
+          · omega
 
 private theorem euclideanRunQuotients_of_not_lt {a b : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hab : ¬ a < b) :
     euclideanRunQuotients a b =
       a / b :: euclideanRunQuotients (a % b) b := by
-  rw [euclideanRunQuotients]
-  simp only [if_neg ha.ne', if_neg hb.ne', if_neg hab]
+  cases a with
+  | zero => omega
+  | succ a =>
+      cases b with
+      | zero => omega
+      | succ b =>
+          rw [euclideanRunQuotients]
+          split
+          · omega
+          · rfl
 
 private theorem dropInitialRun_length_lt (dir : Bool) (tail : List Bool) :
     (dropInitialRun dir (dir :: tail)).length < (dir :: tail).length := by
@@ -166,8 +181,10 @@ theorem euclideanRunQuotients_pair : ∀ path : List Bool,
               (by omega) (by omega) hlt
           rw [hp, hq, Nat.div_one, Nat.mod_one, euclideanRunQuotients_zero_right]
           rw [pathQuotients]
-          dsimp only
-          rw [if_pos hnil]
+          split
+          · rfl
+          · rename_i hne
+            exact (hne hnil).elim
         · have hp : pair path = (k + 1, 1) := by
             rw [hdecomp, hrest, pair_true_run]
             simp [pair, Nat.add_comm]
@@ -177,8 +194,10 @@ theorem euclideanRunQuotients_pair : ∀ path : List Bool,
               (by omega) (by omega) hnlt
           rw [hp, hq, Nat.div_one, Nat.mod_one, euclideanRunQuotients_zero_left]
           rw [pathQuotients]
-          dsimp only
-          rw [if_pos hnil]
+          split
+          · rfl
+          · rename_i hne
+            exact (hne hnil).elim
       · have hrest : rest = Bool.not dir :: u := by
           simpa [rest] using hcons
         have hrestNe : rest ≠ [] := by
@@ -214,8 +233,12 @@ theorem euclideanRunQuotients_pair : ∀ path : List Bool,
           rw [euclideanRunQuotients_of_lt hpos.1 (by omega) hlt]
           rw [hdiv, hmod, ih]
           rw [pathQuotients]
-          dsimp only
-          rw [if_neg hnil]
+          split
+          · rename_i heq
+            have : rest = [] := by
+              simpa [rest, path] using heq
+            exact (hrestNe this).elim
+          · rfl
         · have hsmall : (pair rest).1 < (pair rest).2 := by
             rw [hrest]
             simp only [Bool.not_true, pair]
@@ -242,8 +265,12 @@ theorem euclideanRunQuotients_pair : ∀ path : List Bool,
           rw [euclideanRunQuotients_of_not_lt (by omega) hpos.2.1 hnlt]
           rw [hdiv, hmod, ih]
           rw [pathQuotients]
-          dsimp only
-          rw [if_neg hnil]
+          split
+          · rename_i heq
+            have : rest = [] := by
+              simpa [rest, path] using heq
+            exact (hrestNe this).elim
+          · rfl
 termination_by path => path.length
 decreasing_by
   exact hrestLen
