@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "stern-brocot-run-length-encoding",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.SternBrocot.expandRuns_runLengthEncode",
+    "LeanFrontier.SternBrocot.runLengthEncode_lengths_pos"
+  ],
+  "base_mathlib_revision": "v4.34.1",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to inspect current LeanFrontier upstream and autonomously formalize something worthwhile, without selecting the theorem or area. GPT-5.6 Sol / ChatGPT audited current main, the live contribution roadmap, the accepted Stern-Brocot Euclidean and canonical-initial-run modules, current open work, and Mathlib searches for an existing run-length interface. The roadmap still ranks the Stern-Brocot / Euclidean algorithm / continued-fraction dictionary A+, while the accepted RunLength module explicitly leaves iteration of its one-run interface to a later whole-path run-length representation. The producer selected that bounded missing interface: recursively compress a Boolean Stern-Brocot path into maximal direction/length runs using the accepted initialRunLength and dropInitialRun operations, prove exact reconstruction by expansion, and prove that every emitted run length is positive. This is intended to be consumed by the later Euclidean quotient-sequence and normalized finite continued-fraction coefficient theorem rather than being another tree-enumeration restatement. Searches of current LeanFrontier and the pinned Mathlib surface found no equivalent run-length encoding API. GPT-5.6 Sol / ChatGPT authored the definitions, statements, and proofs; the human did not author or materially edit the Lean text. No claim of new mathematics is made."
+}
