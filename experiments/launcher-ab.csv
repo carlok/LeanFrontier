@@ -100,6 +100,7 @@ slope-minorant-constraints,unassigned,claude-opus-5
 sqrt-neg-one-from-sum-squares,unassigned,gpt-5.6-sol
 stern-brocot-canonical-initial-run,unassigned,gpt-5.6-sol
 stern-brocot-coprime-enumeration,B,claude-opus-5
+stern-brocot-euclidean-quotient-sequence,unassigned,gpt-5.6-sol
 stern-brocot-euclidean-runs,unassigned,gpt-5.6-sol
 stern-brocot-interval-invariant,unassigned,gpt-5.6-sol
 stern-brocot-mediant-extremal,unassigned,gpt-5.6-sol
