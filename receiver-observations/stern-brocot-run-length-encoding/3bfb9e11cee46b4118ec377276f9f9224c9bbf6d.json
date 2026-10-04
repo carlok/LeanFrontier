@@ -1,0 +1,163 @@
+{
+  "accepted_revision": "3bfb9e11cee46b4118ec377276f9f9224c9bbf6d",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-04T07:29:58Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 345.311,
+    "observed": {
+      "added_lines": 91,
+      "audited_declarations": {
+        "LeanFrontier.SternBrocot.expandRuns": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.SternBrocot.expandRuns",
+          "restatement": false,
+          "statement_sha256": "2f1bade30ed5a38dbee2330b4c1c319933cf2c5d361086c6b234c916ef89d397",
+          "type_dependencies": [
+            "Bool",
+            "List",
+            "Nat",
+            "Prod"
+          ]
+        },
+        "LeanFrontier.SternBrocot.expandRuns_runLengthEncode": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.expandRuns_runLengthEncode",
+          "restatement": false,
+          "statement_sha256": "32e81018943e12e4ad83d4257497cb852ce7c28ed9be49d56111f68df8bed70c",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.SternBrocot.expandRuns",
+            "LeanFrontier.SternBrocot.runLengthEncode",
+            "List"
+          ]
+        },
+        "LeanFrontier.SternBrocot.runLengthEncode": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.SternBrocot.runLengthEncode",
+          "restatement": false,
+          "statement_sha256": "d120aeb9914b23a90cfe6d1e5513b64c9e6337e2f22dbcd0b3a1fb7aa574f9e4",
+          "type_dependencies": [
+            "Bool",
+            "List",
+            "Nat",
+            "Prod"
+          ]
+        },
+        "LeanFrontier.SternBrocot.runLengthEncode_lengths_pos": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.runLengthEncode_lengths_pos",
+          "restatement": false,
+          "statement_sha256": "ea2f572dee4a290db778ec40216befa78bd9f1946d93abd87277acb3cc2a4fa1",
+          "type_dependencies": [
+            "Bool",
+            "LT.lt",
+            "LeanFrontier.SternBrocot.runLengthEncode",
+            "List",
+            "List.instMembership",
+            "Membership.mem",
+            "Nat",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.snd",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 0,
+        "by_entrypoint": {},
+        "seconds": 0,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {},
+      "build": "pass",
+      "changed_bytes": 5492,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SternBrocot/RunEncoding.lean",
+        "Submissions/stern-brocot-run-length-encoding.json"
+      ],
+      "corpus_entrypoints_checked": 296,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SternBrocot.expandRuns_runLengthEncode": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.expandRuns_runLengthEncode",
+          "statement_sha256": "32e81018943e12e4ad83d4257497cb852ce7c28ed9be49d56111f68df8bed70c",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.SternBrocot.expandRuns",
+            "LeanFrontier.SternBrocot.runLengthEncode",
+            "List"
+          ]
+        },
+        "LeanFrontier.SternBrocot.runLengthEncode_lengths_pos": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.runLengthEncode_lengths_pos",
+          "statement_sha256": "ea2f572dee4a290db778ec40216befa78bd9f1946d93abd87277acb3cc2a4fa1",
+          "type_dependencies": [
+            "Bool",
+            "LT.lt",
+            "LeanFrontier.SternBrocot.runLengthEncode",
+            "List",
+            "List.instMembership",
+            "Membership.mem",
+            "Nat",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.snd",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3592,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 5
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "stern-brocot-run-length-encoding",
+  "trusted_receiver_revision": "e99df4fc545f330261352fcaf7db8b0507089d9b",
+  "validated_candidate_revision": "709a93310111cf25ecbc89c2a88bca19dbc63b62",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/37158422127"
+}
