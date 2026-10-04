@@ -49,8 +49,16 @@ FORBIDDEN_SECURITY = re.compile(
 )
 SORRY_RE = re.compile(r"\b(?:sorry|sorryAx)\b")
 AXIOM_RE = re.compile(r"\baxiom\b")
+# A declaration name may be dotted (`theorem OrientedNode.pairwiseCoprime`) and
+# may end in a prime, which `\b` would cut off.
+DECLARATION_NAME = r"[A-Za-z_][A-Za-z0-9_']*(?:\.[A-Za-z_][A-Za-z0-9_']*)*(?![A-Za-z0-9_'.])"
+# A statement ends where its proof begins: `:=`, the first equation of a proof
+# by pattern matching (`| 0 => ...`, which has no `:=` at all), or `where`.
+# Matching only `:=` dropped pattern-matching theorems from every textual check
+# and the baseline probes, and let the theorem before them swallow their text.
+STATEMENT_END = r"(?=\s*:=|\n[ \t]*\|[^\n]*=>|\s+where\b)"
 DECL_RE = re.compile(
-    r"\b(?:theorem|lemma)\s+([A-Za-z_][A-Za-z0-9_']*)\b(?P<body>.*?)(?=\s*:=)", re.DOTALL
+    rf"\b(?:theorem|lemma)\s+({DECLARATION_NAME})(?P<body>.*?){STATEMENT_END}", re.DOTALL
 )
 # A conjecture is `def NAME : Prop := <proposition>`. The right-hand side runs
 # until the next thing that can start a top-level declaration; an extraction
@@ -66,7 +74,7 @@ CONJECTURE_RE = re.compile(
 # Lean style puts a long qualified type on the next line, which is how the
 # first real resolution (#319) was written, so the gaps may span lines.
 RESOLUTION_RE = re.compile(
-    r"^[ \t]*(?:(?:private|protected)[ \t]+)?theorem[ \t]+[A-Za-z_][A-Za-z0-9_']*\s*:\s*([A-Za-z_][A-Za-z0-9_.']*)\s*:=",
+    rf"^[ \t]*(?:(?:private|protected)[ \t]+)?theorem[ \t]+{DECLARATION_NAME}\s*:\s*([A-Za-z_][A-Za-z0-9_.']*)\s*:=",
     re.M,
 )
 DECLARATION_RE = re.compile(r"\b(?:theorem|lemma|def|abbrev|opaque|structure|class|inductive|instance)\b")
@@ -796,14 +804,17 @@ def mathlib_duplicates(hints: set[str], mathlib_release: dict[str, str], report:
 
 
 def entrypoint_bodies(candidate: Path, modules: list[str], entrypoints: list[str]) -> dict[str, str]:
-    wanted = {entrypoint.rsplit(".", 1)[-1]: entrypoint for entrypoint in entrypoints}
+    """Statement text per entrypoint, matched by the declared name as written:
+    `OrientedNode.pairwiseCoprime` inside `namespace MarkovTree` is the
+    entrypoint `LeanFrontier.MarkovTree.OrientedNode.pairwiseCoprime`."""
     found: dict[str, str] = {}
     for module in modules:
         path = candidate / (module.replace(".", "/") + ".lean")
         if path.exists():
             for name, body in declared_statements(path):
-                if name in wanted:
-                    found[wanted[name]] = body
+                for entrypoint in entrypoints:
+                    if entrypoint == name or entrypoint.endswith("." + name):
+                        found[entrypoint] = body
     return found
 
 

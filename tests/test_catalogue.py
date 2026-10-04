@@ -56,6 +56,52 @@ theorem helper : True := trivial
         self.assertNotIn("LeanFrontier.Toy.helper", rendered)
         self.assertIn("The public theorem.", rendered)
 
+    def test_every_declared_entrypoint_shape_is_catalogued(self) -> None:
+        """Six entrypoints were missing on 4 October: proofs by pattern matching,
+        dotted names, a second namespace in one module, and a conjecture."""
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "LeanFrontier").mkdir()
+            (root / "Submissions").mkdir()
+            (root / "LeanFrontier" / "Toy.lean").write_text(
+                """namespace LeanFrontier.Toy
+
+theorem by_cases : ∀ n : Nat, 0 < n + 1
+  | 0 => by decide
+  | n + 1 => by omega
+
+theorem Pair.swap_swap (p : Nat × Nat) : p.swap.swap = p := rfl
+
+/-- Stated, not proved. -/
+def Open : Prop := ∀ n : Nat, n = n
+
+end LeanFrontier.Toy
+
+namespace LeanFrontier.Other
+
+theorem elsewhere : True := trivial
+
+end LeanFrontier.Other
+""",
+                encoding="utf-8",
+            )
+            entrypoints = [
+                "LeanFrontier.Toy.by_cases",
+                "LeanFrontier.Toy.Pair.swap_swap",
+                "LeanFrontier.Toy.Open",
+                "LeanFrontier.Other.elsewhere",
+            ]
+            (root / "Submissions" / "toy.json").write_text(
+                json.dumps({"submission_id": "toy", "entrypoints": entrypoints}), encoding="utf-8"
+            )
+            found = {item["name"]: item for item in catalogue.entries(root, set(entrypoints))}
+            rendered = catalogue.render(root, drawn=False)
+
+        self.assertEqual(sorted(found), sorted(entrypoints))
+        self.assertEqual(found["LeanFrontier.Toy.by_cases"]["statement"], ": ∀ n : Nat, 0 < n + 1")
+        self.assertEqual(found["LeanFrontier.Toy.Open"]["kind"], "conjecture, open")
+        self.assertIn("<dt>Kind</dt><dd>conjecture, open</dd>", rendered)
+
     def test_corpus_shape_reports_both_measures(self) -> None:
         """An import is one line and gameable; a statement mentioning a constant is not."""
         shape = catalogue.corpus_shape(ROOT)

@@ -12,14 +12,14 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from frontier_validate import strip_comments
+from frontier_validate import CONJECTURE_RE, DECLARATION_NAME, RESOLUTION_RE, STATEMENT_END, strip_comments
 
 
 ROOT = Path(__file__).resolve().parents[1]
 DESTINATION = Path("docs/catalogue/index.html")
-THEOREM = re.compile(r"theorem\s+(?P<name>[A-Za-z_][A-Za-z0-9_']*)\b(?P<statement>.*?)(?=\s*:=)", re.DOTALL)
+THEOREM = re.compile(rf"\b(?:theorem|lemma)\s+(?P<name>{DECLARATION_NAME})(?P<statement>.*?){STATEMENT_END}", re.DOTALL)
 TRAILING_DOC = re.compile(r"/--(?P<docbody>(?:(?!-/).)*)-/\s*$", re.DOTALL)
-NAMESPACE = re.compile(r"^namespace\s+([A-Za-z_][A-Za-z0-9_.']*)\s*$", re.MULTILINE)
+SCOPE = re.compile(r"^(namespace|section|end)\b[ \t]*([A-Za-z_][A-Za-z0-9_.']*)?[ \t]*$", re.MULTILINE)
 
 
 def module_for(path: Path, root: Path) -> str:
@@ -68,8 +68,12 @@ def entries(root: Path, declared_entrypoints: set[str]) -> list[dict[str, str]]:
     public corpus interface.  The immutable submission record is the authority for
     that boundary.
     """
+    paths = sorted((root / "LeanFrontier").rglob("*.lean"))
+    resolved = {match.group(1).rsplit(".", 1)[-1]
+                for path in paths
+                for match in RESOLUTION_RE.finditer(strip_comments(path.read_text(encoding="utf-8")))}
     result: list[dict[str, str]] = []
-    for path in sorted((root / "LeanFrontier").rglob("*.lean")):
+    for path in paths:
         source = path.read_text(encoding="utf-8")
         # Declarations are found in comment-free code, documentation is read back
         # from the original text: `strip_comments` preserves byte offsets, so the
@@ -77,21 +81,40 @@ def entries(root: Path, declared_entrypoints: set[str]) -> list[dict[str, str]]:
         # otherwise match as a declaration named `is` and, because `finditer`
         # does not overlap, swallow the next real theorem in the module.
         code = strip_comments(source)
-        namespaces = NAMESPACE.findall(code)
-        namespace = namespaces[0] if namespaces else "LeanFrontier"
-        for match in THEOREM.finditer(code):
+        found = [(match, match.group("name"), match.group("statement"), "theorem")
+                 for match in THEOREM.finditer(code)]
+        found += [(match, match.group(1), ": " + match.group("body").strip(),
+                   "conjecture, resolved" if match.group(1) in resolved else "conjecture, open")
+                  for match in CONJECTURE_RE.finditer(code)]
+        for match, declared, statement, kind in sorted(found, key=lambda item: item[0].start()):
             doc_match = TRAILING_DOC.search(source[:match.start()])
-            name = f"{namespace}.{match.group('name')}"
+            name = f"{namespace_at(code, match.start())}.{declared}"
             if name not in declared_entrypoints:
                 continue
             result.append({
                 "name": name,
+                "kind": kind,
                 "module": module_for(path, root),
-                "statement": " ".join(match.group("statement").split()),
+                "statement": " ".join(statement.split()),
                 "doc": " ".join((doc_match.group("docbody") if doc_match else "").split()),
                 "source": path.relative_to(root).as_posix(),
             })
     return result
+
+
+def namespace_at(code: str, position: int) -> str:
+    """The namespace open at `position`. A module may close one namespace and
+    open another, as the curvature-centre bridge does for its Ford-circle half."""
+    scopes: list[tuple[str, str]] = []
+    for match in SCOPE.finditer(code, 0, position):
+        keyword, name = match.group(1), match.group(2) or ""
+        if keyword == "end":
+            if scopes:
+                scopes.pop()
+        else:
+            scopes.append((keyword, name))
+    names = [name for keyword, name in scopes if keyword == "namespace" and name]
+    return ".".join(names) if names else "LeanFrontier"
 
 
 def corpus_shape(root: Path) -> dict[str, object]:
@@ -268,10 +291,11 @@ def render(root: Path, drawn: bool = True) -> str:
                 f' · <a href="https://github.com/carlok/LeanFrontier/blob/main/'
                 f'{html.escape(str(observation["report"]))}">receiver report</a>'
             )
+        kind = "" if item["kind"] == "theorem" else f'\n  <dt>Kind</dt><dd>{html.escape(item["kind"])}</dd>'
         cards.append(f"""<article>
   <h2><code>{html.escape(item['name'])}</code></h2>
   <p class=\"statement\">{html.escape(item['statement'])}</p>
-  <dl><dt>Import</dt><dd><code>import {html.escape(item['module'])}</code></dd>
+  <dl><dt>Import</dt><dd><code>import {html.escape(item['module'])}</code></dd>{kind}
   <dt>Claim</dt><dd>{html.escape(str(claim.get('id', 'unrecorded')))} · {html.escape(str(claim.get('origin', 'unknown')))} · {html.escape(producer_label)}</dd>{audit}</dl>
   <p>{html.escape(item['doc'])}</p>
   <p><a href=\"https://github.com/carlok/LeanFrontier/blob/main/{html.escape(item['source'])}\">View source</a>{report_link}</p>
