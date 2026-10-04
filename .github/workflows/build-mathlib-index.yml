@@ -42,7 +42,7 @@ jobs:
           install -m 0644 "$GITHUB_WORKSPACE/index-output/active-index.json" "policy/$index_name"
           echo "path=policy/$index_name" >> "$GITHUB_OUTPUT"
         id: index
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: mathlib-fingerprints-active
           path: ${{ steps.index.outputs.path }}

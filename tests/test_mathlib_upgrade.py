@@ -175,7 +175,7 @@ class MathlibUpgradePathTests(unittest.TestCase):
         self.assertIn('--report "/output/upgrade.json" || status=$?', workflow)
         self.assertIn("::error::upgrade audit rejected", workflow)
         self.assertIn("if: always() && steps.release.outputs.upgrade == 'true'", workflow)
-        self.assertIn("actions/upload-artifact@v4", workflow)
+        self.assertIn("actions/upload-artifact@v7", workflow)
 
     def test_upgrade_audit_reports_corpus_deprecations_without_blocking(self) -> None:
         source = (ROOT / "tools" / "audit_mathlib_upgrade.py").read_text()

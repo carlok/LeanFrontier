@@ -455,6 +455,21 @@ class WorkflowContractTests(unittest.TestCase):
         for workflow in (ROOT / ".github" / "workflows").glob("*.yml"):
             self.assertNotIn("permission-workflows", workflow.read_text(), workflow.name)
 
+    def test_no_workflow_pins_an_action_that_runs_on_node_20(self) -> None:
+        """GitHub retires the Node 20 runtime; these majors still declare it."""
+        node20 = {
+            "actions/checkout": 4,
+            "actions/create-github-app-token": 2,
+            "actions/upload-artifact": 4,
+            "actions/configure-pages": 5,
+            "actions/deploy-pages": 4,
+            "actions/upload-pages-artifact": 4,
+        }
+        for workflow in sorted((ROOT / ".github" / "workflows").glob("*.yml")):
+            for action, major in re.findall(r"uses: ([\w./-]+)@v(\d+)", workflow.read_text()):
+                if action in node20:
+                    self.assertGreater(int(major), node20[action], f"{workflow.name}: {action}@v{major}")
+
     def test_auto_merge_cannot_be_reached_by_untrusted_code(self) -> None:
         """A fork's pull_request token has no secrets, so this must run post hoc."""
         self.assertIn("workflow_run:", AUTO_MERGE_WORKFLOW)
