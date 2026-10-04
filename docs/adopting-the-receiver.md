@@ -42,8 +42,10 @@ opens a pull request for it. The gate on generated output checks such pull
 requests without running candidate code. This is what makes the corpus
 auditable after the workflow artifacts expire.
 
-It needs a **GitHub App** (secrets `APP_ID`, `APP_PRIVATE_KEY`): pull requests
-opened with `GITHUB_TOKEN` do not trigger workflows, so their checks never run.
+It needs a **GitHub App** (variable `APP_CLIENT_ID`, secret `APP_PRIVATE_KEY`):
+pull requests opened with `GITHUB_TOKEN` do not trigger workflows, so their
+checks never run. The client ID is not secret; `actions/create-github-app-token`
+v3 deprecates its `app-id` input in favour of `client-id`.
 
 ## Layer 3: conveniences
 

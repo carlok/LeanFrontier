@@ -276,7 +276,7 @@ class WorkflowContractTests(unittest.TestCase):
         """GITHUB_TOKEN pull requests never trigger the checks the ruleset requires."""
         for workflow in (SYNC_WORKFLOW, CATALOGUE_WORKFLOW, OBSERVATION_WORKFLOW, UPGRADE_WORKFLOW):
             self.assertIn("actions/create-github-app-token", workflow)
-            self.assertIn("app-id: ${{ secrets.APP_ID }}", workflow)
+            self.assertIn("client-id: ${{ vars.APP_CLIENT_ID }}", workflow)
             self.assertIn("private-key: ${{ secrets.APP_PRIVATE_KEY }}", workflow)
             self.assertIn("token: ${{ steps.app-token.outputs.token }}", workflow)
             self.assertNotIn("GH_TOKEN: ${{ github.token }}", workflow)
