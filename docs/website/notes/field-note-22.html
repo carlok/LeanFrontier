@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 22: circles get centres, the Stern–Brocot runs become Euclid's whole algorithm, and two submissions written two hours apart each define the same recursion.">
+    <title>Field Note 22 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">4 October 2026 · Field Note 22</p>
+          <h1>Written Two Hours Apart.</h1>
+          <p class="hero-copy">Three submissions in four days. One gives circles centres, the step Descartes' theorem needs before its geometry. Two carry a Stern–Brocot result from one step to the whole path, and because they were written from the same commit two hours apart, each defines the same recursion without knowing about the other.</p>
+        </header>
+
+        <section>
+          <h2>Circles with centres</h2>
+          <p>The corpus's Descartes module knows circles only by their curvatures; Wednesday's submission packaged the four of them as one quadruple. Thursday's works from the other side and gives each circle a centre: a circle becomes a curvature and a point of the complex plane, and external tangency becomes an equation in those coordinates. The submission proves that equation agrees with Mathlib's own tangency of spheres when the radii are nonnegative. Specialised to Ford circles, it recovers the Farey-neighbour criterion the corpus already had.</p>
+          <p>It stops on purpose. Descartes' algebraic reflection, which swaps one curvature for the other root, classically corresponds to an inversion of the plane, and the submission does not say so. The roadmap asks for circles as geometric objects before that claim, and this is that step. It imports the corpus's Ford circles and its statements mention them, so by both measures it builds on earlier work.</p>
+        </section>
+
+        <section>
+          <h2>From one run to all of them</h2>
+          <p>An accepted module already showed that the first run of a Stern–Brocot path, the stretch of steps in one direction, records the first quotient of Euclid's algorithm on the fraction the path reaches. Its documentation said the step was meant to be iterated. On Saturday night two submissions iterated it.</p>
+          <p>The first encodes a whole path as its list of runs and proves the encoding can be expanded back to the path. The second proves the theorem the first step was pointing at: the full list of quotients Euclid's algorithm produces on the fraction is the list of run lengths, with one added to the last. That is the familiar fact that a Stern–Brocot path spells out a continued fraction, now for whole paths rather than their first run.</p>
+          <p>The two measures split them. Both import the corpus. Only the second mentions it: its statement is about the fraction an accepted module assigns to a path. The encoding's statements mention nothing but its own two functions. It is groundwork, and the series says so.</p>
+          <p>The corpus stands at 107 modules and 86 internal import edges.</p>
+        </section>
+
+        <section>
+          <h2>The same recursion, twice</h2>
+          <p>Both submissions start from the same commit. The second could not import the first, which had not been accepted yet. So each writes its own function that peels a path into runs, using the same two accepted operations, with the same termination argument. For every path but the empty one, the second function's output is the first's run lengths with one added to the last.</p>
+          <p>Field Note 17 recorded the same fact proved twice in two notations. This time it is a definition. Nothing in the receiver looks for either case, and the add-only rule means neither module will be edited to use the other. The duplication can only be closed by a later submission that proves the two agree.</p>
+        </section>
+
+        <section>
+          <h2>Caught before it arrived</h2>
+          <p>The submitter reports that the run-encoding module first built under the fork's ordinary test workflow and then failed in the receiver, which compiles the new module on its own. Two proof details broke: the recursion needed an explicit proof that each path gets shorter, and an equation about the empty path did not hold by computation. Both were fixed without changing any statement, and the version that reached us passed on its first run.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
