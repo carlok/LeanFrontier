@@ -1,0 +1,155 @@
+{
+  "accepted_revision": "07c6e5023ef01b80dfbc72653cb2722eacb27937",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-04T07:39:41Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 272.157,
+    "observed": {
+      "added_lines": 279,
+      "audited_declarations": {
+        "LeanFrontier.SternBrocot.euclideanRunQuotients": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.SternBrocot.euclideanRunQuotients",
+          "restatement": false,
+          "statement_sha256": "015b5e95ff44050d41ddde2ba783b56ed91b93e30ada551d492d351eae50e469",
+          "type_dependencies": [
+            "List",
+            "Nat"
+          ]
+        },
+        "LeanFrontier.SternBrocot.euclideanRunQuotients_pair": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.euclideanRunQuotients_pair",
+          "restatement": false,
+          "statement_sha256": "39bc8f77ede69fe0f310d53980850c757d3ac3aab694ab5b323bb72a40d7a7bf",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.SternBrocot.euclideanRunQuotients",
+            "LeanFrontier.SternBrocot.pair",
+            "LeanFrontier.SternBrocot.pathQuotients",
+            "List",
+            "Nat",
+            "Prod.fst",
+            "Prod.snd"
+          ]
+        },
+        "LeanFrontier.SternBrocot.pathQuotients": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.SternBrocot.pathQuotients",
+          "restatement": false,
+          "statement_sha256": "e87b077d1762c1ed4bf4732bdbd96d6da15007f433faf692deb1b2de8ad45111",
+          "type_dependencies": [
+            "Bool",
+            "List",
+            "Nat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 6,
+        "by_entrypoint": {
+          "LeanFrontier.SternBrocot.euclideanRunQuotients_pair": [
+            {
+              "outcome": "failed",
+              "seconds": 4.256,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.207,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.168,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.106,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.021,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.216,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 24.974,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SternBrocot.euclideanRunQuotients_pair": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 12263,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SternBrocot/QuotientSequence.lean",
+        "Submissions/stern-brocot-euclidean-quotient-sequence.json"
+      ],
+      "corpus_entrypoints_checked": 298,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SternBrocot.euclideanRunQuotients_pair": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.euclideanRunQuotients_pair",
+          "statement_sha256": "39bc8f77ede69fe0f310d53980850c757d3ac3aab694ab5b323bb72a40d7a7bf",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.SternBrocot.euclideanRunQuotients",
+            "LeanFrontier.SternBrocot.pair",
+            "LeanFrontier.SternBrocot.pathQuotients",
+            "List",
+            "Nat",
+            "Prod.fst",
+            "Prod.snd"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 10327,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 11
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "stern-brocot-euclidean-quotient-sequence",
+  "trusted_receiver_revision": "c14120e0697a9d7e6dcfc577160b4995c652c180",
+  "validated_candidate_revision": "f7194890090d1a0ff677f906886f51899ca877b2",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/37186100121"
+}
