@@ -42,7 +42,7 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Check out trusted receiver revision
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ inputs.trusted_ref || github.event.pull_request.base.sha || github.sha }}
           path: trusted
@@ -50,7 +50,7 @@ jobs:
           persist-credentials: false
 
       - name: Check out untrusted candidate revision
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ inputs.candidate_ref || github.event.pull_request.head.sha || github.sha }}
           path: candidate
@@ -132,7 +132,7 @@ jobs:
 
       - name: Upload receiver report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: leanfrontier-validation-report
           path: |
