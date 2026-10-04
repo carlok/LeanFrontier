@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   sync:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Mint a generator token
         # PRs opened with GITHUB_TOKEN do not trigger workflow runs, so their

@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   python:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v5
         with:
@@ -39,7 +39,7 @@ jobs:
 
   mathlib-upgrade:
     name: mathlib-upgrade
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 150
     steps:
       - uses: actions/checkout@v5

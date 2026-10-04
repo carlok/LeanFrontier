@@ -455,6 +455,13 @@ class WorkflowContractTests(unittest.TestCase):
         for workflow in (ROOT / ".github" / "workflows").glob("*.yml"):
             self.assertNotIn("permission-workflows", workflow.read_text(), workflow.name)
 
+    def test_every_job_names_its_runner_image(self) -> None:
+        """ubuntu-latest moves when GitHub decides (26.04 from 19 October 2026).
+        The receiver's host should change in a reviewed pull request instead."""
+        for workflow in sorted((ROOT / ".github" / "workflows").glob("*.yml")):
+            for runner in re.findall(r"runs-on: (\S+)", workflow.read_text()):
+                self.assertRegex(runner, r"^ubuntu-\d\d\.\d\d$", workflow.name)
+
     def test_no_workflow_pins_an_action_that_runs_on_node_20(self) -> None:
         """GitHub retires the Node 20 runtime; these majors still declare it."""
         node20 = {

@@ -29,7 +29,7 @@ concurrency:
 
 jobs:
   merge:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     # Each pull request costs a branch update plus a full revalidation, which
     # ran 4 to 11 minutes per submission on 22 September.
     timeout-minutes: 300
