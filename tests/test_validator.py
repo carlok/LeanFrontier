@@ -833,6 +833,51 @@ class ConjectureParsingTests(unittest.TestCase):
         self.assertTrue(body.startswith(": "), body)
 
 
+class StatementExtractionTests(unittest.TestCase):
+    """Every textual check and the baseline probes read statements through
+    `declared_statements`. A theorem it misses is checked by none of them."""
+
+    MODULE = """namespace LeanFrontier.Toy
+
+theorem first (n : Nat) : n + 0 = n := by simp
+
+theorem by_cases : ∀ n : Nat, 0 < n + 1
+  | 0 => by decide
+  | n + 1 => by
+    have h := by_cases n
+    omega
+
+theorem Pair.swap_swap (p : Nat × Nat) : p.swap.swap = p := rfl
+
+theorem primed' : True := trivial
+
+end LeanFrontier.Toy
+"""
+
+    def setUp(self) -> None:
+        self.temp = tempfile.TemporaryDirectory()
+        self.path = Path(self.temp.name) / "LeanFrontier" / "Toy.lean"
+        self.path.parent.mkdir()
+        self.path.write_text(self.MODULE)
+        self.statements = dict(frontier_validate.declared_statements(self.path))
+
+    def tearDown(self) -> None:
+        self.temp.cleanup()
+
+    def test_a_proof_by_pattern_matching_is_a_statement(self) -> None:
+        """Found on 4 October: two accepted entrypoints of this shape were never probed."""
+        self.assertEqual(" ".join(self.statements["by_cases"].split()), ": ∀ n : Nat, 0 < n + 1")
+
+    def test_dotted_and_primed_names_are_whole(self) -> None:
+        self.assertEqual(self.statements["Pair.swap_swap"].strip(), "(p : Nat × Nat) : p.swap.swap = p")
+        self.assertIn("primed'", self.statements)
+
+    def test_entrypoints_are_matched_by_their_declared_name(self) -> None:
+        entrypoints = ["LeanFrontier.Toy.by_cases", "LeanFrontier.Toy.Pair.swap_swap", "LeanFrontier.Toy.primed'"]
+        bodies = frontier_validate.entrypoint_bodies(Path(self.temp.name), ["LeanFrontier.Toy"], entrypoints)
+        self.assertEqual(sorted(bodies), sorted(entrypoints))
+
+
 class ConjectureQuotaTests(PreflightHarness, unittest.TestCase):
     """Stating is nearly free and proving is hard, so the cheap act is tied to
     the expensive one."""
