@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   prepare:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     # Index plus whole-corpus audit took 30 min on v4.34.0 and longer on a
     # slower runner; 60 left too little headroom.
     timeout-minutes: 150

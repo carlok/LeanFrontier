@@ -36,7 +36,7 @@ jobs:
       !(startsWith(github.event.pull_request.head.ref, 'maintenance/') &&
         (github.event.pull_request.author_association == 'OWNER' ||
          github.event.pull_request.user.login == 'leanfrontier-receiver[bot]'))
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     # Raised from 12 when the kernel recheck was added: the Furstenberg
     # submission's validate job already ran 7m31s before it existed.
     timeout-minutes: 20
@@ -147,7 +147,7 @@ jobs:
        github.event.pull_request.user.login == 'leanfrontier-receiver[bot]') ||
       (github.event_name == 'workflow_dispatch' && inputs.generated == true)
     name: validate
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v5
         with:
@@ -170,7 +170,7 @@ jobs:
       (github.event.pull_request.author_association == 'OWNER' ||
        github.event.pull_request.user.login == 'leanfrontier-receiver[bot]')
     name: validate
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v5
         with:
