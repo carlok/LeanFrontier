@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "stern-brocot-regular-continued-fraction",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.SternBrocot.regularCoefficients_runs",
+    "LeanFrontier.SternBrocot.genContFract_pair"
+  ],
+  "base_mathlib_revision": "v4.34.1",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to inspect current upstream LeanFrontier first and then attack the next worthwhile target. The producer refreshed upstream main to a7836d1d0b1c504abb1a48b44bfdc4eebe5438bc, confirmed that the prior canonical run encoding and complete Euclidean quotient-sequence PRs had both merged, that no upstream PRs were open, that Mathlib remained pinned to v4.34.1, and that the roadmap still named the Stern-Brocot / Euclidean algorithm / regular continued-fraction dictionary as a missing interface. Searches found no GenContFract use in LeanFrontier. GPT-5.6 Sol / ChatGPT therefore selected the actual Mathlib continued-fraction bridge: restore the conventional leading zero to the accepted symmetric Euclidean quotient list when the represented rational is below one; prove those coefficients are exactly the accepted canonical path run quotients with that leading-zero convention; package finite natural coefficients as a simple GenContFract over the rationals; and prove that Mathlib's GenContFract.of computation for every Stern-Brocot rational is exactly that finite object. The proof uses Mathlib's continued-fraction computation recurrence and rational floor/fraction lemmas rather than defining a parallel continued-fraction evaluator. GPT-5.6 Sol / ChatGPT selected the API and authored the definitions, statements, and proofs autonomously; the human did not author or materially edit the Lean text. No claim of new mathematics is made."
+}
