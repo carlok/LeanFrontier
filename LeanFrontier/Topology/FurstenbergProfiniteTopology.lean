@@ -41,10 +41,10 @@ private theorem continuous_genericQuotientMk
   let n := H.toAddSubgroup.index
   have hn : n ≠ 0 := AddSubgroup.FiniteIndex.index_ne_zero
   let e := finiteIndexQuotientEquivZMod H
-  letI : TopologicalSpace ℤ := furstenbergTopology
-  letI : TopologicalSpace (ZMod n) := ⊥
+  let _ : TopologicalSpace ℤ := furstenbergTopology
+  let _ : TopologicalSpace (ZMod n) := ⊥
   let _ : DiscreteTopology (ZMod n) := ⟨rfl⟩
-  letI : TopologicalSpace (ℤ ⧸ H.toAddSubgroup) := ⊥
+  let _ : TopologicalSpace (ℤ ⧸ H.toAddSubgroup) := ⊥
   let _ : DiscreteTopology (ℤ ⧸ H.toAddSubgroup) := ⟨rfl⟩
   have hz : Continuous (zmodReduction n) := by
     simpa [n] using continuous_zmodReduction hn
@@ -95,12 +95,12 @@ theorem genericFiniteQuotientTopology_eq_finiteQuotientTopology :
         H.toAddSubgroup = AddSubgroup.zmultiples (n.1 : ℤ) :=
       zmultiplesFiniteIndexNormal_toAddSubgroup n.1 n.2
     rw [hH] at hle
-    letI : TopologicalSpace ℤ := genericFiniteQuotientTopology
-    letI : TopologicalSpace
+    let _ : TopologicalSpace ℤ := genericFiniteQuotientTopology
+    let _ : TopologicalSpace
         (ℤ ⧸ AddSubgroup.zmultiples (n.1 : ℤ)) := ⊥
     let _ : DiscreteTopology
         (ℤ ⧸ AddSubgroup.zmultiples (n.1 : ℤ)) := ⟨rfl⟩
-    letI : TopologicalSpace (ZMod n.1) := ⊥
+    let _ : TopologicalSpace (ZMod n.1) := ⊥
     let _ : DiscreteTopology (ZMod n.1) := ⟨rfl⟩
     have hmk :
         Continuous (fun x : ℤ =>
@@ -113,7 +113,10 @@ theorem genericFiniteQuotientTopology_eq_finiteQuotientTopology :
       continuous_of_discreteTopology
     have hcomp := he.comp hmk
     apply Continuous.le_induced
-    simpa only [Function.comp_apply, zmodReduction] using hcomp
+    change Continuous (zmodReduction n.1)
+    convert hcomp using 1
+    funext x
+    rfl
   · rw [genericFiniteQuotientTopology,
       ← furstenbergTopology_eq_finiteQuotientTopology]
     refine le_iInf fun H => ?_
