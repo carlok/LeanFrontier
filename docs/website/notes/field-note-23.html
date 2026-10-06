@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 23: the Stern–Brocot runs reach Mathlib's own continued fractions, the receiver misreads the theorem that gets them there, and the first scheduled week of rejection data arrives.">
+    <title>Field Note 23 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">6 October 2026 · Field Note 23</p>
+          <h1>The Receiver Misread It.</h1>
+          <p class="hero-copy">One submission carries the Stern–Brocot runs into Mathlib's own continued fractions. The receiver accepted it, but read one of its two statements only halfway, because of a fix made on Sunday. That fix has now been fixed.</p>
+        </header>
+
+        <section>
+          <h2>Into Mathlib's continued fractions</h2>
+          <p>Sunday's submissions proved that the runs of a Stern–Brocot path are the quotients of Euclid's algorithm on the fraction the path reaches. Tuesday's takes the last step: Mathlib's own computation of a continued fraction, applied to that fraction, returns exactly those quotients. One adjustment is needed. A fraction below one has a regular continued fraction that starts with zero, which the corpus's quotient list leaves out, so the submission puts it back exactly when the path starts with a left move.</p>
+          <p>It is the first module to use Mathlib's continued fractions. It imports the quotient sequence and mentions it in its statements, so both measures count it as building on the corpus. It does not use the run-length encoding that landed with the quotient sequence. Field Note 22 noted that the two define the same recursion. Two days later, nothing imports the encoding.</p>
+          <p>The corpus stands at 108 modules and 87 internal import edges.</p>
+        </section>
+
+        <section>
+          <h2>Half a statement</h2>
+          <p>Before checking a theorem, the receiver reads its statement out of the source: where the claim ends and the proof begins. On Sunday we found it had been missing every theorem proved by cases, where the proof is a list of lines starting with a bar and there is no <code>:=</code>. It had never probed four accepted theorems for triviality. We taught it to stop at the first such line.</p>
+          <p>Tuesday's submission states one of its theorems with a case split <em>inside</em> the statement. The receiver stopped at the first bar of that split and read the claim as ending in <code>match path with</code>. A probe on half a statement cannot run, so it was recorded as inconclusive, and the submission's own report said the same. The submission is sound: the build, the kernel recheck and the statement fingerprint do not depend on this reading. But "inconclusive" meant "not tried".</p>
+          <p>The repair follows Lean's own rule. Bars right after <code>with</code> belong to the case split, and so do all the bars after them. A named argument such as <code>(n := 3)</code> no longer ends a statement either. Over the corpus's 548 statements, one reading changes: this one.</p>
+          <p>Neither bug showed up in the receiver's own tests. The first turned up because the catalogue was missing two theorems. The second turned up while reading a submission to write about it.</p>
+        </section>
+
+        <section>
+          <h2>The first scheduled week</h2>
+          <p>On Monday the rejection collector ran on its own for the first time and added one week, from 28 September: 22 accepted validation runs, 5 over a resource limit, 2 that did not build and 1 with a malformed claim. These count runs, not submissions; a submission revalidated after its branch is updated counts again. The file now covers seven weeks.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
