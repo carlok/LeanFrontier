@@ -3733,7 +3733,7 @@ was written about it.</p>
 </article>
 <article>
   <h2><code>LeanFrontier.SternBrocot.regularCoefficients_runs</code></h2>
-  <p class="statement">(path : List Bool) : regularCoefficients path = match path with</p>
+  <p class="statement">(path : List Bool) : regularCoefficients path = match path with | [] =&gt; pathQuotients [] | false :: tail =&gt; 0 :: pathQuotients (false :: tail) | true :: tail =&gt; pathQuotients (true :: tail)</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SternBrocot.ContinuedFraction</code></dd>
   <dt>Claim</dt><dd>stern-brocot-regular-continued-fraction · autonomous_discovery · chatgpt</dd>
   <dt>Receiver</dt><dd>accepted at <code>e4f1b6901b69b3b769aec02783678402568cc4ac</code> · downstream import pass</dd>
