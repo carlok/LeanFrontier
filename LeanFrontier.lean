@@ -76,6 +76,7 @@ import LeanFrontier.NumberTheory.Padovan
 import LeanFrontier.NumberTheory.PowerSums
 import LeanFrontier.NumberTheory.SquareRootNegOne
 import LeanFrontier.NumberTheory.SternBrocot
+import LeanFrontier.NumberTheory.SternBrocot.ContinuedFraction
 import LeanFrontier.NumberTheory.SternBrocot.Extremal
 import LeanFrontier.NumberTheory.SternBrocot.Intervals
 import LeanFrontier.NumberTheory.SternBrocot.NodeInterval

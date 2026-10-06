@@ -1,0 +1,266 @@
+{
+  "accepted_revision": "e4f1b6901b69b3b769aec02783678402568cc4ac",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-06T20:29:55Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 333.502,
+    "observed": {
+      "added_lines": 267,
+      "audited_declarations": {
+        "LeanFrontier.SternBrocot.genContFract_pair": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.genContFract_pair",
+          "restatement": false,
+          "statement_sha256": "29b5f0af52cae9787a2ff5e689c7aa61f38cd2e863167ee6a3fc537a7701ab78",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "GenContFract",
+            "GenContFract.of",
+            "HDiv.hDiv",
+            "LeanFrontier.SternBrocot.natCoefficientsGCF",
+            "LeanFrontier.SternBrocot.pair",
+            "LeanFrontier.SternBrocot.regularCoefficients",
+            "List",
+            "Nat",
+            "Nat.cast",
+            "Prod.fst",
+            "Prod.snd",
+            "Rat",
+            "Rat.instDiv",
+            "Rat.instDivisionRing",
+            "Rat.instFloorRing",
+            "Rat.instNatCast",
+            "Rat.linearOrder",
+            "instHDiv"
+          ]
+        },
+        "LeanFrontier.SternBrocot.natCoefficientsGCF": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.SternBrocot.natCoefficientsGCF",
+          "restatement": false,
+          "statement_sha256": "4a1c0c0a6ef8b8975c9861863d938a188ca8a4477728d4d4516787f5d9da7d17",
+          "type_dependencies": [
+            "GenContFract",
+            "List",
+            "Nat",
+            "Rat"
+          ]
+        },
+        "LeanFrontier.SternBrocot.regularCoefficients": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.SternBrocot.regularCoefficients",
+          "restatement": false,
+          "statement_sha256": "e87b077d1762c1ed4bf4732bdbd96d6da15007f433faf692deb1b2de8ad45111",
+          "type_dependencies": [
+            "Bool",
+            "List",
+            "Nat"
+          ]
+        },
+        "LeanFrontier.SternBrocot.regularCoefficients_runs": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.regularCoefficients_runs",
+          "restatement": false,
+          "statement_sha256": "e5f12775834dc8106f79933dabaa25e98da4a1306a1cc8b8f622050e8a7ac108",
+          "type_dependencies": [
+            "Bool",
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "LeanFrontier.SternBrocot.pathQuotients",
+            "LeanFrontier.SternBrocot.regularCoefficients",
+            "LeanFrontier.SternBrocot.regularCoefficients_runs.match_1",
+            "List",
+            "List.cons",
+            "List.nil",
+            "Nat",
+            "OfNat.ofNat",
+            "Unit",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.SternBrocot.genContFract_pair": [
+            {
+              "outcome": "failed",
+              "seconds": 3.7,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.727,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.714,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.701,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.687,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.717,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.SternBrocot.regularCoefficients_runs": [
+            {
+              "outcome": "failed",
+              "seconds": 3.731,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.775,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.833,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.724,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.694,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.694,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 44.697,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SternBrocot.genContFract_pair": "inconclusive",
+        "LeanFrontier.SternBrocot.regularCoefficients_runs": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 12900,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SternBrocot/ContinuedFraction.lean",
+        "Submissions/stern-brocot-regular-continued-fraction.json"
+      ],
+      "corpus_entrypoints_checked": 299,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SternBrocot.genContFract_pair": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.genContFract_pair",
+          "statement_sha256": "29b5f0af52cae9787a2ff5e689c7aa61f38cd2e863167ee6a3fc537a7701ab78",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "GenContFract",
+            "GenContFract.of",
+            "HDiv.hDiv",
+            "LeanFrontier.SternBrocot.natCoefficientsGCF",
+            "LeanFrontier.SternBrocot.pair",
+            "LeanFrontier.SternBrocot.regularCoefficients",
+            "List",
+            "Nat",
+            "Nat.cast",
+            "Prod.fst",
+            "Prod.snd",
+            "Rat",
+            "Rat.instDiv",
+            "Rat.instDivisionRing",
+            "Rat.instFloorRing",
+            "Rat.instNatCast",
+            "Rat.linearOrder",
+            "instHDiv"
+          ]
+        },
+        "LeanFrontier.SternBrocot.regularCoefficients_runs": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.regularCoefficients_runs",
+          "statement_sha256": "e5f12775834dc8106f79933dabaa25e98da4a1306a1cc8b8f622050e8a7ac108",
+          "type_dependencies": [
+            "Bool",
+            "Bool.false",
+            "Bool.true",
+            "Eq",
+            "LeanFrontier.SternBrocot.pathQuotients",
+            "LeanFrontier.SternBrocot.regularCoefficients",
+            "LeanFrontier.SternBrocot.regularCoefficients_runs.match_1",
+            "List",
+            "List.cons",
+            "List.nil",
+            "Nat",
+            "OfNat.ofNat",
+            "Unit",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 10921,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 10
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "stern-brocot-regular-continued-fraction",
+  "trusted_receiver_revision": "a7836d1d0b1c504abb1a48b44bfdc4eebe5438bc",
+  "validated_candidate_revision": "6fd01ff8390efa475642b406ae064ecf69bf7b53",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/37524955193"
+}

@@ -106,6 +106,7 @@ stern-brocot-interval-invariant,unassigned,gpt-5.6-sol
 stern-brocot-mediant-extremal,unassigned,gpt-5.6-sol
 stern-brocot-node-interval-bridge,unassigned,gpt-5.6-sol
 stern-brocot-path-bijection,unassigned,gpt-5.6-sol
+stern-brocot-regular-continued-fraction,unassigned,gpt-5.6-sol
 stern-brocot-run-length-encoding,unassigned,gpt-5.6-sol
 stern-diatomic-coprime,unassigned,claude-opus-5
 stern-diatomic-row-max,unassigned,gpt-5.6-sol
