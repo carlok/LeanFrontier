@@ -151,6 +151,7 @@ private theorem genContFract_of_nat_div_standard :
               a (b + 1) hbpos (by simpa [r] using hr)
           have hs :=
             GenContFract.of_s_of_int ℚ (((a / (b + 1) : ℕ) : ℤ))
+          rw [← Int.natCast_ediv] at hs
           rw [hq]
           simpa [natCoefficientsGCF, r, hr, standardEuclideanQuotients] using hs
         · have hrpos : 0 < r := Nat.pos_of_ne_zero hr
@@ -168,7 +169,7 @@ private theorem genContFract_of_nat_div_standard :
               (GenContFract.of q).s.head =
                 some (coefficientPair ((b + 1) / r)) := by
             rw [hfract, inv_div, Rat.floor_natCast_div_natCast] at hhead0
-            simp only [Int.natCast_ediv] at hhead0
+            rw [← Int.natCast_ediv] at hhead0
             simpa [coefficientPair] using hhead0
           have htail0 := GenContFract.of_s_tail q
           have htail :
