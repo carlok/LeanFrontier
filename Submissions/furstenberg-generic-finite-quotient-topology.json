@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "furstenberg-generic-finite-quotient-topology",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Int.genericFiniteQuotientTopology_eq_finiteQuotientTopology",
+    "LeanFrontier.Int.furstenbergTopology_eq_genericFiniteQuotientTopology"
+  ],
+  "base_mathlib_revision": "v4.34.1",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to find and attack a new worthwhile LeanFrontier target. GPT-5.6 Sol / ChatGPT first refreshed upstream main to 5f9d391e8052321928042e5d8c787bd68a314dfc, confirmed the prior Stern-Brocot continued-fraction PR had merged and that no upstream PRs were open, then audited the live roadmap against accepted modules rather than trusting stale status text. The producer selected the next unresolved A+ Furstenberg/profinite interface. LeanFrontier already identifies the Furstenberg topology with the topology jointly induced by all nonzero reductions to ZMod n, and already classifies every finite-index normal additive subgroup of the integers as nZ with a canonical quotient equivalence to ZMod of its index. The new module packages the topology jointly induced by all generic quotient maps ℤ → ℤ ⧸ H, gives each finite quotient the discrete topology, proves this generic finite-index quotient topology equals the accepted cyclic finite-quotient topology, and concludes that it equals the Furstenberg topology. The proof uses the accepted classification and quotient equivalences in both directions, establishing the cofinality/topology comparison that Mathlib's profinite-completion diagram requires before the canonical completion-map topology theorem. GPT-5.6 Sol / ChatGPT selected the target, designed the API, and authored the definitions/statements/proofs autonomously; the human did not author or materially edit the Lean text. No claim of new mathematics is made."
+}
