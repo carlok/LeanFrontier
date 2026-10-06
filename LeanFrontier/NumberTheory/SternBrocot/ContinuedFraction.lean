@@ -82,9 +82,9 @@ private theorem standardEuclideanQuotients_eq_adjusted :
       · have hdiv : (a + 1) / (b + 1) = 0 := Nat.div_eq_of_lt hab
         have hmod : (a + 1) % (b + 1) = a + 1 := Nat.mod_eq_of_lt hab
         rw [standardEuclideanQuotients, hdiv, hmod]
-        rw [if_pos hab]
+        simp only [hab, ite_true]
         rw [euclideanRunQuotients]
-        simp only [hab, if_true]
+        simp only [hab, ite_true]
         congr 1
         rw [standardEuclideanQuotients]
         let r := (b + 1) % (a + 1)
@@ -95,12 +95,12 @@ private theorem standardEuclideanQuotients_eq_adjusted :
           have hrec :=
             standardEuclideanQuotients_eq_adjusted (a + 1) r (Nat.succ_pos a) hrpos
           have hnot : ¬ a + 1 < r := by omega
-          rw [if_neg hnot] at hrec
+          simp only [hnot, ite_false] at hrec
           simpa [r] using hrec
       · rw [standardEuclideanQuotients]
-        rw [if_neg hab]
+        simp only [hab, ite_false]
         rw [euclideanRunQuotients]
-        simp only [hab, if_false]
+        simp only [hab, ite_false]
         congr 1
         let r := (a + 1) % (b + 1)
         have hrlt : r < b + 1 := Nat.mod_lt _ (Nat.succ_pos b)
@@ -109,7 +109,7 @@ private theorem standardEuclideanQuotients_eq_adjusted :
         · have hrpos : 0 < r := Nat.pos_of_ne_zero hr
           have hrec :=
             standardEuclideanQuotients_eq_adjusted r (b + 1) hrpos (Nat.succ_pos b)
-          rw [if_pos hrlt] at hrec
+          simp only [hrlt, ite_true] at hrec
           have hdiv : r / (b + 1) = 0 := Nat.div_eq_of_lt hrlt
           have hmod : r % (b + 1) = r := Nat.mod_eq_of_lt hrlt
           rw [standardEuclideanQuotients_of_pos r (b + 1) (Nat.succ_pos b),
@@ -117,9 +117,7 @@ private theorem standardEuclideanQuotients_eq_adjusted :
           exact List.cons.inj hrec |>.2
 termination_by a b _ _ => a + b
 decreasing_by
-  all_goals
-    dsimp only
-    omega
+  all_goals omega
 
 private theorem nat_div_eq_natCast_of_mod_eq_zero
     (a b : ℕ) (hb : 0 < b) (hmod : a % b = 0) :
@@ -148,9 +146,9 @@ private theorem genContFract_of_nat_div_standard :
         by_cases hr : r = 0
         · have hq :
               ((a : ℚ) / (b + 1 : ℕ)) =
-                (((a / (b + 1) : ℕ) : ℤ) : ℚ) := by
-            simpa [Int.cast_natCast] using
-              nat_div_eq_natCast_of_mod_eq_zero a (b + 1) hbpos (by simpa [r] using hr)
+                ((a / (b + 1) : ℕ) : ℚ) :=
+            nat_div_eq_natCast_of_mod_eq_zero
+              a (b + 1) hbpos (by simpa [r] using hr)
           have hs :=
             GenContFract.of_s_of_int ℚ (((a / (b + 1) : ℕ) : ℤ))
           rw [hq]
@@ -170,6 +168,7 @@ private theorem genContFract_of_nat_div_standard :
               (GenContFract.of q).s.head =
                 some (coefficientPair ((b + 1) / r)) := by
             rw [hfract, inv_div, Rat.floor_natCast_div_natCast] at hhead0
+            simp only [Int.natCast_ediv] at hhead0
             simpa [coefficientPair] using hhead0
           have htail0 := GenContFract.of_s_tail q
           have htail :
@@ -219,13 +218,16 @@ theorem regularCoefficients_runs (path : List Bool) :
       | [] => pathQuotients []
       | false :: tail => 0 :: pathQuotients (false :: tail)
       | true :: tail => pathQuotients (true :: tail) := by
-  have hp := pair_positive_coprime path
-  have hrel :=
-    standardEuclideanQuotients_eq_adjusted
-      (pair path).1 (pair path).2 hp.1 hp.2.1
-  rw [euclideanRunQuotients_pair path] at hrel
-  unfold regularCoefficients
-  rw [← hrel]
+  change
+    (if (pair path).1 < (pair path).2 then
+        0 :: euclideanRunQuotients (pair path).1 (pair path).2
+      else
+        euclideanRunQuotients (pair path).1 (pair path).2) =
+      match path with
+      | [] => pathQuotients []
+      | false :: tail => 0 :: pathQuotients (false :: tail)
+      | true :: tail => pathQuotients (true :: tail)
+  rw [euclideanRunQuotients_pair path]
   cases path with
   | nil =>
       simp [pair]
