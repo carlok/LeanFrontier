@@ -52,14 +52,59 @@ AXIOM_RE = re.compile(r"\baxiom\b")
 # A declaration name may be dotted (`theorem OrientedNode.pairwiseCoprime`) and
 # may end in a prime, which `\b` would cut off.
 DECLARATION_NAME = r"[A-Za-z_][A-Za-z0-9_']*(?:\.[A-Za-z_][A-Za-z0-9_']*)*(?![A-Za-z0-9_'.])"
-# A statement ends where its proof begins: `:=`, the first equation of a proof
-# by pattern matching (`| 0 => ...`, which has no `:=` at all), or `where`.
-# Matching only `:=` dropped pattern-matching theorems from every textual check
-# and the baseline probes, and let the theorem before them swallow their text.
-STATEMENT_END = r"(?=\s*:=|\n[ \t]*\|[^\n]*=>|\s+where\b)"
-DECL_RE = re.compile(
-    rf"\b(?:theorem|lemma)\s+({DECLARATION_NAME})(?P<body>.*?){STATEMENT_END}", re.DOTALL
-)
+DECL_HEAD_RE = re.compile(rf"\b(?:theorem|lemma)\s+({DECLARATION_NAME})")
+# Where a statement can end and its proof begin: `:=`, `where`, or the first
+# equation of a proof by pattern matching (`| 0 => ...`, with no `:=` at all).
+# Brackets are tracked so `(n := 3)` and `⟨_, _⟩` do not count.
+STATEMENT_STOP_RE = re.compile(r":=|(?<![\w.'])where\b|\n[ \t]*\|[^\n]*=>|[()\[\]{}⟨⟩]")
+OPENERS, CLOSERS = "([{⟨", ")]}⟩"
+
+
+def statement_end(code: str, start: int) -> int | None:
+    """Index where the statement starting at `start` ends, or None.
+
+    Matching only `:=` dropped pattern-matching theorems from every textual
+    check and the baseline probes, and let the theorem before them swallow
+    their text. Ending at any `| ... =>` line instead cut statements that
+    contain a `match` (stern-brocot-regular-continued-fraction, #479). Lean
+    reads alternatives that directly follow `with` or `fun` as belonging to
+    that term, and every later one too, so this does the same.
+    """
+    depth = 0
+    in_term_alternatives = False
+    for stop in STATEMENT_STOP_RE.finditer(code, start):
+        token = stop.group(0)
+        if token in OPENERS:
+            depth += 1
+        elif token in CLOSERS:
+            depth = max(depth - 1, 0)
+        elif depth:
+            continue
+        elif token.lstrip().startswith("|"):
+            if in_term_alternatives:
+                continue
+            if re.search(r"(?<![\w.'])(?:with|fun)$", code[start:stop.start()].rstrip()):
+                in_term_alternatives = True
+                continue
+            return stop.start()
+        else:
+            return stop.start()
+    return None
+
+
+def declarations(code: str) -> list[tuple[str, str, int]]:
+    """(name, statement, offset) for every theorem and lemma in comment-free code."""
+    found: list[tuple[str, str, int]] = []
+    resume = 0
+    for head in DECL_HEAD_RE.finditer(code):
+        if head.start() < resume:
+            continue
+        end = statement_end(code, head.end())
+        if end is None:
+            continue
+        found.append((head.group(1), code[head.end():end].rstrip(), head.start()))
+        resume = end
+    return found
 # A conjecture is `def NAME : Prop := <proposition>`. The right-hand side runs
 # until the next thing that can start a top-level declaration; an extraction
 # that gets this wrong yields an unusable probe, which is reported as
@@ -363,7 +408,7 @@ def declared_statements(path: Path) -> list[tuple[str, str]]:
         return []
     # Prose that happens to contain `theorem` is not a declaration.
     code = strip_comments(source)
-    found = [(match.group(1), match.group("body")) for match in DECL_RE.finditer(code)]
+    found = [(name, body) for name, body, _ in declarations(code)]
     found += [(match.group(1), ": " + match.group("body").strip())
               for match in CONJECTURE_RE.finditer(code)]
     return found
