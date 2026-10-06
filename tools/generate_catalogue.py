@@ -12,12 +12,11 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from frontier_validate import CONJECTURE_RE, DECLARATION_NAME, RESOLUTION_RE, STATEMENT_END, strip_comments
+from frontier_validate import CONJECTURE_RE, RESOLUTION_RE, declarations, strip_comments
 
 
 ROOT = Path(__file__).resolve().parents[1]
 DESTINATION = Path("docs/catalogue/index.html")
-THEOREM = re.compile(rf"\b(?:theorem|lemma)\s+(?P<name>{DECLARATION_NAME})(?P<statement>.*?){STATEMENT_END}", re.DOTALL)
 TRAILING_DOC = re.compile(r"/--(?P<docbody>(?:(?!-/).)*)-/\s*$", re.DOTALL)
 SCOPE = re.compile(r"^(namespace|section|end)\b[ \t]*([A-Za-z_][A-Za-z0-9_.']*)?[ \t]*$", re.MULTILINE)
 
@@ -81,14 +80,13 @@ def entries(root: Path, declared_entrypoints: set[str]) -> list[dict[str, str]]:
         # otherwise match as a declaration named `is` and, because `finditer`
         # does not overlap, swallow the next real theorem in the module.
         code = strip_comments(source)
-        found = [(match, match.group("name"), match.group("statement"), "theorem")
-                 for match in THEOREM.finditer(code)]
-        found += [(match, match.group(1), ": " + match.group("body").strip(),
+        found = [(offset, declared, statement, "theorem") for declared, statement, offset in declarations(code)]
+        found += [(match.start(), match.group(1), ": " + match.group("body").strip(),
                    "conjecture, resolved" if match.group(1) in resolved else "conjecture, open")
                   for match in CONJECTURE_RE.finditer(code)]
-        for match, declared, statement, kind in sorted(found, key=lambda item: item[0].start()):
-            doc_match = TRAILING_DOC.search(source[:match.start()])
-            name = f"{namespace_at(code, match.start())}.{declared}"
+        for offset, declared, statement, kind in sorted(found):
+            doc_match = TRAILING_DOC.search(source[:offset])
+            name = f"{namespace_at(code, offset)}.{declared}"
             if name not in declared_entrypoints:
                 continue
             result.append({

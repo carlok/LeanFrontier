@@ -851,6 +851,15 @@ theorem Pair.swap_swap (p : Nat × Nat) : p.swap.swap = p := rfl
 
 theorem primed' : True := trivial
 
+theorem by_match (l : List Nat) :
+    l.length =
+      match l with
+      | [] => 0
+      | _ :: t => t.length + 1 := by
+  cases l <;> rfl
+
+theorem named (n : Nat) : Nat.add (n := n) (m := 0) = n := rfl
+
 end LeanFrontier.Toy
 """
 
@@ -871,6 +880,14 @@ end LeanFrontier.Toy
     def test_dotted_and_primed_names_are_whole(self) -> None:
         self.assertEqual(self.statements["Pair.swap_swap"].strip(), "(p : Nat × Nat) : p.swap.swap = p")
         self.assertIn("primed'", self.statements)
+
+    def test_a_match_inside_a_statement_keeps_its_alternatives(self) -> None:
+        """Lean reads alternatives after `with` as part of the match (#479)."""
+        statement = " ".join(self.statements["by_match"].split())
+        self.assertTrue(statement.endswith("| _ :: t => t.length + 1"), statement)
+
+    def test_a_named_argument_does_not_end_a_statement(self) -> None:
+        self.assertEqual(self.statements["named"].strip(), "(n : Nat) : Nat.add (n := n) (m := 0) = n")
 
     def test_entrypoints_are_matched_by_their_declared_name(self) -> None:
         entrypoints = ["LeanFrontier.Toy.by_cases", "LeanFrontier.Toy.Pair.swap_swap", "LeanFrontier.Toy.primed'"]
