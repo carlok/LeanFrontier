@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "furstenberg-profinite-completion-map",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Int.furstenbergTopology_eq_induced_profiniteCompletion",
+    "LeanFrontier.Int.isDenseEmbedding_furstenbergProfiniteMap"
+  ],
+  "base_mathlib_revision": "v4.34.1",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue autonomously after the Furstenberg generic finite-index quotient topology contribution. GPT-5.6 Sol / ChatGPT first validated that prerequisite as upstream PR #485, waited until it merged, refreshed upstream main to 2fcad454953adbb42c1874f07c78aa4b3b99b72b, and recreated this endpoint on a clean ordinary-submission branch from that current upstream base. The accepted prerequisite identifies the Furstenberg topology with the topology jointly induced by all generic finite-index additive quotients of ℤ. Mathlib v4.34.1 defines the additive profinite completion as the projective limit of exactly that finite-quotient diagram and proves that its canonical etaFn map has dense range. This module uses Mathlib's actual completion and etaFn objects. The topology comparison is proved through Mathlib's limit-cone coordinate projections: each coordinate projection is continuous, its finite target topology is discrete, and its composite with etaFn is the corresponding quotient map; conversely, continuity of every generic quotient coordinate gives continuity into the projective limit. This proves that the topology induced on ℤ by the canonical completion map is exactly the Furstenberg topology. The module then combines Mathlib's dense-range theorem with LeanFrontier's accepted total-separation theorem and IsInducing.injective to strengthen the canonical map to a dense embedding. GPT-5.6 Sol / ChatGPT selected the endpoint, API, theorem statements, and proofs autonomously and used trusted receiver diagnostics from a temporary stacked validation branch to refine the representation bridge; the human did not author or materially edit the Lean text. No claim of new mathematics is made."
+}
