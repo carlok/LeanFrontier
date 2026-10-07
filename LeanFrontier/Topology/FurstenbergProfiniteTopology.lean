@@ -129,4 +129,7 @@ theorem furstenbergTopology_eq_genericFiniteQuotientTopology :
   rw [furstenbergTopology_eq_finiteQuotientTopology,
     genericFiniteQuotientTopology_eq_finiteQuotientTopology]
 
+/-- Deliberately trivial: a receiver test, never merged. -/
+theorem furstenbergTopology_self : furstenbergTopology = furstenbergTopology := rfl
+
 end LeanFrontier.Int
