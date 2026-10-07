@@ -35,8 +35,10 @@
         </section>
 
         <section>
-          <h2>Read before merging</h2>
-          <p>Since Tuesday's misreading, the maintainer runs the receiver's extraction on each submission before merging it and reads the result against the source. It is a manual step for now. Today all four statements in the new module were read whole, and both entrypoints resolved to their declared names. The baseline probes then ran on real goals and could not prove either theorem. They mention a topology the submission itself defines, which the probes cannot assume.</p>
+          <h2>Read before merging, and a correction</h2>
+          <p>Since Tuesday's misreading, the maintainer runs the receiver's extraction on each submission before merging it and reads the result against the source. It is a manual step for now. Today all four statements in the new module were read whole, and both entrypoints resolved to their declared names.</p>
+          <p>Doing that turned up something Field Note 23 got wrong. The baseline probes try to prove a statement from Mathlib and the corpus as it stood before the submission. A statement that names a definition the submission introduces cannot even be written down there, so Lean stops before any tactic runs. The receiver records that as "failed", the same word it uses when a tactic runs and does not close the goal. Both of today's statements name the topology the submission defines, so neither was really probed. The same was true of Tuesday's continued-fraction theorems: both name definitions of their own. Note 23 said the misread statement left its probe untried. That was true, but reading the whole statement would not have changed it.</p>
+          <p>The receiver's documentation says this case is inconclusive by design, and that is the right verdict. The report should say which kind of inconclusive it was, and it does not yet.</p>
         </section>
       </article>
     </main>
