@@ -81,41 +81,23 @@ private theorem induced_furstenbergProfiniteMap_eq_genericFiniteQuotientTopology
   apply le_antisymm
   · rw [genericFiniteQuotientTopology]
     refine le_iInf fun H => ?_
-    have heta :
-        @Continuous
-          ℤ
-          intProfiniteCompletion
-          (TopologicalSpace.induced furstenbergProfiniteMap
-            (inferInstance : TopologicalSpace intProfiniteCompletion))
-          (inferInstance : TopologicalSpace intProfiniteCompletion)
-          furstenbergProfiniteMap :=
+    let _ : TopologicalSpace ℤ :=
+      TopologicalSpace.induced furstenbergProfiniteMap
+        (inferInstance : TopologicalSpace intProfiniteCompletion)
+    let _ : TopologicalSpace (ℤ ⧸ H.toAddSubgroup) := ⊥
+    have heta : Continuous furstenbergProfiniteMap :=
       continuous_induced_dom
+    have hcomp :
+        Continuous (fun x : ℤ =>
+          intProfiniteProjection H (furstenbergProfiniteMap x)) :=
+      (continuous_intProfiniteProjection_discrete H).comp heta
     have hq :
-        @Continuous
-          ℤ
-          (ℤ ⧸ H.toAddSubgroup)
-          (TopologicalSpace.induced furstenbergProfiniteMap
-            (inferInstance : TopologicalSpace intProfiniteCompletion))
-          (⊥ : TopologicalSpace (ℤ ⧸ H.toAddSubgroup))
-          (fun x : ℤ => (QuotientAddGroup.mk x : ℤ ⧸ H.toAddSubgroup)) := by
-      have hcomp :
-          @Continuous
-            ℤ
-            (ℤ ⧸ H.toAddSubgroup)
-            (TopologicalSpace.induced furstenbergProfiniteMap
-              (inferInstance : TopologicalSpace intProfiniteCompletion))
-            (⊥ : TopologicalSpace (ℤ ⧸ H.toAddSubgroup))
-            (fun x => intProfiniteProjection H (furstenbergProfiniteMap x)) :=
-        (continuous_intProfiniteProjection_discrete H).comp heta
+        Continuous (fun x : ℤ =>
+          (QuotientAddGroup.mk x : ℤ ⧸ H.toAddSubgroup)) := by
       simpa using hcomp
     exact hq.le_induced
-  · have hmap :
-        @Continuous
-          ℤ
-          intProfiniteCompletion
-          genericFiniteQuotientTopology
-          (inferInstance : TopologicalSpace intProfiniteCompletion)
-          furstenbergProfiniteMap := by
+  · let _ : TopologicalSpace ℤ := genericFiniteQuotientTopology
+    have hmap : Continuous furstenbergProfiniteMap := by
       apply continuous_induced_rng.mpr
       exact continuous_pi fun H => by
         have hq :
@@ -127,19 +109,11 @@ private theorem induced_furstenbergProfiniteMap_eq_genericFiniteQuotientTopology
               (fun x : ℤ => (QuotientAddGroup.mk x : ℤ ⧸ H.toAddSubgroup)) :=
           continuous_iff_le_induced.mpr (iInf_le _ H)
         have hqObj :
-            @Continuous
-              ℤ
-              (intProfiniteDiagram.obj H)
-              genericFiniteQuotientTopology
-              ((intProfiniteDiagram.obj H).toProfinite.toTop.str)
-              (fun x : ℤ => (QuotientAddGroup.mk x : intProfiniteDiagram.obj H)) := by
+            Continuous (fun x : ℤ =>
+              (QuotientAddGroup.mk x : intProfiniteDiagram.obj H)) := by
           rw [diagramObj_topology_eq_bot H]
           exact hq
-        simpa [
-          furstenbergProfiniteMap,
-          ProfiniteAddGrp.ProfiniteCompletion.etaFn,
-          Function.comp_def
-        ] using hqObj
+        convert hqObj using 1 <;> rfl
     exact hmap.le_induced
 
 /-- The topology induced on `ℤ` by Mathlib's canonical map into its additive profinite
@@ -151,9 +125,9 @@ theorem furstenbergTopology_eq_induced_profiniteCompletion :
   rw [induced_furstenbergProfiniteMap_eq_genericFiniteQuotientTopology]
   exact furstenbergTopology_eq_genericFiniteQuotientTopology
 
+set_option linter.style.haveILetI false in
 /-- The canonical map from the Furstenberg integers into Mathlib's additive profinite completion
 is a dense topological embedding. -/
-set_option linter.style.haveILetI false in
 theorem isDenseEmbedding_furstenbergProfiniteMap :
     @IsDenseEmbedding
       ℤ
