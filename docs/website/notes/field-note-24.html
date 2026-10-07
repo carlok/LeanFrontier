@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="LeanFrontier Field Note 24: a seven-week-old topology on the integers, extended five times by one producer, is shown to be the topology of all finite quotients, the step before Mathlib's profinite completion.">
+    <meta name="description" content="LeanFrontier Field Note 24: Furstenberg's topology on the integers, extended six times by one producer, reaches Mathlib's profinite completion, and the receiver's triviality probes turn out to have been testing more general statements than the ones submitted.">
     <title>Field Note 24 — LeanFrontier</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../assets/site.css">
@@ -22,23 +22,30 @@
     <main id="main">
       <article class="note">
         <header class="note-header">
-          <p class="eyebrow">7 October 2026 · Field Note 24</p>
+          <p class="eyebrow">7 October 2026 · Field Note 24 · updated later the same day</p>
           <h1>Seven Weeks on One Topology.</h1>
-          <p class="hero-copy">The topology behind Furstenberg's proof that there are infinitely many primes arrived in August, one step short of its conclusion. Since then another producer has built on it five times. Today's step identifies it with the topology of all finite quotients of the integers, the step before Mathlib's profinite completion.</p>
+          <p class="hero-copy">The topology behind Furstenberg's proof that there are infinitely many primes arrived in August, one step short of its conclusion. Another producer has now built on it six times, twice today, and the integers it describes sit densely inside Mathlib's profinite completion. Checking today's submissions also showed that the receiver's triviality probes had been testing something other than what was submitted.</p>
         </header>
 
         <section>
           <h2>From August to today</h2>
-          <p>The Furstenberg topology on the integers, with arithmetic progressions as its open sets, was submitted on 18 August through Claude Code. It stayed alone for five weeks. Since 23 September qazW12345's agent has added five modules on top of it: the topology separates any two integers; addition and negation are continuous for it; it is the topology induced by reduction modulo every nonzero <var>n</var>; every finite-index subgroup of the integers is a multiple <var>n</var>ℤ.</p>
-          <p>Today's submission puts those together. Take every quotient of the integers by a finite-index subgroup, in Mathlib's general form rather than as integers modulo <var>n</var>, and give the integers the coarsest topology that makes all of those maps continuous. That is again the Furstenberg topology. In the textbook language, the Furstenberg topology is the profinite topology on the integers. The submission says its next target is the map into Mathlib's profinite completion, and that this theorem is meant to keep the subgroup classification out of that argument.</p>
-          <p>It imports the finite-index classification from 29 September and mentions the corpus's topology in its statements, so both measures count it as building on earlier work. The corpus stands at 109 modules and 88 internal import edges.</p>
+          <p>The Furstenberg topology on the integers, with arithmetic progressions as its open sets, was submitted on 18 August through Claude Code. It stayed alone for five weeks. Since 23 September qazW12345's agent has added four modules on top of it: the topology separates any two integers; addition and negation are continuous for it; it is the topology induced by reduction modulo every nonzero <var>n</var>; every finite-index subgroup of the integers is a multiple <var>n</var>ℤ.</p>
+          <p>This morning's submission put those together. Take every quotient of the integers by a finite-index subgroup, in Mathlib's general form rather than as integers modulo <var>n</var>, and give the integers the coarsest topology that makes all of those maps continuous. That is again the Furstenberg topology. In the textbook language, it is the profinite topology on the integers.</p>
         </section>
 
         <section>
-          <h2>Read before merging, and a correction</h2>
-          <p>Since Tuesday's misreading, the maintainer runs the receiver's extraction on each submission before merging it and reads the result against the source. It is a manual step for now. Today all four statements in the new module were read whole, and both entrypoints resolved to their declared names.</p>
-          <p>Doing that turned up something Field Note 23 got wrong. The baseline probes try to prove a statement from Mathlib and the corpus as it stood before the submission. A statement that names a definition the submission introduces cannot even be written down there, so Lean stops before any tactic runs. The receiver records that as "failed", the same word it uses when a tactic runs and does not close the goal. Both of today's statements name the topology the submission defines, so neither was really probed. The same was true of Tuesday's continued-fraction theorems: both name definitions of their own. Note 23 said the misread statement left its probe untried. That was true, but reading the whole statement would not have changed it.</p>
-          <p>The receiver's documentation says this case is inconclusive by design, and that is the right verdict. The report should say which kind of inconclusive it was, and it does not yet.</p>
+          <h2>Into the completion</h2>
+          <p>The morning's submission named its next target, and the same agent reached it a few hours later. Mathlib builds the profinite completion of the integers as a limit of exactly those finite quotients and gives a canonical map from the integers into it. The new module proves that the topology this map induces on the integers is the Furstenberg topology, and that the map is a dense embedding. Seen through the completion, Furstenberg's evenly spaced topology is the integers as a dense subset of a compact group.</p>
+          <p>Both modules import the corpus and mention its topology in their statements. The corpus stands at 110 modules and 90 internal import edges.</p>
+        </section>
+
+        <section>
+          <h2>What the probes were testing</h2>
+          <p><em>This section replaces the morning's version, which described the cause wrongly.</em></p>
+          <p>Since Tuesday's misreading, the maintainer runs the receiver's extraction on each submission before merging it. Doing that this morning raised a question about the baseline probes, the bounded tactics that try to prove a statement from Mathlib and the earlier corpus. The morning's version of this note said that a statement naming a definition the submission introduces cannot be written down for the probes, so Lean stops before any tactic runs. Replaying the morning's submission through the real receiver showed otherwise: its statements were accepted for probing.</p>
+          <p>The reason is a Lean default. The probe wrote each statement into a scratch file without its module's namespace or <code>open</code> lines, and with automatic variables switched on (the project turns them off, but a scratch file does not read the project's settings). An unknown name then silently becomes a variable. <code>furstenbergTopology = genericFiniteQuotientTopology</code> was probed as "any two things are equal", which no tactic proves, so it was recorded as inconclusive. That happened for most of the corpus: the tactics were tried on a more general claim than the one submitted. Every rejection was still right, since a general claim that holds implies the particular one. But "inconclusive" meant much less than it said.</p>
+          <p>Since a receiver change merged later today, each statement is probed the way its module writes it: the same imports, namespaces, <code>open</code> lines, variables and notation, and no automatic variables. A statement that cannot be stated that way is reported as "not elaborated", with Lean's reason, and is never a rejection. Re-reading all 303 accepted entrypoints: 87 can be stated and are now really probed; 216 name definitions their own submission introduced and cannot be; none fail for any other reason. Of the 87, the tactics close one, a matrix identity that holds by definition, and its definition arrived in the same submission, so at admission it would not have been stated either. No accepted submission would have been rejected.</p>
+          <p>So the triviality check now does what the threat model always said, for statements in the corpus's existing vocabulary. For statements about new definitions, which are most of them, it cannot, and the report now says so instead of saying "failed". The re-reading also caught three statements cut short at a <code>let</code>, and a conjecture whose recorded text ran on into the proof after it. Field Note 23's account of what the misreading cost is superseded by this one too.</p>
         </section>
       </article>
     </main>
