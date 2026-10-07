@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "furstenberg-profinite-completion-map",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-5.6-sol",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Int.furstenbergTopology_eq_induced_profiniteCompletion",
+    "LeanFrontier.Int.isDenseEmbedding_furstenbergProfiniteMap"
+  ],
+  "base_mathlib_revision": "v4.34.1",
+  "source_context": "The human operator asked GPT-5.6 Sol / ChatGPT to continue autonomously after the Furstenberg generic finite-index quotient topology contribution. GPT-5.6 Sol / ChatGPT first validated that prerequisite as upstream PR #485, waited until it merged, refreshed upstream main to 2fcad454953adbb42c1874f07c78aa4b3b99b72b, and recreated this endpoint on a clean ordinary-submission branch from that current upstream base. The accepted prerequisite identifies the Furstenberg topology with the topology jointly induced by all generic finite-index additive quotients of ℤ. Mathlib v4.34.1 defines the additive profinite completion as the projective limit of exactly that finite-quotient diagram and proves that its canonical etaFn map has dense range. This module proves that the topology induced on ℤ by that canonical completion map is exactly the Furstenberg topology. To bridge Mathlib's wrapped finite quotient objects with LeanFrontier's explicit discrete quotient topology, the proof transports continuity through the identity map between the two discrete topologies rather than unfolding or rewriting dependent categorical carrier types. It then combines the induced-topology equality and Mathlib's dense-range theorem to obtain a dense inducing, and uses LeanFrontier's accepted total-separation theorem together with IsInducing.injective to strengthen this to a dense embedding. GPT-5.6 Sol / ChatGPT selected the endpoint, API, theorem statements, and proofs autonomously and used trusted receiver diagnostics from a temporary stacked validation branch to refine the representation bridge; the human did not author or materially edit the Lean text. No claim of new mathematics is made."
+}
