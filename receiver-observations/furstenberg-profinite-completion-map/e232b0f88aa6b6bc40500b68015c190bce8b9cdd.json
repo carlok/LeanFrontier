@@ -1,0 +1,277 @@
+{
+  "accepted_revision": "e232b0f88aa6b6bc40500b68015c190bce8b9cdd",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-07T07:52:53Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 427.951,
+    "observed": {
+      "added_lines": 197,
+      "audited_declarations": {
+        "LeanFrontier.Int.furstenbergProfiniteMap": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Int.furstenbergProfiniteMap",
+          "restatement": false,
+          "statement_sha256": "9e93627fa1837b204f749725e6d0c30ef90b7aec460727ac0b7e486a361f61c4",
+          "type_dependencies": [
+            "CompHausLike.toTop",
+            "Int",
+            "LeanFrontier.Int.intProfiniteCompletion",
+            "ProfiniteAddGrp.toProfinite",
+            "TopCat",
+            "TopCat.carrier",
+            "TopCat.str",
+            "TotallyDisconnectedSpace"
+          ]
+        },
+        "LeanFrontier.Int.furstenbergTopology_eq_induced_profiniteCompletion": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.furstenbergTopology_eq_induced_profiniteCompletion",
+          "restatement": false,
+          "statement_sha256": "5b11e20f7d66aeac5004cc06d976565a81d527c6f4594f9044f4a2172e602e8f",
+          "type_dependencies": [
+            "CompHausLike.toTop",
+            "Eq",
+            "Int",
+            "LeanFrontier.Int.furstenbergProfiniteMap",
+            "LeanFrontier.Int.furstenbergTopology",
+            "LeanFrontier.Int.intProfiniteCompletion",
+            "LeanFrontier.Int.intProfiniteTopology",
+            "ProfiniteAddGrp.toProfinite",
+            "TopCat",
+            "TopCat.carrier",
+            "TopCat.str",
+            "TopologicalSpace",
+            "TopologicalSpace.induced",
+            "TotallyDisconnectedSpace"
+          ]
+        },
+        "LeanFrontier.Int.intProfiniteCompletion": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Int.intProfiniteCompletion",
+          "restatement": false,
+          "statement_sha256": "38eb871bf08631a420883830152631ed3a6a23b23f223e1d434131a6a853f0fb",
+          "type_dependencies": [
+            "ProfiniteAddGrp"
+          ]
+        },
+        "LeanFrontier.Int.intProfiniteTopology": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Int.intProfiniteTopology",
+          "restatement": false,
+          "statement_sha256": "0ef71f69742f6050511d413b0f6db429fcc26158d61fb51f9b76750d29ee13b0",
+          "type_dependencies": [
+            "CompHausLike.toTop",
+            "LeanFrontier.Int.intProfiniteCompletion",
+            "ProfiniteAddGrp.toProfinite",
+            "TopCat",
+            "TopCat.carrier",
+            "TopCat.str",
+            "TopologicalSpace",
+            "TotallyDisconnectedSpace"
+          ]
+        },
+        "LeanFrontier.Int.isDenseEmbedding_furstenbergProfiniteMap": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.isDenseEmbedding_furstenbergProfiniteMap",
+          "restatement": false,
+          "statement_sha256": "b09a88e363333cc0c2bc93386de8c7b518f4cca5301ed956568eac39dac6203f",
+          "type_dependencies": [
+            "CompHausLike.toTop",
+            "Int",
+            "IsDenseEmbedding",
+            "LeanFrontier.Int.furstenbergProfiniteMap",
+            "LeanFrontier.Int.furstenbergTopology",
+            "LeanFrontier.Int.intProfiniteCompletion",
+            "LeanFrontier.Int.intProfiniteTopology",
+            "ProfiniteAddGrp.toProfinite",
+            "TopCat",
+            "TopCat.carrier",
+            "TopCat.str",
+            "TotallyDisconnectedSpace"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.Int.furstenbergTopology_eq_induced_profiniteCompletion": [
+            {
+              "outcome": "failed",
+              "seconds": 5.064,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.173,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.069,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.127,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.187,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.071,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Int.isDenseEmbedding_furstenbergProfiniteMap": [
+            {
+              "outcome": "failed",
+              "seconds": 5.127,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.02,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.044,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.12,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.098,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.064,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 61.164,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Int.furstenbergTopology_eq_induced_profiniteCompletion": "inconclusive",
+        "LeanFrontier.Int.isDenseEmbedding_furstenbergProfiniteMap": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 10294,
+      "changed_files": [
+        "LeanFrontier/Topology/FurstenbergProfiniteCompletion.lean",
+        "Submissions/furstenberg-profinite-completion-map.json"
+      ],
+      "corpus_entrypoints_checked": 303,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Int.furstenbergTopology_eq_induced_profiniteCompletion": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.furstenbergTopology_eq_induced_profiniteCompletion",
+          "statement_sha256": "5b11e20f7d66aeac5004cc06d976565a81d527c6f4594f9044f4a2172e602e8f",
+          "type_dependencies": [
+            "CompHausLike.toTop",
+            "Eq",
+            "Int",
+            "LeanFrontier.Int.furstenbergProfiniteMap",
+            "LeanFrontier.Int.furstenbergTopology",
+            "LeanFrontier.Int.intProfiniteCompletion",
+            "LeanFrontier.Int.intProfiniteTopology",
+            "ProfiniteAddGrp.toProfinite",
+            "TopCat",
+            "TopCat.carrier",
+            "TopCat.str",
+            "TopologicalSpace",
+            "TopologicalSpace.induced",
+            "TotallyDisconnectedSpace"
+          ]
+        },
+        "LeanFrontier.Int.isDenseEmbedding_furstenbergProfiniteMap": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.isDenseEmbedding_furstenbergProfiniteMap",
+          "statement_sha256": "b09a88e363333cc0c2bc93386de8c7b518f4cca5301ed956568eac39dac6203f",
+          "type_dependencies": [
+            "CompHausLike.toTop",
+            "Int",
+            "IsDenseEmbedding",
+            "LeanFrontier.Int.furstenbergProfiniteMap",
+            "LeanFrontier.Int.furstenbergTopology",
+            "LeanFrontier.Int.intProfiniteCompletion",
+            "LeanFrontier.Int.intProfiniteTopology",
+            "ProfiniteAddGrp.toProfinite",
+            "TopCat",
+            "TopCat.carrier",
+            "TopCat.str",
+            "TotallyDisconnectedSpace"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 8015,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 12
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "furstenberg-profinite-completion-map",
+  "trusted_receiver_revision": "2fcad454953adbb42c1874f07c78aa4b3b99b72b",
+  "validated_candidate_revision": "067de7cc74361b568d312e8a9a24b9c3081ab002",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/37579595536"
+}
