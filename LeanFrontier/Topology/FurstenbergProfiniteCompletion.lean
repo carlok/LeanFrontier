@@ -84,8 +84,7 @@ private theorem continuous_intProfiniteProjection_discrete
   rfl
 
 private theorem induced_furstenbergProfiniteMap_eq_genericFiniteQuotientTopology :
-    TopologicalSpace.induced furstenbergProfiniteMap
-        (inferInstance : TopologicalSpace intProfiniteCompletion) =
+    TopologicalSpace.induced furstenbergProfiniteMap intProfiniteTopology =
       genericFiniteQuotientTopology := by
   apply le_antisymm
   · rw [genericFiniteQuotientTopology]
@@ -93,7 +92,13 @@ private theorem induced_furstenbergProfiniteMap_eq_genericFiniteQuotientTopology
     letI : TopologicalSpace ℤ :=
       TopologicalSpace.induced furstenbergProfiniteMap
         intProfiniteTopology
-    have heta : Continuous furstenbergProfiniteMap :=
+    have heta :
+        @Continuous
+          ℤ
+          intProfiniteCompletion
+          (TopologicalSpace.induced furstenbergProfiniteMap intProfiniteTopology)
+          intProfiniteTopology
+          furstenbergProfiniteMap :=
       continuous_induced_dom
     have hcomp :
         @Continuous
@@ -116,7 +121,13 @@ private theorem induced_furstenbergProfiniteMap_eq_genericFiniteQuotientTopology
       simpa only [intProfiniteProjection_furstenbergProfiniteMap] using hcomp
     exact hq.le_induced
   · letI : TopologicalSpace ℤ := genericFiniteQuotientTopology
-    have hmap : Continuous furstenbergProfiniteMap := by
+    have hmap :
+        @Continuous
+          ℤ
+          intProfiniteCompletion
+          genericFiniteQuotientTopology
+          intProfiniteTopology
+          furstenbergProfiniteMap := by
       apply continuous_induced_rng.mpr
       exact continuous_pi fun H => by
         have hq :
@@ -144,8 +155,7 @@ private theorem induced_furstenbergProfiniteMap_eq_genericFiniteQuotientTopology
 completion is exactly the Furstenberg topology. -/
 theorem furstenbergTopology_eq_induced_profiniteCompletion :
     furstenbergTopology =
-      TopologicalSpace.induced furstenbergProfiniteMap
-        (inferInstance : TopologicalSpace intProfiniteCompletion) := by
+      TopologicalSpace.induced furstenbergProfiniteMap intProfiniteTopology := by
   rw [induced_furstenbergProfiniteMap_eq_genericFiniteQuotientTopology]
   exact furstenbergTopology_eq_genericFiniteQuotientTopology
 
