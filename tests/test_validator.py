@@ -913,6 +913,15 @@ theorem by_match (l : List Nat) :
 
 theorem named (n : Nat) : Nat.add (n := n) (m := 0) = n := rfl
 
+theorem with_let (k : Nat) :
+    let p := k + 1
+    p = k + 1 := by
+  rfl
+
+def Open : Prop := ∀ n : Nat, n = n
+
+private theorem helper_after : True := trivial
+
 end LeanFrontier.Toy
 """
 
@@ -939,6 +948,14 @@ end LeanFrontier.Toy
         statement = " ".join(self.statements["by_match"].split())
         self.assertTrue(statement.endswith("| _ :: t => t.length + 1"), statement)
 
+    def test_a_let_inside_a_statement_owns_its_own_binding(self) -> None:
+        """Three Stern-Brocot statements were cut at `let p :=`."""
+        self.assertEqual(" ".join(self.statements["with_let"].split()), "(k : Nat) : let p := k + 1 p = k + 1")
+
+    def test_a_conjecture_ends_before_a_private_declaration(self) -> None:
+        """The Markov uniqueness conjecture's body ran on into a private proof."""
+        self.assertEqual(self.statements["Open"], ": ∀ n : Nat, n = n")
+
     def test_a_named_argument_does_not_end_a_statement(self) -> None:
         self.assertEqual(self.statements["named"].strip(), "(n : Nat) : Nat.add (n := n) (m := 0) = n")
 
@@ -947,12 +964,27 @@ end LeanFrontier.Toy
         variables, so the probes tried a more general statement (#489)."""
         path = Path(self.temp.name) / "Opens.lean"
         path.write_text(
+            "import Mathlib.Data.Finset.Basic\nimport LeanFrontier.Other\n"
             "open Finset\nnamespace LeanFrontier.Toy\nopen Nat in\ntheorem helper : True := trivial\n"
+            "local notation \"𝕀\" => Set.Icc (0 : Nat) 1\n"
+            "section\nvariable (k : Nat)\nend\nvariable {α : Type}\n  [Inhabited α]\n"
             "theorem Pair.swap_twice (p : Nat × Nat) : p.swap.swap = p := rfl\nend LeanFrontier.Toy\n")
         goals = frontier_validate.statement_goals(path)
         _, (header, footer) = goals["Pair.swap_twice"]
-        self.assertEqual(header, "set_option autoImplicit false\nnamespace LeanFrontier.Toy.Pair\nopen Finset\n")
-        self.assertEqual(footer, "end LeanFrontier.Toy.Pair\n")
+        # The module's own imports, not the whole corpus: `open Polynomial` inside
+        # a LeanFrontier namespace must not find the corpus's LeanFrontier.Polynomial.
+        # The closed section's `variable (k : Nat)` is out of scope; `open Nat in`
+        # applied to one line.
+        # Lines keep their place: `open Finset` precedes the namespace, as in the
+        # source, so it opens Mathlib's Finset and not a corpus namespace.
+        self.assertEqual(header, "import Mathlib.Data.Finset.Basic\nimport LeanFrontier.Other\n"
+                                 "set_option autoImplicit false\nopen Finset\nnamespace LeanFrontier.Toy\n"
+                                 "local notation \"𝕀\" => Set.Icc (0 : Nat) 1\n"
+                                 "variable {α : Type}\n  [Inhabited α]\nnamespace Pair\n")
+        source = frontier_validate.probe_source(" : True", "trivial", (header, footer))
+        self.assertTrue(source.startswith("import Mathlib\nimport Mathlib.Data.Finset.Basic\n"), source)
+        self.assertNotIn("import LeanFrontier\n", source)
+        self.assertEqual(footer, "end Pair\nend LeanFrontier.Toy\n")
 
     def test_entrypoints_are_matched_by_their_declared_name(self) -> None:
         entrypoints = ["LeanFrontier.Toy.by_cases", "LeanFrontier.Toy.Pair.swap_swap", "LeanFrontier.Toy.primed'"]

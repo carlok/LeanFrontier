@@ -56,7 +56,7 @@ DECL_HEAD_RE = re.compile(rf"\b(?:theorem|lemma)\s+({DECLARATION_NAME})")
 # Where a statement can end and its proof begin: `:=`, `where`, or the first
 # equation of a proof by pattern matching (`| 0 => ...`, with no `:=` at all).
 # Brackets are tracked so `(n := 3)` and `⟨_, _⟩` do not count.
-STATEMENT_STOP_RE = re.compile(r":=|(?<![\w.'])where\b|\n[ \t]*\|[^\n]*=>|[()\[\]{}⟨⟩]")
+STATEMENT_STOP_RE = re.compile(r":=|(?<![\w.'])(?:where|have|let)(?![\w'])|\n[ \t]*\|[^\n]*=>|[()\[\]{}⟨⟩]")
 OPENERS, CLOSERS = "([{⟨", ")]}⟩"
 
 
@@ -72,8 +72,17 @@ def statement_end(code: str, start: int) -> int | None:
     """
     depth = 0
     in_term_alternatives = False
+    # A `have`/`let` inside the statement owns the next `:=` (stern-brocot
+    # statements bind `have p := pair path; ...`).
+    bindings = 0
     for stop in STATEMENT_STOP_RE.finditer(code, start):
         token = stop.group(0)
+        if token in ("have", "let"):
+            bindings += 0 if depth else 1
+            continue
+        if token == ":=" and bindings and not depth:
+            bindings -= 1
+            continue
         if token in OPENERS:
             depth += 1
         elif token in CLOSERS:
@@ -111,7 +120,8 @@ def declarations(code: str) -> list[tuple[str, str, int]]:
 # inconclusive rather than as a rejection.
 CONJECTURE_RE = re.compile(
     r"^[ \t]*def[ \t]+([A-Za-z_][A-Za-z0-9_']*)[ \t]*:[ \t]*Prop[ \t]*:=(?P<body>.*?)"
-    r"(?=^[ \t]*(?:@\[|theorem|lemma|def|abbrev|opaque|structure|class|inductive|instance|namespace|end|open|section|variable)\b|\Z)",
+    r"(?=^[ \t]*(?:@\[|theorem|lemma|def|abbrev|opaque|structure|class|inductive|instance|namespace|end|open|section|variable"
+    r"|private|protected|noncomputable|example|set_option|attribute|local|universe)\b|\Z)",
     re.DOTALL | re.M,
 )
 # `theorem c_holds : ConjectureName := ...` is how the contract says a
@@ -415,7 +425,12 @@ def declared_statements(path: Path) -> list[tuple[str, str]]:
 
 
 SCOPE_RE = re.compile(r"^(namespace|section|end)\b[ \t]*([A-Za-z_][A-Za-z0-9_.']*)?[ \t]*$", re.MULTILINE)
-OPEN_RE = re.compile(r"^open\b[^\n]*$", re.MULTILINE)
+# `open`, `variable` and local notation lines, with indented continuation
+# lines, which last until the `end` of the section or namespace they appear in.
+CONTEXT_LINE_RE = re.compile(
+    r"^(?:open|variable|local[ \t]+(?:notation|infixl?|infixr|prefix|postfix))\b[^\n]*(?:\n[ \t]+\S[^\n]*)*",
+    re.MULTILINE)
+IMPORT_RE = re.compile(r"^import[ \t]+(\S+)[ \t]*$", re.MULTILINE)
 
 
 def namespace_at(code: str, position: int, default: str = "LeanFrontier") -> str:
@@ -450,21 +465,57 @@ def statement_goals(path: Path) -> dict[str, tuple[str, tuple[str, str]]]:
     found = [(name, body, offset) for name, body, offset in declarations(code)]
     found += [(match.group(1), ": " + match.group("body").strip(), match.start())
               for match in CONJECTURE_RE.finditer(code)]
+    # The module's own imports, not the whole corpus: corpus namespaces such as
+    # `LeanFrontier.Polynomial` would otherwise capture `open Polynomial`
+    # written inside `namespace LeanFrontier.Horadam`, as they never did for
+    # the author.
+    imports = "".join(f"import {module}\n" for module in IMPORT_RE.findall(code) if module != "Mathlib")
     goals: dict[str, tuple[str, tuple[str, str]]] = {}
     for name, body, offset in found:
-        namespace = ".".join(part for part in (namespace_at(code, offset, ""), name.rpartition(".")[0]) if part)
-        opens = [line for line in OPEN_RE.findall(code, 0, offset) if not line.rstrip().endswith(" in")]
-        header = "set_option autoImplicit false\n"
-        header += f"namespace {namespace}\n" if namespace else ""
-        header += "".join(f"{line.strip()}\n" for line in opens)
-        footer = f"end {namespace}\n" if namespace else ""
+        scopes = open_scopes(code, offset)
+        # `theorem OrientedNode.pairwiseCoprime` also sees names in OrientedNode.
+        prefix = name.rpartition(".")[0]
+        if prefix:
+            scopes.append(("namespace", prefix, []))
+        header = imports + "set_option autoImplicit false\n"
+        for keyword, scope, lines in scopes:
+            header += f"{keyword} {scope}".rstrip() + "\n" if keyword else ""
+            header += "".join(f"{line}\n" for line in lines)
+        footer = "".join(f"end {scope}".rstrip() + "\n" for keyword, scope, _ in reversed(scopes) if keyword)
         goals[name] = (body, (header, footer))
     return goals
 
 
-def probe_source(goal: str, tactic: str, context: tuple[str, str]) -> str:
+def open_scopes(code: str, position: int) -> list[tuple[str, str, list[str]]]:
+    """The namespaces and sections open at `position`, outermost first, each
+    with the `open`, `variable` and notation lines written in it, in source
+    order. Order matters: `open scoped EuclideanGeometry` written before
+    `namespace LeanFrontier.EuclideanGeometry` opens Mathlib's namespace; the
+    same line inside it would open the corpus's."""
+    events = sorted([(match.start(), "scope", match) for match in SCOPE_RE.finditer(code, 0, position)]
+                    + [(match.start(), "line", match) for match in CONTEXT_LINE_RE.finditer(code, 0, position)],
+                    key=lambda event: event[0])
+    scopes: list[tuple[str, str, list[str]]] = [("", "", [])]
+    for _, kind, match in events:
+        if kind == "line":
+            line = match.group(0).rstrip()
+            if not line.endswith(" in"):
+                scopes[-1][2].append(line)
+        elif match.group(1) == "end":
+            if len(scopes) > 1:
+                scopes.pop()
+        else:
+            scopes.append((match.group(1), match.group(2) or "", []))
+    return scopes
+
+
+DEFAULT_PROBE_CONTEXT = ("import LeanFrontier\nset_option autoImplicit false\n", "")
+
+
+def probe_source(goal: str, tactic: str, context: tuple[str, str] = DEFAULT_PROBE_CONTEXT) -> str:
+    """Mathlib, then the context's imports (the module's own, or the corpus)."""
     header, footer = context
-    return f"import Mathlib\nimport LeanFrontier\n\n{header}example {goal.strip()} := by\n  {tactic}\n{footer}"
+    return f"import Mathlib\n{header}example {goal.strip()} := by\n  {tactic}\n{footer}"
 
 
 def declared_conjectures(path: Path) -> set[str]:
@@ -1013,7 +1064,7 @@ def conjecture_quota(base: Path | None, candidate: Path, modules: list[str], ent
             f"against an allowance of {allowance} from {theorems.get(who, 0)} accepted theorems")
 
 
-def probe_goal(candidate: Path, probe_file: Path, goal: str, triviality: dict[str, Any], runs: list[dict[str, Any]] | None = None, context: tuple[str, str] = ("", "")) -> str | None:
+def probe_goal(candidate: Path, probe_file: Path, goal: str, triviality: dict[str, Any], runs: list[dict[str, Any]] | None = None, context: tuple[str, str] = DEFAULT_PROBE_CONTEXT) -> str | None:
     """First bounded tactic that closes `goal` from the baseline, if any.
 
     Each attempt is appended to `runs` with its outcome and wall time, so a
@@ -1039,7 +1090,7 @@ def probe_goal(candidate: Path, probe_file: Path, goal: str, triviality: dict[st
 LEAN_ERROR_RE = re.compile(r"^\S+?:\d+:\d+: error(?:\([^)]*\))?: (?P<message>.*)$", re.M)
 
 
-def statement_error(candidate: Path, probe_file: Path, goal: str, triviality: dict[str, Any], runs: list[dict[str, Any]] | None = None, context: tuple[str, str] = ("", "")) -> str | None:
+def statement_error(candidate: Path, probe_file: Path, goal: str, triviality: dict[str, Any], runs: list[dict[str, Any]] | None = None, context: tuple[str, str] = DEFAULT_PROBE_CONTEXT) -> str | None:
     """Lean's first error if `goal` cannot be stated from the baseline, else None.
 
     The probes import Mathlib and the corpus as it was before this submission,
@@ -1095,18 +1146,22 @@ def baseline_probes(candidate: Path, modules: list[str], submitted: list[str], e
     for name, body in submitted_conjectures(candidate, submitted).items():
         goals.setdefault(name, body)
         kinds.setdefault(name, "conjecture")
+    # Each goal is stated with its module's imports, minus any module this
+    # submission adds or changes: the probes see the baseline only.
+    changed = {f"import {module}" for module in [*modules, *submitted]}
     contexts: dict[str, tuple[str, str]] = {}
     for module in dict.fromkeys([*modules, *submitted]):
-        for name, (_, context) in statement_goals(candidate / (module.replace(".", "/") + ".lean")).items():
+        for name, (_, (header, footer)) in statement_goals(candidate / (module.replace(".", "/") + ".lean")).items():
+            header = "".join(line + "\n" for line in header.splitlines() if line not in changed)
             for goal_name in goals:
                 if goal_name == name or goal_name.endswith("." + name):
-                    contexts[goal_name] = context
+                    contexts[goal_name] = (header, footer)
     outcomes: dict[str, str] = {}
     runs: dict[str, list[dict[str, Any]]] = {}
     for entrypoint, body in goals.items():
         conjecture = kinds.get(entrypoint) == "conjecture"
         attempts = runs.setdefault(entrypoint, [])
-        context = contexts.get(entrypoint, ("set_option autoImplicit false\n", ""))
+        context = contexts.get(entrypoint, DEFAULT_PROBE_CONTEXT)
         if statement_error(candidate, probe_file, body, triviality, attempts, context):
             outcomes[entrypoint] = "not elaborated"
             continue
