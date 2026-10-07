@@ -449,7 +449,8 @@ def namespace_at(code: str, position: int, default: str = "LeanFrontier") -> str
 
 
 def statement_goals(path: Path) -> dict[str, tuple[str, tuple[str, str]]]:
-    """Per declared name: its statement and the context to state it in.
+    """Per full name (namespace and declared name): its statement and the
+    context to state it in.
 
     A statement is written inside its module's namespace and `open`s, and the
     project builds with `autoImplicit false`. Stated bare, `furstenbergTopology`
@@ -482,7 +483,7 @@ def statement_goals(path: Path) -> dict[str, tuple[str, tuple[str, str]]]:
             header += f"{keyword} {scope}".rstrip() + "\n" if keyword else ""
             header += "".join(f"{line}\n" for line in lines)
         footer = "".join(f"end {scope}".rstrip() + "\n" for keyword, scope, _ in reversed(scopes) if keyword)
-        goals[name] = (body, (header, footer))
+        goals[f"{namespace_at(code, offset, '')}.{name}".lstrip(".")] = (body, (header, footer))
     return goals
 
 
@@ -953,17 +954,19 @@ def mathlib_duplicates(hints: set[str], mathlib_release: dict[str, str], report:
 
 
 def entrypoint_bodies(candidate: Path, modules: list[str], entrypoints: list[str]) -> dict[str, str]:
-    """Statement text per entrypoint, matched by the declared name as written:
-    `OrientedNode.pairwiseCoprime` inside `namespace MarkovTree` is the
-    entrypoint `LeanFrontier.MarkovTree.OrientedNode.pairwiseCoprime`."""
+    """Statement text per entrypoint, matched by full name: the namespace open
+    at the declaration plus the name as written, so `OrientedNode.pairwiseCoprime`
+    inside `namespace LeanFrontier.MarkovTree` is the entrypoint
+    `LeanFrontier.MarkovTree.OrientedNode.pairwiseCoprime`, and a theorem of the
+    same short name in another module's namespace is not."""
+    wanted = set(entrypoints)
     found: dict[str, str] = {}
     for module in modules:
         path = candidate / (module.replace(".", "/") + ".lean")
         if path.exists():
-            for name, body in declared_statements(path):
-                for entrypoint in entrypoints:
-                    if entrypoint == name or entrypoint.endswith("." + name):
-                        found[entrypoint] = body
+            for name, (body, _) in statement_goals(path).items():
+                if name in wanted:
+                    found[name] = body
     return found
 
 
@@ -1148,13 +1151,15 @@ def baseline_probes(candidate: Path, modules: list[str], submitted: list[str], e
         kinds.setdefault(name, "conjecture")
     # Each goal is stated with its module's imports, minus any module this
     # submission adds or changes: the probes see the baseline only.
-    changed = {f"import {module}" for module in [*modules, *submitted]}
+    # `modules` is the whole tree (the audit needs it); only `submitted` is new.
+    changed = {f"import {module}" for module in submitted}
     contexts: dict[str, tuple[str, str]] = {}
-    for module in dict.fromkeys([*modules, *submitted]):
+    for module in submitted:
         for name, (_, (header, footer)) in statement_goals(candidate / (module.replace(".", "/") + ".lean")).items():
             header = "".join(line + "\n" for line in header.splitlines() if line not in changed)
             for goal_name in goals:
-                if goal_name == name or goal_name.endswith("." + name):
+                # Entrypoints are full names; undeclared conjectures are short ones.
+                if goal_name == name or ("." not in goal_name and name.endswith("." + goal_name)):
                     contexts[goal_name] = (header, footer)
     outcomes: dict[str, str] = {}
     runs: dict[str, list[dict[str, Any]]] = {}
