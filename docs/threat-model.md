@@ -27,10 +27,21 @@ For every accepted submission, mechanically, with the evidence kept in
 - **It is not trivial.** Bounded tactics (`rfl`, `simp`, `norm_num`, `tauto`,
   `omega`, `decide`, ten seconds each) are run against the statement from the
   baseline alone. A conjecture is probed in both directions: provable or
-  refutable, it is not a conjecture. The statement is first stated on its
-  own; one that names a definition the submission introduces cannot be, and
-  is recorded as `not elaborated` with Lean's reason rather than probed. This
-  check is weakest exactly where submissions bring their own vocabulary.
+  refutable, it is not a conjecture. Each statement is stated as its module
+  writes it: the module's own imports (minus anything this submission adds),
+  its `open`, `variable` and local notation lines in source order, its
+  namespace, and `autoImplicit false`. It is first stated alone; one that
+  names a definition the submission introduces cannot be, and is recorded as
+  `not elaborated` with Lean's reason rather than probed. This check is
+  weakest exactly where submissions bring their own vocabulary: on 7 October
+  2026, 216 of the 303 accepted entrypoints were of that kind.
+
+  Until then the probe stated goals bare, with the whole corpus imported and
+  Lean's default auto-bound implicits. Names written relative to a namespace
+  did not resolve and silently became variables, so for most statements the
+  tactics were tried on a more general claim than the one submitted. A
+  rejection was still sound (the general claim implies the submitted one),
+  but "inconclusive" meant less than it said.
 - **It builds clean.** Deprecated Mathlib lemmas in the submission's own files
   are rejected, because a deprecation is a warning now and an error after the
   next upgrade.
