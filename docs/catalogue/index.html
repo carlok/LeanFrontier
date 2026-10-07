@@ -3608,7 +3608,7 @@ was written about it.</p>
 </article>
 <article>
   <h2><code>LeanFrontier.MarkovTree.UniquenessConjecture</code></h2>
-  <p class="statement">: ∀ s t : State, s.Positive → t.Positive → s.IsSolution → t.IsSolution → s.maxCoord = t.maxCoord → s.Permutes t private theorem maxCoord_branchPermState (initial : Move) (s : State) : (branchPermState initial s).maxCoord = s.maxCoord := by rcases s with ⟨x, y, z⟩ cases initial &lt;;&gt; simp [branchPermState, State.maxCoord, max_comm, max_left_comm] private theorem coordMultiset_branchPermState (initial : Move) (s : State) : (branchPermState initial s).coordMultiset = s.coordMultiset := by rcases s with ⟨x, y, z⟩ cases initial with | first =&gt; change ({z} : Multiset ℤ) + {x} + {y} = {x} + {y} + {z} ac_rfl | second =&gt; change ({y} : Multiset ℤ) + {z} + {x} = {x} + {y} + {z} ac_rfl | third =&gt; rfl private theorem eq_root_of_positive_maxCoord_eq_one {s : State} (hpos : s.Positive) (hmax : s.maxCoord = 1) : s = ⟨1, 1, 1⟩ := by rcases s with ⟨x, y, z⟩ change 0 &lt; x ∧ 0 &lt; y ∧ 0 &lt; z at hpos change max x (max y z) = 1 at hmax have hxle : x ≤ 1 := by have hx : x ≤ max x (max y z) := le_max_left _ _ omega have hyle : y ≤ 1 := by have hy₁ : y ≤ max y z := le_max_left _ _ have hy₂ : max y z ≤ max x (max y z) := le_max_right _ _ omega have hzle : z ≤ 1 := by have hz₁ : z ≤ max y z := le_max_right _ _ have hz₂ : max y z ≤ max x (max y z) := le_max_right _ _ omega rcases hpos with ⟨hxpos, hypos, hzpos⟩ congr &lt;;&gt; omega</p>
+  <p class="statement">: ∀ s t : State, s.Positive → t.Positive → s.IsSolution → t.IsSolution → s.maxCoord = t.maxCoord → s.Permutes t</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.MarkovTree.UniquenessConjecture</code></dd>
   <dt>Kind</dt><dd>conjecture, open</dd>
   <dt>Claim</dt><dd>markov-uniqueness-reduction · autonomous_discovery · chatgpt</dd>
@@ -3906,7 +3906,7 @@ was written about it.</p>
 </article>
 <article>
   <h2><code>LeanFrontier.SternBrocot.initialRun_euclidean_step</code></h2>
-  <p class="statement">(dir : Bool) (path : List Bool) : let k</p>
+  <p class="statement">(dir : Bool) (path : List Bool) : let k := initialRunLength dir path let rest := dropInitialRun dir path let p := pair path path = List.replicate k dir ++ rest ∧ ((rest = [] ∧ (if dir then p.1 / p.2 else p.2 / p.1) = k + 1) ∨ ∃ tail, rest = Bool.not dir :: tail ∧ (if dir then p.1 / p.2 else p.2 / p.1) = k)</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SternBrocot.RunLength</code></dd>
   <dt>Claim</dt><dd>stern-brocot-canonical-initial-run · autonomous_discovery · chatgpt</dd>
   <dt>Receiver</dt><dd>accepted at <code>382cbbdb52a392ee2228b5b86163278d8e74e3dd</code> · downstream import pass</dd>
@@ -3939,7 +3939,7 @@ was written about it.</p>
 </article>
 <article>
   <h2><code>LeanFrontier.SternBrocot.initial_run_euclidean_quotient</code></h2>
-  <p class="statement">(dir : Bool) (k : ℕ) (path : List Bool) : let p</p>
+  <p class="statement">(dir : Bool) (k : ℕ) (path : List Bool) : let p := pair (List.replicate k dir ++ (Bool.not dir :: path)) (if dir then p.1 / p.2 else p.2 / p.1) = k</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SternBrocotEuclidean</code></dd>
   <dt>Claim</dt><dd>stern-brocot-euclidean-runs · autonomous_discovery · chatgpt</dd>
   <dt>Receiver</dt><dd>accepted at <code>75f2d19582ff80f6fab133b79615739024c14f5f</code> · downstream import pass</dd>
@@ -3950,7 +3950,7 @@ was written about it.</p>
 </article>
 <article>
   <h2><code>LeanFrontier.SternBrocot.terminal_run_euclidean_quotient</code></h2>
-  <p class="statement">(dir : Bool) (k : ℕ) : let p</p>
+  <p class="statement">(dir : Bool) (k : ℕ) : let p := pair (List.replicate k dir) (if dir then p.1 / p.2 else p.2 / p.1) = k + 1</p>
   <dl><dt>Import</dt><dd><code>import LeanFrontier.NumberTheory.SternBrocotEuclidean</code></dd>
   <dt>Claim</dt><dd>stern-brocot-euclidean-runs · autonomous_discovery · chatgpt</dd>
   <dt>Receiver</dt><dd>accepted at <code>75f2d19582ff80f6fab133b79615739024c14f5f</code> · downstream import pass</dd>
