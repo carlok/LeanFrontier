@@ -12,13 +12,12 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from frontier_validate import CONJECTURE_RE, RESOLUTION_RE, declarations, strip_comments
+from frontier_validate import CONJECTURE_RE, RESOLUTION_RE, declarations, namespace_at, strip_comments
 
 
 ROOT = Path(__file__).resolve().parents[1]
 DESTINATION = Path("docs/catalogue/index.html")
 TRAILING_DOC = re.compile(r"/--(?P<docbody>(?:(?!-/).)*)-/\s*$", re.DOTALL)
-SCOPE = re.compile(r"^(namespace|section|end)\b[ \t]*([A-Za-z_][A-Za-z0-9_.']*)?[ \t]*$", re.MULTILINE)
 
 
 def module_for(path: Path, root: Path) -> str:
@@ -98,21 +97,6 @@ def entries(root: Path, declared_entrypoints: set[str]) -> list[dict[str, str]]:
                 "source": path.relative_to(root).as_posix(),
             })
     return result
-
-
-def namespace_at(code: str, position: int) -> str:
-    """The namespace open at `position`. A module may close one namespace and
-    open another, as the curvature-centre bridge does for its Ford-circle half."""
-    scopes: list[tuple[str, str]] = []
-    for match in SCOPE.finditer(code, 0, position):
-        keyword, name = match.group(1), match.group(2) or ""
-        if keyword == "end":
-            if scopes:
-                scopes.pop()
-        else:
-            scopes.append((keyword, name))
-    names = [name for keyword, name in scopes if keyword == "namespace" and name]
-    return ".".join(names) if names else "LeanFrontier"
 
 
 def corpus_shape(root: Path) -> dict[str, object]:

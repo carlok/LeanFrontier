@@ -414,6 +414,59 @@ def declared_statements(path: Path) -> list[tuple[str, str]]:
     return found
 
 
+SCOPE_RE = re.compile(r"^(namespace|section|end)\b[ \t]*([A-Za-z_][A-Za-z0-9_.']*)?[ \t]*$", re.MULTILINE)
+OPEN_RE = re.compile(r"^open\b[^\n]*$", re.MULTILINE)
+
+
+def namespace_at(code: str, position: int, default: str = "LeanFrontier") -> str:
+    """The namespace open at `position`. A module may close one namespace and
+    open another, as the curvature-centre bridge does for its Ford-circle half."""
+    scopes: list[tuple[str, str]] = []
+    for match in SCOPE_RE.finditer(code, 0, position):
+        keyword, name = match.group(1), match.group(2) or ""
+        if keyword == "end":
+            if scopes:
+                scopes.pop()
+        else:
+            scopes.append((keyword, name))
+    names = [name for keyword, name in scopes if keyword == "namespace" and name]
+    return ".".join(names) if names else default
+
+
+def statement_goals(path: Path) -> dict[str, tuple[str, tuple[str, str]]]:
+    """Per declared name: its statement and the context to state it in.
+
+    A statement is written inside its module's namespace and `open`s, and the
+    project builds with `autoImplicit false`. Stated bare, `furstenbergTopology`
+    does not resolve, and Lean's default auto-bound implicits turn every such
+    name into a variable: the probes were proving a more general statement
+    than the one submitted, which almost never closes. The context is
+    (header, footer) around an `example`.
+    """
+    try:
+        code = strip_comments(path.read_text(encoding="utf-8"))
+    except UnicodeDecodeError:
+        return {}
+    found = [(name, body, offset) for name, body, offset in declarations(code)]
+    found += [(match.group(1), ": " + match.group("body").strip(), match.start())
+              for match in CONJECTURE_RE.finditer(code)]
+    goals: dict[str, tuple[str, tuple[str, str]]] = {}
+    for name, body, offset in found:
+        namespace = ".".join(part for part in (namespace_at(code, offset, ""), name.rpartition(".")[0]) if part)
+        opens = [line for line in OPEN_RE.findall(code, 0, offset) if not line.rstrip().endswith(" in")]
+        header = "set_option autoImplicit false\n"
+        header += f"namespace {namespace}\n" if namespace else ""
+        header += "".join(f"{line.strip()}\n" for line in opens)
+        footer = f"end {namespace}\n" if namespace else ""
+        goals[name] = (body, (header, footer))
+    return goals
+
+
+def probe_source(goal: str, tactic: str, context: tuple[str, str]) -> str:
+    header, footer = context
+    return f"import Mathlib\nimport LeanFrontier\n\n{header}example {goal.strip()} := by\n  {tactic}\n{footer}"
+
+
 def declared_conjectures(path: Path) -> set[str]:
     try:
         source = path.read_text(encoding="utf-8")
@@ -960,16 +1013,14 @@ def conjecture_quota(base: Path | None, candidate: Path, modules: list[str], ent
             f"against an allowance of {allowance} from {theorems.get(who, 0)} accepted theorems")
 
 
-def probe_goal(candidate: Path, probe_file: Path, goal: str, triviality: dict[str, Any], runs: list[dict[str, Any]] | None = None) -> str | None:
+def probe_goal(candidate: Path, probe_file: Path, goal: str, triviality: dict[str, Any], runs: list[dict[str, Any]] | None = None, context: tuple[str, str] = ("", "")) -> str | None:
     """First bounded tactic that closes `goal` from the baseline, if any.
 
     Each attempt is appended to `runs` with its outcome and wall time, so a
     long receiver run shows whether the probes or the host were slow.
     """
     for tactic in triviality["baseline_probes"]:
-        probe_file.write_text(
-            "import Mathlib\nimport LeanFrontier\n\n" f"example {goal} := by\n  {tactic}\n",
-            encoding="utf-8")
+        probe_file.write_text(probe_source(goal, tactic, context), encoding="utf-8")
         started = time.monotonic()
         try:
             result = run(["lake", "env", "lean", str(probe_file)], candidate, triviality["probe_timeout_seconds"])
@@ -988,7 +1039,7 @@ def probe_goal(candidate: Path, probe_file: Path, goal: str, triviality: dict[st
 LEAN_ERROR_RE = re.compile(r"^\S+?:\d+:\d+: error(?:\([^)]*\))?: (?P<message>.*)$", re.M)
 
 
-def statement_error(candidate: Path, probe_file: Path, goal: str, triviality: dict[str, Any], runs: list[dict[str, Any]] | None = None) -> str | None:
+def statement_error(candidate: Path, probe_file: Path, goal: str, triviality: dict[str, Any], runs: list[dict[str, Any]] | None = None, context: tuple[str, str] = ("", "")) -> str | None:
     """Lean's first error if `goal` cannot be stated from the baseline, else None.
 
     The probes import Mathlib and the corpus as it was before this submission,
@@ -998,9 +1049,7 @@ def statement_error(candidate: Path, probe_file: Path, goal: str, triviality: di
     from a real attempt (Field Note 24). Stating the goal once, with no tactic,
     tells them apart and skips the tactics that cannot run.
     """
-    probe_file.write_text(
-        "import Mathlib\nimport LeanFrontier\n\n" f"example {goal} := by\n  sorry\n",
-        encoding="utf-8")
+    probe_file.write_text(probe_source(goal, "sorry", context), encoding="utf-8")
     started = time.monotonic()
     error: str | None = None
     try:
@@ -1046,15 +1095,22 @@ def baseline_probes(candidate: Path, modules: list[str], submitted: list[str], e
     for name, body in submitted_conjectures(candidate, submitted).items():
         goals.setdefault(name, body)
         kinds.setdefault(name, "conjecture")
+    contexts: dict[str, tuple[str, str]] = {}
+    for module in dict.fromkeys([*modules, *submitted]):
+        for name, (_, context) in statement_goals(candidate / (module.replace(".", "/") + ".lean")).items():
+            for goal_name in goals:
+                if goal_name == name or goal_name.endswith("." + name):
+                    contexts[goal_name] = context
     outcomes: dict[str, str] = {}
     runs: dict[str, list[dict[str, Any]]] = {}
     for entrypoint, body in goals.items():
         conjecture = kinds.get(entrypoint) == "conjecture"
         attempts = runs.setdefault(entrypoint, [])
-        if statement_error(candidate, probe_file, body, triviality, attempts):
+        context = contexts.get(entrypoint, ("set_option autoImplicit false\n", ""))
+        if statement_error(candidate, probe_file, body, triviality, attempts, context):
             outcomes[entrypoint] = "not elaborated"
             continue
-        proved = probe_goal(candidate, probe_file, body, triviality, attempts)
+        proved = probe_goal(candidate, probe_file, body, triviality, attempts, context)
         if proved:
             outcomes[entrypoint] = proved
             if conjecture:
@@ -1064,7 +1120,7 @@ def baseline_probes(candidate: Path, modules: list[str], submitted: list[str], e
             continue
         if conjecture:
             # `body` is `: P`, so the negation goal is `: ¬(P)`.
-            refuted = probe_goal(candidate, probe_file, f": ¬({body.lstrip()[1:].strip()})", triviality, attempts)
+            refuted = probe_goal(candidate, probe_file, f": ¬({body.lstrip()[1:].strip()})", triviality, attempts, context)
             if refuted:
                 outcomes[entrypoint] = f"refuted by {refuted}"
                 report.reject("CONJECTURE_REFUTED", f"baseline-only probe '{refuted}' proved the negation of {entrypoint}")
