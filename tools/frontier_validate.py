@@ -985,11 +985,50 @@ def probe_goal(candidate: Path, probe_file: Path, goal: str, triviality: dict[st
     return None
 
 
+LEAN_ERROR_RE = re.compile(r"^\S+?:\d+:\d+: error(?:\([^)]*\))?: (?P<message>.*)$", re.M)
+
+
+def statement_error(candidate: Path, probe_file: Path, goal: str, triviality: dict[str, Any], runs: list[dict[str, Any]] | None = None) -> str | None:
+    """Lean's first error if `goal` cannot be stated from the baseline, else None.
+
+    The probes import Mathlib and the corpus as it was before this submission,
+    so a statement naming a definition the submission introduces does not
+    elaborate, and neither does a statement the receiver misread (#482). Every
+    tactic then "failed" before running, which the report could not tell apart
+    from a real attempt (Field Note 24). Stating the goal once, with no tactic,
+    tells them apart and skips the tactics that cannot run.
+    """
+    probe_file.write_text(
+        "import Mathlib\nimport LeanFrontier\n\n" f"example {goal} := by\n  sorry\n",
+        encoding="utf-8")
+    started = time.monotonic()
+    error: str | None = None
+    try:
+        result = run(["lake", "env", "lean", str(probe_file)], candidate, triviality["probe_timeout_seconds"])
+        outcome = "stated" if result.returncode == 0 else "not elaborated"
+        if result.returncode != 0:
+            found = LEAN_ERROR_RE.search(f"{result.stdout}\n{result.stderr}")
+            error = found.group("message").strip()[:300] if found else "lean exited without an error message"
+    except subprocess.TimeoutExpired:
+        # Unknown, not unstatable: let the tactics try as before.
+        outcome = "timeout"
+    except OSError:
+        outcome = "error"
+    if runs is not None:
+        attempt: dict[str, Any] = {"tactic": "statement", "outcome": outcome, "seconds": round(time.monotonic() - started, 3)}
+        if error:
+            attempt["error"] = error
+        runs.append(attempt)
+    return error
+
+
 def baseline_probes(candidate: Path, modules: list[str], submitted: list[str], entrypoints: list[str], triviality: dict[str, Any], report: Report) -> None:
     """Try bounded tactics without importing a changed candidate module.
 
-    A reference to a newly introduced definition makes the probe inconclusive,
-    never a rejection.
+    A statement that cannot be stated from the baseline, typically because it
+    names a definition the submission introduces, is recorded as
+    "not elaborated" with Lean's reason, never a rejection: it was not tried.
+    "inconclusive" means every tactic ran and none closed the goal.
 
     A theorem is probed in one direction: proving it from the baseline alone
     means it was already known. A conjecture is probed in both. Proving it
@@ -1012,6 +1051,9 @@ def baseline_probes(candidate: Path, modules: list[str], submitted: list[str], e
     for entrypoint, body in goals.items():
         conjecture = kinds.get(entrypoint) == "conjecture"
         attempts = runs.setdefault(entrypoint, [])
+        if statement_error(candidate, probe_file, body, triviality, attempts):
+            outcomes[entrypoint] = "not elaborated"
+            continue
         proved = probe_goal(candidate, probe_file, body, triviality, attempts)
         if proved:
             outcomes[entrypoint] = proved
