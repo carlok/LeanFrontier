@@ -38,12 +38,11 @@ abbrev intProfiniteTopology : TopologicalSpace intProfiniteCompletion :=
 def furstenbergProfiniteMap : ℤ → intProfiniteCompletion :=
   ProfiniteAddGrp.ProfiniteCompletion.etaFn (AddGrpCat.of ℤ)
 
-set_option linter.style.haveILetI false in
 private theorem diagramObj_topology_eq_bot
     (H : FiniteIndexNormalAddSubgroup (AddGrpCat.of ℤ)) :
     ((intProfiniteDiagram.obj H).toProfinite.toTop.str) =
       (⊥ : TopologicalSpace (intProfiniteDiagram.obj H)) := by
-  haveI : Finite (intProfiniteDiagram.obj H) := by
+  let _ : Finite (intProfiniteDiagram.obj H) := by
     change Finite (ℤ ⧸ H.toAddSubgroup)
     infer_instance
   exact DiscreteTopology.eq_bot
@@ -92,6 +91,7 @@ private theorem induced_furstenbergProfiniteMap_eq_genericFiniteQuotientTopology
     letI : TopologicalSpace ℤ :=
       TopologicalSpace.induced furstenbergProfiniteMap
         intProfiniteTopology
+    letI : TopologicalSpace (ℤ ⧸ H.toAddSubgroup) := ⊥
     have heta :
         @Continuous
           ℤ
@@ -130,6 +130,7 @@ private theorem induced_furstenbergProfiniteMap_eq_genericFiniteQuotientTopology
           furstenbergProfiniteMap := by
       apply continuous_induced_rng.mpr
       exact continuous_pi fun H => by
+        letI : TopologicalSpace (ℤ ⧸ H.toAddSubgroup) := ⊥
         have hq :
             @Continuous
               ℤ
@@ -161,7 +162,6 @@ theorem furstenbergTopology_eq_induced_profiniteCompletion :
 
 /-- The canonical map from the Furstenberg integers into Mathlib's additive profinite completion
 is a dense topological embedding. -/
-set_option linter.style.haveILetI false in
 theorem isDenseEmbedding_furstenbergProfiniteMap :
     @IsDenseEmbedding
       ℤ
@@ -171,7 +171,7 @@ theorem isDenseEmbedding_furstenbergProfiniteMap :
       furstenbergProfiniteMap := by
   letI : TopologicalSpace ℤ := furstenbergTopology
   letI : TopologicalSpace intProfiniteCompletion := intProfiniteTopology
-  letI : TotallySeparatedSpace ℤ := totallySeparatedSpace_furstenberg
+  let _ : TotallySeparatedSpace ℤ := totallySeparatedSpace_furstenberg
   have hind :
       @IsInducing
         ℤ
