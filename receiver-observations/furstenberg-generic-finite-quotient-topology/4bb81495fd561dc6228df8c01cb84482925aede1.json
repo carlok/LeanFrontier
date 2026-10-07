@@ -1,0 +1,183 @@
+{
+  "accepted_revision": "4bb81495fd561dc6228df8c01cb84482925aede1",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-07T04:18:03Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 343.771,
+    "observed": {
+      "added_lines": 133,
+      "audited_declarations": {
+        "LeanFrontier.Int.furstenbergTopology_eq_genericFiniteQuotientTopology": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.furstenbergTopology_eq_genericFiniteQuotientTopology",
+          "restatement": false,
+          "statement_sha256": "15d7419762f7a0665577fcd10e7b30774a98be27b9f7c075cb8c0631217e546d",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "LeanFrontier.Int.furstenbergTopology",
+            "LeanFrontier.Int.genericFiniteQuotientTopology",
+            "TopologicalSpace"
+          ]
+        },
+        "LeanFrontier.Int.genericFiniteQuotientTopology_eq_finiteQuotientTopology": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.genericFiniteQuotientTopology_eq_finiteQuotientTopology",
+          "restatement": false,
+          "statement_sha256": "23d1efcc9c00e783b508df1abd209472fdd3aff9a88eccd4e53169a50600b431",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "LeanFrontier.Int.finiteQuotientTopology",
+            "LeanFrontier.Int.genericFiniteQuotientTopology",
+            "TopologicalSpace"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 12,
+        "by_entrypoint": {
+          "LeanFrontier.Int.furstenbergTopology_eq_genericFiniteQuotientTopology": [
+            {
+              "outcome": "failed",
+              "seconds": 4.273,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.295,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.217,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.193,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.206,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.239,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Int.genericFiniteQuotientTopology_eq_finiteQuotientTopology": [
+            {
+              "outcome": "failed",
+              "seconds": 4.037,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.151,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.258,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.278,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.232,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.286,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 50.665,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Int.furstenbergTopology_eq_genericFiniteQuotientTopology": "inconclusive",
+        "LeanFrontier.Int.genericFiniteQuotientTopology_eq_finiteQuotientTopology": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 7774,
+      "changed_files": [
+        "LeanFrontier/Topology/FurstenbergProfiniteTopology.lean",
+        "Submissions/furstenberg-generic-finite-quotient-topology.json"
+      ],
+      "corpus_entrypoints_checked": 301,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Int.furstenbergTopology_eq_genericFiniteQuotientTopology": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.furstenbergTopology_eq_genericFiniteQuotientTopology",
+          "statement_sha256": "15d7419762f7a0665577fcd10e7b30774a98be27b9f7c075cb8c0631217e546d",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "LeanFrontier.Int.furstenbergTopology",
+            "LeanFrontier.Int.genericFiniteQuotientTopology",
+            "TopologicalSpace"
+          ]
+        },
+        "LeanFrontier.Int.genericFiniteQuotientTopology_eq_finiteQuotientTopology": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Int.genericFiniteQuotientTopology_eq_finiteQuotientTopology",
+          "statement_sha256": "23d1efcc9c00e783b508df1abd209472fdd3aff9a88eccd4e53169a50600b431",
+          "type_dependencies": [
+            "Eq",
+            "Int",
+            "LeanFrontier.Int.finiteQuotientTopology",
+            "LeanFrontier.Int.genericFiniteQuotientTopology",
+            "TopologicalSpace"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 5702,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 6
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "furstenberg-generic-finite-quotient-topology",
+  "trusted_receiver_revision": "5f9d391e8052321928042e5d8c787bd68a314dfc",
+  "validated_candidate_revision": "8887cc23454da7761e195a0fba9588d19fcd7313",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/37548777563"
+}
