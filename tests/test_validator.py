@@ -694,6 +694,7 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
         """Run `baseline_probes` on the fixture's `new_result` with a fake Lean:
         the statement check exits `statement_code`, every tactic fails."""
         seen: list[str] = []
+        self.probe_sources: list[str] = []
 
         class Result:
             def __init__(self, code: int, stdout: str = "") -> None:
@@ -701,7 +702,9 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
 
         def fake_run(cmd, cwd, timeout):
             source = Path(cmd[-1]).read_text(encoding="utf-8")
-            tactic = source.rstrip().rsplit("\n", 1)[-1].strip()
+            self.probe_sources.append(source)
+            lines = source.splitlines()
+            tactic = lines[next(i for i, line in enumerate(lines) if line.startswith("example")) + 1].strip()
             seen.append(tactic)
             return Result(statement_code, statement_output) if tactic == "sorry" else Result(1)
 
@@ -733,6 +736,10 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
     def test_a_statable_goal_is_still_probed_and_inconclusive_means_tried(self) -> None:
         report, seen = self.probe_with_lean(0)
         self.assertEqual(seen, ["sorry", "simp", "omega"])
+        # Stated as written: in its namespace, with no auto-bound implicits.
+        for source in self.probe_sources:
+            self.assertIn("set_option autoImplicit false\nnamespace LeanFrontier.Algebra\nexample (n : Nat)", source)
+            self.assertTrue(source.rstrip().endswith("end LeanFrontier.Algebra"), source)
         self.assertEqual(report.observations["baseline_triviality_probes"],
                          {"LeanFrontier.Algebra.new_result": "inconclusive"})
 
@@ -934,6 +941,18 @@ end LeanFrontier.Toy
 
     def test_a_named_argument_does_not_end_a_statement(self) -> None:
         self.assertEqual(self.statements["named"].strip(), "(n : Nat) : Nat.add (n := n) (m := 0) = n")
+
+    def test_a_probe_states_the_goal_in_its_own_namespace_and_opens(self) -> None:
+        """Stated bare, corpus names did not resolve and became auto-bound
+        variables, so the probes tried a more general statement (#489)."""
+        path = Path(self.temp.name) / "Opens.lean"
+        path.write_text(
+            "open Finset\nnamespace LeanFrontier.Toy\nopen Nat in\ntheorem helper : True := trivial\n"
+            "theorem Pair.swap_twice (p : Nat × Nat) : p.swap.swap = p := rfl\nend LeanFrontier.Toy\n")
+        goals = frontier_validate.statement_goals(path)
+        _, (header, footer) = goals["Pair.swap_twice"]
+        self.assertEqual(header, "set_option autoImplicit false\nnamespace LeanFrontier.Toy.Pair\nopen Finset\n")
+        self.assertEqual(footer, "end LeanFrontier.Toy.Pair\n")
 
     def test_entrypoints_are_matched_by_their_declared_name(self) -> None:
         entrypoints = ["LeanFrontier.Toy.by_cases", "LeanFrontier.Toy.Pair.swap_swap", "LeanFrontier.Toy.primed'"]
