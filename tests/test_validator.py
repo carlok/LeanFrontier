@@ -690,6 +690,52 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
         self.assertEqual([item["outcome"] for item in runs], ["timeout", "failed", "closed"])
         self.assertTrue(all(isinstance(item["seconds"], float) for item in runs))
 
+    def probe_with_lean(self, statement_code: int, statement_output: str = "") -> tuple[frontier_validate.Report, list[str]]:
+        """Run `baseline_probes` on the fixture's `new_result` with a fake Lean:
+        the statement check exits `statement_code`, every tactic fails."""
+        seen: list[str] = []
+
+        class Result:
+            def __init__(self, code: int, stdout: str = "") -> None:
+                self.returncode, self.stdout, self.stderr = code, stdout, ""
+
+        def fake_run(cmd, cwd, timeout):
+            source = Path(cmd[-1]).read_text(encoding="utf-8")
+            tactic = source.rstrip().rsplit("\n", 1)[-1].strip()
+            seen.append(tactic)
+            return Result(statement_code, statement_output) if tactic == "sorry" else Result(1)
+
+        original = frontier_validate.run
+        frontier_validate.run = fake_run
+        report = frontier_validate.Report()
+        try:
+            frontier_validate.baseline_probes(
+                self.candidate, ["LeanFrontier.Algebra.New"], ["LeanFrontier.Algebra.New"],
+                ["LeanFrontier.Algebra.new_result"],
+                {"baseline_probes": ["simp", "omega"], "probe_timeout_seconds": 10}, report,
+            )
+        finally:
+            frontier_validate.run = original
+        return report, seen
+
+    def test_a_statement_the_baseline_cannot_state_is_not_called_inconclusive(self) -> None:
+        """Field Note 24: such statements 'failed' every tactic without running one."""
+        error = "probe.lean:4:29: error(lean.unknownIdentifier): Unknown identifier `LeanFrontier.Algebra.fresh`"
+        report, seen = self.probe_with_lean(1, error)
+        self.assertEqual(seen, ["sorry"], "tactics that cannot run should not be run")
+        self.assertEqual(report.observations["baseline_triviality_probes"],
+                         {"LeanFrontier.Algebra.new_result": "not elaborated"})
+        (attempt,) = report.observations["baseline_probe_runs"]["by_entrypoint"]["LeanFrontier.Algebra.new_result"]
+        self.assertEqual(attempt["outcome"], "not elaborated")
+        self.assertEqual(attempt["error"], "Unknown identifier `LeanFrontier.Algebra.fresh`")
+        self.assertTrue(report.accepted)
+
+    def test_a_statable_goal_is_still_probed_and_inconclusive_means_tried(self) -> None:
+        report, seen = self.probe_with_lean(0)
+        self.assertEqual(seen, ["sorry", "simp", "omega"])
+        self.assertEqual(report.observations["baseline_triviality_probes"],
+                         {"LeanFrontier.Algebra.new_result": "inconclusive"})
+
     def test_the_ignore_set_follows_the_repository_gitignore(self) -> None:
         """A submitter running the receiver in a working tree should see what CI sees."""
         derived = frontier_validate.ignored_names(ROOT)

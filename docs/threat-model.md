@@ -27,7 +27,10 @@ For every accepted submission, mechanically, with the evidence kept in
 - **It is not trivial.** Bounded tactics (`rfl`, `simp`, `norm_num`, `tauto`,
   `omega`, `decide`, ten seconds each) are run against the statement from the
   baseline alone. A conjecture is probed in both directions: provable or
-  refutable, it is not a conjecture.
+  refutable, it is not a conjecture. The statement is first stated on its
+  own; one that names a definition the submission introduces cannot be, and
+  is recorded as `not elaborated` with Lean's reason rather than probed. This
+  check is weakest exactly where submissions bring their own vocabulary.
 - **It builds clean.** Deprecated Mathlib lemmas in the submission's own files
   are rejected, because a deprecation is a warning now and an error after the
   next upgrade.
