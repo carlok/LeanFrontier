@@ -733,6 +733,38 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
         self.assertEqual(attempt["error"], "Unknown identifier `LeanFrontier.Algebra.fresh`")
         self.assertTrue(report.accepted)
 
+    def test_probes_keep_corpus_imports_and_drop_the_submissions_own(self) -> None:
+        """The receiver passes every module in the tree as `modules`; only
+        `submitted` is new. Dropping all of them hid `furstenbergTopology`."""
+        algebra = self.candidate / "LeanFrontier" / "Algebra"
+        (algebra / "Sibling.lean").write_text("namespace LeanFrontier.Algebra\nend LeanFrontier.Algebra\n")
+        (algebra / "New.lean").write_text(
+            "import LeanFrontier.Algebra.Existing\nimport LeanFrontier.Algebra.Sibling\n"
+            + (algebra / "New.lean").read_text())
+        sources: list[str] = []
+
+        class Result:
+            returncode, stdout, stderr = 1, "", ""
+
+        def fake_run(cmd, cwd, timeout):
+            sources.append(Path(cmd[-1]).read_text(encoding="utf-8"))
+            return Result()
+
+        original = frontier_validate.run
+        frontier_validate.run = fake_run
+        try:
+            frontier_validate.baseline_probes(
+                self.candidate,
+                ["LeanFrontier.Algebra.Existing", "LeanFrontier.Algebra.New", "LeanFrontier.Algebra.Sibling"],
+                ["LeanFrontier.Algebra.New", "LeanFrontier.Algebra.Sibling"],
+                ["LeanFrontier.Algebra.new_result"],
+                {"baseline_probes": ["simp"], "probe_timeout_seconds": 10}, frontier_validate.Report(),
+            )
+        finally:
+            frontier_validate.run = original
+        self.assertIn("import LeanFrontier.Algebra.Existing\n", sources[0])
+        self.assertNotIn("import LeanFrontier.Algebra.Sibling", sources[0])
+
     def test_a_statable_goal_is_still_probed_and_inconclusive_means_tried(self) -> None:
         report, seen = self.probe_with_lean(0)
         self.assertEqual(seen, ["sorry", "simp", "omega"])
@@ -970,7 +1002,7 @@ end LeanFrontier.Toy
             "section\nvariable (k : Nat)\nend\nvariable {α : Type}\n  [Inhabited α]\n"
             "theorem Pair.swap_twice (p : Nat × Nat) : p.swap.swap = p := rfl\nend LeanFrontier.Toy\n")
         goals = frontier_validate.statement_goals(path)
-        _, (header, footer) = goals["Pair.swap_twice"]
+        _, (header, footer) = goals["LeanFrontier.Toy.Pair.swap_twice"]
         # The module's own imports, not the whole corpus: `open Polynomial` inside
         # a LeanFrontier namespace must not find the corpus's LeanFrontier.Polynomial.
         # The closed section's `variable (k : Nat)` is out of scope; `open Nat in`
