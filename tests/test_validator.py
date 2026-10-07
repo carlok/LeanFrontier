@@ -690,6 +690,91 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
         self.assertEqual([item["outcome"] for item in runs], ["timeout", "failed", "closed"])
         self.assertTrue(all(isinstance(item["seconds"], float) for item in runs))
 
+    def probe_with_lean(self, statement_code: int, statement_output: str = "") -> tuple[frontier_validate.Report, list[str]]:
+        """Run `baseline_probes` on the fixture's `new_result` with a fake Lean:
+        the statement check exits `statement_code`, every tactic fails."""
+        seen: list[str] = []
+        self.probe_sources: list[str] = []
+
+        class Result:
+            def __init__(self, code: int, stdout: str = "") -> None:
+                self.returncode, self.stdout, self.stderr = code, stdout, ""
+
+        def fake_run(cmd, cwd, timeout):
+            source = Path(cmd[-1]).read_text(encoding="utf-8")
+            self.probe_sources.append(source)
+            lines = source.splitlines()
+            tactic = lines[next(i for i, line in enumerate(lines) if line.startswith("example")) + 1].strip()
+            seen.append(tactic)
+            return Result(statement_code, statement_output) if tactic == "sorry" else Result(1)
+
+        original = frontier_validate.run
+        frontier_validate.run = fake_run
+        report = frontier_validate.Report()
+        try:
+            frontier_validate.baseline_probes(
+                self.candidate, ["LeanFrontier.Algebra.New"], ["LeanFrontier.Algebra.New"],
+                ["LeanFrontier.Algebra.new_result"],
+                {"baseline_probes": ["simp", "omega"], "probe_timeout_seconds": 10}, report,
+            )
+        finally:
+            frontier_validate.run = original
+        return report, seen
+
+    def test_a_statement_the_baseline_cannot_state_is_not_called_inconclusive(self) -> None:
+        """Field Note 24: such statements 'failed' every tactic without running one."""
+        error = "probe.lean:4:29: error(lean.unknownIdentifier): Unknown identifier `LeanFrontier.Algebra.fresh`"
+        report, seen = self.probe_with_lean(1, error)
+        self.assertEqual(seen, ["sorry"], "tactics that cannot run should not be run")
+        self.assertEqual(report.observations["baseline_triviality_probes"],
+                         {"LeanFrontier.Algebra.new_result": "not elaborated"})
+        (attempt,) = report.observations["baseline_probe_runs"]["by_entrypoint"]["LeanFrontier.Algebra.new_result"]
+        self.assertEqual(attempt["outcome"], "not elaborated")
+        self.assertEqual(attempt["error"], "Unknown identifier `LeanFrontier.Algebra.fresh`")
+        self.assertTrue(report.accepted)
+
+    def test_probes_keep_corpus_imports_and_drop_the_submissions_own(self) -> None:
+        """The receiver passes every module in the tree as `modules`; only
+        `submitted` is new. Dropping all of them hid `furstenbergTopology`."""
+        algebra = self.candidate / "LeanFrontier" / "Algebra"
+        (algebra / "Sibling.lean").write_text("namespace LeanFrontier.Algebra\nend LeanFrontier.Algebra\n")
+        (algebra / "New.lean").write_text(
+            "import LeanFrontier.Algebra.Existing\nimport LeanFrontier.Algebra.Sibling\n"
+            + (algebra / "New.lean").read_text())
+        sources: list[str] = []
+
+        class Result:
+            returncode, stdout, stderr = 1, "", ""
+
+        def fake_run(cmd, cwd, timeout):
+            sources.append(Path(cmd[-1]).read_text(encoding="utf-8"))
+            return Result()
+
+        original = frontier_validate.run
+        frontier_validate.run = fake_run
+        try:
+            frontier_validate.baseline_probes(
+                self.candidate,
+                ["LeanFrontier.Algebra.Existing", "LeanFrontier.Algebra.New", "LeanFrontier.Algebra.Sibling"],
+                ["LeanFrontier.Algebra.New", "LeanFrontier.Algebra.Sibling"],
+                ["LeanFrontier.Algebra.new_result"],
+                {"baseline_probes": ["simp"], "probe_timeout_seconds": 10}, frontier_validate.Report(),
+            )
+        finally:
+            frontier_validate.run = original
+        self.assertIn("import LeanFrontier.Algebra.Existing\n", sources[0])
+        self.assertNotIn("import LeanFrontier.Algebra.Sibling", sources[0])
+
+    def test_a_statable_goal_is_still_probed_and_inconclusive_means_tried(self) -> None:
+        report, seen = self.probe_with_lean(0)
+        self.assertEqual(seen, ["sorry", "simp", "omega"])
+        # Stated as written: in its namespace, with no auto-bound implicits.
+        for source in self.probe_sources:
+            self.assertIn("set_option autoImplicit false\nnamespace LeanFrontier.Algebra\nexample (n : Nat)", source)
+            self.assertTrue(source.rstrip().endswith("end LeanFrontier.Algebra"), source)
+        self.assertEqual(report.observations["baseline_triviality_probes"],
+                         {"LeanFrontier.Algebra.new_result": "inconclusive"})
+
     def test_the_ignore_set_follows_the_repository_gitignore(self) -> None:
         """A submitter running the receiver in a working tree should see what CI sees."""
         derived = frontier_validate.ignored_names(ROOT)
@@ -860,6 +945,15 @@ theorem by_match (l : List Nat) :
 
 theorem named (n : Nat) : Nat.add (n := n) (m := 0) = n := rfl
 
+theorem with_let (k : Nat) :
+    let p := k + 1
+    p = k + 1 := by
+  rfl
+
+def Open : Prop := ∀ n : Nat, n = n
+
+private theorem helper_after : True := trivial
+
 end LeanFrontier.Toy
 """
 
@@ -886,8 +980,43 @@ end LeanFrontier.Toy
         statement = " ".join(self.statements["by_match"].split())
         self.assertTrue(statement.endswith("| _ :: t => t.length + 1"), statement)
 
+    def test_a_let_inside_a_statement_owns_its_own_binding(self) -> None:
+        """Three Stern-Brocot statements were cut at `let p :=`."""
+        self.assertEqual(" ".join(self.statements["with_let"].split()), "(k : Nat) : let p := k + 1 p = k + 1")
+
+    def test_a_conjecture_ends_before_a_private_declaration(self) -> None:
+        """The Markov uniqueness conjecture's body ran on into a private proof."""
+        self.assertEqual(self.statements["Open"], ": ∀ n : Nat, n = n")
+
     def test_a_named_argument_does_not_end_a_statement(self) -> None:
         self.assertEqual(self.statements["named"].strip(), "(n : Nat) : Nat.add (n := n) (m := 0) = n")
+
+    def test_a_probe_states_the_goal_in_its_own_namespace_and_opens(self) -> None:
+        """Stated bare, corpus names did not resolve and became auto-bound
+        variables, so the probes tried a more general statement (#489)."""
+        path = Path(self.temp.name) / "Opens.lean"
+        path.write_text(
+            "import Mathlib.Data.Finset.Basic\nimport LeanFrontier.Other\n"
+            "open Finset\nnamespace LeanFrontier.Toy\nopen Nat in\ntheorem helper : True := trivial\n"
+            "local notation \"𝕀\" => Set.Icc (0 : Nat) 1\n"
+            "section\nvariable (k : Nat)\nend\nvariable {α : Type}\n  [Inhabited α]\n"
+            "theorem Pair.swap_twice (p : Nat × Nat) : p.swap.swap = p := rfl\nend LeanFrontier.Toy\n")
+        goals = frontier_validate.statement_goals(path)
+        _, (header, footer) = goals["LeanFrontier.Toy.Pair.swap_twice"]
+        # The module's own imports, not the whole corpus: `open Polynomial` inside
+        # a LeanFrontier namespace must not find the corpus's LeanFrontier.Polynomial.
+        # The closed section's `variable (k : Nat)` is out of scope; `open Nat in`
+        # applied to one line.
+        # Lines keep their place: `open Finset` precedes the namespace, as in the
+        # source, so it opens Mathlib's Finset and not a corpus namespace.
+        self.assertEqual(header, "import Mathlib.Data.Finset.Basic\nimport LeanFrontier.Other\n"
+                                 "set_option autoImplicit false\nopen Finset\nnamespace LeanFrontier.Toy\n"
+                                 "local notation \"𝕀\" => Set.Icc (0 : Nat) 1\n"
+                                 "variable {α : Type}\n  [Inhabited α]\nnamespace Pair\n")
+        source = frontier_validate.probe_source(" : True", "trivial", (header, footer))
+        self.assertTrue(source.startswith("import Mathlib\nimport Mathlib.Data.Finset.Basic\n"), source)
+        self.assertNotIn("import LeanFrontier\n", source)
+        self.assertEqual(footer, "end Pair\nend LeanFrontier.Toy\n")
 
     def test_entrypoints_are_matched_by_their_declared_name(self) -> None:
         entrypoints = ["LeanFrontier.Toy.by_cases", "LeanFrontier.Toy.Pair.swap_swap", "LeanFrontier.Toy.primed'"]
