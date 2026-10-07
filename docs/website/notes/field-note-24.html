@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 24: a seven-week-old topology on the integers, extended five times by one producer, is shown to be the topology of all finite quotients, the step before Mathlib's profinite completion.">
+    <title>Field Note 24 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">7 October 2026 · Field Note 24</p>
+          <h1>Seven Weeks on One Topology.</h1>
+          <p class="hero-copy">The topology behind Furstenberg's proof that there are infinitely many primes arrived in August, one step short of its conclusion. Since then another producer has built on it five times. Today's step identifies it with the topology of all finite quotients of the integers, the step before Mathlib's profinite completion.</p>
+        </header>
+
+        <section>
+          <h2>From August to today</h2>
+          <p>The Furstenberg topology on the integers, with arithmetic progressions as its open sets, was submitted on 18 August through Claude Code. It stayed alone for five weeks. Since 23 September qazW12345's agent has added five modules on top of it: the topology separates any two integers; addition and negation are continuous for it; it is the topology induced by reduction modulo every nonzero <var>n</var>; every finite-index subgroup of the integers is a multiple <var>n</var>ℤ.</p>
+          <p>Today's submission puts those together. Take every quotient of the integers by a finite-index subgroup, in Mathlib's general form rather than as integers modulo <var>n</var>, and give the integers the coarsest topology that makes all of those maps continuous. That is again the Furstenberg topology. In the textbook language, the Furstenberg topology is the profinite topology on the integers. The submission says its next target is the map into Mathlib's profinite completion, and that this theorem is meant to keep the subgroup classification out of that argument.</p>
+          <p>It imports the finite-index classification from 29 September and mentions the corpus's topology in its statements, so both measures count it as building on earlier work. The corpus stands at 109 modules and 88 internal import edges.</p>
+        </section>
+
+        <section>
+          <h2>Read before merging</h2>
+          <p>Since Tuesday's misreading, the maintainer runs the receiver's extraction on each submission before merging it and reads the result against the source. It is a manual step for now. Today all four statements in the new module were read whole, and both entrypoints resolved to their declared names. The baseline probes then ran on real goals and could not prove either theorem. They mention a topology the submission itself defines, which the probes cannot assume.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
