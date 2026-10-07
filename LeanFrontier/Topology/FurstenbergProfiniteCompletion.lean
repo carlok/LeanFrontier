@@ -147,6 +147,7 @@ theorem isDenseInducing_furstenbergProfiniteMap :
 
 /-- The canonical map from the Furstenberg integers into Mathlib's additive profinite completion
 is a dense topological embedding. -/
+set_option linter.style.haveILetI false in
 theorem isDenseEmbedding_furstenbergProfiniteMap :
     @IsDenseEmbedding
       ℤ
