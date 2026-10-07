@@ -88,8 +88,14 @@ private theorem induced_furstenbergProfiniteMap_eq_genericFiniteQuotientTopology
     have heta : Continuous furstenbergProfiniteMap :=
       continuous_induced_dom
     have hcomp :
-        Continuous (fun x : ℤ =>
-          intProfiniteProjection H (furstenbergProfiniteMap x)) :=
+        @Continuous
+          ℤ
+          (ℤ ⧸ H.toAddSubgroup)
+          (inferInstance : TopologicalSpace ℤ)
+          (⊥ : TopologicalSpace (ℤ ⧸ H.toAddSubgroup))
+          (fun x : ℤ =>
+            (intProfiniteProjection H (furstenbergProfiniteMap x) :
+              ℤ ⧸ H.toAddSubgroup)) :=
       (continuous_intProfiniteProjection_discrete H).comp heta
     have hq :
         Continuous (fun x : ℤ =>
@@ -109,8 +115,13 @@ private theorem induced_furstenbergProfiniteMap_eq_genericFiniteQuotientTopology
               (fun x : ℤ => (QuotientAddGroup.mk x : ℤ ⧸ H.toAddSubgroup)) :=
           continuous_iff_le_induced.mpr (iInf_le _ H)
         have hqObj :
-            Continuous (fun x : ℤ =>
-              (QuotientAddGroup.mk x : intProfiniteDiagram.obj H)) := by
+            @Continuous
+              ℤ
+              (intProfiniteDiagram.obj H)
+              genericFiniteQuotientTopology
+              ((intProfiniteDiagram.obj H).toProfinite.toTop.str)
+              (fun x : ℤ =>
+                (QuotientAddGroup.mk x : intProfiniteDiagram.obj H)) := by
           rw [diagramObj_topology_eq_bot H]
           exact hq
         convert hqObj using 1 <;> rfl
