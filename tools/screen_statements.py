@@ -30,6 +30,7 @@ DEFINITION_RE = re.compile(
     r"(?:def|abbrev|structure|inductive|class|instance|opaque)[ \t]+([^\s(:{\[]+)",
     re.MULTILINE)
 IDENTIFIER_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_']*")
+STRAY = "outside every statement,"
 
 
 def declared_entrypoints(root: Path) -> dict[str, str]:
@@ -62,19 +63,30 @@ def module_source(code: str, goals: dict[str, tuple[str, tuple[str, str]]], want
         body, (header, footer) = goals[name]
         context = [line for line in header.splitlines() if not line.startswith("import ")]
         start = len(lines) + 1
-        lines += ["section", *context, f"example {body.strip()} := by", "  sorry", *footer.splitlines(), "end"]
+        # Split the block, not just the context: a statement spanning several
+        # lines added as one element shifted every later span.
+        block = "\n".join(["section", *context, f"example {body.strip()} := by", "  sorry", *footer.splitlines(), "end"])
+        lines += block.splitlines()
         spans.append((name, start, len(lines)))
     return "\n".join(lines) + "\n", spans
 
 
 def attribute_errors(output: str, spans: list[tuple[str, int, int]]) -> dict[str, str]:
-    """First Lean error inside each goal's span."""
+    """First Lean error inside each goal's span. An error outside every span
+    (a failed import, or spans that no longer match the file) is charged to
+    every goal: silently dropping it would report them all as stated."""
     errors: dict[str, str] = {}
+    stray: str | None = None
     for match in LEAN_ERROR_RE.finditer(output):
-        line = int(match.group("line"))
-        for name, start, end in spans:
-            if start <= line <= end:
-                errors.setdefault(name, match.group("message").strip()[:300])
+        line, message = int(match.group("line")), match.group("message").strip()[:300]
+        owners = [name for name, start, end in spans if start <= line <= end]
+        for name in owners:
+            errors.setdefault(name, message)
+        if not owners and stray is None:
+            stray = f"{STRAY} line {line}: {message}"
+    if stray:
+        for name, _, _ in spans:
+            errors.setdefault(name, stray)
     return errors
 
 
@@ -97,10 +109,10 @@ def screen(root: Path, timeout: int) -> dict[str, object]:
             for name in wanted:
                 if name not in errors:
                     outcome = "stated"
-                elif names_own_definition(goals[name][0], owned):
-                    outcome = "own definition"
-                else:
+                elif errors[name].startswith(STRAY) or not names_own_definition(goals[name][0], owned):
                     outcome = "other"
+                else:
+                    outcome = "own definition"
                 results[name] = {"submission": claims[name], "outcome": outcome, **({"error": errors[name]} if name in errors else {})}
     counts = {outcome: sum(item["outcome"] == outcome for item in results.values())
               for outcome in ("stated", "own definition", "other")}

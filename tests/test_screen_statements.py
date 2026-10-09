@@ -25,6 +25,12 @@ theorem double_eq (n : Nat) : double n = 2 * n := rfl
 
 theorem plain (n : Nat) : n + 0 = n := by simp
 
+theorem spread (n : Nat) :
+    n + 0 =
+      n := by simp
+
+theorem last (n : Nat) : 0 + n = n := by simp
+
 end LeanFrontier.Toy
 """
 
@@ -55,6 +61,16 @@ class StatementScreenTests(unittest.TestCase):
             self.assertIn("  sorry", block)
         self.assertEqual([name for name, _, _ in spans], ["LeanFrontier.Toy.double_eq", "LeanFrontier.Toy.plain"])
 
+    def test_spans_match_the_lines_of_the_generated_file(self) -> None:
+        """A statement over several lines shifted every later span (first CI run of #498)."""
+        wanted = ["LeanFrontier.Toy.spread", "LeanFrontier.Toy.last"]
+        source, spans = screen_statements.module_source(self.code, self.goals, wanted)
+        lines = source.splitlines()
+        for name, start, end in spans:
+            self.assertEqual(lines[start - 1], "section", name)
+            self.assertEqual(lines[end - 1], "end", name)
+            self.assertTrue(any(line.startswith("example") for line in lines[start - 1:end]), name)
+
     def test_errors_are_attributed_to_the_goal_whose_lines_they_fall_in(self) -> None:
         source, spans = screen_statements.module_source(
             self.code, self.goals, ["LeanFrontier.Toy.double_eq", "LeanFrontier.Toy.plain"])
@@ -63,6 +79,14 @@ class StatementScreenTests(unittest.TestCase):
                   f"/tmp/Toy.lean:{first_start + 4}:31: error: a second error\n")
         errors = screen_statements.attribute_errors(output, spans)
         self.assertEqual(errors, {"LeanFrontier.Toy.double_eq": "Unknown identifier `double`"})
+
+    def test_an_error_outside_every_statement_is_not_dropped(self) -> None:
+        _, spans = screen_statements.module_source(
+            self.code, self.goals, ["LeanFrontier.Toy.double_eq", "LeanFrontier.Toy.plain"])
+        output = "/tmp/Toy.lean:2:0: error: unknown module prefix 'LeanFrontier.Other'\n"
+        errors = screen_statements.attribute_errors(output, spans)
+        self.assertEqual(set(errors), {"LeanFrontier.Toy.double_eq", "LeanFrontier.Toy.plain"})
+        self.assertIn("outside every statement", errors["LeanFrontier.Toy.plain"])
 
     def test_a_statement_naming_its_own_modules_definition_is_expected_to_fail(self) -> None:
         owned = screen_statements.own_names(self.code)
