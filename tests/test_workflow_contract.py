@@ -455,6 +455,16 @@ class WorkflowContractTests(unittest.TestCase):
         for workflow in (ROOT / ".github" / "workflows").glob("*.yml"):
             self.assertNotIn("permission-workflows", workflow.read_text(), workflow.name)
 
+    def test_the_statement_screen_runs_offline_and_cannot_write_the_tree(self) -> None:
+        """It runs Lean on statements taken from submitted source."""
+        screen = (ROOT / ".github" / "workflows" / "screen-statements.yml").read_text()
+        offline = screen[screen.index("State every accepted entrypoint"):]
+        for flag in ("--network none", "--read-only", "--cap-drop ALL", "/workspace:ro"):
+            self.assertIn(flag, offline)
+        self.assertIn("tools/screen_statements.py", offline)
+        self.assertIn("contents: read", screen)
+        self.assertNotIn("secrets.", screen)
+
     def test_every_job_names_its_runner_image(self) -> None:
         """ubuntu-latest moves when GitHub decides (26.04 from 19 October 2026).
         The receiver's host should change in a reviewed pull request instead."""
