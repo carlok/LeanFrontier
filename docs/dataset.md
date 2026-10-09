@@ -37,6 +37,30 @@ released file can be checked by regenerating it at the tagged commit.
 | `observation.observed.entrypoints` | Per public theorem: `kind`, `axioms` (the full axiom closure), `statement_sha256` (digest of the normalized statement), `type_dependencies` (constants its statement mentions). |
 | `observation.observed.*` | The rest of the receiver's measurements: build and kernel re-check outcome, baseline triviality probes and their runs, exact Mathlib matches, corpus entrypoints re-checked, new declarations, lines and bytes changed. |
 
+### Reading the triviality probes
+
+`observation.observed.baseline_triviality_probes` maps each entrypoint to
+`inconclusive` or, from 7 October 2026, `not elaborated`. (A tactic that closed a
+statement would have rejected the submission, so accepted records do not show
+one.) The meaning of these values changed with the receiver on that date (#489):
+
+- **Before 7 October 2026**, a statement was probed bare: without its
+  module's namespace, `open` or `variable` lines, and with Lean's automatic
+  implicit variables on. A name that only resolved inside the module became a
+  variable, so the tactics usually ran on a more general claim than the one
+  submitted. `inconclusive` then means only that this general claim was not
+  closed; for a statement about the submission's own definitions it means the
+  statement was never really tried.
+- **From 7 October 2026**, a statement is probed as its module writes it.
+  `not elaborated` means it could not be stated from the baseline (usually
+  because it names the submission's own definitions), with Lean's reason in
+  `baseline_probe_runs`; `inconclusive` means every tactic ran and none closed it.
+
+Use `observation.trusted_receiver_revision` (or `observation.observed_at`) to tell
+the two apart. `record_version` stays `1`: no field changed or was removed. A
+re-reading of all 303 entrypoints accepted by 7 October found that the corrected
+probe would not have rejected any of them.
+
 `claim.entrypoints` is what the submitter declared; `observation.observed.entrypoints`
 is what the receiver verified. They are equal for every record; the gate on generated
 output (`tools/validate_generated.py`) refuses an observation whose

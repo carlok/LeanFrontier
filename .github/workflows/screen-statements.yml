@@ -1,0 +1,59 @@
+name: screen-statements
+
+# The receiver reads each statement from source text and probes it in a
+# context it rebuilds. Four silent bugs in that reading were found in one week
+# (#475, #482, #489). This states every accepted entrypoint the way the probe
+# would, and fails on any statement that cannot be stated for a reason other
+# than naming its own module's definitions. See tools/screen_statements.py.
+
+on:
+  schedule:
+    - cron: "41 4 * * 3"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - tools/frontier_validate.py
+      - tools/screen_statements.py
+      - .github/workflows/screen-statements.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: screen-statements-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  screen:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Build the validator image
+        run: docker build -f tools/Dockerfile.validator -t leanfrontier-screen:ci .
+      - name: Fetch the toolchain and Mathlib cache, build the corpus
+        run: >-
+          docker run --rm
+          -v "$GITHUB_WORKSPACE/elan:/elan"
+          -v "$GITHUB_WORKSPACE:/workspace"
+          -w /workspace
+          leanfrontier-screen:ci sh -c 'lake exe cache get && lake build'
+      - name: State every accepted entrypoint
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/screen-output"
+          chmod 777 "$GITHUB_WORKSPACE/screen-output"
+          docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges \
+            --memory 8g --cpus 2 --pids-limit 512 --tmpfs /tmp:size=2g \
+            -v "$GITHUB_WORKSPACE/elan:/elan:ro" \
+            -v "$GITHUB_WORKSPACE:/workspace:ro" \
+            -v "$GITHUB_WORKSPACE/screen-output:/output" -w /workspace \
+            leanfrontier-screen:ci \
+            python3 tools/screen_statements.py --report /output/screen-statements.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: screen-statements-report
+          path: screen-output/screen-statements.json
+          if-no-files-found: warn
