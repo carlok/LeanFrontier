@@ -84,8 +84,13 @@ theorem chungErdos (μ : Measure Ω) [IsProbabilityMeasure μ]
 
   have hX2 : MemLp X 2 μ := by
     dsimp [X]
-    exact memLp_finsetSum s fun i hi =>
-      (memLp_const (μ := μ) (1 : ℝ)).indicator (hA i hi)
+    -- Mathlib v4.35 changed `MemLp.indicator` to take a `NullMeasurableSet`
+    -- (#499). Both forms are tried so the automatic upgrade can pass; keep the
+    -- second alone once v4.34 is gone.
+    exact memLp_finsetSum s fun i hi => by
+      first
+        | exact (memLp_const (μ := μ) (1 : ℝ)).indicator (hA i hi)
+        | exact (memLp_const (μ := μ) (1 : ℝ)).indicator (hA i hi).nullMeasurableSet
 
   have hmean :
       (∫ ω, X ω ∂μ) = ∑ i ∈ s, μ.real (A i) := by
