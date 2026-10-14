@@ -178,6 +178,19 @@ Stated plainly, because an unstated residual risk is the dangerous kind.
 - **One producer's taste.** Most recent work comes from a single external
   producer. Nothing mechanical detects a corpus drifting into one agent's
   interests.
+- **One kernel.** Admission replays a submission's modules through Lean's own
+  kernel (`leanchecker`) and nothing else. Lean 4.35 bundles independent
+  checkers (`lake check --paranoid`), but they replay the whole dependency
+  closure, Mathlib included: an hour for `lake check` and over three for
+  `--paranoid` on the corpus, about the same for one submission. They are
+  therefore a candidate for a periodic audit of the accepted corpus, not for
+  admission (#504). Until such a job runs, no stronger claim is made.
+- **Source syntax.** The receiver reads statements from source text, in the
+  syntax of today's Lean files. Lean's `module` system (`public import`,
+  visibility) is opt-in at 4.35, and Mathlib already warns that it expects it.
+  If the corpus or submissions adopt it, the statement reader and the
+  statement screen must learn that syntax first; the screen
+  (`tools/screen_statements.py`) is the check that would show they have not.
 
 ## If you are adopting this
 
