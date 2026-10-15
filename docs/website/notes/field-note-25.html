@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 25: a dry run against the release candidate found the one proof Mathlib v4.35 would break, the fix worked on both versions, the upgrade then landed unattended, and two releases followed.">
+    <title>Field Note 25 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">15 October 2026 · Field Note 25</p>
+          <h1>Fixed Before It Broke.</h1>
+          <p class="hero-copy">Mathlib v4.35 changed one lemma in a way that broke one accepted proof. The break was found four days before the release, against the release candidate, and the fix was written to work on both versions. When the release came, the corpus moved to it without anyone repairing anything. Two releases followed.</p>
+        </header>
+
+        <section>
+          <h2>A dry run on the candidate</h2>
+          <p>The upgrade path adopts only official Mathlib releases. On 9 October, with v4.35 at its fourth release candidate, we ran the same audit against the candidate by hand, to see what it would do. It failed on one line. In Mathlib v4.35 a lemma about indicator functions asks for a weaker kind of measurability than before, and the Chung–Erdős inequality, accepted in September, passed it the old kind.</p>
+          <p>The audit could only show the first failure: two later modules import that one and were never built. A local build against the candidate, with the line repaired, built all three. So that line was the only break.</p>
+          <p>The repaired line would not compile on the version we were still using. Waiting would have meant the weekly upgrade failing on release day, and someone upgrading by hand. Instead the proof now tries the old form and then the new one, so it compiles on both. It is a change to accepted mathematics, so it carries the evidence such changes need: every declaration in the corpus has the same statement, kind and axioms before and after, and the kernel recheck passes.</p>
+        </section>
+
+        <section>
+          <h2>The release</h2>
+          <p>Lean v4.35.0 came out on 12 October and Mathlib v4.35.0 on the 13th, a day after the weekly upgrade run had checked and found nothing. Rather than wait for the next Monday, the maintainer started the upgrade the following morning. The audit rebuilt the corpus on the new release and accepted all 305 entrypoints, with no collisions with Mathlib and no deprecated names, and the upgrade merged itself. The two-way proof was then reduced to the new form alone, with the same before-and-after evidence.</p>
+          <p>Field Note 08 was about an upgrade nobody chose. This one needed a single decision, made four days before the release: fix the proof before the release arrived to break it.</p>
+        </section>
+
+        <section>
+          <h2>More than one kernel</h2>
+          <p>Lean v4.35 ships independent proof checkers alongside its own kernel, and a command that runs them over a whole project. We tried it on the corpus. On a laptop, Lean's kernel took an hour. The full set took three hours and nineteen minutes. Both of Lean's own kernels and three of the four independent checkers accepted everything; the fourth crashed before reaching a verdict. The cost comes from Mathlib: each checker replays all of it, not just our 110 modules, so a single submission would cost about as much as the whole corpus.</p>
+          <p>So these checkers are not part of admission. Lean's own kernel now replays the whole corpus once a month and after every upgrade; the first run in CI took two hours and accepted it. The full set of checkers remains a manual procedure, because it would not fit in a CI job. The threat model now says that admission relies on one kernel.</p>
+        </section>
+
+        <section>
+          <h2>Two releases and a quiet week</h2>
+          <p>On 15 October the library was released as v0.3.0, the first version on Lean and Mathlib v4.35.0, with 110 modules. The dataset was released as corpus-v2: 110 records, with a note that every probe outcome in it predates the 7 October correction to how statements are probed.</p>
+          <p>No submission arrived this week. The contribution roadmap was refreshed on 9 October: the directions that had landed were removed, and the next ones are a Devaney package for the tent and logistic maps, continued-fraction convergents and the Stern–Brocot invariants, the profinite completion as an actual completion, and a geometric Descartes configuration. The corpus stands at 110 modules and 90 internal import edges.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
