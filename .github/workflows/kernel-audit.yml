@@ -1,0 +1,71 @@
+name: kernel-audit
+
+# Replays the accepted corpus, with its whole dependency closure, through
+# Lean's kernel with `lake check` (Lean >= 4.35), failing on non-standard
+# axioms. See #504. The first run on an ubuntu-26.04 runner took 2 h and
+# 10.3 GB. `--paranoid` (the bundled independent checkers) took 3 h 19 min on
+# a laptop and would exceed the 6-hour job limit here, so it is run by hand.
+#
+# This is an audit of already-admitted code on `main`, not part of admission:
+# it changes no verdict and blocks nothing. It runs on the runner itself rather
+# than in the validator container because `lake check` sandboxes the build with
+# bubblewrap, which needs user namespaces the container deliberately drops.
+
+on:
+  schedule:
+    - cron: "23 5 1 * *"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - .github/workflows/kernel-audit.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kernel-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Allow the bubblewrap sandbox
+        # Ubuntu restricts unprivileged user namespaces through AppArmor.
+        # lake check refuses to build without its sandbox, and we do not pass
+        # --inadvisably-no-sandbox.
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends bubblewrap time
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
+          bwrap --ro-bind / / true && echo "bubblewrap works"
+      - name: Install the pinned toolchain and the Mathlib cache
+        run: |
+          curl --fail --show-error --silent --location --retry 5 --retry-all-errors --retry-delay 2 \
+            https://elan.lean-lang.org/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/lake" exe cache get
+      - name: Replay the corpus through the kernel
+        run: |
+          mkdir -p kernel-audit
+          status=0
+          /usr/bin/time -v lake check > kernel-audit/lake-check.log 2>&1 || status=$?
+          grep -E "kernel (accepts|rejects)|exited with|Uses axioms|error:|Elapsed \(wall|Maximum resident" kernel-audit/lake-check.log \
+            | tee kernel-audit/summary.txt
+          {
+            echo "### lake check"
+            echo '```'
+            cat kernel-audit/summary.txt
+            echo '```'
+            echo "exit status: $status"
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit "$status"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: kernel-audit
+          path: kernel-audit/
+          if-no-files-found: warn
