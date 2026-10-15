@@ -15,6 +15,12 @@ on:
   schedule:
     - cron: "23 5 1 * *"
   workflow_dispatch:
+  # Once after each Lean/Mathlib upgrade lands, outside the blocking upgrade
+  # check, which it would more than double (#504).
+  push:
+    branches: [main]
+    paths:
+      - lean-toolchain
   pull_request:
     paths:
       - .github/workflows/kernel-audit.yml
