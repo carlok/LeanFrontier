@@ -1,9 +1,10 @@
 name: kernel-audit
 
 # Replays the accepted corpus, with its whole dependency closure, through
-# Lean's kernel with `lake check` (Lean >= 4.35), and optionally through every
-# independent checker bundled with the toolchain (`--paranoid`: lean4lean,
-# nanoda, con-leche, con-ron, leanchecker-paranoid). See #504.
+# Lean's kernel with `lake check` (Lean >= 4.35), failing on non-standard
+# axioms. See #504. The first run on an ubuntu-26.04 runner took 2 h and
+# 10.3 GB. `--paranoid` (the bundled independent checkers) took 3 h 19 min on
+# a laptop and would exceed the 6-hour job limit here, so it is run by hand.
 #
 # This is an audit of already-admitted code on `main`, not part of admission:
 # it changes no verdict and blocks nothing. It runs on the runner itself rather
@@ -14,11 +15,6 @@ on:
   schedule:
     - cron: "23 5 1 * *"
   workflow_dispatch:
-    inputs:
-      paranoid:
-        description: Also run every bundled independent checker (hours).
-        type: boolean
-        default: false
   pull_request:
     paths:
       - .github/workflows/kernel-audit.yml
@@ -52,20 +48,15 @@ jobs:
             https://elan.lean-lang.org/elan-init.sh | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
           "$HOME/.elan/bin/lake" exe cache get
-      - name: Replay the corpus through the kernel(s)
-        env:
-          PARANOID: ${{ github.event_name == 'workflow_dispatch' && inputs.paranoid && '--paranoid' || '' }}
+      - name: Replay the corpus through the kernel
         run: |
           mkdir -p kernel-audit
-          # nanoda overflowed the default stack on the Mathlib closure (#504).
-          ulimit -s unlimited || true
-          export RUST_MIN_STACK=268435456
           status=0
-          /usr/bin/time -v lake check $PARANOID > kernel-audit/lake-check.log 2>&1 || status=$?
+          /usr/bin/time -v lake check > kernel-audit/lake-check.log 2>&1 || status=$?
           grep -E "kernel (accepts|rejects)|exited with|Uses axioms|error:|Elapsed \(wall|Maximum resident" kernel-audit/lake-check.log \
             | tee kernel-audit/summary.txt
           {
-            echo "### lake check ${PARANOID:-(default kernel)}"
+            echo "### lake check"
             echo '```'
             cat kernel-audit/summary.txt
             echo '```'
