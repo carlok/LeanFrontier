@@ -52,4 +52,65 @@ theorem separated_orbits_uniformly_avoid
     intro m
     exact le_of_not_gt (fun hm => h ⟨m, hm⟩)
 
+
+/-- Disjoint finite periodic orbits are separated by one positive metric
+constant, uniformly over all (not necessarily reduced) iterate indices. -/
+theorem disjoint_periodic_orbits_separated
+    {X : Type*} [MetricSpace X] (f : X → (X))
+    (p q : X) {m n : ℕ}
+    (hm : 0 < m) (hn : 0 < n)
+    (hp : Function.IsPeriodicPt f m p)
+    (hq : Function.IsPeriodicPt f n q)
+    (hdisjoint : ∀ i j : ℕ, f^[i] p ≠ f^[j] q) :
+    ∃ δ : ℝ, 0 < δ ∧
+      ∀ i j : ℕ, 2 * δ ≤ dist (f^[i] p) (f^[j] q) := by
+  classical
+  let indices : Finset (ℕ × ℕ) := (Finset.range m).product (Finset.range n)
+  have hi : indices.Nonempty := by
+    refine ⟨(0, 0), ?_⟩
+    simp [indices, hm, hn]
+  let distances : Finset ℝ :=
+    indices.image (fun ij => dist (f^[ij.1] p) (f^[ij.2] q))
+  have hd : distances.Nonempty := hi.image _
+  let d : ℝ := distances.min' hd
+  have hdpos : 0 < d := by
+    change 0 < distances.min' hd
+    rw [Finset.lt_min'_iff]
+    intro t ht
+    obtain ⟨⟨i, j⟩, hij, rfl⟩ := Finset.mem_image.mp ht
+    exact dist_pos.mpr (hdisjoint i j)
+  refine ⟨d / 2, by positivity, ?_⟩
+  intro i j
+  have hk : (i % m, j % n) ∈ indices := by
+    change (i % m, j % n) ∈ (Finset.range m).product (Finset.range n)
+    exact Finset.mem_product.mpr
+      ⟨Finset.mem_range.mpr (Nat.mod_lt i hm),
+       Finset.mem_range.mpr (Nat.mod_lt j hn)⟩
+  have hdist :
+      dist (f^[i % m] p) (f^[j % n] q) ∈ distances := by
+    apply Finset.mem_image.mpr
+    exact ⟨(i % m, j % n), hk, rfl⟩
+  have hle :
+      d ≤ dist (f^[i % m] p) (f^[j % n] q) := by
+    exact Finset.min'_le distances _ hdist
+  rw [hp.iterate_mod_apply i, hq.iterate_mod_apply j] at hle
+  linarith
+
+/-- Two disjoint periodic orbits supply a single positive avoidance radius
+valid at every point of the ambient metric space. -/
+theorem disjoint_periodic_orbits_uniformly_avoid
+    {X : Type*} [MetricSpace X] (f : X → (X))
+    (p q : X) {m n : ℕ}
+    (hm : 0 < m) (hn : 0 < n)
+    (hp : Function.IsPeriodicPt f m p)
+    (hq : Function.IsPeriodicPt f n q)
+    (hdisjoint : ∀ i j : ℕ, f^[i] p ≠ f^[j] q) :
+    ∃ δ : ℝ, 0 < δ ∧
+      ∀ x : X,
+        (∀ i : ℕ, δ ≤ dist x (f^[i] p)) ∨
+        (∀ j : ℕ, δ ≤ dist x (f^[j] q)) := by
+  obtain ⟨δ, hδ, hsep⟩ :=
+    disjoint_periodic_orbits_separated f p q hm hn hp hq hdisjoint
+  exact ⟨δ, hδ, separated_orbits_uniformly_avoid f p q hδ hsep⟩
+
 end LeanFrontier.Dynamics
