@@ -46,14 +46,14 @@ theorem pathQuotients_eq_runLengthEncode :
         List.modifyLast Nat.succ
           (k :: (runLengthEncode rest).map Prod.snd)
       by_cases hrest : rest = []
-      · simpa [hrest, Nat.succ_eq_add_one] using
+      · simpa [hrest, runLengthEncode, Nat.succ_eq_add_one] using
           (List.modifyLast_concat Nat.succ k []).symm
       · have ih := pathQuotients_eq_runLengthEncode rest hrest
         have hnonempty : (runLengthEncode rest).map Prod.snd ≠ [] := by
           cases hcase : rest with
           | nil => exact (hrest hcase).elim
           | cons d ds =>
-              simp [hcase, runLengthEncode]
+              simp [runLengthEncode]
         have hmodify :
             List.modifyLast Nat.succ
                 (k :: (runLengthEncode rest).map Prod.snd) =
