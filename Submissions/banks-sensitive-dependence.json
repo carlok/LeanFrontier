@@ -12,8 +12,10 @@
   "entrypoints": [
     "LeanFrontier.Dynamics.separated_orbits_uniformly_avoid",
     "LeanFrontier.Dynamics.disjoint_periodic_orbits_separated",
-    "LeanFrontier.Dynamics.disjoint_periodic_orbits_uniformly_avoid"
+    "LeanFrontier.Dynamics.disjoint_periodic_orbits_uniformly_avoid",
+    "LeanFrontier.Dynamics.exists_disjoint_periodic_orbits_of_dense",
+    "LeanFrontier.Dynamics.exists_separated_periodic_orbits_of_dense"
   ],
   "base_mathlib_revision": "v4.35.0",
-  "source_context": "The human requested to begin the highest-priority general Banks sensitivity formalization from LeanFrontier's roadmap. GPT-6 inspected the pinned v4.35.0 dynamics/periodic-point APIs and the Banks proof, then formalized its metric orbit-separation ingredients: two disjoint finite periodic orbits admit a positive common distance bound, and every ambient point is uniformly away from one of the entire orbits. These are prerequisites for, not a claim to have completed, the full transitivity/dense-periodic-point sensitivity theorem. Lean statements and proofs are machine-authored."
+  "source_context": "GPT-6 / ChatGPT is developing the classical Banks sensitivity theorem under the user's request. This draft phase proves the positive finite-orbit separation and orbit avoidance results already accepted by the receiver, then uses Mathlib's periodicOrbit, minimalPeriod, and dense-set APIs to construct two disjoint full periodic orbits on an infinite metric space with dense periodic points. The next intended step is the continuous/topologically-transitive sensitivity conclusion. This submission does not claim the full theorem is proved. All statements and proofs were machine authored."
 }
