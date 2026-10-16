@@ -113,4 +113,72 @@ theorem disjoint_periodic_orbits_uniformly_avoid
     disjoint_periodic_orbits_separated f p q hm hn hp hq hdisjoint
   exact ⟨δ, hδ, separated_orbits_uniformly_avoid f p q hδ hsep⟩
 
+
+/-- In an infinite metric space with dense periodic points, there exist two
+periodic points whose full forward orbits are disjoint. This turns density
+into the two-orbit hypothesis of the uniform-separation lemmas. -/
+theorem exists_disjoint_periodic_orbits_of_dense
+    {X : Type*} [MetricSpace X] [Infinite X] [Nonempty X]
+    (f : X → (X)) (hdense : Dense (Function.periodicPts f)) :
+    ∃ (p q : X) (m n : ℕ), 0 < m ∧ 0 < n ∧
+      Function.IsPeriodicPt f m p ∧
+      Function.IsPeriodicPt f n q ∧
+      (∀ i j : ℕ, f^[i] p ≠ f^[j] q) := by
+  classical
+  obtain ⟨p, hp, _⟩ :=
+    hdense.exists_mem_open isOpen_univ (Set.univ_nonempty : (Set.univ : Set X).Nonempty)
+  let s : Set X :=
+    Set.range (fun k : Fin (Function.minimalPeriod f p) => f^[k.val] p)
+  have hsfin : s.Finite := Set.finite_range _
+  have hsne : (sᶜ).Nonempty := by
+    by_contra h
+    have hall : ∀ x : X, x ∈ s := by
+      intro x
+      by_contra hx
+      exact h ⟨x, hx⟩
+    have hunivsub : (Set.univ : Set X) ⊆ s := fun x _ => hall x
+    have hfinite : Finite X :=
+      Set.finite_univ_iff.mp (hsfin.subset hunivsub)
+    exact not_finite X hfinite
+  obtain ⟨q, hq, hqout⟩ :=
+    hdense.exists_mem_open hsfin.isClosed.isOpen_compl hsne
+  have hpIter (i : ℕ) : f^[i] p ∈ s := by
+    refine ⟨⟨i % Function.minimalPeriod f p,
+      Nat.mod_lt i (Function.minimalPeriod_pos_of_mem_periodicPts hp)⟩, ?_⟩
+    exact Function.iterate_mod_minimalPeriod_eq
+  have hdisjoint (i j : ℕ) : f^[i] p ≠ f^[j] q := by
+    intro heq
+    have hpe : Function.periodicOrbit f (f^[i] p) = Function.periodicOrbit f p :=
+      Function.periodicOrbit_apply_iterate_eq hp i
+    have hqe : Function.periodicOrbit f (f^[j] q) = Function.periodicOrbit f q :=
+      Function.periodicOrbit_apply_iterate_eq hq j
+    have heqOrbit : Function.periodicOrbit f p = Function.periodicOrbit f q := by
+      calc
+        Function.periodicOrbit f p = Function.periodicOrbit f (f^[i] p) := hpe.symm
+        _ = Function.periodicOrbit f (f^[j] q) := by rw [heq]
+        _ = Function.periodicOrbit f q := hqe
+    have hqmem : q ∈ Function.periodicOrbit f p := by
+      rw [heqOrbit]
+      exact Function.self_mem_periodicOrbit hq
+    obtain ⟨k, hk⟩ := (Function.mem_periodicOrbit_iff hp).mp hqmem
+    exact hqout (by
+      rw [← hk]
+      exact hpIter k)
+  obtain ⟨m, hm, hpm⟩ := hp
+  obtain ⟨n, hn, hqn⟩ := hq
+  exact ⟨p, q, m, n, hm, hn, hpm, hqn, hdisjoint⟩
+
+/-- Density of periodic points on an infinite metric space supplies a fixed
+positive orbit-separation constant and two corresponding periodic points. -/
+theorem exists_separated_periodic_orbits_of_dense
+    {X : Type*} [MetricSpace X] [Infinite X] [Nonempty X]
+    (f : X → (X)) (hdense : Dense (Function.periodicPts f)) :
+    ∃ (p q : X) (δ : ℝ), 0 < δ ∧
+      ∀ i j : ℕ, 2 * δ ≤ dist (f^[i] p) (f^[j] q) := by
+  obtain ⟨p, q, m, n, hm, hn, hp, hq, hdisjoint⟩ :=
+    exists_disjoint_periodic_orbits_of_dense f hdense
+  obtain ⟨δ, hδ, hsep⟩ :=
+    disjoint_periodic_orbits_separated f p q hm hn hp hq hdisjoint
+  exact ⟨p, q, δ, hδ, hsep⟩
+
 end LeanFrontier.Dynamics
