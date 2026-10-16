@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "banks-sensitive-dependence",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-6",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Dynamics.separated_orbits_uniformly_avoid"
+  ],
+  "base_mathlib_revision": "v4.35.0",
+  "source_context": "The human requested to begin the highest-priority general Banks sensitivity formalization from the LeanFrontier roadmap. GPT-6 independently checked pinned Mathlib's dynamics APIs and the classical Banks proof, then formalized its uniform orbit-separation lemma as an initial independently checkable segment. This is a prerequisite for the complete transitivity/dense-periodic-point theorem, not a claim that the whole theorem has yet been proved. All statements and proofs were machine-authored."
+}
