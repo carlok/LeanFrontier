@@ -261,6 +261,7 @@ theorem sensitiveDependence_of_transitive_dense_periodic
     dsimp [m, t]
     rw [mul_add, mul_one]
     have hnmod := Nat.mod_add_div n k
+    have hrem : n % k < k := Nat.mod_lt n hk
     omega
   have hmp : f^[m] p = p := by
     change Function.IsPeriodicPt f m p
@@ -269,12 +270,19 @@ theorem sensitiveDependence_of_transitive_dense_periodic
     rw [hm_eq, add_comm, Function.iterate_add_apply]
   have hpy : δ / 2 < dist (f^[m] p) (f^[m] y) := by
     have htri := dist_triangle p (f^[m] y) (f^[t] z)
-    rw [← hmp, hmy] at htri
+    rw [hmy] at htri
     have hs := hsep t
+    rw [hmp, hmy]
     linarith
+  have hyClose : dist x y < ε := by
+    change dist y x < ε at hyU
+    simpa only [dist_comm] using hyU
+  have hpClose : dist x p < ε := by
+    change dist p x < ε at hpU
+    simpa only [dist_comm] using hpU
   by_cases hxy : δ / 4 < dist (f^[m] x) (f^[m] y)
-  · exact ⟨y, Metric.mem_ball.mp hyU, m, hxy⟩
-  · refine ⟨p, Metric.mem_ball.mp hpU, m, ?_⟩
+  · exact ⟨y, hyClose, m, hxy⟩
+  · refine ⟨p, hpClose, m, ?_⟩
     have htri :=
       dist_triangle (f^[m] p) (f^[m] x) (f^[m] y)
     rw [dist_comm (f^[m] p) (f^[m] x)] at htri
