@@ -1,3 +1,4 @@
+import Mathlib.Dynamics.Flow
 import Mathlib.Dynamics.Transitive
 import Mathlib.Dynamics.PeriodicPts.Lemmas
 import Mathlib.Topology.MetricSpace.Basic
@@ -200,5 +201,83 @@ theorem exists_uniformly_avoided_periodic_orbit_of_dense
   rcases separated_orbits_uniformly_avoid f p q hδ hsep x with h | h
   · exact ⟨p, Function.mk_mem_periodicPts hm hp, h⟩
   · exact ⟨q, Function.mk_mem_periodicPts hn hq, h⟩
+
+
+/-- **Banks–Brooks–Cairns–Davis–Stacey theorem.** On an infinite metric space,
+continuity, topological transitivity of the natural-number iteration flow and
+density of periodic points imply sensitive dependence on initial conditions.
+
+The uniform positive separation scale comes from the two disjoint periodic
+orbits above. Given an initial neighborhood, a periodic point `p` lies in
+it; choose an orbit uniformly far from `p`. Transitivity supplies another
+point in the neighborhood whose orbit enters a set shadowing the distant orbit
+for `period(p)` steps. A shift to the next multiple of that period returns
+`p` to itself, while the second point remains far away. The triangle
+inequality then forces sensitivity relative to the original center. -/
+theorem sensitiveDependence_of_transitive_dense_periodic
+    {X : Type*} [MetricSpace X] [Infinite X] [Nonempty X]
+    (f : X → (X)) (hf : Continuous f)
+    (ht : @AddAction.IsTopologicallyTransitive ℕ X _ _
+      (Flow.fromIter hf).toAddAction)
+    (hdense : Dense (Function.periodicPts f)) :
+    HasSensitiveDependence f := by
+  obtain ⟨δ, hδ, hfar⟩ :=
+    exists_uniformly_avoided_periodic_orbit_of_dense f hdense
+  refine ⟨δ / 4, by positivity, ?_⟩
+  intro x ε hε
+  let U : Set X := Metric.ball x ε
+  have hUo : IsOpen U := Metric.isOpen_ball
+  have hUne : U.Nonempty := ⟨x, Metric.mem_ball_self hε⟩
+  obtain ⟨p, hperiodic, hpU⟩ :=
+    hdense.exists_mem_open hUo hUne
+  obtain ⟨k, hk, hpk⟩ := hperiodic
+  obtain ⟨z, hzperiodic, hsep⟩ := hfar p
+  let V : Set X :=
+    ⋂ i ∈ Finset.range (k + 1),
+      (f^[i]) ⁻¹' Metric.ball (f^[i] z) (δ / 4)
+  have hVo : IsOpen V := by
+    dsimp [V]
+    apply isOpen_biInter_finset
+    intro i hi
+    exact Metric.isOpen_ball.preimage (hf.iterate i)
+  have hzV : z ∈ V := by
+    simp [V, Metric.mem_ball, hδ]
+  have hVne : V.Nonempty := ⟨z, hzV⟩
+  obtain ⟨n, ⟨w, hwimage, hwV⟩⟩ :=
+    ht.exists_vadd_inter hUo hUne hVo hVne
+  change w ∈ (fun a : X => f^[n] a) '' U at hwimage
+  obtain ⟨y, hyU, rfl⟩ := hwimage
+  have hynV : f^[n] y ∈ V := hwV
+  let t : ℕ := k - n % k
+  have ht_lt : t < k + 1 := by
+    dsimp [t]
+    omega
+  have hshadow :
+      dist (f^[t] (f^[n] y)) (f^[t] z) < δ / 4 := by
+    have h := (Set.mem_iInter₂.mp hynV) t (Finset.mem_range.mpr ht_lt)
+    exact Metric.mem_ball.mp h
+  let m : ℕ := k * (n / k + 1)
+  have hm_eq : m = n + t := by
+    dsimp [m, t]
+    rw [mul_add, mul_one]
+    have hnmod := Nat.mod_add_div n k
+    omega
+  have hmp : f^[m] p = p := by
+    change Function.IsPeriodicPt f m p
+    exact hpk.mul_const (n / k + 1)
+  have hmy : f^[m] y = f^[t] (f^[n] y) := by
+    rw [hm_eq, add_comm, Function.iterate_add_apply]
+  have hpy : δ / 2 < dist (f^[m] p) (f^[m] y) := by
+    have htri := dist_triangle p (f^[m] y) (f^[t] z)
+    rw [← hmp, hmy] at htri
+    have hs := hsep t
+    linarith
+  by_cases hxy : δ / 4 < dist (f^[m] x) (f^[m] y)
+  · exact ⟨y, Metric.mem_ball.mp hyU, m, hxy⟩
+  · refine ⟨p, Metric.mem_ball.mp hpU, m, ?_⟩
+    have htri :=
+      dist_triangle (f^[m] p) (f^[m] x) (f^[m] y)
+    rw [dist_comm (f^[m] p) (f^[m] x)] at htri
+    linarith
 
 end LeanFrontier.Dynamics
