@@ -42,7 +42,6 @@ theorem pathQuotients_eq_runLengthEncode :
             congrArg List.length (initialRun_decomposition dir path)
         omega
       rw [pathQuotients, runLengthEncode]
-      dsimp only [List.map_cons, Prod.snd]
       change (if rest = [] then [k + 1] else k :: pathQuotients rest) =
         List.modifyLast Nat.succ
           (k :: (runLengthEncode rest).map Prod.snd)
