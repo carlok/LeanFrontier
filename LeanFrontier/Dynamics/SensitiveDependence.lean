@@ -23,7 +23,7 @@ namespace LeanFrontier.Dynamics
 /-- A self-map on a metric space has sensitive dependence on initial conditions
 if some positive separation can be witnessed from every point, within every
 positive starting radius, after finitely many iterations. -/
-def HasSensitiveDependence {X : Type*} [PseudoMetricSpace X] (f : X → X) : Prop :=
+def HasSensitiveDependence {X : Type*} [PseudoMetricSpace X] (f : X → (X)) : Prop :=
   ∃ δ : ℝ, 0 < δ ∧
     ∀ x : X, ∀ ε : ℝ, 0 < ε →
       ∃ y : X, dist x y < ε ∧
@@ -33,7 +33,7 @@ def HasSensitiveDependence {X : Type*} [PseudoMetricSpace X] (f : X → X) : Pro
 distance away from at least one of the two orbits. This is the separation
 lemma used in the Banks sensitivity argument. -/
 theorem separated_orbits_uniformly_avoid
-    {X : Type*} [PseudoMetricSpace X] (f : X → X)
+    {X : Type*} [PseudoMetricSpace X] (f : X → (X))
     (p q : X) {δ : ℝ} (hδ : 0 < δ)
     (hsep : ∀ m n : ℕ, 2 * δ ≤ dist (f^[m] p) (f^[n] q)) :
     ∀ x : X,
