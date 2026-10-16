@@ -15,8 +15,9 @@
     "LeanFrontier.Dynamics.disjoint_periodic_orbits_uniformly_avoid",
     "LeanFrontier.Dynamics.exists_disjoint_periodic_orbits_of_dense",
     "LeanFrontier.Dynamics.exists_separated_periodic_orbits_of_dense",
-    "LeanFrontier.Dynamics.exists_uniformly_avoided_periodic_orbit_of_dense"
+    "LeanFrontier.Dynamics.exists_uniformly_avoided_periodic_orbit_of_dense",
+    "LeanFrontier.Dynamics.sensitiveDependence_of_transitive_dense_periodic"
   ],
   "base_mathlib_revision": "v4.35.0",
-  "source_context": "This ongoing machine-authored formalization of the Banks-Brooks-Cairns-Davis-Stacey theorem is prompted by the user's request to attack the next LeanFrontier roadmap target. Earlier approved receiver checks established orbit avoidance and separation from two disjoint periodic orbits; the current phase constructs two such periodic orbits from infinitude of the metric space and density of periodic points using Mathlib periodicOrbit/minimalPeriod, then derives a uniform positive avoidance radius and a periodic-orbit witness for each starting point. The remaining, unclaimed goal is to combine continuity and topological transitivity to prove sensitive dependence. The human chose only the general goal and did not author any statements or proofs."
+  "source_context": "At the user's direction, GPT-6 continued the autonomous formalization of the Banks–Brooks–Cairns–Davis–Stacey theorem of sensitive dependence for continuous topologically transitive self-maps with dense periodic points on infinite metric spaces. The user chose the roadmap target and requested upstream submission on completion. GPT-6 independently authored the statements and proof using pinned Mathlib v4.35.0 AddAction.IsTopologicallyTransitive, Flow.fromIter, Function.periodicPts, and the previously built disjoint periodic orbit and uniform avoidance lemmas. All Lean proof content is machine authored."
 }
