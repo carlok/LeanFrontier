@@ -34,7 +34,7 @@ distance away from at least one of the two orbits. This is the separation
 lemma used in the Banks sensitivity argument. -/
 theorem separated_orbits_uniformly_avoid
     {X : Type*} [PseudoMetricSpace X] (f : X → (X))
-    (p q : X) {δ : ℝ} (hδ : 0 < δ)
+    (p q : X) {δ : ℝ} (_hδ : 0 < δ)
     (hsep : ∀ m n : ℕ, 2 * δ ≤ dist (f^[m] p) (f^[n] q)) :
     ∀ x : X,
       (∀ m : ℕ, δ ≤ dist x (f^[m] p)) ∨
@@ -139,7 +139,7 @@ theorem exists_disjoint_periodic_orbits_of_dense
     have hunivsub : (Set.univ : Set X) ⊆ s := fun x _ => hall x
     have hfinite : Finite X :=
       Set.finite_univ_iff.mp (hsfin.subset hunivsub)
-    exact not_finite X hfinite
+    exact not_finite X
   obtain ⟨q, hq, hqout⟩ :=
     hdense.exists_mem_open hsfin.isClosed.isOpen_compl hsne
   have hpIter (i : ℕ) : f^[i] p ∈ s := by
@@ -180,5 +180,25 @@ theorem exists_separated_periodic_orbits_of_dense
   obtain ⟨δ, hδ, hsep⟩ :=
     disjoint_periodic_orbits_separated f p q hm hn hp hq hdisjoint
   exact ⟨p, q, δ, hδ, hsep⟩
+
+
+/-- A single positive distance threshold works uniformly over all starting
+points: each point has some periodic orbit that stays at least that far away.
+The choice of orbit may depend on the point, but the threshold does not. -/
+theorem exists_uniformly_avoided_periodic_orbit_of_dense
+    {X : Type*} [MetricSpace X] [Infinite X] [Nonempty X]
+    (f : X → (X)) (hdense : Dense (Function.periodicPts f)) :
+    ∃ δ : ℝ, 0 < δ ∧
+      ∀ x : X, ∃ z : X, z ∈ Function.periodicPts f ∧
+        ∀ i : ℕ, δ ≤ dist x (f^[i] z) := by
+  obtain ⟨p, q, m, n, hm, hn, hp, hq, hdisjoint⟩ :=
+    exists_disjoint_periodic_orbits_of_dense f hdense
+  obtain ⟨δ, hδ, hsep⟩ :=
+    disjoint_periodic_orbits_separated f p q hm hn hp hq hdisjoint
+  refine ⟨δ, hδ, ?_⟩
+  intro x
+  rcases separated_orbits_uniformly_avoid f p q hδ hsep x with h | h
+  · exact ⟨p, Function.mk_mem_periodicPts hm hp, h⟩
+  · exact ⟨q, Function.mk_mem_periodicPts hn hq, h⟩
 
 end LeanFrontier.Dynamics
