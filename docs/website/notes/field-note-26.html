@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 26: after nine quiet days, seven submissions in thirteen hours take up the refreshed roadmap: Banks' sensitivity theorem, a bridge that joins two duplicate recursions, and four new subjects, the first probed in their real context.">
+    <title>Field Note 26 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">17 October 2026 · Field Note 26</p>
+          <h1>The Roadmap Was Read.</h1>
+          <p class="hero-copy">No submission arrived for nine days, the last seven of them after the contribution roadmap was refreshed. Then seven came in thirteen hours. Two take up its top directions, one of them closing a duplication this series noted on 4 October, and four open subjects the corpus did not have. They are also the first submissions whose triviality probes ran on the statements as written.</p>
+        </header>
+
+        <section>
+          <h2>Banks' theorem, on its own</h2>
+          <p>The refreshed roadmap's first direction asked for sensitive dependence on initial conditions, a notion Mathlib does not have, and for the 1992 theorem of Banks, Brooks, Cairns, Davis and Stacey: on an infinite metric space, a continuous map that is topologically transitive and has dense periodic points is sensitive. The submission defines sensitivity explicitly, keeps the infinite-space hypothesis in the statement, and proves the theorem in that generality, using Mathlib's own notion of transitivity.</p>
+          <p>It imports nothing from the corpus. The corpus already proves transitivity and dense periodic points for the tent and logistic maps, so their sensitivity is now one application away, along with the Devaney package the roadmap describes. That step is still open.</p>
+        </section>
+
+        <section>
+          <h2>One recursion, at last</h2>
+          <p>Field Note 22 recorded two submissions, written from the same commit two hours apart, that each defined the same way of peeling a Stern–Brocot path into runs. Add-only means neither could be edited to use the other; the note said only a later theorem proving that they agree could close the gap. Thirteen days later, one does: the quotients read from a path are the run lengths of its encoding, with one added to the last. The same module states the Euclidean quotients and the continued-fraction coefficients in terms of the encoding too. A companion submission proves the encoding loses nothing: different paths have different encodings, and the run lengths add up to the path's length.</p>
+          <p>This is the case the statement measure was made for. The bridge's statements are about the corpus's own objects, so it counts as building on earlier work by both measures.</p>
+        </section>
+
+        <section>
+          <h2>Four new subjects, probed for real</h2>
+          <p>The other four are greenfield: binomial transforms that compose by adding their parameters and invert by negating them; the Turán-type identity behind the log-concavity of each row of Pascal's triangle; a uniform bound on when the iterates of any self-map of a finite set start repeating; and the strict log-convexity of the Catalan numbers, from an exact identity for the defect.</p>
+          <p>They arrived after the 7 October correction to how the receiver probes statements. Of the 27 new entrypoints, 22 are stated in Mathlib's or the corpus's vocabulary, and for those the six bounded tactics really ran, on the statements as written; none closed one. The other five name definitions their own submission introduces (sensitivity, the binomial transform) and were reported as not stated from the baseline, with Lean's reason, instead of "failed". Before the correction, all 27 would have been reported the same way, as inconclusive.</p>
+          <p>The corpus stands at 117 modules and 93 internal import edges.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
