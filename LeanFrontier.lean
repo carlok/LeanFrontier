@@ -6,6 +6,7 @@ import LeanFrontier.Analysis.HornichHlawka
 import LeanFrontier.Analysis.Nesbitt
 import LeanFrontier.Analysis.SlopeMinorant
 import LeanFrontier.Analysis.SlopeMinorant.Constraints
+import LeanFrontier.Combinatorics.BinomialLogConcavity
 import LeanFrontier.Combinatorics.BinomialTransform
 import LeanFrontier.Combinatorics.CaroWei
 import LeanFrontier.Combinatorics.CaroWei.TuranBound
