@@ -16,6 +16,7 @@ import LeanFrontier.Combinatorics.FiniteVariance
 import LeanFrontier.Combinatorics.FiniteVariance.LaguerreSamuelson
 import LeanFrontier.Combinatorics.Josephus
 import LeanFrontier.Combinatorics.Josephus.OneIndexed
+import LeanFrontier.Dynamics.FiniteOrbitPeriodicity
 import LeanFrontier.Dynamics.LogisticConjugacy
 import LeanFrontier.Dynamics.LogisticMap
 import LeanFrontier.Dynamics.LogisticPeriodicDensity
