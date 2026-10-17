@@ -1,0 +1,326 @@
+{
+  "accepted_revision": "81ac8907103f501145aaa7701344e0fa4a03ab0a",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-17T11:18:49Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 375.373,
+    "observed": {
+      "added_lines": 86,
+      "audited_declarations": {
+        "LeanFrontier.Combinatorics.catalan_logConvex_identity": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.catalan_logConvex_identity",
+          "restatement": false,
+          "statement_sha256": "839b072039dd4f51b293937e162b8aa3e3d1dcbe0ed639cf0816677b2b74b2e9",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "catalan",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Combinatorics.catalan_strict_logConvex": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.catalan_strict_logConvex",
+          "restatement": false,
+          "statement_sha256": "75948f65943b1dd1ae7b60984e57ece8bf00d72f0473c1979e909c88710e5067",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "LT.lt",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "catalan",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instLTNat",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Combinatorics.catalan_succ_mul": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.catalan_succ_mul",
+          "restatement": false,
+          "statement_sha256": "cf8a61fb756485e1a94566b762889c318487a951d1502d18d357ac6c00e5310d",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "Nat",
+            "OfNat.ofNat",
+            "catalan",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 21,
+        "by_entrypoint": {
+          "LeanFrontier.Combinatorics.catalan_logConvex_identity": [
+            {
+              "outcome": "stated",
+              "seconds": 3.877,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.839,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.803,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.8,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.825,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.869,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.79,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Combinatorics.catalan_strict_logConvex": [
+            {
+              "outcome": "stated",
+              "seconds": 3.824,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.052,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.907,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.961,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.896,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.845,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.881,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Combinatorics.catalan_succ_mul": [
+            {
+              "outcome": "stated",
+              "seconds": 3.859,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.87,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.929,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.032,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.872,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.853,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.91,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 81.494,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Combinatorics.catalan_logConvex_identity": "inconclusive",
+        "LeanFrontier.Combinatorics.catalan_strict_logConvex": "inconclusive",
+        "LeanFrontier.Combinatorics.catalan_succ_mul": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4719,
+      "changed_files": [
+        "LeanFrontier/Combinatorics/CatalanLogConvex.lean",
+        "Submissions/catalan-strict-logconvexity.json"
+      ],
+      "corpus_entrypoints_checked": 329,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Combinatorics.catalan_logConvex_identity": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.catalan_logConvex_identity",
+          "statement_sha256": "839b072039dd4f51b293937e162b8aa3e3d1dcbe0ed639cf0816677b2b74b2e9",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "catalan",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Combinatorics.catalan_strict_logConvex": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.catalan_strict_logConvex",
+          "statement_sha256": "75948f65943b1dd1ae7b60984e57ece8bf00d72f0473c1979e909c88710e5067",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "LT.lt",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "catalan",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instLTNat",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Combinatorics.catalan_succ_mul": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.catalan_succ_mul",
+          "statement_sha256": "cf8a61fb756485e1a94566b762889c318487a951d1502d18d357ac6c00e5310d",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "Nat",
+            "OfNat.ofNat",
+            "catalan",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3321,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 4
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "catalan-strict-logconvexity",
+  "trusted_receiver_revision": "bb88243850bc00a62662c2a2373fefb2ad13bd0e",
+  "validated_candidate_revision": "b408da33b77908da24bec42f8b930723942ba395",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/39027651149"
+}
