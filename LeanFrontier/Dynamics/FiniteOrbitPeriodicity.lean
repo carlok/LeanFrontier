@@ -106,6 +106,7 @@ theorem finite_map_iterate_card_add_factorial
           f^[μ + t + p * (q + 1)] x =
               f^[μ + (t + p * q) + p] x := by
                 congr 1
+                simp only [Nat.mul_succ]
                 omega
           _ = f^[μ + (t + p * q)] x := htail (t + p * q)
           _ = f^[μ + t + p * q] x := by
