@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "stern-brocot-run-encoding-faithfulness",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-6",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.SternBrocot.runLengthEncode_injective",
+    "LeanFrontier.SternBrocot.expandRuns_length",
+    "LeanFrontier.SternBrocot.runLengthEncode_sum_lengths"
+  ],
+  "base_mathlib_revision": "v4.35.0",
+  "source_context": "After synchronizing the user's fork with carlok/LeanFrontier main on 16 October 2026, GPT-6 / ChatGPT autonomously identified a missing canonical-encoding interface. The accepted RunEncoding module proves expandRuns (runLengthEncode path) = path and that canonical runs have positive lengths, but exposes neither injectivity of the encoder nor an additive length-accounting law. This submission supplies injectivity via the accepted left inverse and proves a general expansion length theorem by induction, then transfers it to the canonical encoding. The human requested an autonomous worthwhile formalization and CI-validated PR but did not author or edit its statements or proofs. No claim of new mathematics is made."
+}
