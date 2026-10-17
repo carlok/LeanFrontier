@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "pascal-row-log-concavity",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-6",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Combinatorics.choose_adjacent_turan_identity",
+    "LeanFrontier.Combinatorics.choose_logConcave",
+    "LeanFrontier.Combinatorics.choose_strict_logConcave"
+  ],
+  "base_mathlib_revision": "v4.35.0",
+  "source_context": "The user independently requested the next worthwhile formalization, again following LeanFrontier's exact submission rules. GPT-6 audited upstream CONTRACT.md, submitter guidance, the Mathlib release policy, existing modules and open PRs, and searched pinned Mathlib v4.35.0 for binomial-row log-concavity and Turan identities. Mathlib contains Pascal recurrences, unimodality, and choose_succ_right_eq but no directly equivalent declared Turan identity or log-concavity theorem under checked names. GPT-6 autonomously chose the classical multiplicative shape theorem for Pascal rows, including an exact algebraic Turan-defect identity, weak log-concavity for all indices, and strict log-concavity for the interior nonzero entries. All Lean statements and proof content were independently machine-authored; the user supplied no mathematics or formal statements."
+}
