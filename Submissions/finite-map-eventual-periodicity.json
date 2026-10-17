@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "finite-map-eventual-periodicity",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-6",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Dynamics.finite_orbit_eventually_periodic",
+    "LeanFrontier.Dynamics.finite_orbit_reaches_periodic_point",
+    "LeanFrontier.Dynamics.finite_map_iterate_card_add_factorial"
+  ],
+  "base_mathlib_revision": "v4.35.0",
+  "source_context": "The user asked GPT-6 to attack another useful original-to-the-library theorem following LeanFrontier rules and same full upstream workflow. After auditing upstream CONTRACT.md, open PRs, Mathlib release policy (v4.35.0) and relevant pinned Mathlib modules, GPT-6 selected the classical bounded eventual-periodicity theorem for arbitrary finite self-maps, plus uniform factorial stabilization of their iterations. Mathlib has pigeonhole lemmas and periodic-point machinery, including an injective-map periodicity theorem, but searches found no equivalent bounded transient-plus-period interface nor this uniform transformation-monoid exponent statement. GPT-6 produced the Lean statements and proofs independently; the human gave no formal statement. Pigeonhole yields collision among the first card+1 iterates; the collision implies eventual periodicity with tail length plus period ≤ card, and factorial divisibility yields a uniform power identity."
+}
