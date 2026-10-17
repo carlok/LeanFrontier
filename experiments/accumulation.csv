@@ -128,3 +128,4 @@ date,submission_id,modules,edges,edges_per_module,connected_share,max_in_degree,
 2026-10-17,banks-sensitive-dependence,112,91,0.812,0.652,4,9,false,true,false
 2026-10-17,stern-brocot-quotient-run-bridge,113,93,0.823,0.655,4,9,false,true,true
 2026-10-17,weighted-binomial-transform,114,93,0.816,0.649,4,9,false,true,false
+2026-10-17,pascal-row-log-concavity,115,93,0.809,0.643,4,9,false,true,false
