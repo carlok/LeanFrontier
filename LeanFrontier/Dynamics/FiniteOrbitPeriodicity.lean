@@ -87,12 +87,12 @@ satisfies `f^(N+N!) = f^N`. The exponent `N!` simultaneously absorbs all
 possible cycle periods and the first `N` steps absorb every transient. -/
 theorem finite_map_iterate_card_add_factorial
     {α : Type*} [Fintype α] (f : α → α) :
-    f^[Fintype.card α + (Fintype.card α)!] =
+    f^[Fintype.card α + Nat.factorial (Fintype.card α)] =
       f^[Fintype.card α] := by
   funext x
   obtain ⟨μ, p, hp, hbound, htail⟩ :=
     finite_orbit_eventually_periodic f x
-  have hdiv : p ∣ (Fintype.card α)! :=
+  have hdiv : p ∣ Nat.factorial (Fintype.card α) :=
     Nat.dvd_factorial hp (by omega)
   obtain ⟨q, hq⟩ := hdiv
   have hmultiple : ∀ (t q : ℕ),
@@ -117,10 +117,10 @@ theorem finite_map_iterate_card_add_factorial
     dsimp [t]
     omega
   have hexp :
-      Fintype.card α + (Fintype.card α)! = μ + t + p * q := by
+      Fintype.card α + Nat.factorial (Fintype.card α) = μ + t + p * q := by
     omega
   calc
-    f^[Fintype.card α + (Fintype.card α)!] x =
+    f^[Fintype.card α + Nat.factorial (Fintype.card α)] x =
         f^[μ + t + p * q] x := by rw [hexp]
     _ = f^[μ + t] x := hmultiple t q
     _ = f^[Fintype.card α] x := by rw [ht]
