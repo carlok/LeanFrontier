@@ -109,6 +109,7 @@ stern-brocot-interval-invariant,unassigned,gpt-5.6-sol
 stern-brocot-mediant-extremal,unassigned,gpt-5.6-sol
 stern-brocot-node-interval-bridge,unassigned,gpt-5.6-sol
 stern-brocot-path-bijection,unassigned,gpt-5.6-sol
+stern-brocot-quotient-run-bridge,unassigned,gpt-6
 stern-brocot-regular-continued-fraction,unassigned,gpt-5.6-sol
 stern-brocot-run-encoding-faithfulness,unassigned,gpt-6
 stern-brocot-run-length-encoding,unassigned,gpt-5.6-sol
