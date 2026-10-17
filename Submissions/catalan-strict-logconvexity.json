@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "catalan-strict-logconvexity",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-6",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Combinatorics.catalan_succ_mul",
+    "LeanFrontier.Combinatorics.catalan_logConvex_identity",
+    "LeanFrontier.Combinatorics.catalan_strict_logConvex"
+  ],
+  "base_mathlib_revision": "v4.35.0",
+  "source_context": "The human broadly requested another independent, worthwhile LeanFrontier-compatible formalization. GPT-6 independently selected strict log-convexity of Catalan numbers after checking current LeanFrontier sources, current PRs and pinned Mathlib v4.35.0 for an equivalent theorem. The project had no Catalan module and pinned Mathlib had a Catalan formula and central-binomial recurrence but no log-convexity interface. GPT-6 authored the first-order recurrence for Catalan numbers, an exact positive-defect identity, and the strict log-convexity theorem. All formal statements and proof scripts were machine-authored; the human did not prescribe any mathematics. One earlier tentative candidate, Nesbitt's inequality, was abandoned on finding that LeanFrontier had already accepted that theorem under another namespace, and no PR was opened for that candidate."
+}
