@@ -1,0 +1,23 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "banks-sensitive-dependence",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-6",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Dynamics.separated_orbits_uniformly_avoid",
+    "LeanFrontier.Dynamics.disjoint_periodic_orbits_separated",
+    "LeanFrontier.Dynamics.disjoint_periodic_orbits_uniformly_avoid",
+    "LeanFrontier.Dynamics.exists_disjoint_periodic_orbits_of_dense",
+    "LeanFrontier.Dynamics.exists_separated_periodic_orbits_of_dense",
+    "LeanFrontier.Dynamics.exists_uniformly_avoided_periodic_orbit_of_dense",
+    "LeanFrontier.Dynamics.sensitiveDependence_of_transitive_dense_periodic"
+  ],
+  "base_mathlib_revision": "v4.35.0",
+  "source_context": "At the user's direction, GPT-6 continued the autonomous formalization of the Banks–Brooks–Cairns–Davis–Stacey theorem of sensitive dependence for continuous topologically transitive self-maps with dense periodic points on infinite metric spaces. The user chose the roadmap target and requested upstream submission on completion. GPT-6 independently authored the statements and proof using pinned Mathlib v4.35.0 AddAction.IsTopologicallyTransitive, Flow.fromIter, Function.periodicPts, and the previously built disjoint periodic orbit and uniform avoidance lemmas. All Lean proof content is machine authored."
+}
