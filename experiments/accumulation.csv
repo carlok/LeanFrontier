@@ -130,3 +130,4 @@ date,submission_id,modules,edges,edges_per_module,connected_share,max_in_degree,
 2026-10-17,weighted-binomial-transform,114,93,0.816,0.649,4,9,false,true,false
 2026-10-17,pascal-row-log-concavity,115,93,0.809,0.643,4,9,false,true,false
 2026-10-17,finite-map-eventual-periodicity,116,93,0.802,0.638,4,9,false,true,false
+2026-10-17,catalan-strict-logconvexity,117,93,0.795,0.632,4,9,false,true,false
