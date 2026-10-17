@@ -6,6 +6,8 @@ import LeanFrontier.Analysis.HornichHlawka
 import LeanFrontier.Analysis.Nesbitt
 import LeanFrontier.Analysis.SlopeMinorant
 import LeanFrontier.Analysis.SlopeMinorant.Constraints
+import LeanFrontier.Combinatorics.BinomialLogConcavity
+import LeanFrontier.Combinatorics.BinomialTransform
 import LeanFrontier.Combinatorics.CaroWei
 import LeanFrontier.Combinatorics.CaroWei.TuranBound
 import LeanFrontier.Combinatorics.CircularDominoTilings
@@ -18,6 +20,7 @@ import LeanFrontier.Dynamics.LogisticConjugacy
 import LeanFrontier.Dynamics.LogisticMap
 import LeanFrontier.Dynamics.LogisticPeriodicDensity
 import LeanFrontier.Dynamics.LogisticTransitivity
+import LeanFrontier.Dynamics.SensitiveDependence
 import LeanFrontier.Geometry.CurvatureCenter
 import LeanFrontier.Geometry.EulerQuadrilateral
 import LeanFrontier.Geometry.FareyFordCircle
@@ -80,8 +83,10 @@ import LeanFrontier.NumberTheory.SternBrocot.ContinuedFraction
 import LeanFrontier.NumberTheory.SternBrocot.Extremal
 import LeanFrontier.NumberTheory.SternBrocot.Intervals
 import LeanFrontier.NumberTheory.SternBrocot.NodeInterval
+import LeanFrontier.NumberTheory.SternBrocot.QuotientRunBridge
 import LeanFrontier.NumberTheory.SternBrocot.QuotientSequence
 import LeanFrontier.NumberTheory.SternBrocot.RunEncoding
+import LeanFrontier.NumberTheory.SternBrocot.RunEncodingFaithfulness
 import LeanFrontier.NumberTheory.SternBrocot.RunLength
 import LeanFrontier.NumberTheory.SternBrocotEuclidean
 import LeanFrontier.NumberTheory.SternDiatomic

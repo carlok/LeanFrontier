@@ -1,0 +1,20 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "weighted-binomial-transform",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-6",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Combinatorics.binomialTransform_succ",
+    "LeanFrontier.Combinatorics.binomialTransform_comp",
+    "LeanFrontier.Combinatorics.binomialTransform_zero",
+    "LeanFrontier.Combinatorics.binomialTransform_inverse"
+  ],
+  "base_mathlib_revision": "v4.35.0",
+  "source_context": "The user requested that GPT-6 independently find the next worthwhile new mathematical formalization, subject to LeanFrontier's strict contract. GPT-6 audited CONTRACT.md, the contributor directions and open PRs, and searched pinned Mathlib v4.35.0 for weighted binomial transform, binomial inversion, and adjacent forward-difference APIs. Mathlib contains the Gregory–Newton forward-difference formulas but no corresponding named weighted binomial transform composition action. GPT-6 chose a greenfield algebraic combinatorics contribution: the law B_a ∘ B_b = B_(a+b), with the inverse B_(-a), for arbitrary commutative-ring-valued sequences. Proofs leverage Mathlib's Pascal-sum recurrence and induction, not unproved assumptions. Target selection, formal statements, and proofs are all machine-authored; the human gave only a broad request."
+}

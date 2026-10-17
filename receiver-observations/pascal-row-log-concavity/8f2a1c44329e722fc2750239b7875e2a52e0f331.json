@@ -1,0 +1,336 @@
+{
+  "accepted_revision": "8f2a1c44329e722fc2750239b7875e2a52e0f331",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-17T10:55:53Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 499.666,
+    "observed": {
+      "added_lines": 112,
+      "audited_declarations": {
+        "LeanFrontier.Combinatorics.choose_adjacent_turan_identity": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.choose_adjacent_turan_identity",
+          "restatement": false,
+          "statement_sha256": "761325e0d2d813763563e1cdf57caa61a10f462ddc951e57a937a7cc2f5947dd",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.choose",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Combinatorics.choose_logConcave": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.choose_logConcave",
+          "restatement": false,
+          "statement_sha256": "4e7dcbd4ffad9069ec82abd02d32d64f5fecedb3fa063ca111194b836bfc0903",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "LE.le",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.choose",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instLENat",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Combinatorics.choose_strict_logConcave": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.choose_strict_logConcave",
+          "restatement": false,
+          "statement_sha256": "e06a5ddbe92819daeaa4d415caae9eb495f66dce83985b851e716998e7e72cc3",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "LT.lt",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.choose",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instLTNat",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 21,
+        "by_entrypoint": {
+          "LeanFrontier.Combinatorics.choose_adjacent_turan_identity": [
+            {
+              "outcome": "stated",
+              "seconds": 5.286,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.365,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.322,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.26,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.296,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.301,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.493,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Combinatorics.choose_logConcave": [
+            {
+              "outcome": "stated",
+              "seconds": 5.31,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.267,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.437,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.265,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.485,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.307,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.302,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Combinatorics.choose_strict_logConcave": [
+            {
+              "outcome": "stated",
+              "seconds": 5.306,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.402,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.396,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.348,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.342,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.277,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.245,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 112.012,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Combinatorics.choose_adjacent_turan_identity": "inconclusive",
+        "LeanFrontier.Combinatorics.choose_logConcave": "inconclusive",
+        "LeanFrontier.Combinatorics.choose_strict_logConcave": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 5967,
+      "changed_files": [
+        "LeanFrontier/Combinatorics/BinomialLogConcavity.lean",
+        "Submissions/pascal-row-log-concavity.json"
+      ],
+      "corpus_entrypoints_checked": 323,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Combinatorics.choose_adjacent_turan_identity": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.choose_adjacent_turan_identity",
+          "statement_sha256": "761325e0d2d813763563e1cdf57caa61a10f462ddc951e57a937a7cc2f5947dd",
+          "type_dependencies": [
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.choose",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Combinatorics.choose_logConcave": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.choose_logConcave",
+          "statement_sha256": "4e7dcbd4ffad9069ec82abd02d32d64f5fecedb3fa063ca111194b836bfc0903",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "LE.le",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.choose",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instLENat",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Combinatorics.choose_strict_logConcave": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.choose_strict_logConcave",
+          "statement_sha256": "e06a5ddbe92819daeaa4d415caae9eb495f66dce83985b851e716998e7e72cc3",
+          "type_dependencies": [
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "LT.lt",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.choose",
+            "Nat.instMonoid",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instLTNat",
+            "instMulNat",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 4566,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 3
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "pascal-row-log-concavity",
+  "trusted_receiver_revision": "20923ea3f6bb18386b31577dfebea68054c7aebe",
+  "validated_candidate_revision": "e0625b89efbe7ef8c660eb396e395b4f439138a2",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/39026080612"
+}
