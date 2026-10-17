@@ -1,0 +1,443 @@
+{
+  "accepted_revision": "50af8eacddc3cad6e51fc6f43d87175db4f49335",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-17T10:33:24Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 432.682,
+    "observed": {
+      "added_lines": 106,
+      "audited_declarations": {
+        "LeanFrontier.SternBrocot.euclideanRunQuotients_pair_eq_runLengthEncode": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.euclideanRunQuotients_pair_eq_runLengthEncode",
+          "restatement": false,
+          "statement_sha256": "b2b9ca0ca091d59e12f108e1aafb749badbb57f83fdd5897cc4023a876857b8d",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.SternBrocot.euclideanRunQuotients",
+            "LeanFrontier.SternBrocot.pair",
+            "LeanFrontier.SternBrocot.runLengthEncode",
+            "List",
+            "List.cons",
+            "List.instDecidableEqNil",
+            "List.map",
+            "List.modifyLast",
+            "List.nil",
+            "Nat",
+            "Nat.succ",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instOfNatNat",
+            "ite"
+          ]
+        },
+        "LeanFrontier.SternBrocot.pathQuotients_eq_runLengthEncode": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.pathQuotients_eq_runLengthEncode",
+          "restatement": false,
+          "statement_sha256": "7b6761d7d698ba3c447913d18ea251b5f51a698386c23a5a686c1fb0c72b4c29",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.SternBrocot.pathQuotients",
+            "LeanFrontier.SternBrocot.runLengthEncode",
+            "List",
+            "List.map",
+            "List.modifyLast",
+            "List.nil",
+            "Nat",
+            "Nat.succ",
+            "Ne",
+            "Prod",
+            "Prod.snd"
+          ]
+        },
+        "LeanFrontier.SternBrocot.pathQuotients_eq_runLengthEncode_all": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.pathQuotients_eq_runLengthEncode_all",
+          "restatement": false,
+          "statement_sha256": "79d767aa908a089e8e49fdc7cc74b3ac402cb2a5ffc289b746902601ae83424c",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.SternBrocot.pathQuotients",
+            "LeanFrontier.SternBrocot.runLengthEncode",
+            "List",
+            "List.cons",
+            "List.instDecidableEqNil",
+            "List.map",
+            "List.modifyLast",
+            "List.nil",
+            "Nat",
+            "Nat.succ",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.snd",
+            "instOfNatNat",
+            "ite"
+          ]
+        },
+        "LeanFrontier.SternBrocot.regularCoefficients_eq_runLengthEncode": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.regularCoefficients_eq_runLengthEncode",
+          "restatement": false,
+          "statement_sha256": "33652aa13226cff94915afac45a7861113c373fa3c81a08c2736f01a6527e780",
+          "type_dependencies": [
+            "Bool",
+            "Bool.true",
+            "Eq",
+            "HAppend.hAppend",
+            "LeanFrontier.SternBrocot.regularCoefficients",
+            "LeanFrontier.SternBrocot.runLengthEncode",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "List.map",
+            "List.modifyLast",
+            "List.nil",
+            "Nat",
+            "Nat.succ",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.snd",
+            "instDecidableEqBool",
+            "instHAppendOfAppend",
+            "instOfNatNat",
+            "ite"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 28,
+        "by_entrypoint": {
+          "LeanFrontier.SternBrocot.euclideanRunQuotients_pair_eq_runLengthEncode": [
+            {
+              "outcome": "stated",
+              "seconds": 4.516,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.517,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.513,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.643,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.559,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.554,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.529,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.SternBrocot.pathQuotients_eq_runLengthEncode": [
+            {
+              "outcome": "stated",
+              "seconds": 4.6,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.657,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.708,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.715,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.672,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.481,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.516,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.SternBrocot.pathQuotients_eq_runLengthEncode_all": [
+            {
+              "outcome": "stated",
+              "seconds": 4.509,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.461,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.503,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.492,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.477,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.496,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.502,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.SternBrocot.regularCoefficients_eq_runLengthEncode": [
+            {
+              "outcome": "stated",
+              "seconds": 4.544,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.594,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.566,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.629,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.53,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.589,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.57,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 127.642,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SternBrocot.euclideanRunQuotients_pair_eq_runLengthEncode": "inconclusive",
+        "LeanFrontier.SternBrocot.pathQuotients_eq_runLengthEncode": "inconclusive",
+        "LeanFrontier.SternBrocot.pathQuotients_eq_runLengthEncode_all": "inconclusive",
+        "LeanFrontier.SternBrocot.regularCoefficients_eq_runLengthEncode": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 5882,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SternBrocot/QuotientRunBridge.lean",
+        "Submissions/stern-brocot-quotient-run-bridge.json"
+      ],
+      "corpus_entrypoints_checked": 315,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SternBrocot.euclideanRunQuotients_pair_eq_runLengthEncode": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.euclideanRunQuotients_pair_eq_runLengthEncode",
+          "statement_sha256": "b2b9ca0ca091d59e12f108e1aafb749badbb57f83fdd5897cc4023a876857b8d",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.SternBrocot.euclideanRunQuotients",
+            "LeanFrontier.SternBrocot.pair",
+            "LeanFrontier.SternBrocot.runLengthEncode",
+            "List",
+            "List.cons",
+            "List.instDecidableEqNil",
+            "List.map",
+            "List.modifyLast",
+            "List.nil",
+            "Nat",
+            "Nat.succ",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.fst",
+            "Prod.snd",
+            "instOfNatNat",
+            "ite"
+          ]
+        },
+        "LeanFrontier.SternBrocot.pathQuotients_eq_runLengthEncode": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.pathQuotients_eq_runLengthEncode",
+          "statement_sha256": "7b6761d7d698ba3c447913d18ea251b5f51a698386c23a5a686c1fb0c72b4c29",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.SternBrocot.pathQuotients",
+            "LeanFrontier.SternBrocot.runLengthEncode",
+            "List",
+            "List.map",
+            "List.modifyLast",
+            "List.nil",
+            "Nat",
+            "Nat.succ",
+            "Ne",
+            "Prod",
+            "Prod.snd"
+          ]
+        },
+        "LeanFrontier.SternBrocot.pathQuotients_eq_runLengthEncode_all": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.pathQuotients_eq_runLengthEncode_all",
+          "statement_sha256": "79d767aa908a089e8e49fdc7cc74b3ac402cb2a5ffc289b746902601ae83424c",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "LeanFrontier.SternBrocot.pathQuotients",
+            "LeanFrontier.SternBrocot.runLengthEncode",
+            "List",
+            "List.cons",
+            "List.instDecidableEqNil",
+            "List.map",
+            "List.modifyLast",
+            "List.nil",
+            "Nat",
+            "Nat.succ",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.snd",
+            "instOfNatNat",
+            "ite"
+          ]
+        },
+        "LeanFrontier.SternBrocot.regularCoefficients_eq_runLengthEncode": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.regularCoefficients_eq_runLengthEncode",
+          "statement_sha256": "33652aa13226cff94915afac45a7861113c373fa3c81a08c2736f01a6527e780",
+          "type_dependencies": [
+            "Bool",
+            "Bool.true",
+            "Eq",
+            "HAppend.hAppend",
+            "LeanFrontier.SternBrocot.regularCoefficients",
+            "LeanFrontier.SternBrocot.runLengthEncode",
+            "List",
+            "List.cons",
+            "List.instAppend",
+            "List.map",
+            "List.modifyLast",
+            "List.nil",
+            "Nat",
+            "Nat.succ",
+            "OfNat.ofNat",
+            "Prod",
+            "Prod.snd",
+            "instDecidableEqBool",
+            "instHAppendOfAppend",
+            "instOfNatNat",
+            "ite"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 4584,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 4
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "stern-brocot-quotient-run-bridge",
+  "trusted_receiver_revision": "a7063682c02272f457a8e79f21e9b487204eced9",
+  "validated_candidate_revision": "e41d40093ffd622c65c09e29ccc0cf07f4da0e79",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/39024719794"
+}
