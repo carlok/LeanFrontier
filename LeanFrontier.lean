@@ -10,6 +10,7 @@ import LeanFrontier.Combinatorics.BinomialLogConcavity
 import LeanFrontier.Combinatorics.BinomialTransform
 import LeanFrontier.Combinatorics.CaroWei
 import LeanFrontier.Combinatorics.CaroWei.TuranBound
+import LeanFrontier.Combinatorics.CatalanLogConvex
 import LeanFrontier.Combinatorics.CircularDominoTilings
 import LeanFrontier.Combinatorics.FibonacciComposition
 import LeanFrontier.Combinatorics.FiniteVariance
