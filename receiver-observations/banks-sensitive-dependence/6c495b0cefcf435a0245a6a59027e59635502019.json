@@ -1,0 +1,804 @@
+{
+  "accepted_revision": "6c495b0cefcf435a0245a6a59027e59635502019",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-17T10:21:45Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 504.988,
+    "observed": {
+      "added_lines": 292,
+      "audited_declarations": {
+        "LeanFrontier.Dynamics.HasSensitiveDependence": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Dynamics.HasSensitiveDependence",
+          "restatement": false,
+          "statement_sha256": "6e1d261eda05412d19170a54c6404b11344c46bbe7ee39a61985c6c1cdc73051",
+          "type_dependencies": [
+            "PseudoMetricSpace"
+          ]
+        },
+        "LeanFrontier.Dynamics.disjoint_periodic_orbits_separated": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.disjoint_periodic_orbits_separated",
+          "restatement": false,
+          "statement_sha256": "673aec70dd497a1541be589f93c53f4994909afca973505d44a7f01cc733b6e1",
+          "type_dependencies": [
+            "And",
+            "Dist.dist",
+            "Exists",
+            "Function.IsPeriodicPt",
+            "HMul.hMul",
+            "LE.le",
+            "LT.lt",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "Nat.iterate",
+            "Ne",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instMul",
+            "Real.instNatCast",
+            "Real.instZero",
+            "Zero.toOfNat0",
+            "instHMul",
+            "instLTNat",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Dynamics.disjoint_periodic_orbits_uniformly_avoid": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.disjoint_periodic_orbits_uniformly_avoid",
+          "restatement": false,
+          "statement_sha256": "fc8cb124e3a6bd9f836b9612d61c4a69a37637f266784304efe3d5bcee9381af",
+          "type_dependencies": [
+            "And",
+            "Dist.dist",
+            "Exists",
+            "Function.IsPeriodicPt",
+            "LE.le",
+            "LT.lt",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Nat",
+            "Nat.iterate",
+            "Ne",
+            "OfNat.ofNat",
+            "Or",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instZero",
+            "Zero.toOfNat0",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Dynamics.exists_disjoint_periodic_orbits_of_dense": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.exists_disjoint_periodic_orbits_of_dense",
+          "restatement": false,
+          "statement_sha256": "778766ee20d144ae3435adba092e13681377a63748eee6ab1de15d8057645114",
+          "type_dependencies": [
+            "And",
+            "Dense",
+            "Exists",
+            "Function.IsPeriodicPt",
+            "Function.periodicPts",
+            "Infinite",
+            "LT.lt",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Nat",
+            "Nat.iterate",
+            "Ne",
+            "Nonempty",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toUniformSpace",
+            "UniformSpace.toTopologicalSpace",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Dynamics.exists_separated_periodic_orbits_of_dense": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.exists_separated_periodic_orbits_of_dense",
+          "restatement": false,
+          "statement_sha256": "178fe386ff3084492f9c37f8fc06207017b3743bd1c5a4b6addb21914c925840",
+          "type_dependencies": [
+            "And",
+            "Dense",
+            "Dist.dist",
+            "Exists",
+            "Function.periodicPts",
+            "HMul.hMul",
+            "Infinite",
+            "LE.le",
+            "LT.lt",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "Nat.iterate",
+            "Nonempty",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toDist",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instMul",
+            "Real.instNatCast",
+            "Real.instZero",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instHMul",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Dynamics.exists_uniformly_avoided_periodic_orbit_of_dense": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.exists_uniformly_avoided_periodic_orbit_of_dense",
+          "restatement": false,
+          "statement_sha256": "8f11b07c4393216b2b97c1eb6217016bfcd7dfa0808a906af2fff1d3ee45c5f3",
+          "type_dependencies": [
+            "And",
+            "Dense",
+            "Dist.dist",
+            "Exists",
+            "Function.periodicPts",
+            "Infinite",
+            "LE.le",
+            "LT.lt",
+            "Membership.mem",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Nat",
+            "Nat.iterate",
+            "Nonempty",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toDist",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instZero",
+            "Set",
+            "Set.instMembership",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0"
+          ]
+        },
+        "LeanFrontier.Dynamics.sensitiveDependence_of_transitive_dense_periodic": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.sensitiveDependence_of_transitive_dense_periodic",
+          "restatement": false,
+          "statement_sha256": "d5c0fab35a4d8e0ab6933a25d9413eb77b67591f89d66bc544b3192937daa4a0",
+          "type_dependencies": [
+            "AddAction.IsTopologicallyTransitive",
+            "Continuous",
+            "Dense",
+            "Flow.fromIter",
+            "Flow.toAddAction",
+            "Function.periodicPts",
+            "Infinite",
+            "LeanFrontier.Dynamics.HasSensitiveDependence",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Nat",
+            "Nat.instAddMonoid",
+            "Nonempty",
+            "PseudoMetricSpace.toUniformSpace",
+            "UniformSpace.toTopologicalSpace",
+            "instTopologicalSpaceNat"
+          ]
+        },
+        "LeanFrontier.Dynamics.separated_orbits_uniformly_avoid": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.separated_orbits_uniformly_avoid",
+          "restatement": false,
+          "statement_sha256": "c5eec211ded97e0a5ce4b565d392f588e4788d34c6873dc1ef8ed9378bc9d700",
+          "type_dependencies": [
+            "Dist.dist",
+            "HMul.hMul",
+            "LE.le",
+            "LT.lt",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "Nat.iterate",
+            "OfNat.ofNat",
+            "Or",
+            "PseudoMetricSpace",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instMul",
+            "Real.instNatCast",
+            "Real.instZero",
+            "Zero.toOfNat0",
+            "instHMul",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Dynamics.used": null
+      },
+      "baseline_probe_runs": {
+        "attempts": 43,
+        "by_entrypoint": {
+          "LeanFrontier.Dynamics.disjoint_periodic_orbits_separated": [
+            {
+              "outcome": "stated",
+              "seconds": 4.72,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.769,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.696,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.668,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.645,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.642,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.616,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Dynamics.disjoint_periodic_orbits_uniformly_avoid": [
+            {
+              "outcome": "stated",
+              "seconds": 4.669,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.75,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.84,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.73,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.613,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.537,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.689,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Dynamics.exists_disjoint_periodic_orbits_of_dense": [
+            {
+              "outcome": "stated",
+              "seconds": 4.776,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.563,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.699,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.897,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.704,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.609,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.51,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Dynamics.exists_separated_periodic_orbits_of_dense": [
+            {
+              "outcome": "stated",
+              "seconds": 4.636,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.532,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.601,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.763,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.684,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.661,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.618,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Dynamics.exists_uniformly_avoided_periodic_orbit_of_dense": [
+            {
+              "outcome": "stated",
+              "seconds": 4.628,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.665,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.665,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.57,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.635,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.614,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.46,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Dynamics.sensitiveDependence_of_transitive_dense_periodic": [
+            {
+              "error": "Unknown identifier `HasSensitiveDependence`",
+              "outcome": "not elaborated",
+              "seconds": 4.68,
+              "tactic": "statement"
+            }
+          ],
+          "LeanFrontier.Dynamics.separated_orbits_uniformly_avoid": [
+            {
+              "outcome": "stated",
+              "seconds": 4.607,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.748,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.727,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.731,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.628,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.668,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.686,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 200.549,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Dynamics.disjoint_periodic_orbits_separated": "inconclusive",
+        "LeanFrontier.Dynamics.disjoint_periodic_orbits_uniformly_avoid": "inconclusive",
+        "LeanFrontier.Dynamics.exists_disjoint_periodic_orbits_of_dense": "inconclusive",
+        "LeanFrontier.Dynamics.exists_separated_periodic_orbits_of_dense": "inconclusive",
+        "LeanFrontier.Dynamics.exists_uniformly_avoided_periodic_orbit_of_dense": "inconclusive",
+        "LeanFrontier.Dynamics.sensitiveDependence_of_transitive_dense_periodic": "not elaborated",
+        "LeanFrontier.Dynamics.separated_orbits_uniformly_avoid": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 13683,
+      "changed_files": [
+        "LeanFrontier/Dynamics/SensitiveDependence.lean",
+        "Submissions/banks-sensitive-dependence.json"
+      ],
+      "corpus_entrypoints_checked": 308,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Dynamics.disjoint_periodic_orbits_separated": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.disjoint_periodic_orbits_separated",
+          "statement_sha256": "673aec70dd497a1541be589f93c53f4994909afca973505d44a7f01cc733b6e1",
+          "type_dependencies": [
+            "And",
+            "Dist.dist",
+            "Exists",
+            "Function.IsPeriodicPt",
+            "HMul.hMul",
+            "LE.le",
+            "LT.lt",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "Nat.iterate",
+            "Ne",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instMul",
+            "Real.instNatCast",
+            "Real.instZero",
+            "Zero.toOfNat0",
+            "instHMul",
+            "instLTNat",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Dynamics.disjoint_periodic_orbits_uniformly_avoid": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.disjoint_periodic_orbits_uniformly_avoid",
+          "statement_sha256": "fc8cb124e3a6bd9f836b9612d61c4a69a37637f266784304efe3d5bcee9381af",
+          "type_dependencies": [
+            "And",
+            "Dist.dist",
+            "Exists",
+            "Function.IsPeriodicPt",
+            "LE.le",
+            "LT.lt",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Nat",
+            "Nat.iterate",
+            "Ne",
+            "OfNat.ofNat",
+            "Or",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instZero",
+            "Zero.toOfNat0",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Dynamics.exists_disjoint_periodic_orbits_of_dense": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.exists_disjoint_periodic_orbits_of_dense",
+          "statement_sha256": "778766ee20d144ae3435adba092e13681377a63748eee6ab1de15d8057645114",
+          "type_dependencies": [
+            "And",
+            "Dense",
+            "Exists",
+            "Function.IsPeriodicPt",
+            "Function.periodicPts",
+            "Infinite",
+            "LT.lt",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Nat",
+            "Nat.iterate",
+            "Ne",
+            "Nonempty",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toUniformSpace",
+            "UniformSpace.toTopologicalSpace",
+            "instLTNat",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Dynamics.exists_separated_periodic_orbits_of_dense": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.exists_separated_periodic_orbits_of_dense",
+          "statement_sha256": "178fe386ff3084492f9c37f8fc06207017b3743bd1c5a4b6addb21914c925840",
+          "type_dependencies": [
+            "And",
+            "Dense",
+            "Dist.dist",
+            "Exists",
+            "Function.periodicPts",
+            "HMul.hMul",
+            "Infinite",
+            "LE.le",
+            "LT.lt",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "Nat.iterate",
+            "Nonempty",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toDist",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instMul",
+            "Real.instNatCast",
+            "Real.instZero",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0",
+            "instHMul",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Dynamics.exists_uniformly_avoided_periodic_orbit_of_dense": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.exists_uniformly_avoided_periodic_orbit_of_dense",
+          "statement_sha256": "8f11b07c4393216b2b97c1eb6217016bfcd7dfa0808a906af2fff1d3ee45c5f3",
+          "type_dependencies": [
+            "And",
+            "Dense",
+            "Dist.dist",
+            "Exists",
+            "Function.periodicPts",
+            "Infinite",
+            "LE.le",
+            "LT.lt",
+            "Membership.mem",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Nat",
+            "Nat.iterate",
+            "Nonempty",
+            "OfNat.ofNat",
+            "PseudoMetricSpace.toDist",
+            "PseudoMetricSpace.toUniformSpace",
+            "Real",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instZero",
+            "Set",
+            "Set.instMembership",
+            "UniformSpace.toTopologicalSpace",
+            "Zero.toOfNat0"
+          ]
+        },
+        "LeanFrontier.Dynamics.sensitiveDependence_of_transitive_dense_periodic": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.sensitiveDependence_of_transitive_dense_periodic",
+          "statement_sha256": "d5c0fab35a4d8e0ab6933a25d9413eb77b67591f89d66bc544b3192937daa4a0",
+          "type_dependencies": [
+            "AddAction.IsTopologicallyTransitive",
+            "Continuous",
+            "Dense",
+            "Flow.fromIter",
+            "Flow.toAddAction",
+            "Function.periodicPts",
+            "Infinite",
+            "LeanFrontier.Dynamics.HasSensitiveDependence",
+            "MetricSpace",
+            "MetricSpace.toPseudoMetricSpace",
+            "Nat",
+            "Nat.instAddMonoid",
+            "Nonempty",
+            "PseudoMetricSpace.toUniformSpace",
+            "UniformSpace.toTopologicalSpace",
+            "instTopologicalSpaceNat"
+          ]
+        },
+        "LeanFrontier.Dynamics.separated_orbits_uniformly_avoid": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Dynamics.separated_orbits_uniformly_avoid",
+          "statement_sha256": "c5eec211ded97e0a5ce4b565d392f588e4788d34c6873dc1ef8ed9378bc9d700",
+          "type_dependencies": [
+            "Dist.dist",
+            "HMul.hMul",
+            "LE.le",
+            "LT.lt",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "Nat.iterate",
+            "OfNat.ofNat",
+            "Or",
+            "PseudoMetricSpace",
+            "PseudoMetricSpace.toDist",
+            "Real",
+            "Real.instLE",
+            "Real.instLT",
+            "Real.instMul",
+            "Real.instNatCast",
+            "Real.instZero",
+            "Zero.toOfNat0",
+            "instHMul",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 12207,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 8
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "banks-sensitive-dependence",
+  "trusted_receiver_revision": "562a41365709d61caaa63bb10deac182d4b38cf8",
+  "validated_candidate_revision": "3b97e29d1f134a4592b211317475f44836ec4f7f",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/39023913862"
+}

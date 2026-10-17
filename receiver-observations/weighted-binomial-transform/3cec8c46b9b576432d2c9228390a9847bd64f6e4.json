@@ -1,0 +1,300 @@
+{
+  "accepted_revision": "3cec8c46b9b576432d2c9228390a9847bd64f6e4",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-17T10:43:27Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 328.328,
+    "observed": {
+      "added_lines": 134,
+      "audited_declarations": {
+        "LeanFrontier.Combinatorics.binomialTransform": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.Combinatorics.binomialTransform",
+          "restatement": false,
+          "statement_sha256": "4dd93070d222de487b199962445498e7be4bda9a84ab646ff2436aa7225dfb35",
+          "type_dependencies": [
+            "CommRing",
+            "Nat"
+          ]
+        },
+        "LeanFrontier.Combinatorics.binomialTransform_comp": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.binomialTransform_comp",
+          "restatement": false,
+          "statement_sha256": "e5581938bcc4e6f7a0d0e6a22a6b2640ba9d908be22a614d6eda227c9b434507",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Combinatorics.binomialTransform",
+            "Nat",
+            "instDistribOfSemiring",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.Combinatorics.binomialTransform_inverse": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.binomialTransform_inverse",
+          "restatement": false,
+          "statement_sha256": "9cbd6831fa7e7a605bbe3aea9794657b31d33dc995b01046eca12d7c134fff06",
+          "type_dependencies": [
+            "AddCommGroup.toDivisionAddCommMonoid",
+            "CommRing",
+            "CommRing.toRing",
+            "Eq",
+            "LeanFrontier.Combinatorics.binomialTransform",
+            "Nat",
+            "Neg.neg",
+            "NegZeroClass.toNeg",
+            "Ring.toAddCommGroup",
+            "SubNegZeroMonoid.toNegZeroClass",
+            "SubtractionCommMonoid.toSubtractionMonoid",
+            "SubtractionMonoid.toSubNegZeroMonoid"
+          ]
+        },
+        "LeanFrontier.Combinatorics.binomialTransform_succ": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.binomialTransform_succ",
+          "restatement": false,
+          "statement_sha256": "86d275eaabd6252c6f4b0637bc84cd2d2e65c909442cf669c8f1fbaf91d933b5",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "LeanFrontier.Combinatorics.binomialTransform",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Combinatorics.binomialTransform_zero": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.binomialTransform_zero",
+          "restatement": false,
+          "statement_sha256": "a8787b9f254149056f386e4359292b07ff259219c9ca8c509d1dc84cbc963fc0",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Eq",
+            "LeanFrontier.Combinatorics.binomialTransform",
+            "MulZeroClass.toZero",
+            "Nat",
+            "OfNat.ofNat",
+            "Zero.toOfNat0",
+            "instMulZeroClassOfSemiring"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 4,
+        "by_entrypoint": {
+          "LeanFrontier.Combinatorics.binomialTransform_comp": [
+            {
+              "error": "Unknown identifier `binomialTransform`",
+              "outcome": "not elaborated",
+              "seconds": 4.607,
+              "tactic": "statement"
+            }
+          ],
+          "LeanFrontier.Combinatorics.binomialTransform_inverse": [
+            {
+              "error": "Unknown identifier `binomialTransform`",
+              "outcome": "not elaborated",
+              "seconds": 4.654,
+              "tactic": "statement"
+            }
+          ],
+          "LeanFrontier.Combinatorics.binomialTransform_succ": [
+            {
+              "error": "Unknown identifier `binomialTransform`",
+              "outcome": "not elaborated",
+              "seconds": 4.7,
+              "tactic": "statement"
+            }
+          ],
+          "LeanFrontier.Combinatorics.binomialTransform_zero": [
+            {
+              "error": "Unknown identifier `binomialTransform`",
+              "outcome": "not elaborated",
+              "seconds": 4.581,
+              "tactic": "statement"
+            }
+          ]
+        },
+        "seconds": 18.542,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Combinatorics.binomialTransform_comp": "not elaborated",
+        "LeanFrontier.Combinatorics.binomialTransform_inverse": "not elaborated",
+        "LeanFrontier.Combinatorics.binomialTransform_succ": "not elaborated",
+        "LeanFrontier.Combinatorics.binomialTransform_zero": "not elaborated"
+      },
+      "build": "pass",
+      "changed_bytes": 6637,
+      "changed_files": [
+        "LeanFrontier/Combinatorics/BinomialTransform.lean",
+        "Submissions/weighted-binomial-transform.json"
+      ],
+      "corpus_entrypoints_checked": 319,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Combinatorics.binomialTransform_comp": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.binomialTransform_comp",
+          "statement_sha256": "e5581938bcc4e6f7a0d0e6a22a6b2640ba9d908be22a614d6eda227c9b434507",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.Combinatorics.binomialTransform",
+            "Nat",
+            "instDistribOfSemiring",
+            "instHAdd"
+          ]
+        },
+        "LeanFrontier.Combinatorics.binomialTransform_inverse": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.binomialTransform_inverse",
+          "statement_sha256": "9cbd6831fa7e7a605bbe3aea9794657b31d33dc995b01046eca12d7c134fff06",
+          "type_dependencies": [
+            "AddCommGroup.toDivisionAddCommMonoid",
+            "CommRing",
+            "CommRing.toRing",
+            "Eq",
+            "LeanFrontier.Combinatorics.binomialTransform",
+            "Nat",
+            "Neg.neg",
+            "NegZeroClass.toNeg",
+            "Ring.toAddCommGroup",
+            "SubNegZeroMonoid.toNegZeroClass",
+            "SubtractionCommMonoid.toSubtractionMonoid",
+            "SubtractionMonoid.toSubNegZeroMonoid"
+          ]
+        },
+        "LeanFrontier.Combinatorics.binomialTransform_succ": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.binomialTransform_succ",
+          "statement_sha256": "86d275eaabd6252c6f4b0637bc84cd2d2e65c909442cf669c8f1fbaf91d933b5",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "LeanFrontier.Combinatorics.binomialTransform",
+            "Nat",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.Combinatorics.binomialTransform_zero": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.binomialTransform_zero",
+          "statement_sha256": "a8787b9f254149056f386e4359292b07ff259219c9ca8c509d1dc84cbc963fc0",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Eq",
+            "LeanFrontier.Combinatorics.binomialTransform",
+            "MulZeroClass.toZero",
+            "Nat",
+            "OfNat.ofNat",
+            "Zero.toOfNat0",
+            "instMulZeroClassOfSemiring"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 5191,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 7
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "weighted-binomial-transform",
+  "trusted_receiver_revision": "e94a6af60a664bf15e06beb17b857ec91bd674fa",
+  "validated_candidate_revision": "ec8fb20d810e1ef7dd6309f26205da80423142e7",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/39025463977"
+}

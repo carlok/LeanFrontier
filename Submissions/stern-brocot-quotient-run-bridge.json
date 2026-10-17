@@ -1,0 +1,20 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "stern-brocot-quotient-run-bridge",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-6",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.SternBrocot.pathQuotients_eq_runLengthEncode",
+    "LeanFrontier.SternBrocot.pathQuotients_eq_runLengthEncode_all",
+    "LeanFrontier.SternBrocot.euclideanRunQuotients_pair_eq_runLengthEncode",
+    "LeanFrontier.SternBrocot.regularCoefficients_eq_runLengthEncode"
+  ],
+  "base_mathlib_revision": "v4.35.0",
+  "source_context": "The user requested a useful new formalization missing from Mathlib and LeanFrontier and delegated autonomous target choice. GPT-6 selected the outstanding canonical Stern–Brocot run-length versus Euclidean quotient representation gap from LeanFrontier's contributor directions after checking the accepted quotient, run-length, and continued-fraction definitions and pinned Mathlib's List.modifyLast. GPT-6 independently authored all theorem statements and Lean proofs. The bridge connects established definitions and exposes the canonical run data as Euclidean and continued-fraction coefficients; the user did not author formal statements."
+}
