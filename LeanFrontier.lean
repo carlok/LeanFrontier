@@ -82,6 +82,7 @@ import LeanFrontier.NumberTheory.SternBrocot.Intervals
 import LeanFrontier.NumberTheory.SternBrocot.NodeInterval
 import LeanFrontier.NumberTheory.SternBrocot.QuotientSequence
 import LeanFrontier.NumberTheory.SternBrocot.RunEncoding
+import LeanFrontier.NumberTheory.SternBrocot.RunEncodingFaithfulness
 import LeanFrontier.NumberTheory.SternBrocot.RunLength
 import LeanFrontier.NumberTheory.SternBrocotEuclidean
 import LeanFrontier.NumberTheory.SternDiatomic
