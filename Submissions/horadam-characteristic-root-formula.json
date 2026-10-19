@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "horadam-characteristic-root-formula",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-6",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Horadam.W_roots",
+    "LeanFrontier.Horadam.W_root_difference"
+  ],
+  "base_mathlib_revision": "v4.35.0",
+  "source_context": "The user asked GPT-6 to autonomously select another worthwhile LeanFrontier formalization. GPT-6 checked current upstream and fork, read the accepted Horadam development and the current roadmap, and searched for characteristic-root formulas in the corpus and Mathlib. It selected a division-free Binet representation of Horadam sequences in any commutative ring, including coincident roots and positive characteristic, together with its difference-of-powers companion. The target is self-contained and does not rely on the still-open binomial recurrence transform PR. GPT-6 authored the Lean statements, proof, and provenance record, without human Lean text contributions."
+}
