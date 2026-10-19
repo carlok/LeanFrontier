@@ -38,7 +38,7 @@ private theorem binomialTransform_linear_combination
         (n.choose k : R) * a ^ (n - k) * f k) +
           t * (∑ k ∈ Finset.range (n + 1),
         (n.choose k : R) * a ^ (n - k) * g k) := by
-      rw [Finset.sum_add_distrib, ← mul_sum, ← mul_sum]
+      rw [Finset.sum_add_distrib, ← Finset.mul_sum, ← Finset.mul_sum]
 
 /-- A weighted binomial transform translates the characteristic polynomial of
 a second-order linear recurrence by its weight. Over a commutative ring, the
