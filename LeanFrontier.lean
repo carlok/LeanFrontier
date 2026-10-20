@@ -8,6 +8,7 @@ import LeanFrontier.Analysis.SlopeMinorant
 import LeanFrontier.Analysis.SlopeMinorant.Constraints
 import LeanFrontier.Combinatorics.BinomialLogConcavity
 import LeanFrontier.Combinatorics.BinomialTransform
+import LeanFrontier.Combinatorics.BinomialTransformRecurrence
 import LeanFrontier.Combinatorics.CaroWei
 import LeanFrontier.Combinatorics.CaroWei.TuranBound
 import LeanFrontier.Combinatorics.CatalanLogConvex
