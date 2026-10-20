@@ -1,0 +1,259 @@
+{
+  "accepted_revision": "e1090607c4ad7158cf01465d3c8ff86e4840f855",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-20T06:18:14Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 451.119,
+    "observed": {
+      "added_lines": 67,
+      "audited_declarations": {
+        "LeanFrontier.Horadam.W_root_difference": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Horadam.W_root_difference",
+          "restatement": false,
+          "statement_sha256": "35bc7631e10650698aa6e0c649248f5168a31e51ba8b041cc75592b12c99b152",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.Horadam.W",
+            "Monoid.toNPow",
+            "MulZeroClass.toZero",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toMonoid",
+            "SubNegMonoid.toSub",
+            "Zero.toOfNat0",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instMulZeroClassOfSemiring"
+          ]
+        },
+        "LeanFrontier.Horadam.W_roots": {
+          "alias": false,
+          "axioms": [
+            "propext"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Horadam.W_roots",
+          "restatement": false,
+          "statement_sha256": "85ff7176de2a5cbc1d7ddccdf4d15729499436a98e5ba20e517fa4702511b002",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "LeanFrontier.Horadam.W",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Semiring.toMonoid",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHPow"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 14,
+        "by_entrypoint": {
+          "LeanFrontier.Horadam.W_root_difference": [
+            {
+              "outcome": "stated",
+              "seconds": 4.952,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.881,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.976,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.936,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.922,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.923,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.951,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.Horadam.W_roots": [
+            {
+              "outcome": "stated",
+              "seconds": 5.018,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.941,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.047,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.879,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.919,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.859,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.836,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 69.04,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Horadam.W_root_difference": "inconclusive",
+        "LeanFrontier.Horadam.W_roots": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 3671,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/HoradamSequence/CharacteristicRoots.lean",
+        "Submissions/horadam-characteristic-root-formula.json"
+      ],
+      "corpus_entrypoints_checked": 333,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Horadam.W_root_difference": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Horadam.W_root_difference",
+          "statement_sha256": "35bc7631e10650698aa6e0c649248f5168a31e51ba8b041cc75592b12c99b152",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.Horadam.W",
+            "Monoid.toNPow",
+            "MulZeroClass.toZero",
+            "NPow.toPow",
+            "Nat",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toMonoid",
+            "SubNegMonoid.toSub",
+            "Zero.toOfNat0",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instMulZeroClassOfSemiring"
+          ]
+        },
+        "LeanFrontier.Horadam.W_roots": {
+          "axioms": [
+            "propext"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Horadam.W_roots",
+          "statement_sha256": "85ff7176de2a5cbc1d7ddccdf4d15729499436a98e5ba20e517fa4702511b002",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "LeanFrontier.Horadam.W",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Semiring.toMonoid",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHPow"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 2541,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 2
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "horadam-characteristic-root-formula",
+  "trusted_receiver_revision": "6273e9c8a5ffd772d9f1d58bc0524bc5c701c4d0",
+  "validated_candidate_revision": "db2e6a3756ce5deb02b1b89c055a52aca187a5d1",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/39378686202"
+}
