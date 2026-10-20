@@ -1,0 +1,174 @@
+{
+  "accepted_revision": "97fcebafa166ea208df1452debe99fdb0e8f71d1",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-20T06:06:20Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 413.16,
+    "observed": {
+      "added_lines": 89,
+      "audited_declarations": {
+        "LeanFrontier.Combinatorics.binomialTransform_secondOrderRecurrence": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.binomialTransform_secondOrderRecurrence",
+          "restatement": false,
+          "statement_sha256": "c01600ab79c0d54866d5f4e2c6a64d7695ae80dfe635376bcc075f66ab0de8f3",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.Combinatorics.binomialTransform",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toMonoid",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 7,
+        "by_entrypoint": {
+          "LeanFrontier.Combinatorics.binomialTransform_secondOrderRecurrence": [
+            {
+              "outcome": "stated",
+              "seconds": 5.113,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.167,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.169,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.213,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.181,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.164,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.194,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 36.201,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.Combinatorics.binomialTransform_secondOrderRecurrence": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4866,
+      "changed_files": [
+        "LeanFrontier/Combinatorics/BinomialTransformRecurrence.lean",
+        "Submissions/binomial-transform-recurrence-shift.json"
+      ],
+      "corpus_entrypoints_checked": 332,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.Combinatorics.binomialTransform_secondOrderRecurrence": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.Combinatorics.binomialTransform_secondOrderRecurrence",
+          "statement_sha256": "c01600ab79c0d54866d5f4e2c6a64d7695ae80dfe635376bcc075f66ab0de8f3",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "AddGroupWithOne.toAddMonoidWithOne",
+            "AddMonoidWithOne.toNatCast",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.Combinatorics.binomialTransform",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Nat.instAtLeastTwoHAddOfNat",
+            "Nat.instNeZeroSucc",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toMonoid",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHPow",
+            "instHSub",
+            "instOfNatAtLeastTwo",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3615,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 2
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "binomial-transform-recurrence-shift",
+  "trusted_receiver_revision": "8e8e0f7453e12c8e4929d017f2a8de0c169e0a6e",
+  "validated_candidate_revision": "e175d901b73bb16d1c46dd511ca49c006cf485c7",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/39308175290"
+}
