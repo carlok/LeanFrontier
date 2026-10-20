@@ -1,0 +1,300 @@
+{
+  "accepted_revision": "0f97c2a9596ae9914200d46e3110984f26753bf9",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-20T06:28:56Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 391.854,
+    "observed": {
+      "added_lines": 97,
+      "audited_declarations": {
+        "LeanFrontier.LinearRecurrence.casoratian": {
+          "alias": false,
+          "axioms": [],
+          "generated": false,
+          "kind": "definition",
+          "name": "LeanFrontier.LinearRecurrence.casoratian",
+          "restatement": false,
+          "statement_sha256": "49c586094003d9868f8b0181fdcad2dbb75652b72a6645d2760fb7fb0c53f743",
+          "type_dependencies": [
+            "CommRing",
+            "Nat"
+          ]
+        },
+        "LeanFrontier.LinearRecurrence.casoratian_eq_prod": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.LinearRecurrence.casoratian_eq_prod",
+          "restatement": false,
+          "statement_sha256": "2328ba6f35dc2e52d189f9c7911324fef8544ef0936a8e8024efcf24de577a23",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommMonoid",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "Finset.prod",
+            "Finset.range",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LeanFrontier.LinearRecurrence.casoratian",
+            "Nat",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.LinearRecurrence.casoratian_horadam": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.LinearRecurrence.casoratian_horadam",
+          "restatement": false,
+          "statement_sha256": "de0a407c3c6f1917aa4d1d795f4dcff88092ddf9408cae4f48c1f27c2ff3f30d",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.Horadam.W",
+            "LeanFrontier.LinearRecurrence.casoratian",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toMonoid",
+            "SubNegMonoid.toSub",
+            "instDistribOfSemiring",
+            "instHMul",
+            "instHPow",
+            "instHSub"
+          ]
+        },
+        "LeanFrontier.LinearRecurrence.casoratian_succ": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.LinearRecurrence.casoratian_succ",
+          "restatement": false,
+          "statement_sha256": "70a331465267554c5e67a6318b217f880127452ee224d6b16827a388e0181261",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LeanFrontier.LinearRecurrence.casoratian",
+            "Nat",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 3,
+        "by_entrypoint": {
+          "LeanFrontier.LinearRecurrence.casoratian_eq_prod": [
+            {
+              "error": "Unknown identifier `casoratian`",
+              "outcome": "not elaborated",
+              "seconds": 4.828,
+              "tactic": "statement"
+            }
+          ],
+          "LeanFrontier.LinearRecurrence.casoratian_horadam": [
+            {
+              "error": "Unknown identifier `casoratian`",
+              "outcome": "not elaborated",
+              "seconds": 4.857,
+              "tactic": "statement"
+            }
+          ],
+          "LeanFrontier.LinearRecurrence.casoratian_succ": [
+            {
+              "error": "Unknown identifier `casoratian`",
+              "outcome": "not elaborated",
+              "seconds": 4.85,
+              "tactic": "statement"
+            }
+          ]
+        },
+        "seconds": 14.535,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.LinearRecurrence.casoratian_eq_prod": "not elaborated",
+        "LeanFrontier.LinearRecurrence.casoratian_horadam": "not elaborated",
+        "LeanFrontier.LinearRecurrence.casoratian_succ": "not elaborated"
+      },
+      "build": "pass",
+      "changed_bytes": 4873,
+      "changed_files": [
+        "LeanFrontier/Algebra/LinearRecurrence/Casoratian.lean",
+        "Submissions/discrete-abel-casoratian.json"
+      ],
+      "corpus_entrypoints_checked": 335,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.LinearRecurrence.casoratian_eq_prod": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.LinearRecurrence.casoratian_eq_prod",
+          "statement_sha256": "2328ba6f35dc2e52d189f9c7911324fef8544ef0936a8e8024efcf24de577a23",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommMonoid",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "Finset.prod",
+            "Finset.range",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LeanFrontier.LinearRecurrence.casoratian",
+            "Nat",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.LinearRecurrence.casoratian_horadam": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.LinearRecurrence.casoratian_horadam",
+          "statement_sha256": "de0a407c3c6f1917aa4d1d795f4dcff88092ddf9408cae4f48c1f27c2ff3f30d",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "HMul.hMul",
+            "HPow.hPow",
+            "HSub.hSub",
+            "LeanFrontier.Horadam.W",
+            "LeanFrontier.LinearRecurrence.casoratian",
+            "Monoid.toNPow",
+            "NPow.toPow",
+            "Nat",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toMonoid",
+            "SubNegMonoid.toSub",
+            "instDistribOfSemiring",
+            "instHMul",
+            "instHPow",
+            "instHSub"
+          ]
+        },
+        "LeanFrontier.LinearRecurrence.casoratian_succ": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.LinearRecurrence.casoratian_succ",
+          "statement_sha256": "70a331465267554c5e67a6318b217f880127452ee224d6b16827a388e0181261",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LeanFrontier.LinearRecurrence.casoratian",
+            "Nat",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3509,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 4
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "discrete-abel-casoratian",
+  "trusted_receiver_revision": "863502f42b6a43250fbc16ca311b9147852ad157",
+  "validated_candidate_revision": "2c89997329c34c12618e26bc00c0b445579ecf19",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/39379768916"
+}
