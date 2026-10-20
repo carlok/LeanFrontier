@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "binomial-transform-recurrence-shift",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-6",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.Combinatorics.binomialTransform_secondOrderRecurrence"
+  ],
+  "base_mathlib_revision": "v4.35.0",
+  "source_context": "The user asked GPT-6 to synchronize its LeanFrontier fork, autonomously select a worthwhile fresh formalization, and obtain passing automated checks before upstream review. GPT-6 reviewed the accepted corpus and contribution directions, avoided already merged targets, and selected the classical characteristic-polynomial translation law for second-order constant-coefficient recurrences under the corpus's weighted binomial transform. The new proof consumes the accepted binomialTransform_succ theorem and proves pointwise linearity locally; the user supplied neither Lean statement nor proof text. All mathematical code and this provenance are machine authored. Validation was performed using the repository's fork-side GitHub Actions receiver because a local Lean toolchain/network was unavailable."
+}
