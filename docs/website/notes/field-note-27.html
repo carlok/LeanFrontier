@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 27: three submissions on linear recurrences, all building on the corpus, one of them on a definition accepted three days earlier.">
+    <title>Field Note 27 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">20 October 2026 · Field Note 27</p>
+          <h1>Three Days to a Consumer.</h1>
+          <p class="hero-copy">Three submissions on second-order linear recurrences. Last week four new subjects stood alone; this week every submission builds on the corpus, by imports and by what its statements are about. One of them consumes a definition that was three days old.</p>
+        </header>
+
+        <section>
+          <h2>Using last week's definition</h2>
+          <p>On 17 October the corpus gained binomial transforms of sequences, with a parameter: transforms compose by adding their parameters and invert by negating them. On the 20th a submission used that definition. If a sequence satisfies a second-order linear recurrence, so does its binomial transform, with coefficients the submission computes explicitly. The statement is about the corpus's own transform, so both of the series' measures count it. A new module finding a consumer within three days is the kind of accumulation the series was set up to detect.</p>
+        </section>
+
+        <section>
+          <h2>Horadam sequences, twice more</h2>
+          <p>The corpus has carried Horadam sequences, the general second-order recurrences with chosen starting values, since September. One submission gives their closed form in terms of the two roots of the characteristic polynomial, stated so that no division is needed: the sequence whose recurrence has roots <var>r</var> and <var>s</var> and whose starting values are matched to coefficients <var>c</var> and <var>d</var> is exactly <var>c</var>·<var>r</var><sup><var>n</var></sup> + <var>d</var>·<var>s</var><sup><var>n</var></sup>. The other proves the discrete Abel identity: for two solutions of the same recurrence, the Casoratian, the discrete analogue of the Wronskian, is multiplied at each step by the coefficient of the oldest term, <var>q</var>, in <var>u</var><sub><var>n</var>+2</sub> = <var>p</var>·<var>u</var><sub><var>n</var>+1</sub> − <var>q</var>·<var>u</var><sub><var>n</var></sub>. Applied to two Horadam sequences, it gives a power of <var>Q</var> times a determinant of their starting values.</p>
+          <p>The Abel identity's statements use its own new definition of the Casoratian, so the triviality probes reported them as not stated from the baseline. The other three statements were probed as written, and no bounded tactic closed them.</p>
+          <p>The corpus stands at 120 modules and 96 internal import edges.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
