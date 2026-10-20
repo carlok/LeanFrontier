@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "stern-brocot-continued-fraction-depth",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-6",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.SternBrocot.regularCoefficients_sum_eq_length_succ"
+  ],
+  "base_mathlib_revision": "v4.35.0",
+  "source_context": "User asked GPT-6 to autonomously find, formalize, validate and submit a new LeanFrontier mathematical result. After syncing the fork to current upstream, GPT-6 read the contribution contract and roadmap, recognized that the apparent path-run quotient bridge and Farey minimal-denominator theorem were already accepted, and instead chose the classical quantitative Stern–Brocot address-depth formula: the sum of the regular continued-fraction coefficients of a node equals its Boolean path length plus one. The proof uses the accepted regular-coefficient convention, canonical run encoding and reconstruction theorem, and quotient/run bridge; it handles the empty root and initial-left zero convention without adding duplicate encodings. Searches found no existing formula in the corpus or Mathlib under the searched terms. GPT-6 authored all Lean statements and proofs, with no user-contributed Lean code."
+}
