@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "discrete-abel-casoratian",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-6",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.LinearRecurrence.casoratian_succ",
+    "LeanFrontier.LinearRecurrence.casoratian_eq_prod",
+    "LeanFrontier.LinearRecurrence.casoratian_horadam"
+  ],
+  "base_mathlib_revision": "v4.35.0",
+  "source_context": "The user asked GPT-6 to independently choose and formalize another worthwhile LeanFrontier mathematical result and validate it before opening an upstream PR. GPT-6 checked the current upstream and synchronized fork, considered the roadmap's warning against shallow mature-cluster corollaries, and chose the general discrete Abel–Liouville theorem for pairs of solutions of variable-coefficient second-order recurrences. It adds the classical Casoratian and product evolution law over arbitrary commutative rings, then specializes to the previously accepted Horadam W recurrence. Mathlib and LeanFrontier searches found no discrete Casoratian interface under the searched names. It does not rely on pending PRs 532 or 533. GPT-6 independently wrote the formal statements and Lean proofs; the human authored no mathematical Lean code."
+}
