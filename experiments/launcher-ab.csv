@@ -14,6 +14,7 @@
 submission_id,arm,producer_model
 a053067-residue-one,unassigned,gpt-5.6-sol
 banks-sensitive-dependence,unassigned,gpt-6
+binomial-transform-recurrence-shift,unassigned,gpt-6
 bootstrap-binomial,unassigned,unrecorded
 bounded-slope-greatest-minorant,unassigned,claude-opus-5
 calkin-wilf-path-bijection,unassigned,gpt-5.6-sol
