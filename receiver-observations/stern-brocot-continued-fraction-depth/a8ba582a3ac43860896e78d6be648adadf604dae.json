@@ -1,0 +1,136 @@
+{
+  "accepted_revision": "a8ba582a3ac43860896e78d6be648adadf604dae",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-21T06:04:14Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 287.49,
+    "observed": {
+      "added_lines": 101,
+      "audited_declarations": {
+        "LeanFrontier.SternBrocot.regularCoefficients_sum_eq_length_succ": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.regularCoefficients_sum_eq_length_succ",
+          "restatement": false,
+          "statement_sha256": "d0b200a74c47e3f07698ee439877ee97ab40902efdee56104cdba850e1b50a01",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.SternBrocot.regularCoefficients",
+            "List",
+            "List.length",
+            "List.sum",
+            "MulZeroClass.toZero",
+            "Nat",
+            "Nat.instMulZeroClass",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 7,
+        "by_entrypoint": {
+          "LeanFrontier.SternBrocot.regularCoefficients_sum_eq_length_succ": [
+            {
+              "outcome": "stated",
+              "seconds": 4.005,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.15,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.998,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.978,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.008,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.033,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.032,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 28.204,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SternBrocot.regularCoefficients_sum_eq_length_succ": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 5509,
+      "changed_files": [
+        "LeanFrontier/NumberTheory/SternBrocot/ContinuedFractionDepth.lean",
+        "Submissions/stern-brocot-continued-fraction-depth.json"
+      ],
+      "corpus_entrypoints_checked": 338,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SternBrocot.regularCoefficients_sum_eq_length_succ": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SternBrocot.regularCoefficients_sum_eq_length_succ",
+          "statement_sha256": "d0b200a74c47e3f07698ee439877ee97ab40902efdee56104cdba850e1b50a01",
+          "type_dependencies": [
+            "Bool",
+            "Eq",
+            "HAdd.hAdd",
+            "LeanFrontier.SternBrocot.regularCoefficients",
+            "List",
+            "List.length",
+            "List.sum",
+            "MulZeroClass.toZero",
+            "Nat",
+            "Nat.instMulZeroClass",
+            "OfNat.ofNat",
+            "instAddNat",
+            "instHAdd",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 4153,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 4
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "stern-brocot-continued-fraction-depth",
+  "trusted_receiver_revision": "6a89ab925b94fae2fa17e66e77d7dcdae2f649f9",
+  "validated_candidate_revision": "1e72baf498872ab5114ee677a80e8bd35a46d458",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/39381961363"
+}
