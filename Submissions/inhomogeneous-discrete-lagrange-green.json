@@ -1,0 +1,19 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "inhomogeneous-discrete-lagrange-green",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "gpt-6",
+    "agent": "chatgpt"
+  },
+  "origin_mode": "autonomous_discovery",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.LinearRecurrence.affine_recurrence_eq_sum_prod",
+    "LeanFrontier.LinearRecurrence.casoratian_forced_succ",
+    "LeanFrontier.LinearRecurrence.casoratian_forced_eq_sum_prod"
+  ],
+  "base_mathlib_revision": "v4.35.0",
+  "source_context": "The user asked GPT-6 to inspect the upstream LeanFrontier repository, synchronize their fork if necessary, choose a worthwhile mathematical target and make a contribution. GPT-6 fast-forwarded a nine-commit-behind fork to upstream main on October 28, 2026, confirmed four earlier user-fork PRs 532, 533, 534 and 542 had all merged, and found no open upstream PRs. It read the contribution contract and roadmap, checked the accepted discrete Abel Casoratian module, and searched LeanFrontier and pinned-release Mathlib for inhomogeneous Casoratian and variation-of-constants identities. It chose the classical discrete Lagrange–Green identity for forced second-order variable-coefficient recurrences, with a ring-general exact affine recurrence solution formula and a finite Green-source sum. Unlike a homogeneous special case, this extends the current recurrence interface with nontrivial forcing and no divisions. Mathlib has an ordered-semiring discrete Gronwall inequality with a similar weighted sum, but not this ring-valued exact identity. GPT-6 wrote all Lean mathematical statements and proof code autonomously. The user's input determined the goal of making a contribution, not the formal statements or proofs."
+}
