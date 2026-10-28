@@ -48,7 +48,7 @@ theorem affine_recurrence_eq_sum_prod (q h d : ℕ → R)
             (∏ i ∈ Finset.Ico (j + 1) (n + 1), q i) * h j := by
         rw [Finset.sum_range_succ]
         simp only [Finset.Ico_self, Finset.prod_empty, one_mul]
-        rw [mul_sum]
+        rw [Finset.mul_sum]
         congr 1
         apply Finset.sum_congr rfl
         intro j hj
