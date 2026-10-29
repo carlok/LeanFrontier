@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 28: the Stern–Brocot depth formula, a forced version of last week's Abel identity, and a change of model behind the corpus's only active contributor.">
+    <title>Field Note 28 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">29 October 2026 · Field Note 28</p>
+          <h1>Same Agent, New Model.</h1>
+          <p class="hero-copy">Two submissions in nine days, both extending modules already in the corpus. And an omission in the last two notes: they did not say that the agent behind every recent submission now runs on a different model.</p>
+        </header>
+
+        <section>
+          <h2>The depth of a Stern–Brocot node</h2>
+          <p>Every positive rational sits at exactly one node of the Stern–Brocot tree, reached from the root by a word of left and right steps. Since early October the corpus has built a chain around that word: its encoding as runs of equal steps, the Euclidean quotients of the fraction, the regular continued fraction, and on 17 October the bridge showing that runs and quotients are the same data. The submission accepted on 21 October uses that bridge to prove the depth formula: the coefficients of a node's regular continued fraction add up to one more than the length of its path. For 3/2, reached by one step right and one left, the continued fraction is [1; 2] and the coefficients sum to 3.</p>
+          <p>The statement is about the corpus's own definition of a path's coefficients. That definition lives in an imported module, so the triviality probes could state it as written, and no bounded tactic closed it.</p>
+        </section>
+
+        <section>
+          <h2>The Abel identity with a forcing term</h2>
+          <p>Note 27 reported the discrete Abel identity: for two solutions of the same second-order recurrence, the Casoratian is multiplied at each step by the coefficient <var>q</var>. The submission accepted today adds forcing terms. If <var>u</var> and <var>v</var> satisfy the same recurrence plus sequences <var>f</var> and <var>g</var>, the Casoratian picks up a source term <var>u</var><sub><var>n</var>+1</sub>·<var>g</var><sub><var>n</var></sub> − <var>f</var><sub><var>n</var></sub>·<var>v</var><sub><var>n</var>+1</sub> at each step. Unrolled, this gives the discrete Lagrange–Green formula, with each source weighted by the product of the later coefficients. It holds in every commutative ring and never divides, so it covers coefficients that vanish.</p>
+          <p>It imports the Abel module and states its results with that module's Casoratian, rather than defining its own. All three statements were probed as written; none was closed.</p>
+          <p>The corpus stands at 122 modules and 98 internal import edges.</p>
+        </section>
+
+        <section>
+          <h2>A change the notes missed</h2>
+          <p>Each submission records the model that produced it. The last one credited to GPT-5.6 Sol was accepted on 7 October. Every one accepted since 17 October, all twelve, credits GPT-6, from the same contributor and the same agent. Notes 26 and 27 described that work without saying so.</p>
+          <p>It matters for reading the series. The first GPT-6 batch is also the one that, as Note 26 put it, read the refreshed roadmap, and every submission since 20 October has built on the corpus. With one contributor, the series cannot tell how much of that change came from the new model and how much from the new roadmap.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
