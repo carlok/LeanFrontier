@@ -1,0 +1,390 @@
+{
+  "accepted_revision": "b52dee62df3cf42f6f45970507477c0258c14761",
+  "observation_version": "0.1",
+  "observed_at": "2026-10-29T07:54:21Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 503.087,
+    "observed": {
+      "added_lines": 112,
+      "audited_declarations": {
+        "LeanFrontier.LinearRecurrence.affine_recurrence_eq_sum_prod": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.LinearRecurrence.affine_recurrence_eq_sum_prod",
+          "restatement": false,
+          "statement_sha256": "1fd0e245be587a0d75b17437cd9a0b2548646f45efa947f74dc05a2dc579e897",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommMonoid",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "Finset.Ico",
+            "Finset.prod",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "Nat",
+            "Nat.instLocallyFiniteOrder",
+            "Nat.instPreorder",
+            "OfNat.ofNat",
+            "Semiring.toAddCommMonoid",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.LinearRecurrence.casoratian_forced_eq_sum_prod": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.LinearRecurrence.casoratian_forced_eq_sum_prod",
+          "restatement": false,
+          "statement_sha256": "c82fd510775d3d31ce8f844f098c57d2249bdc9fdffebdf32536145839319b6b",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommMonoid",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "Finset.Ico",
+            "Finset.prod",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LeanFrontier.LinearRecurrence.casoratian",
+            "Nat",
+            "Nat.instLocallyFiniteOrder",
+            "Nat.instPreorder",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toAddCommMonoid",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.LinearRecurrence.casoratian_forced_succ": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.LinearRecurrence.casoratian_forced_succ",
+          "restatement": false,
+          "statement_sha256": "e952bc604db18988be052f75f02cdeba6d314545dc04e8d63e7ddf6a797c20f0",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LeanFrontier.LinearRecurrence.casoratian",
+            "Nat",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 21,
+        "by_entrypoint": {
+          "LeanFrontier.LinearRecurrence.affine_recurrence_eq_sum_prod": [
+            {
+              "outcome": "stated",
+              "seconds": 5.255,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.288,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.299,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.328,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.329,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.351,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.306,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.LinearRecurrence.casoratian_forced_eq_sum_prod": [
+            {
+              "outcome": "stated",
+              "seconds": 5.168,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.265,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.155,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.194,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.168,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.118,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.112,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.LinearRecurrence.casoratian_forced_succ": [
+            {
+              "outcome": "stated",
+              "seconds": 5.302,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.304,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.25,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.16,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.194,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.168,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 5.159,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 109.873,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.LinearRecurrence.affine_recurrence_eq_sum_prod": "inconclusive",
+        "LeanFrontier.LinearRecurrence.casoratian_forced_eq_sum_prod": "inconclusive",
+        "LeanFrontier.LinearRecurrence.casoratian_forced_succ": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 6087,
+      "changed_files": [
+        "LeanFrontier/Algebra/LinearRecurrence/InhomogeneousGreen.lean",
+        "Submissions/inhomogeneous-discrete-lagrange-green.json"
+      ],
+      "corpus_entrypoints_checked": 339,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.LinearRecurrence.affine_recurrence_eq_sum_prod": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.LinearRecurrence.affine_recurrence_eq_sum_prod",
+          "statement_sha256": "1fd0e245be587a0d75b17437cd9a0b2548646f45efa947f74dc05a2dc579e897",
+          "type_dependencies": [
+            "CommRing",
+            "CommRing.toCommMonoid",
+            "CommRing.toCommSemiring",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "Finset.Ico",
+            "Finset.prod",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "Nat",
+            "Nat.instLocallyFiniteOrder",
+            "Nat.instPreorder",
+            "OfNat.ofNat",
+            "Semiring.toAddCommMonoid",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.LinearRecurrence.casoratian_forced_eq_sum_prod": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.LinearRecurrence.casoratian_forced_eq_sum_prod",
+          "statement_sha256": "c82fd510775d3d31ce8f844f098c57d2249bdc9fdffebdf32536145839319b6b",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommMonoid",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "Finset.Ico",
+            "Finset.prod",
+            "Finset.range",
+            "Finset.sum",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LeanFrontier.LinearRecurrence.casoratian",
+            "Nat",
+            "Nat.instLocallyFiniteOrder",
+            "Nat.instPreorder",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "Semiring.toAddCommMonoid",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        },
+        "LeanFrontier.LinearRecurrence.casoratian_forced_succ": {
+          "axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.LinearRecurrence.casoratian_forced_succ",
+          "statement_sha256": "e952bc604db18988be052f75f02cdeba6d314545dc04e8d63e7ddf6a797c20f0",
+          "type_dependencies": [
+            "AddGroup.toSubNegMonoid",
+            "AddGroupWithOne.toAddGroup",
+            "CommRing",
+            "CommRing.toCommSemiring",
+            "CommRing.toRing",
+            "CommSemiring.toSemiring",
+            "Distrib.toAdd",
+            "Distrib.toMul",
+            "Eq",
+            "HAdd.hAdd",
+            "HMul.hMul",
+            "HSub.hSub",
+            "LeanFrontier.LinearRecurrence.casoratian",
+            "Nat",
+            "OfNat.ofNat",
+            "Ring.toAddGroupWithOne",
+            "SubNegMonoid.toSub",
+            "instAddNat",
+            "instDistribOfSemiring",
+            "instHAdd",
+            "instHMul",
+            "instHSub",
+            "instOfNatNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 4294,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 3
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "inhomogeneous-discrete-lagrange-green",
+  "trusted_receiver_revision": "9f8b4262f990f4e1da7eced8b566ffeb5d43e228",
+  "validated_candidate_revision": "03c344a6f2e5b502cd268fd772bdafbe726a161a",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/40739067966"
+}
