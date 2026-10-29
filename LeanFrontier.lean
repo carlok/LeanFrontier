@@ -1,6 +1,7 @@
 
 import LeanFrontier.Algebra.Binomial
 import LeanFrontier.Algebra.LinearRecurrence.Casoratian
+import LeanFrontier.Algebra.LinearRecurrence.InhomogeneousGreen
 import LeanFrontier.Algebra.Polynomial.TranslationRigidity
 import LeanFrontier.Analysis.FibonacciReciprocal
 import LeanFrontier.Analysis.HornichHlawka
