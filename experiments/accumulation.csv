@@ -135,3 +135,4 @@ date,submission_id,modules,edges,edges_per_module,connected_share,max_in_degree,
 2026-10-20,horadam-characteristic-root-formula,119,95,0.798,0.639,4,9,false,true,true
 2026-10-20,discrete-abel-casoratian,120,96,0.800,0.642,4,9,false,true,true
 2026-10-21,stern-brocot-continued-fraction-depth,121,97,0.802,0.645,4,9,true,true,true
+2026-10-29,inhomogeneous-discrete-lagrange-green,122,98,0.803,0.648,4,9,false,true,true
