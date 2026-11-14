@@ -31,7 +31,7 @@ jobs:
         with:
           client-id: ${{ vars.APP_CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           # Both parents must be present: `^1` is the trusted base this merge
           # was validated against, `^2` is the candidate head whose receiver
@@ -73,7 +73,7 @@ jobs:
           fi
       - name: Check out the trusted receiver revision
         if: steps.submission.outputs.should_record == 'true'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           # Scripts run from the base revision, never from the merged tree: the
           # post-merge writer holds a write token, and its safety must not

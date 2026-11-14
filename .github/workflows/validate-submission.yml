@@ -42,7 +42,7 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Check out trusted receiver revision
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           ref: ${{ inputs.trusted_ref || github.event.pull_request.base.sha || github.sha }}
           path: trusted
@@ -50,7 +50,7 @@ jobs:
           persist-credentials: false
 
       - name: Check out untrusted candidate revision
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           ref: ${{ inputs.candidate_ref || github.event.pull_request.head.sha || github.sha }}
           path: candidate
@@ -149,12 +149,12 @@ jobs:
     name: validate
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.trusted_ref || github.event.pull_request.base.sha }}
           path: trusted
           persist-credentials: false
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.candidate_ref || github.event.pull_request.head.sha }}
           path: candidate
@@ -172,12 +172,12 @@ jobs:
     name: validate
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.base.sha }}
           path: trusted
           persist-credentials: false
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           path: candidate

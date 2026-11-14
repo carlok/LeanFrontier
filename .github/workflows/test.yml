@@ -20,7 +20,7 @@ jobs:
   python:
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
       - name: Install test dependencies
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 150
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
       - name: Skip ordinary pull requests
