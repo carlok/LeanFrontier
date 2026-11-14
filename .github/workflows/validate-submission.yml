@@ -35,7 +35,9 @@ jobs:
         github.event.pull_request.user.login == 'leanfrontier-receiver[bot]') &&
       !(startsWith(github.event.pull_request.head.ref, 'maintenance/') &&
         (github.event.pull_request.author_association == 'OWNER' ||
-         github.event.pull_request.user.login == 'leanfrontier-receiver[bot]'))
+         github.event.pull_request.user.login == 'leanfrontier-receiver[bot]')) &&
+      !(startsWith(github.event.pull_request.head.ref, 'dependabot/') &&
+        github.event.pull_request.user.login == 'dependabot[bot]')
     runs-on: ubuntu-26.04
     # Raised from 12 when the kernel recheck was added: the Furstenberg
     # submission's validate job already ran 7m31s before it existed.
@@ -163,12 +165,17 @@ jobs:
           python3 trusted/tools/validate_generated.py
           --base trusted --candidate candidate
 
+  # Dependabot's pull requests change trusted files (workflow pins,
+  # requirements-dev.txt), so they are maintenance, never submissions. They
+  # get the same check and are merged by hand; nothing auto-merges them.
   validate-maintenance:
     if: >-
       github.event_name == 'pull_request' &&
-      startsWith(github.event.pull_request.head.ref, 'maintenance/') &&
-      (github.event.pull_request.author_association == 'OWNER' ||
-       github.event.pull_request.user.login == 'leanfrontier-receiver[bot]')
+      ((startsWith(github.event.pull_request.head.ref, 'maintenance/') &&
+        (github.event.pull_request.author_association == 'OWNER' ||
+         github.event.pull_request.user.login == 'leanfrontier-receiver[bot]')) ||
+       (startsWith(github.event.pull_request.head.ref, 'dependabot/') &&
+        github.event.pull_request.user.login == 'dependabot[bot]'))
     name: validate
     runs-on: ubuntu-26.04
     steps:

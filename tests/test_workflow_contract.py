@@ -302,6 +302,8 @@ class WorkflowContractTests(unittest.TestCase):
         for required in (
             "!(startsWith(github.event.pull_request.head.ref, 'automation/generated/') &&",
             "!(startsWith(github.event.pull_request.head.ref, 'maintenance/') &&",
+            "!(startsWith(github.event.pull_request.head.ref, 'dependabot/') &&\n"
+            "        github.event.pull_request.user.login == 'dependabot[bot]')",
         ):
             self.assertIn(required, WORKFLOW)
         self.assertNotIn(
@@ -310,6 +312,16 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertNotIn(
             "!startsWith(github.event.pull_request.head.ref, 'automation/generated/')", WORKFLOW
         )
+
+    def test_dependabot_is_routed_to_maintenance_and_never_bumps_checkout_past_v5(self) -> None:
+        self.assertIn(
+            "(startsWith(github.event.pull_request.head.ref, 'dependabot/') &&\n"
+            "        github.event.pull_request.user.login == 'dependabot[bot]'))",
+            WORKFLOW,
+        )
+        dependabot = (ROOT / ".github" / "dependabot.yml").read_text()
+        self.assertIn("dependency-name: actions/checkout", dependabot)
+        self.assertIn('update-types: ["version-update:semver-major"]', dependabot)
 
     def test_generated_output_validation_does_not_execute_candidate_code(self) -> None:
         validator = (ROOT / "tools" / "validate_generated.py").read_text()

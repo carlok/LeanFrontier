@@ -6,6 +6,12 @@ updates:
       interval: weekly
     commit-message:
       prefix: "ci"
+    ignore:
+      # Pinned to v5 on purpose: later majors refuse to check out fork pull
+      # requests under pull_request_target and workflow_run, which the receiver
+      # needs. v5 already runs on Node 24.
+      - dependency-name: actions/checkout
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: pip
     directory: /
     schedule:
