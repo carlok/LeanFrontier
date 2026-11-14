@@ -1,7 +1,7 @@
 # Handoff for the next agent
 
 Use this after the public-repo normalization work on branch
-`cursor/normalize-public-repo-standard-7be1` (or its merge result).
+`maintenance/public-repo-standard-7be1` (or its merge result).
 
 ## Verification checklist
 
