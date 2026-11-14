@@ -59,5 +59,13 @@ generated corpus material are maintainer work rather than ordinary
 submissions. Open a pull request from a branch named `maintenance/<topic>` for
 such work.
 
-For a conduct concern, do not publish sensitive details. Open a minimal issue
-asking the maintainer for a private contact channel.
+For a conduct concern, do not publish sensitive details. Contact maintainer
+[@carlok](https://github.com/carlok) or email
+[carlo.perassi@gmail.com](mailto:carlo.perassi@gmail.com) privately. See
+[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+
+## Reporting a vulnerability
+
+See [SECURITY.md](SECURITY.md). Do not open a public issue or email a security
+report. For project overview and agent workflows, see [README.md](README.md) and
+[AGENT.md](AGENT.md).
