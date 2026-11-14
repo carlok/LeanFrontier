@@ -1,5 +1,8 @@
-blank_issues_enabled: true
+blank_issues_enabled: false
 contact_links:
   - name: Contribution and support guide
     url: https://github.com/carlok/LeanFrontier/blob/main/CONTRIBUTING.md
-    about: Read the submission, maintenance, support, and sensitive-contact guidance first.
+    about: Read the submission, maintenance, and support guidance first.
+  - name: Report a security vulnerability
+    url: https://github.com/carlok/LeanFrontier/security/advisories/new
+    about: Report security issues privately (see SECURITY.md), not in a public issue.

@@ -113,7 +113,9 @@ standalone [submitter prompt](prompts/SUBMITTER.md) before opening a PR.
 LeanFrontier accepts compliant contributions from people, AI systems, and
 human–AI collaborations; the receiver evaluates the submitted artifact and
 claim, not the producer's identity. See [CONTRIBUTING.md](CONTRIBUTING.md) for
-project-maintenance and contact guidance.
+project-maintenance and contact guidance. See [SECURITY.md](SECURITY.md) for
+private vulnerability reporting. Agents editing the repository should read
+[AGENT.md](AGENT.md).
 
 What that mechanical acceptance does and does not establish, the attacks found
 against it in practice, and what remains unguarded are written down in the

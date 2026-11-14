@@ -1,0 +1,42 @@
+name: Bug report
+description: Receiver, CI, tooling, or documentation defect
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. **Security issues** are not handled here — use
+        [private vulnerability reporting](https://github.com/carlok/LeanFrontier/security/advisories/new)
+        and [SECURITY.md](https://github.com/carlok/LeanFrontier/blob/main/SECURITY.md).
+
+        For theorem submissions, open a pull request instead of an issue. For
+        setup and the submission contract, see [CONTRIBUTING.md](https://github.com/carlok/LeanFrontier/blob/main/CONTRIBUTING.md).
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what did you get instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Commands, branch or commit, and whether this is local, GitHub Actions, or both.
+      placeholder: |
+        git rev-parse HEAD
+        ./tools/validate-submission --base-ref origin/main ...
+        python3 -m unittest discover -s tests -v
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Mathlib / policy revision (if relevant)
+      placeholder: from policy/mathlib-release.json
+    validations:
+      required: false

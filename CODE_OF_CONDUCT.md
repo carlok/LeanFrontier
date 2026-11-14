@@ -11,6 +11,6 @@ disrupt project processes.
 Maintainers may edit, remove, or reject contributions and may limit
 participation when conduct undermines a safe, constructive project space.
 
-For a conduct concern, please follow the private-contact request described in
-[CONTRIBUTING.md](CONTRIBUTING.md). Do not include sensitive details in a
-public issue.
+For a conduct concern, contact maintainer [@carlok](https://github.com/carlok)
+or email [carlo.perassi@gmail.com](mailto:carlo.perassi@gmail.com) privately.
+Do not include sensitive details in a public issue.
