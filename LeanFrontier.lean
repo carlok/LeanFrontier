@@ -15,6 +15,7 @@ import LeanFrontier.Combinatorics.CaroWei
 import LeanFrontier.Combinatorics.CaroWei.TuranBound
 import LeanFrontier.Combinatorics.CatalanLogConvex
 import LeanFrontier.Combinatorics.CircularDominoTilings
+import LeanFrontier.Combinatorics.CliqueCoclique
 import LeanFrontier.Combinatorics.FibonacciComposition
 import LeanFrontier.Combinatorics.FiniteVariance
 import LeanFrontier.Combinatorics.FiniteVariance.LaguerreSamuelson
