@@ -12,6 +12,6 @@
   "entrypoints": [
     "LeanFrontier.SimpleGraph.Connected.induce_compl_singleton_of_vertex_transitive"
   ],
-  "base_mathlib_revision": "v4.35.0",
+  "base_mathlib_revision": "v4.36.0",
   "source_context": "Formalizes the finite vertex-transitive graph vertex-deletion result recorded as Lemma 3.3 of https://arxiv.org/abs/2006.06387. The contributor asked for another small graph-theoretic formalization and authorized publication. Codex selected the result and authored the Lean statement and proof using Mathlib connectivity and graph isomorphisms."
 }
