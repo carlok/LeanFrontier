@@ -12,7 +12,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from frontier_validate import CONJECTURE_RE, RESOLUTION_RE, declarations, namespace_at, strip_comments
+from frontier_validate import CONJECTURE_RE, IMPORT_RE, RESOLUTION_RE, declarations, namespace_at, strip_comments
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -115,9 +115,7 @@ def corpus_shape(root: Path) -> dict[str, object]:
     edges: list[tuple[str, str]] = []
     for module in modules:
         source = (root / (module.replace(".", "/") + ".lean")).read_text(encoding="utf-8")
-        for line in source.splitlines():
-            if line.startswith("import LeanFrontier"):
-                edges.append((module, line.split()[1].strip()))
+        edges += [(module, target) for target in IMPORT_RE.findall(source) if target.startswith("LeanFrontier")]
     edges.sort()
 
     submissions: set[str] = set()
