@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "clique-coclique-bound",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "GPT-6",
+    "agent": "OpenAI Codex"
+  },
+  "origin_mode": "target_driven",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.SimpleGraph.IsClique.ncard_mul_ncard_le_of_vertex_transitive",
+    "LeanFrontier.SimpleGraph.cliqueNum_mul_indepNum_le_natCard_of_vertex_transitive"
+  ],
+  "base_mathlib_revision": "v4.36.0",
+  "source_context": "Formalization of the clique-coclique bound in Godsil and Meagher, Theorem 3.1 (https://arxiv.org/abs/1506.08770). The contributor requested a graph-theoretic formalization and authorized publication. Codex selected the result, wrote the Lean statements and injection proof, and adapted the module for LeanFrontier."
+}
