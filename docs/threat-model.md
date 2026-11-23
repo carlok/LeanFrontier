@@ -186,11 +186,13 @@ Stated plainly, because an unstated residual risk is the dangerous kind.
   therefore a candidate for a periodic audit of the accepted corpus, not for
   admission (#504). Until such a job runs, no stronger claim is made.
 - **Source syntax.** The receiver reads statements from source text, in the
-  syntax of today's Lean files. Lean's `module` system (`public import`,
-  visibility) is opt-in at 4.35, and Mathlib already warns that it expects it.
-  If the corpus or submissions adopt it, the statement reader and the
-  statement screen must learn that syntax first; the screen
-  (`tools/screen_statements.py`) is the check that would show they have not.
+  syntax of the Lean files it has seen. Lean's `module` system is opt-in, and
+  the first submissions written in it arrived in November 2026 (#558–#560).
+  The reader now takes `public`, `meta` and `import all` imports and
+  `public`/`noncomputable` sections; the series, catalogue and dataset count
+  `public import` edges. Syntax the reader has not seen still fails quietly. The statement screen
+  (`tools/screen_statements.py`) catches a statement that no longer states,
+  but not a lost import that Mathlib alone happens to cover.
 
 ## If you are adopting this
 

@@ -1048,6 +1048,26 @@ end LeanFrontier.Toy
         self.assertNotIn("import LeanFrontier\n", source)
         self.assertEqual(footer, "end Pair\nend LeanFrontier.Toy\n")
 
+    def test_a_module_system_file_keeps_its_imports_and_sections(self) -> None:
+        """`public import` and `public section` (#558) were read as nothing:
+        the corpus import was dropped from the probe, and the section's `end`
+        closed the namespace."""
+        path = Path(self.temp.name) / "Public.lean"
+        path.write_text(
+            "module\n\npublic import Mathlib.Combinatorics.SimpleGraph.Clique\npublic import LeanFrontier.Other\n"
+            "namespace LeanFrontier.Toy\n@[expose] public section\nvariable {n : Nat}\n"
+            "theorem early : n = n := rfl\nend\nnoncomputable section\n"
+            "theorem late (m : Nat) : m = m := rfl\nend\nend LeanFrontier.Toy\n")
+        goals = frontier_validate.statement_goals(path)
+        _, (header, footer) = goals["LeanFrontier.Toy.early"]
+        self.assertEqual(header, "import Mathlib.Combinatorics.SimpleGraph.Clique\nimport LeanFrontier.Other\n"
+                                 "set_option autoImplicit false\nnamespace LeanFrontier.Toy\nsection\nvariable {n : Nat}\n")
+        self.assertEqual(footer, "end\nend LeanFrontier.Toy\n")
+        # The first section's `end` closed it, not the namespace, and took its variable with it.
+        _, (header, footer) = goals["LeanFrontier.Toy.late"]
+        self.assertTrue(header.endswith("namespace LeanFrontier.Toy\nsection\n"), header)
+        self.assertEqual(footer, "end\nend LeanFrontier.Toy\n")
+
     def test_entrypoints_are_matched_by_their_declared_name(self) -> None:
         entrypoints = ["LeanFrontier.Toy.by_cases", "LeanFrontier.Toy.Pair.swap_swap", "LeanFrontier.Toy.primed'"]
         bodies = frontier_validate.entrypoint_bodies(Path(self.temp.name), ["LeanFrontier.Toy"], entrypoints)

@@ -180,7 +180,7 @@ theorem euclideanRunQuotients_pair : ∀ path : List Bool,
             euclideanRunQuotients_of_lt (a := 1) (b := k + 1)
               (by omega) (by omega) hlt
           rw [hp, hq, Nat.div_one, Nat.mod_one, euclideanRunQuotients_zero_right]
-          rw [pathQuotients]
+          simp only [pathQuotients]
           split
           · rfl
           · rename_i hne
@@ -193,7 +193,7 @@ theorem euclideanRunQuotients_pair : ∀ path : List Bool,
             euclideanRunQuotients_of_not_lt (a := k + 1) (b := 1)
               (by omega) (by omega) hnlt
           rw [hp, hq, Nat.div_one, Nat.mod_one, euclideanRunQuotients_zero_left]
-          rw [pathQuotients]
+          simp only [pathQuotients]
           split
           · rfl
           · rename_i hne
@@ -232,7 +232,7 @@ theorem euclideanRunQuotients_pair : ∀ path : List Bool,
           rw [hp]
           rw [euclideanRunQuotients_of_lt hpos.1 (by omega) hlt]
           rw [hdiv, hmod, ih]
-          rw [pathQuotients]
+          simp only [pathQuotients]
           split
           · rename_i heq
             have : rest = [] := by
@@ -264,7 +264,7 @@ theorem euclideanRunQuotients_pair : ∀ path : List Bool,
           rw [hp]
           rw [euclideanRunQuotients_of_not_lt (by omega) hpos.2.1 hnlt]
           rw [hdiv, hmod, ih]
-          rw [pathQuotients]
+          simp only [pathQuotients]
           split
           · rename_i heq
             have : rest = [] := by

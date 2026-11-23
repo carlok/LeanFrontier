@@ -26,7 +26,7 @@ from mathlib_release import ROOT
 
 LEAN_ERROR_RE = re.compile(r"^\S+?:(?P<line>\d+):\d+: error(?:\([^)]*\))?: (?P<message>.*)$", re.MULTILINE)
 DEFINITION_RE = re.compile(
-    r"^[ \t]*(?:@\[[^\]]*\][ \t]*)?(?:(?:noncomputable|private|protected|partial|unsafe)[ \t]+)*"
+    r"^[ \t]*(?:@\[[^\]]*\][ \t]*)?(?:(?:public|noncomputable|private|protected|partial|unsafe)[ \t]+)*"
     r"(?:def|abbrev|structure|inductive|class|instance|opaque)[ \t]+([^\s(:{\[]+)",
     re.MULTILINE)
 IDENTIFIER_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_']*")
