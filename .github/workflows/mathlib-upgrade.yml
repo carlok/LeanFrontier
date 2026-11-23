@@ -23,7 +23,9 @@ jobs:
     runs-on: ubuntu-26.04
     # Index plus whole-corpus audit took 30 min on v4.34.0 and longer on a
     # slower runner; 60 left too little headroom.
-    timeout-minutes: 150
+    # The kernel recheck runs `leanchecker --fresh` (about 140 s each) for the
+    # 13 corpus modules that have submodules; see kernel_recheck_command.
+    timeout-minutes: 210
     steps:
       - name: Mint a generator token
         # PRs opened with GITHUB_TOKEN do not trigger workflow runs, so their
@@ -39,7 +41,9 @@ jobs:
         with:
           ref: main
           token: ${{ steps.app-token.outputs.token }}
-          persist-credentials: true
+          # Not stored: an app token lives one hour, and the audit outlasts it
+          # (84 minutes for v4.36.0). The push below uses a fresh one.
+          persist-credentials: false
       - name: Select an official tagged release pair
         id: release
         env:
@@ -121,18 +125,29 @@ jobs:
           name: mathlib-upgrade-evidence
           path: upgrade-output/upgrade.json
           if-no-files-found: warn
+      - name: Mint a fresh generator token for the pull request
+        # The first token expired while the v4.36.0 audit ran (run 45166902296):
+        # the push failed with "Bad credentials" after the audit had passed.
+        if: steps.release.outputs.upgrade == 'true'
+        id: pr-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - name: Open and protect the generated upgrade pull request
         if: steps.release.outputs.upgrade == 'true'
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          GH_TOKEN: ${{ steps.pr-token.outputs.token }}
           TAG: ${{ steps.release.outputs.tag }}
         run: |
           branch="maintenance/mathlib-upgrade-$TAG"
+          git config --local http.https://github.com/.extraheader \
+            "AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
           old_index="$(git show HEAD:policy/mathlib-release.json | python3 -c 'import json, sys; print(json.load(sys.stdin)["fingerprint_index"])')"
           git rm --ignore-unmatch "policy/$old_index"
           git diff --check
           git switch -C "$branch"
-          slug="${{ steps.app-token.outputs.app-slug }}"
+          slug="${{ steps.pr-token.outputs.app-slug }}"
           git config user.name "$slug[bot]"
           git config user.email "$(gh api "/users/$slug%5Bbot%5D" --jq .id)+$slug[bot]@users.noreply.github.com"
           git add lean-toolchain lakefile.toml lake-manifest.json policy

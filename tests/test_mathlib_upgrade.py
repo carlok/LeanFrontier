@@ -186,6 +186,8 @@ class MathlibUpgradePathTests(unittest.TestCase):
     def test_upgrade_audit_rechecks_the_corpus_against_the_kernel(self) -> None:
         """A release bump must not land with proofs nobody re-verified."""
         source = (ROOT / "tools" / "audit_mathlib_upgrade.py").read_text()
-        self.assertIn('"lake", "env", "leanchecker"', source)
+        self.assertIn("kernel_recheck_command(module, modules)", source)
+        self.assertEqual(audit_mathlib_upgrade.kernel_recheck_command("LeanFrontier.X", ["LeanFrontier.X"])[:3],
+                         ["lake", "env", "leanchecker"])
         self.assertIn("def corpus_modules", source)
         self.assertIn('"kernel_recheck": "pass"', source)

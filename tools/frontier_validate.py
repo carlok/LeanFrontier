@@ -1214,7 +1214,24 @@ def downstream_smoke(candidate: Path, modules: list[str], entrypoints: list[str]
     report.observations["downstream_import_smoke"] = "pass"
 
 
-def kernel_recheck(candidate: Path, modules: list[str], limits: dict[str, Any], report: Report) -> None:
+def kernel_recheck_command(module: str, tree: Iterable[str]) -> list[str]:
+    """`leanchecker` for exactly `module`.
+
+    `leanchecker <Module>` checks every built module under that name prefix
+    (#429), and on Lean 4.36 for Linux it segfaults whenever there is more than
+    one: the v4.36.0 upgrade audit (run 45151902129) died on the first corpus
+    module that is also a folder, while each module checked alone passed, and
+    v4.37.0-rc1 passes both. `--fresh` checks exactly one module, replaying its
+    imports too, so it is slower (about 140 s on a runner) and is used only for
+    a module with submodules.
+    """
+    if any(other.startswith(module + ".") for other in tree):
+        return ["lake", "env", "leanchecker", "--fresh", module]
+    return ["lake", "env", "leanchecker", module]
+
+
+def kernel_recheck(candidate: Path, modules: list[str], limits: dict[str, Any], report: Report,
+                   tree: Iterable[str] = ()) -> None:
     """Replay the submitted modules through the kernel with `leanchecker`.
 
     `lake build` and the axiom audit both trust the elaborated environment that
@@ -1223,9 +1240,12 @@ def kernel_recheck(candidate: Path, modules: list[str], limits: dict[str, Any], 
     bug does not reach the corpus on the elaborator's word alone. Imported
     modules are trusted here: each was rechecked when it was admitted.
     """
+    tree = set(tree) | set(modules)
     for module in modules:
+        command = kernel_recheck_command(module, tree)
+        timeout = limits["kernel_recheck_fresh_timeout_seconds" if "--fresh" in command else "kernel_recheck_timeout_seconds"]
         try:
-            result = run(["lake", "env", "leanchecker", module], candidate, limits["kernel_recheck_timeout_seconds"])
+            result = run(command, candidate, timeout)
         except (OSError, subprocess.TimeoutExpired) as error:
             report.reject("KERNEL_RECHECK_FAILED", f"leanchecker did not complete for {module}: {error}")
             return
@@ -1253,7 +1273,7 @@ def lean_audit(base: Path | None, candidate: Path, modules: list[str], submitted
             text = text[: DIAGNOSTIC_LIMIT - len(note)] + note
         report.reject("DEPRECATED_API", text)
         return
-    kernel_recheck(candidate, submitted, limits, report)
+    kernel_recheck(candidate, submitted, limits, report, modules)
     if not report.accepted:
         return
     try:

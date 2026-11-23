@@ -136,7 +136,7 @@ theorem code_eq_iff (p q : List Bool) : code p = code q ↔ p = q := by
 
 private theorem exists_codeRev_eq {n : ℕ} (hn : 0 < n) : ∃ path : List Bool, codeRev path = n := by
   induction n using Nat.strong_induction_on with
-  | h n ih =>
+  | _ n ih =>
       by_cases hn1 : n = 1
       · subst n
         exact ⟨[], rfl⟩
