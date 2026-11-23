@@ -119,9 +119,9 @@ def declarations(code: str) -> list[tuple[str, str, int]]:
 # that gets this wrong yields an unusable probe, which is reported as
 # inconclusive rather than as a rejection.
 CONJECTURE_RE = re.compile(
-    r"^[ \t]*def[ \t]+([A-Za-z_][A-Za-z0-9_']*)[ \t]*:[ \t]*Prop[ \t]*:=(?P<body>.*?)"
+    r"^[ \t]*(?:public[ \t]+)?def[ \t]+([A-Za-z_][A-Za-z0-9_']*)[ \t]*:[ \t]*Prop[ \t]*:=(?P<body>.*?)"
     r"(?=^[ \t]*(?:@\[|theorem|lemma|def|abbrev|opaque|structure|class|inductive|instance|namespace|end|open|section|variable"
-    r"|private|protected|noncomputable|example|set_option|attribute|local|universe)\b|\Z)",
+    r"|public|private|protected|noncomputable|example|set_option|attribute|local|universe)\b|\Z)",
     re.DOTALL | re.M,
 )
 # `theorem c_holds : ConjectureName := ...` is how the contract says a
@@ -129,13 +129,13 @@ CONJECTURE_RE = re.compile(
 # Lean style puts a long qualified type on the next line, which is how the
 # first real resolution (#319) was written, so the gaps may span lines.
 RESOLUTION_RE = re.compile(
-    rf"^[ \t]*(?:(?:private|protected)[ \t]+)?theorem[ \t]+{DECLARATION_NAME}\s*:\s*([A-Za-z_][A-Za-z0-9_.']*)\s*:=",
+    rf"^[ \t]*(?:(?:public|private|protected)[ \t]+)?theorem[ \t]+{DECLARATION_NAME}\s*:\s*([A-Za-z_][A-Za-z0-9_.']*)\s*:=",
     re.M,
 )
 DECLARATION_RE = re.compile(r"\b(?:theorem|lemma|def|abbrev|opaque|structure|class|inductive|instance)\b")
 NAMESPACE_RE = re.compile(r"^\s*namespace\s+([A-Za-z_][A-Za-z0-9_.']*)\s*$")
 END_RE = re.compile(r"^\s*end(?:\s+[A-Za-z_][A-Za-z0-9_.']*)?\s*$")
-PUBLIC_DECLARATION_RE = re.compile(r"^\s*(?:theorem|lemma|def|abbrev|opaque|structure|class|inductive)\s+([A-Za-z_][A-Za-z0-9_']*)\b")
+PUBLIC_DECLARATION_RE = re.compile(r"^\s*(?:public\s+)?(?:theorem|lemma|def|abbrev|opaque|structure|class|inductive)\s+([A-Za-z_][A-Za-z0-9_']*)\b")
 DIRECT_ALIAS_RE = re.compile(r"^\s*(?:def|abbrev)\s+[A-Za-z_][A-Za-z0-9_']*\s*:=\s*[A-Za-z_][A-Za-z0-9_.']*\s*$")
 
 
@@ -424,13 +424,21 @@ def declared_statements(path: Path) -> list[tuple[str, str]]:
     return found
 
 
-SCOPE_RE = re.compile(r"^(namespace|section|end)\b[ \t]*([A-Za-z_][A-Za-z0-9_.']*)?[ \t]*$", re.MULTILINE)
+# `noncomputable section`, and in Lean's module system `public section` or
+# `@[expose] public section`, open a section like a bare `section`: missed, its
+# `end` closed the enclosing namespace instead.
+SCOPE_RE = re.compile(
+    r"^(?:@\[[^\]]*\][ \t]*)?(?:(?:public|noncomputable)[ \t]+)*"
+    r"(namespace|section|end)\b[ \t]*([A-Za-z_][A-Za-z0-9_.']*)?[ \t]*$",
+    re.MULTILINE)
 # `open`, `variable` and local notation lines, with indented continuation
 # lines, which last until the `end` of the section or namespace they appear in.
 CONTEXT_LINE_RE = re.compile(
     r"^(?:open|variable|local[ \t]+(?:notation|infixl?|infixr|prefix|postfix))\b[^\n]*(?:\n[ \t]+\S[^\n]*)*",
     re.MULTILINE)
-IMPORT_RE = re.compile(r"^import[ \t]+(\S+)[ \t]*$", re.MULTILINE)
+# A file that starts with `module` imports with `public import`, `meta import`
+# or `import all` (#558): read as plain `import`, its corpus imports were lost.
+IMPORT_RE = re.compile(r"^(?:public[ \t]+)?(?:meta[ \t]+)?import[ \t]+(?:all[ \t]+)?(\S+)[ \t]*$", re.MULTILINE)
 
 
 def namespace_at(code: str, position: int, default: str = "LeanFrontier") -> str:
