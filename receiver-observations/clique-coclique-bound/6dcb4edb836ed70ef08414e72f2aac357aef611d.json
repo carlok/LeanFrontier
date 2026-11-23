@@ -1,0 +1,212 @@
+{
+  "accepted_revision": "6dcb4edb836ed70ef08414e72f2aac357aef611d",
+  "observation_version": "0.1",
+  "observed_at": "2026-11-23T19:52:24Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 301.488,
+    "observed": {
+      "added_lines": 78,
+      "audited_declarations": {
+        "LeanFrontier.SimpleGraph.IsClique": null,
+        "LeanFrontier.SimpleGraph.cliqueNum_mul_indepNum_le_natCard_of_vertex_transitive": {
+          "alias": false,
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "generated": false,
+          "kind": "theorem",
+          "name": "LeanFrontier.SimpleGraph.cliqueNum_mul_indepNum_le_natCard_of_vertex_transitive",
+          "restatement": false,
+          "statement_sha256": "e1143d55d58c64ec6964885d90c1f81372b600e4e7aa491a87c46aa67ee5165b",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "Eq",
+            "Exists",
+            "Finite",
+            "HMul.hMul",
+            "LE.le",
+            "Nat",
+            "Nat.card",
+            "RelIso.instFunLike",
+            "SimpleGraph",
+            "SimpleGraph.Adj",
+            "SimpleGraph.Iso",
+            "SimpleGraph.cliqueNum",
+            "SimpleGraph.indepNum",
+            "instHMul",
+            "instLENat",
+            "instMulNat"
+          ]
+        }
+      },
+      "baseline_probe_runs": {
+        "attempts": 14,
+        "by_entrypoint": {
+          "LeanFrontier.SimpleGraph.IsClique.ncard_mul_ncard_le_of_vertex_transitive": [
+            {
+              "outcome": "stated",
+              "seconds": 3.205,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.181,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.323,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.271,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.342,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.208,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.161,
+              "tactic": "decide"
+            }
+          ],
+          "LeanFrontier.SimpleGraph.cliqueNum_mul_indepNum_le_natCard_of_vertex_transitive": [
+            {
+              "outcome": "stated",
+              "seconds": 3.17,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.194,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.12,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.21,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.172,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.123,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.157,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 44.837,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SimpleGraph.IsClique.ncard_mul_ncard_le_of_vertex_transitive": "inconclusive",
+        "LeanFrontier.SimpleGraph.cliqueNum_mul_indepNum_le_natCard_of_vertex_transitive": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4024,
+      "changed_files": [
+        "LeanFrontier/Combinatorics/CliqueCoclique.lean",
+        "Submissions/clique-coclique-bound.json"
+      ],
+      "corpus_entrypoints_checked": 342,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SimpleGraph.IsClique.ncard_mul_ncard_le_of_vertex_transitive": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SimpleGraph.IsClique.ncard_mul_ncard_le_of_vertex_transitive",
+          "statement_sha256": "e10bc68b0fb2e81e2a1aa64e6033575d914696e85fdc774951437851afef0549",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "Eq",
+            "Exists",
+            "Finite",
+            "HMul.hMul",
+            "LE.le",
+            "Nat",
+            "Nat.card",
+            "RelIso.instFunLike",
+            "Set",
+            "Set.ncard",
+            "SimpleGraph",
+            "SimpleGraph.Adj",
+            "SimpleGraph.IsClique",
+            "SimpleGraph.IsIndepSet",
+            "SimpleGraph.Iso",
+            "instHMul",
+            "instLENat",
+            "instMulNat"
+          ]
+        },
+        "LeanFrontier.SimpleGraph.cliqueNum_mul_indepNum_le_natCard_of_vertex_transitive": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SimpleGraph.cliqueNum_mul_indepNum_le_natCard_of_vertex_transitive",
+          "statement_sha256": "e1143d55d58c64ec6964885d90c1f81372b600e4e7aa491a87c46aa67ee5165b",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "Eq",
+            "Exists",
+            "Finite",
+            "HMul.hMul",
+            "LE.le",
+            "Nat",
+            "Nat.card",
+            "RelIso.instFunLike",
+            "SimpleGraph",
+            "SimpleGraph.Adj",
+            "SimpleGraph.Iso",
+            "SimpleGraph.cliqueNum",
+            "SimpleGraph.indepNum",
+            "instHMul",
+            "instLENat",
+            "instMulNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3182,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 2
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "clique-coclique-bound",
+  "trusted_receiver_revision": "8b4181182dd88eb98b2740484a35eb0cab39d07c",
+  "validated_candidate_revision": "e6077e9a36b1ca29cd6fe722c475930d9515f1f5",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/45251324144"
+}
