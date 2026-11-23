@@ -441,6 +441,36 @@ class ValidatorPreflightTests(PreflightHarness, unittest.TestCase):
         self.assertFalse(report.accepted)
         self.assertEqual(report.diagnostics[0].code, "KERNEL_RECHECK_FAILED")
 
+    def test_a_module_with_submodules_is_rechecked_alone(self) -> None:
+        """On Lean 4.36 for Linux, `leanchecker` segfaults on a module whose
+        built submodules its name prefix also matches (v4.36.0 upgrade audit)."""
+        tree = ["LeanFrontier.A", "LeanFrontier.A.B", "LeanFrontier.AB"]
+        self.assertEqual(frontier_validate.kernel_recheck_command("LeanFrontier.A", tree),
+                         ["lake", "env", "leanchecker", "--fresh", "LeanFrontier.A"])
+        # `LeanFrontier.AB` is not under the prefix `LeanFrontier.A`: Lean prefixes are by component.
+        self.assertEqual(frontier_validate.kernel_recheck_command("LeanFrontier.A.B", tree),
+                         ["lake", "env", "leanchecker", "LeanFrontier.A.B"])
+        self.assertEqual(frontier_validate.kernel_recheck_command("LeanFrontier.AB", tree),
+                         ["lake", "env", "leanchecker", "LeanFrontier.AB"])
+        calls: list[tuple[list[str], int]] = []
+
+        class Result:
+            returncode = 0
+            stderr = stdout = ""
+
+        original = frontier_validate.run
+        frontier_validate.run = lambda cmd, cwd, timeout: (calls.append((cmd, timeout)), Result())[1]
+        try:
+            report = frontier_validate.Report()
+            frontier_validate.kernel_recheck(
+                self.candidate, ["LeanFrontier.A", "LeanFrontier.A.B"],
+                {"kernel_recheck_timeout_seconds": 180, "kernel_recheck_fresh_timeout_seconds": 600}, report,
+            )
+        finally:
+            frontier_validate.run = original
+        self.assertEqual([timeout for _, timeout in calls], [600, 180])
+        self.assertTrue(report.accepted)
+
     def test_a_failed_build_reports_the_lean_errors(self) -> None:
         """Lake prints elaboration errors on stdout and only a summary on stderr."""
 

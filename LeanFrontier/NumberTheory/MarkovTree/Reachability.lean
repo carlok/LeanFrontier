@@ -165,7 +165,7 @@ private theorem exists_walk_to_root_aux :
       ∃ path : List Move, walk path s = ⟨1, 1, 1⟩ := by
   intro N
   induction N using Nat.strong_induction_on with
-  | h N ih =>
+  | _ N ih =>
       intro s hweight hs
       rcases hs with ⟨hpos, hsol⟩
       by_cases hroot : s = ⟨1, 1, 1⟩
