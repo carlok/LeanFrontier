@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="LeanFrontier Field Note 29: a new contributor's first submissions, in Lean's module system, and the four attempts it took to land Mathlib v4.36.">
+    <title>Field Note 29 — LeanFrontier</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../assets/site.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="../" aria-label="LeanFrontier home" translate="no">LeanFrontier</a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a>
+        <a href="../catalogue/">Catalogue</a>
+        <a href="./">Field Notes</a>
+        <a class="nav-github" href="https://github.com/carlok/LeanFrontier">View on GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <main id="main">
+      <article class="note">
+        <header class="note-header">
+          <p class="eyebrow">23 November 2026 · Field Note 29</p>
+          <h1>A New Contributor.</h1>
+          <p class="hero-copy">For the first time since August, accepted work came from someone other than qazW12345, whose agent has written ninety submissions since September. It arrived on the morning the project began upgrading to Mathlib v4.36, an upgrade that took four attempts.</p>
+        </header>
+
+        <section>
+          <h2>Three results on vertex-transitive graphs</h2>
+          <p>A new contributor, Taermoon, opened three pull requests on 23 November. Each record names OpenAI Codex running GPT-6, the same model behind qazW12345's recent work, run through a different agent. All three results are about finite vertex-transitive graphs, graphs whose automorphisms can move any vertex to any other, and each cites its source:</p>
+          <ul>
+            <li>the clique–coclique bound: the size of a clique times the size of an independent set is at most the number of vertices (Godsil and Meagher, Theorem 3.1);</li>
+            <li>deleting any one vertex from a connected one, with at least two vertices, leaves it connected;</li>
+            <li>the no-homomorphism lemma of Albertson and Collins: a graph that maps to a vertex-transitive graph has an independence ratio at least as large, stated by cross-multiplying.</li>
+          </ul>
+          <p>Every statement was stated as written and probed, and no bounded tactic closed any of them. None imports the corpus, so the series counts three new subjects and no new edges.</p>
+        </section>
+
+        <section>
+          <h2>Written in Lean's module system</h2>
+          <p>They are also the first corpus files that begin with <code>module</code> and use <code>public import</code> and <code>public section</code>. Every part of the project that reads source text expected plain <code>import</code> and <code>section</code>: the receiver's probe context, the statement screen, the catalogue, the dataset and the accumulation series. For these three files nothing was lost, since they import only Mathlib and the probe imports all of it. But a later module-system file importing another corpus module would have been probed without that import, and the series would not have counted the edge, with no error anywhere. The parsers now read both forms. The same change fixed an older slip: <code>noncomputable section</code>, used by four corpus files, was not recognised as a section, so its <code>end</code> was taken to close the namespace around it.</p>
+        </section>
+
+        <section>
+          <h2>Four attempts at v4.36</h2>
+          <p>Mathlib v4.36.0 was released on 16 November, a few hours after that week's scheduled upgrade had found nothing new. It was dispatched by hand on the 23rd.</p>
+          <ol>
+            <li><strong>Two proofs no longer built.</strong> <code>Nat.strong_induction_on</code> had renamed its case from <code>h</code> to <code>ind</code>. Six other uses in the corpus already wrote the case without its name, and the two that named it now do the same.</li>
+            <li><strong>The kernel recheck crashed.</strong> On Linux, <code>leanchecker</code> segfaulted whenever it was asked to check a module that has submodules: it treats the name as a prefix and checks the whole family in one process. Each module checked alone passed, macOS did not crash, and the release candidate of the next version no longer does. Thirteen corpus modules have submodules. They are now checked with <code>--fresh</code>, the standard checker's exact mode, which also replays every import: slower, at about two and a half minutes each, but a stronger check.</li>
+            <li><strong>The audit passed, and then the push failed.</strong> The upgrade job's token lives one hour, and the slower recheck had made the job last 84 minutes. A fresh token is now minted after the audit.</li>
+            <li><strong>It landed.</strong> All 342 accepted entrypoints passed, with no collision with Mathlib and no deprecation in the corpus. The statement screen then stated all 342, with no unexpected failure.</li>
+          </ol>
+          <p>The second and third failures were each caused by the fix for the one before. Neither was predictable from the release notes. A dry run on the release candidate, which caught v4.35's only break a week early (Note 25), had not been done this time. For v4.37 it has: on its first release candidate four proofs in one file broke, and they are already fixed on every version from v4.35 on. Five deprecation warnings remain, to clear once v4.37 lands.</p>
+        </section>
+
+        <section>
+          <h2>Waiting cost the newcomer a round</h2>
+          <p>The three pull requests were opened before the upgrade. The receiver accepted the first two on v4.35, but merging was held until the upgrade landed, and by then their records pinned a Mathlib revision the receiver no longer accepts. The contribution guide asks contributors to update the pin themselves. Here the maintainers did it, a one-line change to each record with the proofs untouched, and all three were accepted on v4.36.</p>
+          <p>The corpus stands at 125 modules and 98 internal import edges.</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>LeanFrontier is built on <a href="https://leanprover.github.io/">Lean</a> and <a href="https://github.com/leanprover-community/mathlib4">Mathlib</a>.</p>
+      <a href="https://github.com/carlok/LeanFrontier">github.com/carlok/LeanFrontier <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
