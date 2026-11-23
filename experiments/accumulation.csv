@@ -138,3 +138,4 @@ date,submission_id,modules,edges,edges_per_module,connected_share,max_in_degree,
 2026-10-29,inhomogeneous-discrete-lagrange-green,122,98,0.803,0.648,4,9,false,true,true
 2026-11-23,clique-coclique-bound,123,98,0.797,0.642,4,9,false,true,false
 2026-11-23,vertex-transitive-connectivity,124,98,0.790,0.637,4,9,false,true,false
+2026-11-23,no-homomorphism,125,98,0.784,0.632,4,9,false,true,false
