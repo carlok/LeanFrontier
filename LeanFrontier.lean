@@ -21,6 +21,7 @@ import LeanFrontier.Combinatorics.FiniteVariance
 import LeanFrontier.Combinatorics.FiniteVariance.LaguerreSamuelson
 import LeanFrontier.Combinatorics.Josephus
 import LeanFrontier.Combinatorics.Josephus.OneIndexed
+import LeanFrontier.Combinatorics.NoHomomorphism
 import LeanFrontier.Combinatorics.VertexTransitiveConnectivity
 import LeanFrontier.Dynamics.FiniteOrbitPeriodicity
 import LeanFrontier.Dynamics.LogisticConjugacy
