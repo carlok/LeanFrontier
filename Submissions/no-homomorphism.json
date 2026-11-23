@@ -12,6 +12,6 @@
   "entrypoints": [
     "LeanFrontier.SimpleGraph.Hom.natCard_mul_indepNum_le_of_vertex_transitive"
   ],
-  "base_mathlib_revision": "v4.35.0",
+  "base_mathlib_revision": "v4.36.0",
   "source_context": "Formalizes the no-homomorphism lemma of M. O. Albertson and K. L. Collins (https://doi.org/10.1016/0012-365X(85)90073-1). The contributor asked for a small graph-theoretic contribution and authorized publication. Codex selected the result, authored the Lean statement and proof, and prepared it for LeanFrontier."
 }
