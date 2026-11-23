@@ -12,7 +12,7 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-from frontier_validate import deprecations, failure_output, lean_errors, run as run_bounded, silent_failure
+from frontier_validate import deprecations, failure_output, kernel_recheck_command, lean_errors, run as run_bounded, silent_failure
 from mathlib_release import ROOT, load_release_policy
 
 
@@ -107,8 +107,10 @@ def main(argv: list[str] | None = None) -> int:
         # the re-audit compares this report byte for byte.
         corpus_files = {f"{module.replace('.', '/')}.lean" for module in corpus_modules(root)}
         deprecated = sorted(deprecations(build, corpus_files))
-        for module in corpus_modules(root):
-            recheck = run(["lake", "env", "leanchecker", module], cwd=root, timeout=300)
+        modules = corpus_modules(root)
+        for module in modules:
+            command = kernel_recheck_command(module, modules)
+            recheck = run(command, cwd=root, timeout=900 if "--fresh" in command else 300)
             if recheck.returncode:
                 raise RuntimeError(failure_output(recheck) or silent_failure("leanchecker", module, recheck.returncode))
         audit = run(["lake", "exe", "frontier-audit", "--", "LeanFrontier"], cwd=root, timeout=240)

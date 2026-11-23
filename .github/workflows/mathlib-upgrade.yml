@@ -23,7 +23,9 @@ jobs:
     runs-on: ubuntu-26.04
     # Index plus whole-corpus audit took 30 min on v4.34.0 and longer on a
     # slower runner; 60 left too little headroom.
-    timeout-minutes: 150
+    # The kernel recheck runs `leanchecker --fresh` (about 140 s each) for the
+    # 13 corpus modules that have submodules; see kernel_recheck_command.
+    timeout-minutes: 210
     steps:
       - name: Mint a generator token
         # PRs opened with GITHUB_TOKEN do not trigger workflow runs, so their

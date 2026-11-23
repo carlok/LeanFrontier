@@ -40,7 +40,9 @@ jobs:
   mathlib-upgrade:
     name: mathlib-upgrade
     runs-on: ubuntu-26.04
-    timeout-minutes: 150
+    # The kernel recheck runs `leanchecker --fresh` (about 140 s each) for the
+    # 13 corpus modules that have submodules; see kernel_recheck_command.
+    timeout-minutes: 210
     steps:
       - uses: actions/checkout@v5
         with:
