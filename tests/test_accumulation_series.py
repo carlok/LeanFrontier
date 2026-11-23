@@ -139,6 +139,13 @@ class SyntheticHistory(unittest.TestCase):
         sources = {"LeanFrontier.A": "", "LeanFrontier.B": "import LeanFrontier.A\n", "LeanFrontier.C": "import LeanFrontier.B\n"}
         self.assertEqual(series.depth_of(sources, series.edges_of(sources)), 3)
 
+    def test_module_system_imports_are_edges(self) -> None:
+        """Files starting with `module` write `public import` (#558)."""
+        sources = {"LeanFrontier.A": "module\n", "LeanFrontier.B": "module\n\npublic import LeanFrontier.A\n",
+                   "LeanFrontier.C": "module\n\nmeta import all LeanFrontier.B\n"}
+        self.assertEqual(sorted(series.edges_of(sources)),
+                         [("LeanFrontier.B", "LeanFrontier.A"), ("LeanFrontier.C", "LeanFrontier.B")])
+
 
 class CommittedSeries(unittest.TestCase):
     """Properties the committed file keeps even when it is stale."""
