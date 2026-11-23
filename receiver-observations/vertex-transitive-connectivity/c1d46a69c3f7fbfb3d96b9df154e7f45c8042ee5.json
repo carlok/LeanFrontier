@@ -1,0 +1,111 @@
+{
+  "accepted_revision": "c1d46a69c3f7fbfb3d96b9df154e7f45c8042ee5",
+  "observation_version": "0.1",
+  "observed_at": "2026-11-23T20:02:58Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 396.91,
+    "observed": {
+      "added_lines": 33,
+      "audited_declarations": {
+        "LeanFrontier.SimpleGraph.Connected": null
+      },
+      "baseline_probe_runs": {
+        "attempts": 7,
+        "by_entrypoint": {
+          "LeanFrontier.SimpleGraph.Connected.induce_compl_singleton_of_vertex_transitive": [
+            {
+              "outcome": "stated",
+              "seconds": 4.226,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.316,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.28,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.268,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.368,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.304,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.271,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 30.033,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SimpleGraph.Connected.induce_compl_singleton_of_vertex_transitive": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 1977,
+      "changed_files": [
+        "LeanFrontier/Combinatorics/VertexTransitiveConnectivity.lean",
+        "Submissions/vertex-transitive-connectivity.json"
+      ],
+      "corpus_entrypoints_checked": 344,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SimpleGraph.Connected.induce_compl_singleton_of_vertex_transitive": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SimpleGraph.Connected.induce_compl_singleton_of_vertex_transitive",
+          "statement_sha256": "3a3dcb979b3a03cf96e7d179aa3c99227494d8031532c653ad087a63c1a6494f",
+          "type_dependencies": [
+            "Compl.compl",
+            "DFunLike.coe",
+            "Eq",
+            "Exists",
+            "Finite",
+            "Nontrivial",
+            "RelIso.instFunLike",
+            "Set",
+            "Set.Elem",
+            "Set.instCompl",
+            "Set.instSingletonSet",
+            "SimpleGraph",
+            "SimpleGraph.Adj",
+            "SimpleGraph.Connected",
+            "SimpleGraph.Iso",
+            "SimpleGraph.induce",
+            "Singleton.singleton"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 1178,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "vertex-transitive-connectivity",
+  "trusted_receiver_revision": "caf8e2c7d9b2b6f6165b9e5fdb42247ece568a32",
+  "validated_candidate_revision": "3979b9cb6498e3afd83899b17517a086cefb788b",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/45253691628"
+}
