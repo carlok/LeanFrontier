@@ -1,0 +1,111 @@
+{
+  "accepted_revision": "f397fb5049eca83f42dc8de89b7074060accc3a0",
+  "observation_version": "0.1",
+  "observed_at": "2026-11-23T20:13:07Z",
+  "report": {
+    "accepted": true,
+    "diagnostics": [],
+    "duration_seconds": 333.239,
+    "observed": {
+      "added_lines": 87,
+      "audited_declarations": {
+        "LeanFrontier.SimpleGraph.Hom": null
+      },
+      "baseline_probe_runs": {
+        "attempts": 7,
+        "by_entrypoint": {
+          "LeanFrontier.SimpleGraph.Hom.natCard_mul_indepNum_le_of_vertex_transitive": [
+            {
+              "outcome": "stated",
+              "seconds": 3.932,
+              "tactic": "statement"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.939,
+              "tactic": "rfl"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.081,
+              "tactic": "simp"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 4.094,
+              "tactic": "norm_num"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.987,
+              "tactic": "tauto"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.989,
+              "tactic": "omega"
+            },
+            {
+              "outcome": "failed",
+              "seconds": 3.958,
+              "tactic": "decide"
+            }
+          ]
+        },
+        "seconds": 27.98,
+        "timeouts": 0
+      },
+      "baseline_triviality_probes": {
+        "LeanFrontier.SimpleGraph.Hom.natCard_mul_indepNum_le_of_vertex_transitive": "inconclusive"
+      },
+      "build": "pass",
+      "changed_bytes": 4713,
+      "changed_files": [
+        "LeanFrontier/Combinatorics/NoHomomorphism.lean",
+        "Submissions/no-homomorphism.json"
+      ],
+      "corpus_entrypoints_checked": 345,
+      "downstream_import_smoke": "pass",
+      "entrypoints": {
+        "LeanFrontier.SimpleGraph.Hom.natCard_mul_indepNum_le_of_vertex_transitive": {
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "kind": "theorem",
+          "name": "LeanFrontier.SimpleGraph.Hom.natCard_mul_indepNum_le_of_vertex_transitive",
+          "statement_sha256": "fc0f4bb39d35c62ebe1a5fbc43d266134665fec067e746a04793a1082e46d946",
+          "type_dependencies": [
+            "DFunLike.coe",
+            "Eq",
+            "Exists",
+            "Finite",
+            "HMul.hMul",
+            "LE.le",
+            "Nat",
+            "Nat.card",
+            "RelIso.instFunLike",
+            "SimpleGraph",
+            "SimpleGraph.Adj",
+            "SimpleGraph.Hom",
+            "SimpleGraph.Iso",
+            "SimpleGraph.indepNum",
+            "instHMul",
+            "instLENat",
+            "instMulNat"
+          ]
+        }
+      },
+      "kernel_recheck": "pass",
+      "lean_source_bytes": 3966,
+      "mathlib_exact_matches": 0,
+      "new_declarations": 1
+    },
+    "protocol_version": "0.1"
+  },
+  "submission_id": "no-homomorphism",
+  "trusted_receiver_revision": "eacc27e9de9ab63df79febb621d1b5c97d46047b",
+  "validated_candidate_revision": "dce9efc93fc9f0ad066a550800aa6ae52b9f3270",
+  "validation_run": "https://github.com/carlok/LeanFrontier/actions/runs/45255580926"
+}
