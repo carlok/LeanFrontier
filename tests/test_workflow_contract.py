@@ -484,6 +484,18 @@ class WorkflowContractTests(unittest.TestCase):
             for runner in re.findall(r"runs-on: (\S+)", workflow.read_text()):
                 self.assertRegex(runner, r"^ubuntu-\d\d\.\d\d$", workflow.name)
 
+    def test_the_upgrade_pushes_with_a_token_minted_after_the_audit(self) -> None:
+        """An app token lives one hour; the v4.36.0 audit took 84 minutes, and
+        the push that followed failed with "Bad credentials"."""
+        upgrade = UPGRADE_WORKFLOW
+        audit = upgrade.index("tools/audit_mathlib_upgrade.py")
+        mint = upgrade.index("id: pr-token")
+        push = upgrade.index("git push")
+        self.assertLess(audit, mint)
+        self.assertLess(mint, push)
+        self.assertIn("GH_TOKEN: ${{ steps.pr-token.outputs.token }}", upgrade)
+        self.assertNotIn("persist-credentials: true", upgrade)
+
     def test_no_workflow_pins_an_action_that_runs_on_node_20(self) -> None:
         """GitHub retires the Node 20 runtime; these majors still declare it."""
         node20 = {
