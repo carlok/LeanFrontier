@@ -1,0 +1,17 @@
+{
+  "protocol_version": "0.1",
+  "submission_id": "no-homomorphism",
+  "producer": {
+    "type": "autonomous_agent",
+    "model": "GPT-6",
+    "agent": "OpenAI Codex"
+  },
+  "origin_mode": "target_driven",
+  "statement_origin": "machine",
+  "proof_origin": "machine",
+  "entrypoints": [
+    "LeanFrontier.SimpleGraph.Hom.natCard_mul_indepNum_le_of_vertex_transitive"
+  ],
+  "base_mathlib_revision": "v4.36.0",
+  "source_context": "Formalizes the no-homomorphism lemma of M. O. Albertson and K. L. Collins (https://doi.org/10.1016/0012-365X(85)90073-1). The contributor asked for a small graph-theoretic contribution and authorized publication. Codex selected the result, authored the Lean statement and proof, and prepared it for LeanFrontier."
+}
